@@ -1,6 +1,6 @@
 <template>
   <div
-    class="subheader py-3 py-lg-8 subheader-transparent"
+    class="subheader py-2 py-lg-4 subheader-solid"
     v-bind:class="subheaderClasses"
     id="kt_subheader"
   >
@@ -8,150 +8,164 @@
       class="d-flex align-items-center justify-content-between flex-wrap flex-sm-nowrap"
       v-bind:class="{ 'container-fluid': widthFluid, container: !widthFluid }"
     >
-      <div class="d-flex align-items-baseline mr-5">
-        <!--begin::Page Title-->
-        <h2 class="subheader-title text-dark font-weight-bold my-2 mr-3">
+      <div class="d-flex align-items-center flex-wrap mr-1">
+        <h5 class="text-dark font-weight-bold my-2 mr-5">
           {{ title }}
-        </h2>
-        <!--end::Page Title-->
-        <!--begin::Breadcrumb-->
+        </h5>
         <ul
-          class="breadcrumb breadcrumb-transparent breadcrumb-dot font-weight-bold my-2 p-0"
+          class="breadcrumb breadcrumb-transparent breadcrumb-dot font-weight-bold p-0 my-2"
         >
+          <li class="breadcrumb-item">
+            <router-link :to="'/'" class="subheader-breadcrumbs-home">
+              <i class="flaticon2-shelter text-muted icon-1x"></i>
+            </router-link>
+          </li>
+
           <template v-for="(breadcrumb, i) in breadcrumbs">
-            <li :key="`${i}-${breadcrumb.id}`" class="breadcrumb-item">
+            <li class="breadcrumb-item" :key="`${i}-${breadcrumb.id}`">
               <router-link
-                :key="`${i}-${breadcrumb.id}`"
                 v-if="breadcrumb.route"
+                :key="i"
                 :to="breadcrumb.route"
                 class="text-muted"
               >
                 {{ breadcrumb.title }}
               </router-link>
-              <span
-                class="text-muted"
-                :key="`${i}-${breadcrumb.id}`"
-                v-if="!breadcrumb.route"
-              >
+              <span class="text-muted" :key="i" v-if="!breadcrumb.route">
                 {{ breadcrumb.title }}
               </span>
             </li>
           </template>
         </ul>
-        <!--end::Breadcrumb-->
       </div>
-
-      <!--begin::Toolbar-->
       <div class="d-flex align-items-center">
-        <!--begin::Button-->
-        <a
-          href="#"
-          class="btn btn-fh btn-white btn-hover-primary font-weight-bold px-2 px-lg-5 mr-2"
-        >
-          <span class="svg-icon svg-icon-primary svg-icon-lg">
-            <!--begin::Svg-->
-            <inline-svg src="media/svg/icons/Communication/Add-user.svg" />
-            <!--end::Svg Icon-->
-          </span>
-          New Member
+        <a href="#" class="btn btn-light font-weight-bold btn-sm">
+          Actions
         </a>
-        <!--end::Button-->
-        <!--begin::Dropdown-->
+
         <b-dropdown
-          toggle-class="btn btn-fh btn-white btn-hover-primary font-weight-bold px-2 px-lg-5 mr-2"
+          size="sm"
+          variant="link"
+          toggle-class="custom-v-dropdown"
           no-caret
           right
           no-flip
-          v-b-tooltip="'Quick actions'"
+          text="Actions"
+          v-b-tooltip.hover="'Quick actions'"
         >
           <template v-slot:button-content>
-            <!--begin::Button-->
-            <span class="svg-icon svg-icon-primary svg-icon-lg">
-              <!--begin::Svg-->
-              <inline-svg src="media/svg/icons/Files/File.svg" />
-              <!--end::Svg Icon-->
-            </span>
-            New Report
-            <!--end::Button-->
+            <a href="#" class="btn btn-icon" data-toggle="dropdown">
+              <span class="svg-icon svg-icon-success svg-icon-2x">
+                <!--begin::Svg Icon-->
+                <inline-svg src="media/svg/icons/Files/File-plus.svg" />
+                <!--end::Svg Icon-->
+              </span>
+            </a>
           </template>
           <!--begin::Navigation-->
           <div class="navi navi-hover min-w-md-250px">
             <b-dropdown-text tag="div" class="navi-header font-weight-bold">
-              <span class="font-size-lg">
-                Choose Label:
-              </span>
+              Jump to:
               <i
-                class="flaticon2-information icon-md text-muted"
-                v-b-tooltip="'Click to learn more...'"
-              ></i>
+                class="flaticon2-information"
+                data-toggle="tooltip"
+                data-placement="left"
+                v-b-tooltip.hover
+                title="Click to learn more..."
+              />
             </b-dropdown-text>
             <b-dropdown-text
               tag="div"
-              class="navi-separator mb-3 opacity-70"
+              class="navi-separator mb-3"
             ></b-dropdown-text>
             <b-dropdown-text tag="div" class="navi-item">
               <a href="#" class="navi-link">
-                <span class="navi-text">
-                  <span class="label label-xl label-inline label-light-primary">
-                    Customer
-                  </span>
+                <span class="navi-icon">
+                  <i class="flaticon2-drop"></i>
                 </span>
+                <span class="navi-text">Recent Orders</span>
               </a>
             </b-dropdown-text>
             <b-dropdown-text tag="div" class="navi-item">
               <a href="#" class="navi-link">
-                <span class="navi-text">
-                  <span class="label label-xl label-inline label-light-danger">
-                    Partner
-                  </span>
+                <span class="navi-icon">
+                  <i class="flaticon2-calendar-8"></i>
                 </span>
+                <span class="navi-text">Support Cases</span>
               </a>
             </b-dropdown-text>
             <b-dropdown-text tag="div" class="navi-item">
               <a href="#" class="navi-link">
-                <span class="navi-text">
-                  <span class="label label-xl label-inline label-light-warning">
-                    Suplier
-                  </span>
+                <span class="navi-icon">
+                  <i class="flaticon2-telegram-logo"></i>
                 </span>
+                <span class="navi-text">Projects</span>
               </a>
             </b-dropdown-text>
             <b-dropdown-text tag="div" class="navi-item">
               <a href="#" class="navi-link">
-                <span class="navi-text">
-                  <span class="label label-xl label-inline label-light-primary">
-                    Member
-                  </span>
+                <span class="navi-icon">
+                  <i class="flaticon2-new-email"></i>
                 </span>
-              </a>
-            </b-dropdown-text>
-            <b-dropdown-text tag="div" class="navi-item">
-              <a href="#" class="navi-link">
-                <span class="navi-text">
-                  <span class="label label-xl label-inline label-light-dark">
-                    Staff
-                  </span>
+                <span class="navi-text">Messages</span>
+                <span class="navi-label">
+                  <span class="label label-success label-rounded">5</span>
                 </span>
               </a>
             </b-dropdown-text>
             <b-dropdown-text
               tag="div"
-              class="navi-separator mt-3 opacity-70"
+              class="navi-separator mt-3"
             ></b-dropdown-text>
-            <b-dropdown-text tag="div" class="navi-footer pt-5 pb-4">
-              <a class="btn btn-clean font-weight-bold btn-sm" href="#">
-                <i class="ki ki-plus icon-sm"></i>Add new</a
+            <b-dropdown-text tag="div" class="navi-footer">
+              <a
+                class="btn btn-light-primary font-weight-bolder btn-sm"
+                href="#"
+                >Upgrade plan</a
+              >
+              <a
+                class="btn btn-clean font-weight-bold btn-sm"
+                href="#"
+                data-toggle="tooltip"
+                data-placement="left"
+                v-b-tooltip.hover
+                title="Click to learn more..."
+                >Learn more</a
               >
             </b-dropdown-text>
           </div>
           <!--end::Navigation-->
         </b-dropdown>
-        <!--end::Dropdown-->
       </div>
-      <!--end::Toolbar-->
     </div>
   </div>
 </template>
+
+<style lang="scss">
+.custom-v-dropdown {
+  &.dropdown-toggle {
+    padding: 0;
+    &:hover {
+      text-decoration: none;
+    }
+
+    &.dropdown-toggle-no-caret {
+      &:after {
+        content: none;
+      }
+    }
+  }
+
+  &.dropdown-menu {
+    margin: 0;
+    padding: 0;
+    outline: none;
+    .b-dropdown-text {
+      padding: 0;
+    }
+  }
+}
+</style>
 
 <script>
 import { mapGetters } from "vuex";
@@ -184,10 +198,6 @@ export default {
 
         if (this.layoutConfig("subheader.fixed")) {
           classes.push("border-top");
-        }
-
-        if (this.layoutConfig("subheader.clear")) {
-          classes.push("mb-0");
         }
       }
       return classes.join(" ");

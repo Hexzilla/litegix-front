@@ -96,7 +96,7 @@
           </a>
           <button
             ref="kt_login_signin_submit"
-            class="btn btn-primary font-weight-bold px-9 py-4 my-3 font-size-3"
+            class="btn btn-elevate btn-primary font-weight-bold px-9 py-4 my-3 font-size-3"
           >
             Sign In
           </button>

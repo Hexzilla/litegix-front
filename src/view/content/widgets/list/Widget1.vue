@@ -1,4 +1,5 @@
 <template>
+  <!--begin::List Widget 1-->
   <div class="card card-custom card-stretch gutter-b">
     <!--begin::Header-->
     <div class="card-header border-0">
@@ -14,9 +15,15 @@
         <!--begin::Item-->
         <div class="d-flex align-items-center mb-10" v-bind:key="i">
           <!--begin::Symbol-->
-          <div class="symbol symbol-40 symbol-light-primary mr-5">
+          <div
+            class="symbol symbol-40 mr-5"
+            v-bind:class="`symbol-light-${item.style}`"
+          >
             <span class="symbol-label">
-              <span class="svg-icon svg-icon-lg" v-bind:class="item.style">
+              <span
+                class="svg-icon svg-icon-lg"
+                v-bind:class="`svg-icon-${item.style}`"
+              >
                 <!--begin::Svg Icon-->
                 <inline-svg :src="item.svg"></inline-svg>
                 <!--end::Svg Icon-->
@@ -26,7 +33,7 @@
           <!--end::Symbol-->
           <!--begin::Text-->
           <div class="d-flex flex-column font-weight-bold">
-            <a href="#" class="text-dark text-hover-primary mb-1 font-size-lg">
+            <a class="text-dark text-hover-primary mb-1 font-size-lg">
               {{ item.title }}
             </a>
             <span class="text-muted">
@@ -40,6 +47,7 @@
     </div>
     <!--end::Body-->
   </div>
+  <!--end: List Widget 1-->
 </template>
 
 <script>
@@ -55,31 +63,31 @@ export default {
           title: "Briefing",
           desc: "Project Manager",
           svg: "media/svg/icons/Home/Library.svg",
-          style: "svg-icon-primary"
+          style: "primary"
         },
         {
           title: "Design",
           desc: "Art Director",
           svg: "media/svg/icons/Communication/Write.svg",
-          style: "svg-icon-warning"
+          style: "warning"
         },
         {
           title: "Logics",
           desc: "Lead Developer",
           svg: "media/svg/icons/Communication/Group-chat.svg",
-          style: "svg-icon-success"
+          style: "success"
         },
         {
           title: "Development",
           desc: "DevOps",
           svg: "media/svg/icons/General/Attachment2.svg",
-          style: "svg-icon-danger"
+          style: "danger"
         },
         {
           title: "Testing",
           desc: "QA Managers",
           svg: "media/svg/icons/Communication/Shield-user.svg",
-          style: "svg-icon-info"
+          style: "info"
         }
       ]
     };

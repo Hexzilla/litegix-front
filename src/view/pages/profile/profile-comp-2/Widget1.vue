@@ -189,7 +189,7 @@ export default {
           }
         }
       },
-      colors: ["#73d6d0", "#ffffff"],
+      colors: ["#7dbaff", "#ffffff"],
       grid: {
         borderColor: this.layoutConfig("colors.gray.gray-200"),
         strokeDashArray: 4,

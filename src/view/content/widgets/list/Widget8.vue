@@ -1,4 +1,5 @@
 <template>
+  <!--begin::List Widget 8-->
   <div class="card card-custom card-stretch gutter-b">
     <!--begin::Header-->
     <div class="card-header border-0">
@@ -28,7 +29,6 @@
             <!--begin::Text-->
             <div class="d-flex flex-column flex-grow-1">
               <a
-                href="#"
                 class="font-weight-bold text-dark-75 text-hover-primary font-size-lg mb-1"
               >
                 {{ item.title }}
@@ -51,6 +51,7 @@
     </div>
     <!--end::Body-->
   </div>
+  <!--end: List Widget 8-->
 </template>
 
 <script>

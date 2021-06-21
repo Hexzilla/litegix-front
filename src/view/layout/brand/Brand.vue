@@ -1,15 +1,27 @@
 <template>
-  <!--begin::Brand-->
-  <div
-    class="aside-brand d-flex flex-column align-items-center flex-column-auto py-5 py-lg-12"
-  >
-    <!--begin::Logo-->
-    <router-link to="/">
-      <img :src="siteLogo()" alt="Logo" class="max-h-30px" />
-    </router-link>
-    <!--end::Logo-->
+  <!-- begin:: Aside -->
+  <div class="brand flex-column-auto" id="kt_brand" ref="kt_brand">
+    <div class="brand-logo">
+      <router-link to="/">
+        <img :src="siteLogo()" alt="Logo" />
+      </router-link>
+    </div>
+    <div class="brand-tools" v-if="allowMinimize">
+      <button
+        class="brand-toggle btn btn-sm px-0"
+        id="kt_aside_toggle"
+        ref="kt_aside_toggle"
+      >
+        <span class="svg-icon svg-icon svg-icon-xl">
+          <inline-svg
+            class="svg-icon"
+            src="media/svg/icons/Navigation/Angle-double-left.svg"
+          />
+        </span>
+      </button>
+    </div>
   </div>
-  <!--end::Brand-->
+  <!-- end:: Aside -->
 </template>
 
 <style lang="scss" scoped>
@@ -21,10 +33,18 @@
 <script>
 import { mapGetters } from "vuex";
 import objectPath from "object-path";
+import KTLayoutBrand from "@/assets/js/layout/base/brand.js";
+import KTLayoutAsideToggle from "@/assets/js/layout/base/aside-toggle.js";
 
 export default {
   name: "KTBrand",
-  mounted() {},
+  mounted() {
+    // Init Brand Panel For Logo
+    KTLayoutBrand.init(this.$refs["kt_brand"]);
+
+    // Init Aside Menu Toggle
+    KTLayoutAsideToggle.init(this.$refs["kt_aside_toggle"]);
+  },
   methods: {
     siteLogo() {
       const menuAsideLeftSkin = this.layoutConfig("brand.self.theme");

@@ -14,6 +14,7 @@ var KTLayoutContent = function() {
             height = height - parseInt(KTUtil.css(_element, 'paddingTop')) - parseInt(KTUtil.css(_element, 'paddingBottom'));
         }
 
+        height = height - KTLayoutHeader.getHeight();
         height = height - KTLayoutSubheader.getHeight();
         height = height - KTLayoutFooter.getHeight();
 

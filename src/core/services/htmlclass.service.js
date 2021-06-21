@@ -26,6 +26,9 @@ const HtmlClass = {
 
     // init footer
     this.initFooter();
+
+    // init themes
+    this.initThemes();
   },
 
   /**
@@ -48,6 +51,11 @@ const HtmlClass = {
     if (typeof bgImage !== "undefined") {
       document.body.style.backgroundImage = `url(${bgImage})`;
     }
+
+    // Offcanvas directions
+    store.dispatch(ADD_BODY_CLASSNAME, "quick-panel-right");
+    store.dispatch(ADD_BODY_CLASSNAME, "demo-panel-right");
+    store.dispatch(ADD_BODY_CLASSNAME, "offcanvas-right");
 
     // Properly close mobile header menu
     store.dispatch(REMOVE_BODY_CLASSNAME, "header-menu-wrapper-on");
@@ -100,11 +108,11 @@ const HtmlClass = {
    */
   initSubheader() {
     // Fixed content head
-    if (objectPath.get(this.config, "subheader.fixed")) {
+    if (
+      objectPath.get(this.config, "subheader.fixed") &&
+      objectPath.get(this.config, "header.self.fixed.desktop")
+    ) {
       store.dispatch(ADD_BODY_CLASSNAME, "subheader-fixed");
-      objectPath.set(this.config, "subheader.style", "solid");
-    } else {
-      objectPath.set(this.config, "subheader.fixed", false);
     }
 
     if (objectPath.get(this.config, "subheader.display")) {
@@ -147,13 +155,6 @@ const HtmlClass = {
       store.dispatch(ADD_BODY_CLASSNAME, "aside-static");
     }
 
-    // Aside Secondary
-    if (objectPath.get(this.config, "aside.secondary.display")) {
-      store.dispatch(ADD_BODY_CLASSNAME, "aside-secondary-enabled");
-    } else {
-      store.dispatch(ADD_BODY_CLASSNAME, "aside-secondary-disabled");
-    }
-
     // Default fixed
     if (objectPath.get(this.config, "aside.self.minimize.default")) {
       store.dispatch(ADD_BODY_CLASSNAME, "aside-minimize");
@@ -175,6 +176,34 @@ const HtmlClass = {
     // Fixed header
     if (objectPath.get(this.config, "footer.fixed")) {
       store.dispatch(ADD_BODY_CLASSNAME, "footer-fixed");
+    }
+  },
+
+  /**
+   * Import theme SCSS file based on the selected theme
+   */
+  initThemes() {
+    if (objectPath.get(this.config, "header.self.theme")) {
+      const theme = objectPath.get(this.config, "header.self.theme");
+      import(`@/assets/sass/themes/layout/header/base/${theme}.scss`);
+    }
+
+    if (objectPath.get(this.config, "header.menu.desktop.submenu.theme")) {
+      const theme = objectPath.get(
+        this.config,
+        "header.menu.desktop.submenu.theme"
+      );
+      import(`@/assets/sass/themes/layout/header/menu/${theme}.scss`);
+    }
+
+    if (objectPath.get(this.config, "brand.self.theme")) {
+      const theme = objectPath.get(this.config, "brand.self.theme");
+      import(`@/assets/sass/themes/layout/brand/${theme}.scss`);
+    }
+
+    if (objectPath.get(this.config, "aside.self.theme")) {
+      const theme = objectPath.get(this.config, "aside.self.theme");
+      import(`@/assets/sass/themes/layout/aside/${theme}.scss`);
     }
   }
 };

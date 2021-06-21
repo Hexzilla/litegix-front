@@ -1,129 +1,320 @@
 <template>
-  <div class="card card-custom gutter-b card-stretch">
+  <!--begin::Advance Table Widget 2-->
+  <div class="card card-custom card-stretch gutter-b">
     <!--begin::Header-->
-    <div class="card-header border-0">
-      <h3 class="card-title font-weight-bolder text-dark">Market Leaders</h3>
+    <div class="card-header border-0 pt-5">
+      <h3 class="card-title align-items-start flex-column">
+        <span class="card-label font-weight-bolder text-dark">
+          New Arrivals
+        </span>
+        <span class="text-muted mt-3 font-weight-bold font-size-sm">
+          More than 400+ new members
+        </span>
+      </h3>
       <div class="card-toolbar">
-        <Dropdown2><i class="ki ki-bold-more-hor"></i></Dropdown2>
+        <ul class="nav nav-pills nav-pills-sm nav-dark-75">
+          <li class="nav-item">
+            <a
+              class="nav-link py-2 px-4"
+              :class="{ active: this.show === 'month' }"
+              data-toggle="tab"
+              href="#kt_tab_pane_3_1"
+              @click="show = 'month'"
+            >
+              Month
+            </a>
+          </li>
+          <li class="nav-item">
+            <a
+              class="nav-link py-2 px-4"
+              data-toggle="tab"
+              :class="{ active: this.show === 'week' }"
+              href="#kt_tab_pane_2_1"
+              @click="show = 'week'"
+            >
+              Week
+            </a>
+          </li>
+          <li class="nav-item">
+            <a
+              class="nav-link py-2 px-4"
+              data-toggle="tab"
+              :class="{ active: this.show === 'day' }"
+              href="#kt_tab_pane_1_1"
+              @click="show = 'day'"
+            >
+              Day
+            </a>
+          </li>
+        </ul>
       </div>
     </div>
     <!--end::Header-->
     <!--begin::Body-->
-    <div class="card-body pt-2">
-      <template v-for="(item, i) in list">
-        <!--begin::Item-->
-        <div
-          class="d-flex flex-wrap align-items-center"
-          v-bind:key="i"
-          v-bind:class="{ 'mb-9': lastElement(i) }"
-        >
-          <!--begin::Symbol-->
-          <div class="symbol symbol-60 symbol-2by3 flex-shrink-0 mr-4">
-            <div
-              class="symbol-label"
-              :style="`background-image:url(${item.text0})`"
-            ></div>
-          </div>
-          <!--end::Symbol-->
-          <!--begin::Title-->
-          <div class="d-flex flex-column flex-grow-1 my-lg-0 my-2 pr-3">
-            <a
-              href="#"
-              class="text-dark-75 font-weight-bolder text-hover-primary font-size-lg"
-              >{{ item.text1 }}</a
-            >
-            <span class="text-muted font-weight-bold font-size-sm my-1">{{
-              item.text2
-            }}</span>
-            <span class="text-muted font-weight-bold font-size-sm"
-              >Created by:
-              <span class="text-primary font-weight-bold">{{
-                item.text3
-              }}</span></span
-            >
-          </div>
-          <!--end::Title-->
-          <!--begin::Info-->
-          <div class="d-flex align-items-center py-lg-0 py-2">
-            <div class="d-flex flex-column text-right">
-              <span class="text-dark-75 font-weight-bolder font-size-h4">{{
-                item.text4
-              }}</span>
-              <span class="text-muted font-size-sm font-weight-bolder"
-                >votes</span
-              >
-            </div>
-          </div>
-          <!--end::Info-->
-        </div>
-        <!--end::Item-->
-      </template>
+    <div class="card-body pt-3 pb-0">
+      <!--begin::Table-->
+      <div class="table-responsive">
+        <table class="table table-borderless table-vertical-center">
+          <thead>
+            <tr>
+              <th class="p-0" style="width: 50px"></th>
+              <th class="p-0" style="min-width: 200px"></th>
+              <th class="p-0" style="min-width: 100px"></th>
+              <th class="p-0" style="min-width: 125px"></th>
+              <th class="p-0" style="min-width: 110px"></th>
+              <th class="p-0" style="min-width: 150px"></th>
+            </tr>
+          </thead>
+          <tbody>
+            <template v-for="(item, i) in dataToShow">
+              <tr v-bind:key="i">
+                <td class="pl-0 py-4">
+                  <div class="symbol symbol-50 symbol-light mr-1">
+                    <span class="symbol-label">
+                      <img
+                        :src="item.text0"
+                        class="h-50 align-self-center"
+                        alt=""
+                      />
+                    </span>
+                  </div>
+                </td>
+                <td class="pl-0">
+                  <a
+                    class="text-dark-75 font-weight-bolder text-hover-primary mb-1 font-size-lg"
+                  >
+                    {{ item.text1 }}
+                  </a>
+                  <div>
+                    <span class="font-weight-bolder">Email:</span>
+                    <a class="text-muted font-weight-bold text-hover-primary">
+                      {{ item.text2 }}
+                    </a>
+                  </div>
+                </td>
+                <td class="text-right">
+                  <span
+                    class="text-dark-75 font-weight-bolder d-block font-size-lg"
+                  >
+                    {{ item.text3 }}
+                  </span>
+                  <span class="text-muted font-weight-bold">Paid</span>
+                </td>
+                <td class="text-right">
+                  <span class="text-muted font-weight-500">
+                    {{ item.text4 }}
+                  </span>
+                </td>
+                <td class="text-right">
+                  <span
+                    class="label label-lg label-inline"
+                    v-bind:class="`label-light-${item.text6}`"
+                  >
+                    {{ item.text5 }}
+                  </span>
+                </td>
+                <td class="text-right pr-0">
+                  <a class="btn btn-icon btn-light btn-sm">
+                    <span class="svg-icon svg-icon-md svg-icon-primary">
+                      <!--begin::Svg Icon-->
+                      <inline-svg
+                        src="media/svg/icons/General/Settings-1.svg"
+                      ></inline-svg>
+                      <!--end::Svg Icon-->
+                    </span>
+                  </a>
+                  <a class="btn btn-icon btn-light btn-sm mx-3">
+                    <span class="svg-icon svg-icon-md svg-icon-primary">
+                      <!--begin::Svg Icon-->
+                      <inline-svg
+                        src="media/svg/icons/Communication/Write.svg"
+                      ></inline-svg>
+                      <!--end::Svg Icon-->
+                    </span>
+                  </a>
+                  <a class="btn btn-icon btn-light btn-sm">
+                    <span class="svg-icon svg-icon-md svg-icon-primary">
+                      <!--begin::Svg Icon-->
+                      <inline-svg
+                        src="media/svg/icons/General/Trash.svg"
+                      ></inline-svg>
+                      <!--end::Svg Icon-->
+                    </span>
+                  </a>
+                </td>
+              </tr>
+            </template>
+          </tbody>
+        </table>
+      </div>
+      <!--end::Table-->
     </div>
     <!--end::Body-->
+    <!--end::Advance Table Widget 2-->
   </div>
 </template>
 
 <script>
-import Dropdown2 from "@/view/content/dropdown/Dropdown2.vue";
 import { mapGetters } from "vuex";
 
 export default {
   name: "widget-2",
   data() {
     return {
-      list: [
+      show: "day",
+      month: [
         {
-          text0: "media/stock-600x400/img-17.jpg",
-          text1: "Cup & Green",
-          text2: "Local, clean & environmental",
-          text3: "CoreAd",
-          text4: "24,900"
+          text0: "media/svg/misc/015-telegram.svg",
+          text1: "Application Development",
+          text2: "app@dev.com",
+          text3: "$4,600,000",
+          text4: "Python, MySQL",
+          text5: "In Progress",
+          text6: "warning"
         },
         {
-          text0: "media/stock-600x400/img-10.jpg",
-          text1: "Yellow Background",
-          text2: "Strong abstract concept",
-          text3: "KeenThemes",
-          text4: "70,380"
+          text0: "media/svg/misc/006-plurk.svg",
+          text1: "Sant Outstanding",
+          text2: "bprow@bnc.cc",
+          text3: "$2,000,000",
+          text4: "ReactJs, HTML",
+          text5: "Approved",
+          text6: "primary"
         },
         {
-          text0: "media/stock-600x400/img-17.jpg",
-          text1: "Nike & Blue",
-          text2: "Footwear overalls",
-          text3: "Invision Inc.",
-          text4: "7,200"
+          text0: "media/svg/misc/003-puzzle.svg",
+          text1: "Payrol Application",
+          text2: "company@dev.com",
+          text3: "$560,000",
+          text4: "Laravel, Metronic",
+          text5: "Success",
+          text6: "success"
         },
         {
-          text0: "media/stock-600x400/img-9.jpg",
-          text1: "Desserts platter",
-          text2: "Food trends & reviews",
-          text3: "Figma Studio",
-          text4: "36,450"
+          text0: "media/svg/misc/005-bebo.svg",
+          text1: "HR Management System",
+          text2: "hr@demo.com",
+          text3: "$57,000",
+          text4: "AngularJS, C#",
+          text5: "Rejected",
+          text6: "danger"
         },
         {
-          text0: "media/stock-600x400/img-12.jpg",
-          text1: "Cup & Green",
-          text2: "Local, clean & environmental",
-          text3: "CoreAd",
-          text4: "23,900"
+          text0: "media/svg/misc/014-kickstarter.svg",
+          text1: "KTR Mobile Application",
+          text2: "ktr@demo.com",
+          text3: "$45,200,000",
+          text4: "ReactJS, Ruby",
+          text5: "In Progress",
+          text6: "warning"
+        }
+      ],
+      week: [
+        {
+          text0: "media/svg/misc/014-kickstarter.svg",
+          text1: "KTR Mobile Application",
+          text2: "ktr@demo.com",
+          text3: "$45,200,000",
+          text4: "ReactJS, Ruby",
+          text5: "In Progress",
+          text6: "warning"
+        },
+        {
+          text0: "media/svg/misc/006-plurk.svg",
+          text1: "Sant Outstanding",
+          text2: "bprow@bnc.cc",
+          text3: "$2,000,000",
+          text4: "ReactJs, HTML",
+          text5: "Approved",
+          text6: "primary"
+        },
+        {
+          text0: "media/svg/misc/015-telegram.svg",
+          text1: "Application Development",
+          text2: "app@dev.com",
+          text3: "$4,600,000",
+          text4: "Python, MySQL",
+          text5: "In Progress",
+          text6: "warning"
+        },
+        {
+          text0: "media/svg/misc/003-puzzle.svg",
+          text1: "Payrol Application",
+          text2: "company@dev.com",
+          text3: "$560,000",
+          text4: "Laravel, Metronic",
+          text5: "Success",
+          text6: "success"
+        },
+        {
+          text0: "media/svg/misc/005-bebo.svg",
+          text1: "HR Management System",
+          text2: "hr@demo.com",
+          text3: "$57,000",
+          text4: "AngularJS, C#",
+          text5: "Rejected",
+          text6: "danger"
+        }
+      ],
+      day: [
+        {
+          text0: "media/svg/misc/003-puzzle.svg",
+          text1: "Payrol Application",
+          text2: "company@dev.com",
+          text3: "$560,000",
+          text4: "Laravel, Metronic",
+          text5: "Success",
+          text6: "success"
+        },
+        {
+          text0: "media/svg/misc/006-plurk.svg",
+          text1: "Sant Outstanding",
+          text2: "bprow@bnc.cc",
+          text3: "$2,000,000",
+          text4: "ReactJs, HTML",
+          text5: "Approved",
+          text6: "primary"
+        },
+        {
+          text0: "media/svg/misc/015-telegram.svg",
+          text1: "Application Development",
+          text2: "app@dev.com",
+          text3: "$4,600,000",
+          text4: "Python, MySQL",
+          text5: "In Progress",
+          text6: "warning"
+        },
+        {
+          text0: "media/svg/misc/005-bebo.svg",
+          text1: "HR Management System",
+          text2: "hr@demo.com",
+          text3: "$57,000",
+          text4: "AngularJS, C#",
+          text5: "Rejected",
+          text6: "danger"
+        },
+        {
+          text0: "media/svg/misc/014-kickstarter.svg",
+          text1: "KTR Mobile Application",
+          text2: "ktr@demo.com",
+          text3: "$45,200,000",
+          text4: "ReactJS, Ruby",
+          text5: "In Progress",
+          text6: "warning"
         }
       ]
     };
   },
-  components: {
-    Dropdown2
-  },
-  methods: {
-    lastElement(i) {
-      if (i === this.list.length - 1) {
-        return false;
-      } else {
-        return true;
-      }
-    }
-  },
+  components: {},
+  methods: {},
   computed: {
-    ...mapGetters(["layoutConfig"])
+    ...mapGetters(["layoutConfig"]),
+    dataToShow() {
+      if (this.show === "month") return this.month;
+      if (this.show === "week") return this.week;
+      if (this.show === "day") return this.day;
+      return this.day;
+    }
   }
 };
 </script>

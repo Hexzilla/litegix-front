@@ -1,13 +1,14 @@
 <template>
+  <!--begin::Stats Widget 10-->
   <div class="card card-custom gutter-b">
     <!--begin::Body-->
     <div class="card-body p-0">
       <div
         class="d-flex align-items-center justify-content-between card-spacer flex-grow-1"
       >
-        <span class="symbol symbol-circle symbol-50 symbol-light-info mr-2">
+        <span class="symbol  symbol-50 symbol-light-primary mr-2">
           <span class="symbol-label">
-            <span class="svg-icon svg-icon-xl svg-icon-info">
+            <span class="svg-icon svg-icon-xl svg-icon-primary">
               <!--begin::Svg Icon | path:assets/media/svg/icons/Shopping/Cart3.svg-->
               <inline-svg src="media/svg/icons/Shopping/Cart3.svg" />
               <!--end::Svg Icon-->
@@ -31,6 +32,7 @@
     </div>
     <!--end::Body-->
   </div>
+  <!--end::Stats Widget 10-->
 </template>
 
 <script>
@@ -83,7 +85,7 @@ export default {
         curve: "smooth",
         show: true,
         width: 3,
-        colors: [this.layoutConfig("colors.theme.base.info")]
+        colors: [this.layoutConfig("colors.theme.base.primary")]
       },
       xaxis: {
         categories: ["Feb", "Mar", "Apr", "May", "Jun", "Aug", "Sep"],
@@ -159,10 +161,10 @@ export default {
           }
         }
       },
-      colors: [this.layoutConfig("colors.theme.light.info")],
+      colors: [this.layoutConfig("colors.theme.light.primary")],
       markers: {
-        colors: [this.layoutConfig("colors.theme.light.info")],
-        strokeColor: [this.layoutConfig("colors.theme.base.info")],
+        colors: [this.layoutConfig("colors.theme.light.primary")],
+        strokeColor: [this.layoutConfig("colors.theme.base.primary")],
         strokeWidth: 3
       },
       grid: {

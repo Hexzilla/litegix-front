@@ -13,6 +13,10 @@
       <!-- end:: Aside Left -->
 
       <div id="kt_wrapper" class="d-flex flex-column flex-row-fluid wrapper">
+        <!-- begin:: Header -->
+        <KTHeader></KTHeader>
+        <!-- end:: Header -->
+
         <!-- begin:: Content -->
         <div
           id="kt_content"
@@ -42,7 +46,6 @@
             </div>
           </div>
         </div>
-
         <KTFooter></KTFooter>
       </div>
     </div>
@@ -54,6 +57,7 @@
 <script>
 import { mapGetters } from "vuex";
 import KTAside from "@/view/layout/aside/Aside.vue";
+import KTHeader from "@/view/layout/header/Header.vue";
 import KTHeaderMobile from "@/view/layout/header/HeaderMobile.vue";
 import KTFooter from "@/view/layout/footer/Footer.vue";
 import HtmlClass from "@/core/services/htmlclass.service";
@@ -70,6 +74,7 @@ export default {
   name: "Layout",
   components: {
     KTAside,
+    KTHeader,
     KTHeaderMobile,
     KTFooter,
     KTSubheader,

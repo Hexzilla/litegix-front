@@ -1,10 +1,13 @@
 {
-  "demo": "demo3",
+  "demo": "demo1",
   "self": {
     "layout": "default",
-    "body": {
-    },
-    "logo": "media/logos/logo-letter-2.png"
+    "logo": {
+      "dark": "media/logos/logo-light.png",
+      "light": "media/logos/logo-dark.png",
+      "brand": "media/logos/logo-light.png",
+      "green": "media/logos/logo-light.png"
+    }
   },
   "loader": {
     "type": "spinner-logo",
@@ -22,10 +25,10 @@
     "theme": {
       "base": {
         "white": "#ffffff",
-        "primary": "#1BC5BD",
+        "primary": "#6993FF",
         "secondary": "#E5EAEE",
         "success": "#1BC5BD",
-        "info": "#6993FF",
+        "info": "#8950FC",
         "warning": "#FFA800",
         "danger": "#F64E60",
         "light": "#F3F6F9",
@@ -33,10 +36,10 @@
       },
       "light": {
         "white": "#ffffff",
-        "primary": "#1BC5BD",
+        "primary": "#E1E9FF",
         "secondary": "#ECF0F3",
         "success": "#C9F7F5",
-        "info": "#E1E9FF",
+        "info": "#EEE5FF",
         "warning": "#FFF4DE",
         "danger": "#FFE2E5",
         "light": "#F3F6F9",
@@ -69,8 +72,33 @@
   "font-family": "Poppins",
   "header": {
     "self": {
+      "display": true,
+      "width": "fluid",
+      "theme": "light",
       "fixed": {
+        "desktop": true,
         "mobile": true
+      }
+    },
+    "menu": {
+      "self": {
+        "display": true,
+        "layout": "default",
+        "root-arrow": false
+      },
+      "desktop": {
+        "arrow": true,
+        "toggle": "click",
+        "submenu": {
+          "theme": "light",
+          "arrow": true
+        }
+      },
+      "mobile": {
+        "submenu": {
+          "theme": "dark",
+          "accordion": true
+        }
       }
     }
   },
@@ -78,101 +106,50 @@
     "display": true,
     "displayDesc": false,
     "displayDaterangepicker": true,
-    "layout": "subheader-v6",
-    "fixed": false,
-    "width": "fixed",
+    "layout": "subheader-v1",
+    "fixed": true,
+    "width": "fluid",
     "clear": false,
-    "style": "transparent"
+    "style": "solid"
   },
   "content": {
     "width": "fixed"
   },
+  "brand": {
+    "self": {
+      "theme": "dark"
+    }
+  },
   "aside": {
     "self": {
+      "theme": "dark",
       "display": true,
       "fixed": true,
       "minimize": {
         "toggle": true,
-        "default": false
+        "default": false,
+        "hoverable": true
       }
     },
-    "secondary": {
-      "display": true
+    "footer": {
+      "self": {
+        "display": true
+      }
     },
     "menu": {
       "dropdown": false,
       "scroll": false,
       "submenu": {
-        "accordion": true
+        "accordion": true,
+        "dropdown": {
+          "arrow": true,
+          "hover-timeout": 500
+        }
       }
     }
   },
   "footer": {
-    "width": "fixed",
+    "width": "fluid",
     "fixed": false
-  },
-  "extras": {
-    "search": {
-      "display": false,
-      "layout": "offcanvas",
-      "offcanvas": {
-        "direction": "left"
-      }
-    },
-    "notifications": {
-      "display": false,
-      "layout": "offcanvas",
-      "dropdown": {
-        "style": "dark"
-      },
-      "offcanvas": {
-        "direction": "left"
-      }
-    },
-    "quick-actions": {
-      "display": true,
-      "layout": "offcanvas",
-      "dropdown": {
-        "style": "dark"
-      },
-      "offcanvas": {
-        "direction": "left"
-      }
-    },
-    "cart": {
-      "display": false,
-      "layout": "dropdown",
-      "offcanvas": {
-        "direction": "right"
-      }
-    },
-    "chat": {
-      "display": false
-    },
-    "user": {
-      "display": true,
-      "layout": "offcanvas",
-      "dropdown": {
-        "style": "dark"
-      },
-      "offcanvas": {
-        "direction": "left"
-      }
-    },
-    "languages": {
-      "display": false
-    },
-    "quick-panel": {
-      "display": true,
-      "offcanvas": {
-        "direction": "left"
-      }
-    },
-    "toolbar": {
-      "display": true
-    },
-    "scrolltop": {
-      "display": true
-    }
   }
 }

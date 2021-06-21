@@ -12,10 +12,8 @@
       no-flip
     >
       <template v-slot:button-content>
-        <div
-          class="btn btn-icon btn-hover-transparent-white btn-lg btn-dropdown mr-1"
-        >
-          <span class="svg-icon svg-icon-xl">
+        <div class="btn btn-icon btn-clean btn-lg btn-dropdown mr-1">
+          <span class="svg-icon svg-icon-xl svg-icon-primary">
             <inline-svg src="media/svg/icons/General/Search.svg" />
           </span>
         </div>
@@ -37,9 +35,9 @@
     >
       <template v-slot:button-content>
         <div
-          class="btn btn-icon btn-hover-transparent-white btn-dropdown btn-lg mr-1 pulse pulse-primary"
+          class="btn btn-icon btn-clean btn-dropdown btn-lg mr-1 pulse pulse-primary"
         >
-          <span class="svg-icon svg-icon-xl">
+          <span class="svg-icon svg-icon-xl svg-icon-primary">
             <inline-svg src="media/svg/icons/Code/Compiling.svg" />
           </span>
           <span class="pulse-ring"></span>
@@ -63,10 +61,8 @@
       no-flip
     >
       <template v-slot:button-content>
-        <div
-          class="btn btn-icon btn-hover-transparent-white btn-dropdown btn-lg mr-1"
-        >
-          <span class="svg-icon svg-icon-xl">
+        <div class="btn btn-icon btn-clean btn-dropdown btn-lg mr-1">
+          <span class="svg-icon svg-icon-xl svg-icon-primary">
             <inline-svg src="media/svg/icons/Media/Equalizer.svg" />
           </span>
         </div>
@@ -87,10 +83,8 @@
       no-flip
     >
       <template v-slot:button-content>
-        <div
-          class="btn btn-icon btn-hover-transparent-white btn-dropdown btn-lg mr-1"
-        >
-          <span class="svg-icon svg-icon-xl">
+        <div class="btn btn-icon btn-clean btn-dropdown btn-lg mr-1">
+          <span class="svg-icon svg-icon-xl svg-icon-primary">
             <inline-svg src="media/svg/icons/Shopping/Cart3.svg" />
           </span>
         </div>
@@ -110,7 +104,7 @@
       <b-dropdown
         size="sm"
         variant="link"
-        toggle-class="btn btn-icon btn-hover-transparent-white d-flex align-items-center btn-lg px-md-2 w-md-auto"
+        toggle-class="btn btn-icon btn-clean btn-dropdown btn-lg mr-1 text-decoration-none"
         no-caret
         right
         no-flip

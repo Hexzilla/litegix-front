@@ -1,33 +1,16 @@
 <template>
-  <div>
-    <a
-      href="#"
-      class="btn btn-icon btn-clean btn-lg mb-1 position-relative"
-      id="kt_quick_panel_toggle"
-      data-toggle="tooltip"
-      data-placement="right"
-      data-container="body"
-      data-boundary="window"
-      title=""
-      data-original-title="Quick Panel"
-    >
-      <span class="svg-icon svg-icon-xl">
-        <!--begin::Svg Icon-->
+  <div class="topbar-item">
+    <div class="btn btn-icon btn-clean btn-lg mr-1" id="kt_quick_panel_toggle">
+      <span class="svg-icon svg-icon-xl svg-icon-primary">
         <inline-svg src="media/svg/icons/Layout/Layout-4-blocks.svg" />
-        <!--end::Svg Icon-->
       </span>
-      <span
-        class="label label-sm label-light-danger label-rounded font-weight-bolder position-absolute top-0 right-0 mt-1 mr-1"
-      >
-        3
-      </span>
-    </a>
+    </div>
 
     <!-- begin::Quick Panel -->
     <div
       id="kt_quick_panel"
       ref="kt_quick_panel"
-      class="offcanvas offcanvas-left pt-5 pb-10"
+      class="offcanvas offcanvas-right pt-5 pb-10"
       style="overflow: hidden;"
     >
       <!--begin::Header-->

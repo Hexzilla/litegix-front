@@ -67,7 +67,7 @@
               href="#"
               role="tab"
             >
-              Mobile Header
+              Header
             </a>
           </li>
           <li class="nav-item">
@@ -149,7 +149,28 @@
             <b-tab>
               <div class="form-group row">
                 <label class="col-lg-3 col-form-label">
-                  Fixed Header:
+                  Desktop Fixed Header:
+                </label>
+                <div class="col-lg-9 col-xl-4">
+                  <span class="switch switch-icon">
+                    <label>
+                      <input
+                        type="checkbox"
+                        v-model="config.header.self.fixed.desktop"
+                        value="true"
+                        checked=""
+                      />
+                      <span></span>
+                    </label>
+                  </span>
+                  <div class="form-text text-muted">
+                    Enable fixed header for desktop mode
+                  </div>
+                </div>
+              </div>
+              <div class="form-group row">
+                <label class="col-lg-3 col-form-label">
+                  Mobile Fixed Header:
                 </label>
                 <div class="col-lg-9 col-xl-4">
                   <span class="switch switch-icon">
@@ -165,6 +186,67 @@
                   </span>
                   <div class="form-text text-muted">
                     Enable fixed header for mobile mode
+                  </div>
+                </div>
+              </div>
+
+              <div class="form-group row">
+                <label class="col-lg-3 col-form-label">
+                  Display Header Menu:
+                </label>
+                <div class="col-lg-9 col-xl-4">
+                  <span class="switch switch-icon">
+                    <label>
+                      <input
+                        type="checkbox"
+                        v-model="config.header.menu.self.display"
+                        value="true"
+                        checked=""
+                      />
+                      <span></span>
+                    </label>
+                  </span>
+                  <div class="form-text text-muted">
+                    Display header menu
+                  </div>
+                </div>
+              </div>
+
+              <div class="form-group row">
+                <label class="col-lg-3 col-form-label">
+                  Header Menu Layout:
+                </label>
+                <div class="col-lg-9 col-xl-4">
+                  <select
+                    class="form-control"
+                    v-model="config.header.menu.self.layout"
+                  >
+                    <option value="default" selected="">Default</option>
+                    <option value="tab">Tab</option>
+                  </select>
+                  <div class="form-text text-muted">
+                    Select header menu layout style
+                  </div>
+                </div>
+              </div>
+
+              <div class="form-group row">
+                <label class="col-lg-3 col-form-label">
+                  Header Menu Arrows:
+                </label>
+                <div class="col-lg-9 col-xl-4">
+                  <span class="switch switch-icon">
+                    <label>
+                      <input
+                        type="checkbox"
+                        v-model="config.header.menu.self['root-arrow']"
+                        value="true"
+                      />
+                      <span></span>
+                    </label>
+                  </span>
+                  <div class="form-text text-muted">
+                    Enable header menu root link arrows
                   </div>
                 </div>
               </div>
@@ -207,8 +289,8 @@
                     </label>
                   </span>
                   <div class="form-text text-muted">
-                    Enable fixed(sticky) subheader. Requires Solidsubheader
-                    style.
+                    Enable fixed(sticky) subheader. Requires
+                    <code>Solid</code> subheader style.
                   </div>
                 </div>
               </div>
@@ -221,6 +303,34 @@
                   </select>
                   <div class="form-text text-muted">
                     Select layout width type.
+                  </div>
+                </div>
+              </div>
+              <div class="form-group row">
+                <label class="col-lg-3 col-form-label">Subheader Style:</label>
+                <div class="col-lg-9 col-xl-4">
+                  <select class="form-control" v-model="config.subheader.style">
+                    <option value="transparent">Transparent</option>
+                    <option value="solid" selected="">Solid</option>
+                  </select>
+                  <div class="form-text text-muted">
+                    Select subheader style
+                  </div>
+                </div>
+              </div>
+              <div class="form-group row">
+                <label class="col-lg-3 col-form-label">Subheader Layout:</label>
+                <div class="col-lg-9 col-xl-4">
+                  <select
+                    class="form-control"
+                    v-model="config.subheader.layout"
+                  >
+                    <option value="subheader-v1" selected="">
+                      Subheader v1
+                    </option>
+                  </select>
+                  <div class="form-text text-muted">
+                    Select subheader layout
                   </div>
                 </div>
               </div>
@@ -243,15 +353,30 @@
 
             <b-tab>
               <div class="form-group row">
-                <label class="col-lg-3 col-form-label"
-                  >Display Secondary Panel:</label
-                >
+                <label class="col-lg-3 col-form-label">Display:</label>
                 <div class="col-lg-9 col-xl-4">
                   <span class="switch switch-icon">
                     <label>
                       <input
                         type="checkbox"
-                        v-model="config.aside.secondary.display"
+                        v-model="config.aside.self.display"
+                        value="true"
+                        checked=""
+                      />
+                      <span></span>
+                    </label>
+                  </span>
+                  <div class="form-text text-muted">Display aside</div>
+                </div>
+              </div>
+              <div class="form-group row">
+                <label class="col-lg-3 col-form-label">Fixed:</label>
+                <div class="col-lg-9 col-xl-4">
+                  <span class="switch switch-icon">
+                    <label>
+                      <input
+                        type="checkbox"
+                        v-model="config.aside.self.fixed"
                         value="true"
                         checked=""
                       />
@@ -259,12 +384,12 @@
                     </label>
                   </span>
                   <div class="form-text text-muted">
-                    Display aside secondary panel
+                    Set fixed aside layout
                   </div>
                 </div>
               </div>
               <div class="form-group row">
-                <label class="col-lg-3 col-form-label">Aside Minimize:</label>
+                <label class="col-lg-3 col-form-label">Minimize:</label>
                 <div class="col-lg-9 col-xl-4">
                   <span class="switch switch-icon">
                     <label>
@@ -277,13 +402,15 @@
                       <span></span>
                     </label>
                   </span>
-                  <div class="form-text text-muted">Allow aside minimizing</div>
+                  <div class="form-text text-muted">
+                    Allow aside minimizing
+                  </div>
                 </div>
               </div>
               <div class="form-group row">
-                <label class="col-lg-3 col-form-label"
-                  >Aside Default Minimized:</label
-                >
+                <label class="col-lg-3 col-form-label">
+                  Default Minimize:
+                </label>
                 <div class="col-lg-9 col-xl-4">
                   <span class="switch switch-icon">
                     <label>
@@ -291,7 +418,6 @@
                         type="checkbox"
                         v-model="config.aside.self.minimize.default"
                         value="true"
-                        checked=""
                       />
                       <span></span>
                     </label>
@@ -313,14 +439,11 @@
                         type="checkbox"
                         v-model="config.footer.fixed"
                         value="true"
-                        checked=""
                       />
                       <span></span>
                     </label>
                   </span>
-                  <div class="form-text text-muted">
-                    Set fixed footer for desktop mode only
-                  </div>
+                  <div class="form-text text-muted">Set fixed footer</div>
                 </div>
               </div>
               <div class="form-group row">

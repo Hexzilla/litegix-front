@@ -1,13 +1,14 @@
 <template>
+  <!--begin::Stats Widget 11-->
   <div class="card card-custom gutter-b">
     <!--begin::Body-->
     <div class="card-body p-0">
       <div
         class="d-flex align-items-center justify-content-between card-spacer flex-grow-1"
       >
-        <span class="symbol symbol-circle symbol-50 symbol-light-danger mr-2">
+        <span class="symbol  symbol-50 symbol-light-success mr-2">
           <span class="symbol-label">
-            <span class="svg-icon svg-icon-xl svg-icon-danger">
+            <span class="svg-icon svg-icon-xl svg-icon-success">
               <inline-svg src="media/svg/icons/Layout/Layout-4-blocks.svg" />
             </span>
           </span>
@@ -23,11 +24,13 @@
         :options="chartOptions"
         :series="series"
         type="area"
+        width="100%"
       ></apexchart>
       <!--end::Chart-->
     </div>
     <!--end::Body-->
   </div>
+  <!--end::Stats Widget 11-->
 </template>
 
 <script>
@@ -80,10 +83,10 @@ export default {
         curve: "smooth",
         show: true,
         width: 3,
-        colors: [this.layoutConfig("colors.theme.base.danger")]
+        colors: [this.layoutConfig("colors.theme.base.success")]
       },
       xaxis: {
-        categories: ["Feb", "Mar", "Apr", "May", "Jun", "Jul"],
+        categories: ["Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug"],
         axisBorder: {
           show: false
         },
@@ -113,7 +116,7 @@ export default {
       },
       yaxis: {
         min: 0,
-        max: 50,
+        max: 55,
         show: false,
         labels: {
           show: false,
@@ -156,10 +159,10 @@ export default {
           }
         }
       },
-      colors: [this.layoutConfig("colors.theme.light.danger")],
+      colors: [this.layoutConfig("colors.theme.light.success")],
       markers: {
-        colors: [this.layoutConfig("colors.theme.light.danger")],
-        strokeColor: [this.layoutConfig("colors.theme.base.danger")],
+        colors: [this.layoutConfig("colors.theme.light.success")],
+        strokeColor: [this.layoutConfig("colors.theme.base.success")],
         strokeWidth: 3
       },
       grid: {

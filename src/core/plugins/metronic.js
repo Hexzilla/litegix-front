@@ -42,14 +42,23 @@ window.KTLayoutAsideMenu = KTLayoutAsideMenu;
 import KTLayoutAsideToggle from "@/assets/js/layout/base/aside-toggle.js";
 window.KTLayoutAsideToggle = KTLayoutAsideToggle;
 
+import KTLayoutBrand from "@/assets/js/layout/base/brand.js";
+window.KTLayoutBrand = KTLayoutBrand;
+
 import KTLayoutContent from "@/assets/js/layout/base/content.js";
 window.KTLayoutContent = KTLayoutContent;
 
 import KTLayoutFooter from "@/assets/js/layout/base/footer.js";
 window.KTLayoutFooter = KTLayoutFooter;
 
-import KTLayoutHeaderMobile from "@/assets/js/layout/base/header-mobile.js";
-window.KTLayoutHeaderMobile = KTLayoutHeaderMobile;
+import KTLayoutHeader from "@/assets/js/layout/base/header.js";
+window.KTLayoutHeader = KTLayoutHeader;
+
+import KTLayoutHeaderMenu from "@/assets/js/layout/base/header-menu.js";
+window.KTLayoutHeaderMenu = KTLayoutHeaderMenu;
+
+import KTLayoutHeaderTopbar from "@/assets/js/layout/base/header-topbar.js";
+window.KTLayoutHeaderTopbar = KTLayoutHeaderTopbar;
 
 import KTLayoutStickyCard from "@/assets/js/layout/base/sticky-card.js";
 window.KTLayoutStickyCard = KTLayoutStickyCard;

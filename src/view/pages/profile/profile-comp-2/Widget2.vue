@@ -40,7 +40,7 @@
               <th class="pl-0" style="min-width: 120px">Order id</th>
               <th style="min-width: 110px">Country</th>
               <th style="min-width: 110px">
-                <span class="text-info">Date</span>
+                <span class="text-primary">Date</span>
                 <span class="svg-icon svg-icon-sm svg-icon-primary">
                   <!--begin::Svg Icon | path:assets/media/svg/icons/Navigation/Down-2.svg-->
                   <inline-svg
@@ -81,7 +81,7 @@
                 </td>
                 <td>
                   <span
-                    class="text-info font-weight-bolder d-block font-size-lg"
+                    class="text-primary font-weight-bolder d-block font-size-lg"
                     >{{ item.date }}</span
                   >
                   <span class="text-muted font-weight-bold">{{

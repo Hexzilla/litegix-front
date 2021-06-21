@@ -26,7 +26,6 @@
           >
             <div class="d-flex flex-column mr-2">
               <a
-                href="#"
                 class="font-weight-bold text-dark-75 font-size-lg text-hover-primary"
               >
                 {{ item.title }}
@@ -42,15 +41,15 @@
                 <span class="font-weight-bold mr-2 text-dark-75 font-size-3">
                   {{ item.quantity }}
                 </span>
-                <a href="#" class="btn btn-xs btn-light-success btn-icon mr-2">
+                <a class="btn btn-xs btn-light-success btn-icon mr-2">
                   <i class="ki ki-minus icon-xs"></i>
                 </a>
-                <a href="#" class="btn btn-xs btn-light-success btn-icon">
+                <a class="btn btn-xs btn-light-success btn-icon">
                   <i class="ki ki-plus icon-xs"></i>
                 </a>
               </div>
             </div>
-            <a href="#" class="symbol symbol-70 flex-shrink-0">
+            <a class="symbol symbol-70 flex-shrink-0">
               <img :src="item.img" alt="" />
             </a>
           </div>

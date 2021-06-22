@@ -20,6 +20,9 @@
       </li>
     </router-link>
 
+    <li class="menu-section">
+    </li>
+
     <router-link
       to="/Servers"
       v-slot="{ href, navigate, isActive, isExactActive }"
@@ -34,7 +37,7 @@
         ]"
       >
         <a :href="href" class="menu-link" @click="navigate">
-          <i class="menu-icon flaticon2-expand"></i>
+          <i class="menu-icon flaticon2-digital-marketing"></i>
           <span class="menu-text">Servers</span>
         </a>
       </li>
@@ -54,7 +57,7 @@
         ]"
       >
         <a :href="href" class="menu-link" @click="navigate">
-          <i class="menu-icon flaticon2-expand"></i>
+          <i class="menu-icon flaticon2-graphic-design"></i>
           <span class="menu-text">Sites</span>
         </a>
       </li>
@@ -74,7 +77,7 @@
         ]"
       >
         <a :href="href" class="menu-link" @click="navigate">
-          <i class="menu-icon flaticon2-expand"></i>
+          <i class="menu-icon flaticon2-delivery-package"></i>
           <span class="menu-text">Projects</span>
         </a>
       </li>
@@ -94,7 +97,7 @@
         ]"
       >
         <a :href="href" class="menu-link" @click="navigate">
-          <i class="menu-icon flaticon2-expand"></i>
+          <i class="menu-icon flaticon2-favourite"></i>
           <span class="menu-text">Scripts</span>
         </a>
       </li>
@@ -114,7 +117,7 @@
         ]"
       >
         <a :href="href" class="menu-link" @click="navigate">
-          <i class="menu-icon flaticon2-expand"></i>
+          <i class="menu-icon flaticon2-shopping-cart"></i>
           <span class="menu-text">Backups</span>
         </a>
       </li>
@@ -134,11 +137,14 @@
         ]"
       >
         <a :href="href" class="menu-link" @click="navigate">
-          <i class="menu-icon flaticon2-expand"></i>
+          <i class="menu-icon flaticon2-percentage"></i>
           <span class="menu-text">Marketplace</span>
         </a>
       </li>
     </router-link>
+
+    <li class="menu-section">
+    </li>
 
     <router-link
       to="/Profile"
@@ -154,7 +160,7 @@
         ]"
       >
         <a :href="href" class="menu-link" @click="navigate">
-          <i class="menu-icon flaticon2-expand"></i>
+          <i class="menu-icon flaticon2-envelope"></i>
           <span class="menu-text">Profile</span>
         </a>
       </li>
@@ -174,7 +180,7 @@
         ]"
       >
         <a :href="href" class="menu-link" @click="navigate">
-          <i class="menu-icon flaticon2-expand"></i>
+          <i class="menu-icon flaticon2-notification"></i>
           <span class="menu-text">Subscription</span>
         </a>
       </li>
@@ -194,7 +200,7 @@
         ]"
       >
         <a :href="href" class="menu-link" @click="navigate">
-          <i class="menu-icon flaticon2-expand"></i>
+          <i class="menu-icon flaticon2-document"></i>
           <span class="menu-text">Documentation</span>
         </a>
       </li>
@@ -214,7 +220,7 @@
         ]"
       >
         <a :href="href" class="menu-link" @click="navigate">
-          <i class="menu-icon flaticon2-expand"></i>
+          <i class="menu-icon flaticon2-menu"></i>
           <span class="menu-text">Support</span>
         </a>
       </li>

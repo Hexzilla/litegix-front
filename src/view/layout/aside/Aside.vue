@@ -79,23 +79,23 @@ export default {
      * Use for fixed left aside menu, to show menu on mouseenter event.
      */
     mouseEnter() {
-      // if (this.layoutConfig("aside.self.minimize.hoverable")) {
-      //   // check if the left aside menu is fixed
-      //   if (document.body.classList.contains("aside-fixed")) {
-      //     if (this.outsideTm) {
-      //       clearTimeout(this.outsideTm);
-      //       this.outsideTm = null;
-      //     }
+      if (this.layoutConfig("aside.self.minimize.hoverable")) {
+        // check if the left aside menu is fixed
+        if (document.body.classList.contains("aside-fixed")) {
+          if (this.outsideTm) {
+            clearTimeout(this.outsideTm);
+            this.outsideTm = null;
+          }
 
-      //     // if the left aside menu is minimized
-      //     if (document.body.classList.contains("aside-minimize")) {
-      //       document.body.classList.add("aside-minimize-hover");
+          // if the left aside menu is minimized
+          if (document.body.classList.contains("aside-minimize")) {
+            document.body.classList.add("aside-minimize-hover");
 
-      //       // show the left aside menu
-      //       document.body.classList.remove("aside-minimize");
-      //     }
-      //   }
-      // }
+            // show the left aside menu
+            document.body.classList.remove("aside-minimize");
+          }
+        }
+      }
     },
 
     /**

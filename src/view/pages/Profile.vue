@@ -322,7 +322,7 @@
     <div class="flex-row-fluid ml-lg-8">
       <b-tabs class="hide-tabs" v-model="tabIndex">
         <b-tab active>
-          <KTProfileOverview></KTProfileOverview>
+          <ProfileInformation></ProfileInformation>
         </b-tab>
 
         <b-tab>
@@ -350,21 +350,21 @@
 import { mapGetters } from "vuex";
 import { SET_BREADCRUMB } from "@/core/services/store/breadcrumbs.module";
 import KTDropdown2 from "@/view/content/dropdown/Dropdown2";
-import KTProfileOverview from "@/view/pages/profile/profile-comp-1/ProfileOverview";
 import KTPersonalInformation from "@/view/pages/profile/profile-comp/PersonalInformation";
 import KTAccountInformation from "@/view/pages/profile/profile-comp/AccountInformation";
 import KTChangePassword from "@/view/pages/profile/profile-comp/ChangePassword";
 import KTEmailSettings from "@/view/pages/profile/profile-comp/EmailSettings";
+import ProfileInformation from "@/view/pages/Components/Profile/Profile";
 
 export default {
-  name: "custom-page",
+  name: "Profile",
   components: {
     KTDropdown2,
-    KTProfileOverview,
     KTPersonalInformation,
     KTAccountInformation,
     KTChangePassword,
-    KTEmailSettings
+    KTEmailSettings,
+    ProfileInformation
   },
   data() {
     return {

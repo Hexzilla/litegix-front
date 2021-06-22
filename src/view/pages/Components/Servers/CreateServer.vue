@@ -100,6 +100,7 @@
                   <select
                     name="ServerType"
                     class="form-control form-control-solid form-control-lg"
+                    v-model="ServerType"
                   >
                     <option value="Server">Server</option>
                     <option value="LoadBalancer">Load Balancer</option>
@@ -112,7 +113,7 @@
                     <option value="EServer">Email Server</option>
                   </select>
                 </div>
-                <div class="row">
+                <div class="row" v-show="ServerType == 'Server'">
                   <div class="col-xl-4">
                     <div class="form-group">
                       <label>Webserver</label>
@@ -157,7 +158,7 @@
                     </div>
                   </div>
                 </div>
-                <div class="row">
+                <div class="row" v-show="ServerType == 'DServer'">
                   <div class="col-xl-4">
                     <div class="form-group">
                       <label>Database</label>
@@ -172,7 +173,7 @@
                     </div>
                   </div>
                 </div>
-                <div class="form-group">
+                <div class="form-group" v-show="ServerType == 'ESServer'">
                   <b-alert show variant="primary">
                     When installing a Elasticsearch server we recommend to have a server with the following minimum specifications: 4GB ram, 2 cores and 50GB disk.
                     This is because the Elasticsearch service is a heavy service running on Java and will require you to have a lot of power.
@@ -220,6 +221,7 @@ export default {
   data() {
     return {
       commandValue: "mkdir -p /root/.ssh && touch /root/.ssh/authorized_keys && echo \"ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCvVRd/oYPD8IaK1NuIaGkOIV/zvISGrkeBL7XY967cOXgJf26Zr/60bEGYzcQKG1OpAa8g6PPH2skUIw1i3geR3/0atMU1Osj8hV9Z6WCxCFlfGOjmJGzuR+TT8EcgYegdBTE2zIPahajUHaAZTYljb7ewEugflOeh0sRpZ3BER83hu1a8xoibIn+UuSXEN3f++BSdxZNu7suGd46fBgWeUw",
+      ServerType: "Server"
     }
   },
   mounted() {
@@ -246,6 +248,7 @@ export default {
         KTUtil.scrollTop();
       }, 500);
     });
+
   },
   methods: {
     submit: function(e) {

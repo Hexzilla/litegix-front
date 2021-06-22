@@ -21,6 +21,56 @@ export default new Router({
           component: () => import("@/view/pages/Builder.vue")
         },
         {
+          path: "/Servers",
+          name: "Servers",
+          component: () => import("@/view/pages/Servers.vue")
+        },
+        {
+          path: "/Sites",
+          name: "Sites",
+          component: () => import("@/view/pages/Sites.vue")
+        },
+        {
+          path: "/Projects",
+          name: "Projects",
+          component: () => import("@/view/pages/Projects.vue")
+        },
+        {
+          path: "/Scripts",
+          name: "Scripts",
+          component: () => import("@/view/pages/Scripts.vue")
+        },
+        {
+          path: "/Backups",
+          name: "Backups",
+          component: () => import("@/view/pages/Backups.vue")
+        },
+        {
+          path: "/Marketplace",
+          name: "Marketplace",
+          component: () => import("@/view/pages/Marketplace.vue")
+        },
+        {
+          path: "/Profile",
+          name: "Profile",
+          component: () => import("@/view/pages/Profile.vue")
+        },
+        {
+          path: "/Subscription",
+          name: "Subscription",
+          component: () => import("@/view/pages/Subscription.vue")
+        },
+        {
+          path: "/Documentation",
+          name: "Documentation",
+          component: () => import("@/view/pages/Documentation.vue")
+        },
+        {
+          path: "/Support",
+          name: "Support",
+          component: () => import("@/view/pages/Support.vue")
+        },
+        {
           path: "/vue-bootstrap",
           name: "vue-bootstrap",
           component: () =>

@@ -21,7 +21,7 @@
     </router-link>
 
     <router-link
-      to="/builder"
+      to="/Servers"
       v-slot="{ href, navigate, isActive, isExactActive }"
     >
       <li
@@ -35,21 +35,202 @@
       >
         <a :href="href" class="menu-link" @click="navigate">
           <i class="menu-icon flaticon2-expand"></i>
-          <span class="menu-text">Layout Builder</span>
+          <span class="menu-text">Servers</span>
         </a>
       </li>
     </router-link>
 
-    <li class="menu-section">
+    <router-link
+      to="/Sites"
+      v-slot="{ href, navigate, isActive, isExactActive }"
+    >
+      <li
+        aria-haspopup="true"
+        data-menu-toggle="hover"
+        class="menu-item"
+        :class="[
+          isActive && 'menu-item-active',
+          isExactActive && 'menu-item-active'
+        ]"
+      >
+        <a :href="href" class="menu-link" @click="navigate">
+          <i class="menu-icon flaticon2-expand"></i>
+          <span class="menu-text">Sites</span>
+        </a>
+      </li>
+    </router-link>
+
+    <router-link
+      to="/Projects"
+      v-slot="{ href, navigate, isActive, isExactActive }"
+    >
+      <li
+        aria-haspopup="true"
+        data-menu-toggle="hover"
+        class="menu-item"
+        :class="[
+          isActive && 'menu-item-active',
+          isExactActive && 'menu-item-active'
+        ]"
+      >
+        <a :href="href" class="menu-link" @click="navigate">
+          <i class="menu-icon flaticon2-expand"></i>
+          <span class="menu-text">Projects</span>
+        </a>
+      </li>
+    </router-link>
+
+    <router-link
+      to="/Scripts"
+      v-slot="{ href, navigate, isActive, isExactActive }"
+    >
+      <li
+        aria-haspopup="true"
+        data-menu-toggle="hover"
+        class="menu-item"
+        :class="[
+          isActive && 'menu-item-active',
+          isExactActive && 'menu-item-active'
+        ]"
+      >
+        <a :href="href" class="menu-link" @click="navigate">
+          <i class="menu-icon flaticon2-expand"></i>
+          <span class="menu-text">Scripts</span>
+        </a>
+      </li>
+    </router-link>
+
+    <router-link
+      to="/Backups"
+      v-slot="{ href, navigate, isActive, isExactActive }"
+    >
+      <li
+        aria-haspopup="true"
+        data-menu-toggle="hover"
+        class="menu-item"
+        :class="[
+          isActive && 'menu-item-active',
+          isExactActive && 'menu-item-active'
+        ]"
+      >
+        <a :href="href" class="menu-link" @click="navigate">
+          <i class="menu-icon flaticon2-expand"></i>
+          <span class="menu-text">Backups</span>
+        </a>
+      </li>
+    </router-link>
+
+    <router-link
+      to="/Marketplace"
+      v-slot="{ href, navigate, isActive, isExactActive }"
+    >
+      <li
+        aria-haspopup="true"
+        data-menu-toggle="hover"
+        class="menu-item"
+        :class="[
+          isActive && 'menu-item-active',
+          isExactActive && 'menu-item-active'
+        ]"
+      >
+        <a :href="href" class="menu-link" @click="navigate">
+          <i class="menu-icon flaticon2-expand"></i>
+          <span class="menu-text">Marketplace</span>
+        </a>
+      </li>
+    </router-link>
+
+    <router-link
+      to="/Profile"
+      v-slot="{ href, navigate, isActive, isExactActive }"
+    >
+      <li
+        aria-haspopup="true"
+        data-menu-toggle="hover"
+        class="menu-item"
+        :class="[
+          isActive && 'menu-item-active',
+          isExactActive && 'menu-item-active'
+        ]"
+      >
+        <a :href="href" class="menu-link" @click="navigate">
+          <i class="menu-icon flaticon2-expand"></i>
+          <span class="menu-text">Profile</span>
+        </a>
+      </li>
+    </router-link>
+
+    <router-link
+      to="/Subscription"
+      v-slot="{ href, navigate, isActive, isExactActive }"
+    >
+      <li
+        aria-haspopup="true"
+        data-menu-toggle="hover"
+        class="menu-item"
+        :class="[
+          isActive && 'menu-item-active',
+          isExactActive && 'menu-item-active'
+        ]"
+      >
+        <a :href="href" class="menu-link" @click="navigate">
+          <i class="menu-icon flaticon2-expand"></i>
+          <span class="menu-text">Subscription</span>
+        </a>
+      </li>
+    </router-link>
+
+    <router-link
+      to="/Documentation"
+      v-slot="{ href, navigate, isActive, isExactActive }"
+    >
+      <li
+        aria-haspopup="true"
+        data-menu-toggle="hover"
+        class="menu-item"
+        :class="[
+          isActive && 'menu-item-active',
+          isExactActive && 'menu-item-active'
+        ]"
+      >
+        <a :href="href" class="menu-link" @click="navigate">
+          <i class="menu-icon flaticon2-expand"></i>
+          <span class="menu-text">Documentation</span>
+        </a>
+      </li>
+    </router-link>
+
+    <router-link
+      to="/Support"
+      v-slot="{ href, navigate, isActive, isExactActive }"
+    >
+      <li
+        aria-haspopup="true"
+        data-menu-toggle="hover"
+        class="menu-item"
+        :class="[
+          isActive && 'menu-item-active',
+          isExactActive && 'menu-item-active'
+        ]"
+      >
+        <a :href="href" class="menu-link" @click="navigate">
+          <i class="menu-icon flaticon2-expand"></i>
+          <span class="menu-text">Support</span>
+        </a>
+      </li>
+    </router-link>
+
+    <!-- <li class="menu-section">
       <h4 class="menu-text">Components</h4>
       <i class="menu-icon flaticon-more-v2"></i>
-    </li>
+    </li> -->
 
     <li
       aria-haspopup="true"
       data-menu-toggle="hover"
       class="menu-item menu-item-submenu"
       v-bind:class="{ 'menu-item-open': hasActiveChildren('/vue-bootstrap') }"
+      v-show="isVisible"
     >
       <a href="#" class="menu-link menu-toggle">
         <i class="menu-icon flaticon2-digital-marketing"></i>
@@ -1049,6 +1230,7 @@
       data-menu-toggle="hover"
       class="menu-item menu-item-submenu"
       v-bind:class="{ 'menu-item-open': hasActiveChildren('vuetify') }"
+      v-show="isVisible"
     >
       <a href="#" class="menu-link menu-toggle">
         <i class="menu-icon flaticon-web"></i>
@@ -1583,10 +1765,10 @@
       </div>
     </li>
 
-    <li class="menu-section">
+    <!-- <li class="menu-section">
       <h4 class="menu-text">Custom</h4>
       <i class="menu-icon flaticon-more-v2"></i>
-    </li>
+    </li> -->
 
     <li
       aria-haspopup="true"
@@ -1595,6 +1777,7 @@
       v-bind:class="{
         'menu-item-open': hasActiveChildren('/custom-error/error')
       }"
+      v-show="isVisible"
     >
       <a href="#" class="menu-link menu-toggle">
         <i class="menu-icon flaticon2-list-2"></i>
@@ -1752,6 +1935,7 @@
       v-bind:class="{
         'menu-item-open': hasActiveChildren('/custom-wizard/wizard')
       }"
+      v-show="isVisible"
     >
       <a href="#" class="menu-link menu-toggle">
         <i class="menu-icon flaticon2-mail-1"></i>
@@ -1865,6 +2049,7 @@
       v-bind:class="{
         'menu-item-open': hasActiveChildren('/custom-plugins')
       }"
+      v-show="isVisible"
     >
       <a href="#" class="menu-link menu-toggle">
         <i class="menu-icon flaticon2-image-file"></i>
@@ -1922,6 +2107,7 @@
       v-bind:class="{
         'menu-item-open': hasActiveChildren('/profile')
       }"
+      v-show="isVisible"
     >
       <a href="#" class="menu-link menu-toggle">
         <i class="menu-icon far fa-user"></i>

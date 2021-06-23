@@ -1,39 +1,33 @@
 <template>
   <div class="card card-custom">
     <div class="card-body p-0">
-      <!--begin: Wizard-->
       <div
         class="wizard wizard-1"
         id="kt_wizard_v1"
         data-wizard-state="step-first"
         data-wizard-clickable="true"
       >
-        <!--begin: Wizard Nav-->
         <div class="wizard-nav border-bottom">
           <div class="wizard-steps p-8 p-lg-10">
             <div class="wizard-step" data-wizard-type="step">
               <div class="wizard-label">
                 <i class="wizard-icon flaticon-list"></i>
-                <h3 class="wizard-title">Custom Server</h3>
+                <h3 class="wizard-title">Connect Server</h3>
               </div>
               <i class="wizard-arrow last flaticon2-next"></i>
             </div>
           </div>
         </div>
-        <!--end: Wizard Nav-->
 
-        <!--begin: Wizard Body-->
         <div class="row justify-content-center my-10 px-8 my-lg-15 px-lg-10">
           <div class="col-xl-12 col-xxl-7">
-            <!--begin: Wizard Form-->
             <form class="form" id="kt_form">
-              <!--begin: Wizard Step 1-->
               <div
                 class="pb-5"
                 data-wizard-type="step-content"
                 data-wizard-state="current"
               >
-                <h3 class="mb-10 font-weight-bold text-dark">
+                <!-- <h3 class="mb-10 font-weight-bold text-dark">
                   Details
                 </h3>
                 <div class="form-group">
@@ -49,6 +43,19 @@
                     :value="commandValue"
                     rows="8"
                   ></b-form-textarea>
+                </div> -->
+                <div class="form-group">
+                  <label>Configure My Server For</label>
+                  <select
+                    name="ServerOS"
+                    class="form-control form-control-solid form-control-lg"
+                  >
+                    <option value="nginx">Nginx</option>
+                    <option value="openlite">OpenLiteSpeed</option>
+                  </select>
+                  <!-- <span class="form-text text-muted"
+                    >Make sure to select the correct OS that matches with the one on your server, this determines how our install script should behave.</span
+                  > -->
                 </div>
                 <div class="form-group">
                   <label>Name</label>
@@ -80,21 +87,7 @@
                     value=""
                   />
                 </div>
-                <div class="form-group">
-                  <label>Server OS</label>
-                  <select
-                    name="ServerOS"
-                    class="form-control form-control-solid form-control-lg"
-                  >
-                    <option value="U20">Ubuntu 20.04 LTS</option>
-                    <option value="U18">Ubuntu 18.04 LTS</option>
-                    <option value="U16">Ubuntu 16.04 LTS</option>
-                  </select>
-                  <span class="form-text text-muted"
-                    >Make sure to select the correct OS that matches with the one on your server, this determines how our install script should behave.</span
-                  >
-                </div>
-                <div class="form-group">
+                <!-- <div class="form-group">
                   <label>Server type</label>
                   <select
                     name="ServerType"
@@ -111,8 +104,8 @@
                     <option value="PServer">Plain Server</option>
                     <option value="EServer">Email Server</option>
                   </select>
-                </div>
-                <div class="row" v-show="ServerType == 'Server'">
+                </div> -->
+                <!-- <div class="row" v-show="ServerType == 'Server'">
                   <div class="col-xl-4">
                     <div class="form-group">
                       <label>Webserver</label>
@@ -158,8 +151,8 @@
                       </select>
                     </div>
                   </div>
-                </div>
-                <div class="row" v-show="ServerType == 'DServer'">
+                </div> -->
+                <!-- <div class="row" v-show="ServerType == 'DServer'">
                   <div class="col-xl-4">
                     <div class="form-group">
                       <label>Database</label>
@@ -179,31 +172,24 @@
                     When installing a Elasticsearch server we recommend to have a server with the following minimum specifications: 4GB ram, 2 cores and 50GB disk.
                     This is because the Elasticsearch service is a heavy service running on Java and will require you to have a lot of power.
                   </b-alert>
-                </div>
+                </div> -->
               </div>
-              <!--end: Wizard Step 1-->
 
-              <!--begin: Wizard Actions -->
               <div class="d-flex justify-content-center border-top pt-10">
                 <div>
                   <button
                     v-on:click="submit"
                     class="btn btn-success font-weight-bold text-uppercase px-9 py-4"
-                    data-wizard-type="action-submit"
                   >
                     Create Server
                   </button>
                 </div>
               </div>
-              <!--end: Wizard Actions -->
             </form>
-            <!--end: Wizard Form-->
           </div>
         </div>
-        <!--end: Wizard Body-->
       </div>
     </div>
-    <!--end: Wizard-->
   </div>
 </template>
 
@@ -213,45 +199,23 @@
 
 <script>
 import { SET_BREADCRUMB } from "@/core/services/store/breadcrumbs.module";
-import KTUtil from "@/assets/js/components/util";
-import KTWizard from "@/assets/js/components/wizard";
 import Swal from "sweetalert2";
 
 export default {
   name: "CreateServer",
   data() {
     return {
-      ServerType: "Server",
+      /*ServerType: "Server",
       commandValue: `mkdir -p /root/.ssh && touch /root/.ssh/authorized_keys && echo "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCvVRd/oYPD8IaK1NuIaGkOIV/zvISGrkeBL7XY967cOXgJf26Zr/60bEGYzcQKG1OpAa8g6PPH2skUIw1i3geR3/0atMU1Osj8hV9Z6WCxCFlfGOjmJGzuR+TT8EcgYegdBTE2zIPahajUHaAZTYljb7ewEugflOeh0sRpZ3BER83hu1a8xoibIn+UuSXEN3f++BSdxZNu7suGd46fBgWeUw`,
       warningText: `Your server needs to have a new unused installation of Ubuntu 16.04, 18.04 or 20.04 x64 and must contain a root user. 
-                    To get started, add this public key to /root/.ssh/authorized_keys file.`
+                    To get started, add this public key to /root/.ssh/authorized_keys file.`*/
     };
   },
   mounted() {
     this.$store.dispatch(SET_BREADCRUMB, [
-      { title: "CreateServer" },
+      { title: "Server" },
       { title: "CreateServer" }
     ]);
-
-    // Initialize form wizard
-    const wizard = new KTWizard("kt_wizard_v1", {
-      startStep: 1, // initial active step number
-      clickableSteps: true // allow step clicking
-    });
-
-    // Validation before going to next page
-    wizard.on("beforeNext", function(/*wizardObj*/) {
-      // validate the form and use below function to stop the wizard's step
-      // wizardObj.stop();
-    });
-
-    // Change event
-    wizard.on("change", function(/*wizardObj*/) {
-      setTimeout(() => {
-        KTUtil.scrollTop();
-      }, 500);
-    });
-
   },
   methods: {
     submit: function(e) {

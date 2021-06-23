@@ -117,12 +117,17 @@
             <div class="navi-item mb-2">
               <a
                 class="navi-link py-4"
-                v-b-tooltip.hover.right="'Comming soon...'"
+                @click="setActiveTab"
+                style="cursor:pointer"
+                data-tab="5"
+                data-toggle="tab"
+                role="tab"
+                aria-selected="false"
               >
                 <span class="navi-icon mr-2">
                   <span class="svg-icon">
                     <inline-svg
-                      src="media/svg/icons/Layout/Layout-top-panel-6.svg"
+                      src="media/svg/icons/Communication/Mail-opened.svg"
                     />
                   </span>
                 </span>
@@ -311,6 +316,10 @@
         </b-tab>
 
         <b-tab>
+          <SSHKey></SSHKey>
+        </b-tab>
+
+        <b-tab>
           <KTChangePassword></KTChangePassword>
         </b-tab>
 
@@ -334,6 +343,7 @@ import KTEmailSettings from "@/view/pages/profile/profile-comp/EmailSettings";
 import ServerHealth from "@/view/pages/server/Health";
 import Database from "@/view/pages/server/Database";
 import SystemUser from "@/view/pages/server/SystemUser";
+import SSHKey from "@/view/pages/server/SSHKey";
 
 export default {
   name: "server-summary",
@@ -345,7 +355,8 @@ export default {
     KTEmailSettings,
     ServerHealth,
     Database,
-    SystemUser
+    SystemUser,
+    SSHKey
   },
   data() {
     return {

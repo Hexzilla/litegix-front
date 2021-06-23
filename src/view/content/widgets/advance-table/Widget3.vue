@@ -8,7 +8,7 @@
           >Agents Stats</span
         >
         <span class="text-muted mt-3 font-weight-bold font-size-sm"
-          >More than 400+ new members</span
+          >More than 1400+ new members</span
         >
       </h3>
       <div class="card-toolbar">

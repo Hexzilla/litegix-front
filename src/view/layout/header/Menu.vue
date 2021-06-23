@@ -816,6 +816,24 @@
               </h3>
               <ul class="menu-inner">
                 <router-link
+                  to="/vuetify/server"
+                  v-slot="{ href, navigate, isActive, isExactActive }"
+                >
+                  <li
+                    aria-haspopup="true"
+                    class="menu-item"
+                    :class="[
+                      isActive && 'menu-item-active',
+                      isExactActive && 'menu-item-active'
+                    ]"
+                  >
+                    <a :href="href" class="menu-link" @click="navigate">
+                      <i class="menu-bullet menu-bullet-dot"><span></span></i>
+                      <span class="menu-text"> Server </span>
+                    </a>
+                  </li>
+                </router-link>
+                <router-link
                   to="/vuetify/alerts"
                   v-slot="{ href, navigate, isActive, isExactActive }"
                 >

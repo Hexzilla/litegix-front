@@ -288,6 +288,11 @@ export default new Router({
           component: () => import("@/view/pages/vuetify/Vuetify.vue"),
           children: [
             {
+              path: "server",
+              name: "vuetify-server",
+              component: () => import("@/view/pages/server/Server.vue")
+            },
+            {
               path: "alerts",
               name: "vuetify-alerts",
               component: () => import("@/view/pages/vuetify/Alerts.vue")

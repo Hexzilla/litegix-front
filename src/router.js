@@ -23,12 +23,12 @@ export default new Router({
         {
           path: "/Servers",
           name: "Servers",
-          component: () => import("@/view/pages/Servers.vue"),
+          component: () => import("@/view/pages/servers/Servers.vue")
         },
         {
           path: "/Servers/Create",
           name: "CreateServer",
-          component: () => import("@/view/pages/Components/Servers/CreateServer.vue")
+          component: () => import("@/view/pages/servers/CreateServer.vue")
         },
         {
           path: "/Sites",
@@ -56,9 +56,9 @@ export default new Router({
           component: () => import("@/view/pages/Marketplace.vue")
         },
         {
-          path: "/Profile",
-          name: "Profile",
-          component: () => import("@/view/pages/Profile.vue")
+          path: "/Settings",
+          name: "Settings",
+          component: () => import("@/view/pages/settings/Settings.vue")
         },
         {
           path: "/Subscription",
@@ -449,7 +449,8 @@ export default new Router({
               component: () => import("@/view/pages/plugins/Treeselect.vue")
             }
           ]
-        },
+        }
+        /*,
         {
           path: "/profile",
           name: "profile",
@@ -476,7 +477,7 @@ export default new Router({
               component: () => import("@/view/pages/profile/Profile-4.vue")
             }
           ]
-        }
+        }*/
       ]
     },
     {

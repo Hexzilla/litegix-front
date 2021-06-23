@@ -38,8 +38,7 @@
                 </h3>
                 <div class="form-group">
                   <b-alert show variant="warning">
-                    Your server needs to have a new unused installation of Ubuntu 16.04, 18.04 or 20.04 x64 and must contain a root user. 
-                    To get started, add this public key to /root/.ssh/authorized_keys file.
+                    {{ warningText }}
                   </b-alert>
                 </div>
                 <div class="form-group">
@@ -153,7 +152,9 @@
                         <option value="MySQL">MySQL 5.7</option>
                         <option value="MariaDB">MariaDB 10.3</option>
                         <option value="PostgreSQL">PostgreSQL 10.9</option>
-                        <option value="DBNone">None(do not install a database)</option>
+                        <option value="DBNone">
+                          None(do not install a database)
+                        </option>
                       </select>
                     </div>
                   </div>
@@ -220,9 +221,11 @@ export default {
   name: "CreateServer",
   data() {
     return {
-      commandValue: "mkdir -p /root/.ssh && touch /root/.ssh/authorized_keys && echo \"ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCvVRd/oYPD8IaK1NuIaGkOIV/zvISGrkeBL7XY967cOXgJf26Zr/60bEGYzcQKG1OpAa8g6PPH2skUIw1i3geR3/0atMU1Osj8hV9Z6WCxCFlfGOjmJGzuR+TT8EcgYegdBTE2zIPahajUHaAZTYljb7ewEugflOeh0sRpZ3BER83hu1a8xoibIn+UuSXEN3f++BSdxZNu7suGd46fBgWeUw",
-      ServerType: "Server"
-    }
+      ServerType: "Server",
+      commandValue: `mkdir -p /root/.ssh && touch /root/.ssh/authorized_keys && echo "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCvVRd/oYPD8IaK1NuIaGkOIV/zvISGrkeBL7XY967cOXgJf26Zr/60bEGYzcQKG1OpAa8g6PPH2skUIw1i3geR3/0atMU1Osj8hV9Z6WCxCFlfGOjmJGzuR+TT8EcgYegdBTE2zIPahajUHaAZTYljb7ewEugflOeh0sRpZ3BER83hu1a8xoibIn+UuSXEN3f++BSdxZNu7suGd46fBgWeUw`,
+      warningText: `Your server needs to have a new unused installation of Ubuntu 16.04, 18.04 or 20.04 x64 and must contain a root user. 
+                    To get started, add this public key to /root/.ssh/authorized_keys file.`
+    };
   },
   mounted() {
     this.$store.dispatch(SET_BREADCRUMB, [

@@ -21,8 +21,7 @@
           class="header-menu header-menu-mobile"
           v-bind:class="headerMenuClasses"
         >
-          <!-- example static menu here -->
-          <KTMenu></KTMenu>
+          <span></span>
         </div>
       </div>
       <!-- end:: Header Menu -->
@@ -37,13 +36,11 @@ import { mapGetters } from "vuex";
 import KTTopbar from "@/view/layout/header/Topbar.vue";
 import KTLayoutHeader from "@/assets/js/layout/base/header.js";
 import KTLayoutHeaderMenu from "@/assets/js/layout/base/header-menu.js";
-import KTMenu from "@/view/layout/header/Menu.vue";
 
 export default {
   name: "KTHeader",
   components: {
-    KTTopbar,
-    KTMenu
+    KTTopbar
   },
   mounted() {
     // Init Desktop & Mobile Headers

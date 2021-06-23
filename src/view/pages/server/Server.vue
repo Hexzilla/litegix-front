@@ -296,7 +296,7 @@
     <div class="flex-row-fluid ml-lg-8">
       <b-tabs class="hide-tabs" v-model="tabIndex">
         <b-tab active>
-          <KTProfileOverview></KTProfileOverview>
+          <Database></Database>
         </b-tab>
 
         <b-tab>
@@ -304,7 +304,7 @@
         </b-tab>
 
         <b-tab>
-          <KTAccountInformation></KTAccountInformation>
+          <Database></Database>
         </b-tab>
 
         <b-tab>
@@ -320,11 +320,11 @@
         </b-tab>
 
         <b-tab>
-          <KTChangePassword></KTChangePassword>
+          <Database></Database>
         </b-tab>
 
         <b-tab>
-          <KTEmailSettings></KTEmailSettings>
+          <Database></Database>
         </b-tab>
       </b-tabs>
     </div>
@@ -336,10 +336,6 @@
 import { mapGetters } from "vuex";
 import { SET_BREADCRUMB } from "@/core/services/store/breadcrumbs.module";
 import KTDropdown2 from "@/view/content/dropdown/Dropdown2";
-import KTProfileOverview from "@/view/pages/profile/profile-comp-1/ProfileOverview";
-import KTAccountInformation from "@/view/pages/profile/profile-comp/AccountInformation";
-import KTChangePassword from "@/view/pages/profile/profile-comp/ChangePassword";
-import KTEmailSettings from "@/view/pages/profile/profile-comp/EmailSettings";
 import ServerHealth from "@/view/pages/server/Health";
 import Database from "@/view/pages/server/Database";
 import SystemUser from "@/view/pages/server/SystemUser";
@@ -349,10 +345,6 @@ export default {
   name: "server-summary",
   components: {
     KTDropdown2,
-    KTProfileOverview,
-    KTAccountInformation,
-    KTChangePassword,
-    KTEmailSettings,
     ServerHealth,
     Database,
     SystemUser,

@@ -246,7 +246,7 @@ import { mapGetters } from "vuex";
 import { UPDATE_PERSONAL_INFO } from "@/core/services/store/profile.module";
 
 export default {
-  name: "PersonalInformation",
+  name: "Account",
   data() {
     return {
       default_photo: "media/users/blank.png",

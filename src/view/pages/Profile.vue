@@ -1,103 +1,413 @@
 <template>
-  <div>
-    <!--begin::Dashboard-->
-    <div class="row">
-      <div class="col-xxl-4">
-        <MixedWidget1></MixedWidget1>
-      </div>
-      <div class="col-xxl-4">
-        <ListWidget9></ListWidget9>
-      </div>
-      <div class="col-xxl-4">
-        <StatsWidget7></StatsWidget7>
-        <StatsWidget12></StatsWidget12>
-      </div>
+  <div class="d-flex flex-row">
+    <div
+      class="flex-row-auto offcanvas-mobile w-300px w-xl-350px"
+      id="kt_profile_aside"
+    >
+      <div class="card card-custom card-stretch">
+        <div class="card-body pt-4">
+          <div class="d-flex justify-content-end">
+            <KTDropdown2></KTDropdown2>
+          </div>
+          <!--begin::Nav-->
+          <div
+            class="navi navi-bold navi-hover navi-active navi-link-rounded"
+            role="tablist"
+          >
+            <span class="text-muted">My Account</span>
+            <div class="navi-item mb-2">
+              <a
+                class="navi-link py-4 active"
+                @click="setActiveTab"
+                style="cursor:pointer"
+                data-tab="0"
+                data-toggle="tab"
+                role="tab"
+                aria-selected="false"
+              >
+                <span class="navi-icon mr-2">
+                  <span class="svg-icon">
+                    <inline-svg src="media/svg/icons/Design/Layers.svg" />
+                  </span>
+                </span>
+                <span class="navi-text font-size-lg">Profile</span>
+              </a>
+            </div>
+            <div class="navi-item mb-2">
+              <a
+                class="navi-link py-4"
+                @click="setActiveTab"
+                style="cursor:pointer"
+                data-tab="1"
+                data-toggle="tab"
+                role="tab"
+                aria-selected="false"
+              >
+                <span class="navi-icon mr-2">
+                  <span class="svg-icon">
+                    <inline-svg src="media/svg/icons/General/User.svg" />
+                  </span>
+                </span>
+                <span class="navi-text font-size-lg">Notifications</span>
+              </a>
+            </div>
+            <div class="navi-item mb-2">
+              <a
+                class="navi-link py-4"
+                @click="setActiveTab"
+                style="cursor:pointer"
+                data-tab="2"
+                data-toggle="tab"
+                role="tab"
+                aria-selected="false"
+              >
+                <span class="navi-icon mr-2">
+                  <span class="svg-icon">
+                    <inline-svg src="media/svg/icons/Code/Compiling.svg" />
+                  </span>
+                </span>
+                <span class="navi-text font-size-lg">Server Transfer</span>
+              </a>
+            </div>
+            <div class="navi-item mb-2">
+              <a
+                class="navi-link py-4"
+                @click="setActiveTab"
+                style="cursor:pointer"
+                data-tab="3"
+                data-toggle="tab"
+                role="tab"
+                aria-selected="false"
+              >
+                <span class="navi-icon mr-2">
+                  <span class="svg-icon">
+                    <inline-svg
+                      src="media/svg/icons/Communication/Shield-user.svg"
+                    />
+                  </span>
+                </span>
+                <span class="navi-text font-size-lg">Referral</span>
+              </a>
+            </div>
+            <div class="navi-item mb-2">
+              <a
+                class="navi-link py-4"
+                @click="setActiveTab"
+                style="cursor:pointer"
+                data-tab="4"
+                data-toggle="tab"
+                role="tab"
+                aria-selected="false"
+              >
+                <span class="navi-icon mr-2">
+                  <span class="svg-icon">
+                    <inline-svg
+                      src="media/svg/icons/Communication/Mail-opened.svg"
+                    />
+                  </span>
+                </span>
+                <span class="navi-text font-size-lg">Activity Log</span>
+              </a>
+            </div>
+            <div class="navi-item mb-2">
+              <a
+                class="navi-link py-4"
+                @click="setActiveTab"
+                style="cursor:pointer"
+                data-tab="5"
+                data-toggle="tab"
+                role="tab"
+                aria-selected="false"
+              >
+                <span class="navi-icon mr-2">
+                  <span class="svg-icon">
+                    <inline-svg
+                      src="media/svg/icons/Communication/Delete-user.svg"
+                    />
+                  </span>
+                </span>
+                <span class="navi-text font-size-lg">Delete Account</span>
+              </a>
+            </div>
+            <span class="text-muted">API & Security</span>
+            <div class="navi-item mb-2">
+              <a
+                class="navi-link py-4"
+                @click="setActiveTab"
+                style="cursor:pointer"
+                data-tab="6"
+                data-toggle="tab"
+                role="tab"
+                aria-selected="false"
+              >
+                <span class="navi-icon mr-2">
+                  <span class="svg-icon">
+                    <inline-svg
+                      src="media/svg/icons/Communication/Incoming-call.svg"
+                    />
+                  </span>
+                </span>
+                <span class="navi-text font-size-lg">Authentication</span>
+              </a>
+            </div>
+            <div class="navi-item mb-2">
+              <a
+                class="navi-link py-4"
+                @click="setActiveTab"
+                style="cursor:pointer"
+                data-tab="7"
+                data-toggle="tab"
+                role="tab"
+                aria-selected="false"
+              >
+                <span class="navi-icon mr-2">
+                  <span class="svg-icon">
+                    <inline-svg
+                      src="media/svg/icons/Communication/Reply-all.svg"
+                    />
+                  </span>
+                </span>
+                <span class="navi-text font-size-lg">API Key</span>
+              </a>
+            </div>
+            <div class="navi-item mb-2">
+              <a
+                class="navi-link py-4"
+                @click="setActiveTab"
+                style="cursor:pointer"
+                data-tab="8"
+                data-toggle="tab"
+                role="tab"
+                aria-selected="false"
+              >
+                <span class="navi-icon mr-2">
+                  <span class="svg-icon">
+                    <inline-svg
+                      src="media/svg/icons/Communication/RSS.svg"
+                    />
+                  </span>
+                </span>
+                <span class="navi-text font-size-lg">3rd Party API Key</span>
+              </a>
+            </div>
+            <div class="navi-item mb-2">
+              <a
+                class="navi-link py-4"
+                @click="setActiveTab"
+                style="cursor:pointer"
+                data-tab="9"
+                data-toggle="tab"
+                role="tab"
+                aria-selected="false"
+              >
+                <span class="navi-icon mr-2">
+                  <span class="svg-icon">
+                    <inline-svg
+                      src="media/svg/icons/Communication/Safe-chat.svg"
+                    />
+                  </span>
+                </span>
+                <span class="navi-text font-size-lg">IP Whitelisting</span>
+              </a>
+            </div>
+            <span class="text-muted">Billing</span>
+            <div class="navi-item mb-2">
+              <a
+                class="navi-link py-4"
+                @click="setActiveTab"
+                style="cursor:pointer"
+                data-tab="10"
+                data-toggle="tab"
+                role="tab"
+                aria-selected="false"
+              >
+                <span class="navi-icon mr-2">
+                  <span class="svg-icon">
+                    <inline-svg
+                      src="media/svg/icons/Communication/Sending.svg"
+                    />
+                  </span>
+                </span>
+                <span class="navi-text font-size-lg">Subscription</span>
+              </a>
+            </div>
+            <div class="navi-item mb-2">
+              <a
+                class="navi-link py-4"
+                @click="setActiveTab"
+                style="cursor:pointer"
+                data-tab="11"
+                data-toggle="tab"
+                role="tab"
+                aria-selected="false"
+              >
+                <span class="navi-icon mr-2">
+                  <span class="svg-icon">
+                    <inline-svg
+                      src="media/svg/icons/Communication/Mail-at.svg"
+                    />
+                  </span>
+                </span>
+                <span class="navi-text font-size-lg">Payment Method</span>
+              </a>
+            </div>
+            <div class="navi-item mb-2">
+              <a
+                class="navi-link py-4"
+                @click="setActiveTab"
+                style="cursor:pointer"
+                data-tab="12"
+                data-toggle="tab"
+                role="tab"
+                aria-selected="false"
+              >
+                <span class="navi-icon mr-2">
+                  <span class="svg-icon">
+                    <inline-svg
+                      src="media/svg/icons/Communication/Group.svg"
+                    />
+                  </span>
+                </span>
+                <span class="navi-text font-size-lg">Payment History</span>
+              </a>
+            </div>
+            <span class="text-muted">Tools</span>
+            <div class="navi-item mb-2">
+              <a
+                class="navi-link py-4"
+                @click="setActiveTab"
+                style="cursor:pointer"
+                data-tab="13"
+                data-toggle="tab"
+                role="tab"
+                aria-selected="false"
+              >
+                <span class="navi-icon mr-2">
+                  <span class="svg-icon">
+                    <inline-svg
+                      src="media/svg/icons/Communication/Thumbtack.svg"
+                    />
+                  </span>
+                </span>
+                <span class="navi-text font-size-lg">SSH Key Vault</span>
+              </a>
+            </div>
+            <div class="navi-item mb-2">
+              <a
+                class="navi-link py-4"
+                @click="setActiveTab"
+                style="cursor:pointer"
+                data-tab="14"
+                data-toggle="tab"
+                role="tab"
+                aria-selected="false"
+              >
+                <span class="navi-icon mr-2">
+                  <span class="svg-icon">
+                    <inline-svg
+                      src="media/svg/icons/Communication/Share.svg"
+                    />
+                  </span>
+                </span>
+                <span class="navi-text font-size-lg">WordPress Canvas</span>
+              </a>
+            </div>
 
-      <div class="col-xxl-4 order-1 order-xxl-1">
-        <ListWidget1></ListWidget1>
-      </div>
-      <div class="col-xxl-8 order-2 order-xxl-1">
-        <AdvancedTableWidget2></AdvancedTableWidget2>
-      </div>
-
-      <div class="col-xxl-4 order-1 order-xxl-2">
-        <ListWidget3></ListWidget3>
-      </div>
-      <div class="col-xxl-4 order-1 order-xxl-2">
-        <ListWidget4></ListWidget4>
-      </div>
-      <div class="col-lg-12 col-xxl-4 order-1 order-xxl-2">
-        <ListWidget8></ListWidget8>
-      </div>
-
-      <div class="col-xxl-4 order-1 order-xxl-2">
-        <StatsWidget13></StatsWidget13>
-      </div>
-      <div class="col-xxl-8 order-1 order-xxl-2">
-        <AdvancedTableWidget3></AdvancedTableWidget3>
+          </div>
+        </div>
       </div>
     </div>
-    <!--end::Dashboard-->
+
+    <!--begin::Content-->
+    <div class="flex-row-fluid ml-lg-8">
+      <b-tabs class="hide-tabs" v-model="tabIndex">
+        <b-tab active>
+          <ProfileInformation></ProfileInformation>
+        </b-tab>
+
+        <b-tab>
+          <KTPersonalInformation></KTPersonalInformation>
+        </b-tab>
+
+        <b-tab>
+          <KTAccountInformation></KTAccountInformation>
+        </b-tab>
+
+        <b-tab>
+          <KTChangePassword></KTChangePassword>
+        </b-tab>
+
+        <b-tab>
+          <KTEmailSettings></KTEmailSettings>
+        </b-tab>
+      </b-tabs>
+    </div>
+    <!--end::Content-->
   </div>
 </template>
 
 <script>
+import { mapGetters } from "vuex";
 import { SET_BREADCRUMB } from "@/core/services/store/breadcrumbs.module";
-import AdvancedTableWidget2 from "@/view/content/widgets/advance-table/Widget2.vue";
-import AdvancedTableWidget3 from "@/view/content/widgets/advance-table/Widget3.vue";
-import MixedWidget1 from "@/view/content/widgets/mixed/Widget1.vue";
-import ListWidget1 from "@/view/content/widgets/list/Widget1.vue";
-import ListWidget3 from "@/view/content/widgets/list/Widget3.vue";
-import ListWidget4 from "@/view/content/widgets/list/Widget4.vue";
-import ListWidget8 from "@/view/content/widgets/list/Widget8.vue";
-import ListWidget9 from "@/view/content/widgets/list/Widget9.vue";
-import StatsWidget7 from "@/view/content/widgets/stats/Widget7.vue";
-import StatsWidget12 from "@/view/content/widgets/stats/Widget12.vue";
-import StatsWidget13 from "@/view/content/widgets/stats/Widget13.vue";
+import KTDropdown2 from "@/view/content/dropdown/Dropdown2";
+import KTPersonalInformation from "@/view/pages/profile/profile-comp/PersonalInformation";
+import KTAccountInformation from "@/view/pages/profile/profile-comp/AccountInformation";
+import KTChangePassword from "@/view/pages/profile/profile-comp/ChangePassword";
+import KTEmailSettings from "@/view/pages/profile/profile-comp/EmailSettings";
+import ProfileInformation from "@/view/pages/Components/Profile/Profile";
 
 export default {
   name: "Profile",
   components: {
-    AdvancedTableWidget2,
-    AdvancedTableWidget3,
-    MixedWidget1,
-    ListWidget1,
-    ListWidget3,
-    ListWidget4,
-    ListWidget8,
-    ListWidget9,
-    StatsWidget7,
-    StatsWidget12,
-    StatsWidget13
+    KTDropdown2,
+    KTPersonalInformation,
+    KTAccountInformation,
+    KTChangePassword,
+    KTEmailSettings,
+    ProfileInformation
+  },
+  data() {
+    return {
+      tabIndex: 0
+    };
   },
   mounted() {
-    this.$store.dispatch(SET_BREADCRUMB, [{ title: "Profile" }]);
+    this.$store.dispatch(SET_BREADCRUMB, [{ title: "Settings" }]);
   },
   methods: {
-    setActiveTab1(event) {
-      this.tabIndex = this.setActiveTab(event);
-    },
-    setActiveTab2(event) {
-      this.tabIndex2 = this.setActiveTab(event);
-    },
     /**
      * Set current active on click
      * @param event
      */
     setActiveTab(event) {
-      // get all tab links
-      const tab = event.target.closest('[role="tablist"]');
-      const links = tab.querySelectorAll(".nav-link");
+      let target = event.target;
+      if (!event.target.classList.contains("navi-link")) {
+        target = event.target.closest(".navi-link");
+      }
+
+      const tab = target.closest('[role="tablist"]');
+      const links = tab.querySelectorAll(".navi-link");
       // remove active tab links
       for (let i = 0; i < links.length; i++) {
         links[i].classList.remove("active");
       }
 
-      // set current active tab
-      event.target.classList.add("active");
-
       // set clicked tab index to bootstrap tab
-      return parseInt(event.target.getAttribute("data-tab"));
+      this.tabIndex = parseInt(target.getAttribute("data-tab"));
+
+      // set current active tab
+      target.classList.add("active");
+    }
+  },
+  computed: {
+    ...mapGetters(["currentUserPersonalInfo"]),
+
+    getFullName() {
+      return (
+        this.currentUserPersonalInfo.name +
+        " " +
+        this.currentUserPersonalInfo.surname
+      );
     }
   }
 };

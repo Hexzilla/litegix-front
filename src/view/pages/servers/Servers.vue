@@ -30,7 +30,7 @@ export default {
       return this.servers.length <= 0;
     },
     onCreateServer() {
-      console.log("server.createServer");
+      // console.log("server.createServer");
       this.create = true;
     }
   }

@@ -21,14 +21,19 @@ export default new Router({
           component: () => import("@/view/pages/Builder.vue")
         },
         {
-          path: "/Servers",
+          path: "/servers",
           name: "Servers",
           component: () => import("@/view/pages/servers/Servers.vue")
         },
         {
-          path: "/Servers/Create",
+          path: "/servers/create",
           name: "CreateServer",
           component: () => import("@/view/pages/servers/CreateServer.vue")
+        },
+        {
+          path: "/servers/config",
+          name: "CreateServer",
+          component: () => import("@/view/pages/servers/ConfigServer.vue")
         },
         {
           path: "/Sites",
@@ -56,7 +61,7 @@ export default new Router({
           component: () => import("@/view/pages/Marketplace.vue")
         },
         {
-          path: "/Settings",
+          path: "/settings",
           name: "Settings",
           component: () => import("@/view/pages/settings/Settings.vue")
         },

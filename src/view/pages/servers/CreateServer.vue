@@ -177,12 +177,20 @@
 
               <div class="d-flex justify-content-center border-top pt-10">
                 <div>
-                  <button
+                  <!-- <button
                     v-on:click="submit"
                     class="btn btn-success font-weight-bold text-uppercase px-9 py-4"
                   >
-                    Create Server
-                  </button>
+                    Connect Server
+                  </button> -->
+                  <router-link to="/servers/config" v-slot="{ href, navigate }">
+                    <a
+                      :href="href"
+                      @click="navigate"
+                      class="btn btn-primary font-weight-bold text-uppercase px-9 py-4"
+                      >Add this Server</a
+                    >
+                  </router-link>
                 </div>
               </div>
             </form>
@@ -214,7 +222,7 @@ export default {
   mounted() {
     this.$store.dispatch(SET_BREADCRUMB, [
       { title: "Server" },
-      { title: "CreateServer" }
+      { title: "Create" }
     ]);
   },
   methods: {

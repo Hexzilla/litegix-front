@@ -22,7 +22,7 @@
 
 
     <router-link
-      to="/Servers"
+      to="/servers"
       v-slot="{ href, navigate, isActive, isExactActive }"
     >
       <li
@@ -145,7 +145,7 @@
     </li>
 
     <router-link
-      to="/Settings"
+      to="/settings"
       v-slot="{ href, navigate, isActive, isExactActive }"
     >
       <li

@@ -10,17 +10,17 @@
           Luckily Litegix makes this real easy for you to do.
         </p>
         <!-- <button
-          class="btn btn-success btn-shadow-hover font-weight-bolder w-100 py-3"
+          class="btn btn-primary btn-shadow-hover font-weight-bolder w-100 py-3"
           data-wizard-type="action-next"
           @click="createServer"
         >
           Create Server
         </button> -->
-        <router-link to="/Servers/Create" v-slot="{ href, navigate }">
+        <router-link to="/servers/create" v-slot="{ href, navigate }">
           <a
             :href="href"
             @click="navigate"
-            class="btn btn-success btn-shadow-hover font-weight-bolder w-100 py-3"
+            class="btn btn-primary btn-shadow-hover font-weight-bolder w-100 py-3"
             >Create Server</a
           >
         </router-link>

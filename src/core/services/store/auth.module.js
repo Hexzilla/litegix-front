@@ -38,7 +38,7 @@ const actions = {
           resolve(data);
         })
         .catch(error => {
-          console.log("login-error", error.response);
+          //console.log("login-error", error.response);
           context.commit(SET_ERROR, error.response.data.errors);
           return reject(error);
         });
@@ -51,12 +51,12 @@ const actions = {
     return new Promise((resolve, reject) => {
       ApiService.post("signup", credentials)
         .then(({ data }) => {
-          console.log("regist-data", data);
+          //console.log("regist-data", data);
           //context.commit(SET_AUTH, data);
           resolve(data);
         })
         .catch(error => {
-          console.log("regist-error", error.response);
+          //console.log("regist-error", error.response);
           context.commit(SET_ERROR, error.response.data.errors);
           return reject(error);
         });
@@ -91,7 +91,6 @@ const mutations = {
     state.errors = error;
   },
   [SET_AUTH](state, user) {
-    console.log("set_auth", user);
     state.isAuthenticated = true;
     state.user = user;
     state.errors = {};

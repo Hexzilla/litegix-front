@@ -538,8 +538,8 @@ export default {
             heightAuto: false
           }).then(() => this.showForm("signin"));
         })
-        .catch(error => {
-          console.log("regist.error", error);
+        .catch(() => {
+          //console.log("regist.error", error);
           removeSpinner();
         });
     }

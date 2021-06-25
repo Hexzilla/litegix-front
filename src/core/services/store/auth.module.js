@@ -31,14 +31,16 @@ const getters = {
 
 const actions = {
   [LOGIN](context, credentials) {
-    return new Promise(resolve => {
+    return new Promise((resolve, reject) => {
       ApiService.post("login", credentials)
         .then(({ data }) => {
           context.commit(SET_AUTH, data);
           resolve(data);
         })
-        .catch(({ response }) => {
-          context.commit(SET_ERROR, response.data.errors);
+        .catch(error => {
+          console.log("login-error", error.response);
+          context.commit(SET_ERROR, error.response.data.errors);
+          return reject(error);
         });
     });
   },
@@ -46,14 +48,17 @@ const actions = {
     context.commit(PURGE_AUTH);
   },
   [REGISTER](context, credentials) {
-    return new Promise(resolve => {
-      ApiService.post("login", credentials)
+    return new Promise((resolve, reject) => {
+      ApiService.post("signup", credentials)
         .then(({ data }) => {
-          context.commit(SET_AUTH, data);
+          console.log("regist-data", data);
+          //context.commit(SET_AUTH, data);
           resolve(data);
         })
-        .catch(({ response }) => {
-          context.commit(SET_ERROR, response.data.errors);
+        .catch(error => {
+          console.log("regist-error", error.response);
+          context.commit(SET_ERROR, error.response.data.errors);
+          return reject(error);
         });
     });
   },
@@ -86,6 +91,7 @@ const mutations = {
     state.errors = error;
   },
   [SET_AUTH](state, user) {
+    console.log("set_auth", user);
     state.isAuthenticated = true;
     state.user = user;
     state.errors = {};

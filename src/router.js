@@ -524,17 +524,17 @@ export default new Router({
     },
     {
       path: "/",
-      component: () => import("@/view/pages/auth/login_pages/Login-1"),
+      component: () => import("@/view/pages/auth/Login.vue"),
       children: [
         {
           name: "login",
           path: "/login",
-          component: () => import("@/view/pages/auth/login_pages/Login-1")
+          component: () => import("@/view/pages/auth/Login.vue")
         },
         {
           name: "register",
           path: "/register",
-          component: () => import("@/view/pages/auth/login_pages/Login-1")
+          component: () => import("@/view/pages/auth/Login.vue")
         }
       ]
     },

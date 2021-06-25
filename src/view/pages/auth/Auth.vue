@@ -21,7 +21,7 @@
             class="flex-column-fluid d-flex flex-column justify-content-center"
           >
             <h3 class="font-size-h1 mt-10 mb-5 text-white">
-              Welcome to Metronic!
+              Welcome to Litegix!
             </h3>
             <p class="font-weight-lighter text-white opacity-80">
               The ultimate Bootstrap, Angular 8, React &amp; VueJS admin theme
@@ -34,7 +34,7 @@
             class="d-none flex-column-auto d-lg-flex justify-content-between mt-15"
           >
             <div class="opacity-70 font-weight-bold text-white">
-              © 2020 Metronic
+              © 2021 Litegix
             </div>
             <div class="d-flex">
               <a href="#" class="text-white">Privacy</a>

@@ -431,7 +431,47 @@ export default {
       }
     });
 
-    this.fv.on("core.form.valid", () => {
+    this.fv.on("core.form.valid", this.login);
+
+    this.fv.on("core.form.invalid", () => {
+      /*Swal.fire({
+        title: "",
+        text: "Please, provide correct data!",
+        icon: "error",
+        confirmButtonClass: "btn btn-secondary",
+        heightAuto: false
+      });*/
+    });
+
+    this.fv1.on("core.form.valid", this.register);
+
+    this.fv1.on("core.form.invalid", () => {
+      Swal.fire({
+        title: "",
+        text: "Please, provide correct data!",
+        icon: "error",
+        confirmButtonClass: "btn btn-secondary",
+        heightAuto: false
+      });
+    });
+  },
+  methods: {
+    showForm(form) {
+      this.state = form;
+      var form_name = "kt_login_" + form + "_form";
+      KTUtil.animateClass(
+        KTUtil.getById(form_name),
+        "animate__animated animate__backInUp"
+      );
+    },
+    makeToast(contents, variant = null) {
+      this.$bvToast.toast(contents, {
+        title: `Litegix`,
+        variant: variant,
+        solid: true
+      });
+    },
+    login() {
       var email = this.form.email;
       var password = this.form.password;
 
@@ -458,20 +498,10 @@ export default {
         })
         .catch(() => {
           removeSpinner();
+          this.makeToast("Invalid email or password", "danger");
         });
-    });
-
-    this.fv.on("core.form.invalid", () => {
-      Swal.fire({
-        title: "",
-        text: "Please, provide correct data!",
-        icon: "error",
-        confirmButtonClass: "btn btn-secondary",
-        heightAuto: false
-      });
-    });
-
-    this.fv1.on("core.form.valid", () => {
+    },
+    register() {
       const name = this.$refs.fullname.value;
       const email = this.$refs.remail.value;
       const password = this.$refs.rpassword.value;
@@ -499,33 +529,19 @@ export default {
           password: password
         })
         .then(() => {
-          //this.$router.push({ name: "dashboard" });
-          this.showForm("signin");
+          removeSpinner();
+          Swal.fire({
+            title: "",
+            text: "Your account has been successfully created",
+            icon: "success",
+            confirmButtonClass: "btn btn-secondary",
+            heightAuto: false
+          }).then(() => this.showForm("signin"));
         })
         .catch(error => {
           console.log("regist.error", error);
           removeSpinner();
         });
-    });
-
-    this.fv1.on("core.form.invalid", () => {
-      Swal.fire({
-        title: "",
-        text: "Please, provide correct data!",
-        icon: "error",
-        confirmButtonClass: "btn btn-secondary",
-        heightAuto: false
-      });
-    });
-  },
-  methods: {
-    showForm(form) {
-      this.state = form;
-      var form_name = "kt_login_" + form + "_form";
-      KTUtil.animateClass(
-        KTUtil.getById(form_name),
-        "animate__animated animate__backInUp"
-      );
     }
   }
 };

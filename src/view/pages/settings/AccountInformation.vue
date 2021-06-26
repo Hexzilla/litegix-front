@@ -125,21 +125,21 @@
                 <input
                   type="checkbox"
                   ref="email_com"
-                  :checked="currentUserAccountInfo.communication.email"
+                  :checked="currentUserAccountInfo.email"
                 /><span></span> Email</label
               >
               <label class="checkbox">
                 <input
                   type="checkbox"
                   ref="sms_com"
-                  :checked="currentUserAccountInfo.communication.sms"
+                  :checked="currentUserAccountInfo.sms"
                 /><span></span> SMS</label
               >
               <label class="checkbox">
                 <input
                   type="checkbox"
                   ref="phone_com"
-                  :checked="currentUserAccountInfo.communication.phone"
+                  :checked="currentUserAccountInfo.phone"
                 /><span></span> Phone</label
               >
             </div>
@@ -454,9 +454,9 @@ export default {
       this.$refs.email.value = this.currentUserAccountInfo.email;
       this.$refs.language.value = this.currentUserAccountInfo.language;
       this.$refs.time_zone.value = this.currentUserAccountInfo.time_zone;
-      this.$refs.email_com.checked = this.currentUserAccountInfo.communication.email;
-      this.$refs.sms_com.checked = this.currentUserAccountInfo.communication.sms;
-      this.$refs.phone_com.checked = this.currentUserAccountInfo.communication.phone;
+      this.$refs.email_com.checked = this.currentUserAccountInfo.email;
+      this.$refs.sms_com.checked = this.currentUserAccountInfo.sms;
+      this.$refs.phone_com.checked = this.currentUserAccountInfo.phone;
       this.$refs.verification.checked = this.currentUserAccountInfo.verification;
     }
   },

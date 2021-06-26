@@ -302,6 +302,7 @@ import SubmitButton from "@/assets/plugins/formvalidation/dist/es6/plugins/Submi
 import KTUtil from "@/assets/js/components/util";
 import { mapGetters, mapState } from "vuex";
 import { LOGIN, LOGOUT, REGISTER } from "@/core/services/store/auth.module";
+import { UPDATE_ACCOUNT_INFO } from "@/core/services/store/profile.module";
 import Swal from "sweetalert2";
 
 export default {
@@ -493,12 +494,22 @@ export default {
       // send login request
       this.$store
         .dispatch(LOGIN, { email, password })
-        .then(() => {
-          this.$router.push({ name: "dashboard" });
+        .then(response => {
+          this.onLoginSuccess(response);
         })
         .catch(() => {
           removeSpinner();
           this.makeToast("Invalid email or password", "danger");
+        });
+    },
+    onLoginSuccess(user) {
+      this.$store
+        .dispatch(UPDATE_ACCOUNT_INFO, {
+          username: user.username,
+          email: user.email
+        })
+        .then(() => {
+          this.$router.push({ name: "dashboard" });
         });
     },
     register() {

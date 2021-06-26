@@ -21,7 +21,7 @@
 
         <div class="row justify-content-center my-10 px-8 my-lg-15 px-lg-10">
           <div class="col-xl-12 col-xxl-7">
-            <form class="form" id="kt_form">
+            <form class="form" novalidate="novalidate" id="kt_form_server">
               <div
                 class="pb-5"
                 data-wizard-type="step-content"
@@ -47,7 +47,7 @@
                 <div class="form-group">
                   <label>Configure My Server For</label>
                   <select
-                    name="ServerOS"
+                    name="osversion"
                     class="form-control form-control-solid form-control-lg"
                   >
                     <option value="nginx">Nginx</option>
@@ -62,9 +62,10 @@
                   <input
                     type="text"
                     class="form-control form-control-solid form-control-lg"
-                    name="Name"
+                    name="name"
                     placeholder="Name"
-                    value=""
+                    ref="name"
+                    v-model="form.name"
                   />
                 </div>
                 <div class="form-group">
@@ -72,9 +73,10 @@
                   <input
                     type="text"
                     class="form-control form-control-solid form-control-lg"
-                    name="IP"
+                    name="address"
                     placeholder="IP address"
-                    value=""
+                    ref="address"
+                    v-model="form.address"
                   />
                 </div>
                 <div class="form-group">
@@ -82,9 +84,10 @@
                   <input
                     type="text"
                     class="form-control form-control-solid form-control-lg"
-                    name="SSH"
+                    name="ssh"
                     placeholder="SSH port"
-                    value=""
+                    ref="ssh"
+                    v-model="form.ssh"
                   />
                 </div>
                 <!-- <div class="form-group">
@@ -176,21 +179,21 @@
               </div>
 
               <div class="d-flex justify-content-center border-top pt-10">
-                <div>
-                  <!-- <button
-                    v-on:click="submit"
-                    class="btn btn-success font-weight-bold text-uppercase px-9 py-4"
+                <div class="pb-lg-0 pb-5">
+                  <button
+                    ref="kt_form_server_submit"
+                    class="btn btn-primary font-weight-bold text-uppercase px-15 py-4 my-3 mr-3"
                   >
-                    Connect Server
-                  </button> -->
-                  <router-link to="/servers/config" v-slot="{ href, navigate }">
+                    Add this server
+                  </button>
+                  <!-- <router-link to="/servers/config" v-slot="{ href, navigate }">
                     <a
                       :href="href"
                       @click="navigate"
                       class="btn btn-primary font-weight-bold text-uppercase px-9 py-4"
-                      >Add this Server</a
+                      >Add this server</a
                     >
-                  </router-link>
+                  </router-link> -->
                 </div>
               </div>
             </form>
@@ -206,13 +209,25 @@
 </style>
 
 <script>
+import formValidation from "@/assets/plugins/formvalidation/dist/es6/core/Core";
+import Trigger from "@/assets/plugins/formvalidation/dist/es6/plugins/Trigger";
+import Bootstrap from "@/assets/plugins/formvalidation/dist/es6/plugins/Bootstrap";
+import SubmitButton from "@/assets/plugins/formvalidation/dist/es6/plugins/SubmitButton";
+import KTUtil from "@/assets/js/components/util";
+
 import { SET_BREADCRUMB } from "@/core/services/store/breadcrumbs.module";
 import Swal from "sweetalert2";
+import ApiService from "@/core/services/api.service";
 
 export default {
   name: "CreateServer",
   data() {
     return {
+      form: {
+        name: "tingerval",
+        address: "221.56.120.89",
+        ssh: "22"
+      }
       /*ServerType: "Server",
       commandValue: `mkdir -p /root/.ssh && touch /root/.ssh/authorized_keys && echo "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCvVRd/oYPD8IaK1NuIaGkOIV/zvISGrkeBL7XY967cOXgJf26Zr/60bEGYzcQKG1OpAa8g6PPH2skUIw1i3geR3/0atMU1Osj8hV9Z6WCxCFlfGOjmJGzuR+TT8EcgYegdBTE2zIPahajUHaAZTYljb7ewEugflOeh0sRpZ3BER83hu1a8xoibIn+UuSXEN3f++BSdxZNu7suGd46fBgWeUw`,
       warningText: `Your server needs to have a new unused installation of Ubuntu 16.04, 18.04 or 20.04 x64 and must contain a root user. 
@@ -224,15 +239,94 @@ export default {
       { title: "Server" },
       { title: "Create" }
     ]);
+    this.fv = this.createValidation();
+    this.fv.on("core.form.valid", this.submit);
+    this.fv.on("core.form.invalid", () => {
+      console.log("form.invalid");
+    });
   },
   methods: {
-    submit: function(e) {
-      e.preventDefault();
+    createValidation: function() {
+      console.log("createValidation");
+      const create_form = KTUtil.getById("kt_form_server");
+      return formValidation(create_form, {
+        fields: {
+          name: {
+            validators: {
+              notEmpty: {
+                message: "Name is required"
+              }
+            }
+          },
+          address: {
+            validators: {
+              notEmpty: {
+                message: "IP address is required"
+              }
+            }
+          }
+        },
+        plugins: {
+          trigger: new Trigger(),
+          submitButton: new SubmitButton(),
+          bootstrap: new Bootstrap()
+        }
+      });
+    },
+    makeToast(contents, variant = null) {
+      this.$bvToast.toast(contents, {
+        title: `Litegix`,
+        variant: variant,
+        solid: true
+      });
+    },
+    submit: function() {
+      // set spinner to submit button
+      const submitButton = this.$refs["kt_form_server_submit"];
+      submitButton.classList.add("spinner", "spinner-light", "spinner-right");
+      const removeSpinner = () => {
+        submitButton.classList.remove(
+          "spinner",
+          "spinner-light",
+          "spinner-right"
+        );
+      };
+
+      const payload = {
+        name: this.form.name,
+        provider: "other",
+        web_server: "nginx",
+        database: "mysql",
+        address: this.form.address,
+        php: "5.7",
+        ssh: this.form.ssh
+      };
+
+      console.log("createServer", payload);
+      ApiService.setHeader();
+      ApiService.post("servers/create", payload)
+        .then(({ data }) => {
+          console.log("createServer-response", data);
+          if (data.success) {
+            this.onCreateSuccess(data);
+          }
+          removeSpinner();
+        })
+        .catch(error => {
+          console.log("error", error);
+          removeSpinner();
+        });
+    },
+    onCreateSuccess(response) {
+      console.log("onCreateSuccess", response);
       Swal.fire({
         title: "",
-        text: "The application has been successfully submitted!",
+        text: "Your server has been successfully created",
         icon: "success",
-        confirmButtonClass: "btn btn-secondary"
+        confirmButtonClass: "btn btn-secondary",
+        heightAuto: false
+      }).then(() => {
+        this.$router.push({ name: "server-config" });
       });
     }
   }

@@ -57,7 +57,9 @@
             </div>
           </div>
           <div class="form-group row">
-            <label class="col-xl-3 col-lg-3 col-form-label text-right">Time Zone</label>
+            <label class="col-xl-3 col-lg-3 col-form-label text-right"
+              >Time Zone</label
+            >
             <div class="col-lg-9 col-xl-6">
               <select
                 class="form-control form-control-lg form-control-solid"
@@ -84,13 +86,12 @@
                   <input
                     type="checkbox"
                     ref="email_com"
-                    :checked="currentUserAccountInfo.communication.email"
+                    :checked="currentUserAccountInfo.email"
                   /><span></span> Login Email Notification</label
                 >
               </div>
             </div>
           </div>
-          
         </div>
         <!--end::Body-->
       </form>
@@ -179,7 +180,6 @@
                 placeholder="City"
               />
             </div>
-            
           </div>
           <div class="form-group row">
             <label class="col-xl-3 col-lg-3 col-form-label text-right"
@@ -207,9 +207,10 @@
               />
             </div>
           </div>
-        
           <div class="form-group row">
-            <label class="col-xl-3 col-lg-3 col-form-label text-right">Country</label>
+            <label class="col-xl-3 col-lg-3 col-form-label text-right"
+              >Country</label
+            >
             <div class="col-lg-9 col-xl-6">
               <select
                 class="form-control form-control-lg form-control-solid"
@@ -232,7 +233,6 @@
               />
             </div>
           </div>
-
         </div>
         <!--end::Body-->
       </form>
@@ -399,6 +399,7 @@ export default {
     };
   },
   mounted() {
+    console.log("Account", this.currentUserAccountInfo);
     this.current_photo = this.currentUserPersonalInfo.photo;
   },
   methods: {

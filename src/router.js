@@ -27,12 +27,12 @@ export default new Router({
         },
         {
           path: "/servers/create",
-          name: "CreateServer",
+          name: "server-create",
           component: () => import("@/view/pages/servers/CreateServer.vue")
         },
         {
           path: "/servers/config",
-          name: "CreateServer",
+          name: "server-config",
           component: () => import("@/view/pages/servers/ConfigServer.vue")
         },
         {

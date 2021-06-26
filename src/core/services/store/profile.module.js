@@ -18,8 +18,8 @@ const state = {
     company_site: "fifestudios"
   },
   user_account_info: {
-    username: "nick84",
-    email: "nick.watson@loop.com",
+    username: "",
+    email: "",
     language: "English",
     time_zone: "(GMT-11:00) Midway Island",
     communication: {
@@ -56,10 +56,14 @@ const actions = {
 
 const mutations = {
   [SET_PERSONAL_INFO](state, user_personal_info) {
-    state.user_personal_info = user_personal_info;
+    state.user_personal_info = {
+      ...state.user_personal_info,
+      user_personal_info
+    };
   },
   [SET_ACCOUNT_INFO](state, user_account_info) {
     state.user_account_info = user_account_info;
+    console.log("SET_ACCOUNT_INFO", state.user_account_info);
   }
 };
 

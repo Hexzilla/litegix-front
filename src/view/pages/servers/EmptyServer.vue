@@ -9,13 +9,6 @@
           Currently you do not own any servers. <br />
           Luckily Litegix makes this real easy for you to do.
         </p>
-        <!-- <button
-          class="btn btn-primary btn-shadow-hover font-weight-bolder w-100 py-3"
-          data-wizard-type="action-next"
-          @click="createServer"
-        >
-          Create Server
-        </button> -->
         <router-link to="/servers/create" v-slot="{ href, navigate }">
           <a
             :href="href"

@@ -219,7 +219,6 @@ export default {
   },
   mounted() {
     this.current_photo = this.currentUserPersonalInfo.photo;
-    console.log("this.currentUserPersonalInfo", this.currentUserPersonalInfo);
   },
   methods: {
     save() {

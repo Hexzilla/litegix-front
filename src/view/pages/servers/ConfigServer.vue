@@ -62,12 +62,7 @@ import Swal from "sweetalert2";
 export default {
   name: "ConfigServer",
   data() {
-    return {
-      /*ServerType: "Server",
-      commandValue: `mkdir -p /root/.ssh && touch /root/.ssh/authorized_keys && echo "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCvVRd/oYPD8IaK1NuIaGkOIV/zvISGrkeBL7XY967cOXgJf26Zr/60bEGYzcQKG1OpAa8g6PPH2skUIw1i3geR3/0atMU1Osj8hV9Z6WCxCFlfGOjmJGzuR+TT8EcgYegdBTE2zIPahajUHaAZTYljb7ewEugflOeh0sRpZ3BER83hu1a8xoibIn+UuSXEN3f++BSdxZNu7suGd46fBgWeUw`,
-      warningText: `Your server needs to have a new unused installation of Ubuntu 16.04, 18.04 or 20.04 x64 and must contain a root user. 
-                    To get started, add this public key to /root/.ssh/authorized_keys file.`*/
-    };
+    return {};
   },
   mounted() {
     this.$store.dispatch(SET_BREADCRUMB, [

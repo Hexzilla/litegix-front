@@ -241,13 +241,10 @@ export default {
     ]);
     this.fv = this.createValidation();
     this.fv.on("core.form.valid", this.submit);
-    this.fv.on("core.form.invalid", () => {
-      console.log("form.invalid");
-    });
+    this.fv.on("core.form.invalid", () => {});
   },
   methods: {
     createValidation: function() {
-      console.log("createValidation");
       const create_form = KTUtil.getById("kt_form_server");
       return formValidation(create_form, {
         fields: {
@@ -302,26 +299,25 @@ export default {
         ssh: this.form.ssh
       };
 
-      console.log("createServer", payload);
+      //console.log("createServer", payload);
       ApiService.setHeader();
       ApiService.post("servers/create", payload)
         .then(({ data }) => {
-          console.log("createServer-response", data);
+          //console.log("createServer-response", data);
           if (data.success) {
             this.onCreateSuccess(data);
           }
           removeSpinner();
         })
-        .catch(error => {
-          console.log("error", error);
+        .catch(() => {
           removeSpinner();
         });
     },
     onCreateSuccess(response) {
-      console.log("onCreateSuccess", response);
+      //console.log("onCreateSuccess", response);
       Swal.fire({
         title: "",
-        text: "Your server has been successfully created",
+        text: response.message,
         icon: "success",
         confirmButtonClass: "btn btn-secondary",
         heightAuto: false

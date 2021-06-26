@@ -63,7 +63,6 @@ const mutations = {
   },
   [SET_ACCOUNT_INFO](state, user_account_info) {
     state.user_account_info = user_account_info;
-    console.log("SET_ACCOUNT_INFO", state.user_account_info);
   }
 };
 

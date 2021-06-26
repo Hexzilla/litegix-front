@@ -399,7 +399,6 @@ export default {
     };
   },
   mounted() {
-    console.log("Account", this.currentUserAccountInfo);
     this.current_photo = this.currentUserPersonalInfo.photo;
   },
   methods: {

@@ -273,6 +273,7 @@ export default {
     makeToast(contents, variant = null) {
       this.$bvToast.toast(contents, {
         title: `Litegix`,
+        toaster: "b-toaster-bottom-right",
         variant: variant,
         solid: true
       });
@@ -309,8 +310,13 @@ export default {
           }
           removeSpinner();
         })
-        .catch(() => {
+        .catch(error => {
           removeSpinner();
+          if (error.response && error.response.data) {
+            this.makeToast(error.response.data.message, "danger");
+          } else {
+            this.makeToast("There's something wrong", "danger");
+          }
         });
     },
     onCreateSuccess(response) {

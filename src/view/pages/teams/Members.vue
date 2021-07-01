@@ -26,21 +26,41 @@
             <div class="panel panel-default">
               <div class="panel-heading">
                 <h4>Add Team Member</h4>
-                <p data-nsfw-filter-status="swf">Add a team member using their email. Team members must have a RunCloud
-                  account.</p>
+                <p data-nsfw-filter-status="swf">
+                  Add a team member using their email. Team members must have a
+                  RunCloud account.
+                </p>
               </div>
               <div class="panel-body">
                 <form action="/teams/1967/members" role="form">
-                  <div class="form-group"><label for="email" class="control-label">Email
-                      <!----></label>
-                    <!----> <input type="text" name="email" placeholder="Must be a registered email"
-                      class="form-control input-lg">
+                  <div class="form-group">
+                    <label for="email" class="control-label"
+                      >Email
+                      <!----></label
+                    >
                     <!---->
-                  </div> <button data-v-69273b5e="" type="submit" class="btn btn-base btn-block"><span
-                      data-v-293d8245="" data-v-69273b5e="" data-nsfw-filter-status="swf"><span data-v-293d8245=""
-                        data-nsfw-filter-status="swf">
+                    <input
+                      type="text"
+                      name="email"
+                      placeholder="Must be a registered email"
+                      class="form-control input-lg"
+                    />
+                    <!---->
+                  </div>
+                  <button
+                    data-v-69273b5e=""
+                    type="submit"
+                    class="btn btn-base btn-block"
+                  >
+                    <span
+                      data-v-293d8245=""
+                      data-v-69273b5e=""
+                      data-nsfw-filter-status="swf"
+                      ><span data-v-293d8245="" data-nsfw-filter-status="swf">
                         Add Member
-                      </span></span></button>
+                      </span></span
+                    >
+                  </button>
                 </form>
               </div>
             </div>
@@ -52,30 +72,30 @@
 </template>
 
 <script>
-  alert("ok");
-  // import {
-  //   SET_BREADCRUMB
-  // } from "@/core/services/store/breadcrumbs.module";
-  //import ApiService from "@/core/services/api.service";
+alert("ok");
+// import {
+//   SET_BREADCRUMB
+// } from "@/core/services/store/breadcrumbs.module";
+//import ApiService from "@/core/services/api.service";
 
-  export default {
-    name: "Members",
-    //teamid: 1967,
-    data() {},
-    methods: {
-      addMemberToTeam(teamid) {
-        console.log(teamid);
-        // ApiService.setHeader();
-        // ApiService.get("teams")
-        //   .then(({
-        //     data
-        //   }) => {
-        //     this.teams = data.teams;
-        //   })
-        //   .catch(() => {});
-      },
+export default {
+  name: "Members",
+  //teamid: 1967,
+  data() {},
+  methods: {
+    addMemberToTeam(teamid) {
+      console.log(teamid);
+      // ApiService.setHeader();
+      // ApiService.get("teams")
+      //   .then(({
+      //     data
+      //   }) => {
+      //     this.teams = data.teams;
+      //   })
+      //   .catch(() => {});
     }
-  };
-  console.log("members arrive!!!!");
+  }
+};
+console.log("members arrive!!!!");
 </script>
 <style scoped src="@/assets/styles/app.css"></style>

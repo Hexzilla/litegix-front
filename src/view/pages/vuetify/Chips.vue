@@ -15,7 +15,7 @@
         pieces of information. Using the <code>close</code> property, the chip
         becomes interactive, allowing user interaction.
         <a
-          class="font-weight-bold"
+          class=""
           href="https://vuetifyjs.com/en/components/chips"
           target="_blank"
         >

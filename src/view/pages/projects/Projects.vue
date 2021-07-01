@@ -9,11 +9,7 @@
             img-src="media/logos/logo-letter-3.png"
             align="center"
           >
-            
-            <b-card-text
-              >Create A Project</b-card-text
-            >
-            
+            <b-card-text>Create A Project</b-card-text>
           </b-card>
         </b-link>
         <b-link to="/create">
@@ -24,26 +20,21 @@
             img-
             align="center"
           >
-            <b-card-text
-              >Create A Project</b-card-text
-            >
-          </b-card>
-        </b-link>
-        
-        <b-link to="/create">
-          <b-card
-            bg-variant="primary"
-            text-variant="white"
-            img-src="media/logos/logo-letter-3.png"
-            img-
-            align="center"
-          >
-            <b-card-text
-              >Create A Project</b-card-text
-            >
+            <b-card-text>Create A Project</b-card-text>
           </b-card>
         </b-link>
 
+        <b-link to="/create">
+          <b-card
+            bg-variant="primary"
+            text-variant="white"
+            img-src="media/logos/logo-letter-3.png"
+            img-
+            align="center"
+          >
+            <b-card-text>Create A Project</b-card-text>
+          </b-card>
+        </b-link>
       </b-card-group>
     </div>
   </div>
@@ -270,10 +261,7 @@ export default {
     };
   },
   mounted() {
-    this.$store.dispatch(SET_BREADCRUMB, [
-      { title: "Project" }  
-    ]);
+    this.$store.dispatch(SET_BREADCRUMB, [{ title: "Project" }]);
   }
- 
 };
 </script>

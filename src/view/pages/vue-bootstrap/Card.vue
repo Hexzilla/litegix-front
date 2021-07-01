@@ -15,7 +15,7 @@
         includes options for headers and footers, a wide variety of content,
         contextual background colors, and powerful display options.
         <a
-          class="font-weight-bold"
+          class=""
           href="https://bootstrap-vue.js.org/docs/components/card"
           target="_blank"
         >

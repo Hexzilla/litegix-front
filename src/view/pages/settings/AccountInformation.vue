@@ -7,7 +7,7 @@
         <h3 class="card-label font-weight-bolder text-dark">
           Account Information
         </h3>
-        <span class="text-muted font-weight-bold font-size-sm mt-1"
+        <span class="text-muted  font-size-sm mt-1"
           >Change your account settings</span
         >
       </div>
@@ -33,7 +33,7 @@
         <div class="row">
           <label class="col-xl-3"></label>
           <div class="col-lg-9 col-xl-6">
-            <h5 class="font-weight-bold mb-6">Account:</h5>
+            <h5 class=" mb-6">Account:</h5>
           </div>
         </div>
         <!--begin::Form Group-->
@@ -151,7 +151,7 @@
         <div class="row">
           <label class="col-xl-3"></label>
           <div class="col-lg-9 col-xl-6">
-            <h5 class="font-weight-bold mb-6">Security:</h5>
+            <h5 class=" mb-6">Security:</h5>
           </div>
         </div>
         <!--begin::Form Group-->
@@ -162,14 +162,14 @@
           <div class="col-lg-9 col-xl-6">
             <button
               type="button"
-              class="btn btn-light-primary font-weight-bold btn-sm"
+              class="btn btn-light-primary  btn-sm"
             >
               Setup login verification
             </button>
             <p class="form-text text-muted pt-2">
               After you log in, you will be asked for additional information to
               confirm your identity and protect your account from being
-              compromised. <a href="#" class="font-weight-bold">Learn more</a>.
+              compromised. <a href="#" class="">Learn more</a>.
             </p>
           </div>
         </div>
@@ -196,7 +196,7 @@
             </p>
             <button
               type="button"
-              class="btn btn-light-danger font-weight-bold btn-sm"
+              class="btn btn-light-danger  btn-sm"
             >
               Deactivate your account ?
             </button>

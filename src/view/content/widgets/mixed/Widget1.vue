@@ -29,7 +29,7 @@
             <span class="svg-icon svg-icon-3x svg-icon-warning d-block my-2">
               <inline-svg src="media/svg/icons/Media/Equalizer.svg" />
             </span>
-            <a href="#" class="text-warning font-weight-bold font-size-h6">
+            <a href="#" class="text-warning  font-size-h6">
               Weekly Sales
             </a>
           </div>
@@ -37,7 +37,7 @@
             <span class="svg-icon svg-icon-3x svg-icon-primary d-block my-2">
               <inline-svg src="media/svg/icons/Communication/Add-user.svg" />
             </span>
-            <a href="#" class="text-primary font-weight-bold font-size-h6 mt-2">
+            <a href="#" class="text-primary  font-size-h6 mt-2">
               New Users
             </a>
           </div>
@@ -49,7 +49,7 @@
             <span class="svg-icon svg-icon-3x svg-icon-danger d-block my-2">
               <inline-svg src="media/svg/icons/Design/Layers.svg" />
             </span>
-            <a href="#" class="text-danger font-weight-bold font-size-h6 mt-2">
+            <a href="#" class="text-danger  font-size-h6 mt-2">
               Item Orders
             </a>
           </div>
@@ -57,7 +57,7 @@
             <span class="svg-icon svg-icon-3x svg-icon-success d-block my-2">
               <inline-svg src="media/svg/icons/Communication/Urgent-mail.svg" />
             </span>
-            <a href="#" class="text-success font-weight-bold font-size-h6 mt-2">
+            <a href="#" class="text-success  font-size-h6 mt-2">
               Bug Reports
             </a>
           </div>

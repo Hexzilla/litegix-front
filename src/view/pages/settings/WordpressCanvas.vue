@@ -1,5 +1,5 @@
 <template>
-   <!--begin::Advance Table Widget 10-->
+  <!--begin::Advance Table Widget 10-->
   <div class="card card-custom gutter-b">
     <!--begin::Header-->
     <div class="card-header border-0 py-5">
@@ -7,33 +7,31 @@
         <span class="card-label font-weight-bolder text-dark"
           >Wordpress Canvas</span
         >
-        <span class="text-muted mt-3 font-weight-bold font-size-sm"
-          >List of canvases than can be use when creating Wordpress Applications</span
+        <span class="text-muted mt-3  font-size-sm"
+          >List of canvases than can be use when creating Wordpress
+          Applications</span
         >
       </h3>
       <div class="card-toolbar">
-        
-          <router-link
-                to="/settings/wordpress_canvas/create_canvas"
-                v-slot="{ href, navigate,}"
-            >
-          <a 
-            :href="href" 
-            class="btn btn-success font-weight-bolder font-size-sm" 
-            @click="navigate">Create a new Canvas</a>
+        <router-link
+          to="/settings/wordpress_canvas/create_canvas"
+          v-slot="{ href, navigate }"
+        >
+          <a
+            :href="href"
+            class="btn btn-success font-weight-bolder font-size-sm"
+            @click="navigate"
+            >Create a new Canvas</a
+          >
         </router-link>
       </div>
     </div>
     <!--end::Header-->
     <!--begin::Body-->
     <div class="card-body py-0">
-    
-      <v-data-table
-        :headers="headers"
-        :items="desserts"
-      ></v-data-table>
+      <v-data-table :headers="headers" :items="desserts"></v-data-table>
     </div>
-    </div>
+  </div>
 </template>
 
 <script>
@@ -44,22 +42,21 @@ export default {
   name: "ServerTrans",
   data() {
     return {
-      search: '',
+      search: "",
       headers: [
         {
-          text: 'Name',
-          align: 'left',
+          text: "Name",
+          align: "left",
           sortable: false,
-          value: 'name',
+          value: "name"
         },
-        { text: 'Plugin', value: 'plugin' },
-        { text: 'Theme', value: 'theme' },
-        { text: 'Custom Plugin', value: 'c_plugin' },
-        { text: 'Custom Theme', value: 'c_theme' },
-        { text: 'Action', value: 'action' },
+        { text: "Plugin", value: "plugin" },
+        { text: "Theme", value: "theme" },
+        { text: "Custom Plugin", value: "c_plugin" },
+        { text: "Custom Theme", value: "c_theme" },
+        { text: "Action", value: "action" }
       ],
-      desserts: [
-      ]
+      desserts: []
     };
   }
 };

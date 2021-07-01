@@ -17,7 +17,7 @@
         <code>v-model</code>. When activated, tooltips display a text label
         identifying an element, such as a description of its function.
         <a
-          class="font-weight-bold"
+          class=""
           href="https://vuetifyjs.com/en/components/tooltips"
           target="_blank"
         >

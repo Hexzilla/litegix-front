@@ -15,7 +15,7 @@
         and &lt;b-toaster&gt;, lightweight components which are easily
         customizable for generating alert messages.
         <a
-          class="font-weight-bold"
+          class=""
           href="https://bootstrap-vue.js.org/docs/components/toast"
           target="_blank"
         >

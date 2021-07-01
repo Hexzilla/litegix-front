@@ -14,7 +14,7 @@
         <b>Timelines</b> The <code>v-timeline</code> is useful for stylistically
         displaying chronological information.
         <a
-          class="font-weight-bold"
+          class=""
           href="https://vuetifyjs.com/en/components/timelines"
           target="_blank"
         >

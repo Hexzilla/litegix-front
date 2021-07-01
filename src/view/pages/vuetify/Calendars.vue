@@ -17,7 +17,7 @@
         has a slot for each day. Optionally you can pass in an array of events
         and they will be rendered over the appropriate days and times.
         <a
-          class="font-weight-bold"
+          class=""
           href="https://vuetifyjs.com/en/components/calendars"
           target="_blank"
         >

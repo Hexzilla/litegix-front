@@ -401,7 +401,7 @@ export default {
     KTSSHKeyVault,
     KTWordpressCanvas,
     KTPaymentHistory,
-    KTPaymentMethod,
+    KTPaymentMethod
   },
   data() {
     return {

@@ -16,7 +16,7 @@
         user notification to completely custom content and feature a handful of
         helpful sub-components, sizes, variants, accessibility, and more.
         <a
-          class="font-weight-bold"
+          class=""
           href="https://bootstrap-vue.js.org/docs/components/media"
           target="_blank"
         >

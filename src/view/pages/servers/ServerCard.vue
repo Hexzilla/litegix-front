@@ -44,8 +44,8 @@
       </div>
     </div>
     <!-- <div class="card-footer d-flex justify-content-between">
-      <a href="#" class="btn btn-light-primary font-weight-bold">Manage</a>
-      <a href="#" class="btn btn-outline-secondary font-weight-bold"
+      <a href="#" class="btn btn-light-primary ">Manage</a>
+      <a href="#" class="btn btn-outline-secondary "
         >Learn more</a
       >
     </div> -->

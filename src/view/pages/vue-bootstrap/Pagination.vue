@@ -17,7 +17,7 @@
         &amp;lt;b-collapse&amp;gt; component, it can easily integrate responsive
         behaviors.
         <a
-          class="font-weight-bold"
+          class=""
           href="https://bootstrap-vue.js.org/docs/components/pagination"
           target="_blank"
         >

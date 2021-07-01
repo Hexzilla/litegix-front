@@ -14,7 +14,7 @@
         <b>Text fields</b> Text fields components are used for collecting user
         provided information.
         <a
-          class="font-weight-bold"
+          class=""
           href="https://vuetifyjs.com/en/components/text-fields"
           target="_blank"
         >

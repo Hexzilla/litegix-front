@@ -15,7 +15,7 @@
         based on the width of the parent by creating an intrinsic ratio that
         scales on any device.
         <a
-          class="font-weight-bold"
+          class=""
           href="https://bootstrap-vue.js.org/docs/components/embed"
           target="_blank"
         >

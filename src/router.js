@@ -337,7 +337,8 @@ export default new Router({
             {
               path: "notification/add",
               name: "settings-notification",
-              component: () => import("@/view/pages/settings/AddNotification.vue")
+              component: () =>
+                import("@/view/pages/settings/AddNotification.vue")
             },
             {
               path: "server_transfer",
@@ -362,7 +363,8 @@ export default new Router({
             {
               path: "authentication",
               name: "settings-authentication",
-              component: () => import("@/view/pages/settings/Authentication.vue"),
+              component: () =>
+                import("@/view/pages/settings/Authentication.vue")
             },
             {
               path: "authentication/connectApp",
@@ -377,7 +379,8 @@ export default new Router({
             {
               path: "third_party_api_key",
               name: "settings-third_party_api_key",
-              component: () => import("@/view/pages/settings/ThirdPartyAPIKey.vue")
+              component: () =>
+                import("@/view/pages/settings/ThirdPartyAPIKey.vue")
             },
             {
               path: "third_party_api_key/add",
@@ -397,7 +400,8 @@ export default new Router({
             {
               path: "subscription/add",
               name: "settings-subscription-add",
-              component: () => import("@/view/pages/settings/AddSubscription.vue")
+              component: () =>
+                import("@/view/pages/settings/AddSubscription.vue")
             },
             {
               path: "payment_method",
@@ -407,7 +411,8 @@ export default new Router({
             {
               path: "payment_history",
               name: "settings-payment_history",
-              component: () => import("@/view/pages/settings/PaymentHistory.vue")
+              component: () =>
+                import("@/view/pages/settings/PaymentHistory.vue")
             },
             {
               path: "ssh_key_vault",
@@ -417,14 +422,15 @@ export default new Router({
             {
               path: "wordpress_canvas",
               name: "settings-wordpress_canvas",
-              component: () => import("@/view/pages/settings/WordpressCanvas.vue"),
+              component: () =>
+                import("@/view/pages/settings/WordpressCanvas.vue")
             },
             {
               path: "wordpress_canvas/create_canvas",
               name: "wordpress_canvas-create_canvas",
               component: () => import("@/view/pages/settings/CreateCanvas.vue")
-            },
-          ],
+            }
+          ]
         },
         {
           path: "/vuetify",

@@ -16,7 +16,7 @@
         or involve multiple tasks. Use dialogs sparingly because they are
         interruptive.
         <a
-          class="font-weight-bold"
+          class=""
           href="https://vuetifyjs.com/en/components/alerts"
           target="_blank"
         >

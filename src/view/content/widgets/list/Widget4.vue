@@ -37,11 +37,11 @@
           <!--begin::Text-->
           <div class="d-flex flex-column flex-grow-1">
             <a
-              class="text-dark-75 text-hover-primary font-weight-bold font-size-lg mb-1"
+              class="text-dark-75 text-hover-primary  font-size-lg mb-1"
             >
               {{ item.title }}
             </a>
-            <span class="text-muted font-weight-bold">
+            <span class="text-muted ">
               {{ item.desc }}
             </span>
           </div>

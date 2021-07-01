@@ -466,14 +466,14 @@
           <div class="row">
             <div class="col-lg-3"></div>
             <div class="col-lg-9">
-              <button type="submit" class="btn btn-primary font-weight-bold">
+              <button type="submit" class="btn btn-primary ">
                 <i class="la la-eye"></i>
                 Preview
               </button>
               &nbsp;
               <button
                 v-on:click="reset($event)"
-                class="btn btn-clean font-weight-bold"
+                class="btn btn-clean "
               >
                 <i class="la la-recycle"></i>
                 Reset

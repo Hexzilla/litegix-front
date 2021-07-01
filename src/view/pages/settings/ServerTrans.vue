@@ -14,13 +14,11 @@
       </v-card-title>
       <div>
         <span class="text--lighten-1 font-size-sm mt-8">
-            Accept or reject any server transfer requests. Accepting a transfer request will grant full permission to the server.
-          </span>
+          Accept or reject any server transfer requests. Accepting a transfer
+          request will grant full permission to the server.
+        </span>
       </div>
-      <v-data-table
-        :headers="headers"
-        :items="desserts"
-      ></v-data-table>
+      <v-data-table :headers="headers" :items="desserts"></v-data-table>
     </div>
   </v-card>
 </template>
@@ -33,20 +31,19 @@ export default {
   name: "ServerTrans",
   data() {
     return {
-      search: '',
+      search: "",
       headers: [
         {
-          text: 'Server Name',
-          align: 'left',
+          text: "Server Name",
+          align: "left",
           sortable: false,
-          value: 'server',
+          value: "server"
         },
-        { text: 'Transfer Status', value: 'Status' },
-        { text: 'Request From', value: 'From' },
-        { text: 'Action', value: 'Action' },
+        { text: "Transfer Status", value: "Status" },
+        { text: "Request From", value: "From" },
+        { text: "Action", value: "Action" }
       ],
-      desserts: [
-      ]
+      desserts: []
     };
   }
 };

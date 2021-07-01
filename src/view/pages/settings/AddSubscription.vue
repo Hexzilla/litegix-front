@@ -1,58 +1,109 @@
 <template>
-<div class="row">
-    <div class="col-xl-9 col-lg-9 col-md-7 col-sm-7">
-        <div>
-            <h1>Create subscription</h1>
-            <h4>1 Customize your own plan</h4>
+  <div class="row">
+    <div class="col-xl-8 col-lg-8 col-md-6 col-sm-6">
+      <div>
+        <h1>Create subscription</h1>
+        <h4>1 Customize your own plan</h4>
+      </div>
+      <v-card>
+        <div class="card-body">
+          <v-container>
+            <div>
+              <div class="row">
+                <div class="col-xl-8 col-lg-8 col-md-6 col-sm-6">
+                  <v-card-title>
+                    <h4>Server</h4>
+                    <h6>Compare plans</h6>
+                  </v-card-title>
+                  <v-select
+                    v-model="select"
+                    :items="items"
+                    required
+                    dense
+                    outlined
+                  ></v-select>
+                  <v-spacer></v-spacer>
+                </div>
+                <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6" align="right">
+                  <h1>USD 0</h1>
+                  <h6>/monthly</h6>
+                </div>
+              </div>
+              <v-spacer></v-spacer>
+              <div class="row">
+                <div class="col-xl-8 col-lg-8 col-md-6 col-sm-6">
+                  <v-card-title>
+                    <h4>Backup</h4>
+                  </v-card-title>
+                  <div>
+                    <p>Monthly Backup Pro. Pro site backup package</p>
+                    <h6>Compare plans</h6>
+                  </div>
+                </div>
+                <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6" align="right">
+                  <h1>USD 0</h1>
+                  <h6>/monthly</h6>
+                </div>
+              </div>
+              <v-container>
+                <v-row>
+                  <v-col cols="12" sm="6" md="3">
+                    <b-card-text class="text-left">Plan</b-card-text>
+                  </v-col>
+                  <v-col cols="12" sm="4" md="2">
+                    <b-card-text class="text-right">Site</b-card-text>
+                  </v-col>
+                  <v-col cols="12" sm="8" md="4">
+                    <b-card-text class="text-left">Storage</b-card-text>
+                  </v-col>
+                  <v-col cols="12" sm="6" md="3">
+                    <b-card-text class="text-right">Coast</b-card-text>
+                  </v-col>
+                </v-row>
+                <hr />
+                <v-row>
+                  <v-col cols="12" sm="6" md="3">
+                    <b-card-text class="text-left">Backup Pro</b-card-text>
+                  </v-col>
+                  <v-col cols="12" sm="6" md="3">
+                    <v-text-field
+                      v-model="passLen"
+                      :rules="rules"
+                      outlined
+                      dense
+                      type="number"
+                      min="0"
+                    ></v-text-field>
+                  </v-col>
+                  <v-col cols="12" sm="6" md="3">
+                    <v-select outlined dense class="text-left"></v-select>
+                  </v-col>
+                  <v-col cols="12" sm="6" md="3">
+                    <b-card-text class="text-right">USD</b-card-text>
+                  </v-col>
+                </v-row>
+              </v-container>
+            </div>
+          </v-container>
         </div>
-        <v-card>
-            <div class="card-body">
-
-                <v-container>
-                    <div>
-                        <div class="row">
-                            <div class="col-xl-10 col-lg-10 col-md-8 col-sm-8">
-                                <v-card-title>
-                                    Server
-                                </v-card-title>
-                                <h6>Label</h6>
-                                <v-select v-model="select" :items="items" :rules="[v => !!v || 'Item is required']" required dense outlined></v-select>
-                                <v-spacer></v-spacer>
-                            </div>
-                            <div class="col-xl-2 col-lg-2 col-md-4 col-sm-4">
-
-                            </div>
-                        </div>
-                    </div>
-
-                    <h6>Label</h6>
-                    <v-text-field dense placeholder="Label for this API Key" outlined :rules="nameRules" required></v-text-field>
-                    <h5>Service</h5>
-                    <v-select v-model="select" :items="items" :rules="[v => !!v || 'Item is required']" required dense outlined></v-select>
-                    <h6>Username/Email/KeyId</h6>
-                    <v-text-field dense placeholder="API Username/Email" outlined :rules="emailRules" required></v-text-field>
-                    <h6>Secret</h6>
-                    <p>You can create API Key for Cloudflare by using this URL: <a href="#"> https://www.cloudflare.com/a/profile</a></p>
-                    <v-text-field dense placeholder="xxxx..." outlined :rules="nameRules" required></v-text-field>
-                    <b-btn class="btn btn-dark" block @click="addKey" ref="topUpCredit">Add API Key</b-btn>
-                </v-container>
-            </div>
-        </v-card>
+      </v-card>
     </div>
-    <div class="col-xl-3 col-lg-3 col-md-5 col-sm-5">
-        <v-card>
-            <div class="card-body">
-                <v-card-title>
-                    <h1>Add 3rd Party API Key</h1>
-                </v-card-title>
-                <v-container>
-                    <v-form ref="addApiKey" v-model="valid" lazy-validation>
-
-                    </v-form>
-                </v-container>
-            </div>
-        </v-card>
+    <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6">
+      <v-card>
+        <div class="card-body">
+          <v-card-title>
+            <h1>Subscription summary</h1>
+          </v-card-title>
+          <v-container>
+            <v-form ref="addApiKey" v-model="valid" lazy-validation>
+              <v-switch
+                v-model="switch1"
+                :label="`Switch 1: ${switch1.toString()}`"
+              ></v-switch>
+            </v-form>
+          </v-container>
+        </div>
+      </v-card>
     </div>
-
-</div>
+  </div>
 </template>

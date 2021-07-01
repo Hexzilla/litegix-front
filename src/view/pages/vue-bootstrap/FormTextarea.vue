@@ -15,7 +15,7 @@
         height sizing, minimum and maximum number of rows, and contextual
         states.
         <a
-          class="font-weight-bold"
+          class=""
           href="https://bootstrap-vue.js.org/docs/components/form-textarea"
           target="_blank"
         >

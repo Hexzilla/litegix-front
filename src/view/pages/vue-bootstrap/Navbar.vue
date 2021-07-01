@@ -16,7 +16,7 @@
         easily extensible and thanks to the &lt;b-collapse&gt; component, it can
         easily integrate responsive behaviors.
         <a
-          class="font-weight-bold"
+          class=""
           href="https://bootstrap-vue.js.org/docs/components/navbar"
           target="_blank"
         >

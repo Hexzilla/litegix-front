@@ -17,7 +17,7 @@
         thanks to a twelve column system, five default responsive tiers, CSS
         Sass variables and mixins, and dozens of predefined classes.
         <a
-          class="font-weight-bold"
+          class=""
           href="https://bootstrap-vue.js.org/docs/components/layout"
           target="_blank"
         >

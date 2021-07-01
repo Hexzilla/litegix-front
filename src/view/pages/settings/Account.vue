@@ -8,7 +8,7 @@
           <h3 class="card-label font-weight-bolder text-dark">
             My Profile
           </h3>
-          <span class="text-muted font-weight-bold font-size-sm mt-1"
+          <span class="text-muted  font-size-sm mt-1"
             >To change your email address, please open a support ticket.</span
           >
         </div>
@@ -105,23 +105,11 @@
           <h3 class="card-label font-weight-bolder text-dark">
             Company Details
           </h3>
-          <span class="text-muted font-weight-bold font-size-sm mt-1">
-            If you are representing your company, fill in the form here to get invoice under your company name.
+          <span class="text-muted  font-size-sm mt-1">
+            If you are representing your company, fill in the form here to get
+            invoice under your company name.
           </span>
         </div>
-        <!-- <div class="card-toolbar">
-          <button
-            type="reset"
-            class="btn btn-success mr-2"
-            @click="save()"
-            ref="kt_save_changes"
-          >
-            Save Changes
-          </button>
-          <button type="reset" class="btn btn-secondary" @click="cancel()">
-            Cancel
-          </button>
-        </div> -->
       </div>
       <!--end::Header-->
       <!--begin::Form-->

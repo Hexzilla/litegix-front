@@ -15,7 +15,7 @@
         behavior, can be easily applied to any interactive element via the
         &lt;b-popover&gt; component or v-b-popover directive.
         <a
-          class="font-weight-bold"
+          class=""
           href="https://bootstrap-vue.js.org/docs/components/popover"
           target="_blank"
         >

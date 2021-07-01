@@ -15,7 +15,7 @@
         html button with a material design theme and a multitude of options. Any
         color helper class can be used to alter the background or text color.
         <a
-          class="font-weight-bold"
+          class=""
           href="https://vuetifyjs.com/en/components/buttons"
           target="_blank"
         >

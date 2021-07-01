@@ -28,21 +28,18 @@
             >
               <p>
                 Almost there! You can close this page while waiting RunCloud
-                agent successfully installed. Installation might take around 
-                15 minutes. You can come back once we configure your server. 
-                We'll send an email to you once your server is ready.
+                agent successfully installed. Installation might take around 15
+                minutes. You can come back once we configure your server. We'll
+                send an email to you once your server is ready.
               </p>
               <p>Please choose how you would like to install your server.</p>
 
               <p>
-                Log into your server as root via SSH/Putty. And enter your root password
+                Log into your server as root via SSH/Putty. And enter your root
+                password
               </p>
-              <p>
-                Copy script below and paste in on your terminal.
-              </p>
-              <p>
-                Run the script to start.
-              </p>
+              <p>Copy script below and paste in on your terminal.</p>
+              <p>Run the script to start.</p>
             </div>
           </div>
         </div>

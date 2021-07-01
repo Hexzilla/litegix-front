@@ -15,7 +15,7 @@
         displaying tabular data. Features include sorting, searching,
         pagination, inline-editing, header tooltips, and row selection.
         <a
-          class="font-weight-bold"
+          class=""
           href="https://vuetifyjs.com/en/components/data-tables"
           target="_blank"
         >

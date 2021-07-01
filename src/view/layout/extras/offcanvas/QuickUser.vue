@@ -5,7 +5,7 @@
       id="kt_quick_user_toggle"
     >
       <span
-        class="text-muted font-weight-bold font-size-base d-none d-md-inline mr-1"
+        class="text-muted  font-size-base d-none d-md-inline mr-1"
       >
         Hi,
       </span>
@@ -16,7 +16,7 @@
       </span>
       <span class="symbol symbol-35 symbol-light-success">
         <img v-if="false" alt="Pic" :src="currentUserPersonalInfo.photo" />
-        <span v-if="true" class="symbol-label font-size-h5 font-weight-bold">
+        <span v-if="true" class="symbol-label font-size-h5 ">
           {{ currentUserPersonalInfo.name.charAt(0).toUpperCase() }}
         </span>
       </span>
@@ -31,7 +31,7 @@
       <div
         class="offcanvas-header d-flex align-items-center justify-content-between pb-5"
       >
-        <h3 class="font-weight-bold m-0">
+        <h3 class=" m-0">
           User Profile
           <small class="text-muted font-size-sm ml-2">12 messages</small>
         </h3>
@@ -63,7 +63,7 @@
           <div class="d-flex flex-column">
             <router-link
               to="/custom-pages/profile"
-              class="font-weight-bold font-size-h5 text-dark-75 text-hover-primary"
+              class=" font-size-h5 text-dark-75 text-hover-primary"
             >
               {{ getFullName }}
             </router-link>
@@ -116,12 +116,12 @@
               </div>
               <div class="navi-text">
                 <router-link to="/custom-pages/profile">
-                  <div class="font-weight-bold">My Profile</div>
+                  <div class="">My Profile</div>
                 </router-link>
                 <div class="text-muted">
                   Account settings and more
                   <span
-                    class="label label-light-danger label-inline font-weight-bold"
+                    class="label label-light-danger label-inline "
                   >
                     update
                   </span>
@@ -148,7 +148,7 @@
                 </div>
               </div>
               <div class="navi-text">
-                <div class="font-weight-bold">My Messages</div>
+                <div class="">My Messages</div>
                 <div class="text-muted">Inbox and tasks</div>
               </div>
             </div>
@@ -172,7 +172,7 @@
                 </div>
               </div>
               <div class="navi-text">
-                <div class="font-weight-bold">My Activities</div>
+                <div class="">My Activities</div>
                 <div class="text-muted">Logs and notifications</div>
               </div>
             </div>
@@ -198,7 +198,7 @@
                 </div>
               </div>
               <div class="navi-text">
-                <div class="font-weight-bold">My Tasks</div>
+                <div class="">My Tasks</div>
                 <div class="text-muted">latest tasks and projects</div>
               </div>
             </div>

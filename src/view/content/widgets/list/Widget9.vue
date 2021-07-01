@@ -7,7 +7,7 @@
         <span class="font-weight-bolder text-dark">
           My Activity
         </span>
-        <span class="text-muted mt-3 font-weight-bold font-size-sm">
+        <span class="text-muted mt-3  font-size-sm">
           890,344 Sales
         </span>
       </h3>

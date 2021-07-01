@@ -14,7 +14,7 @@
         <b>Tooltips</b> Easily add tooltips to elements or components via the
         &lt;b-tooltip&gt; component or v-b-tooltip directive (preferred method).
         <a
-          class="font-weight-bold"
+          class=""
           href="https://bootstrap-vue.js.org/docs/components/tooltip"
           target="_blank"
         >

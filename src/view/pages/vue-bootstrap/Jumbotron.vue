@@ -15,7 +15,7 @@
         extend the entire viewport to showcase key marketing messages on your
         site.
         <a
-          class="font-weight-bold"
+          class=""
           href="https://bootstrap-vue.js.org/docs/components/jumbotron"
           target="_blank"
         >

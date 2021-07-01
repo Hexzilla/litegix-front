@@ -16,7 +16,7 @@
         larger than their parent elements), optionally adding lightweight styles
         to them &mdash; all via props.
         <a
-          class="font-weight-bold"
+          class=""
           href="https://bootstrap-vue.js.org/docs/components/form-textarea"
           target="_blank"
         >

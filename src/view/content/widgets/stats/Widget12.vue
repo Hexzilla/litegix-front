@@ -4,9 +4,21 @@
     <!--begin::Body-->
     <div class="card-body p-0">
       <div
-        class="d-flex align-items-center justify-content-between card-spacer flex-grow-1"
+        class="
+          d-flex
+          align-items-center
+          justify-content-between
+          card-spacer
+          flex-grow-1
+        "
       >
-        <span class="symbol  symbol-50 symbol-light-primary mr-2">
+        <div class="d-flex flex-column text-left">
+          <span class="text-dark-75 font-weight-bolder font-size-h3"
+            >$0.00</span
+          >
+          <span class="text-muted  mt-2">TOTAL EARNED</span>
+        </div>
+        <span class="symbol symbol-50 symbol-light-primary mr-2">
           <span class="symbol-label">
             <span class="svg-icon svg-icon-xl svg-icon-primary">
               <!--begin::Svg Icon | path:assets/media/svg/icons/Shopping/Cart3.svg-->
@@ -15,10 +27,6 @@
             </span>
           </span>
         </span>
-        <div class="d-flex flex-column text-right">
-          <span class="text-dark-75 font-weight-bolder font-size-h3">+259</span>
-          <span class="text-muted font-weight-bold mt-2">Sales Change</span>
-        </div>
       </div>
       <!--begin::Chart-->
       <apexchart
@@ -29,6 +37,43 @@
         width="100%"
       ></apexchart>
       <!--end::Chart-->
+      <div
+        class="
+          row
+          d-flex
+          align-items-center
+          justify-content-between
+          card-spacer
+        "
+      >
+        <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+          <div class="d-flex flex-column text-left">
+            <span class="text-dark-75 font-weight-bolder font-size-h3">$0</span>
+            <span class="text-muted  mt-2">CLAIM</span>
+          </div>
+        </div>
+        <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+          <div class="d-flex flex-column text-left">
+            <span class="text-dark-75 font-weight-bolder font-size-h3"
+              >$0.00</span
+            >
+            <span class="text-muted  mt-2">UNCLAIMED</span>
+          </div>
+          <span
+            class="
+              btn btn-success btn-xs
+              v-chip v-chip--label
+              theme--dark
+              v-size--x-small
+            "
+            id="show-btn"
+            @click="showModal"
+          >
+            Cash Out
+          </span>
+          <confirm-dialogue ref="confirmDialogue"></confirm-dialogue>
+        </div>
+      </div>
     </div>
     <!--end::Body-->
   </div>
@@ -37,9 +82,15 @@
 
 <script>
 import { mapGetters } from "vuex";
-
+import ConfirmDialogue from "@/view/content/widgets/dialogue/ConfirmDialogue.vue";
 export default {
+  components: {
+    ConfirmDialogue
+  },
   name: "widget-12",
+  // comments:{
+  //   ErrorAlert
+  // },
   data() {
     return {
       chartOptions: {},
@@ -53,6 +104,22 @@ export default {
   },
   computed: {
     ...mapGetters(["layoutConfig"])
+  },
+  methods: {
+    async showModal() {
+      const ok = await this.$refs.confirmDialogue.show({
+        title: "Cash Out",
+        message:
+          "Your unclaimed rewards will be reset to $0.00 after you click Request Cash Out button. Cash out request will be processed not more than 7 days. You won't receive full cash out rewards bacause PayPal will take some for processing fees.",
+        okButton: "Cast Out"
+      });
+      // If you throw an error, the method will terminate here unless you surround it wil try/catch
+      if (ok) {
+        alert("You have successfully delete this page.");
+      } else {
+        // alert('You chose not to delete this page. Doing nothing now.')
+      }
+    }
   },
   mounted() {
     // reference; kt_stats_widget_12_chart
@@ -170,8 +237,9 @@ export default {
       grid: {
         show: false,
         padding: {
-          left: 0,
-          right: 0
+          left: 20,
+          right: 20,
+          bottom: 20
         }
       }
     };

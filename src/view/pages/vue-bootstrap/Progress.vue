@@ -15,7 +15,7 @@
         or complex progress bars, featuring support for horizontally stacked
         bars, animated backgrounds, and text labels.
         <a
-          class="font-weight-bold"
+          class=""
           href="https://bootstrap-vue.js.org/docs/components/progress"
           target="_blank"
         >

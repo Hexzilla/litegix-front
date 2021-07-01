@@ -19,7 +19,7 @@
         <code>border</code>, <code>icon</code>, and <code>color</code> can also
         be customized to fit almost any situation.
         <a
-          class="font-weight-bold"
+          class=""
           href="https://vuetifyjs.com/en/components/alerts"
           target="_blank"
         >

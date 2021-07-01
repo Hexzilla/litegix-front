@@ -14,7 +14,7 @@
         <b>Selects</b> Select fields components are used for collecting user
         provided information from a list of options.
         <a
-          class="font-weight-bold"
+          class=""
           href="https://vuetifyjs.com/en/components/selects"
           target="_blank"
         >

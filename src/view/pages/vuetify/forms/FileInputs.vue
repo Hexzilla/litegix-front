@@ -16,7 +16,7 @@
         showing detailed selection information and upload progress. It is meant
         to be a direct replacement for a standard file input.
         <a
-          class="font-weight-bold"
+          class=""
           href="https://vuetifyjs.com/en/components/file-inputs"
           target="_blank"
         >

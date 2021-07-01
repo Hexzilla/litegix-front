@@ -8,22 +8,9 @@
           <h3 class="card-label font-weight-bolder text-dark">
             My Profile
           </h3>
-          <span class="text-muted font-weight-bold font-size-sm mt-1"
+          <span class="text-muted  font-size-sm mt-1"
             >To change your email address, please open a support ticket.</span
           >
-        </div>
-        <div class="card-toolbar">
-          <button
-            type="reset"
-            class="btn btn-success mr-2"
-            @click="save()"
-            ref="kt_save_changes"
-          >
-            Save Changes
-          </button>
-          <button type="reset" class="btn btn-secondary" @click="cancel()">
-            Cancel
-          </button>
         </div>
       </div>
       <!--end::Header-->
@@ -92,6 +79,19 @@
               </div>
             </div>
           </div>
+          <div class="form-group row align-items-center">
+            <label class="col-xl-3 col-lg-3 col-form-label text-right"></label>
+            <div class="col-lg-9 col-xl-6">
+              <button
+                type="reset"
+                class="btn btn-success w-100"
+                @click="save()"
+                ref="kt_save_changes"
+              >
+                Save Changes
+              </button>
+            </div>
+          </div>
         </div>
         <!--end::Body-->
       </form>
@@ -105,22 +105,10 @@
           <h3 class="card-label font-weight-bolder text-dark">
             Company Details
           </h3>
-          <span class="text-muted font-weight-bold font-size-sm mt-1"
-            >If you are representing your company, fill in the form here to get invoice under your company name.</span
-          >
-        </div>
-        <div class="card-toolbar">
-          <button
-            type="reset"
-            class="btn btn-success mr-2"
-            @click="save()"
-            ref="kt_save_changes"
-          >
-            Save Changes
-          </button>
-          <button type="reset" class="btn btn-secondary" @click="cancel()">
-            Cancel
-          </button>
+          <span class="text-muted  font-size-sm mt-1">
+            If you are representing your company, fill in the form here to get
+            invoice under your company name.
+          </span>
         </div>
       </div>
       <!--end::Header-->
@@ -231,6 +219,20 @@
                 type="text"
                 placeholder="Tax/VAT/GST Number"
               />
+            </div>
+          </div>
+
+          <div class="form-group row">
+            <label class="col-xl-3 col-lg-3 col-form-label text-right"></label>
+            <div class="col-lg-9 col-xl-6">
+              <button
+                type="reset"
+                class="btn btn-success w-100"
+                @click="save()"
+                ref="kt_save_changes"
+              >
+                Save Changes
+              </button>
             </div>
           </div>
         </div>

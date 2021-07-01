@@ -18,7 +18,7 @@
         component option for faster rendering and serve as markup sugar to make
         building easier.
         <a
-          class="font-weight-bold"
+          class=""
           href="https://vuetifyjs.com/en/components/cards"
           target="_blank"
         >
@@ -176,7 +176,7 @@
                 <span class="title font-weight-light">Twitter</span>
               </v-card-title>
 
-              <v-card-text class="headline font-weight-bold">
+              <v-card-text class="headline ">
                 "Turns out semicolon-less style is easier and safer in TS
                 because most gotcha edge cases are type invalid as well."
               </v-card-text>
@@ -766,7 +766,7 @@ export default {
     <span class="title font-weight-light">Twitter</span>
   </v-card-title>
 
-  <v-card-text class="headline font-weight-bold">
+  <v-card-text class="headline ">
     "Turns out semicolon-less style is easier and safer in TS because most gotcha edge cases are type invalid as well."
   </v-card-text>
 

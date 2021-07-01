@@ -15,7 +15,7 @@
         standard &lt;a&gt; link or &lt;router-link&gt;. &lt;b-link&gt; supports
         the disabled state and click event propagation.
         <a
-          class="font-weight-bold"
+          class=""
           href="https://bootstrap-vue.js.org/docs/components/link"
           target="_blank"
         >

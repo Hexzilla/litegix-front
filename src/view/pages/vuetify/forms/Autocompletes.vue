@@ -16,7 +16,7 @@
         searching large sets of data or even dynamically requesting information
         from an API.
         <a
-          class="font-weight-bold"
+          class=""
           href="https://vuetifyjs.com/en/components/autocompletes"
           target="_blank"
         >

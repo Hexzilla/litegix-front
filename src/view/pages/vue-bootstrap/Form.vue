@@ -16,7 +16,7 @@
         up with other BootstrapVue form control components for an easy
         customized, and responsive, layout with a consistent look and feel.
         <a
-          class="font-weight-bold"
+          class=""
           href="https://bootstrap-vue.js.org/docs/components/form"
           target="_blank"
         >

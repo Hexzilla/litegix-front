@@ -15,7 +15,7 @@
         component is built upon navs and cards internally, and provides full
         keyboard navigation control of the tabs.
         <a
-          class="font-weight-bold"
+          class=""
           href="https://bootstrap-vue.js.org/docs/components/tabs"
           target="_blank"
         >

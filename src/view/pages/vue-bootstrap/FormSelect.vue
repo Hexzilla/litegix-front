@@ -15,7 +15,7 @@
         Optionally specify options based on an array, array of objects, or an
         object.
         <a
-          class="font-weight-bold"
+          class=""
           href="https://bootstrap-vue.js.org/docs/components/form-select"
           target="_blank"
         >

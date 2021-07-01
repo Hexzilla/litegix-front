@@ -15,7 +15,7 @@
         styles, from the base &lt;b-nav&gt; class to the active and disabled
         states. Swap modifier props to switch between each style.
         <a
-          class="font-weight-bold"
+          class=""
           href="https://bootstrap-vue.js.org/docs/components/nav"
           target="_blank"
         >

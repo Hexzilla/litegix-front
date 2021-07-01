@@ -15,7 +15,7 @@
         select options. These components <strong>must</strong> be used with the
         <code>v-model</code> prop as they do not maintain their own state.
         <a
-          class="font-weight-bold"
+          class=""
           href="https://vuetifyjs.com/en/components/selection-controls"
           target="_blank"
         >

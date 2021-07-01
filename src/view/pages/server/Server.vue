@@ -88,7 +88,7 @@
                 <span class="navi-text font-size-lg">Database</span>
                 <!-- <span class="navi-label">
                   <span
-                    class="label label-light-danger label-rounded font-weight-bold"
+                    class="label label-light-danger label-rounded "
                     >5</span
                   >
                 </span> -->
@@ -147,7 +147,7 @@
                 <span class="navi-text font-size-lg">Deployment Key</span>
                 <span class="navi-label">
                   <span
-                    class="label label-light-primary label-inline font-weight-bold"
+                    class="label label-light-primary label-inline "
                     >new</span
                   >
                 </span>

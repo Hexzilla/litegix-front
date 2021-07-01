@@ -14,7 +14,7 @@
         <b>Input Groups</b> Easily extend form controls by adding text, buttons,
         or button groups on either side of textual inputs.
         <a
-          class="font-weight-bold"
+          class=""
           href="https://bootstrap-vue.js.org/docs/components/form-textarea"
           target="_blank"
         >

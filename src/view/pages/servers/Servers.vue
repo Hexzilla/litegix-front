@@ -16,7 +16,7 @@
               <h3 class="card-label">All Servers</h3>
             </div>
             <div class="card-toolbar">
-              <!-- <a href="#" class="btn btn-sm btn-primary font-weight-bold">
+              <!-- <a href="#" class="btn btn-sm btn-primary ">
                 <i class="flaticon2-cube"></i>Create a new server
               </a> -->
               <router-link to="/servers/create" v-slot="{ href, navigate }">

@@ -16,7 +16,7 @@
         wrap around said media. Plus, it does this with only two required
         classes thanks to flexbox.
         <a
-          class="font-weight-bold"
+          class=""
           href="https://bootstrap-vue.js.org/docs/components/media"
           target="_blank"
         >

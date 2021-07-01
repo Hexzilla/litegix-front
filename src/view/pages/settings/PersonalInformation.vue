@@ -7,7 +7,7 @@
         <h3 class="card-label font-weight-bolder text-dark">
           Personal Information
         </h3>
-        <span class="text-muted font-weight-bold font-size-sm mt-1"
+        <span class="text-muted  font-size-sm mt-1"
           >Update your personal informaiton</span
         >
       </div>
@@ -33,7 +33,7 @@
         <div class="row">
           <label class="col-xl-3"></label>
           <div class="col-lg-9 col-xl-6">
-            <h5 class="font-weight-bold mb-6">Customer Info</h5>
+            <h5 class=" mb-6">Customer Info</h5>
           </div>
         </div>
         <div class="form-group row">
@@ -131,7 +131,7 @@
         <div class="row">
           <label class="col-xl-3"></label>
           <div class="col-lg-9 col-xl-6">
-            <h5 class="font-weight-bold mt-10 mb-6">Contact Info</h5>
+            <h5 class=" mt-10 mb-6">Contact Info</h5>
           </div>
         </div>
         <div class="form-group row">

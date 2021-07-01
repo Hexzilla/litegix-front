@@ -14,7 +14,7 @@
         <b>Dropdowns</b> Dropdowns are toggleable, contextual overlays for
         displaying lists of links and actions in a dropdown menu format.
         <a
-          class="font-weight-bold"
+          class=""
           href="https://bootstrap-vue.js.org/docs/components/dropdown"
           target="_blank"
         >

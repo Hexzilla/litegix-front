@@ -13,7 +13,7 @@
       <div class="alert-text">
         <b>Cropper</b> provides JS cropping script which allows crop images.
         <a
-          class="font-weight-bold"
+          class=""
           href="https://github.com/fengyuanchen/cropperjs"
           target="_blank"
         >

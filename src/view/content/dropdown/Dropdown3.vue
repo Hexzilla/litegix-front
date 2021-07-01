@@ -36,7 +36,7 @@
           <span class="navi-text">Groups</span>
           <span class="navi-link-badge">
             <span
-              class="label label-light-primary label-inline font-weight-bold"
+              class="label label-light-primary label-inline "
               >new</span
             >
           </span>
@@ -75,7 +75,7 @@
           <span class="navi-text">Privacy</span>
           <span class="navi-link-badge">
             <span
-              class="label label-light-danger label-rounded font-weight-bold"
+              class="label label-light-danger label-rounded "
             >
               5
             </span>

@@ -53,7 +53,7 @@
                 >
                   Welcome to Litegix
                 </h3>
-                <span class="text-muted font-weight-bold font-size-h4"
+                <span class="text-muted  font-size-h4"
                   >New Here?
                   <a
                     id="kt_login_signup"
@@ -144,7 +144,7 @@
                 >
                   Sign Up
                 </h3>
-                <p class="text-muted font-weight-bold font-size-h4">
+                <p class="text-muted  font-size-h4">
                   Enter your details to create your account
                 </p>
               </div>
@@ -231,7 +231,7 @@
                 >
                   Forgotten Password ?
                 </h3>
-                <p class="text-muted font-weight-bold font-size-h4">
+                <p class="text-muted  font-size-h4">
                   Enter your email to reset your password
                 </p>
               </div>

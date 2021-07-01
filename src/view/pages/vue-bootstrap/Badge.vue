@@ -14,7 +14,7 @@
         <b>Badges</b> Small and adaptive tag for adding context to just about
         any content.
         <a
-          class="font-weight-bold"
+          class=""
           href="https://bootstrap-vue.js.org/docs/components/badge"
           target="_blank"
         >

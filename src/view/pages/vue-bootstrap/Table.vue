@@ -17,7 +17,7 @@
         without all the fancy features, BootstrapVue provides two lightweight
         alternative components &lt;b-table-lite&gt; and &lt;b-table-simple&gt;.
         <a
-          class="font-weight-bold"
+          class=""
           href="https://bootstrap-vue.js.org/docs/components/table"
           target="_blank"
         >

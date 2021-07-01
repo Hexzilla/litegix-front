@@ -17,7 +17,7 @@
         built on top of semantic and accessible markup, so it is a solid
         replacement for the default radio input.
         <a
-          class="font-weight-bold"
+          class=""
           href="https://bootstrap-vue.js.org/docs/components/form-radio"
           target="_blank"
         >

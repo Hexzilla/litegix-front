@@ -15,7 +15,7 @@
         buttons for navigation based pagination, supporting regular links or
         router links.
         <a
-          class="font-weight-bold"
+          class=""
           href="https://bootstrap-vue.js.org/docs/components/pagination-nav"
           target="_blank"
         >

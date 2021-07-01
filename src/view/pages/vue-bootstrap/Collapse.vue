@@ -14,7 +14,7 @@
         <b>Collapse</b> Easily toggle visibility of almost any content on your
         pages. Includes support for making accordions.
         <a
-          class="font-weight-bold"
+          class=""
           href="https://bootstrap-vue.js.org/docs/components/collapse"
           target="_blank"
         >

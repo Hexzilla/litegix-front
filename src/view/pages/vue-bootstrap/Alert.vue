@@ -15,7 +15,7 @@
         <b>Alerts</b> Provide contextual feedback messages for typical user
         actions with the handful of available and flexible alert messages.
         <a
-          class="font-weight-bold"
+          class=""
           href="https://bootstrap-vue.js.org/docs/components/alert"
           target="_blank"
         >

@@ -17,7 +17,7 @@
         <code>&lt;thead&gt;</code>, <code>&lt;tbody&gt;</code>,
         <code>&lt;tr&gt;</code>, etc.
         <a
-          class="font-weight-bold"
+          class=""
           href="https://vuetifyjs.com/en/components/simple-tables"
           target="_blank"
         >

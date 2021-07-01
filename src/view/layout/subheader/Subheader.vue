@@ -9,11 +9,11 @@
       v-bind:class="{ 'container-fluid': widthFluid, container: !widthFluid }"
     >
       <div class="d-flex align-items-center flex-wrap mr-1">
-        <h5 class="text-dark font-weight-bold my-2 mr-5">
+        <h5 class="text-dark  my-2 mr-5">
           {{ title }}
         </h5>
         <ul
-          class="breadcrumb breadcrumb-transparent breadcrumb-dot font-weight-bold p-0 my-2"
+          class="breadcrumb breadcrumb-transparent breadcrumb-dot  p-0 my-2"
         >
           <li class="breadcrumb-item">
             <router-link :to="'/'" class="subheader-breadcrumbs-home">
@@ -39,7 +39,7 @@
         </ul>
       </div>
       <div class="d-flex align-items-center">
-        <a href="#" class="btn btn-light font-weight-bold btn-sm">
+        <a href="#" class="btn btn-light  btn-sm">
           Actions
         </a>
 
@@ -64,7 +64,7 @@
           </template>
           <!--begin::Navigation-->
           <div class="navi navi-hover min-w-md-250px">
-            <b-dropdown-text tag="div" class="navi-header font-weight-bold">
+            <b-dropdown-text tag="div" class="navi-header ">
               Jump to:
               <i
                 class="flaticon2-information"
@@ -124,7 +124,7 @@
                 >Upgrade plan</a
               >
               <a
-                class="btn btn-clean font-weight-bold btn-sm"
+                class="btn btn-clean  btn-sm"
                 href="#"
                 data-toggle="tooltip"
                 data-placement="left"

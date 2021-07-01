@@ -16,7 +16,7 @@
         images, text, or custom markup. It also includes support for
         previous/next controls and indicators.
         <a
-          class="font-weight-bold"
+          class=""
           href="https://bootstrap-vue.js.org/docs/components/carousel"
           target="_blank"
         >

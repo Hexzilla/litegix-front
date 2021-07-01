@@ -14,7 +14,7 @@
         <b>Forms</b> When it comes to form validation, Vuetify has a multitude
         of integrations and baked in functionality.
         <a
-          class="font-weight-bold"
+          class=""
           href="https://vuetifyjs.com/en/components/forms"
           target="_blank"
         >

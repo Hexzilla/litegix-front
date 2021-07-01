@@ -14,7 +14,7 @@
         <b>Button group</b> Group a series of buttons together on a single line
         with &lt;b-button-group&gt;.
         <a
-          class="font-weight-bold"
+          class=""
           href="https://bootstrap-vue.js.org/docs/components/button-group"
           target="_blank"
         >

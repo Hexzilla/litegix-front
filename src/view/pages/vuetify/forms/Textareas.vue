@@ -14,7 +14,7 @@
         <b>Textareas</b> Textarea components are used for collecting large
         amounts of textual data.
         <a
-          class="font-weight-bold"
+          class=""
           href="https://vuetifyjs.com/en/components/textarea"
           target="_blank"
         >

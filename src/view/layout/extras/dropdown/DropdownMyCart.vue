@@ -26,7 +26,7 @@
           >
             <div class="d-flex flex-column mr-2">
               <a
-                class="font-weight-bold text-dark-75 font-size-lg text-hover-primary"
+                class=" text-dark-75 font-size-lg text-hover-primary"
               >
                 {{ item.title }}
               </a>
@@ -34,11 +34,11 @@
                 {{ item.desc }}
               </span>
               <div class="d-flex align-items-center mt-2">
-                <span class="font-weight-bold mr-1 text-dark-75 font-size-3">
+                <span class=" mr-1 text-dark-75 font-size-3">
                   {{ item.price }}
                 </span>
                 <span class="text-muted mr-1">for</span>
-                <span class="font-weight-bold mr-2 text-dark-75 font-size-3">
+                <span class=" mr-2 text-dark-75 font-size-3">
                   {{ item.quantity }}
                 </span>
                 <a class="btn btn-xs btn-light-success btn-icon mr-2">
@@ -62,11 +62,11 @@
     <!--begin::Summary-->
     <div class="p-8">
       <div class="d-flex align-items-center justify-content-between mb-4">
-        <span class="font-weight-bold text-muted font-size-sm mr-2">Total</span>
+        <span class=" text-muted font-size-sm mr-2">Total</span>
         <span class="font-weight-bolder text-dark-50 text-right">$1840.00</span>
       </div>
       <div class="d-flex align-items-center justify-content-between mb-7">
-        <span class="font-weight-bold text-muted font-size-sm mr-2"
+        <span class=" text-muted font-size-sm mr-2"
           >Sub total</span
         >
         <span class="font-weight-bolder text-primary text-right">$5640.00</span>

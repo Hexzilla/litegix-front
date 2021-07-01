@@ -33,7 +33,7 @@
           <div
             class="d-none flex-column-auto d-lg-flex justify-content-between mt-15"
           >
-            <div class="opacity-70 font-weight-bold text-white">
+            <div class="opacity-70  text-white">
               © 2021 Litegix
             </div>
             <div class="d-flex">

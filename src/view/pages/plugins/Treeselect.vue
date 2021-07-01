@@ -15,7 +15,7 @@
         <b>vue-treeselect</b> provides multi-select component with nested
         options support for Vue.js
         <a
-          class="font-weight-bold"
+          class=""
           href="https://vue-treeselect.js.org/#basic-features"
           target="_blank"
         >

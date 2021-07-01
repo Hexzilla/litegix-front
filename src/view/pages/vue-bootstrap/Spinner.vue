@@ -17,7 +17,7 @@
         alignment, and sizing can be easily customized with a few built-in props
         and/or Bootstrap v4 utility classes.
         <a
-          class="font-weight-bold"
+          class=""
           href="https://bootstrap-vue.js.org/docs/components/spinner"
           target="_blank"
         >

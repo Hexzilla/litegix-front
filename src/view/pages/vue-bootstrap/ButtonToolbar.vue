@@ -15,7 +15,7 @@
         input-groups together on a single line, with optional keyboard
         navigation.
         <a
-          class="font-weight-bold"
+          class=""
           href="https://bootstrap-vue.js.org/docs/components/button-toolbar"
           target="_blank"
         >

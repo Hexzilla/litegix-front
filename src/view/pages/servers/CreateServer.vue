@@ -27,7 +27,7 @@
                 data-wizard-type="step-content"
                 data-wizard-state="current"
               >
-                <!-- <h3 class="mb-10 font-weight-bold text-dark">
+                <!-- <h3 class="mb-10  text-dark">
                   Details
                 </h3>
                 <div class="form-group">
@@ -182,7 +182,7 @@
                 <div class="pb-lg-0 pb-5">
                   <button
                     ref="kt_form_server_submit"
-                    class="btn btn-primary font-weight-bold text-uppercase px-15 py-4 my-3 mr-3"
+                    class="btn btn-primary  text-uppercase px-15 py-4 my-3 mr-3"
                   >
                     Add this server
                   </button>
@@ -190,7 +190,7 @@
                     <a
                       :href="href"
                       @click="navigate"
-                      class="btn btn-primary font-weight-bold text-uppercase px-9 py-4"
+                      class="btn btn-primary  text-uppercase px-9 py-4"
                       >Add this server</a
                     >
                   </router-link> -->

@@ -17,7 +17,7 @@
         and text. A tile variation is available for displaying an avatar without
         border radius.
         <a
-          class="font-weight-bold"
+          class=""
           href="https://vuetifyjs.com/en/components/avatars"
           target="_blank"
         >

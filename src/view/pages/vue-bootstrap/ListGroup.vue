@@ -16,7 +16,7 @@
         support just about any content within. They can also be used as
         navigation via various props.
         <a
-          class="font-weight-bold"
+          class=""
           href="https://bootstrap-vue.js.org/docs/components/list-group"
           target="_blank"
         >

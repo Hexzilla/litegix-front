@@ -15,7 +15,7 @@
         control that supports single file, multiple files, and directory upload
         (for browsers that support directory mode)
         <a
-          class="font-weight-bold"
+          class=""
           href="https://bootstrap-vue.js.org/docs/components/form-file"
           target="_blank"
         >

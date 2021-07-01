@@ -5,12 +5,14 @@
     <div class="card-header border-0 py-5">
       <h3 class="card-title align-items-start flex-column">
         <span class="card-label font-weight-bolder text-dark">System User</span>
-        <!-- <span class="text-muted mt-3 font-weight-bold font-size-sm"
+        <!-- <span class="text-muted mt-3  font-size-sm"
           >More than 400+ new members</span
         > -->
       </h3>
       <div class="card-toolbar">
-        <a href="#" class="btn btn-info font-weight-bolder font-size-sm">New Report</a>
+        <a href="#" class="btn btn-info font-weight-bolder font-size-sm"
+          >New Report</a
+        >
       </div>
     </div>
     <!--end::Header-->
@@ -51,7 +53,12 @@
                 <td class="pl-0">
                   <a
                     href="#"
-                    class="text-dark-75 font-weight-bolder text-hover-primary font-size-lg"
+                    class="
+                      text-dark-75
+                      font-weight-bolder
+                      text-hover-primary
+                      font-size-lg
+                    "
                     >{{ item.order_id }}</a
                   >
                 </td>
@@ -60,9 +67,7 @@
                     class="text-dark-75 font-weight-bolder d-block font-size-lg"
                     >{{ item.country }}</span
                   >
-                  <span class="text-muted font-weight-bold">{{
-                    item.country_desc
-                  }}</span>
+                  <span class="text-muted">{{ item.country_desc }}</span>
                 </td>
                 <td>
                   <span

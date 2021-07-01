@@ -4,7 +4,7 @@
     <div class="card-header py-3">
       <div class="card-title align-items-start flex-column">
         <h3 class="card-label font-weight-bolder text-dark">Email Settings</h3>
-        <span class="text-muted font-weight-bold font-size-sm mt-1"
+        <span class="text-muted  font-size-sm mt-1"
           >Change your email settings</span
         >
       </div>
@@ -20,7 +20,7 @@
         <div class="row">
           <label class="col-xl-3"></label>
           <div class="col-lg-9 col-xl-6">
-            <h5 class="font-weight-bold mb-6">Setup Email Notification:</h5>
+            <h5 class=" mb-6">Setup Email Notification:</h5>
           </div>
         </div>
         <div class="form-group row">
@@ -57,7 +57,7 @@
         <div class="row">
           <label class="col-xl-3"></label>
           <div class="col-lg-9 col-xl-6">
-            <h5 class="font-weight-bold mb-6">Activity Related Emails:</h5>
+            <h5 class=" mb-6">Activity Related Emails:</h5>
           </div>
         </div>
         <div class="form-group row">
@@ -106,7 +106,7 @@
         <div class="row">
           <label class="col-xl-3"></label>
           <div class="col-lg-9 col-xl-6">
-            <h5 class="font-weight-bold mb-6">Updates From Keenthemes:</h5>
+            <h5 class=" mb-6">Updates From Keenthemes:</h5>
           </div>
         </div>
         <div class="form-group row">

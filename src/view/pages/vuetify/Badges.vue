@@ -16,7 +16,7 @@
         information to a user or to just draw attention to a specific element.
         Content within the badge usually contains numbers or icons.
         <a
-          class="font-weight-bold"
+          class=""
           href="https://vuetifyjs.com/en/components/badges"
           target="_blank"
         >

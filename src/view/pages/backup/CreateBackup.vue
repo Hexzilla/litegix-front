@@ -299,7 +299,6 @@ export default {
   }),
   methods: {
     confirm_agree(num) {
-      console.log(num);
       if (!this.agreeflag) {
         this.agreeDialog = true;
       }

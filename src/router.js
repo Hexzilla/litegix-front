@@ -36,6 +36,21 @@ export default new Router({
           component: () => import("@/view/pages/servers/ConfigServer.vue")
         },
         {
+          path: "/teams",
+          name: "Teams",
+          component: () => import("@/view/pages/teams/Teams.vue")
+        },
+        {
+          path: "/members",
+          name: "team-members",
+          component: () => import("@/view/pages/teams/Members.vue")
+        },
+        {
+          path: "/teams/create",
+          name: "team-create",
+          component: () => import("@/view/pages/teams/CreateTeam.vue")
+        },
+        {
           path: "/Sites",
           name: "Sites",
           component: () => import("@/view/pages/Sites.vue")
@@ -43,7 +58,12 @@ export default new Router({
         {
           path: "/Projects",
           name: "Projects",
-          component: () => import("@/view/pages/Projects.vue")
+          component: () => import("@/view/pages/projects/Projects.vue")
+        },
+        {
+          path: "/Projects/create",
+          name: "project-create",
+          component: () => import("@/view/pages/projects/CreateProject.vue")
         },
         {
           path: "/Scripts",
@@ -56,15 +76,26 @@ export default new Router({
           component: () => import("@/view/pages/Backups.vue")
         },
         {
-          path: "/Marketplace",
-          name: "Marketplace",
-          component: () => import("@/view/pages/Marketplace.vue")
+          path: "/Backups/create",
+          name: "backup-create",
+          component: () => import("@/view/pages/backup/CreateBackup.vue")
         },
         {
-          path: "/settings",
-          name: "Settings",
-          component: () => import("@/view/pages/settings/Settings.vue")
+          path: "/Marketplace",
+          name: "DNSMageter",
+          component: () => import("@/view/pages/manager/DNSManager.vue")
         },
+        // {
+        //   path: "/settings",
+        //   name: "Settings",
+        //   component: () => import("@/view/pages/settings/Settings.vue")
+        // },
+        // // added20210629
+        // {
+        //   path: "/settings/ConnectApp",
+        //   name: "ConnectApp",
+        //   component: () => import("@/view/pages/settings/ConnectApp.vue")
+        // },
         {
           path: "/Subscription",
           name: "Subscription",
@@ -286,6 +317,114 @@ export default new Router({
               component: () => import("@/view/pages/vue-bootstrap/Tabs.vue")
             }
           ]
+        },
+        {
+          path: "/settings",
+          redirect: "/settings/profile",
+          name: "settings",
+          component: () => import("@/view/pages/settings/Settings.vue"),
+          children: [
+            {
+              path: "profile",
+              name: "settings-profile",
+              component: () => import("@/view/pages/settings/Account.vue")
+            },
+            {
+              path: "notification",
+              name: "settings-notification",
+              component: () => import("@/view/pages/settings/Notification.vue")
+            },
+            {
+              path: "notification/add",
+              name: "settings-notification",
+              component: () => import("@/view/pages/settings/AddNotification.vue")
+            },
+            {
+              path: "server_transfer",
+              name: "settings-server_transfer",
+              component: () => import("@/view/pages/settings/ServerTrans.vue")
+            },
+            {
+              path: "referal",
+              name: "settings-referal",
+              component: () => import("@/view/pages/settings/Referal.vue")
+            },
+            {
+              path: "activitylog",
+              name: "settings-activitylog",
+              component: () => import("@/view/pages/settings/ActivityLog.vue")
+            },
+            {
+              path: "delete_account",
+              name: "settings-delete_account",
+              component: () => import("@/view/pages/settings/DeleteAccount.vue")
+            },
+            {
+              path: "authentication",
+              name: "settings-authentication",
+              component: () => import("@/view/pages/settings/Authentication.vue"),
+            },
+            {
+              path: "authentication/connectApp",
+              name: "settings-connectApp",
+              component: () => import("@/view/pages/settings/ConnectApp.vue")
+            },
+            {
+              path: "api_key",
+              name: "settings-api_key",
+              component: () => import("@/view/pages/settings/ApiKey.vue")
+            },
+            {
+              path: "third_party_api_key",
+              name: "settings-third_party_api_key",
+              component: () => import("@/view/pages/settings/ThirdPartyAPIKey.vue")
+            },
+            {
+              path: "third_party_api_key/add",
+              name: "settings-third_party_api_key-add",
+              component: () => import("@/view/pages/settings/AddThirdParty.vue")
+            },
+            {
+              path: "ip_whitelisting",
+              name: "settings-ip_whitelisting",
+              component: () => import("@/view/pages/settings/IpWhitelist.vue")
+            },
+            {
+              path: "subscription",
+              name: "settings-subscription",
+              component: () => import("@/view/pages/settings/Subscription.vue")
+            },
+            {
+              path: "subscription/add",
+              name: "settings-subscription-add",
+              component: () => import("@/view/pages/settings/AddSubscription.vue")
+            },
+            {
+              path: "payment_method",
+              name: "settings-payment_method",
+              component: () => import("@/view/pages/settings/PaymentMethod.vue")
+            },
+            {
+              path: "payment_history",
+              name: "settings-payment_history",
+              component: () => import("@/view/pages/settings/PaymentHistory.vue")
+            },
+            {
+              path: "ssh_key_vault",
+              name: "settings-ssh_key_vault",
+              component: () => import("@/view/pages/settings/SSHKeyVault.vue")
+            },
+            {
+              path: "wordpress_canvas",
+              name: "settings-wordpress_canvas",
+              component: () => import("@/view/pages/settings/WordpressCanvas.vue"),
+            },
+            {
+              path: "wordpress_canvas/create_canvas",
+              name: "wordpress_canvas-create_canvas",
+              component: () => import("@/view/pages/settings/CreateCanvas.vue")
+            },
+          ],
         },
         {
           path: "/vuetify",

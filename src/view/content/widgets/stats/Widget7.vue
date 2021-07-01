@@ -6,6 +6,10 @@
       <div
         class="d-flex align-items-center justify-content-between card-spacer flex-grow-1"
       >
+        <div class="d-flex flex-column text-left">
+          <span class="text-dark-75 font-weight-bolder font-size-h3">0</span>
+          <span class="text-muted font-weight-bold mt-2">TOTAL SIGN UP</span>
+        </div>
         <span class="symbol  symbol-50 symbol-light-success mr-2">
           <span class="symbol-label">
             <span class="svg-icon svg-icon-xl svg-icon-success">
@@ -13,10 +17,6 @@
             </span>
           </span>
         </span>
-        <div class="d-flex flex-column text-right">
-          <span class="text-dark-75 font-weight-bolder font-size-h3">750$</span>
-          <span class="text-muted font-weight-bold mt-2">Weekly Income</span>
-        </div>
       </div>
       <!--begin::Chart-->
       <apexchart
@@ -27,6 +27,20 @@
         width="100%"
       ></apexchart>
       <!--end::Chart-->
+      <div class="row d-flex align-items-center justify-content-between card-spacer">
+        <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+          <div class="d-flex flex-column text-left">
+            <span class="text-dark-75 font-weight-bolder font-size-h3">0</span>
+            <span class="text-muted font-weight-bold mt-2">sign up this month</span>
+          </div>
+        </div> 
+        <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+          <div class="d-flex flex-column text-left">
+            <span class="text-dark-75 font-weight-bolder font-size-h3">0</span>
+            <span class="text-muted font-weight-bold mt-2">sign up today</span>
+          </div>
+        </div>
+      </div>
     </div>
     <!--end::Body-->
   </div>
@@ -168,8 +182,9 @@ export default {
       grid: {
         show: false,
         padding: {
-          left: 0,
-          right: 0
+          left: 20,
+          right: 20,
+          bottom:20
         }
       }
     };

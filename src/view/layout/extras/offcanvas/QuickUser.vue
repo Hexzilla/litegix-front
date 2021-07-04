@@ -75,7 +75,7 @@
                     <span class="svg-icon svg-icon-lg svg-icon-primary">
                       <!--begin::Svg Icon-->
                       <inline-svg
-                        src="media/svg/icons/Communication/Mail-notification.svg"
+                        src="/media/svg/icons/Communication/Mail-notification.svg"
                       />
                       <!--end::Svg Icon-->
                     </span>
@@ -108,7 +108,7 @@
                   <span class="svg-icon svg-icon-md svg-icon-success">
                     <!--begin::Svg Icon-->
                     <inline-svg
-                      src="media/svg/icons/General/Notification2.svg"
+                      src="/media/svg/icons/General/Notification2.svg"
                     />
                     <!--end::Svg Icon-->
                   </span>
@@ -142,7 +142,7 @@
                 <div class="symbol-label">
                   <span class="svg-icon svg-icon-md svg-icon-warning">
                     <!--begin::Svg Icon-->
-                    <inline-svg src="media/svg/icons/Shopping/Chart-bar1.svg" />
+                    <inline-svg src="/media/svg/icons/Shopping/Chart-bar1.svg" />
                     <!--end::Svg Icon-->
                   </span>
                 </div>
@@ -166,7 +166,7 @@
                 <div class="symbol-label">
                   <span class="svg-icon svg-icon-md svg-icon-danger">
                     <!--begin::Svg Icon-->
-                    <inline-svg src="media/svg/icons/Files/Selected-file.svg" />
+                    <inline-svg src="/media/svg/icons/Files/Selected-file.svg" />
                     <!--end::Svg Icon-->
                   </span>
                 </div>
@@ -191,7 +191,7 @@
                   <span class="svg-icon svg-icon-md svg-icon-primary">
                     <!--begin::Svg Icon-->
                     <inline-svg
-                      src="media/svg/icons/Communication/Mail-opened.svg"
+                      src="/media/svg/icons/Communication/Mail-opened.svg"
                     />
                     <!--end::Svg Icon-->
                   </span>

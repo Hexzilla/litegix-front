@@ -22,7 +22,7 @@
           <span class="symbol-label">
             <span class="svg-icon svg-icon-xl svg-icon-primary">
               <!--begin::Svg Icon | path:assets/media/svg/icons/Shopping/Cart3.svg-->
-              <inline-svg src="media/svg/icons/Shopping/Cart3.svg" />
+              <inline-svg src="/media/svg/icons/Shopping/Cart3.svg" />
               <!--end::Svg Icon-->
             </span>
           </span>

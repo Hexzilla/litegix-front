@@ -2,7 +2,7 @@
   <div class="text-center panel panel-transparent">
     <div class="panel-body">
       <img
-        src="media/img/server-transfer.svg"
+        src="/media/img/server-transfer.svg"
         class="dashboard_img"
         alt="empty-state-illustration"
         data-nsfw-filter-status="sfw"

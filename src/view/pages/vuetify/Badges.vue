@@ -7,7 +7,7 @@
     >
       <div class="alert-icon">
         <span class="svg-icon svg-icon-lg">
-          <inline-svg src="media/svg/icons/Tools/Compass.svg" />
+          <inline-svg src="/media/svg/icons/Tools/Compass.svg" />
         </span>
       </div>
       <div class="alert-text">
@@ -155,7 +155,7 @@
                   offset-y="10"
                 >
                   <v-avatar size="40">
-                    <v-img src="media/users/300_2.jpg"></v-img>
+                    <v-img src="/media/users/300_2.jpg"></v-img>
                   </v-avatar>
                 </v-badge>
 
@@ -164,12 +164,12 @@
                 <v-badge avatar bordered overlap>
                   <template v-slot:badge>
                     <v-avatar>
-                      <v-img src="media/project-logos/7.png"></v-img>
+                      <v-img src="/media/project-logos/7.png"></v-img>
                     </v-avatar>
                   </template>
 
                   <v-avatar size="40">
-                    <v-img src="media/users/100_3.jpg"></v-img>
+                    <v-img src="/media/users/100_3.jpg"></v-img>
                   </v-avatar>
                 </v-badge>
               </v-row>
@@ -328,7 +328,7 @@ export default {
       offset-y="10"
     >
       <v-avatar size="40">
-        <v-img src="media/users/300_2.jpg"></v-img>
+        <v-img src="/media/users/300_2.jpg"></v-img>
       </v-avatar>
     </v-badge>
 
@@ -341,12 +341,12 @@ export default {
     >
       <template v-slot:badge>
         <v-avatar>
-          <v-img src="media/project-logos/7.png"></v-img>
+          <v-img src="/media/project-logos/7.png"></v-img>
         </v-avatar>
       </template>
 
       <v-avatar size="40">
-        <v-img src="media/users/100_3.jpg"></v-img>
+        <v-img src="/media/users/100_3.jpg"></v-img>
       </v-avatar>
     </v-badge>
   </v-row>

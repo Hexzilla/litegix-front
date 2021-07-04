@@ -58,9 +58,7 @@
                           class="text-dark-75 font-weight-bolder text-hover-primary mb-1 font-size-lg"
                           >{{ item.name }}</a
                         >
-                        <span class="text-muted  d-block">{{
-                          item.desc
-                        }}</span>
+                        <span class="text-muted  d-block">{{ item.desc }}</span>
                       </div>
                     </div>
                   </td>
@@ -69,37 +67,29 @@
                       class="text-dark-75 font-weight-bolder d-block font-size-lg"
                       >{{ item.paid }}</span
                     >
-                    <span class="text-muted ">{{
-                      item.status
-                    }}</span>
+                    <span class="text-muted ">{{ item.status }}</span>
                   </td>
                   <td>
                     <span
                       class="text-dark-75 font-weight-bolder d-block font-size-lg"
                       >{{ item.amount }}</span
                     >
-                    <span class="text-muted ">{{
-                      item.status2
-                    }}</span>
+                    <span class="text-muted ">{{ item.status2 }}</span>
                   </td>
                   <td>
                     <span
                       class="text-dark-75 font-weight-bolder d-block font-size-lg"
                       >{{ item.company }}</span
                     >
-                    <span class="text-muted ">{{
-                      item.company_desc
-                    }}</span>
+                    <span class="text-muted ">{{ item.company_desc }}</span>
                   </td>
                   <td>
                     <img
-                      src="media/logos/stars.png"
+                      src="/media/logos/stars.png"
                       alt="image"
                       style="width: 5rem"
                     />
-                    <span class="text-muted  d-block">{{
-                      item.rate
-                    }}</span>
+                    <span class="text-muted  d-block">{{ item.rate }}</span>
                   </td>
                   <td class="pr-0 text-right">
                     <a

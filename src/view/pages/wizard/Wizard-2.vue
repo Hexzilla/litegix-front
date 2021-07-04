@@ -19,7 +19,7 @@
               <div class="wizard-wrapper">
                 <div class="wizard-icon">
                   <span class="svg-icon svg-icon-2x">
-                    <inline-svg src="media/svg/icons/General/User.svg" />
+                    <inline-svg src="/media/svg/icons/General/User.svg" />
                   </span>
                 </div>
                 <div class="wizard-label">
@@ -36,7 +36,7 @@
               <div class="wizard-wrapper">
                 <div class="wizard-icon">
                   <span class="svg-icon svg-icon-2x">
-                    <inline-svg src="media/svg/icons/Map/Compass.svg" />
+                    <inline-svg src="/media/svg/icons/Map/Compass.svg" />
                   </span>
                 </div>
                 <div class="wizard-label">
@@ -54,7 +54,7 @@
                 <div class="wizard-icon">
                   <span class="svg-icon svg-icon-2x">
                     <inline-svg
-                      src="media/svg/icons/General/Thunder-move.svg"
+                      src="/media/svg/icons/General/Thunder-move.svg"
                     />
                   </span>
                 </div>
@@ -72,7 +72,7 @@
               <div class="wizard-wrapper">
                 <div class="wizard-icon">
                   <span class="svg-icon svg-icon-2x">
-                    <inline-svg src="media/svg/icons/Map/Position.svg" />
+                    <inline-svg src="/media/svg/icons/Map/Position.svg" />
                   </span>
                 </div>
                 <div class="wizard-label">
@@ -90,7 +90,7 @@
                 <div class="wizard-icon">
                   <span class="svg-icon svg-icon-2x">
                     <inline-svg
-                      src="media/svg/icons/Shopping/Credit-card.svg"
+                      src="/media/svg/icons/Shopping/Credit-card.svg"
                     />
                   </span>
                 </div>
@@ -108,7 +108,7 @@
               <div class="wizard-wrapper">
                 <div class="wizard-icon">
                   <span class="svg-icon svg-icon-2x">
-                    <inline-svg src="media/svg/icons/General/Like.svg" />
+                    <inline-svg src="/media/svg/icons/General/Like.svg" />
                   </span>
                 </div>
                 <div class="wizard-label">

@@ -57,7 +57,7 @@
             <a href="#" class="btn btn-icon" data-toggle="dropdown">
               <span class="svg-icon svg-icon-success svg-icon-2x">
                 <!--begin::Svg Icon-->
-                <inline-svg src="media/svg/icons/Files/File-plus.svg" />
+                <inline-svg src="/media/svg/icons/Files/File-plus.svg" />
                 <!--end::Svg Icon-->
               </span>
             </a>

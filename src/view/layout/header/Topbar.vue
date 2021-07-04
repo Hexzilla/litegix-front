@@ -14,7 +14,7 @@
       <template v-slot:button-content>
         <div class="btn btn-icon btn-clean btn-lg btn-dropdown mr-1">
           <span class="svg-icon svg-icon-xl svg-icon-primary">
-            <inline-svg src="media/svg/icons/General/Search.svg" />
+            <inline-svg src="/media/svg/icons/General/Search.svg" />
           </span>
         </div>
       </template>
@@ -38,7 +38,7 @@
           class="btn btn-icon btn-clean btn-dropdown btn-lg mr-1 pulse pulse-primary"
         >
           <span class="svg-icon svg-icon-xl svg-icon-primary">
-            <inline-svg src="media/svg/icons/Code/Compiling.svg" />
+            <inline-svg src="/media/svg/icons/Code/Compiling.svg" />
           </span>
           <span class="pulse-ring"></span>
         </div>
@@ -63,7 +63,7 @@
       <template v-slot:button-content>
         <div class="btn btn-icon btn-clean btn-dropdown btn-lg mr-1">
           <span class="svg-icon svg-icon-xl svg-icon-primary">
-            <inline-svg src="media/svg/icons/Media/Equalizer.svg" />
+            <inline-svg src="/media/svg/icons/Media/Equalizer.svg" />
           </span>
         </div>
       </template>
@@ -85,7 +85,7 @@
       <template v-slot:button-content>
         <div class="btn btn-icon btn-clean btn-dropdown btn-lg mr-1">
           <span class="svg-icon svg-icon-xl svg-icon-primary">
-            <inline-svg src="media/svg/icons/Shopping/Cart3.svg" />
+            <inline-svg src="/media/svg/icons/Shopping/Cart3.svg" />
           </span>
         </div>
       </template>

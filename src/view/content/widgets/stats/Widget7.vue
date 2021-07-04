@@ -19,7 +19,7 @@
         <span class="symbol symbol-50 symbol-light-success mr-2">
           <span class="symbol-label">
             <span class="svg-icon svg-icon-xl svg-icon-success">
-              <inline-svg src="media/svg/icons/Layout/Layout-4-blocks.svg" />
+              <inline-svg src="/media/svg/icons/Layout/Layout-4-blocks.svg" />
             </span>
           </span>
         </span>

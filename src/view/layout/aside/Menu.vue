@@ -40,7 +40,7 @@
     </router-link>
 
     
-    <router-link
+    <!-- <router-link
       to="/dashboard"
       v-slot="{ href, navigate, isActive, isExactActive }"
     >
@@ -58,9 +58,9 @@
           <span class="menu-text">Dashboard</span>
         </a>
       </li>
-    </router-link>
+    </router-link> -->
 
-    <router-link
+    <!-- <router-link
       to="/Sites"
       v-slot="{ href, navigate, isActive, isExactActive }"
     >
@@ -78,7 +78,7 @@
           <span class="menu-text">Sites</span>
         </a>
       </li>
-    </router-link>
+    </router-link> -->
 
     <router-link
       to="/Projects"
@@ -141,7 +141,7 @@
     </router-link>
 
     <router-link
-      to="/Marketplace"
+      to="/dnsmanager"
       v-slot="{ href, navigate, isActive, isExactActive }"
     >
       <li
@@ -155,7 +155,7 @@
       >
         <a :href="href" class="menu-link" @click="navigate">
           <i class="menu-icon flaticon2-percentage"></i>
-          <span class="menu-text">Marketplace</span>
+          <span class="menu-text">DNS manager</span>
         </a>
       </li>
     </router-link>
@@ -183,7 +183,7 @@
       </li>
     </router-link>
 
-    <router-link
+    <!-- <router-link
       to="/Subscription"
       v-slot="{ href, navigate, isActive, isExactActive }"
     >
@@ -241,7 +241,7 @@
           <span class="menu-text">Support</span>
         </a>
       </li>
-    </router-link>
+    </router-link> -->
   </ul>
 </template>
 

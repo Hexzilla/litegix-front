@@ -15,7 +15,7 @@
       >
       </v-text-field>
       <router-link
-        to="/settings/third_party_api_key/add"
+        to="/settings/third_party_api_key_add"
         v-slot="{ href, navigate }"
       >
         <a :href="href" @click="navigate" data-nsfw-filter-status="swf">
@@ -42,7 +42,14 @@
 </template>
 
 <script>
+import { SET_BREADCRUMB } from "@/core/services/store/breadcrumbs.module";
 export default {
+  mounted() {
+    this.$store.dispatch(SET_BREADCRUMB, [
+      { title: "Settings", route: "profile" },
+      { title: "3rd Party API Key" }
+    ]);
+  },
   data() {
     return {
       tableData: {

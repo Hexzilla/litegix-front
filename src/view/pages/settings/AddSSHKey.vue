@@ -38,6 +38,7 @@
 </template>
 
 <script>
+import { SET_BREADCRUMB } from "@/core/services/store/breadcrumbs.module";
 export default {
   data() {
     return {
@@ -46,6 +47,13 @@ export default {
         key: ""
       }
     };
+  },
+  mounted() {
+    this.$store.dispatch(SET_BREADCRUMB, [
+      { title: "Settings", route: "profile" },
+      { title: "SSH Key Vault", route: "ssh_key_vault" },
+      { title: "Add SSH Key Vault" }
+    ]);
   }
 };
 </script>

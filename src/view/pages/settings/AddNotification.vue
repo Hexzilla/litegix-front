@@ -56,6 +56,7 @@
 </template>
 
 <script>
+import { SET_BREADCRUMB } from "@/core/services/store/breadcrumbs.module";
 export default {
   data: () => ({
     valid: true,
@@ -77,6 +78,13 @@ export default {
     addChannel() {
       this.$refs.form.validate();
     }
+  },
+  mounted() {
+    this.$store.dispatch(SET_BREADCRUMB, [
+      { title: "Settings", route: "profile" },
+      { title: "Notification", route: "notification" },
+      { title: "Add Notification" }
+    ]);
   }
 };
 </script>

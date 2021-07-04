@@ -14,7 +14,7 @@
       </h3>
       <div class="card-toolbar">
         <router-link
-          to="/settings/wordpress_canvas/create_canvas"
+          to="/settings/wordpress_canvas_create"
           v-slot="{ href, navigate }"
         >
           <a
@@ -37,9 +37,16 @@
 <script>
 // import { mapGetters } from "vuex";
 // import { UPDATE_PERSONAL_INFO } from "@/core/services/store/profile.module";
+import { SET_BREADCRUMB } from "@/core/services/store/breadcrumbs.module";
 
 export default {
-  name: "ServerTrans",
+  name: "WordpressCanvas",
+  mounted() {
+    this.$store.dispatch(SET_BREADCRUMB, [
+      { title: "Settings", route: "profile" },
+      { title: "Wordpress Canvas" }
+    ]);
+  },
   data() {
     return {
       search: "",

@@ -6,7 +6,7 @@
       <div class="card-header py-3">
         <div class="card-title align-items-start flex-column">
           <h1 class="font-weight-bolder text-dark">API Key</h1>
-          <p class="text-muted  font-size-sm mt-1">
+          <p class="text-muted font-size-sm mt-1">
             You can use this API Key and API Secret to download your backup. To
             enable RunCloud API access, you need to enable API Access.
           </p>
@@ -65,7 +65,7 @@
       <div class="card-header py-3">
         <div class="card-title align-items-start flex-column">
           <h1 class="font-weight-bolder text-dark">Enable API Access</h1>
-          <p class="text-muted  font-size-sm mt-1">
+          <p class="text-muted font-size-sm mt-1">
             Enable API Access to use the RunCloud API endpoint. If you are only
             using the API Key and API Secret to download backups, you don't have
             to enable this.
@@ -88,15 +88,15 @@
         <v-spacer></v-spacer>
         <v-text-field
           v-model="search"
-          append-icon="search"
           label="Search..."
-          single-line
+          outlined
+          dense
           hide-details
         ></v-text-field>
       </v-card-title>
 
       <div class="card-body">
-        <p class="text-muted  font-size-sm mt-1">
+        <p class="text-muted font-size-sm mt-1">
           Any requests to the API endpoint can only be made from these IP
           Address(es). If no IP Address is added and API Access is enabled, your
           API Key and API Secret can be requested from any IP address.
@@ -144,10 +144,16 @@
           </h2>
         </div>
         <v-data-table
-          :headers="headers"
-          :items="desserts"
-          :search="search"
-        ></v-data-table>
+          :headers="tblData.headers"
+          :items="tblData.desserts"
+          :search="tblData.search"
+          no-data-text="No data"
+          no-results-text="No result"
+        >
+          <template v-slot:item.del="{ item }">
+            <v-icon @click="deleteItem(item)"> mdi-delete </v-icon>
+          </template>
+        </v-data-table>
       </div>
     </div>
   </div>
@@ -156,6 +162,7 @@
 
 <script>
 import { UPDATE_PERSONAL_INFO } from "@/core/services/store/profile.module";
+import { SET_BREADCRUMB } from "@/core/services/store/breadcrumbs.module";
 import Vue from "vue";
 import VueClipboard from "vue-clipboard2";
 
@@ -165,24 +172,42 @@ export default {
   name: "Authentication",
   data() {
     return {
-      search: "",
-      headers: [
-        {
-          text: "IP Address",
-          align: "left",
-          sortable: false,
-          value: "ipAddress"
-        },
-        {
-          text: "Description",
-          value: "desc"
-        },
-        {
-          text: "Delete",
-          value: "del"
-        }
-      ],
-      desserts: []
+      tblData: {
+        search: "",
+        headers: [
+          {
+            text: "IP Address",
+            align: "left",
+            sortable: false,
+            value: "ipAddress"
+          },
+          {
+            text: "Description",
+            value: "desc"
+          },
+          {
+            text: "Delete",
+            value: "del"
+          }
+        ],
+        desserts: [
+          {
+            ipAddress: "label",
+            desc: "Subscribe to newsletter"
+          }
+        ]
+      },
+      dialog: false,
+      dialogDelete: false,
+      editedIndex: -1,
+      editedItem: {
+        ipAddress: "",
+        desc: ""
+      },
+      defaultItem: {
+        ipAddress: "",
+        desc: ""
+      }
     };
   },
   props: {
@@ -205,7 +230,20 @@ export default {
     }
   },
   mounted: function() {
+    this.$store.dispatch(SET_BREADCRUMB, [
+      { title: "Settings", route: "profile" },
+      { title: "API Key" }
+    ]);
     this.generate();
+  },
+  watch: {
+    dialog(val) {
+      val || this.close();
+    },
+    dialogDelete(val) {
+      console.log("watch dialogDelete val = " + val);
+      val || this.closeDelete();
+    }
   },
 
   methods: {
@@ -236,6 +274,34 @@ export default {
 
     setChangePassLength() {
       this.generate();
+    },
+    deleteItem(item) {
+      console.log("function deleteItem item = " + item);
+      this.editedIndex = this.desserts.indexOf(item);
+      console.log("function this.editedIndex = " + this.editedIndex);
+      this.editedItem = Object.assign({}, item);
+      console.log("function this.editedItem = " + this.editedItem);
+      this.dialogDelete = true;
+    },
+    deleteItemConfirm() {
+      this.desserts.splice(this.editedIndex, 1);
+      this.closeDelete();
+    },
+
+    close() {
+      this.dialog = false;
+      this.$nextTick(() => {
+        this.editedItem = Object.assign({}, this.defaultItem);
+        this.editedIndex = -1;
+      });
+    },
+
+    closeDelete() {
+      this.dialogDelete = false;
+      this.$nextTick(() => {
+        this.editedItem = Object.assign({}, this.defaultItem);
+        this.editedIndex = -1;
+      });
     },
 
     add() {

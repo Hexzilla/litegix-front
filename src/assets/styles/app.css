@@ -900,9 +900,6 @@ th {
     content: "\e237"
 }
 
-* {
-    box-sizing: border-box
-}
 
 html {
     font-size: 10px;
@@ -10434,7 +10431,7 @@ a.text-paragraph:hover {
 .checkbox input[type=checkbox]:checked+label:after,
 .checkbox input[type=radio]:checked+label:after {
     font-family: runcloudnicon;
-    content: "ï‡£"
+    content: ""
 }
 
 .checkbox input[type=checkbox]:indeterminate+label:after,
@@ -10578,7 +10575,7 @@ a.text-paragraph:hover {
 input[type=checkbox].styled:checked+label:after,
 input[type=radio].styled:checked+label:after {
     font-family: runcloudnicon;
-    content: "ï‡£"
+    content: ""
 }
 
 input[type=checkbox] .styled:checked+label:after,
@@ -10739,25 +10736,25 @@ input[type=radio] .styled:checked+label:before {
 }
 
 .vue-slider {
-    margin-bottom: 16px
+    margin-bottom: 16px !important;
 }
 
 .vue-slider-rail {
-    background-color: #cfd6e4;
-    border-radius: 15px
+    background-color: #cfd6e4 !important;
+    border-radius: 15px !important;
 }
 
 .vue-slider-process {
-    background-color: #026aff;
-    border-radius: 15px
+    background-color: #026aff !important;
+    border-radius: 15px !important;
 }
 
 .vue-slider-mark {
-    z-index: 4
+    z-index: 4 !important;
 }
 
 .vue-slider-mark:first-child .vue-slider-mark-label {
-    transform: unset
+    transform: unset !important;
 }
 
 .vue-slider-mark:first-child .vue-slider-mark-step {
@@ -12584,4 +12581,192 @@ input[type=radio] .styled:checked+label:before {
 
 .rc-bare .panel .panel-body {
     padding-top: unset
+}
+
+
+
+
+
+
+.vps-selection {
+    overflow-x: scroll;
+    display: grid;
+    grid-gap: 24px;
+    grid-auto-flow: column;
+    grid-template-columns: repeat(auto-fill, 142px)
+}
+
+.show_all_provider {
+    grid-auto-flow: unset !important;
+}
+
+.hide_all_provider {
+    grid-auto-flow: column !important;
+}
+
+
+.vps-selection>label {
+    margin-top: unset;
+    margin-bottom: unset;
+    margin-left: unset !important;
+    height: 142px;
+    width: 142px;
+    margin-top: 5px !important;
+}
+
+.vps-selection>label span {
+    flex: 1 1 auto;
+    position: relative;
+    display: block
+}
+
+.vps-selection i.rc-vps {
+    font-size: 40px;
+    padding-top: 16px;
+    padding-bottom: 8px;
+    color: unset !important;
+}
+
+.vps-selection {
+    overflow-x: scroll;
+    display: grid;
+    grid-gap: 24px;
+    grid-auto-flow: column;
+    grid-template-columns: repeat(auto-fill, 142px)
+}
+
+.vps-selection>label {
+    margin-top: unset;
+    margin-bottom: unset;
+    margin-left: unset !important;
+    height: 142px;
+    width: 142px
+}
+
+.vps-selection>label span {
+    flex: 1 1 auto;
+    position: relative;
+    display: block
+}
+
+.installation-type-selection {
+    display: flex;
+    flex-wrap: wrap
+}
+
+.installation-type-selection label {
+    padding: 24px;
+    margin-bottom: unset
+}
+
+.installation-type-selection i {
+    margin-right: 24px;
+    margin-bottom: unset;
+    font-size: 32px
+}
+
+.btn-add-new-key {
+    position: absolute;
+    right: 0;
+    margin-top: 0;
+    padding: unset
+}
+
+.web-server-img {
+    max-height: 50px;
+    padding-right: 15px
+}
+
+
+.server-installation-note {
+    border-radius: 2px;
+    background-color: #f5f7fa;
+    margin-bottom: 24px;
+    border: 1px solid #d2dae0;
+    padding: 32px
+}
+
+.server-installation-note .title {
+    margin: unset;
+    padding: unset;
+    font-size: 20px;
+    margin-bottom: 8px
+}
+
+.server-installation-note p {
+    color: #4e5a65;
+    line-height: 1.5
+}
+
+.server-installation-note ol {
+    list-style-type: none;
+    counter-reset: li;
+    padding-left: 40px;
+}
+
+.server-installation-note ol li {
+    padding: 8px 16px;
+    line-height: 32px
+}
+
+.server-installation-note ol li:before {
+    counter-increment: li;
+    content: counter(li, decimal-leading-zero);
+    color: #151515;
+    font-size: 14px;
+    background-color: #e9edf0;
+    position: absolute;
+    margin-left: -48px;
+    height: 32px;
+    width: 32px;
+    line-height: 32px;
+    display: inline-block;
+    text-align: center;
+    border-radius: 100px
+}
+
+.panel.panel-transparent {
+    background-color: unset;
+    box-shadow: unset
+}
+
+.panel .dashboard_img {
+    width: 320px
+}
+
+.panel p {
+    /* font-size: 16px; */
+    /* color: #4e5a65; */
+    line-height: 24px
+}
+
+.panel a {
+    font-weight: 500
+}
+
+.panel .content {
+    padding-top: 24px
+}
+
+@media(min-width:768px) {
+    .panel .content {
+        margin-left: auto;
+        margin-right: auto;
+        width: 60%
+    }
+}
+
+.panel .go-connect-btn {
+    margin-top: 24px;
+    margin-bottom: 24px
+}
+
+::before, ::after {
+    -webkit-box-sizing: unset;
+    box-sizing: unset;
+}
+
+.vue-slider-rail {
+    background-color: #cfd6e4 !important;
+    border-radius: 15px !important;
 }

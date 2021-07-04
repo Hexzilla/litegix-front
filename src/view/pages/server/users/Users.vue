@@ -5,14 +5,14 @@
     <div class="card-header border-0 py-5">
       <h3 class="card-title align-items-start flex-column">
         <span class="card-label font-weight-bolder text-dark">System User</span>
-        <!-- <span class="text-muted mt-3  font-size-sm"
+        <!-- <span class="text-muted mt-3 font-weight-bold font-size-sm"
           >More than 400+ new members</span
         > -->
       </h3>
       <div class="card-toolbar">
-        <a href="#" class="btn btn-info font-weight-bolder font-size-sm"
-          >New Report</a
-        >
+        <b-link to="user/create">
+          <a class="btn btn-info font-weight-bolder font-size-sm">New Report</a>
+        </b-link>
       </div>
     </div>
     <!--end::Header-->
@@ -67,7 +67,9 @@
                     class="text-dark-75 font-weight-bolder d-block font-size-lg"
                     >{{ item.country }}</span
                   >
-                  <span class="text-muted">{{ item.country_desc }}</span>
+                  <span class="text-muted font-weight-bold">{{
+                    item.country_desc
+                  }}</span>
                 </td>
                 <td>
                   <span
@@ -130,7 +132,7 @@ export default {
           company: "Intertico",
           company_desc: "Web, UI/UX Design",
           class: "primary",
-          status: "Approved"
+          status: "Approved",
         },
         {
           order_id: "root",
@@ -141,9 +143,9 @@ export default {
           company: "Agoda",
           company_desc: "Houses & Hotels",
           class: "warning",
-          status: "In Progress"
-        }
-      ]
+          status: "In Progress",
+        },
+      ],
     };
   },
   components: {},
@@ -154,7 +156,7 @@ export default {
       } else {
         this.checked = false;
       }
-    }
-  }
+    },
+  },
 };
 </script>

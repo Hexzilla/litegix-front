@@ -28,6 +28,7 @@
   </v-app>
 </template>
 <script>
+import { SET_BREADCRUMB } from "@/core/services/store/breadcrumbs.module";
 export default {
   data: () => ({
     headers: [
@@ -47,6 +48,12 @@ export default {
 
   created() {
     this.initialize();
+  },
+  mounted() {
+    this.$store.dispatch(SET_BREADCRUMB, [
+      { title: "Settings", route: "profile" },
+      { title: "Payment History" }
+    ]);
   },
 
   methods: {

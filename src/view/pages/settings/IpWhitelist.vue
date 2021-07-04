@@ -27,9 +27,11 @@
         </p>
       </div>
       <v-data-table
-        :headers="headers"
-        :items="desserts"
-        :search="search"
+        :headers="tableData.headers"
+        :items="tableData.desserts"
+        :search="tableData.search"
+        no-data-text="No data"
+        no-results-text="No result"
       ></v-data-table>
     </div>
 
@@ -39,7 +41,7 @@
 
 <script>
 import ConfirmDialogue from "@/view/content/widgets/dialogue/ConfirmDialogue.vue";
-
+import { SET_BREADCRUMB } from "@/core/services/store/breadcrumbs.module";
 export default {
   name: "IpWhitelist",
   components: {
@@ -75,6 +77,12 @@ export default {
         desserts: []
       }
     };
+  },
+  mounted() {
+    this.$store.dispatch(SET_BREADCRUMB, [
+      { title: "Settings", route: "profile" },
+      { title: "IP Whitelisting" }
+    ]);
   },
   methods: {
     async isEnable() {

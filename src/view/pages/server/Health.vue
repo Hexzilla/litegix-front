@@ -8,7 +8,7 @@
           <h3 class="card-label font-weight-bolder text-dark">
             Server Health
           </h3>
-          <span class="text-muted  font-size-sm mt-1">
+          <span class="text-muted font-weight-bold font-size-sm mt-1">
             Update your server health
           </span>
         </div>

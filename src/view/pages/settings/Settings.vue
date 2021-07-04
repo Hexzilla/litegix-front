@@ -415,3 +415,12 @@
   background: transparent !important;
 }
 </style>
+<script>
+import { SET_BREADCRUMB } from "@/core/services/store/breadcrumbs.module";
+
+export default {
+  mounted() {
+    this.$store.dispatch(SET_BREADCRUMB, [{ title: "Settings" }]);
+  }
+};
+</script>

@@ -5,7 +5,9 @@
       <!--begin::Header-->
       <div class="card-header py-3">
         <div class="card-title align-items-start flex-column">
-          <h1 class="font-weight-bolder text-dark">Connect Your App</h1>
+          <h3 class="card-label font-weight-bolder text-dark">
+            Connect Your App
+          </h3>
           <p class="text-muted  font-size-sm mt-1">
             Download and scan QR Code using any authenticator app to get your
             2FA 6 digit code. Then, enter 6 digit code from the authenticator

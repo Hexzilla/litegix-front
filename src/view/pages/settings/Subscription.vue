@@ -1,37 +1,39 @@
 <template>
   <div>
-    <v-card>
-      <div class="card-body">
-        <v-card-title>
+    <div class="card card-custom">
+      <div class="card-header py-3">
+        <div class="card-title align-items-start flex-column">
           <h3 class="card-label font-weight-bolder text-dark">
             Subscription
           </h3>
-          <v-spacer></v-spacer>
-          <router-link
-            to="/settings/create_subscription"
-            v-slot="{ href, navigate }"
+          <p class="text-muted font-size-sm mt-1">
+            Manage your customizable Litegix subscription here.
+          </p>
+        </div>
+        <div class="card-toolbar">
+          <button
+            type="submit"
+            class="btn btn-success mr-2"
+            ref="kt_save_changes"
           >
-            <a :href="href" @click="navigate" data-nsfw-filter-status="swf">
-              <button type="button" class="btn btn-success" ref="add">
-                Add Subscription
-              </button>
-            </a>
-          </router-link>
-          <!-- <b-btn class="ml-2" variant="success" x-large @click="goAddPage">Add Subscription</b-btn> -->
-        </v-card-title>
+            Add Subscription
+          </button>
+        </div>
+      </div>
+
+      <div class="card-body">
         <v-container>
-          <p class="text--lighten-1 font-size-sm mt-3">
-            Manage your customizable RunCloud subscription here. To simplify
-            your billing, you can add both server and backup plan in one single
-            subscription. To cancel your server plan, please change to Free
-            Plan.
+          <p class="text--lighten-1 font-size-sm">
+            To simplify your billing, you can add both server and backup plan in
+            one single subscription. To cancel your server plan, please change
+            to <strong>Free Plan</strong>.
           </p>
           <p class="text--lighten-1 font-size-sm">
             Cancelled subscription will continue running until the end of
             billing cycle. Payment made is subject to and in accordance with the
-            <h ref="#">Refund Policy.</h>
+            <a href="#">Refund Policy.</a>
           </p>
-          <b-card-group deck class="w-100 pr-10 pl-10">
+          <b-card-group deck class="w-100 mt-10">
             <b-card border-variant="secondary">
               <b-card-text>Current Server Plan</b-card-text>
               <h3>Trial</h3>
@@ -82,7 +84,7 @@
           </v-tabs-items>
         </v-container>
       </div>
-    </v-card>
+    </div>
 
     <div class="form-group row mt-12"></div>
 
@@ -90,10 +92,12 @@
     <v-card>
       <div class="card-body">
         <v-card-title>
-          <h1>Credit Top-Up</h1>
+          <h3 class="card-label font-weight-bolder text-dark">
+            Credit Top-Up
+          </h3>
         </v-card-title>
         <v-container>
-          <p class="text--lighten-1 font-size-sm mt-3">
+          <p class="text--lighten-1 font-size-sm">
             Currently we accept Visa and MasterCard only for subscriptions. If
             you wish to use PayPal or any credit cards supported by PayPal, use
             our credit top-up below. It is a manual one-time payment

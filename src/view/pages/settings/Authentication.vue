@@ -46,9 +46,9 @@
           >
             Save Changes
           </button>
-          <button type="reset" class="btn btn-secondary" @click="cancel()">
+          <!-- <button type="reset" class="btn btn-secondary" @click="cancel()">
             Cancel
-          </button>
+          </button> -->
         </div>
       </div>
       <!--end::Header-->
@@ -193,7 +193,7 @@
           <v-subheader class="pl-0"> Password Length </v-subheader>
           <v-slider
             v-model="passLen"
-            class="align-center"
+            class="align-items-center"
             :max="60"
             :min="6"
             @change="setChangePassLength"

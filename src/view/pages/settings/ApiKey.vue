@@ -16,12 +16,12 @@
       </div>
       <div class="card-body">
         <v-row>
-          <b-input-group class="mt-3">
-            <label class="w-100">API Key</label>
+          <label class="col-xl-2 col-lg-3 col-form-label text-lg-right mt-3"
+            >API Key</label
+          >
+          <b-input-group class="col-xl-8 col-lg-9">
             <b-form-input
-              auto="true"
-              characters="characters"
-              class="form-control form-control-lg"
+              class="form-control form-control-lg form-control-solid"
               type="text"
               :value="apikey"
             >
@@ -37,12 +37,14 @@
           </b-input-group>
         </v-row>
         <v-row>
-          <b-input-group class="mt-3">
-            <label class="w-100">API Secret</label>
+          <label class="col-xl-2 col-lg-3 col-form-label text-lg-right mt-3"
+            >API Secret</label
+          >
+          <b-input-group class="col-xl-8 col-lg-9">
             <b-form-input
               auto="true"
               characters="characters"
-              class="form-control form-control-lg"
+              class="form-control form-control-lg form-control-solid"
               type="text"
               :value="apikey"
             >
@@ -77,9 +79,20 @@
         </div>
       </div>
       <div class="card-body">
-        <v-row>
-          <v-select dense outlined label="select"> </v-select>
-        </v-row>
+        <div class="form-group row">
+          <label class="col-xl-2 col-lg-3 col-form-label text-lg-right mt-3"
+            >API Access</label
+          >
+          <div class="col-xl-8 col-lg-9">
+            <select
+              class="form-control form-control-lg form-control-solid"
+              ref="time_zone"
+            >
+              <option value="enable">Enable</option>
+              <option value="disable">Disable</option>
+            </select>
+          </div>
+        </div>
       </div>
     </div>
     <!--end::Card-->

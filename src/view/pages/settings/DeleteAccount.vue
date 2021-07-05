@@ -95,7 +95,7 @@
             </div>
           </div>
           <!--end::Alert-->
-          <div class="form-group row">
+          <div class="form-group row align-items-center">
             <label class="col-xl-3 col-lg-3 col-form-label text-right"
               >Email Address</label
             >

@@ -16,40 +16,37 @@
       <form class="form">
         <!--begin::Body-->
         <div class="card-body">
-          <div class="form-group row">
+          <div class="form-group row align-items-center">
             <label class="col-xl-3 col-lg-3 col-form-label text-lg-right"
               >Email</label
             >
             <div class="col-lg-9 col-xl-6">
               <input
                 ref="email"
-                class="form-control form-control-lg form-control-solid"
+                class="form-control form-control-solid"
                 type="text"
                 disabled
               />
             </div>
           </div>
-          <div class="form-group row">
+          <div class="form-group row align-items-center">
             <label class="col-xl-3 col-lg-3 col-form-label text-lg-right"
               >Name</label
             >
             <div class="col-lg-9 col-xl-6">
               <input
                 ref="name"
-                class="form-control form-control-lg form-control-solid"
+                class="form-control form-control-solid"
                 type="text"
               />
             </div>
           </div>
-          <div class="form-group row">
+          <div class="form-group row align-items-center">
             <label class="col-xl-3 col-lg-3 col-form-label text-lg-right"
               >Time Zone</label
             >
             <div class="col-lg-9 col-xl-6">
-              <select
-                class="form-control form-control-lg form-control-solid"
-                ref="time_zone"
-              >
+              <select class="form-control form-control-solid" ref="time_zone">
                 <template v-for="(item, i) in time_zones">
                   <option
                     v-bind:key="i"
@@ -119,105 +116,105 @@
       <form class="form">
         <!--begin::Body-->
         <div class="card-body">
-          <div class="form-group row">
+          <div class="form-group row align-items-center">
             <label class="col-xl-3 col-lg-3 col-form-label text-lg-right"
               >Company Name</label
             >
             <div class="col-lg-9 col-xl-6">
               <input
                 ref="CompanyName"
-                class="form-control form-control-lg form-control-solid"
+                class="form-control form-control-solid"
                 type="text"
                 placeholder="Your company name"
               />
             </div>
           </div>
-          <div class="form-group row">
+          <div class="form-group row align-items-center">
             <label class="col-xl-3 col-lg-3 col-form-label text-lg-right"
               >Address Line 1</label
             >
             <div class="col-lg-9 col-xl-6">
               <input
                 ref="AddressLine1"
-                class="form-control form-control-lg form-control-solid"
+                class="form-control form-control-solid"
                 type="text"
                 placeholder="Building address"
               />
             </div>
           </div>
-          <div class="form-group row">
+          <div class="form-group row align-items-center">
             <label class="col-xl-3 col-lg-3 col-form-label text-lg-right"
               >Address Line 2</label
             >
             <div class="col-lg-9 col-xl-6">
               <input
                 ref="AddressLine2"
-                class="form-control form-control-lg form-control-solid"
+                class="form-control form-control-solid"
                 type="text"
                 placeholder="Street address"
               />
             </div>
           </div>
 
-          <div class="form-group row">
+          <div class="form-group row align-items-center">
             <label class="col-xl-3 col-lg-3 col-form-label text-lg-right"
               >City</label
             >
             <div class="col-lg-9 col-xl-3">
               <input
                 ref="City"
-                class="form-control form-control-lg form-control-solid"
+                class="form-control form-control-solid"
                 type="text"
                 placeholder="City"
               />
             </div>
           </div>
-          <div class="form-group row">
+          <div class="form-group row align-items-center">
             <label class="col-xl-3 col-lg-3 col-form-label text-lg-right"
               >Postal Code</label
             >
             <div class="col-lg-9 col-xl-3">
               <input
                 ref="PostalCode"
-                class="form-control form-control-lg form-control-solid"
+                class="form-control form-control-solid"
                 type="text"
                 placeholder="Zip/Postal Code"
               />
             </div>
           </div>
-          <div class="form-group row">
+          <div class="form-group row align-items-center">
             <label class="col-xl-3 col-lg-3 col-form-label text-lg-right"
               >State</label
             >
             <div class="col-lg-9 col-xl-6">
               <input
                 ref="State"
-                class="form-control form-control-lg form-control-solid"
+                class="form-control form-control-solid"
                 type="text"
                 placeholder="State/Province"
               />
             </div>
           </div>
-          <div class="form-group row">
+          <div class="form-group row align-items-center">
             <label class="col-xl-3 col-lg-3 col-form-label text-lg-right"
               >Country</label
             >
             <div class="col-lg-9 col-xl-6">
               <select
-                class="form-control form-control-lg form-control-solid"
+                class="form-control form-control-solid"
                 ref="Country"
               ></select>
             </div>
           </div>
 
-          <div class="form-group row">
+          <div class="form-group row align-items-center">
             <label class="col-xl-3 col-lg-3 col-form-label text-lg-right"
               >Tax/VAT/GST Number</label
             >
             <div class="col-lg-9 col-xl-6">
               <input
                 ref="Tax"
-                class="form-control form-control-lg form-control-solid"
+                class="form-control form-control-solid"
                 type="text"
                 placeholder="Tax/VAT/GST Number"
               />

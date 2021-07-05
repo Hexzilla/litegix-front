@@ -12,7 +12,9 @@
             <div class="wizard-step" data-wizard-type="step">
               <div class="wizard-label">
                 <i class="wizard-icon flaticon-list"></i>
-                <h3 class="wizard-title">Configuring your server</h3>
+                <b-link to="/server">
+                  <h3 class="wizard-title">Configuring your server</h3>
+                </b-link>
               </div>
               <i class="wizard-arrow last flaticon2-next"></i>
             </div>

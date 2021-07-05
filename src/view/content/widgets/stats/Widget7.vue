@@ -72,13 +72,13 @@ export default {
       series: [
         {
           name: "Net Profit",
-          data: [40, 40, 30, 30, 35, 35, 50],
-        },
-      ],
+          data: [40, 40, 30, 30, 35, 35, 50]
+        }
+      ]
     };
   },
   computed: {
-    ...mapGetters(["layoutConfig"]),
+    ...mapGetters(["layoutConfig"])
   },
   mounted() {
     // reference; kt_stats_widget_7_chart
@@ -87,47 +87,47 @@ export default {
         type: "area",
         height: 150,
         toolbar: {
-          show: false,
+          show: false
         },
         zoom: {
-          enabled: false,
+          enabled: false
         },
         sparkline: {
-          enabled: true,
-        },
+          enabled: true
+        }
       },
       plotOptions: {},
       legend: {
-        show: false,
+        show: false
       },
       dataLabels: {
-        enabled: false,
+        enabled: false
       },
       fill: {
         type: "solid",
-        opacity: 1,
+        opacity: 1
       },
       stroke: {
         curve: "smooth",
         show: true,
         width: 3,
-        colors: [this.layoutConfig("colors.theme.base.success")],
+        colors: [this.layoutConfig("colors.theme.base.success")]
       },
       xaxis: {
         categories: ["Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug"],
         axisBorder: {
-          show: false,
+          show: false
         },
         axisTicks: {
-          show: false,
+          show: false
         },
         labels: {
           show: false,
           style: {
             colors: this.layoutConfig("colors.gray.gray-500"),
             fontSize: "12px",
-            fontFamily: this.layoutConfig("font-family"),
-          },
+            fontFamily: this.layoutConfig("font-family")
+          }
         },
         crosshairs: {
           show: false,
@@ -135,12 +135,12 @@ export default {
           stroke: {
             color: this.layoutConfig("colors.gray.gray-300"),
             width: 1,
-            dashArray: 3,
-          },
+            dashArray: 3
+          }
         },
         tooltip: {
-          enabled: false,
-        },
+          enabled: false
+        }
       },
       yaxis: {
         min: 0,
@@ -151,57 +151,57 @@ export default {
           style: {
             colors: this.layoutConfig("colors.gray.gray-500"),
             fontSize: "12px",
-            fontFamily: this.layoutConfig("font-family"),
-          },
-        },
+            fontFamily: this.layoutConfig("font-family")
+          }
+        }
       },
       states: {
         normal: {
           filter: {
             type: "none",
-            value: 0,
-          },
+            value: 0
+          }
         },
         hover: {
           filter: {
             type: "none",
-            value: 0,
-          },
+            value: 0
+          }
         },
         active: {
           allowMultipleDataPointsSelection: false,
           filter: {
             type: "none",
-            value: 0,
-          },
-        },
+            value: 0
+          }
+        }
       },
       tooltip: {
         style: {
           fontSize: "12px",
-          fontFamily: this.layoutConfig("font-family"),
+          fontFamily: this.layoutConfig("font-family")
         },
         y: {
-          formatter: function (val) {
+          formatter: function(val) {
             return "$" + val + " thousands";
-          },
-        },
+          }
+        }
       },
       colors: [this.layoutConfig("colors.theme.light.success")],
       markers: {
         colors: [this.layoutConfig("colors.theme.light.success")],
         strokeColor: [this.layoutConfig("colors.theme.base.success")],
-        strokeWidth: 3,
+        strokeWidth: 3
       },
       grid: {
         show: false,
         padding: {
           left: 20,
           right: 20,
-          bottom: 20,
-        },
-      },
+          bottom: 20
+        }
+      }
     };
-  },
+  }
 };
 </script>

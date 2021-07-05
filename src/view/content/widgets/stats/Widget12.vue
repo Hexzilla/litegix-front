@@ -63,7 +63,6 @@
             class="
               btn btn-success btn-xs
               v-chip v-chip--label
-              theme--dark
               v-size--x-small
             "
             id="show-btn"

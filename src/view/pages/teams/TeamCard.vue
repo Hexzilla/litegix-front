@@ -106,4 +106,4 @@ export default {
   }
 };
 </script>
-<style scoped src="@/assets/styles/app.css"></style>
+

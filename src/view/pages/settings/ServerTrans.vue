@@ -26,6 +26,7 @@
 <script>
 // import { mapGetters } from "vuex";
 // import { UPDATE_PERSONAL_INFO } from "@/core/services/store/profile.module";
+import { SET_BREADCRUMB } from "@/core/services/store/breadcrumbs.module";
 
 export default {
   name: "ServerTrans",
@@ -45,6 +46,12 @@ export default {
       ],
       desserts: []
     };
+  },
+  mounted() {
+    this.$store.dispatch(SET_BREADCRUMB, [
+      { title: "Settings", route: "profile" },
+      { title: "Server Transfer" }
+    ]);
   }
 };
 </script>

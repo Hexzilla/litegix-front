@@ -84,6 +84,7 @@ export default {
   data() {},
   methods: {
     addMemberToTeam(teamid) {
+      console.log(teamid);
       // ApiService.setHeader();
       // ApiService.get("teams")
       //   .then(({
@@ -95,5 +96,6 @@ export default {
     }
   }
 };
+console.log("members arrive!!!!");
 </script>
-<style scoped src="@/assets/styles/app.css"></style>
+

@@ -17,9 +17,9 @@
         <!--begin::Body-->
         <div class="card-body">
           <div class="row border-bottom">
-            <div class="col-lg-6 col-xl-9">
-              <h4 class=" mb-6">
-                <i
+            <div class="col-lg-9 col-xl-10">
+              <h5 class="mb-6">
+                <!-- <i
                   class="
                     v-icon
                     notranslate
@@ -28,169 +28,138 @@
                     theme--dark
                     --v-secondary-lighten5
                   "
-                ></i>
+                ></i> -->
+                <v-avatar left size="32" color="success">
+                  <v-icon color="#fff">mdi-check</v-icon>
+                </v-avatar>
                 Newsletter Subscription
-              </h4>
+              </h5>
             </div>
-            <div class="col-lg-6 col-xl-3 v-card__actions">
+            <v-spacer></v-spacer>
+            <div class="col-lg-3 col-xl-2 v-card__actions float-right">
               <a href="#" class="btn btn-danger btn-sm la-pull-right">
-                <span class=" mb-6">
-                  Newsletter Subscription
-                </span>
+                <span class="mb-6"> Newsletter Subscription </span>
               </a>
             </div>
           </div>
           <div class="row mt-12">
             <div class="col-lg-9 col-xl-6">
-              <h5 class=" mb-6">Newsletter Subscription</h5>
+              <h5 class="mb-6">Newsletter Subscription</h5>
             </div>
           </div>
-          <div class="mb-6">
-            <!--begin::Content-->
-            <div class="d-flex align-items-center flex-grow-1">
-              <!--begin::Checkbox-->
-              <label
-                class="
-                  checkbox checkbox-lg checkbox-lg checkbox-single
-                  flex-shrink-0
-                  mr-4
-                  v-treeview
-                "
-              >
-                <input id="update_account" type="checkbox" value="1" />
-                <span></span>
-              </label>
-              <!--end::Checkbox-->
-              <!--begin::Section-->
-              <label
-                for="update_account"
-                class="
-                  d-flex
-                  flex-wrap
-                  align-items-center
-                  justify-content-between
-                  w-100
-                "
-              >
-                <div class="d-flex flex-column align-items-cente py-2">
-                  <div
-                    class="
-                      text-dark-75
-                      
-                      text-hover-primary
-                      font-size-lg
-                      mb-1
-                    "
-                  >
-                    Updates and Announcements
+
+          <div class="form-group row">
+            <label class="col-xl-3 col-lg-3 col-form-label text-right"></label>
+            <div class="col-lg-9 col-xl-6">
+              <!--begin::Content-->
+              <div class="d-flex flex-grow-1">
+                <!--begin::Checkbox-->
+                <label
+                  class="
+                    checkbox checkbox-lg checkbox-lg checkbox-single
+                    flex-shrink-0
+                    mr-4
+                    v-treeview
+                  "
+                >
+                  <input id="update_account" type="checkbox" value="1" />
+                  <span></span>
+                </label>
+                <!--end::Checkbox-->
+                <!--begin::Section-->
+                <label
+                  for="update_account"
+                  class="d-flex flex-wrap justify-content-between w-100"
+                >
+                  <div class="d-flex flex-column py-2">
+                    <div class="text-dark-75 font-size-lg mb-1">
+                      Updates and Announcements
+                    </div>
+                    <span class="sub-description">
+                      Stay up to date with the latest announcements and
+                      promotions from RunCloud
+                    </span>
                   </div>
-                  <span class="text-muted">
-                    Stay up to date with the latest announcements and promotions
-                    from RunCloud
-                  </span>
-                </div>
-              </label>
-              <!--end::Section-->
+                </label>
+                <!--end::Section-->
+              </div>
+              <!--end::Content-->
             </div>
-            <!--end::Content-->
-          </div>
-          <div class="mb-6">
-            <!--begin::Content-->
-            <div class="d-flex align-items-center flex-grow-1">
-              <!--begin::Checkbox-->
-              <label
-                class="
-                  checkbox checkbox-lg checkbox-lg checkbox-single
-                  flex-shrink-0
-                  mr-4
-                "
-              >
-                <input id="chk_blog" type="checkbox" value="1" />
-                <span></span>
-              </label>
-              <!--end::Checkbox-->
-              <!--begin::Section-->
-              <label
-                for="chk_blog"
-                class="
-                  d-flex
-                  flex-wrap
-                  align-items-center
-                  justify-content-between
-                  w-100
-                "
-              >
-                <div class="d-flex flex-column align-items-cente py-2">
-                  <div
-                    class="
-                      text-dark-75
-                      
-                      text-hover-primary
-                      font-size-lg
-                      mb-1
-                    "
-                  >
-                    Blog
-                  </div>
-                  <span class="text-muted ">
-                    Whenever a blog post is published, you will be the first to
-                    know!
-                  </span>
-                </div>
-              </label>
-              <!--end::Section-->
-            </div>
-            <!--end::Content-->
-          </div>
-          <div class="mb-6">
-            <!--begin::Content-->
-            <div class="d-flex align-items-center flex-grow-1">
-              <!--begin::Checkbox-->
-              <label
-                class="
-                  checkbox checkbox-lg checkbox-lg checkbox-single
-                  flex-shrink-0
-                  mr-4
-                "
-              >
-                <input id="chk_Events" type="checkbox" value="1" />
-                <span></span>
-              </label>
-              <!--end::Checkbox-->
-              <!--begin::Section-->
-              <label
-                for="chk_Events"
-                class="
-                  d-flex
-                  flex-wrap
-                  align-items-center
-                  justify-content-between
-                  w-100
-                "
-              >
-                <div class="d-flex flex-column align-items-cente py-2">
-                  <div
-                    class="
-                      text-dark-75
-                      
-                      text-hover-primary
-                      font-size-lg
-                      mb-1
-                    "
-                  >
-                    Events and Meetups
-                  </div>
-                  <span class="text-muted ">
-                    Be informed about RunCloud events and meetups
-                  </span>
-                </div>
-              </label>
-              <!--end::Section-->
-            </div>
-            <!--end::Content-->
           </div>
           <div class="form-group row">
-            <div class="col-lg-12 col-xl-12">
+            <label class="col-xl-3 col-lg-3 col-form-label text-right"></label>
+            <div class="col-lg-9 col-xl-6">
+              <!--begin::Content-->
+              <div class="d-flex flex-grow-1">
+                <!--begin::Checkbox-->
+                <label
+                  class="
+                    checkbox checkbox-lg checkbox-lg checkbox-single
+                    flex-shrink-0
+                    mr-4
+                  "
+                >
+                  <input id="chk_blog" type="checkbox" value="1" />
+                  <span></span>
+                </label>
+                <!--end::Checkbox-->
+                <!--begin::Section-->
+                <label
+                  for="chk_blog"
+                  class="d-flex flex-wrap justify-content-between w-100"
+                >
+                  <div class="d-flex flex-column py-2">
+                    <div class="text-dark-75 font-size-lg mb-1">Blog</div>
+                    <span class="text-muted">
+                      Whenever a blog post is published, you will be the first
+                      to know!
+                    </span>
+                  </div>
+                </label>
+                <!--end::Section-->
+              </div>
+              <!--end::Content-->
+            </div>
+          </div>
+          <div class="form-group row">
+            <label class="col-xl-3 col-lg-3 col-form-label text-right"></label>
+            <div class="col-lg-9 col-xl-6">
+              <!--begin::Content-->
+              <div class="d-flex flex-grow-1">
+                <!--begin::Checkbox-->
+                <label
+                  class="
+                    checkbox checkbox-lg checkbox-lg checkbox-single
+                    flex-shrink-0
+                    mr-4
+                  "
+                >
+                  <input id="chk_Events" type="checkbox" value="1" />
+                  <span></span>
+                </label>
+                <!--end::Checkbox-->
+                <!--begin::Section-->
+                <label
+                  for="chk_Events"
+                  class="d-flex flex-wrap justify-content-between w-100"
+                >
+                  <div class="d-flex flex-column py-2">
+                    <div class="text-dark-75 font-size-lg mb-1">
+                      Events and Meetups
+                    </div>
+                    <span class="text-muted">
+                      Be informed about RunCloud events and meetups
+                    </span>
+                  </div>
+                </label>
+                <!--end::Section-->
+              </div>
+              <!--end::Content-->
+            </div>
+          </div>
+          <div class="form-group row">
+            <label class="col-xl-3 col-lg-3 col-form-label text-right"></label>
+            <div class="col-lg-9 col-xl-6">
               <div class="input-group input-group-lg input-group-solid">
                 <button
                   type="reset"
@@ -223,7 +192,7 @@
             class="mr-2"
           ></v-text-field>
           <router-link
-            to="/settings/notification/add"
+            to="/settings/AddNotification"
             v-slot="{ href, navigate }"
           >
             <a :href="href" @click="navigate" data-nsfw-filter-status="swf">
@@ -255,7 +224,7 @@
 <script>
 // import { mapGetters } from "vuex";
 import { UPDATE_PERSONAL_INFO } from "@/core/services/store/profile.module";
-
+import { SET_BREADCRUMB } from "@/core/services/store/breadcrumbs.module";
 export default {
   name: "Notification",
   data() {
@@ -276,6 +245,10 @@ export default {
     };
   },
   mounted() {
+    this.$store.dispatch(SET_BREADCRUMB, [
+      { title: "Settings", route: "profile" },
+      { title: "Notification" }
+    ]);
     this.current_photo = this.currentUserPersonalInfo.photo;
   },
   methods: {

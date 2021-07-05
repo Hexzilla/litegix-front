@@ -13,70 +13,148 @@
                   <div class="panel-body">
                     <div class="toggle">
                       <ul class="list-inline">
-                        <li><a href="" data-nsfw-filter-status="swf">Check all</a></li>
-                        <li><a href="" data-nsfw-filter-status="swf">Unchecked all</a></li>
-                        <li><a href="" data-nsfw-filter-status="swf">Expand all</a></li>
+                        <li>
+                          <a href="" data-nsfw-filter-status="swf">Check all</a>
+                        </li>
+                        <li>
+                          <a href="" data-nsfw-filter-status="swf"
+                            >Unchecked all</a
+                          >
+                        </li>
+                        <li>
+                          <a href="" data-nsfw-filter-status="swf"
+                            >Expand all</a
+                          >
+                        </li>
                       </ul>
                     </div>
                     <ul class="list-unstyled">
                       <li class="item">
                         <h4>Server Sharing Rules</h4>
-                        <hr>
+                        <hr />
                         <div>
-                          <div @click="clickedItem" data-toggle="collapse" data-target="#summary" aria-expanded="false"
-                            class="clearfix section-title collapsed" >
-                            <h4 class="pull-left"><img src="/media/svg/teams/summary.svg?925adfbd6803716ea4de081987ec5765"
-                                alt="icon" data-nsfw-filter-status="sfw" style="visibility: visible;"> Summary
-                              
-                            </h4> <i class="rc rc-ln-chevron-down pull-right"></i>
+                          <div
+                            @click="clickedItem"
+                            data-toggle="collapse"
+                            data-target="#summary"
+                            aria-expanded="false"
+                            class="clearfix section-title collapsed"
+                          >
+                            <h4 class="pull-left">
+                              <img
+                                src="/media/svg/teams/summary.svg?925adfbd6803716ea4de081987ec5765"
+                                alt="icon"
+                                data-nsfw-filter-status="sfw"
+                                style="visibility: visible"
+                              />
+                              Summary
+                            </h4>
+                            <i class="rc rc-ln-chevron-down pull-right"></i>
                           </div>
-                          <ul id="summary" class="permission-list list-unstyled collapse" aria-expanded="false"
-                            style="height: 0px;">
+                          <ul
+                            id="summary"
+                            class="permission-list list-unstyled collapse"
+                            aria-expanded="false"
+                            style="height: 0px"
+                          >
                             <li>
                               <div data-v-469e20da="" class="form-group">
-                                <div data-v-469e20da="" class="checkbox"><label data-v-469e20da=""><input
-                                      data-v-469e20da="" type="checkbox" name="summary_data_view">
-                                    <p data-v-469e20da="" class="title" data-nsfw-filter-status="swf">View server
-                                      summary data</p>
-                                    <p data-v-469e20da="" class="sub" data-nsfw-filter-status="swf"> </p>
+                                <div data-v-469e20da="" class="checkbox">
+                                  <label data-v-469e20da=""
+                                    ><input
+                                      data-v-469e20da=""
+                                      type="checkbox"
+                                      name="summary_data_view"
+                                    />
+                                    <p
+                                      data-v-469e20da=""
+                                      class="title"
+                                      data-nsfw-filter-status="swf"
+                                    >
+                                      View server summary data
+                                    </p>
+                                    <p
+                                      data-v-469e20da=""
+                                      class="sub"
+                                      data-nsfw-filter-status="swf"
+                                    ></p>
                                   </label>
-                                  
                                 </div>
                               </div>
                             </li>
                           </ul>
                         </div>
                         <div>
-                          <div data-toggle="collapse" data-target="#health" aria-expanded="false"
-                            class="clearfix section-title collapsed">
-                            <h4 class="pull-left"><img src="/media/svg/teams/health.svg?3185ec4d39e408401f35bc5abcfbb37c"
-                                alt="icon" data-nsfw-filter-status="sfw" style="visibility: visible;"> Health
-                              
-                            </h4> <i class="rc rc-ln-chevron-down pull-right"></i>
+                          <div
+                            data-toggle="collapse"
+                            data-target="#health"
+                            aria-expanded="false"
+                            class="clearfix section-title collapsed"
+                          >
+                            <h4 class="pull-left">
+                              <img
+                                src="/media/svg/teams/health.svg?3185ec4d39e408401f35bc5abcfbb37c"
+                                alt="icon"
+                                data-nsfw-filter-status="sfw"
+                                style="visibility: visible"
+                              />
+                              Health
+                            </h4>
+                            <i class="rc rc-ln-chevron-down pull-right"></i>
                           </div>
-                          <ul id="health" class="permission-list list-unstyled collapse" aria-expanded="false"
-                            style="height: 0px;">
+                          <ul
+                            id="health"
+                            class="permission-list list-unstyled collapse"
+                            aria-expanded="false"
+                            style="height: 0px"
+                          >
                             <li>
                               <div data-v-469e20da="" class="form-group">
-                                <div data-v-469e20da="" class="checkbox"><label data-v-469e20da=""><input
-                                      data-v-469e20da="" type="checkbox" name="health_view">
-                                    <p data-v-469e20da="" class="title" data-nsfw-filter-status="swf">View server health
-                                      page</p>
-                                    <p data-v-469e20da="" class="sub" data-nsfw-filter-status="swf"> </p>
+                                <div data-v-469e20da="" class="checkbox">
+                                  <label data-v-469e20da=""
+                                    ><input
+                                      data-v-469e20da=""
+                                      type="checkbox"
+                                      name="health_view"
+                                    />
+                                    <p
+                                      data-v-469e20da=""
+                                      class="title"
+                                      data-nsfw-filter-status="swf"
+                                    >
+                                      View server health page
+                                    </p>
+                                    <p
+                                      data-v-469e20da=""
+                                      class="sub"
+                                      data-nsfw-filter-status="swf"
+                                    ></p>
                                   </label>
-                                  
                                 </div>
                               </div>
                             </li>
                             <li>
                               <div data-v-469e20da="" class="form-group">
-                                <div data-v-469e20da="" class="checkbox"><label data-v-469e20da=""><input
-                                      data-v-469e20da="" type="checkbox" name="health_disk_cleanup">
-                                    <p data-v-469e20da="" class="title" data-nsfw-filter-status="swf">Run disk cleanup
+                                <div data-v-469e20da="" class="checkbox">
+                                  <label data-v-469e20da=""
+                                    ><input
+                                      data-v-469e20da=""
+                                      type="checkbox"
+                                      name="health_disk_cleanup"
+                                    />
+                                    <p
+                                      data-v-469e20da=""
+                                      class="title"
+                                      data-nsfw-filter-status="swf"
+                                    >
+                                      Run disk cleanup
                                     </p>
-                                    <p data-v-469e20da="" class="sub" data-nsfw-filter-status="swf"> </p>
+                                    <p
+                                      data-v-469e20da=""
+                                      class="sub"
+                                      data-nsfw-filter-status="swf"
+                                    ></p>
                                   </label>
-                                  
                                 </div>
                               </div>
                             </li>
@@ -486,107 +564,226 @@
                           </ul>
                         </div> -->
                         <div>
-                          <div data-toggle="collapse" data-target="#database" aria-expanded="false"
-                            class="clearfix section-title collapsed">
-                            <h4 class="pull-left"><img src="/media/svg/teams/database.svg?60e4a56ecbb8841a0e668df5e4eb158a"
-                                alt="icon" data-nsfw-filter-status="sfw" style="visibility: visible;"> Database
-                              
-                            </h4> <i class="rc rc-ln-chevron-down pull-right"></i>
+                          <div
+                            data-toggle="collapse"
+                            data-target="#database"
+                            aria-expanded="false"
+                            class="clearfix section-title collapsed"
+                          >
+                            <h4 class="pull-left">
+                              <img
+                                src="/media/svg/teams/database.svg?60e4a56ecbb8841a0e668df5e4eb158a"
+                                alt="icon"
+                                data-nsfw-filter-status="sfw"
+                                style="visibility: visible"
+                              />
+                              Database
+                            </h4>
+                            <i class="rc rc-ln-chevron-down pull-right"></i>
                           </div>
-                          <ul id="database" class="permission-list list-unstyled collapse" aria-expanded="false"
-                            style="height: 0px;">
+                          <ul
+                            id="database"
+                            class="permission-list list-unstyled collapse"
+                            aria-expanded="false"
+                            style="height: 0px"
+                          >
                             <li>
                               <div data-v-469e20da="" class="form-group">
-                                <div data-v-469e20da="" class="checkbox"><label data-v-469e20da=""><input
-                                      data-v-469e20da="" type="checkbox" name="database_view">
-                                    <p data-v-469e20da="" class="title" data-nsfw-filter-status="swf">View database page
+                                <div data-v-469e20da="" class="checkbox">
+                                  <label data-v-469e20da=""
+                                    ><input
+                                      data-v-469e20da=""
+                                      type="checkbox"
+                                      name="database_view"
+                                    />
+                                    <p
+                                      data-v-469e20da=""
+                                      class="title"
+                                      data-nsfw-filter-status="swf"
+                                    >
+                                      View database page
                                     </p>
-                                    <p data-v-469e20da="" class="sub" data-nsfw-filter-status="swf"> </p>
+                                    <p
+                                      data-v-469e20da=""
+                                      class="sub"
+                                      data-nsfw-filter-status="swf"
+                                    ></p>
                                   </label>
-                                  
                                 </div>
                               </div>
                             </li>
                             <li>
                               <div data-v-469e20da="" class="form-group">
-                                <div data-v-469e20da="" class="checkbox"><label data-v-469e20da=""><input
-                                      data-v-469e20da="" type="checkbox" name="database_create">
-                                    <p data-v-469e20da="" class="title" data-nsfw-filter-status="swf">Add database</p>
-                                    <p data-v-469e20da="" class="sub" data-nsfw-filter-status="swf"> </p>
-                                  </label>
-                                  
-                                </div>
-                              </div>
-                            </li>
-                            <li>
-                              <div data-v-469e20da="" class="form-group">
-                                <div data-v-469e20da="" class="checkbox"><label data-v-469e20da=""><input
-                                      data-v-469e20da="" type="checkbox" name="database_delete">
-                                    <p data-v-469e20da="" class="title" data-nsfw-filter-status="swf">Delete database
+                                <div data-v-469e20da="" class="checkbox">
+                                  <label data-v-469e20da=""
+                                    ><input
+                                      data-v-469e20da=""
+                                      type="checkbox"
+                                      name="database_create"
+                                    />
+                                    <p
+                                      data-v-469e20da=""
+                                      class="title"
+                                      data-nsfw-filter-status="swf"
+                                    >
+                                      Add database
                                     </p>
-                                    <p data-v-469e20da="" class="sub" data-nsfw-filter-status="swf"> </p>
+                                    <p
+                                      data-v-469e20da=""
+                                      class="sub"
+                                      data-nsfw-filter-status="swf"
+                                    ></p>
                                   </label>
-                                  
                                 </div>
                               </div>
                             </li>
                             <li>
                               <div data-v-469e20da="" class="form-group">
-                                <div data-v-469e20da="" class="checkbox"><label data-v-469e20da=""><input
-                                      data-v-469e20da="" type="checkbox" name="database_user_create">
-                                    <p data-v-469e20da="" class="title" data-nsfw-filter-status="swf">Add database user
+                                <div data-v-469e20da="" class="checkbox">
+                                  <label data-v-469e20da=""
+                                    ><input
+                                      data-v-469e20da=""
+                                      type="checkbox"
+                                      name="database_delete"
+                                    />
+                                    <p
+                                      data-v-469e20da=""
+                                      class="title"
+                                      data-nsfw-filter-status="swf"
+                                    >
+                                      Delete database
                                     </p>
-                                    <p data-v-469e20da="" class="sub" data-nsfw-filter-status="swf"> </p>
+                                    <p
+                                      data-v-469e20da=""
+                                      class="sub"
+                                      data-nsfw-filter-status="swf"
+                                    ></p>
                                   </label>
-                                  
                                 </div>
                               </div>
                             </li>
                             <li>
                               <div data-v-469e20da="" class="form-group">
-                                <div data-v-469e20da="" class="checkbox"><label data-v-469e20da=""><input
-                                      data-v-469e20da="" type="checkbox" name="database_user_change_password">
-                                    <p data-v-469e20da="" class="title" data-nsfw-filter-status="swf">Change database
-                                      user password</p>
-                                    <p data-v-469e20da="" class="sub" data-nsfw-filter-status="swf"> </p>
+                                <div data-v-469e20da="" class="checkbox">
+                                  <label data-v-469e20da=""
+                                    ><input
+                                      data-v-469e20da=""
+                                      type="checkbox"
+                                      name="database_user_create"
+                                    />
+                                    <p
+                                      data-v-469e20da=""
+                                      class="title"
+                                      data-nsfw-filter-status="swf"
+                                    >
+                                      Add database user
+                                    </p>
+                                    <p
+                                      data-v-469e20da=""
+                                      class="sub"
+                                      data-nsfw-filter-status="swf"
+                                    ></p>
                                   </label>
-                                  
                                 </div>
                               </div>
                             </li>
                             <li>
                               <div data-v-469e20da="" class="form-group">
-                                <div data-v-469e20da="" class="checkbox"><label data-v-469e20da=""><input
-                                      data-v-469e20da="" type="checkbox" name="database_user_delete">
-                                    <p data-v-469e20da="" class="title" data-nsfw-filter-status="swf">Delete database
-                                      user</p>
-                                    <p data-v-469e20da="" class="sub" data-nsfw-filter-status="swf"> </p>
+                                <div data-v-469e20da="" class="checkbox">
+                                  <label data-v-469e20da=""
+                                    ><input
+                                      data-v-469e20da=""
+                                      type="checkbox"
+                                      name="database_user_change_password"
+                                    />
+                                    <p
+                                      data-v-469e20da=""
+                                      class="title"
+                                      data-nsfw-filter-status="swf"
+                                    >
+                                      Change database user password
+                                    </p>
+                                    <p
+                                      data-v-469e20da=""
+                                      class="sub"
+                                      data-nsfw-filter-status="swf"
+                                    ></p>
                                   </label>
-                                  
                                 </div>
                               </div>
                             </li>
                             <li>
                               <div data-v-469e20da="" class="form-group">
-                                <div data-v-469e20da="" class="checkbox"><label data-v-469e20da=""><input
-                                      data-v-469e20da="" type="checkbox" name="database_user_assign">
-                                    <p data-v-469e20da="" class="title" data-nsfw-filter-status="swf">Assign database
-                                      user to database</p>
-                                    <p data-v-469e20da="" class="sub" data-nsfw-filter-status="swf"> </p>
+                                <div data-v-469e20da="" class="checkbox">
+                                  <label data-v-469e20da=""
+                                    ><input
+                                      data-v-469e20da=""
+                                      type="checkbox"
+                                      name="database_user_delete"
+                                    />
+                                    <p
+                                      data-v-469e20da=""
+                                      class="title"
+                                      data-nsfw-filter-status="swf"
+                                    >
+                                      Delete database user
+                                    </p>
+                                    <p
+                                      data-v-469e20da=""
+                                      class="sub"
+                                      data-nsfw-filter-status="swf"
+                                    ></p>
                                   </label>
-                                  
                                 </div>
                               </div>
                             </li>
                             <li>
                               <div data-v-469e20da="" class="form-group">
-                                <div data-v-469e20da="" class="checkbox"><label data-v-469e20da=""><input
-                                      data-v-469e20da="" type="checkbox" name="database_user_revoke">
-                                    <p data-v-469e20da="" class="title" data-nsfw-filter-status="swf">Revoke database
-                                      user from database</p>
-                                    <p data-v-469e20da="" class="sub" data-nsfw-filter-status="swf"> </p>
+                                <div data-v-469e20da="" class="checkbox">
+                                  <label data-v-469e20da=""
+                                    ><input
+                                      data-v-469e20da=""
+                                      type="checkbox"
+                                      name="database_user_assign"
+                                    />
+                                    <p
+                                      data-v-469e20da=""
+                                      class="title"
+                                      data-nsfw-filter-status="swf"
+                                    >
+                                      Assign database user to database
+                                    </p>
+                                    <p
+                                      data-v-469e20da=""
+                                      class="sub"
+                                      data-nsfw-filter-status="swf"
+                                    ></p>
                                   </label>
-                                  
+                                </div>
+                              </div>
+                            </li>
+                            <li>
+                              <div data-v-469e20da="" class="form-group">
+                                <div data-v-469e20da="" class="checkbox">
+                                  <label data-v-469e20da=""
+                                    ><input
+                                      data-v-469e20da=""
+                                      type="checkbox"
+                                      name="database_user_revoke"
+                                    />
+                                    <p
+                                      data-v-469e20da=""
+                                      class="title"
+                                      data-nsfw-filter-status="swf"
+                                    >
+                                      Revoke database user from database
+                                    </p>
+                                    <p
+                                      data-v-469e20da=""
+                                      class="sub"
+                                      data-nsfw-filter-status="swf"
+                                    ></p>
+                                  </label>
                                 </div>
                               </div>
                             </li>
@@ -1012,106 +1209,227 @@
                           </ul>
                         </div> -->
                         <div>
-                          <div data-toggle="collapse" data-target="#system-user" aria-expanded="false"
-                            class="clearfix section-title collapsed">
-                            <h4 class="pull-left"><img src="/media/svg/teams/system-user.svg?eac0171f6722226fa36250dedf44f035"
-                                alt="icon" data-nsfw-filter-status="sfw" style="visibility: visible;"> System User
-                              
-                            </h4> <i class="rc rc-ln-chevron-down pull-right"></i>
+                          <div
+                            data-toggle="collapse"
+                            data-target="#system-user"
+                            aria-expanded="false"
+                            class="clearfix section-title collapsed"
+                          >
+                            <h4 class="pull-left">
+                              <img
+                                src="/media/svg/teams/system-user.svg?eac0171f6722226fa36250dedf44f035"
+                                alt="icon"
+                                data-nsfw-filter-status="sfw"
+                                style="visibility: visible"
+                              />
+                              System User
+                            </h4>
+                            <i class="rc rc-ln-chevron-down pull-right"></i>
                           </div>
-                          <ul id="system-user" class="permission-list list-unstyled collapse" aria-expanded="false"
-                            style="height: 0px;">
+                          <ul
+                            id="system-user"
+                            class="permission-list list-unstyled collapse"
+                            aria-expanded="false"
+                            style="height: 0px"
+                          >
                             <li>
                               <div data-v-469e20da="" class="form-group">
-                                <div data-v-469e20da="" class="checkbox"><label data-v-469e20da=""><input
-                                      data-v-469e20da="" type="checkbox" name="system_user_view">
-                                    <p data-v-469e20da="" class="title" data-nsfw-filter-status="swf">View system user
-                                      page</p>
-                                    <p data-v-469e20da="" class="sub" data-nsfw-filter-status="swf"> </p>
-                                  </label>
-                                  
-                                </div>
-                              </div>
-                            </li>
-                            <li>
-                              <div data-v-469e20da="" class="form-group">
-                                <div data-v-469e20da="" class="checkbox"><label data-v-469e20da=""><input
-                                      data-v-469e20da="" type="checkbox" name="system_user_create">
-                                    <p data-v-469e20da="" class="title" data-nsfw-filter-status="swf">Add system user
+                                <div data-v-469e20da="" class="checkbox">
+                                  <label data-v-469e20da=""
+                                    ><input
+                                      data-v-469e20da=""
+                                      type="checkbox"
+                                      name="system_user_view"
+                                    />
+                                    <p
+                                      data-v-469e20da=""
+                                      class="title"
+                                      data-nsfw-filter-status="swf"
+                                    >
+                                      View system user page
                                     </p>
-                                    <p data-v-469e20da="" class="sub" data-nsfw-filter-status="swf"> </p>
+                                    <p
+                                      data-v-469e20da=""
+                                      class="sub"
+                                      data-nsfw-filter-status="swf"
+                                    ></p>
                                   </label>
-                                  
                                 </div>
                               </div>
                             </li>
                             <li>
                               <div data-v-469e20da="" class="form-group">
-                                <div data-v-469e20da="" class="checkbox"><label data-v-469e20da=""><input
-                                      data-v-469e20da="" type="checkbox" name="system_user_change_password">
-                                    <p data-v-469e20da="" class="title" data-nsfw-filter-status="swf">Change system
-                                      user's password</p>
-                                    <p data-v-469e20da="" class="sub" data-nsfw-filter-status="swf"> </p>
-                                  </label>
-                                  
-                                </div>
-                              </div>
-                            </li>
-                            <li>
-                              <div data-v-469e20da="" class="form-group">
-                                <div data-v-469e20da="" class="checkbox"><label data-v-469e20da=""><input
-                                      data-v-469e20da="" type="checkbox" name="system_user_delete">
-                                    <p data-v-469e20da="" class="title" data-nsfw-filter-status="swf">Delete system user
+                                <div data-v-469e20da="" class="checkbox">
+                                  <label data-v-469e20da=""
+                                    ><input
+                                      data-v-469e20da=""
+                                      type="checkbox"
+                                      name="system_user_create"
+                                    />
+                                    <p
+                                      data-v-469e20da=""
+                                      class="title"
+                                      data-nsfw-filter-status="swf"
+                                    >
+                                      Add system user
                                     </p>
-                                    <p data-v-469e20da="" class="sub" data-nsfw-filter-status="swf"> </p>
+                                    <p
+                                      data-v-469e20da=""
+                                      class="sub"
+                                      data-nsfw-filter-status="swf"
+                                    ></p>
                                   </label>
-                                  
+                                </div>
+                              </div>
+                            </li>
+                            <li>
+                              <div data-v-469e20da="" class="form-group">
+                                <div data-v-469e20da="" class="checkbox">
+                                  <label data-v-469e20da=""
+                                    ><input
+                                      data-v-469e20da=""
+                                      type="checkbox"
+                                      name="system_user_change_password"
+                                    />
+                                    <p
+                                      data-v-469e20da=""
+                                      class="title"
+                                      data-nsfw-filter-status="swf"
+                                    >
+                                      Change system user's password
+                                    </p>
+                                    <p
+                                      data-v-469e20da=""
+                                      class="sub"
+                                      data-nsfw-filter-status="swf"
+                                    ></p>
+                                  </label>
+                                </div>
+                              </div>
+                            </li>
+                            <li>
+                              <div data-v-469e20da="" class="form-group">
+                                <div data-v-469e20da="" class="checkbox">
+                                  <label data-v-469e20da=""
+                                    ><input
+                                      data-v-469e20da=""
+                                      type="checkbox"
+                                      name="system_user_delete"
+                                    />
+                                    <p
+                                      data-v-469e20da=""
+                                      class="title"
+                                      data-nsfw-filter-status="swf"
+                                    >
+                                      Delete system user
+                                    </p>
+                                    <p
+                                      data-v-469e20da=""
+                                      class="sub"
+                                      data-nsfw-filter-status="swf"
+                                    ></p>
+                                  </label>
                                 </div>
                               </div>
                             </li>
                           </ul>
                         </div>
                         <div>
-                          <div data-toggle="collapse" data-target="#ssh-key" aria-expanded="false"
-                            class="clearfix section-title collapsed">
-                            <h4 class="pull-left"><img src="/media/svg/teams/ssh-key.svg?7114582a08f8f681a5640b4fefea1f30"
-                                alt="icon" data-nsfw-filter-status="sfw" style="visibility: visible;"> SSH Key
-                              
-                            </h4> <i class="rc rc-ln-chevron-down pull-right"></i>
+                          <div
+                            data-toggle="collapse"
+                            data-target="#ssh-key"
+                            aria-expanded="false"
+                            class="clearfix section-title collapsed"
+                          >
+                            <h4 class="pull-left">
+                              <img
+                                src="/media/svg/teams/ssh-key.svg?7114582a08f8f681a5640b4fefea1f30"
+                                alt="icon"
+                                data-nsfw-filter-status="sfw"
+                                style="visibility: visible"
+                              />
+                              SSH Key
+                            </h4>
+                            <i class="rc rc-ln-chevron-down pull-right"></i>
                           </div>
-                          <ul id="ssh-key" class="permission-list list-unstyled collapse" aria-expanded="false"
-                            style="height: 0px;">
+                          <ul
+                            id="ssh-key"
+                            class="permission-list list-unstyled collapse"
+                            aria-expanded="false"
+                            style="height: 0px"
+                          >
                             <li>
                               <div data-v-469e20da="" class="form-group">
-                                <div data-v-469e20da="" class="checkbox"><label data-v-469e20da=""><input
-                                      data-v-469e20da="" type="checkbox" name="ssh_key_view">
-                                    <p data-v-469e20da="" class="title" data-nsfw-filter-status="swf">View SSH key page
+                                <div data-v-469e20da="" class="checkbox">
+                                  <label data-v-469e20da=""
+                                    ><input
+                                      data-v-469e20da=""
+                                      type="checkbox"
+                                      name="ssh_key_view"
+                                    />
+                                    <p
+                                      data-v-469e20da=""
+                                      class="title"
+                                      data-nsfw-filter-status="swf"
+                                    >
+                                      View SSH key page
                                     </p>
-                                    <p data-v-469e20da="" class="sub" data-nsfw-filter-status="swf"> </p>
+                                    <p
+                                      data-v-469e20da=""
+                                      class="sub"
+                                      data-nsfw-filter-status="swf"
+                                    ></p>
                                   </label>
-                                  
                                 </div>
                               </div>
                             </li>
                             <li>
                               <div data-v-469e20da="" class="form-group">
-                                <div data-v-469e20da="" class="checkbox"><label data-v-469e20da=""><input
-                                      data-v-469e20da="" type="checkbox" name="ssh_key_create">
-                                    <p data-v-469e20da="" class="title" data-nsfw-filter-status="swf">Add SSH key</p>
-                                    <p data-v-469e20da="" class="sub" data-nsfw-filter-status="swf"> </p>
+                                <div data-v-469e20da="" class="checkbox">
+                                  <label data-v-469e20da=""
+                                    ><input
+                                      data-v-469e20da=""
+                                      type="checkbox"
+                                      name="ssh_key_create"
+                                    />
+                                    <p
+                                      data-v-469e20da=""
+                                      class="title"
+                                      data-nsfw-filter-status="swf"
+                                    >
+                                      Add SSH key
+                                    </p>
+                                    <p
+                                      data-v-469e20da=""
+                                      class="sub"
+                                      data-nsfw-filter-status="swf"
+                                    ></p>
                                   </label>
-                                  
                                 </div>
                               </div>
                             </li>
                             <li>
                               <div data-v-469e20da="" class="form-group">
-                                <div data-v-469e20da="" class="checkbox"><label data-v-469e20da=""><input
-                                      data-v-469e20da="" type="checkbox" name="ssh_key_delete">
-                                    <p data-v-469e20da="" class="title" data-nsfw-filter-status="swf">Delete SSH key</p>
-                                    <p data-v-469e20da="" class="sub" data-nsfw-filter-status="swf"> </p>
+                                <div data-v-469e20da="" class="checkbox">
+                                  <label data-v-469e20da=""
+                                    ><input
+                                      data-v-469e20da=""
+                                      type="checkbox"
+                                      name="ssh_key_delete"
+                                    />
+                                    <p
+                                      data-v-469e20da=""
+                                      class="title"
+                                      data-nsfw-filter-status="swf"
+                                    >
+                                      Delete SSH key
+                                    </p>
+                                    <p
+                                      data-v-469e20da=""
+                                      class="sub"
+                                      data-nsfw-filter-status="swf"
+                                    ></p>
                                   </label>
-                                  
                                 </div>
                               </div>
                             </li>
@@ -1120,7 +1438,7 @@
                       </li>
                       <li class="item">
                         <h4>Atomic Deployment Sharing Rules (Coming Soon)</h4>
-                        <hr>
+                        <hr />
                       </li>
                     </ul>
                   </div>
@@ -1130,26 +1448,46 @@
                 <div class="panel panel-default">
                   <div class="panel-heading">
                     <h4>Create A Team</h4>
-                    <p data-nsfw-filter-status="swf">Create a team and select which permissions the members inside this
-                      team have over your servers.</p>
+                    <p data-nsfw-filter-status="swf">
+                      Create a team and select which permissions the members
+                      inside this team have over your servers.
+                    </p>
                   </div>
                   <div class="panel-body">
-                    <div class="form-group"><label for="name" class="control-label">Team Name
-                        </label>
-                       <input type="text" name="name"
+                    <div class="form-group">
+                      <label for="name" class="control-label">Team Name </label>
+                      <input
+                        type="text"
+                        name="name"
                         placeholder="Name of this team. E.g: Sysadmin, Developer, Interns"
-                        class="form-control input-lg">
-                      
+                        class="form-control input-lg"
+                      />
                     </div>
-                    <div class="form-group"><label for="description" class="control-label">Team Description</label>
-                      <textarea name="description" rows="5" placeholder="Description of the team"
-                        class="form-control"></textarea>
-                      
-                    </div> <button data-v-69273b5e="" type="submit" class="btn btn-base btn-block"><span
-                        data-v-293d8245="" data-v-69273b5e="" data-nsfw-filter-status="swf"><span data-v-293d8245=""
-                          data-nsfw-filter-status="swf">
+                    <div class="form-group">
+                      <label for="description" class="control-label"
+                        >Team Description</label
+                      >
+                      <textarea
+                        name="description"
+                        rows="5"
+                        placeholder="Description of the team"
+                        class="form-control"
+                      ></textarea>
+                    </div>
+                    <button
+                      data-v-69273b5e=""
+                      type="submit"
+                      class="btn btn-base btn-block"
+                    >
+                      <span
+                        data-v-293d8245=""
+                        data-v-69273b5e=""
+                        data-nsfw-filter-status="swf"
+                        ><span data-v-293d8245="" data-nsfw-filter-status="swf">
                           Add Team
-                        </span></span></button>
+                        </span></span
+                      >
+                    </button>
                   </div>
                 </div>
               </div>
@@ -1162,171 +1500,165 @@
 </template>
 
 <style lang="scss">
-  @import "@/assets/sass/pages/wizard/wizard-1.scss";
+@import "@/assets/sass/pages/wizard/wizard-1.scss";
 </style>
 
 <script>
-  import formValidation from "@/assets/plugins/formvalidation/dist/es6/core/Core";
-  import Trigger from "@/assets/plugins/formvalidation/dist/es6/plugins/Trigger";
-  import Bootstrap from "@/assets/plugins/formvalidation/dist/es6/plugins/Bootstrap";
-  import SubmitButton from "@/assets/plugins/formvalidation/dist/es6/plugins/SubmitButton";
-  import KTUtil from "@/assets/js/components/util";
+import formValidation from "@/assets/plugins/formvalidation/dist/es6/core/Core";
+import Trigger from "@/assets/plugins/formvalidation/dist/es6/plugins/Trigger";
+import Bootstrap from "@/assets/plugins/formvalidation/dist/es6/plugins/Bootstrap";
+import SubmitButton from "@/assets/plugins/formvalidation/dist/es6/plugins/SubmitButton";
+import KTUtil from "@/assets/js/components/util";
 
-  import {
-    SET_BREADCRUMB
-  } from "@/core/services/store/breadcrumbs.module";
-  import Swal from "sweetalert2";
-  import ApiService from "@/core/services/api.service";
+import { SET_BREADCRUMB } from "@/core/services/store/breadcrumbs.module";
+import Swal from "sweetalert2";
+import ApiService from "@/core/services/api.service";
 
-  export default {
-    name: "CreateTeam",
-    data() {
-      return {
-        form: {
-          name: "tingerval",
-          address: "221.56.120.89",
-          ssh: "22"
-        }
-        /*TeamType: "Team",
+export default {
+  name: "CreateTeam",
+  data() {
+    return {
+      form: {
+        name: "tingerval",
+        address: "221.56.120.89",
+        ssh: "22"
+      }
+      /*TeamType: "Team",
         commandValue: `mkdir -p /root/.ssh && touch /root/.ssh/authorized_keys && echo "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCvVRd/oYPD8IaK1NuIaGkOIV/zvISGrkeBL7XY967cOXgJf26Zr/60bEGYzcQKG1OpAa8g6PPH2skUIw1i3geR3/0atMU1Osj8hV9Z6WCxCFlfGOjmJGzuR+TT8EcgYegdBTE2zIPahajUHaAZTYljb7ewEugflOeh0sRpZ3BER83hu1a8xoibIn+UuSXEN3f++BSdxZNu7suGd46fBgWeUw`,
         warningText: `Your server needs to have a new unused installation of Ubuntu 16.04, 18.04 or 20.04 x64 and must contain a root user. 
                       To get started, add this public key to /root/.ssh/authorized_keys file.`*/
-      };
-    },
-    mounted() {
-      this.$store.dispatch(SET_BREADCRUMB, [
-        {
-          title: "Team"
-        },
-        {
-          title: "Create"
-        }
-      ]);
-      this.fv = this.createValidation();
-      this.fv.on("core.form.valid", this.submit);
-      this.fv.on("core.form.invalid", () => {});
-    },
-    methods: {
-      clickedItem : function(evt){
-
-         var childUL = null;
-        // console.log(evt.target);  // == target object's innerhtml
-        // console.log(evt.currentTarget.getAttribute('data-target'));
-        // console.log(this);
-        // console.log(KTUtil.addClass);
-        if(evt.currentTarget.getAttribute('aria-expanded')=='true')
-        {
-          evt.currentTarget.setAttribute('aria-expanded', 'false');
-          KTUtil.addClass(evt.currentTarget, 'collapsed');
-          childUL = KTUtil.getById(evt.currentTarget.getAttribute('data-target').substring(1));
-          KTUtil.removeClass(childUL, 'in');
-          childUL.setAttribute('aria-expanded', 'false');
-          childUL.setAttribute('style', 'height:0px;');
-
-        }else
-        {
-          evt.currentTarget.setAttribute('aria-expanded', 'true');
-          KTUtil.removeClass(evt.currentTarget, 'collapsed');
-          childUL = KTUtil.getById(evt.currentTarget.getAttribute('data-target').substring(1));
-          KTUtil.addClass(childUL, 'in');
-          childUL.setAttribute('aria-expanded', 'true');
-          childUL.setAttribute('style', '');
-        }
+    };
+  },
+  mounted() {
+    this.$store.dispatch(SET_BREADCRUMB, [
+      {
+        title: "Team"
       },
-      createValidation: function () {
-        const create_form = KTUtil.getById("kt_form_server");
-        return formValidation(create_form, {
-          fields: {
-            name: {
-              validators: {
-                notEmpty: {
-                  message: "Name is required"
-                }
-              }
-            },
-            address: {
-              validators: {
-                notEmpty: {
-                  message: "IP address is required"
-                }
+      {
+        title: "Create"
+      }
+    ]);
+    this.fv = this.createValidation();
+    this.fv.on("core.form.valid", this.submit);
+    this.fv.on("core.form.invalid", () => {});
+  },
+  methods: {
+    clickedItem: function(evt) {
+      var childUL = null;
+      // console.log(evt.target);  // == target object's innerhtml
+      // console.log(evt.currentTarget.getAttribute('data-target'));
+      // console.log(this);
+      // console.log(KTUtil.addClass);
+      if (evt.currentTarget.getAttribute("aria-expanded") == "true") {
+        evt.currentTarget.setAttribute("aria-expanded", "false");
+        KTUtil.addClass(evt.currentTarget, "collapsed");
+        childUL = KTUtil.getById(
+          evt.currentTarget.getAttribute("data-target").substring(1)
+        );
+        KTUtil.removeClass(childUL, "in");
+        childUL.setAttribute("aria-expanded", "false");
+        childUL.setAttribute("style", "height:0px;");
+      } else {
+        evt.currentTarget.setAttribute("aria-expanded", "true");
+        KTUtil.removeClass(evt.currentTarget, "collapsed");
+        childUL = KTUtil.getById(
+          evt.currentTarget.getAttribute("data-target").substring(1)
+        );
+        KTUtil.addClass(childUL, "in");
+        childUL.setAttribute("aria-expanded", "true");
+        childUL.setAttribute("style", "");
+      }
+    },
+    createValidation: function() {
+      const create_form = KTUtil.getById("kt_form_server");
+      return formValidation(create_form, {
+        fields: {
+          name: {
+            validators: {
+              notEmpty: {
+                message: "Name is required"
               }
             }
           },
-          plugins: {
-            trigger: new Trigger(),
-            submitButton: new SubmitButton(),
-            bootstrap: new Bootstrap()
+          address: {
+            validators: {
+              notEmpty: {
+                message: "IP address is required"
+              }
+            }
+          }
+        },
+        plugins: {
+          trigger: new Trigger(),
+          submitButton: new SubmitButton(),
+          bootstrap: new Bootstrap()
+        }
+      });
+    },
+    makeToast(contents, variant = null) {
+      this.$bvToast.toast(contents, {
+        title: `Litegix`,
+        toaster: "b-toaster-bottom-right",
+        variant: variant,
+        solid: true
+      });
+    },
+    submit: function() {
+      // set spinner to submit button
+      const submitButton = this.$refs["kt_form_server_submit"];
+      submitButton.classList.add("spinner", "spinner-light", "spinner-right");
+      const removeSpinner = () => {
+        submitButton.classList.remove(
+          "spinner",
+          "spinner-light",
+          "spinner-right"
+        );
+      };
+
+      const payload = {
+        name: this.form.name,
+        provider: "other",
+        web_server: "nginx",
+        database: "mysql",
+        address: this.form.address,
+        php: "5.7",
+        ssh: this.form.ssh
+      };
+
+      //console.log("createTeam", payload);
+      ApiService.setHeader();
+      ApiService.post("teams/create", payload)
+        .then(({ data }) => {
+          //console.log("createTeam-response", data);
+          if (data.success) {
+            this.onCreateSuccess(data);
+          }
+          removeSpinner();
+        })
+        .catch(error => {
+          removeSpinner();
+          if (error.response && error.response.data) {
+            this.makeToast(error.response.data.message, "danger");
+          } else {
+            this.makeToast("There's something wrong", "danger");
           }
         });
-      },
-      makeToast(contents, variant = null) {
-        this.$bvToast.toast(contents, {
-          title: `Litegix`,
-          toaster: "b-toaster-bottom-right",
-          variant: variant,
-          solid: true
+    },
+    onCreateSuccess(response) {
+      //console.log("onCreateSuccess", response);
+      Swal.fire({
+        title: "",
+        text: response.message,
+        icon: "success",
+        confirmButtonClass: "btn btn-secondary",
+        heightAuto: false
+      }).then(() => {
+        this.$router.push({
+          name: "server-config"
         });
-      },
-      submit: function () {
-        // set spinner to submit button
-        const submitButton = this.$refs["kt_form_server_submit"];
-        submitButton.classList.add("spinner", "spinner-light", "spinner-right");
-        const removeSpinner = () => {
-          submitButton.classList.remove(
-            "spinner",
-            "spinner-light",
-            "spinner-right"
-          );
-        };
-
-        const payload = {
-          name: this.form.name,
-          provider: "other",
-          web_server: "nginx",
-          database: "mysql",
-          address: this.form.address,
-          php: "5.7",
-          ssh: this.form.ssh
-        };
-
-        //console.log("createTeam", payload);
-        ApiService.setHeader();
-        ApiService.post("teams/create", payload)
-          .then(({
-            data
-          }) => {
-            //console.log("createTeam-response", data);
-            if (data.success) {
-              this.onCreateSuccess(data);
-            }
-            removeSpinner();
-          })
-          .catch(error => {
-            removeSpinner();
-            if (error.response && error.response.data) {
-              this.makeToast(error.response.data.message, "danger");
-            } else {
-              this.makeToast("There's something wrong", "danger");
-            }
-          });
-      },
-      onCreateSuccess(response) {
-        //console.log("onCreateSuccess", response);
-        Swal.fire({
-          title: "",
-          text: response.message,
-          icon: "success",
-          confirmButtonClass: "btn btn-secondary",
-          heightAuto: false
-        }).then(() => {
-          this.$router.push({
-            name: "server-config"
-          });
-        });
-      }
+      });
     }
-  };
-
-  
+  }
+};
 </script>
-<style scoped src="@/assets/styles/app.css"></style>
+

@@ -8,9 +8,11 @@
         <h3 class="card-label">{{ server.name }}</h3>
       </div>
       <div class="card-toolbar">
-        <a href="#" class="btn btn-sm btn-icon btn-light-primay mr-2">
-          <i class="flaticon2-gear"></i>
-        </a>
+        <b-link to="servers/config">
+          <a class="btn btn-sm btn-icon btn-light-primay mr-2">
+            <i class="flaticon2-gear"></i>
+          </a>
+        </b-link>
       </div>
     </div>
     <div class="card-body">
@@ -58,6 +60,6 @@ export default {
   props: ["server"],
   data() {
     return {};
-  }
+  },
 };
 </script>

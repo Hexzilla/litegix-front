@@ -58,6 +58,7 @@
 
 <script>
 import { UPDATE_PERSONAL_INFO } from "@/core/services/store/profile.module";
+import { SET_BREADCRUMB } from "@/core/services/store/breadcrumbs.module";
 import VueQrcode from "vue-qrcode";
 
 export default {
@@ -79,6 +80,13 @@ export default {
       correctionLevel: "H"
     }
   }),
+  mounted() {
+    this.$store.dispatch(SET_BREADCRUMB, [
+      { title: "Settings", route: "profile" },
+      { title: "Authentication", route: "authentication" },
+      { title: "Connect Your App" }
+    ]);
+  },
   methods: {
     update() {
       var certify = this.$refs.chk_certify.value;

@@ -55,22 +55,30 @@
   </div>
 </template>
 <script>
+import { SET_BREADCRUMB } from "@/core/services/store/breadcrumbs.module";
 export default {
   data: () => ({
     valid: true,
     name: "",
-    // nameRules: [
-    //   (v) => !!v || "Name is required",
-    //   (v) => (v && v.length <= 10) || "Name must be less than 10 characters"
-    // ],
-    // email: "",
-    // emailRules: [
-    //   (v) => !!v || "E-mail is required",
-    //   (v) => /.+@.+\..+/.test(v) || "E-mail must be valid"
-    // ],
+    nameRules: [
+      v => !!v || "Name is required",
+      v => (v && v.length <= 10) || "Name must be less than 10 characters"
+    ],
+    email: "",
+    emailRules: [
+      v => !!v || "E-mail is required",
+      v => /.+@.+\..+/.test(v) || "E-mail must be valid"
+    ],
     select: null,
     items: ["Item 1", "Item 2", "Item 3", "Item 4"]
   }),
+  mounted() {
+    this.$store.dispatch(SET_BREADCRUMB, [
+      { title: "Settings", route: "profile" },
+      { title: "3rd Party API Key", route: "third_party_api_key" },
+      { title: "Add 3rd Party API Key" }
+    ]);
+  },
 
   methods: {
     addKey() {

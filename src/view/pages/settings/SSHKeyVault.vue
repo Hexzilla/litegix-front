@@ -70,6 +70,7 @@
 }
 </style>
 <script>
+import { SET_BREADCRUMB } from "@/core/services/store/breadcrumbs.module";
 export default {
   data: () => ({
     dialogDelete: false,
@@ -89,6 +90,12 @@ export default {
   created() {
     this.initialize();
   },
+  mounted() {
+    this.$store.dispatch(SET_BREADCRUMB, [
+      { title: "Settings", route: "profile" },
+      { title: "SSH KEY Vault" }
+    ]);
+  },
 
   methods: {
     initialize() {
@@ -101,6 +108,7 @@ export default {
     },
 
     deleteItem(item) {
+      console.log(item);
       this.dialogDelete = true;
     }
   }

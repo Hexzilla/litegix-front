@@ -62,3 +62,12 @@ export default {
   }
 };
 </script>
+
+<style>
+/* for increase font-size in data table 0702 */
+.v-data-table > .v-data-table__wrapper > table > tbody > tr > td,
+.v-data-table > .v-data-table__wrapper > table > thead > tr > th,
+.v-data-table > .v-data-table__wrapper > table > tfoot > tr > td {
+  font-size: 1.1rem;
+}
+</style>

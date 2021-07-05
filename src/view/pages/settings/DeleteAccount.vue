@@ -100,14 +100,12 @@
               >Email Address</label
             >
             <div class="col-lg-9 col-xl-6">
-              <v-text-field
-                :rules="rules"
-                outlined
-                dense
+              <input
                 ref="email"
+                class="form-control form-control-lg form-control-solid"
                 type="text"
-                placeholder="Email Address of you account"
-              ></v-text-field>
+                placeholder="Email Address"
+              />
             </div>
           </div>
 
@@ -116,32 +114,10 @@
               >Certify To Delelte Account</label
             >
             <div class="col-lg-9 col-xl-6">
-              <div class="d-flex flex-grow-1">
-                <label
-                  class="
-                    checkbox checkbox-lg checkbox-lg checkbox-single
-                    flex-shrink-0
-                    mr-4
-                    v-treeview
-                  "
-                >
-                  <input
-                    id="chk_certify"
-                    type="checkbox"
-                    value="1"
-                    ref="chk_certify"
-                  />
-                  <span></span>
-                </label>
-                <label
-                  for="chk_certify"
-                  class="d-flex flex-wrap justify-content-between w-100"
-                >
-                  <div class="d-flex flex-column py-2">
-                    <span class="text-muted">
-                      I certify that I want to delete my account from RunCloud.
-                    </span>
-                  </div>
+              <div class="checkbox-inline">
+                <label class="checkbox">
+                  <input type="checkbox" ref="chk_certify" /><span></span>
+                  I certify that I want to delete my account from RunCloud.
                 </label>
               </div>
             </div>
@@ -151,32 +127,10 @@
               >Invoice and Receipt</label
             >
             <div class="col-lg-9 col-xl-6 d-flex flex-grow-1">
-              <label
-                class="
-                  checkbox checkbox-lg checkbox-lg checkbox-single
-                  flex-shrink-0
-                  mr-4
-                  v-treeview
-                "
-              >
-                <input
-                  id="chk_invoice"
-                  type="checkbox"
-                  value="1"
-                  ref="chk_invoice"
-                />
-                <span></span>
-              </label>
-              <label
-                for="chk_invoice"
-                class="d-flex flex-wrap justify-content-between w-100"
-              >
-                <div class="d-flex flex-column py-2">
-                  <span class="text-muted">
-                    I understand that my invoice and receipt will be keep for
-                    internal reference.
-                  </span>
-                </div>
+              <label class="checkbox">
+                <input type="checkbox" ref="chk_invoice" /><span></span>
+                I understand that my invoice and receipt will be keep for
+                internal reference.
               </label>
             </div>
           </div>

@@ -5,7 +5,9 @@
       <!--begin::Header-->
       <div class="card-header py-3">
         <div class="card-title align-items-start flex-column">
-          <h1 class="font-weight-bolder text-dark">API Key</h1>
+          <h3 class="card-label font-weight-bolder text-dark">
+            API Key
+          </h3>
           <p class="text-muted font-size-sm mt-1">
             You can use this API Key and API Secret to download your backup. To
             enable RunCloud API access, you need to enable API Access.
@@ -64,7 +66,9 @@
       <!--begin::Header-->
       <div class="card-header py-3">
         <div class="card-title align-items-start flex-column">
-          <h1 class="font-weight-bolder text-dark">Enable API Access</h1>
+          <h3 class="card-label font-weight-bolder text-dark">
+            Enable API Access
+          </h3>
           <p class="text-muted font-size-sm mt-1">
             Enable API Access to use the RunCloud API endpoint. If you are only
             using the API Key and API Secret to download backups, you don't have
@@ -84,7 +88,9 @@
     <div class="card card-custom">
       <!--begin::Header-->
       <v-card-title>
-        <h1>IP Address Restriction</h1>
+        <h3 class="card-label font-weight-bolder text-dark">
+          IP Address Restriction
+        </h3>
         <v-spacer></v-spacer>
         <v-text-field
           v-model="search"

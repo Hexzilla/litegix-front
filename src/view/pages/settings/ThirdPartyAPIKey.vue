@@ -2,7 +2,9 @@
   <div class="card card-custom">
     <!--begin::Header-->
     <v-card-title>
-      <h1>3rd Party API Key</h1>
+      <h3 class="card-label font-weight-bolder text-dark">
+        3rd Party API Key
+      </h3>
       <v-spacer></v-spacer>
       <v-text-field
         v-model="tableData.search"

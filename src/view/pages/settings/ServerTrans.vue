@@ -2,7 +2,9 @@
   <v-card>
     <div class="card-body">
       <v-card-title>
-        <h1>Server Transfer Request</h1>
+        <h3 class="card-label font-weight-bolder text-dark">
+          Server Transfer Request
+        </h3>
         <v-spacer></v-spacer>
         <!-- <v-text-field
           v-model="search"

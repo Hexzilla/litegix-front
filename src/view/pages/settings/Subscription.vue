@@ -3,7 +3,9 @@
     <v-card>
       <div class="card-body">
         <v-card-title>
-          <h1>Subscription</h1>
+          <h3 class="card-label font-weight-bolder text-dark">
+            Subscription
+          </h3>
           <v-spacer></v-spacer>
           <router-link
             to="/settings/create_subscription"

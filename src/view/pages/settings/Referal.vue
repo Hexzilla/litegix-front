@@ -12,10 +12,15 @@
     <v-card>
       <div class="card-body">
         <v-card-title>
-          <h1>Server Transfer Request</h1>
+          <h1>Claimed Rewards</h1>
           <v-spacer></v-spacer>
         </v-card-title>
-        <v-data-table :headers="headers" :items="desserts"></v-data-table>
+        <v-data-table
+          no-data-text="No data"
+          class="dataTable"
+          :headers="headers"
+          :items="desserts"
+        ></v-data-table>
       </div>
     </v-card>
   </div>
@@ -24,6 +29,7 @@
 <script>
 import StatsWidget7 from "@/view/content/widgets/stats/Widget7.vue";
 import StatsWidget12 from "@/view/content/widgets/stats/Widget12.vue";
+import { SET_BREADCRUMB } from "@/core/services/store/breadcrumbs.module";
 export default {
   name: "Referal",
   components: {
@@ -47,6 +53,20 @@ export default {
       ],
       desserts: []
     };
+  },
+  mounted() {
+    this.$store.dispatch(SET_BREADCRUMB, [
+      { title: "Settings", route: "profile" },
+      { title: "Referral" }
+    ]);
   }
 };
 </script>
+<style scoped>
+.v-data-table > .v-data-table__wrapper > table > tfoot > tr > th {
+  font-size: 1.875rem !important;
+}
+.v-data-table > .v-data-table__wrapper > table > tbody > tr > td {
+  font-size: 1.875rem !important;
+}
+</style>

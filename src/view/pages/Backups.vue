@@ -19,7 +19,7 @@
                   <template v-slot:aside>
                     <span class="svg-icon svg-icon-xl svg-icon-primary">
                       <inline-svg
-                        src="media/svg/icons/Code/Time-schedule.svg"
+                        src="/media/svg/icons/Code/Time-schedule.svg"
                       />
                     </span>
                   </template>
@@ -33,7 +33,7 @@
                 <b-media tag="li" class="my-4">
                   <template v-slot:aside>
                     <span class="svg-icon svg-icon-xl svg-icon-primary">
-                      <inline-svg src="media/svg/icons/Home/Library.svg" />
+                      <inline-svg src="/media/svg/icons/Home/Library.svg" />
                     </span>
                   </template>
 
@@ -47,7 +47,7 @@
                 <b-media tag="li">
                   <template v-slot:aside>
                     <span class="svg-icon svg-icon-xl svg-icon-primary">
-                      <inline-svg src="media/svg/icons/Files/Download.svg" />
+                      <inline-svg src="/media/svg/icons/Files/Download.svg" />
                     </span>
                   </template>
 
@@ -62,7 +62,7 @@
         </b-col>
         <b-col md="6">
           <b-card-img
-            src="media/products/22.png"
+            src="/media/products/22.png"
             class="rounded-0"
           ></b-card-img>
         </b-col>

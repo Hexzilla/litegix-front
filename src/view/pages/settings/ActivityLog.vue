@@ -1,29 +1,36 @@
 <template>
-  <div class="row">
-    <div class="col-md-12">
-      <v-card>
-        <v-card-title>
-          Activity Log
-          <v-spacer></v-spacer>
-          <v-text-field
-            v-model="code4.search"
-            append-icon="search"
-            label="Search"
-            single-line
-            hide-details
-          ></v-text-field>
-        </v-card-title>
-        <v-data-table
-          :headers="code4.headers"
-          :items="code4.logs"
-          :search="code4.search"
-        ></v-data-table>
-      </v-card>
+  <v-card>
+    <div class="card-body">
+      <v-card-title>
+        <h1>Activity Log</h1>
+        <v-spacer></v-spacer>
+        <v-text-field
+          v-model="code4.search"
+          outlined
+          dense
+          label="Search..."
+          hide-details
+        ></v-text-field>
+      </v-card-title>
+      <v-data-table
+        no-data-text="No data"
+        :headers="code4.headers"
+        :items="code4.logs"
+        :search="code4.search"
+      >
+        <template v-slot:item.name="{ item }">
+          <v-chip color="green" label small>
+            <v-icon left>mdi-pencil</v-icon>
+            {{ item.name }}
+          </v-chip>
+        </template>
+      </v-data-table>
     </div>
-  </div>
+  </v-card>
 </template>
 
 <script>
+import { SET_BREADCRUMB } from "@/core/services/store/breadcrumbs.module";
 export default {
   data() {
     return {
@@ -63,6 +70,12 @@ export default {
         ]
       }
     };
+  },
+  mounted() {
+    this.$store.dispatch(SET_BREADCRUMB, [
+      { title: "Settings", route: "profile" },
+      { title: "Activity Log" }
+    ]);
   }
 };
 </script>

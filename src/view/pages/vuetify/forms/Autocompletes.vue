@@ -7,7 +7,7 @@
     >
       <div class="alert-icon">
         <span class="svg-icon svg-icon-lg">
-          <inline-svg src="media/svg/icons/Tools/Compass.svg" />
+          <inline-svg src="/media/svg/icons/Tools/Compass.svg" />
         </span>
       </div>
       <div class="alert-text">
@@ -199,7 +199,7 @@
                   indeterminate
                 ></v-progress-linear>
               </template>
-              <v-img height="200" src="media/stock-600x600/img-10.jpg">
+              <v-img height="200" src="/media/stock-600x600/img-10.jpg">
                 <v-row>
                   <v-col class="text-right" cols="12">
                     <v-menu bottom left transition="slide-y-transition">
@@ -522,7 +522,7 @@ export default {
   </template>
   <v-img
     height="200"
-    src="media/stock-600x600/img-10.jpg"
+    src="/media/stock-600x600/img-10.jpg"
   >
     <v-row>
       <v-col

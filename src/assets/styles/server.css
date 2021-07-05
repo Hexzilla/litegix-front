@@ -1,0 +1,46 @@
+.margin-bottom-unset {
+    margin-bottom: unset !important;
+}
+
+.webapp-type-selection {
+    flex-direction: column;
+}
+
+.webapp-type-selection .item~.item {
+    margin-top: 24px
+}
+
+.webapp-type-selection .item {
+    flex: 1 1 0
+}
+    
+
+.webapp-type-selection h5 {
+    margin-top: unset
+}
+
+.webapp-type-selection i {
+    color: #22313f;
+    font-size: 32px;
+    margin-right: 16px
+}
+
+.webapp-type-selection .btn-checkbox {
+    text-align: left !important;
+    margin-top: unset;
+    margin-bottom: unset;
+    margin-left: unset !important;
+    padding: 24px;
+    height: 100%
+}
+
+.form-group .rc-information{
+    padding-left: 8px; 
+    color: rgb(34, 49, 63);
+}
+.btn-add-new-item {
+    position: absolute;
+    right: 0;
+    margin-top: 0;
+    padding: unset;
+}

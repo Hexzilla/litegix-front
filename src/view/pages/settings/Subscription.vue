@@ -6,7 +6,7 @@
           <h1>Subscription</h1>
           <v-spacer></v-spacer>
           <router-link
-            to="/settings/subscription/add"
+            to="/settings/create_subscription"
             v-slot="{ href, navigate }"
           >
             <a :href="href" @click="navigate" data-nsfw-filter-status="swf">
@@ -115,6 +115,7 @@
 </template>
 
 <script>
+import { SET_BREADCRUMB } from "@/core/services/store/breadcrumbs.module";
 export default {
   data() {
     return {
@@ -122,6 +123,12 @@ export default {
       items: ["Active", "Inactive", "canceled"],
       text: "Looks like you don't have anything here."
     };
+  },
+  mounted() {
+    this.$store.dispatch(SET_BREADCRUMB, [
+      { title: "Settings", route: "profile" },
+      { title: "Subscription" }
+    ]);
   }
 };
 </script>

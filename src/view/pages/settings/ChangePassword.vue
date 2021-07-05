@@ -5,7 +5,7 @@
     <div class="card-header py-3">
       <div class="card-title align-items-start flex-column">
         <h3 class="card-label font-weight-bolder text-dark">Change Password</h3>
-        <span class="text-muted  font-size-sm mt-1"
+        <span class="text-muted font-weight-bold font-size-sm mt-1"
           >Change your account password</span
         >
       </div>
@@ -72,7 +72,7 @@
               <!--end::Svg Icon-->
             </span>
           </div>
-          <div class="alert-text ">
+          <div class="alert-text font-weight-bold">
             Configure user passwords to expire periodically. Users will need
             warning that their passwords are going to expire, <br />or they
             might inadvertently get locked out of the system!
@@ -104,7 +104,7 @@
               name="current_password"
               ref="current_password"
             />
-            <a href="#" class="text-sm ">Forgot password ?</a>
+            <a href="#" class="text-sm font-weight-bold">Forgot password ?</a>
           </div>
         </div>
         <div class="form-group row">

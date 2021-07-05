@@ -6,7 +6,7 @@
           <b-card
             bg-variant="primary"
             text-variant="white"
-            img-src="media/logos/logo-letter-3.png"
+            img-src="/media/logos/logo-letter-3.png"
             align="center"
           >
             <b-card-text>Create A Project</b-card-text>
@@ -16,7 +16,7 @@
           <b-card
             bg-variant="primary"
             text-variant="white"
-            img-src="media/logos/logo-letter-3.png"
+            img-src="/media/logos/logo-letter-3.png"
             img-
             align="center"
           >
@@ -28,7 +28,7 @@
           <b-card
             bg-variant="primary"
             text-variant="white"
-            img-src="media/logos/logo-letter-3.png"
+            img-src="/media/logos/logo-letter-3.png"
             img-
             align="center"
           >

@@ -5,10 +5,8 @@
       <!--begin::Header-->
       <div class="card-header py-3">
         <div class="card-title align-items-start flex-column">
-          <h3 class="card-label font-weight-bolder text-dark">
-            My Profile
-          </h3>
-          <span class="text-muted  font-size-sm mt-1"
+          <h3 class="card-label font-weight-bolder text-dark">My Profile</h3>
+          <span class="text-muted font-size-sm mt-1"
             >To change your email address, please open a support ticket.</span
           >
         </div>
@@ -19,7 +17,7 @@
         <!--begin::Body-->
         <div class="card-body">
           <div class="form-group row">
-            <label class="col-xl-3 col-lg-3 col-form-label text-right"
+            <label class="col-xl-3 col-lg-3 col-form-label text-lg-right"
               >Email</label
             >
             <div class="col-lg-9 col-xl-6">
@@ -32,7 +30,7 @@
             </div>
           </div>
           <div class="form-group row">
-            <label class="col-xl-3 col-lg-3 col-form-label text-right"
+            <label class="col-xl-3 col-lg-3 col-form-label text-lg-right"
               >Name</label
             >
             <div class="col-lg-9 col-xl-6">
@@ -44,7 +42,7 @@
             </div>
           </div>
           <div class="form-group row">
-            <label class="col-xl-3 col-lg-3 col-form-label text-right"
+            <label class="col-xl-3 col-lg-3 col-form-label text-lg-right"
               >Time Zone</label
             >
             <div class="col-lg-9 col-xl-6">
@@ -59,14 +57,17 @@
                     :selected="
                       currentUserAccountInfo.time_zone == item ? true : false
                     "
-                    >{{ item }}</option
                   >
+                    {{ item }}
+                  </option>
                 </template>
               </select>
             </div>
           </div>
           <div class="form-group row align-items-center">
-            <label class="col-xl-3 col-lg-3 col-form-label text-right"></label>
+            <label
+              class="col-xl-3 col-lg-3 col-form-label text-lg-right"
+            ></label>
             <div class="col-lg-9 col-xl-6">
               <div class="checkbox-inline">
                 <label class="checkbox">
@@ -80,7 +81,9 @@
             </div>
           </div>
           <div class="form-group row align-items-center">
-            <label class="col-xl-3 col-lg-3 col-form-label text-right"></label>
+            <label
+              class="col-xl-3 col-lg-3 col-form-label text-lg-right"
+            ></label>
             <div class="col-lg-9 col-xl-6">
               <button
                 type="reset"
@@ -105,7 +108,7 @@
           <h3 class="card-label font-weight-bolder text-dark">
             Company Details
           </h3>
-          <span class="text-muted  font-size-sm mt-1">
+          <span class="text-muted font-size-sm mt-1">
             If you are representing your company, fill in the form here to get
             invoice under your company name.
           </span>
@@ -117,7 +120,7 @@
         <!--begin::Body-->
         <div class="card-body">
           <div class="form-group row">
-            <label class="col-xl-3 col-lg-3 col-form-label text-right"
+            <label class="col-xl-3 col-lg-3 col-form-label text-lg-right"
               >Company Name</label
             >
             <div class="col-lg-9 col-xl-6">
@@ -130,7 +133,7 @@
             </div>
           </div>
           <div class="form-group row">
-            <label class="col-xl-3 col-lg-3 col-form-label text-right"
+            <label class="col-xl-3 col-lg-3 col-form-label text-lg-right"
               >Address Line 1</label
             >
             <div class="col-lg-9 col-xl-6">
@@ -143,7 +146,7 @@
             </div>
           </div>
           <div class="form-group row">
-            <label class="col-xl-3 col-lg-3 col-form-label text-right"
+            <label class="col-xl-3 col-lg-3 col-form-label text-lg-right"
               >Address Line 2</label
             >
             <div class="col-lg-9 col-xl-6">
@@ -157,7 +160,7 @@
           </div>
 
           <div class="form-group row">
-            <label class="col-xl-3 col-lg-3 col-form-label text-right"
+            <label class="col-xl-3 col-lg-3 col-form-label text-lg-right"
               >City</label
             >
             <div class="col-lg-9 col-xl-3">
@@ -170,7 +173,7 @@
             </div>
           </div>
           <div class="form-group row">
-            <label class="col-xl-3 col-lg-3 col-form-label text-right"
+            <label class="col-xl-3 col-lg-3 col-form-label text-lg-right"
               >Postal Code</label
             >
             <div class="col-lg-9 col-xl-3">
@@ -183,7 +186,7 @@
             </div>
           </div>
           <div class="form-group row">
-            <label class="col-xl-3 col-lg-3 col-form-label text-right"
+            <label class="col-xl-3 col-lg-3 col-form-label text-lg-right"
               >State</label
             >
             <div class="col-lg-9 col-xl-6">
@@ -196,20 +199,19 @@
             </div>
           </div>
           <div class="form-group row">
-            <label class="col-xl-3 col-lg-3 col-form-label text-right"
+            <label class="col-xl-3 col-lg-3 col-form-label text-lg-right"
               >Country</label
             >
             <div class="col-lg-9 col-xl-6">
               <select
                 class="form-control form-control-lg form-control-solid"
                 ref="Country"
-              >
-              </select>
+              ></select>
             </div>
           </div>
 
           <div class="form-group row">
-            <label class="col-xl-3 col-lg-3 col-form-label text-right"
+            <label class="col-xl-3 col-lg-3 col-form-label text-lg-right"
               >Tax/VAT/GST Number</label
             >
             <div class="col-lg-9 col-xl-6">
@@ -223,7 +225,9 @@
           </div>
 
           <div class="form-group row">
-            <label class="col-xl-3 col-lg-3 col-form-label text-right"></label>
+            <label
+              class="col-xl-3 col-lg-3 col-form-label text-lg-right"
+            ></label>
             <div class="col-lg-9 col-xl-6">
               <button
                 type="reset"
@@ -246,6 +250,7 @@
 <script>
 import { mapGetters } from "vuex";
 import { UPDATE_PERSONAL_INFO } from "@/core/services/store/profile.module";
+import { SET_BREADCRUMB } from "@/core/services/store/breadcrumbs.module";
 
 export default {
   name: "Account",
@@ -401,6 +406,10 @@ export default {
     };
   },
   mounted() {
+    this.$store.dispatch(SET_BREADCRUMB, [
+      { title: "Settings" },
+      { title: "Profile" }
+    ]);
     this.current_photo = this.currentUserPersonalInfo.photo;
   },
   methods: {

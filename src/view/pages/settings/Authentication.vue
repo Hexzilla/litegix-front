@@ -15,10 +15,7 @@
         </div>
       </div>
       <div class="card-body">
-        <router-link
-          to="/settings/authentication/connectApp"
-          v-slot="{ href, navigate }"
-        >
+        <router-link to="/settings/connectApp" v-slot="{ href, navigate }">
           <a :href="href" @click="navigate" data-nsfw-filter-status="swf">
             <button type="button" class="btn btn-success" ref="setup">
               Set Up Two-Factor Authentication
@@ -205,6 +202,7 @@
 
 <script>
 import { UPDATE_PERSONAL_INFO } from "@/core/services/store/profile.module";
+import { SET_BREADCRUMB } from "@/core/services/store/breadcrumbs.module";
 import Vue from "vue";
 import VueClipboard from "vue-clipboard2";
 
@@ -236,6 +234,12 @@ export default {
       type: String,
       default: ""
     }
+  },
+  mounted() {
+    this.$store.dispatch(SET_BREADCRUMB, [
+      { title: "Settings", route: "profile" },
+      { title: "Authentication" }
+    ]);
   },
 
   methods: {

@@ -3,7 +3,12 @@
     <div class="col-xl-8 col-lg-8 col-md-6 col-sm-6">
       <div>
         <h1>Create subscription</h1>
-        <h4>1 Customize your own plan</h4>
+        <h4 class="mt-6 mb-5">
+          <v-avatar left class="gray darken-4" color="#cecdcd" size="32">
+            1
+          </v-avatar>
+          Customize your own plan
+        </h4>
       </div>
       <v-card>
         <div class="card-body">
@@ -87,6 +92,34 @@
           </v-container>
         </div>
       </v-card>
+      <h4 class="mt-6 mb-5">
+        <v-avatar left class="gray darken-4" color="#cecdcd" size="32">
+          2
+        </v-avatar>
+        Select payment method
+      </h4>
+      <v-card>
+        <div class="card-body">
+          <v-container>
+            <b-card
+              align="center"
+              bg-variant="primary"
+              min-height="60"
+              style="cursor: pointer"
+              rounded="3"
+            >
+              <span>
+                <v-img
+                  max-width="55"
+                  class="float-left"
+                  src="../../../../public/media/logos/logo-letter-9.png"
+                ></v-img>
+                <b-card-text>Add a New Payment Method</b-card-text>
+              </span>
+            </b-card>
+          </v-container>
+        </div>
+      </v-card>
     </div>
     <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6">
       <v-card>
@@ -96,10 +129,10 @@
           </v-card-title>
           <v-container>
             <v-form ref="addApiKey" v-model="valid" lazy-validation>
-              <v-switch
+              <!-- <v-switch
                 v-model="switch1"
                 :label="`Switch 1: ${switch1.toString()}`"
-              ></v-switch>
+              ></v-switch> -->
             </v-form>
           </v-container>
         </div>
@@ -107,3 +140,16 @@
     </div>
   </div>
 </template>
+<script>
+import { SET_BREADCRUMB } from "@/core/services/store/breadcrumbs.module";
+export default {
+  name: "AddSubscription",
+  mounted() {
+    this.$store.dispatch(SET_BREADCRUMB, [
+      { title: "Settings", route: "profile" },
+      { title: "Subscription", route: "subscription" },
+      { title: "Create Subscription" }
+    ]);
+  }
+};
+</script>

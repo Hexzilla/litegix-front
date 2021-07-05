@@ -7,7 +7,7 @@
     >
       <div class="alert-icon">
         <span class="svg-icon svg-icon-lg">
-          <inline-svg src="media/svg/icons/Tools/Compass.svg" />
+          <inline-svg src="/media/svg/icons/Tools/Compass.svg" />
         </span>
       </div>
       <div class="alert-text">
@@ -221,7 +221,7 @@
                     <v-img
                       height="200"
                       width="200"
-                      src="media/stock-600x600/img-1.jpg"
+                      src="/media/stock-600x600/img-1.jpg"
                     ></v-img>
                   </v-col>
 
@@ -264,7 +264,7 @@
               <v-img
                 class="white--text align-end"
                 height="200px"
-                src="media/stock-600x600/img-18.jpg"
+                src="/media/stock-600x600/img-18.jpg"
               >
                 <v-card-title>Top 10 Australian beaches</v-card-title>
               </v-img>
@@ -421,7 +421,7 @@ export default {
         <v-img
           height="200"
           width="200"
-          src="media/stock-600x600/img-1.jpg"
+          src="/media/stock-600x600/img-1.jpg"
         ></v-img>
       </v-col>
 
@@ -492,7 +492,7 @@ export default {
   <v-img
     class="white--text align-end"
     height="200px"
-    src="media/stock-600x600/img-1.jpg"
+    src="/media/stock-600x600/img-1.jpg"
   >
     <v-card-title>Top 10 Australian beaches</v-card-title>
   </v-img>

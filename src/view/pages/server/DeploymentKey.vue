@@ -1,44 +1,38 @@
 <template>
-  <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-    <div class="panel panel-default">
-      <div class="panel-heading">
-        <h4 class="pull-left">Deployment Key</h4>
-        <div class="d-flex pull-right">
-          <div
-            class="
-              form-group form-search
-              d-flex
-              justify-content-between
-              align-items-center
-            "
-          >
-            <input
-              type="text"
-              placeholder="Search..."
-              class="form-control input-lg"
-            />
-          </div>
-        </div>
-        <div class="clearfix"></div>
-        <p data-nsfw-filter-status="swf">
-          To use Git Deployment inside a Web Application, you must use and
-          generate a Git Deployment Key. Each user can only have
-          <strong>one</strong> deployment key, and it can be used for multiple
-          Web Applications (except you are using GitHub).
-        </p>
+  <div class="card card-custom gutter-b">
+    <div class="card-header border-0 py-5">
+      <h3 class="card-title align-items-start flex-column">
+        <span class="card-label font-weight-bolder text-dark"
+          >Deployment Key</span
+        >
+      </h3>
+      <div class="card-toolbar">
+        <input
+          type="text"
+          placeholder="Search..."
+          class="form-control input-lg w-200px mr-5"
+        />
       </div>
-      <div class="panel-body">
-        <b-table :items="items" :fields="fields">
-          <template #cell(view)>
-            <i role="button" class="rc rc-preview text-primary"></i>
-          </template>
-        </b-table>
-      </div>
+      <span
+        class="text-muted mt-3 font-size-sm"
+        data-nsfw-filter-status="swf"
+        >To use Git Deployment inside a Web Application, you must use and
+        generate a Git Deployment Key. Each user can only have one deployment
+        key, and it can be used for multiple Web Applications (except you are
+        using GitHub).</span
+      >
+    </div>
+    <div class="card-body py-0">
+      <b-table :items="items" :fields="fields">
+        <template #cell(view)>
+          <span class="svg-icon svg-icon-primary">
+            <inline-svg src="media/svg/icons/Design/Layers.svg" />
+          </span>
+        </template>
+      </b-table>
     </div>
   </div>
 </template>
-
-<style scoped src="@/assets/styles/server.css"></style>
 
 <script>
 export default {

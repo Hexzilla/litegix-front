@@ -1,36 +1,36 @@
 <template>
-  <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-    <div class="panel panel-default">
-      <div class="panel-heading">
-        <h4 class="pull-left">Basic Firewall</h4>
-        <div class="d-flex pull-right">
-          <div>
-            <b-link to="security/addfirewall">
-              <a class="btn btn-success" data-nsfw-filter-status="swf"
-                >Add Firewall Rule</a
-              >
-            </b-link>
-            <a
-              role="button"
-              class="btn btn-success"
-              data-nsfw-filter-status="swf"
-            >
-              Deploy</a
-            >
-          </div>
+  <div>
+    <div class="card card-custom gutter-b">
+      <div class="card-header border-0 py-5">
+        <h3 class="card-title align-items-start flex-column">
+          <span class="card-label font-weight-bolder text-dark"
+            >Basic Firewall</span
+          >
+        </h3>
+        <div class="card-toolbar">
+          <b-link to="security/addfirewall">
+            <a class="btn btn-success mr-4">Add Firewall Rule</a>
+          </b-link>
+          <a
+            role="button"
+            class="btn btn-success"
+            data-nsfw-filter-status="swf"
+          >
+            Deploy</a
+          >
         </div>
-        <div class="clearfix"></div>
-        <p data-nsfw-filter-status="swf">
+      </div>
+      <div class="card-body py-5">
+        <span class="pb-5 font-size-sm">
           The default firewall is firewalld and the default zone is runcloud. If
           you manually change the default zone, RunCloud may not work properly
           and the settings that were defined here will not be used. By default,
           all ports to your server are closed except the port defined in Global
           type below. Newly added rules and newly removed rules will not be
           pushed to your server. To use the rules defined below, you must click
-          deploy firewall button above to deploy your firewall.
-        </p>
-      </div>
-      <div class="panel-body">
+          deploy firewall button above to deploy your firewall.</span
+        >
+
         <b-table
           :items="items1"
           :fields="fields1"
@@ -43,20 +43,21 @@
             }}</span>
           </template>
           <template #cell(delete)>
-            <a
-              role="button"
-              class="text-danger rc rc-delete"
-              data-nsfw-filter-status="swf"
-            ></a>
+            <a role="button" class="text-danger">del</a>
           </template>
         </b-table>
       </div>
     </div>
-    <div class="panel panel-default">
-      <div class="panel-heading">
-        <h4>SSH Session</h4>
+
+    <div class="card card-custom gutter-b">
+      <div class="card-header border-0 py-5">
+        <h3 class="card-title align-items-start flex-column">
+          <span class="card-label font-weight-bolder text-dark"
+            >SSH Session</span
+          >
+        </h3>
       </div>
-      <div class="panel-body">
+      <div class="card-body py-5">
         <b-table
           :items="items1"
           :fields="fields1"
@@ -66,54 +67,37 @@
         </b-table>
       </div>
     </div>
-    <div class="panel panel-default">
-      <div class="panel-heading">
-        <h4 class="pull-left">Fail2Ban</h4>
 
-        <div class="clearfix"></div>
+    <div class="card card-custom gutter-b">
+      <div class="card-header border-0 py-5">
+        <h3 class="card-title align-items-start flex-column">
+          <span class="card-label font-weight-bolder text-dark">Fail2Ban</span>
+        </h3>
       </div>
-      <div class="panel-body">
-        <p data-nsfw-filter-status="swf">
+      <div class="card-body py-5">
+        <span class="pb-5 font-size-sm">
           Add the IP Address that you want to manually ban here. Adding the IP
           Address here will temporary ban the IP Address depends on the jail
-          time that has been set in Fail2Ban.
-        </p>
-        <form
-          action="https://manage.runcloud.io/servers/163149/securities/fail2ban/blockedip"
-          role="form"
+          time that has been set in Fail2Ban.</span
         >
-          <div class="form-group">
-            <label for="ipAddress" class="control-label">IP Address </label>
 
-            <input
-              type="text"
+        <form>
+          <b-form-group label="IP Address"
+            ><b-form-input
               name="ipAddress"
               placeholder="IP Address to manual ban"
-              class="form-control input-lg"
-            />
-          </div>
-          <button
-            data-v-69273b5e=""
-            type="submit"
-            class="btn btn-base btn-block"
-          >
-            <span
-              data-v-293d8245=""
-              data-v-69273b5e=""
-              data-nsfw-filter-status="swf"
-              ><span data-v-293d8245="" data-nsfw-filter-status="swf">
-                Ban
-              </span></span
-            >
-          </button>
+            ></b-form-input>
+          </b-form-group>
+
+          <button type="submit" class="btn btn-success btn-block">Ban </button>
         </form>
       </div>
-      <div class="panel-body">
-        <p>
+      <div class="card-body py-5">
+        <span class="pb-5 font-size-sm">
           These are the IP Addresses that have been banned for bruteforcing into
           your server. You need to remove them in order to get back the access
-          to your server.
-        </p>
+          to your server.</span
+        >
         <b-table
           :items="items3"
           :fields="fields3"
@@ -124,8 +108,6 @@
     </div>
   </div>
 </template>
-
-<style scoped src="@/assets/styles/server.css"></style>
 
 <script>
 export default {

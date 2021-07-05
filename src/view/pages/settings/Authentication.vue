@@ -5,10 +5,10 @@
       <!--begin::Header-->
       <div class="card-header py-3">
         <div class="card-title align-items-start flex-column">
-          <h3 class="card-label font-weight-bolder text-dark">
+          <h1 class="font-weight-bolder text-dark">
             Two-factor Authentication
-          </h3>
-          <p class="text-muted font-size-sm mt-1">
+          </h1>
+          <p class="text-muted  font-size-sm mt-1">
             Two-factor authentication adds an extra layer of security to your
             account by asking for a verification code when you sign in.
           </p>
@@ -26,134 +26,40 @@
     </div>
     <!--end::Card-->
     <div class="form-group row mt-12"></div>
+    <!--begin::Card-->
     <div class="card card-custom">
       <!--begin::Header-->
       <div class="card-header py-3">
         <div class="card-title align-items-start flex-column">
-          <h3 class="card-label font-weight-bolder text-dark">
-            Change Password
-          </h3>
-          <span class="text-muted font-weight-bold font-size-sm mt-1"
-            >Change your account password</span
-          >
-        </div>
-        <div class="card-toolbar">
-          <button
-            type="submit"
-            class="btn btn-success mr-2"
-            @click="save()"
-            ref="kt_save_changes"
-          >
-            Save Changes
-          </button>
-          <!-- <button type="reset" class="btn btn-secondary" @click="cancel()">
-            Cancel
-          </button> -->
+          <h1 class="font-weight-bolder text-dark">Password</h1>
         </div>
       </div>
-      <!--end::Header-->
-      <!--begin::Form-->
-      <form class="form" id="kt_password_change_form">
-        <div class="card-body">
-          <!--begin::Alert-->
-          <div
-            class="alert alert-custom alert-light-danger fade show mb-10"
-            role="alert"
-          >
-            <div class="alert-icon">
-              <span class="svg-icon svg-icon-3x svg-icon-danger">
-                <!--begin::Svg Icon | path:assets/media/svg/icons/Code/Info-circle.svg-->
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  xmlns:xlink="http://www.w3.org/1999/xlink"
-                  width="24px"
-                  height="24px"
-                  viewBox="0 0 24 24"
-                  version="1.1"
-                >
-                  <g
-                    stroke="none"
-                    stroke-width="1"
-                    fill="none"
-                    fill-rule="evenodd"
-                  >
-                    <rect x="0" y="0" width="24" height="24" />
-                    <circle
-                      fill="#000000"
-                      opacity="0.3"
-                      cx="12"
-                      cy="12"
-                      r="10"
-                    />
-                    <rect
-                      fill="#000000"
-                      x="11"
-                      y="10"
-                      width="2"
-                      height="7"
-                      rx="1"
-                    />
-                    <rect
-                      fill="#000000"
-                      x="11"
-                      y="7"
-                      width="2"
-                      height="2"
-                      rx="1"
-                    />
-                  </g>
-                </svg>
-                <!--end::Svg Icon-->
-              </span>
-            </div>
-            <div class="alert-text font-weight-bold">
-              Configure user passwords to expire periodically. Users will need
-              warning that their passwords are going to expire, <br />or they
-              might inadvertently get locked out of the system!
-            </div>
-            <div class="alert-close">
-              <button
-                type="button"
-                class="close"
-                data-dismiss="alert"
-                aria-label="Close"
-              >
-                <span aria-hidden="true">
-                  <i class="ki ki-close"></i>
-                </span>
-              </button>
-            </div>
-          </div>
-          <!--end::Alert-->
-          <div class="form-group row">
-            <label class="col-xl-3 col-lg-3 col-form-label text-alert"
+      <div class="card-body">
+        <form class="form">
+          <div class="form-group row mb-2">
+            <label class="col-xl-12 col-lg-12 col-form-label text-left"
               >Current Password</label
             >
-            <div class="col-lg-9 col-xl-6">
-              <input
-                type="password"
-                class="form-control form-control-lg form-control-solid mb-2"
-                value=""
-                placeholder="Current password"
-                name="current_password"
-                ref="current_password"
-              />
-              <a href="#" class="text-sm font-weight-bold">Forgot password ?</a>
-            </div>
-          </div>
-          <div class="form-group row">
-            <label class="col-xl-3 col-lg-3 col-form-label text-alert"
-              >New Password</label
+            <b-form-input
+              ref="curPass"
+              class="form-control form-control-lg"
+              type="password"
+              placeholder="Your current password"
             >
-            <b-input-group class="col-lg-9 col-xl-6">
-              <input
+            </b-form-input>
+          </div>
+          <div class="form-group row mb-2">
+            <label class="col-xl-12 col-lg-12 col-form-label text-left"
+              >Password</label
+            >
+            <b-input-group class="mt-3">
+              <b-form-input
+                ref="newPass"
+                class="form-control form-control-lg"
                 type="password"
-                class="form-control form-control-lg form-control-solid"
-                value=""
                 placeholder="New password"
-                name="new_password"
-                ref="new_password"
-              />
+              >
+              </b-form-input>
               <b-input-group-append>
                 <b-button variant="success" @click="showModal"
                   >Generate Password</b-button
@@ -161,27 +67,34 @@
               </b-input-group-append>
             </b-input-group>
           </div>
-          <div class="form-group row">
-            <label class="col-xl-3 col-lg-3 col-form-label text-alert"
+          <div class="form-group row mb-2">
+            <label class="col-xl-12 col-lg-12 col-form-label text-left"
               >Verify Password</label
             >
-            <div class="col-lg-9 col-xl-6">
-              <input
-                type="password"
-                class="form-control form-control-lg form-control-solid"
-                value=""
-                placeholder="Verify password"
-                name="verify_password"
-                ref="verify_password"
-              />
-            </div>
+            <b-form-input
+              ref="conPass"
+              class="form-control form-control-lg"
+              type="password"
+              placeholder="New password confirmation"
+            >
+            </b-form-input>
           </div>
-        </div>
-      </form>
-      <!--end::Form-->
+          <div class="form-group row mb-2">
+            <button
+              type="button"
+              class="btn btn-dark w-100"
+              @click="update()"
+              ref="kt_pass_update"
+            >
+              Update My Password
+            </button>
+          </div>
+        </form>
+      </div>
     </div>
-
+    <!--end::Card-->
     <!-- begin create password modal -->
+
     <b-modal
       ref="create-pass-modal"
       hide-footer
@@ -193,7 +106,7 @@
           <v-subheader class="pl-0"> Password Length </v-subheader>
           <v-slider
             v-model="passLen"
-            class="align-items-center"
+            class="align-center"
             :max="60"
             :min="6"
             @change="setChangePassLength"

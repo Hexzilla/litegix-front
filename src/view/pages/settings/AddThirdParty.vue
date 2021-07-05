@@ -8,45 +8,74 @@
         </v-card-title>
         <v-container>
           <v-form ref="addApiKey" v-model="valid" lazy-validation>
-            <h6>Label</h6>
-            <v-text-field
-              dense
-              placeholder="Label for this API Key"
-              outlined
-              :rules="nameRules"
-              required
-            ></v-text-field>
-            <h5>Service</h5>
-            <v-select
-              v-model="select"
-              :items="items"
-              required
-              dense
-              outlined
-            ></v-select>
-            <h6>Username/Email/KeyId</h6>
-            <v-text-field
-              dense
-              placeholder="API Username/Email"
-              outlined
-              :rules="emailRules"
-              required
-            ></v-text-field>
-            <h6>Secret</h6>
-            <p>
-              You can create API Key for Cloudflare by using this URL:
-              <a href="#"> https://www.cloudflare.com/a/profile</a>
-            </p>
-            <v-text-field
-              dense
-              placeholder="xxxx..."
-              outlined
-              :rules="nameRules"
-              required
-            ></v-text-field>
-            <b-btn class="btn btn-dark" block @click="addKey" ref="topUpCredit"
-              >Add API Key</b-btn
-            >
+            <div class="form-group row align-items-center">
+              <label class="col-xl-3 col-lg-3 col-form-label text-lg-right"
+                >Label</label
+              >
+              <div class="col-lg-9 col-xl-6">
+                <b-input
+                  type="text"
+                  placeholder="Label for this API Key"
+                  :rules="nameRules"
+                  required
+                ></b-input>
+              </div>
+            </div>
+            <div class="form-group row align-items-center">
+              <label class="col-xl-3 col-lg-3 col-form-label text-lg-right"
+                >Service</label
+              >
+              <div class="col-lg-9 col-xl-6">
+                <b-select
+                  type="text"
+                  placeholder="API Username/Email"
+                ></b-select>
+              </div>
+            </div>
+            <div class="form-group row align-items-center">
+              <label class="col-xl-3 col-lg-3 col-form-label text-lg-right"
+                >Username/Email/KeyId</label
+              >
+              <div class="col-lg-9 col-xl-6">
+                <b-input
+                  type="text"
+                  placeholder="API Username/Email"
+                  :rules="emailRules"
+                  required
+                ></b-input>
+              </div>
+            </div>
+            <div class="form-group row align-items-center">
+              <label class="col-xl-3 col-lg-3 col-form-label text-lg-right"
+                >Secret</label
+              >
+              <div class="col-lg-9 col-xl-6">
+                <p>
+                  You can create API Key for Cloudflare by using this URL:
+                  <a href="#"> https://www.cloudflare.com/a/profile</a>
+                </p>
+                <b-input
+                  type="text"
+                  placeholder="xxxx..."
+                  :rules="nameRules"
+                  required
+                ></b-input>
+              </div>
+            </div>
+            <div class="form-group row align-items-center">
+              <label
+                class="col-xl-3 col-lg-3 col-form-label text-lg-right"
+              ></label>
+              <div class="col-lg-9 col-xl-6">
+                <b-btn
+                  class="btn btn-dark mt-5"
+                  block
+                  @click="addKey"
+                  ref="topUpCredit"
+                  >Add API Key</b-btn
+                >
+              </div>
+            </div>
           </v-form>
         </v-container>
       </div>

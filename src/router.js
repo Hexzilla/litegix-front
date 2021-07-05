@@ -513,31 +513,31 @@ export default new Router({
               name: "server-activitylog",
               component: () => import("@/view/pages/server/ActivityLog.vue")
             },
-            // {
-            //   path: "delete",
-            //   name: "server-delete",
-            //   component: () => import("@/view/pages/settings/DeleteServer.vue")
-            // },
+            {
+              path: "delete",
+              name: "server-delete",
+              component: () => import("@/view/pages/server/DeleteServer.vue")
+            },
             {
               path: "user",
               name: "server-user",
               component: () => import("@/view/pages/server/users/Users.vue")
             },
-            {
-              path: "user/create",
-              name: "server-user-create",
-              component: () => import("@/view/pages/server/users/Create.vue")
-            },
+            // {
+            //   path: "user/create",
+            //   name: "server-user-create",
+            //   component: () => import("@/view/pages/server/users/Create.vue")
+            // },
 
             {
               path: "sshkey",
               name: "server-sshkey",
-              component: () => import("@/view/pages/server/SSHKey.vue")
+              component: () => import("@/view/pages/server/sshkey/SSHKey.vue")
             },
             {
               path: "sshkey/create",
               name: "server-sshkey-create",
-              component: () => import("@/view/pages/server/AddSSHKey.vue")
+              component: () => import("@/view/pages/server/sshkey/AddSSHKey.vue")
             },
             {
               path: "deployment",
@@ -552,22 +552,22 @@ export default new Router({
             {
               path: "cronjob",
               name: "server-cronjob",
-              component: () => import("@/view/pages/server/CronJob.vue")
+              component: () => import("@/view/pages/server/cronjob/CronJob.vue")
             },
             {
               path: "cronjob/create",
               name: "server-cronjob-create",
-              component: () => import("@/view/pages/server/AddCronJob.vue")
+              component: () => import("@/view/pages/server/cronjob/AddCronJob.vue")
             },
             {
               path: "supervisor",
               name: "server-supervisor",
-              component: () => import("@/view/pages/server/Supervisor.vue")
+              component: () => import("@/view/pages/server/supervisor/Supervisor.vue")
             },
             {
               path: "supervisor/create",
               name: "server-supervisor-create",
-              component: () => import("@/view/pages/server/AddSupervisor.vue")
+              component: () => import("@/view/pages/server/supervisor/AddSupervisor.vue")
             },
             {
               path: "services",
@@ -720,6 +720,32 @@ export default new Router({
           ]
         },
         {
+          path: "/custom-wizard",
+          name: "wizard",
+          component: () => import("@/view/pages/wizard/Wizard.vue"),
+          children: [{
+              path: "wizard-1",
+              name: "wizard-1",
+              component: () => import("@/view/pages/wizard/Wizard-1.vue")
+            },
+            {
+              path: "wizard-2",
+              name: "wizard-2",
+              component: () => import("@/view/pages/wizard/Wizard-2.vue")
+            },
+            {
+              path: "wizard-3",
+              name: "wizard-3",
+              component: () => import("@/view/pages/wizard/Wizard-3.vue")
+            },
+            {
+              path: "wizard-4",
+              name: "wizard-4",
+              component: () => import("@/view/pages/wizard/Wizard-4.vue")
+            }
+          ]
+        },
+        {
           path: "/custom-plugins",
           name: "plugins",
           component: () => import("@/view/pages/plugins/Plugins.vue"),
@@ -734,7 +760,34 @@ export default new Router({
               component: () => import("@/view/pages/plugins/Treeselect.vue")
             }
           ]
-        }
+        },
+        // {
+        //   path: "/profile",
+        //   name: "profile",
+        //   component: () => import("@/view/pages/profile/Profile.vue"),
+        //   children: [
+        //     {
+        //       path: "profile-1",
+        //       name: "profile-1",
+        //       component: () => import("@/view/pages/profile/Profile-1.vue")
+        //     },
+        //     {
+        //       path: "profile-2",
+        //       name: "profile-2",
+        //       component: () => import("@/view/pages/profile/Profile-2.vue")
+        //     },
+        //     {
+        //       path: "profile-3",
+        //       name: "profile-3",
+        //       component: () => import("@/view/pages/profile/Profile-3.vue")
+        //     },
+        //     {
+        //       path: "profile-4",
+        //       name: "profile-4",
+        //       component: () => import("@/view/pages/profile/Profile-4.vue")
+        //     }
+        //   ]
+        // }
       ]
     },
     {

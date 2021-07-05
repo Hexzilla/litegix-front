@@ -226,10 +226,14 @@
                 >
                   <span class="navi-icon mr-2">
                     <span class="svg-icon">
-                      <inline-svg src="media/svg/icons/Communication/RSS.svg" />
+                      <inline-svg
+                        src="media/svg/icons/Communication/RSS.svg"
+                      />
                     </span>
                   </span>
-                  <span class="navi-text font-size-lg">3rd Party API Key</span>
+                  <span class="navi-text font-size-lg"
+                    >3rd Party API Key</span
+                  >
                 </a>
               </div>
             </router-link>
@@ -407,12 +411,6 @@
 
 .theme--light.v-application {
   background: transparent !important;
-}
-
-@media (min-width: 1280px) {
-  .container {
-    margin: 0 50px 0 50px;
-  }
 }
 </style>
 <script>

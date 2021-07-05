@@ -8,7 +8,7 @@
         <h3 class="card-label">{{ server.name }}</h3>
       </div>
       <div class="card-toolbar">
-        <b-link to="servers/config">
+        <b-link to="server">
           <a class="btn btn-sm btn-icon btn-light-primay mr-2">
             <i class="flaticon2-gear"></i>
           </a>

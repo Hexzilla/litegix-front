@@ -1,59 +1,43 @@
 <template>
-  <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-    <div class="panel panel-default">
-      <div class="panel-heading">
-        <h4 class="pull-left">Activity Log</h4>
-        <div class="pull-right">
-          <div
-            data-v-18ef91db=""
-            class="
-              form-group form-search
-              d-flex
-              justify-content-between
-              align-items-center
-            "
-          >
-            <input
-              data-v-18ef91db=""
-              type="text"
-              placeholder="Search..."
-              class="form-control input-lg"
-            />
-          </div>
-        </div>
-      </div>
-      <div class="panel-body">
-          <b-table
-          :items="items1"
-          :fields="fields1"
-          show-empty
-          empty-text="You don't have anything inside here yet."
+  <div class="card card-custom gutter-b">
+    <div class="card-header border-0 py-5">
+      <h3 class="card-title align-items-start flex-column">
+        <span class="card-label font-weight-bolder text-dark"
+          >Server Details</span
         >
-          <template #cell(label)="data">
-           <div v-if="data.item.label=='Error'">
-                <span class="label label-danger"
-                ><i class="rc rc-ln-alarm"></i> Error</span
-                >
-            </div>
-            <div v-if="data.item.label=='Info'">
-                <span class="label label-success"
-                ><i class="rc rc-ln-alarm"></i> Info</span
-                >
-            </div>
-            <div v-if="data.item.label=='Warning'">
-                <span class="label label-warning"
-                ><i class="rc rc-ln-alarm"></i> Warning</span
-                >
-            </div>
-          </template>
-        </b-table>
-       
+      </h3>
+
+      <div class="card-toolbar">
+        <input
+          type="text"
+          placeholder="Search..."
+          class="form-control input-lg w-200px mr-5"
+        />
       </div>
+    </div>
+    <div class="card-body pb-10 pt-0">
+      <b-table
+        :items="items1"
+        :fields="fields1"
+        show-empty
+        empty-text="You don't have anything inside here yet."
+      >
+        <template #cell(label)="data">
+          <div v-if="data.item.label == 'Error'">
+            <span class="label label-danger"> Error</span>
+          </div>
+          <div v-if="data.item.label == 'Info'">
+            <span class="label label-success"> Info</span>
+          </div>
+          <div v-if="data.item.label == 'Warning'">
+            <span class="label label-warning"> Warning</span>
+          </div>
+        </template>
+      </b-table>
     </div>
   </div>
 </template>
 
-<style scoped src="@/assets/styles/server.css"></style>
 <script>
 export default {
   data() {

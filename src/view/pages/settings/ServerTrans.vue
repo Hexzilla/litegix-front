@@ -2,9 +2,7 @@
   <v-card>
     <div class="card-body">
       <v-card-title>
-        <h3 class="card-label font-weight-bolder text-dark">
-          Server Transfer Request
-        </h3>
+        <h1>Server Transfer Request</h1>
         <v-spacer></v-spacer>
         <!-- <v-text-field
           v-model="search"
@@ -15,7 +13,7 @@
         ></v-text-field> -->
       </v-card-title>
       <div>
-        <span class="text--lighten-1 font-size-sm mt-8">
+        <span class="text-muted font-size-sm mt-8">
           Accept or reject any server transfer requests. Accepting a transfer
           request will grant full permission to the server.
         </span>

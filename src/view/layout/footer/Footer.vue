@@ -68,6 +68,11 @@ export default {
 .v-data-table > .v-data-table__wrapper > table > tbody > tr > td,
 .v-data-table > .v-data-table__wrapper > table > thead > tr > th,
 .v-data-table > .v-data-table__wrapper > table > tfoot > tr > td {
-  font-size: 1.1rem;
+  font-size: 1.1rem !important;
+}
+
+.searchBox {
+  max-width: 200px;
+  margin-right: 40px;
 }
 </style>

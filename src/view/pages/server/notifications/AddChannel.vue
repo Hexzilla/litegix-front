@@ -1,30 +1,31 @@
 <template>
-  <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-    <div class="panel panel-default">
-      <div class="panel-heading">
-        <h4>Add Notification Channel</h4>
-        <p>Please select your notification channel.</p>
-      </div>
-      <div class="panel-body">
-        <form>
-          <div class="form-group">
-            <label class="control-label">Channel</label>
-            <b-form-select
-              size="lg"
-              v-model="select"
-              :options="keys"
-            ></b-form-select>
-          </div>
-          <button type="submit" class="btn btn-base btn-block">
-            <span><span> Add </span></span>
-          </button>
-        </form>
-      </div>
+  <div class="card card-custom gutter-b">
+    <div class="card-header border-0 py-5">
+      <h3 class="card-title align-items-start flex-column">
+        <span class="card-label font-weight-bolder text-dark"
+          >Add Notification Channel</span
+        ><span class="text-muted mt-3 font-weight-bold font-size-sm"
+          >Please select your notification channel.</span
+        >
+      </h3>
+    </div>
+    <div class="card-body py-5">
+      <form>
+        <div class="form-group">
+          <label class="control-label">Channel</label>
+          <b-form-select
+            size="lg"
+            v-model="select"
+            :options="keys"
+          ></b-form-select>
+        </div>
+        <button type="submit" class="btn btn-primary btn-block">
+           Add
+        </button>
+      </form>
     </div>
   </div>
 </template>
-
-<style scoped src="@/assets/styles/server.css"></style>
 
 <script>
 export default {

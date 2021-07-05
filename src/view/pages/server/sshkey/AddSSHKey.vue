@@ -2,15 +2,17 @@
   <div class="card card-custom gutter-b">
     <div class="card-header border-0 py-5">
       <h3 class="card-title align-items-start flex-column">
-        <span class="card-label font-weight-bolder text-dark"
-          >Add Firewall Rule</span
-        >
+        <span class="card-label font-weight-bolder text-dark">Add SSH Key</span>
       </h3>
     </div>
-    <div class="card-body py-5">
-      <form>
+    <div class="card-body py-0">
+      <b-form>
+        <b-form-group label="Use vault">
+          <b-form-checkbox size="lg" name="useVault">Use vaulted SSH Key</b-form-checkbox>
+        </b-form-group>
+
         <div class="form-group">
-          <label class="control-label">Type</label>
+          <label class="control-label">Vaulted SSH Key</label>
           <b-form-select
             size="lg"
             v-model="select"
@@ -18,26 +20,24 @@
           ></b-form-select>
         </div>
 
-        <b-form-group label="Port"
-          ><b-form-input
-            name="port"
-            placeholder="E.g: 8080 or 6000-9091"
-          ></b-form-input
-        ></b-form-group>
-
+        <b-form-group label="Label">
+          <b-form-input
+            name="label"
+            placeholder="Any label for you to recognize this public key"
+          ></b-form-input>
+        </b-form-group>
         <div class="form-group">
-          <label class="control-label">Protocol</label>
+          <label class="control-label">User</label>
           <b-form-select
             size="lg"
             v-model="select"
             :options="keys"
           ></b-form-select>
         </div>
-
         <button type="submit" class="btn btn-primary btn-block">
-          Save this rule
+          Add
         </button>
-      </form>
+      </b-form>
     </div>
   </div>
 </template>

@@ -1,55 +1,49 @@
 <template>
-  <div>
-    <!--begin::Card-->
-    <div class="card card-custom">
+  <!--begin::Card-->
+  <div class="card card-custom">
+    <div class="card-body">
       <!--begin::Header-->
-      <div class="card-header py-3">
-        <div class="card-title align-items-start flex-column">
-          <h3 class="card-label font-weight-bolder text-dark">
-            Connect Your App
-          </h3>
-          <p class="text-muted  font-size-sm mt-1">
-            Download and scan QR Code using any authenticator app to get your
-            2FA 6 digit code. Then, enter 6 digit code from the authenticator
-            app to verify your app. We recommend you use one of these: Authy,
-            Google Authenticator, Salesforce Authenticator.
-          </p>
-        </div>
-      </div>
+      <v-card-title>
+        <h1 class="font-weight-bolder text-dark">Connect Your App</h1>
+      </v-card-title>
+
       <form class="form">
-        <div class="card-body">
-          <div class="form-group row mb-6">
-            <vue-qrcode
-              v-bind:value="qrValue"
-              v-bind:errorCorrectionLevel="correctionLevel"
-            />
+        <p class="text-muted font-size-sm mt-1">
+          Download and scan QR Code using any authenticator app to get your 2FA
+          6 digit code. Then, enter 6 digit code from the authenticator app to
+          verify your app. We recommend you use one of these: Authy, Google
+          Authenticator, Salesforce Authenticator.
+        </p>
+        <div class="form-group row mb-6">
+          <vue-qrcode
+            v-bind:value="qrValue"
+            v-bind:errorCorrectionLevel="correctionLevel"
+          />
+        </div>
+        <div class="form-group row align-items-center mt-5">
+          <label class="col-xl-3 col-lg-3 col-form-label text-lg-right"
+            >Email Address</label
+          >
+          <div class="col-lg-9 col-xl-6">
+            <b-input
+              :rules="rules"
+              ref="email"
+              type="text"
+              placeholder="Email Address of you account"
+            ></b-input>
           </div>
-          <div class="form-group row mb-6">
-            <label class="col-xl-12 col-lg-12 col-form-label text-left"
-              >Email Address</label
+        </div>
+        <div class="form-group row align-items-center mt-5">
+          <label class="col-xl-3 col-lg-3 col-form-label text-lg-right"></label>
+          <div class="col-lg-9 col-xl-6">
+            <button
+              type="button"
+              class="btn btn-success w-100"
+              @click="update()"
+              ref="kt_save_update"
             >
-            <div class="col-lg-12 col-xl-12">
-              <v-text-field
-                :rules="rules"
-                outlined
-                dense
-                ref="email"
-                type="text"
-                placeholder="Email Address of you account"
-              ></v-text-field>
-            </div>
-          </div>
-          <div class="form-group row align-items-center">
-            <div class="col-lg-12 col-xl-12">
-              <button
-                type="button"
-                class="btn btn-success w-100"
-                @click="update()"
-                ref="kt_save_update"
-              >
-                Delete My Account
-              </button>
-            </div>
+              Delete My Account
+            </button>
           </div>
         </div>
       </form>

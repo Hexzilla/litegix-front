@@ -3,38 +3,36 @@
     <div class="card-body">
       <v-card-title>
         <h1>IP Whitelisting</h1>
-        <v-spacer></v-spacer>
-        <v-text-field
-          v-model="tableData.search"
-          label="Search..."
-          hide-details
-          outlined
-          dense
-          class="mr-2"
-        >
-        </v-text-field>
-        <b-btn variant="success" @click="isEnable" ref="is_enable"
-          >Enable</b-btn
-        >
       </v-card-title>
-      <div>
-        <p class="text-lighten-5 font-size-sm mt-10">
-          Whitelist IP Address that can be used to login to your RunCloud
-          account if you enable the IP Whitelisting. If the IP Address is not in
-          here, you need to approve it everytime you log in to RunCloud. If you
-          don't enable this feature, every login will automatically whitelist
-          the IP Address.
-        </p>
-      </div>
-      <v-data-table
-        :headers="tableData.headers"
-        :items="tableData.desserts"
-        :search="tableData.search"
-        no-data-text="No data"
-        no-results-text="No result"
-      ></v-data-table>
+      <p class="text-muted font-size-sm mt-1">
+        Whitelist IP Address that can be used to login to your RunCloud account
+        if you enable the IP Whitelisting. If the IP Address is not in here, you
+        need to approve it everytime you log in to RunCloud. If you don't enable
+        this feature, every login will automatically whitelist the IP Address.
+      </p>
     </div>
-
+    <v-data-table
+      :headers="tableData.headers"
+      :items="tableData.desserts"
+      :search="tableData.search"
+      no-data-text="No data"
+      no-results-text="No result"
+    >
+      <template v-slot:top>
+        <v-toolbar flat>
+          <v-spacer></v-spacer>
+          <b-input
+            v-model="tableData.search"
+            class="searchBox"
+            placeholder="Search..."
+            :search="search"
+          ></b-input>
+          <b-btn variant="success" @click="isEnable" ref="is_enable"
+            >Enable</b-btn
+          >
+        </v-toolbar>
+      </template></v-data-table
+    >
     <confirm-dialogue ref="confirmDialogue"></confirm-dialogue>
   </v-card>
 </template>

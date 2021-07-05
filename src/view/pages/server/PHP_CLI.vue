@@ -1,68 +1,56 @@
 <template>
-    <div class="col-xs-12 col-sm-12 col-md-10 col-lg-10">
-        <div class="panel panel-default">
-            <div class="panel-heading">
-                <h4>PHP-CLI Version</h4>
-                <p >Your RunCloud server is equipped with multiple PHP Versions for multiple
-                    types of Web Applications in order to want to run PHP-CLI with different versions. If you use Composer,
-                    it will run using the PHP-CLI version you have chosen.</p>
-            </div>
-            <div class="panel-body">
-                <form>
-                    <div class="form-group"><label class="control-label">PHP Version</label>
-                        <div class="row">
-                            <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4">
-                                <label
-                                    class="btn btn-block btn-checkbox"
-                                    :class="phpversion=='php72rc'&&'active'">
-                                    <input type="radio" name="phpVersion" v-model="phpversion" value="php72rc">
-                                    <p >PHP 7.2</p>
-                                </label></div>
-                            <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4">
-                                <label 
-                                    class="btn btn-block btn-checkbox"
-                                    :class="phpversion=='php73rc'&&'active'">
-                                    <input type="radio" name="phpVersion" v-model="phpversion" value="php73rc">
-                                    <p >PHP 7.3</p>
-                                </label></div>
-                            <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4">
-                                <label 
-                                    class="btn btn-block btn-checkbox"
-                                    :class="phpversion=='php74rc'&&'active'">
-                                    <input type="radio" name="phpVersion" v-model="phpversion" value="php74rc">
-                                    <p >PHP 7.4</p>
-                                </label></div>
-                            <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4">
-                                <label 
-                                    class="btn btn-block btn-checkbox"
-                                    :class="phpversion=='php80rc'&&'active'">
-                                    <input type="radio" name="phpVersion" v-model="phpversion" value="php80rc">
-                                    <p >PHP 8.0</p>
-                                </label>
-                            </div>
-                        </div>
-                    </div> 
-                    <button  type="submit" class="btn btn-base btn-block"><span 
-                             ><span 
-                                >
-                                Update PHP-CLI Version
-                            </span></span></button>
-                </form>
-            </div>
-        </div>
+  <div class="card card-custom gutter-b">
+    <div class="card-header border-0 py-5">
+      <h3 class="card-title align-items-start flex-column">
+        <span class="card-label font-weight-bolder text-dark"
+          >PHP-CLI Version</span
+        >
+        <span
+          class="text-muted mt-3 font-weight-bold font-size-sm"
+          data-nsfw-filter-status="swf"
+          >Your RunCloud server is equipped with multiple PHP Versions for
+          multiple types of Web Applications in order to want to run PHP-CLI
+          with different versions. If you use Composer, it will run using the
+          PHP-CLI version you have chosen.</span
+        >
+      </h3>
     </div>
+    <div class="card-body pt-0 pb-10">
+      <b-form>
+        <b-form-group
+          label="Select PHP Version"
+        >
+          <b-form-radio-group
+            id="btn-radios-2"
+            v-model="phpversion"
+            :options="options"
+            buttons
+            button-variant="outline-primary"
+            size="lg"
+            name="phpversion"
+          ></b-form-radio-group>
+        </b-form-group>
+        <b-button type="submit" class="btn btn-success">
+          Update PHP-CLI Version
+        </b-button>
+      </b-form>
+    </div>
+  </div>
 </template>
-
 
 <style scoped src="@/assets/styles/server.css"></style>
 
 <script>
-    export default {
-        data() {
-            return {
-                phpversion:'',
-            };
-        },
+export default {
+  data() {
+    return {
+      phpversion: "",
+      options: [
+        { text: "PHP 7.2", value: "7.2" },
+        { text: "PHP 7.4", value: "7.4" },
+        { text: "PHP 8.0", value: "8.0"},
+      ],
     };
-    
+  },
+};
 </script>

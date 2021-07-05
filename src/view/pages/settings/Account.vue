@@ -2,31 +2,27 @@
   <div>
     <!--begin::Card-->
     <div class="card card-custom">
-      <!--begin::Header-->
-      <div class="card-header py-3">
-        <div class="card-title align-items-start flex-column">
-          <h3 class="card-label font-weight-bolder text-dark">My Profile</h3>
+      <div class="card-body">
+        <!--begin::Header-->
+        <div class="card-header py-3">
+          <v-card-title>
+            <h1 class="font-weight-bolder text-dark">My Profile</h1>
+          </v-card-title>
           <span class="text-muted font-size-sm mt-1"
             >To change your email address, please open a support ticket.</span
           >
         </div>
-      </div>
-      <!--end::Header-->
-      <!--begin::Form-->
-      <form class="form">
-        <!--begin::Body-->
-        <div class="card-body">
-          <div class="form-group row align-items-center">
+        <!--end::Header-->
+        <!--begin::Form-->
+        <form class="form">
+          <!--begin::Body-->
+
+          <div class="form-group row align-items-center mt-5">
             <label class="col-xl-3 col-lg-3 col-form-label text-lg-right"
               >Email</label
             >
             <div class="col-lg-9 col-xl-6">
-              <input
-                ref="email"
-                class="form-control form-control-solid"
-                type="text"
-                disabled
-              />
+              <b-input ref="email" type="text" disabled></b-input>
             </div>
           </div>
           <div class="form-group row align-items-center">
@@ -34,11 +30,7 @@
               >Name</label
             >
             <div class="col-lg-9 col-xl-6">
-              <input
-                ref="name"
-                class="form-control form-control-solid"
-                type="text"
-              />
+              <b-input ref="name" type="text"></b-input>
             </div>
           </div>
           <div class="form-group row align-items-center">
@@ -46,7 +38,7 @@
               >Time Zone</label
             >
             <div class="col-lg-9 col-xl-6">
-              <select class="form-control form-control-solid" ref="time_zone">
+              <b-select ref="time_zone">
                 <template v-for="(item, i) in time_zones">
                   <option
                     v-bind:key="i"
@@ -58,7 +50,7 @@
                     {{ item }}
                   </option>
                 </template>
-              </select>
+              </b-select>
             </div>
           </div>
           <div class="form-group row align-items-center">
@@ -67,7 +59,13 @@
             ></label>
             <div class="col-lg-9 col-xl-6">
               <div class="checkbox-inline">
-                <label class="checkbox">
+                <label
+                  class="
+                    checkbox checkbox-lg checkbox-lg checkbox-single
+                    flex-shrink-0
+                    mr-4
+                  "
+                >
                   <input
                     type="checkbox"
                     ref="email_com"
@@ -92,154 +90,141 @@
               </button>
             </div>
           </div>
-        </div>
-        <!--end::Body-->
-      </form>
-      <!--end::Form-->
-    </div>
-    <div class="form-group row"></div>
-    <div class="card card-custom">
-      <!--begin::Header-->
-      <div class="card-header py-3">
-        <div class="card-title align-items-start flex-column">
-          <h3 class="card-label font-weight-bolder text-dark">
-            Company Details
-          </h3>
-          <span class="text-muted font-size-sm mt-1">
-            If you are representing your company, fill in the form here to get
-            invoice under your company name.
-          </span>
+          <!--end::Body-->
+        </form>
+        <!--end::Form-->
+      </div>
+      <div class="form-group row"></div>
+      <div class="card card-custom">
+        <div class="card-body">
+          <!--begin::Header-->
+          <div class="card-header py-3">
+            <v-card-title>
+              <h1 class="font-weight-bolder text-dark">Company Details</h1>
+            </v-card-title>
+
+            <span class="text-muted font-size-sm mt-1">
+              If you are representing your company, fill in the form here to get
+              invoice under your company name.
+            </span>
+          </div>
+          <!--end::Header-->
+          <!--begin::Form-->
+          <form class="form">
+            <!--begin::Body-->
+
+            <div class="form-group row align-items-center mt-5">
+              <label class="col-xl-3 col-lg-3 col-form-label text-lg-right"
+                >Company Name</label
+              >
+              <div class="col-lg-9 col-xl-6">
+                <b-input
+                  ref="CompanyName"
+                  type="text"
+                  placeholder="Your company name"
+                ></b-input>
+              </div>
+            </div>
+            <div class="form-group row align-items-center">
+              <label class="col-xl-3 col-lg-3 col-form-label text-lg-right"
+                >Address Line 1</label
+              >
+              <div class="col-lg-9 col-xl-6">
+                <b-input
+                  ref="AddressLine1"
+                  type="text"
+                  placeholder="Building address"
+                ></b-input>
+              </div>
+            </div>
+            <div class="form-group row align-items-center">
+              <label class="col-xl-3 col-lg-3 col-form-label text-lg-right"
+                >Address Line 2</label
+              >
+              <div class="col-lg-9 col-xl-6">
+                <b-input
+                  ref="AddressLine2"
+                  type="text"
+                  placeholder="Street address"
+                ></b-input>
+              </div>
+            </div>
+
+            <div class="form-group row align-items-center">
+              <label class="col-xl-3 col-lg-3 col-form-label text-lg-right"
+                >City</label
+              >
+              <div class="col-lg-9 col-xl-3">
+                <b-input ref="City" type="text" placeholder="City"></b-input>
+              </div>
+            </div>
+            <div class="form-group row align-items-center">
+              <label class="col-xl-3 col-lg-3 col-form-label text-lg-right"
+                >Postal Code</label
+              >
+              <div class="col-lg-9 col-xl-3">
+                <b-input
+                  ref="PostalCode"
+                  type="text"
+                  placeholder="Zip/Postal Code"
+                ></b-input>
+              </div>
+            </div>
+            <div class="form-group row align-items-center">
+              <label class="col-xl-3 col-lg-3 col-form-label text-lg-right"
+                >State</label
+              >
+              <div class="col-lg-9 col-xl-6">
+                <b-input
+                  ref="State"
+                  type="text"
+                  placeholder="State/Province"
+                ></b-input>
+              </div>
+            </div>
+            <div class="form-group row align-items-center">
+              <label class="col-xl-3 col-lg-3 col-form-label text-lg-right"
+                >Country</label
+              >
+              <div class="col-lg-9 col-xl-6">
+                <b-select ref="Country"></b-select>
+              </div>
+            </div>
+
+            <div class="form-group row align-items-center">
+              <label class="col-xl-3 col-lg-3 col-form-label text-lg-right"
+                >Tax/VAT/GST Number</label
+              >
+              <div class="col-lg-9 col-xl-6">
+                <b-input
+                  ref="Tax"
+                  type="text"
+                  placeholder="Tax/VAT/GST Number"
+                ></b-input>
+              </div>
+            </div>
+
+            <div class="form-group row">
+              <label
+                class="col-xl-3 col-lg-3 col-form-label text-lg-right"
+              ></label>
+              <div class="col-lg-9 col-xl-6">
+                <button
+                  type="reset"
+                  class="btn btn-success w-100"
+                  @click="save()"
+                  ref="kt_save_changes"
+                >
+                  Save Changes
+                </button>
+              </div>
+            </div>
+
+            <!--end::Body-->
+          </form>
+          <!--end::Form-->
         </div>
       </div>
-      <!--end::Header-->
-      <!--begin::Form-->
-      <form class="form">
-        <!--begin::Body-->
-        <div class="card-body">
-          <div class="form-group row align-items-center">
-            <label class="col-xl-3 col-lg-3 col-form-label text-lg-right"
-              >Company Name</label
-            >
-            <div class="col-lg-9 col-xl-6">
-              <input
-                ref="CompanyName"
-                class="form-control form-control-solid"
-                type="text"
-                placeholder="Your company name"
-              />
-            </div>
-          </div>
-          <div class="form-group row align-items-center">
-            <label class="col-xl-3 col-lg-3 col-form-label text-lg-right"
-              >Address Line 1</label
-            >
-            <div class="col-lg-9 col-xl-6">
-              <input
-                ref="AddressLine1"
-                class="form-control form-control-solid"
-                type="text"
-                placeholder="Building address"
-              />
-            </div>
-          </div>
-          <div class="form-group row align-items-center">
-            <label class="col-xl-3 col-lg-3 col-form-label text-lg-right"
-              >Address Line 2</label
-            >
-            <div class="col-lg-9 col-xl-6">
-              <input
-                ref="AddressLine2"
-                class="form-control form-control-solid"
-                type="text"
-                placeholder="Street address"
-              />
-            </div>
-          </div>
-
-          <div class="form-group row align-items-center">
-            <label class="col-xl-3 col-lg-3 col-form-label text-lg-right"
-              >City</label
-            >
-            <div class="col-lg-9 col-xl-3">
-              <input
-                ref="City"
-                class="form-control form-control-solid"
-                type="text"
-                placeholder="City"
-              />
-            </div>
-          </div>
-          <div class="form-group row align-items-center">
-            <label class="col-xl-3 col-lg-3 col-form-label text-lg-right"
-              >Postal Code</label
-            >
-            <div class="col-lg-9 col-xl-3">
-              <input
-                ref="PostalCode"
-                class="form-control form-control-solid"
-                type="text"
-                placeholder="Zip/Postal Code"
-              />
-            </div>
-          </div>
-          <div class="form-group row align-items-center">
-            <label class="col-xl-3 col-lg-3 col-form-label text-lg-right"
-              >State</label
-            >
-            <div class="col-lg-9 col-xl-6">
-              <input
-                ref="State"
-                class="form-control form-control-solid"
-                type="text"
-                placeholder="State/Province"
-              />
-            </div>
-          </div>
-          <div class="form-group row align-items-center">
-            <label class="col-xl-3 col-lg-3 col-form-label text-lg-right"
-              >Country</label
-            >
-            <div class="col-lg-9 col-xl-6">
-              <select
-                class="form-control form-control-solid"
-                ref="Country"
-              ></select>
-            </div>
-          </div>
-
-          <div class="form-group row align-items-center">
-            <label class="col-xl-3 col-lg-3 col-form-label text-lg-right"
-              >Tax/VAT/GST Number</label
-            >
-            <div class="col-lg-9 col-xl-6">
-              <input
-                ref="Tax"
-                class="form-control form-control-solid"
-                type="text"
-                placeholder="Tax/VAT/GST Number"
-              />
-            </div>
-          </div>
-
-          <div class="form-group row">
-            <label
-              class="col-xl-3 col-lg-3 col-form-label text-lg-right"
-            ></label>
-            <div class="col-lg-9 col-xl-6">
-              <button
-                type="reset"
-                class="btn btn-success w-100"
-                @click="save()"
-                ref="kt_save_changes"
-              >
-                Save Changes
-              </button>
-            </div>
-          </div>
-        </div>
-        <!--end::Body-->
-      </form>
-      <!--end::Form-->
     </div>
   </div>
 </template>

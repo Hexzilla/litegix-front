@@ -10,8 +10,8 @@
         > -->
       </h3>
       <div class="card-toolbar">
-        <b-link to="user/create">
-          <a class="btn btn-info font-weight-bolder font-size-sm">New Report</a>
+        <b-link to="database/createuser">
+          <a class="btn btn-success font-weight-bolder font-size-sm">Create User</a>
         </b-link>
       </div>
     </div>

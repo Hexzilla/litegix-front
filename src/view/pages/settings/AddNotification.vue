@@ -22,31 +22,46 @@
                 <b-card-text>Telegram</b-card-text>
               </b-card>
             </b-card-group>
-            <b-container class="mt-3">
-              <h6>Notification name</h6>
-              <v-text-field
-                dense
-                placeholder="Name for this notification"
-                outlined
-                :rules="nameRules"
-                required
-              ></v-text-field>
-              <h6>Email</h6>
-              <v-text-field
-                dense
-                placeholder="Email address to send the notification"
-                outlined
-                :rules="emailRules"
-                required
-              ></v-text-field>
-              <b-btn
-                class="btn btn-dark"
-                block
-                @click="addChannel"
-                ref="topUpCredit"
-                >Add Channel</b-btn
+            <div class="form-group row align-items-center mt-5">
+              <label class="col-xl-3 col-lg-3 col-form-label text-lg-right"
+                >Notification name</label
               >
-            </b-container>
+              <div class="col-lg-9 col-xl-6">
+                <b-input
+                  type="text"
+                  placeholder="Name for this notification"
+                  :rules="nameRules"
+                  required
+                ></b-input>
+              </div>
+            </div>
+            <div class="form-group row align-items-center">
+              <label class="col-xl-3 col-lg-3 col-form-label text-lg-right"
+                >Email</label
+              >
+              <div class="col-lg-9 col-xl-6">
+                <b-input
+                  type="text"
+                  placeholder="Email address to send the notification"
+                  :rules="emailRules"
+                  required
+                ></b-input>
+              </div>
+            </div>
+            <div class="form-group row align-items-center">
+              <label
+                class="col-xl-3 col-lg-3 col-form-label text-lg-right"
+              ></label>
+              <div class="col-lg-9 col-xl-6">
+                <b-btn
+                  class="btn btn-dark"
+                  block
+                  @click="addChannel"
+                  ref="topUpCredit"
+                  >Add Channel</b-btn
+                >
+              </div>
+            </div>
           </v-form>
         </v-container>
       </div>

@@ -2,95 +2,90 @@
   <div>
     <!--begin::Card-->
     <div class="card card-custom">
-      <!--begin::Header-->
-      <div class="card-header py-3">
+      <div class="card-body">
+        <!--begin::Header-->
         <div class="card-title align-items-start flex-column">
-          <h3 class="card-label font-weight-bolder text-dark">
-            API Key
-          </h3>
+          <h1 class="font-weight-bolder text-dark">API Key</h1>
           <p class="text-muted font-size-sm mt-1">
             You can use this API Key and API Secret to download your backup. To
             enable RunCloud API access, you need to enable API Access.
           </p>
         </div>
-      </div>
-      <div class="card-body">
-        <v-row>
-          <label class="col-xl-2 col-lg-3 col-form-label text-lg-right mt-3"
+
+        <div class="form-group row align-items-center">
+          <label class="col-xl-3 col-lg-3 col-form-label text-lg-right"
             >API Key</label
           >
-          <b-input-group class="col-xl-8 col-lg-9">
-            <b-form-input
-              class="form-control form-control-lg form-control-solid"
-              type="text"
-              :value="apikey"
-            >
-            </b-form-input>
-            <b-input-group-append>
-              <b-button variant="dark" v-clipboard:copy="password">
-                <i class="fa fa-copy"></i>
-              </b-button>
-              <b-button variant="success" @click="generate()"
-                ><i class="fa fa-sync"></i
-              ></b-button>
-            </b-input-group-append>
-          </b-input-group>
-        </v-row>
-        <v-row>
-          <label class="col-xl-2 col-lg-3 col-form-label text-lg-right mt-3"
+          <div class="col-lg-9 col-xl-6">
+            <b-input-group class="mt-3">
+              <b-form-input
+                auto="true"
+                characters="characters"
+                class="form-control form-control-lg"
+                type="text"
+                :value="apikey"
+              >
+              </b-form-input>
+              <b-input-group-append>
+                <b-button variant="dark" v-clipboard:copy="password">
+                  <i class="fa fa-copy"></i>
+                </b-button>
+                <b-button variant="success" @click="generate()"
+                  ><i class="fa fa-sync"></i
+                ></b-button>
+              </b-input-group-append>
+            </b-input-group>
+          </div>
+        </div>
+
+        <div class="form-group row align-items-center">
+          <label class="col-xl-3 col-lg-3 col-form-label text-lg-right"
             >API Secret</label
           >
-          <b-input-group class="col-xl-8 col-lg-9">
-            <b-form-input
-              auto="true"
-              characters="characters"
-              class="form-control form-control-lg form-control-solid"
-              type="text"
-              :value="apikey"
-            >
-            </b-form-input>
-            <b-input-group-append>
-              <b-button variant="dark" v-clipboard:copy="password">
-                <i class="fa fa-copy"></i>
-              </b-button>
-              <b-button variant="success" @click="generate()"
-                ><i class="fa fa-sync"></i
-              ></b-button>
-            </b-input-group-append>
-          </b-input-group>
-        </v-row>
+          <div class="col-lg-9 col-xl-6">
+            <b-input-group class="mt-3">
+              <b-form-input
+                auto="true"
+                characters="characters"
+                class="form-control form-control-lg"
+                type="text"
+                :value="apikey"
+              >
+              </b-form-input>
+              <b-input-group-append>
+                <b-button variant="dark" v-clipboard:copy="password">
+                  <i class="fa fa-copy"></i>
+                </b-button>
+                <b-button variant="success" @click="generate()"
+                  ><i class="fa fa-sync"></i
+                ></b-button>
+              </b-input-group-append>
+            </b-input-group>
+          </div>
+        </div>
       </div>
     </div>
     <!--end::Card-->
     <div class="form-group row mt-12"></div>
     <!--begin::Card-->
     <div class="card card-custom">
-      <!--begin::Header-->
-      <div class="card-header py-3">
+      <div class="card-body">
+        <!--begin::Header-->
         <div class="card-title align-items-start flex-column">
-          <h3 class="card-label font-weight-bolder text-dark">
-            Enable API Access
-          </h3>
+          <h1 class="font-weight-bolder text-dark">Enable API Access</h1>
           <p class="text-muted font-size-sm mt-1">
             Enable API Access to use the RunCloud API endpoint. If you are only
             using the API Key and API Secret to download backups, you don't have
             to enable this.
           </p>
         </div>
-      </div>
-      <div class="card-body">
-        <div class="form-group row">
-          <label class="col-xl-2 col-lg-3 col-form-label text-lg-right mt-3"
+
+        <div class="form-group row align-items-center">
+          <label class="col-xl-3 col-lg-3 col-form-label text-lg-right"
             >API Access</label
           >
-          <div class="col-xl-8 col-lg-9">
-            <select
-              class="form-control form-control-lg form-control-solid"
-              ref="time_zone"
-            >
-              <option value="enable">Enable</option>
-              <option value="disable">Disable</option>
-            </select>
+          <div class="col-lg-9 col-xl-6">
+            <b-select dense outlined label="select"> </b-select>
           </div>
         </div>
       </div>
@@ -99,62 +94,69 @@
     <div class="form-group row mt-12"></div>
     <!--begin::Card-->
     <div class="card card-custom">
-      <!--begin::Header-->
-      <v-card-title>
-        <h3 class="card-label font-weight-bolder text-dark">
-          IP Address Restriction
-        </h3>
-        <v-spacer></v-spacer>
-        <v-text-field
-          v-model="search"
-          label="Search..."
-          outlined
-          dense
-          hide-details
-        ></v-text-field>
-      </v-card-title>
-
       <div class="card-body">
+        <!--begin::Header-->
+        <v-card-title>
+          <h1>IP Address Restriction</h1>
+          <v-spacer></v-spacer>
+          <b-input
+            type="text"
+            v-model="search"
+            placeholder="Search..."
+            class="searchBox"
+          ></b-input>
+        </v-card-title>
+
         <p class="text-muted font-size-sm mt-1">
           Any requests to the API endpoint can only be made from these IP
           Address(es). If no IP Address is added and API Access is enabled, your
           API Key and API Secret can be requested from any IP address.
         </p>
         <form class="form">
-          <div class="form-group row mb-2">
-            <label class="col-xl-12 col-lg-12 col-form-label text-left"
+          <div class="form-group row align-items-center">
+            <label class="col-xl-3 col-lg-3 col-form-label text-lg-right"
               >IP Address</label
             >
-            <b-form-input
-              ref="ipAddress"
-              class="form-control form-control-lg"
-              type="text"
-              placeholder="IPV4 Address"
-            >
-            </b-form-input>
+            <div class="col-lg-9 col-xl-6">
+              <b-form-input
+                ref="ipAddress"
+                class="form-control form-control-lg"
+                type="text"
+                placeholder="IPV4 Address"
+              >
+              </b-form-input>
+            </div>
           </div>
 
-          <div class="form-group row mb-2">
-            <label class="col-xl-12 col-lg-12 col-form-label text-left"
+          <div class="form-group row align-items-center">
+            <label class="col-xl-3 col-lg-3 col-form-label text-lg-right"
               >Description(Optional)</label
             >
-            <b-form-input
-              ref="des"
-              class="form-control form-control-lg"
-              type="text"
-              placeholder="E.g: automation server"
-            >
-            </b-form-input>
+            <div class="col-lg-9 col-xl-6">
+              <b-form-input
+                ref="des"
+                class="form-control form-control-lg"
+                type="text"
+                placeholder="E.g: automation server"
+              >
+              </b-form-input>
+            </div>
           </div>
-          <div class="form-group row mb-2">
-            <button
-              type="button"
-              class="btn btn-dark w-100"
-              @click="add()"
-              ref="kt_ip_add"
-            >
-              Add
-            </button>
+
+          <div class="form-group row align-items-center">
+            <label
+              class="col-xl-3 col-lg-3 col-form-label text-lg-right"
+            ></label>
+            <div class="col-lg-9 col-xl-6">
+              <button
+                type="button"
+                class="btn btn-dark w-100"
+                @click="add()"
+                ref="kt_ip_add"
+              >
+                Add
+              </button>
+            </div>
           </div>
         </form>
         <div>

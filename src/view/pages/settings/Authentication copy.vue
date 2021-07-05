@@ -106,7 +106,7 @@
           <v-subheader class="pl-0"> Password Length </v-subheader>
           <v-slider
             v-model="passLen"
-            class="align-items-center"
+            class="align-center"
             :max="60"
             :min="6"
             @change="setChangePassLength"

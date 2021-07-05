@@ -8,7 +8,7 @@
           <span class="card-label font-weight-bolder text-dark"
             >Payment History</span
           >
-          <span class="text-muted mt-3  font-size-sm"
+          <span class="text-muted mt-3 font-size-sm"
             >Your payment history.</span
           >
         </h3>
@@ -16,12 +16,7 @@
       <!--end::Header-->
       <!--begin::Body-->
       <div class="card-body py-0">
-        <v-data-table
-          :headers="headers"
-          :items="SSHKeys"
-          sort-by="calories"
-          class="elevation-1"
-        >
+        <v-data-table :headers="headers" :items="SSHKeys" sort-by="calories">
         </v-data-table>
       </div>
     </div>

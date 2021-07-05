@@ -17,12 +17,7 @@
       <!--end::Header-->
       <!--begin::Body-->
       <div class="card-body py-0">
-        <v-data-table
-          :headers="headers"
-          :items="SSHKeys"
-          sort-by="calories"
-          class="elevation-1"
-        >
+        <v-data-table :headers="headers" :items="SSHKeys" sort-by="calories">
           <template v-slot:top>
             <v-toolbar flat>
               <v-spacer></v-spacer>
@@ -55,9 +50,9 @@
               </v-dialog>
             </v-toolbar>
           </template>
-          <!-- <template v-slot:item.actions="{item}">
+          <template v-slot:item.actions="{item}">
             <v-icon small @click="deleteItem(item)"> mdi-delete </v-icon>
-          </template> -->
+          </template>
         </v-data-table>
       </div>
     </div>

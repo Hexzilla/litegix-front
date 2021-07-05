@@ -10,9 +10,11 @@
         > -->
       </h3>
       <div class="card-toolbar">
-        <a href="#" class="btn btn-info font-weight-bolder font-size-sm"
-          >New Report</a
-        >
+        <b-link to="sshkey/create">
+          <a class="btn btn-success font-weight-bolder font-size-sm"
+            >Add SSHKey</a
+          >
+        </b-link>
       </div>
     </div>
     <!--end::Header-->

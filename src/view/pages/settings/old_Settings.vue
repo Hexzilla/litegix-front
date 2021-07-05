@@ -27,7 +27,7 @@
               >
                 <span class="navi-icon mr-2">
                   <span class="svg-icon">
-                    <inline-svg src="/media/svg/icons/Design/Layers.svg" />
+                    <inline-svg src="media/svg/icons/Design/Layers.svg" />
                   </span>
                 </span>
                 <span class="navi-text font-size-lg">Profile</span>
@@ -45,7 +45,7 @@
               >
                 <span class="navi-icon mr-2">
                   <span class="svg-icon">
-                    <inline-svg src="/media/svg/icons/General/User.svg" />
+                    <inline-svg src="media/svg/icons/General/User.svg" />
                   </span>
                 </span>
                 <span class="navi-text font-size-lg">Notifications</span>
@@ -63,7 +63,7 @@
               >
                 <span class="navi-icon mr-2">
                   <span class="svg-icon">
-                    <inline-svg src="/media/svg/icons/Code/Compiling.svg" />
+                    <inline-svg src="media/svg/icons/Code/Compiling.svg" />
                   </span>
                 </span>
                 <span class="navi-text font-size-lg">Server Transfer</span>
@@ -82,7 +82,7 @@
                 <span class="navi-icon mr-2">
                   <span class="svg-icon">
                     <inline-svg
-                      src="/media/svg/icons/Communication/Shield-user.svg"
+                      src="media/svg/icons/Communication/Shield-user.svg"
                     />
                   </span>
                 </span>
@@ -102,7 +102,7 @@
                 <span class="navi-icon mr-2">
                   <span class="svg-icon">
                     <inline-svg
-                      src="/media/svg/icons/Communication/Mail-opened.svg"
+                      src="media/svg/icons/Communication/Mail-opened.svg"
                     />
                   </span>
                 </span>
@@ -122,7 +122,7 @@
                 <span class="navi-icon mr-2">
                   <span class="svg-icon">
                     <inline-svg
-                      src="/media/svg/icons/Communication/Delete-user.svg"
+                      src="media/svg/icons/Communication/Delete-user.svg"
                     />
                   </span>
                 </span>
@@ -143,7 +143,7 @@
                 <span class="navi-icon mr-2">
                   <span class="svg-icon">
                     <inline-svg
-                      src="/media/svg/icons/Communication/Incoming-call.svg"
+                      src="media/svg/icons/Communication/Incoming-call.svg"
                     />
                   </span>
                 </span>
@@ -163,7 +163,7 @@
                 <span class="navi-icon mr-2">
                   <span class="svg-icon">
                     <inline-svg
-                      src="/media/svg/icons/Communication/Reply-all.svg"
+                      src="media/svg/icons/Communication/Reply-all.svg"
                     />
                   </span>
                 </span>
@@ -182,7 +182,7 @@
               >
                 <span class="navi-icon mr-2">
                   <span class="svg-icon">
-                    <inline-svg src="/media/svg/icons/Communication/RSS.svg" />
+                    <inline-svg src="media/svg/icons/Communication/RSS.svg" />
                   </span>
                 </span>
                 <span class="navi-text font-size-lg">3rd Party API Key</span>
@@ -201,7 +201,7 @@
                 <span class="navi-icon mr-2">
                   <span class="svg-icon">
                     <inline-svg
-                      src="/media/svg/icons/Communication/Safe-chat.svg"
+                      src="media/svg/icons/Communication/Safe-chat.svg"
                     />
                   </span>
                 </span>
@@ -222,7 +222,7 @@
                 <span class="navi-icon mr-2">
                   <span class="svg-icon">
                     <inline-svg
-                      src="/media/svg/icons/Communication/Sending.svg"
+                      src="media/svg/icons/Communication/Sending.svg"
                     />
                   </span>
                 </span>
@@ -242,7 +242,7 @@
                 <span class="navi-icon mr-2">
                   <span class="svg-icon">
                     <inline-svg
-                      src="/media/svg/icons/Communication/Mail-at.svg"
+                      src="media/svg/icons/Communication/Mail-at.svg"
                     />
                   </span>
                 </span>
@@ -261,7 +261,7 @@
               >
                 <span class="navi-icon mr-2">
                   <span class="svg-icon">
-                    <inline-svg src="/media/svg/icons/Communication/Group.svg" />
+                    <inline-svg src="media/svg/icons/Communication/Group.svg" />
                   </span>
                 </span>
                 <span class="navi-text font-size-lg">Payment History</span>
@@ -281,7 +281,7 @@
                 <span class="navi-icon mr-2">
                   <span class="svg-icon">
                     <inline-svg
-                      src="/media/svg/icons/Communication/Thumbtack.svg"
+                      src="media/svg/icons/Communication/Thumbtack.svg"
                     />
                   </span>
                 </span>
@@ -300,7 +300,7 @@
               >
                 <span class="navi-icon mr-2">
                   <span class="svg-icon">
-                    <inline-svg src="/media/svg/icons/Communication/Share.svg" />
+                    <inline-svg src="media/svg/icons/Communication/Share.svg" />
                   </span>
                 </span>
                 <span class="navi-text font-size-lg">WordPress Canvas</span>

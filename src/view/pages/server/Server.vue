@@ -1,15 +1,11 @@
 <template>
-  <v-app>
     <div class="d-flex flex-row">
       <div
-        class="flex-row-auto offcanvas-mobile w-300px w-xl-350px"
+        class="flex-row-auto offcanvas-mobile w-200px w-xl-250px"
         id="kt_profile_aside"
       >
         <div class="card card-custom card-stretch">
-          <div class="card-body pt-4">
-            <div class="d-flex justify-content-end">
-              <KTDropdown2></KTDropdown2>
-            </div>
+          <div class="card-body pt-4 px-4">
             <!--begin::Nav-->
             <div
               class="navi navi-bold navi-hover navi-active navi-link-rounded"
@@ -421,10 +417,7 @@
       </div>
       <!--end::Content-->
     </div>
-  </v-app>
 </template>
-
-<style scoped src="@/assets/styles/server.css"></style>
 
 <style lang="scss">
 @import "~vuetify/dist/vuetify.css";

@@ -4,13 +4,6 @@
       <v-card-title>
         <h1>Activity Log</h1>
         <v-spacer></v-spacer>
-        <v-text-field
-          v-model="code4.search"
-          outlined
-          dense
-          label="Search..."
-          hide-details
-        ></v-text-field>
       </v-card-title>
       <v-data-table
         no-data-text="No data"
@@ -18,6 +11,17 @@
         :items="code4.logs"
         :search="code4.search"
       >
+        <template v-slot:top>
+          <v-toolbar flat>
+            <v-spacer></v-spacer>
+            <b-input
+              v-model="code4.search"
+              class="searchBox"
+              placeholder="Search..."
+              :search="search"
+            ></b-input>
+          </v-toolbar>
+        </template>
         <template v-slot:item.name="{ item }">
           <v-chip color="green" label small>
             <v-icon left>mdi-pencil</v-icon>

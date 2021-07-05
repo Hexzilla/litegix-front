@@ -6,7 +6,7 @@
       <div class="card-header py-3">
         <div class="card-title align-items-start flex-column">
           <h1 class="font-weight-bolder text-dark mt-5">Newsletter</h1>
-          <span class="text--lighten-1 font-size-sm mt-8"
+          <span class="text-muted font-size-sm mt-8"
             >Subscribe or unsubscribe to our newsletter.</span
           >
         </div>
@@ -75,7 +75,7 @@
                     <div class="text-dark-75 font-size-lg mb-1">
                       Updates and Announcements
                     </div>
-                    <span class="sub-description">
+                    <span class="text-muted">
                       Stay up to date with the latest announcements and
                       promotions from RunCloud
                     </span>
@@ -183,27 +183,9 @@
         <v-card-title>
           <h1>Channels</h1>
           <v-spacer></v-spacer>
-          <v-text-field
-            v-model="search"
-            label="Search..."
-            outlined
-            dense
-            hide-details
-            class="mr-2"
-          ></v-text-field>
-          <router-link
-            to="/settings/AddNotification"
-            v-slot="{ href, navigate }"
-          >
-            <a :href="href" @click="navigate" data-nsfw-filter-status="swf">
-              <button type="button" class="btn btn-success" ref="add">
-                Add
-              </button>
-            </a>
-          </router-link>
         </v-card-title>
         <div>
-          <span class="text--lighten-1 font-size-sm mt-8">
+          <span class="text-muted font-size-sm mt-8">
             Here you can add notifications to notify you on certain events. You
             can add <b>Slack, Telegram and Email </b>for the notification
             channel. You then can hook the registered notifications to your
@@ -211,11 +193,28 @@
             <b> Payment History (soon)</b>.
           </span>
         </div>
-        <v-data-table
-          :headers="headers"
-          :items="desserts"
-          :search="search"
-        ></v-data-table>
+        <v-data-table :headers="headers" :items="desserts">
+          <template v-slot:top>
+            <v-toolbar flat>
+              <v-spacer></v-spacer>
+              <b-input
+                class="searchBox"
+                placeholder="Search..."
+                :search="search"
+              ></b-input>
+              <router-link
+                to="/settings/AddNotification"
+                v-slot="{ href, navigate }"
+              >
+                <a :href="href" @click="navigate" data-nsfw-filter-status="swf">
+                  <button type="button" class="btn btn-success" ref="add">
+                    Add
+                  </button>
+                </a>
+              </router-link>
+            </v-toolbar>
+          </template>
+        </v-data-table>
       </div>
     </v-card>
   </div>

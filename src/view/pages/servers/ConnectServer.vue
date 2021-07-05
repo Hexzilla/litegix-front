@@ -187,7 +187,7 @@
                     <!---->
                     <div class="col-md-5 col-lg-4 hidden-xs hidden-sm">
                       <img
-                        src="/media/products/22.png"
+                        src="media/products/22.png"
                         alt="illustration-reading"
                         class="img-responsive"
                         style="height: 320px; visibility: visible"
@@ -215,7 +215,7 @@
                         />
                         <div class="d-flex">
                           <img
-                            src="/media/client-logos/logo3.png"
+                            src="media/client-logos/logo3.png"
                             alt="Nginx"
                             class="web-server-img"
                             data-nsfw-filter-status="sfw"
@@ -250,7 +250,7 @@
                         <div class="d-flex">
                           <!---->
                           <img
-                            src="/media/client-logos/logo2.png"
+                            src="media/client-logos/logo2.png"
                             alt="OpenLiteSpeed"
                             class="web-server-img"
                             data-nsfw-filter-status="sfw"
@@ -413,7 +413,6 @@
   </v-app>
 </template>
 
-<style scoped src="@/assets/styles/app.css"></style>
 <script>
 export default {
   data() {

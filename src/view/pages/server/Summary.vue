@@ -84,7 +84,7 @@
           <div class="card-body">
             <div class="d-flex align-items-center">
               <div class="flex-shrink-0 mr-4 symbol symbol-60 symbol-circle">
-                <inline-svg src="/media/svg/icons/Files/Download.svg" />
+                <inline-svg src="media/svg/icons/Files/Download.svg" />
               </div>
               <div class="d-flex flex-column mr-auto">
                 <div class="d-flex flex-column mr-auto">
@@ -125,7 +125,7 @@
           <div class="card-body">
             <div class="d-flex align-items-center">
               <div class="flex-shrink-0 mr-4 symbol symbol-60 symbol-circle">
-                <inline-svg src="/media/svg/icons/Files/Download.svg" />
+                <inline-svg src="media/svg/icons/Files/Download.svg" />
               </div>
               <div class="d-flex flex-column mr-auto">
                 <div class="d-flex flex-column mr-auto">
@@ -172,7 +172,7 @@
           <div class="card-body">
             <div class="d-flex align-items-center">
               <div class="flex-shrink-0 mr-4 symbol symbol-60 symbol-circle">
-                <inline-svg src="/media/svg/icons/Files/Download.svg" />
+                <inline-svg src="media/svg/icons/Files/Download.svg" />
               </div>
               <div class="d-flex flex-column mr-auto">
                 <div class="d-flex flex-column mr-auto">
@@ -220,7 +220,7 @@
           <div class="card-body">
             <div class="d-flex align-items-center">
               <div class="flex-shrink-0 mr-4 symbol symbol-60 symbol-circle">
-                <inline-svg src="/media/svg/icons/Files/Download.svg" />
+                <inline-svg src="media/svg/icons/Files/Download.svg" />
               </div>
               <div class="d-flex flex-column mr-auto">
                 <div class="d-flex flex-column mr-auto">

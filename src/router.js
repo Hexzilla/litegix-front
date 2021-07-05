@@ -35,6 +35,11 @@ export default new Router({
           component: () => import("@/view/pages/servers/ConnectServer.vue")
         },
         {
+          path: "/servers/connect",
+          name: "server-connect",
+          component: () => import("@/view/pages/servers/ConnectServer.vue")
+        },
+        {
           path: "/servers/config",
           name: "server-config",
           component: () => import("@/view/pages/servers/ConfigServer.vue")
@@ -755,8 +760,7 @@ export default new Router({
               component: () => import("@/view/pages/plugins/Treeselect.vue")
             }
           ]
-        }
-        /*,
+        },
         {
           path: "/profile",
           name: "profile",
@@ -783,7 +787,7 @@ export default new Router({
               component: () => import("@/view/pages/profile/Profile-4.vue")
             }
           ]
-        }*/
+        }
       ]
     },
     {

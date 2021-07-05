@@ -108,6 +108,7 @@ export default {
     },
 
     deleteItem(item) {
+      console.log(item);
       this.dialogDelete = true;
     }
   }

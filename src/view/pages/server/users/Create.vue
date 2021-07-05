@@ -224,7 +224,6 @@
   </div>
 </template>
 
-<style scoped src="@/assets/styles/app.css"></style>
 <style scoped src="@/assets/styles/server.css"></style>
 
 <script>

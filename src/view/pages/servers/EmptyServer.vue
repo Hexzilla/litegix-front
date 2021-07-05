@@ -21,11 +21,9 @@
     </div>
   </div>
 </template>
-<style scoped src="@/assets/styles/app.css">
-</style>
 
 <script>
 export default {
-  name: "Empty",
+  name: "Empty"
 };
 </script>

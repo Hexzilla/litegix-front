@@ -50,7 +50,7 @@
               </v-dialog>
             </v-toolbar>
           </template>
-          <template v-slot:item.actions="{item}">
+          <template v-slot:item.actions="{ item }">
             <v-icon small @click="deleteItem(item)"> mdi-delete </v-icon>
           </template>
         </v-data-table>
@@ -102,7 +102,7 @@ export default {
       ];
     },
 
-    deleteItem(item) {
+    deleteItem() {
       //console.log(item);
       this.dialogDelete = true;
     }

@@ -489,7 +489,7 @@ export default {
   },
   methods: {
     getProvisionTypeClass(type) {
-      console.log(type + "=" + this.provision_type);
+      //console.log(type + "=" + this.provision_type);
       let provider = this.providers.find((c) => c.slug == this.sel_provider);
       if (provider == undefined) {
         this.provision_type = "";

@@ -22,12 +22,15 @@
       <!--end::Aside Mobile Toggle-->
       <!--begin::Header Menu Mobile Toggle-->
       <button
+        v-if="submenuEnabled"
         class="btn p-0 burger-icon ml-4"
-        id="kt_header_mobile_toggle"
-        ref="kt_header_mobile_toggle"
+        id="kt_submenu_mobile_toggle"
+        ref="kt_submenu_mobile_toggle"
       >
         <span></span>
       </button>
+      
+
       <!--end::Header Menu Mobile Toggle-->
       <!--begin::Topbar Mobile Toggle-->
       <button
@@ -37,7 +40,10 @@
       >
         <span class="svg-icon svg-icon-xl">
           <!--begin::Svg Icon | path:svg/icons/General/User.svg-->
-          <inline-svg class="svg-icon" src="/media/svg/icons/General/User.svg" />
+          <inline-svg
+            class="svg-icon"
+            src="/media/svg/icons/General/User.svg"
+          />
           <!--end::Svg Icon-->
         </span>
       </button>
@@ -87,7 +93,12 @@ export default {
      */
     asideEnabled() {
       return !!this.layoutConfig("aside.self.display");
-    }
-  }
+    },
+
+    submenuEnabled() {
+      return (this.$route.path.startsWith("/settings") || this.$route.path.startsWith("/server"));
+    },
+
+  },
 };
 </script>

@@ -412,6 +412,12 @@
 .theme--light.v-application {
   background: transparent !important;
 }
+
+@media (min-width: 1280px) {
+  .container {
+    margin: 0 40px 0 40px;
+  }
+}
 </style>
 <script>
 import { SET_BREADCRUMB } from "@/core/services/store/breadcrumbs.module";

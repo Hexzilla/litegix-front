@@ -4,11 +4,11 @@
     <div class="card card-custom gutter-b">
       <!--begin::Header-->
       <div class="card-header border-0 py-5">
-        <h3 class="card-title align-items-start flex-column">
-          <span class="card-label font-weight-bolder text-dark"
-            >Create Canvas</span
-          >
-        </h3>
+        <v-card-title>
+          <h1>Create Canvas</h1>
+          <v-spacer></v-spacer>
+        </v-card-title>
+       
       </div>
       <!--end::Header-->
       <!--begin::Body-->
@@ -161,7 +161,9 @@
             <b-link>Learn how to format date and time.</b-link>
           </b-form-group>
 
-          <b-button block type="submit" variant="primary">Submit</b-button>
+          <b-button block type="submit" variant="success" class="mb-5"
+            >Submit</b-button
+          >
         </b-form>
       </div>
     </div>

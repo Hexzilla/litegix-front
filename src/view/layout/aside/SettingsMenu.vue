@@ -358,4 +358,3 @@
     </router-link>
   </div>
 </template>
-

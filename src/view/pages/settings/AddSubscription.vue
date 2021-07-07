@@ -20,13 +20,13 @@
                     <h4>Server</h4>
                     <h6>Compare plans</h6>
                   </v-card-title>
-                  <v-select
+                  <b-select
                     v-model="select"
                     :items="items"
                     required
                     dense
                     outlined
-                  ></v-select>
+                  ></b-select>
                   <v-spacer></v-spacer>
                 </div>
                 <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6" align="right">
@@ -71,17 +71,15 @@
                     <b-card-text class="text-left">Backup Pro</b-card-text>
                   </v-col>
                   <v-col cols="12" sm="6" md="3">
-                    <v-text-field
+                    <b-input
                       v-model="passLen"
                       :rules="rules"
-                      outlined
-                      dense
                       type="number"
                       min="0"
-                    ></v-text-field>
+                    ></b-input>
                   </v-col>
                   <v-col cols="12" sm="6" md="3">
-                    <v-select outlined dense class="text-left"></v-select>
+                    <b-select outlined dense class="text-left"></b-select>
                   </v-col>
                   <v-col cols="12" sm="6" md="3">
                     <b-card-text class="text-right">USD</b-card-text>

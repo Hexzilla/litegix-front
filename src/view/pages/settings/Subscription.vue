@@ -113,12 +113,12 @@
           </div>
 
           <div class="form-group row align-items-center">
-            <label class="col-xl-3 col-lg-3 col-form-label text-lg-right"
-              >Amount</label
-            >
+            <label
+              class="col-xl-3 col-lg-3 col-form-label text-lg-right"
+            ></label>
             <div class="col-lg-9 col-xl-6">
               <b-btn
-                class="btn btn-dark"
+                class="btn btn-success"
                 block
                 @click="topUpCredit"
                 ref="topUpCredit"

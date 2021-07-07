@@ -25,10 +25,10 @@ import KTSubAside from "@/view/layout/aside/SubAside.vue";
 
 export default {
   components: {
-    KTSubAside
+    KTSubAside,
   },
   mounted() {
     this.$store.dispatch(SET_BREADCRUMB, [{ title: "Settings" }]);
-  }
+  },
 };
 </script>

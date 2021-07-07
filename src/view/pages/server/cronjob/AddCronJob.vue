@@ -72,16 +72,18 @@
   </div>
 </template>
 
+
 <script>
 export default {
   data() {
     return {
       select: "",
-      keys: []
+      keys: [],
     };
-  }
+  },
 };
 </script>
+
 
 <style scoped src="@/assets/styles/server.css"></style>
 
@@ -90,8 +92,8 @@ export default {
   data() {
     return {
       select: "",
-      keys: []
+      keys: [],
     };
-  }
+  },
 };
 </script>

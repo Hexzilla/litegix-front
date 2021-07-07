@@ -2,33 +2,24 @@
   <div>
     <!--begin::Card-->
     <div class="card card-custom">
-      <!--begin::Header-->
-      <div class="card-header py-3">
-        <div class="card-title align-items-start flex-column">
-          <h1 class="font-weight-bolder text-dark mt-5">Newsletter</h1>
-          <span class="text-muted font-size-sm mt-8"
-            >Subscribe or unsubscribe to our newsletter.</span
-          >
-        </div>
-      </div>
-      <!--end::Header-->
-      <!--begin::Form-->
-      <form class="form">
-        <!--begin::Body-->
-        <div class="card-body">
-          <div class="row border-bottom">
-            <div class="col-lg-9 col-xl-10">
+      <div class="card-body">
+        <!--begin::Header-->
+        <v-card-title>
+          <h1>Newsletter</h1>
+          <v-spacer></v-spacer>
+        </v-card-title>
+        <!--end::Header-->
+        <!--begin::Form-->
+        <form class="form">
+          <!--begin::Body-->
+          <p class="text-muted font-size-sm mt-1">
+            Two-factor authentication adds an extra layer of security to your
+            account by asking for a verification code when you sign in.
+          </p>
+          <v-divider></v-divider>
+          <div class="row">
+            <div class="col-lg-9 col-xl-10 mt-3">
               <h5 class="mb-6">
-                <!-- <i
-                  class="
-                    v-icon
-                    notranslate
-                    v-alert__icon
-                    mdi mdi-check-circle
-                    theme--dark
-                    --v-secondary-lighten5
-                  "
-                ></i> -->
                 <v-avatar left size="32" color="success">
                   <v-icon color="#fff">mdi-check</v-icon>
                 </v-avatar>
@@ -42,6 +33,7 @@
               </a>
             </div>
           </div>
+          <v-divider></v-divider>
           <div class="row mt-12">
             <div class="col-lg-9 col-xl-6">
               <h5 class="mb-6">Newsletter Subscription</h5>
@@ -172,10 +164,10 @@
               </div>
             </div>
           </div>
-        </div>
-        <!--end::Body-->
-      </form>
-      <!--end::Form-->
+          <!--end::Body-->
+        </form>
+        <!--end::Form-->
+      </div>
     </div>
     <div class="form-group"></div>
     <v-card>

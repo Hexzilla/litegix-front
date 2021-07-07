@@ -24,13 +24,15 @@
       >
         <template #cell(label)="data">
           <div v-if="data.item.label == 'Error'">
-            <span class="label label-danger"> Error</span>
+            <span class="label label-lg label-inline label-danger"> Error</span>
           </div>
           <div v-if="data.item.label == 'Info'">
-            <span class="label label-success"> Info</span>
+            <span class="label label-lg label-inline label-success"> Info</span>
           </div>
           <div v-if="data.item.label == 'Warning'">
-            <span class="label label-warning"> Warning</span>
+            <span class="label label-lg label-inline label-warning">
+              Warning</span
+            >
           </div>
         </template>
       </b-table>

@@ -27,7 +27,7 @@ export default new Router({
         {
           path: "/servers/create",
           name: "server-create",
-          component: () => import("@/view/pages/servers/ConnectServer.vue")
+          component: () => import("@/view/pages/servers/CreateServer.vue")
         },
         {
           path: "/servers/connect",

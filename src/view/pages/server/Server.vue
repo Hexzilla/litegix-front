@@ -1,6 +1,6 @@
 <template>
   <div class="d-flex flex-row">
-    <KTSubAside :n_path="'settings'"></KTSubAside>
+    <KTSubAside :n_path="'server'"></KTSubAside>
 
     <!--begin::Content-->
     <div class="flex-row-fluid ml-lg-8">

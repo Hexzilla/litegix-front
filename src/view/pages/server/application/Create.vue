@@ -5,7 +5,11 @@
         <span class="card-label font-weight-bolder text-dark"
           >Add New Web Application</span
         >
-        <span class="text-muted mt-3 font-weight-bold font-size-sm" data-nsfw-filter-status="swf">Please choose which action that you would like to perform. </span>
+        <span
+          class="text-muted mt-3 font-weight-bold font-size-sm"
+          data-nsfw-filter-status="swf"
+          >Please choose which action that you would like to perform.
+        </span>
       </h3>
     </div>
     <div class="card-body pt-0 pb-10">
@@ -51,7 +55,3 @@
     </div>
   </div>
 </template>
-<style lang="scss">
-@import "@/assets/sass/pages/server/application.scss";
-@import "@/assets/sass/pages/server/rcicon.scss";
-</style>

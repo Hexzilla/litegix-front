@@ -1,25 +1,23 @@
-
 .webapp-type-selection {
     flex-direction: column;
 }
 
-.webapp-type-selection .item~.item {
-    margin-top: 24px
+.webapp-type-selection .item ~ .item {
+    margin-top: 24px;
 }
 
 .webapp-type-selection .item {
-    flex: 1 1 0
+    flex: 1 1 0;
 }
-    
 
 .webapp-type-selection h5 {
-    margin-top: unset
+    margin-top: unset;
 }
 
 .webapp-type-selection i {
     color: #22313f;
     font-size: 32px;
-    margin-right: 16px
+    margin-right: 16px;
 }
 
 .webapp-type-selection .btn-checkbox {
@@ -28,7 +26,7 @@
     margin-bottom: unset;
     margin-left: unset !important;
     padding: 24px;
-    height: 100%
+    height: 100%;
 }
 
 .btn-checkbox {
@@ -41,12 +39,8 @@
     background-color: #f5f7fa;
     padding: 16px;
     line-height: 1.2;
-    white-space: unset
+    white-space: unset;
 }
-
-
-
-
 
 //  .datepicker {
 //     border-radius: 4px;
@@ -939,7 +933,6 @@
 // .glyphicon-modal-window:before {
 //     content: "\e237"
 // }
-
 
 // html {
 //     font-size: 10px;
@@ -12623,11 +12616,6 @@
 //     padding-top: unset
 // }
 
-
-
-
-
-
 // .vps-selection {
 //     overflow-x: scroll;
 //     display: grid;
@@ -12643,7 +12631,6 @@
 // .hide_all_provider {
 //     grid-auto-flow: column !important;
 // }
-
 
 // .vps-selection>label {
 //     margin-top: unset;
@@ -12716,7 +12703,6 @@
 //     max-height: 50px;
 //     padding-right: 15px
 // }
-
 
 // .server-installation-note {
 //     border-radius: 2px;

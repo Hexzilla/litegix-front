@@ -2,19 +2,17 @@
   <div>
     <!--begin::Card-->
     <div class="card card-custom">
-      <!--begin::Header-->
-      <div class="card-header py-3">
-        <div class="card-title align-items-start flex-column">
-          <h1 class="font-weight-bolder text-dark">
-            Two-factor Authentication
-          </h1>
-          <p class="text-muted  font-size-sm mt-1">
-            Two-factor authentication adds an extra layer of security to your
-            account by asking for a verification code when you sign in.
-          </p>
-        </div>
-      </div>
       <div class="card-body">
+        <!--begin::Header-->
+        <v-card-title>
+          <h1>Two-factor Authentication</h1>
+          <v-spacer></v-spacer>
+        </v-card-title>
+        <p class="text-muted font-size-sm mt-1">
+          Two-factor authentication adds an extra layer of security to your
+          account by asking for a verification code when you sign in.
+        </p>
+
         <router-link to="/settings/connectApp" v-slot="{ href, navigate }">
           <a :href="href" @click="navigate" data-nsfw-filter-status="swf">
             <button type="button" class="btn btn-success" ref="setup">
@@ -28,15 +26,15 @@
     <div class="form-group row mt-12"></div>
     <!--begin::Card-->
     <div class="card card-custom">
-      <!--begin::Header-->
-      <div class="card-header py-3">
-        <div class="card-title align-items-start flex-column">
-          <h1 class="font-weight-bolder text-dark">Password</h1>
-        </div>
-      </div>
       <div class="card-body">
+        <!--begin::Header-->
+        <v-card-title>
+          <h1>Password</h1>
+          <v-spacer></v-spacer>
+        </v-card-title>
+
         <form class="form">
-          <div class="form-group row mb-2">
+          <div class="form-group row">
             <label class="col-xl-12 col-lg-12 col-form-label text-left"
               >Current Password</label
             >
@@ -48,7 +46,7 @@
             >
             </b-form-input>
           </div>
-          <div class="form-group row mb-2">
+          <div class="form-group row">
             <label class="col-xl-12 col-lg-12 col-form-label text-left"
               >Password</label
             >
@@ -79,10 +77,10 @@
             >
             </b-form-input>
           </div>
-          <div class="form-group row mb-2">
+          <div class="form-group row mt-7">
             <button
               type="button"
-              class="btn btn-dark w-100"
+              class="btn btn-success w-100"
               @click="update()"
               ref="kt_pass_update"
             >
@@ -101,69 +99,71 @@
       title="Password Generator"
       size="lg"
     >
-      <v-row>
-        <v-col class="pr-4">
-          <v-subheader class="pl-0"> Password Length </v-subheader>
-          <v-slider
-            v-model="passLen"
-            class="align-center"
-            :max="60"
-            :min="6"
-            @change="setChangePassLength"
-            thumb-label
-            step="1"
-          >
-            <template v-slot:append>
-              <v-text-field
-                v-model="passLen"
-                class="mt-0 pt-0"
-                type="number"
-                style="width: 40px"
-                @click="setChangePassLength"
-                @change="setChangePassLength"
-              ></v-text-field>
-            </template>
-          </v-slider>
-        </v-col>
-      </v-row>
       <v-form class="mt-3">
         <v-container>
-          <b-card-group deck class="w-100 pr-10 pl-10">
-            <b-card align="center" border-variant="primary">
-              <h3>A-Z</h3>
-              <b-card-text>Uppercase</b-card-text>
-              <v-card-actions>
-                <v-btn outlined rounded text> select </v-btn>
-              </v-card-actions>
-            </b-card>
-            <b-card
-              align="center"
-              border-variant="primary"
-              style="cursor: pointer"
-            >
-              <h3>a-z</h3>
-              <b-card-text>Lowercase</b-card-text>
-            </b-card>
-            <b-card
-              align="center"
-              border-variant="primary"
-              style="cursor: pointer"
-            >
-              <h3>0-9</h3>
-              <b-card-text>Number</b-card-text>
-            </b-card>
-            <b-card
-              align="center"
-              border-variant="primary"
-              style="cursor: pointer"
-            >
-              <h3>!%@#</h3>
-              <b-card-text>Symbol</b-card-text>
-            </b-card>
+          <h6 class="pl-0">Password Length ({{ passLen }})</h6>
+          <vue-slider
+            v-model="passLen"
+            :disabled="false"
+            @change="setChangePassLength"
+          ></vue-slider>
+          <b-card-group deck class="w-100 pr-10 pl-10 mt-5">
+            <b-row>
+              <b-col>
+                <b-form-checkbox
+                  v-model="uppercase"
+                  name="check-button"
+                  align="center"
+                  button
+                  button-variant="outline-secondary"
+                  min-height="600px"
+                  @change="generate"
+                >
+                  <h3>A-Z</h3>
+                  <b-card-text>Uppercase</b-card-text>
+                </b-form-checkbox>
+              </b-col>
+              <b-col>
+                <b-form-checkbox
+                  v-model="lowercase"
+                  name="check-button"
+                  align="center"
+                  button
+                  button-variant="outline-secondary"
+                >
+                  <h3>a-z</h3>
+                  <b-card-text>Lowercase</b-card-text>
+                </b-form-checkbox>
+              </b-col>
+              <b-col>
+                <b-form-checkbox
+                  v-model="number"
+                  name="check-button"
+                  align="center"
+                  button
+                  button-variant="outline-secondary"
+                >
+                  <h3>0-9</h3>
+                  <b-card-text>Number</b-card-text>
+                </b-form-checkbox>
+              </b-col>
+              <b-col>
+                <b-form-checkbox
+                  v-model="symbol"
+                  name="check-button"
+                  align="center"
+                  button
+                  button-variant="outline-secondary"
+                >
+                  <h3>!%@#</h3>
+                  <b-card-text>Symbol</b-card-text>
+                </b-form-checkbox>
+              </b-col>
+            </b-row>
           </b-card-group>
 
-          <v-container>
-            <v-card-subtitle> Generated Password </v-card-subtitle>
+          <b-card-group class="mt-5">
+            <h6>Generated Password</h6>
             <b-input-group class="mt-3">
               <b-form-input
                 auto="true"
@@ -174,7 +174,7 @@
               >
               </b-form-input>
               <b-input-group-append>
-                <b-button variant="dark" v-clipboard:copy="password">
+                <b-button variant="dark">
                   <i class="fa fa-copy"></i>
                 </b-button>
                 <b-button variant="success" @click="generate()">
@@ -182,17 +182,17 @@
                 </b-button>
               </b-input-group-append>
             </b-input-group>
-          </v-container>
-          <v-container>
+          </b-card-group>
+          <b-card-group>
             <b-button
               type="button"
-              class="btn btn-dark w-100 mt-5"
+              class="btn btn-success w-100 mt-5"
               @click="createPass()"
               ref="kt_create_pass"
             >
               Use This Password
             </b-button>
-          </v-container>
+          </b-card-group>
         </v-container>
       </v-form>
     </b-modal>
@@ -203,17 +203,33 @@
 <script>
 import { UPDATE_PERSONAL_INFO } from "@/core/services/store/profile.module";
 import { SET_BREADCRUMB } from "@/core/services/store/breadcrumbs.module";
-import Vue from "vue";
-import VueClipboard from "vue-clipboard2";
+// import Vue from "vue";
+// import VueClipboard from "vue-clipboard2";
 
-Vue.use(VueClipboard);
+// Vue.use(VueClipboard);
+import VueSlider from "vue-slider-component";
+import "vue-slider-component/theme/antd.css";
 
 export default {
   name: "Authentication",
-
+  components: {
+    VueSlider
+  },
   data() {
     return {
-      passLen: 12
+      passLen: 12,
+      size: {
+        type: String,
+        default: "12"
+      },
+      password: {
+        type: String,
+        default: ""
+      },
+      uppercase: true,
+      lowercase: true,
+      number: true,
+      symbol: true
     };
   },
   props: {
@@ -221,19 +237,11 @@ export default {
       type: String,
       default: "text"
     },
-    size: {
-      type: String,
-      default: "12"
-    },
     characters: {
       type: String,
       default: "a-z,A-Z,0-9,#"
     },
-    auto: [String, Boolean],
-    password: {
-      type: String,
-      default: ""
-    }
+    auto: [String, Boolean]
   },
   mounted() {
     this.$store.dispatch(SET_BREADCRUMB, [
@@ -244,6 +252,7 @@ export default {
 
   methods: {
     generate() {
+      console.log("selected2 ==== " + this.symbol);
       this.size = this.passLen;
       let charactersArray = this.characters.split(",");
       let CharacterSet = "";

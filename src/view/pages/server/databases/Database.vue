@@ -48,9 +48,10 @@
               <li>
                 <b-link to="database/grant">
                   <a href=""
-                    ><span class="label label-success">
-                      {{ data.value }} </span
-                  ></a>
+                    ><span class="label label-lg label-inline label-success">
+                      {{ data.value }}
+                    </span></a
+                  >
                 </b-link>
               </li>
             </ul>

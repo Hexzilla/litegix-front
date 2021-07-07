@@ -4,11 +4,13 @@ import Router from "vue-router";
 Vue.use(Router);
 
 export default new Router({
-  routes: [{
+  routes: [
+    {
       path: "/",
       redirect: "/dashboard",
       component: () => import("@/view/layout/Layout"),
-      children: [{
+      children: [
+        {
           path: "/dashboard",
           name: "dashboard",
           component: () => import("@/view/pages/Dashboard.vue")
@@ -19,6 +21,11 @@ export default new Router({
           component: () => import("@/view/pages/Builder.vue")
         },
         {
+          path: "/subscription-is-required",
+          name: "subscription-is-required",
+          component: () => import("@/view/pages/teams/Subscription.vue")
+        },
+        {
           path: "/servers",
           name: "Servers",
           component: () => import("@/view/pages/servers/Servers.vue")
@@ -27,12 +34,7 @@ export default new Router({
         {
           path: "/servers/create",
           name: "server-create",
-          component: () => import("@/view/pages/servers/ConnectServer.vue")
-        },
-        {
-          path: "/servers/connect",
-          name: "server-connect",
-          component: () => import("@/view/pages/servers/ConnectServer.vue")
+          component: () => import("@/view/pages/servers/CreateServer.vue")
         },
         {
           path: "/servers/connect",
@@ -125,7 +127,8 @@ export default new Router({
           name: "vue-bootstrap",
           component: () =>
             import("@/view/pages/vue-bootstrap/VueBootstrap.vue"),
-          children: [{
+          children: [
+            {
               path: "alert",
               name: "vue-bootstrap-alert",
               component: () => import("@/view/pages/vue-bootstrap/Alert.vue")
@@ -331,7 +334,8 @@ export default new Router({
           redirect: "/settings/profile",
           name: "settings",
           component: () => import("@/view/pages/settings/Settings.vue"),
-          children: [{
+          children: [
+            {
               path: "profile",
               name: "settings-profile",
               component: () => import("@/view/pages/settings/Account.vue")
@@ -444,7 +448,8 @@ export default new Router({
           redirect: "/server/summary",
           name: "server",
           component: () => import("@/view/pages/server/Server.vue"),
-          children: [{
+          children: [
+            {
               path: "summary",
               name: "server-summary",
               component: () => import("@/view/pages/server/Summary.vue")
@@ -470,32 +475,38 @@ export default new Router({
             {
               path: "application/create",
               name: "server-application-create",
-              component: () => import("@/view/pages/server/application/Create.vue")
+              component: () =>
+                import("@/view/pages/server/application/Create.vue")
             },
             {
               path: "application/create/custom",
               name: "server-application-create-custom",
-              component: () => import("@/view/pages/server/application/Custom.vue")
+              component: () =>
+                import("@/view/pages/server/application/Custom.vue")
             },
             {
               path: "application/create/wordpress",
               name: "server-application-create-wordpress",
-              component: () => import("@/view/pages/server/application/WordPress.vue")
+              component: () =>
+                import("@/view/pages/server/application/WordPress.vue")
             },
             {
               path: "application/create/phpmyadmin",
               name: "server-application-create-phpmyadmin",
-              component: () => import("@/view/pages/server/application/PHPMyAdmin.vue")
+              component: () =>
+                import("@/view/pages/server/application/PHPMyAdmin.vue")
             },
             {
               path: "database",
               name: "server-database",
-              component: () => import("@/view/pages/server/databases/Database.vue")
+              component: () =>
+                import("@/view/pages/server/databases/Database.vue")
             },
             {
               path: "database/create",
               name: "server-database-create",
-              component: () => import("@/view/pages/server/databases/Create.vue")
+              component: () =>
+                import("@/view/pages/server/databases/Create.vue")
             },
             {
               path: "database/createuser",
@@ -537,7 +548,8 @@ export default new Router({
             {
               path: "sshkey/create",
               name: "server-sshkey-create",
-              component: () => import("@/view/pages/server/sshkey/AddSSHKey.vue")
+              component: () =>
+                import("@/view/pages/server/sshkey/AddSSHKey.vue")
             },
             {
               path: "deployment",
@@ -557,17 +569,20 @@ export default new Router({
             {
               path: "cronjob/create",
               name: "server-cronjob-create",
-              component: () => import("@/view/pages/server/cronjob/AddCronJob.vue")
+              component: () =>
+                import("@/view/pages/server/cronjob/AddCronJob.vue")
             },
             {
               path: "supervisor",
               name: "server-supervisor",
-              component: () => import("@/view/pages/server/supervisor/Supervisor.vue")
+              component: () =>
+                import("@/view/pages/server/supervisor/Supervisor.vue")
             },
             {
               path: "supervisor/create",
               name: "server-supervisor-create",
-              component: () => import("@/view/pages/server/supervisor/AddSupervisor.vue")
+              component: () =>
+                import("@/view/pages/server/supervisor/AddSupervisor.vue")
             },
             {
               path: "services",
@@ -577,30 +592,33 @@ export default new Router({
             {
               path: "settings",
               name: "server-settings",
-              component: () => import("@/view/pages/server/Settings.vue"),
+              component: () => import("@/view/pages/server/Settings.vue")
             },
             {
               path: "security",
               name: "server-security",
-              component: () => import("@/view/pages/server/security/Security.vue"),
+              component: () =>
+                import("@/view/pages/server/security/Security.vue")
             },
             {
               path: "security/addfirewall",
               name: "server-security-addfirewall",
-              component: () => import("@/view/pages/server/security/AddFireWall.vue"),
+              component: () =>
+                import("@/view/pages/server/security/AddFireWall.vue")
             },
             {
               path: "health",
               name: "server-health",
-              component: () => import("@/view/pages/server/Health.vue"),
-            },
-          ],
+              component: () => import("@/view/pages/server/Health.vue")
+            }
+          ]
         },
         {
           path: "/vuetify",
           name: "vuetify",
           component: () => import("@/view/pages/vuetify/Vuetify.vue"),
-          children: [{
+          children: [
+            {
               path: "server",
               name: "vuetify-server",
               component: () => import("@/view/pages/server/Server.vue")
@@ -723,7 +741,8 @@ export default new Router({
           path: "/custom-wizard",
           name: "wizard",
           component: () => import("@/view/pages/wizard/Wizard.vue"),
-          children: [{
+          children: [
+            {
               path: "wizard-1",
               name: "wizard-1",
               component: () => import("@/view/pages/wizard/Wizard-1.vue")
@@ -749,7 +768,8 @@ export default new Router({
           path: "/custom-plugins",
           name: "plugins",
           component: () => import("@/view/pages/plugins/Plugins.vue"),
-          children: [{
+          children: [
+            {
               path: "cropper",
               name: "cropper",
               component: () => import("@/view/pages/plugins/Cropper.vue")
@@ -760,7 +780,7 @@ export default new Router({
               component: () => import("@/view/pages/plugins/Treeselect.vue")
             }
           ]
-        },
+        }
         // {
         //   path: "/profile",
         //   name: "profile",
@@ -794,7 +814,8 @@ export default new Router({
       path: "/custom-error",
       name: "error",
       component: () => import("@/view/pages/error/Error.vue"),
-      children: [{
+      children: [
+        {
           path: "error-1",
           name: "error-1",
           component: () => import("@/view/pages/error/Error-1.vue")
@@ -829,7 +850,8 @@ export default new Router({
     {
       path: "/",
       component: () => import("@/view/pages/auth/Login.vue"),
-      children: [{
+      children: [
+        {
           name: "login",
           path: "/login",
           component: () => import("@/view/pages/auth/Login.vue")

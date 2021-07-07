@@ -36,8 +36,14 @@
               </a>
             </router-link>
           </v-toolbar>
-        </template></v-data-table
-      >
+        </template>
+
+        <template v-slot:item.service="{ item }">
+          <span class="label label-lg label-inline label-primary">
+            {{ item.service }}
+          </span>
+        </template>
+      </v-data-table>
     </div>
   </div>
 </template>

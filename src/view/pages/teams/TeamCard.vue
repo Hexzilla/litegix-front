@@ -1,6 +1,6 @@
 <template>
-  <div class="panel panel-default panel-team-item">
-    <div class="panel-body">
+  <div class="card card-customa card-stretch gutter-b">
+    <div class="card-body">
       <div class="short-form square">
         <div>Ma</div>
       </div>
@@ -76,7 +76,7 @@
         for="swal2-checkbox"
         class="swal2-checkbox form-control"
         style="display: none"
-        ><input type="checkbox"/></label
+        ><input type="checkbox" /></label
       ><textarea
         class="swal2-textarea form-control"
         style="display: none"
@@ -102,8 +102,8 @@ export default {
   methods: {
     showModalDelTeam() {
       this.$refs["delConfirm"].show();
-    }
-  }
+    },
+  },
 };
 </script>
 

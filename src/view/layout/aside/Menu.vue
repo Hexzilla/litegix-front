@@ -39,7 +39,6 @@
       </li>
     </router-link>
 
-    
     <!-- <router-link
       to="/dashboard"
       v-slot="{ href, navigate, isActive, isExactActive }"
@@ -99,7 +98,7 @@
         </a>
       </li>
     </router-link>
-
+    <!-- 
     <router-link
       to="/Scripts"
       v-slot="{ href, navigate, isActive, isExactActive }"
@@ -118,7 +117,7 @@
           <span class="menu-text">Scripts</span>
         </a>
       </li>
-    </router-link>
+    </router-link> -->
 
     <router-link
       to="/Backups"
@@ -160,8 +159,7 @@
       </li>
     </router-link>
 
-    <li class="menu-section">
-    </li>
+    <li class="menu-section"></li>
 
     <router-link
       to="/settings"

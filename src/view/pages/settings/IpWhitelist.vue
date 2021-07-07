@@ -1,5 +1,5 @@
 <template>
-  <v-card>
+  <div class="card card-custom">
     <div class="card-body">
       <v-card-title>
         <h1>IP Whitelisting</h1>
@@ -10,31 +10,31 @@
         need to approve it everytime you log in to RunCloud. If you don't enable
         this feature, every login will automatically whitelist the IP Address.
       </p>
+      <v-data-table
+        :headers="tableData.headers"
+        :items="tableData.desserts"
+        :search="tableData.search"
+        no-data-text="No data"
+        no-results-text="No result"
+      >
+        <template v-slot:top>
+          <v-toolbar flat>
+            <v-spacer></v-spacer>
+            <b-input
+              v-model="tableData.search"
+              class="searchBox"
+              placeholder="Search..."
+              :search="search"
+            ></b-input>
+            <b-btn variant="success" @click="isEnable" ref="is_enable"
+              >Enable</b-btn
+            >
+          </v-toolbar>
+        </template></v-data-table
+      >
+      <confirm-dialogue ref="confirmDialogue"></confirm-dialogue>
     </div>
-    <v-data-table
-      :headers="tableData.headers"
-      :items="tableData.desserts"
-      :search="tableData.search"
-      no-data-text="No data"
-      no-results-text="No result"
-    >
-      <template v-slot:top>
-        <v-toolbar flat>
-          <v-spacer></v-spacer>
-          <b-input
-            v-model="tableData.search"
-            class="searchBox"
-            placeholder="Search..."
-            :search="search"
-          ></b-input>
-          <b-btn variant="success" @click="isEnable" ref="is_enable"
-            >Enable</b-btn
-          >
-        </v-toolbar>
-      </template></v-data-table
-    >
-    <confirm-dialogue ref="confirmDialogue"></confirm-dialogue>
-  </v-card>
+  </div>
 </template>
 
 <script>

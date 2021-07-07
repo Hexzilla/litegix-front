@@ -38,7 +38,7 @@
           empty-text="You don't have anything inside here yet."
         >
           <template #cell(type)="data">
-            <span class="label label-primary label-primary">{{
+            <span class="label label-lg label-inline label-primary">{{
               data.item.type
             }}</span>
           </template>

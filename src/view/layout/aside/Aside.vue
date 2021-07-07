@@ -27,7 +27,7 @@
         <!-- example static menu here -->
         <perfect-scrollbar
           class="aside-menu scroll"
-          style="max-height: 90vh; position: relative;"
+          style="max-height: 90vh; position: relative"
         >
           <KTMenu></KTMenu>
         </perfect-scrollbar>

@@ -150,7 +150,7 @@
             <div class="col-lg-9 col-xl-6">
               <button
                 type="button"
-                class="btn btn-dark w-100"
+                class="btn btn-success w-100"
                 @click="add()"
                 ref="kt_ip_add"
               >

@@ -158,8 +158,6 @@
   </div>
 </template>
 
-<style scoped src="@/assets/styles/server.css"></style>
-
 <script>
 import VueSlider from "vue-slider-component";
 import "vue-slider-component/theme/antd.css";

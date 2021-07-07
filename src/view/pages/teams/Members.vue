@@ -83,8 +83,8 @@ export default {
   //teamid: 1967,
   data() {},
   methods: {
-    addMemberToTeam(teamid) {
-      console.log(teamid);
+    addMemberToTeam() {
+      //console.log(teamid);
       // ApiService.setHeader();
       // ApiService.get("teams")
       //   .then(({
@@ -96,6 +96,6 @@ export default {
     }
   }
 };
-console.log("members arrive!!!!");
+//console.log("members arrive!!!!");
 </script>
 

@@ -252,7 +252,7 @@ export default {
 
   methods: {
     generate() {
-      console.log("selected2 ==== " + this.symbol);
+      //console.log("selected2 ==== " + this.symbol);
       this.size = this.passLen;
       let charactersArray = this.characters.split(",");
       let CharacterSet = "";

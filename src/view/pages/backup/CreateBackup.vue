@@ -167,8 +167,8 @@ export default {
     VueSlider
   },
   methods: {
-    confirm_agree(num) {
-      console.log(num);
+    confirm_agree() {
+      //console.log(num);
       if (!this.agreeflag) {
         this.agreeDialog = true;
       }

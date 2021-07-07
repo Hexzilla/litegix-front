@@ -53,7 +53,7 @@ export default {
   name: "Servers",
   data() {
     return {
-      servers: [{name:'NGINX',address:'10.10.10.10'}]
+      servers: [{ name: "NGINX", address: "10.10.10.10" }]
     };
   },
   components: {

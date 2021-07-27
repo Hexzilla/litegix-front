@@ -50,58 +50,58 @@ export default {
           label: "Error",
           log: "Unable to communicate with Server ReCloud (65.21.49.177).",
           date: "02 Jul 2021",
-          time: "01:03:51 PM",
+          time: "01:03:51 PM"
         },
         {
           label: "Info",
           log: "Added new database DBTest with collation utf8_general_ci",
           date: "02 Jul 2021",
-          time: "01:03:51 PM",
+          time: "01:03:51 PM"
         },
         {
           label: "Warning",
           log: "Added firewall rule: Accept any IP Address to 80/TCP",
           date: "02 Jul 2021",
-          time: "01:03:51 PM",
+          time: "01:03:51 PM"
         },
         {
           label: "Error",
           log: "Unable to communicate with Server ReCloud (65.21.49.177).",
           date: "02 Jul 2021",
-          time: "01:03:51 PM",
+          time: "01:03:51 PM"
         },
         {
           label: "Info",
           log: "Added new database DBTest with collation utf8_general_ci",
           date: "02 Jul 2021",
-          time: "01:03:51 PM",
+          time: "01:03:51 PM"
         },
         {
           label: "Warning",
           log: "Added firewall rule: Accept any IP Address to 80/TCP",
           date: "02 Jul 2021",
-          time: "01:03:51 PM",
+          time: "01:03:51 PM"
         },
         {
           label: "Error",
           log: "Unable to communicate with Server ReCloud (65.21.49.177).",
           date: "02 Jul 2021",
-          time: "01:03:51 PM",
+          time: "01:03:51 PM"
         },
         {
           label: "Info",
           log: "Added new database DBTest with collation utf8_general_ci",
           date: "02 Jul 2021",
-          time: "01:03:51 PM",
+          time: "01:03:51 PM"
         },
         {
           label: "Warning",
           log: "Added firewall rule: Accept any IP Address to 80/TCP",
           date: "02 Jul 2021",
-          time: "01:03:51 PM",
-        },
-      ],
+          time: "01:03:51 PM"
+        }
+      ]
     };
-  },
+  }
 };
 </script>

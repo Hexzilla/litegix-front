@@ -1,5 +1,5 @@
 <template>
-  <div class="card card-custom gutter-b">
+  <v-app>
     <div class="card-header border-0 py-5">
       <h3 class="card-title align-items-start flex-column">
         <span class="card-label font-weight-bolder text-dark"
@@ -7,7 +7,7 @@
         >
       </h3>
     </div>
-    <div class="card-body">
+    <v-card>
       <b-form>
         <b-form-group v-bind:label="`Store in ${store}`">
           <b-row>
@@ -118,8 +118,8 @@
         </b-form-group>
         <b-button variant="primary btn-block">Create</b-button>
       </b-form>
-    </div>
-  </div>
+    </v-card>
+  </v-app>
 </template>
 
 <script>

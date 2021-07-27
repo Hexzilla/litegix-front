@@ -16,6 +16,7 @@
         v-if="asideEnabled"
         class="btn p-0 burger-icon burger-icon-left"
         id="kt_aside_mobile_toggle"
+        ref="kt_aside_mobile_toggle"
       >
         <span></span>
       </button>
@@ -26,6 +27,14 @@
         class="btn p-0 burger-icon ml-4"
         id="kt_submenu_mobile_toggle"
         ref="kt_submenu_mobile_toggle"
+      >
+        <span></span>
+      </button>
+
+      <button
+        class="btn p-0 burger-icon ml-4"
+        id="kt_header_mobile_toggle"
+        ref="kt_header_mobile_toggle"
       >
         <span></span>
       </button>

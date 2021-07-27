@@ -1,63 +1,69 @@
 <template>
-  <div>
     <!--begin::Card-->
-    <div class="card card-custom">
-      <div class="card-body">
+    <v-app>
+      <v-card class="card-body">
         <!--begin::Header-->
-        <div class="card-header py-3">
-          <v-card-title>
-            <h1 class="font-weight-bolder text-dark">My Profile</h1>
-          </v-card-title>
+        <!-- <div class="card-header py-3"> -->
+          <v-card-actions>
+            <h1 class="font-weight-bolder">My Profile</h1>
+          </v-card-actions>
           <span class="text-muted font-size-sm mt-1"
             >To change your email address, please open a support ticket.</span
           >
-        </div>
+        <!-- </div> -->
         <!--end::Header-->
         <!--begin::Form-->
-        <form class="form">
+        <v-form id="profile_form">
           <!--begin::Body-->
 
-          <div class="form-group row align-items-center mt-5">
+          <div class="row align-items-center mt-5">
             <label class="col-xl-3 col-lg-3 col-form-label text-lg-right"
-              >Email</label
+              ></label
             >
-            <div class="col-lg-9 col-xl-6">
-              <b-input ref="email" type="text" disabled></b-input>
+            <div class="col-lg-6 col-xl-6">
+              <v-text-field 
+              ref="email" 
+              outlined dense 
+              label="email"  
+              type="text" 
+              readonly>
+              </v-text-field>
             </div>
           </div>
-          <div class="form-group row align-items-center">
+          <div class="row align-items-center">
             <label class="col-xl-3 col-lg-3 col-form-label text-lg-right"
-              >Name</label
+              ></label
             >
-            <div class="col-lg-9 col-xl-6">
-              <b-input ref="name" type="text"></b-input>
+            <div class="col-lg-6 col-xl-6">
+              <v-text-field 
+              ref="name" 
+              outlined 
+              dense 
+              label="name" 
+              type="text"
+              ></v-text-field>
             </div>
           </div>
-          <div class="form-group row align-items-center">
+          <div class="row align-items-center">
             <label class="col-xl-3 col-lg-3 col-form-label text-lg-right"
-              >Time Zone</label
+              ></label
             >
-            <div class="col-lg-9 col-xl-6">
-              <b-select ref="time_zone">
-                <template v-for="(item, i) in time_zones">
-                  <option
-                    v-bind:key="i"
-                    :value="item"
-                    :selected="
-                      currentUserAccountInfo.time_zone == item ? true : false
-                    "
-                  >
-                    {{ item }}
-                  </option>
-                </template>
-              </b-select>
+            <div class="col-lg-6 col-xl-6">
+              <v-select 
+              outlined 
+              dense 
+              label="Time Zone" 
+              ref="time_zone"
+              :items=time_zones
+              >
+              </v-select>
             </div>
           </div>
-          <div class="form-group row align-items-center">
+          <div class="row align-items-center">
             <label
               class="col-xl-3 col-lg-3 col-form-label text-lg-right"
             ></label>
-            <div class="col-lg-9 col-xl-6">
+            <div class="col-lg-6 col-xl-6">
               <div class="checkbox-inline">
                 <label
                   class="
@@ -75,158 +81,184 @@
               </div>
             </div>
           </div>
-          <div class="form-group row align-items-center">
+          <div class="row align-items-center">
             <label
               class="col-xl-3 col-lg-3 col-form-label text-lg-right"
             ></label>
-            <div class="col-lg-9 col-xl-6">
-              <button
-                type="reset"
-                class="btn btn-success w-100"
+            <div class="col-lg-6 col-xl-6">
+              <v-btn
+                block
+                color="primary"
+                elevation="2"
+                large
                 @click="save()"
                 ref="kt_save_changes"
               >
                 Save Changes
-              </button>
+              </v-btn>
             </div>
           </div>
           <!--end::Body-->
-        </form>
+        </v-form>
         <!--end::Form-->
-      </div>
-      <div class="form-group row"></div>
-      <div class="card card-custom">
-        <div class="card-body">
+      </v-card>
+      <div class="form-group"></div>
+        <v-card class="card-body">
           <!--begin::Header-->
-          <div class="card-header py-3">
+          <!-- <div class="card-header py-3"> -->
             <v-card-title>
-              <h1 class="font-weight-bolder text-dark">Company Details</h1>
+              <h1 class="font-weight-bolder">Company Details</h1>
             </v-card-title>
 
             <span class="text-muted font-size-sm mt-1">
               If you are representing your company, fill in the form here to get
               invoice under your company name.
             </span>
-          </div>
+          <!-- </div> -->
           <!--end::Header-->
           <!--begin::Form-->
-          <form class="form">
+          <v-form id="company_form">
             <!--begin::Body-->
 
-            <div class="form-group row align-items-center mt-5">
+            <div class="row align-items-center mt-5">
               <label class="col-xl-3 col-lg-3 col-form-label text-lg-right"
-                >Company Name</label
+                ></label
               >
-              <div class="col-lg-9 col-xl-6">
-                <b-input
+              <div class="col-lg-6 col-xl-6">
+                <v-text-field 
                   ref="CompanyName"
+                  outlined 
+                  dense 
+                  label="Company Name" 
                   type="text"
-                  placeholder="Your company name"
-                ></b-input>
+                  ></v-text-field>
               </div>
             </div>
-            <div class="form-group row align-items-center">
+            <div class="row align-items-center">
               <label class="col-xl-3 col-lg-3 col-form-label text-lg-right"
-                >Address Line 1</label
+                ></label
               >
-              <div class="col-lg-9 col-xl-6">
-                <b-input
+              <div class="col-lg-6 col-xl-6">
+                <v-text-field
                   ref="AddressLine1"
+                  outlined
+                  dense
+                  label="Address Line1"
                   type="text"
-                  placeholder="Building address"
-                ></b-input>
+                ></v-text-field>
               </div>
             </div>
-            <div class="form-group row align-items-center">
+            <div class="row align-items-center">
               <label class="col-xl-3 col-lg-3 col-form-label text-lg-right"
-                >Address Line 2</label
+                ></label
               >
-              <div class="col-lg-9 col-xl-6">
-                <b-input
+              <div class="col-lg-6 col-xl-6">
+                <v-text-field
+                  outlined
+                  dense
+                  label="Address Line2"
                   ref="AddressLine2"
                   type="text"
-                  placeholder="Street address"
-                ></b-input>
+                ></v-text-field>
               </div>
             </div>
 
-            <div class="form-group row align-items-center">
+            <div class="row align-items-center">
               <label class="col-xl-3 col-lg-3 col-form-label text-lg-right"
-                >City</label
+                ></label
               >
-              <div class="col-lg-9 col-xl-3">
-                <b-input ref="City" type="text" placeholder="City"></b-input>
+              <div class="col-lg-6 col-xl-3">
+                <v-text-field
+                  outlined
+                  dense
+                  label="Address Line2" 
+                  ref="City" 
+                  type="text" >
+                </v-text-field>
               </div>
             </div>
-            <div class="form-group row align-items-center">
+            <div class="row align-items-center">
               <label class="col-xl-3 col-lg-3 col-form-label text-lg-right"
-                >Postal Code</label
+                ></label
               >
-              <div class="col-lg-9 col-xl-3">
-                <b-input
+              <div class="col-lg-6 col-xl-3">
+                <v-text-field
+                  outlined
+                  dense
+                  label="Pstal Code"
                   ref="PostalCode"
                   type="text"
-                  placeholder="Zip/Postal Code"
-                ></b-input>
+                ></v-text-field>
               </div>
             </div>
-            <div class="form-group row align-items-center">
+            <div class="row align-items-center">
               <label class="col-xl-3 col-lg-3 col-form-label text-lg-right"
-                >State</label
+                ></label
               >
-              <div class="col-lg-9 col-xl-6">
-                <b-input
+              <div class="col-lg-6 col-xl-6">
+                <v-text-field
+                  outlined
+                  dense
+                  label="State"
                   ref="State"
                   type="text"
-                  placeholder="State/Province"
-                ></b-input>
+                ></v-text-field>
               </div>
             </div>
-            <div class="form-group row align-items-center">
+            <div class="row align-items-center">
               <label class="col-xl-3 col-lg-3 col-form-label text-lg-right"
-                >Country</label
+                ></label
               >
-              <div class="col-lg-9 col-xl-6">
-                <b-select ref="Country"></b-select>
+              <div class="col-lg-6 col-xl-6">
+                <v-select 
+                  outlined 
+                  dense 
+                  label="Country" 
+                  ref="country"
+                  :items=Country
+                  >
+                </v-select>
               </div>
             </div>
 
-            <div class="form-group row align-items-center">
+            <div class="row align-items-center">
               <label class="col-xl-3 col-lg-3 col-form-label text-lg-right"
-                >Tax/VAT/GST Number</label
+                ></label
               >
-              <div class="col-lg-9 col-xl-6">
-                <b-input
+              <div class="col-lg-6 col-xl-6">
+                <v-text-field
+                  outlined
+                  dense
+                  label="Tax/VAT/GST Number"
                   ref="Tax"
                   type="text"
-                  placeholder="Tax/VAT/GST Number"
-                ></b-input>
+                ></v-text-field>
               </div>
             </div>
 
-            <div class="form-group row">
+            <div class="row">
               <label
                 class="col-xl-3 col-lg-3 col-form-label text-lg-right"
               ></label>
-              <div class="col-lg-9 col-xl-6">
-                <button
-                  type="reset"
-                  class="btn btn-success w-100"
+              <div class="col-lg-6 col-xl-6">
+                <v-btn
+                  block
+                  color="primary"
+                  elevation="2"
+                  large
                   @click="save()"
                   ref="kt_save_changes"
                 >
                   Save Changes
-                </button>
+                </v-btn>
               </div>
             </div>
 
             <!--end::Body-->
-          </form>
+          </v-form>
           <!--end::Form-->
-        </div>
-      </div>
-    </div>
-  </div>
+        </v-card>
+    </v-app>
 </template>
 
 <script>

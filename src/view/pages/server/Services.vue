@@ -82,12 +82,12 @@ export default {
   data() {
     return {
       fields1: [
-        { key: "symbol", label: "", tdClass:"pr-0 w-50px" },
+        { key: "symbol", label: "", tdClass: "pr-0 w-50px" },
         "service",
         "processor_usage",
         "memory_usage",
         "status",
-        { key: "action", label: "" },
+        { key: "action", label: "" }
       ],
       items1: [],
       show: "list",
@@ -99,7 +99,7 @@ export default {
           processor_usage: "20%",
           memory_usage: "80MB",
           status: true,
-          action: "",
+          action: ""
         },
         {
           symbol: "media/svg/misc/006-plurk.svg",
@@ -108,7 +108,7 @@ export default {
           processor_usage: "-",
           memory_usage: "-",
           status: false,
-          action: "ReactJs, HTML",
+          action: "ReactJs, HTML"
         },
         {
           symbol: "media/svg/misc/003-puzzle.svg",
@@ -117,7 +117,7 @@ export default {
           processor_usage: "-",
           memory_usage: "-",
           status: true,
-          action: "Laravel, Metronic",
+          action: "Laravel, Metronic"
         },
         {
           symbol: "media/svg/misc/005-bebo.svg",
@@ -126,10 +126,10 @@ export default {
           processor_usage: "45%",
           memory_usage: "8GB",
           status: false,
-          action: "AngularJS, C#",
-        },
-      ],
+          action: "AngularJS, C#"
+        }
+      ]
     };
-  },
+  }
 };
 </script>

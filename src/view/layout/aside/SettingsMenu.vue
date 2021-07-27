@@ -1,16 +1,16 @@
 <template>
   <div
-    class="navi navi-bold navi-hover navi-active navi-link-rounded"
+    class="navi navi-bold navi-hover navi-active row"
     role="tablist"
   >
-    <span class="text-muted">My Account</span>
+    <div class="text-muted col-12 mb-3">My Account</div>
     <router-link
       to="/settings/profile"
       v-slot="{ href, navigate, isActive, isExactActive }"
     >
-      <div class="navi-item mb-2">
+      <div class="navi-item col-sm-6 border h-md-70px">
         <a
-          class="navi-link py-4"
+          class="navi-link py-4 h-100"
           :class="[isActive && 'active', isExactActive && 'active']"
           :href="href"
           @click="navigate"
@@ -31,9 +31,9 @@
       to="/settings/notification"
       v-slot="{ href, navigate, isActive, isExactActive }"
     >
-      <div class="navi-item mb-2">
+      <div class="navi-item col-sm-6 border h-70px">
         <a
-          class="navi-link py-4"
+          class="navi-link py-4 h-100"
           :class="[isActive && 'active', isExactActive && 'active']"
           style="cursor: pointer"
           :href="href"
@@ -54,9 +54,9 @@
       to="/settings/server_transfer"
       v-slot="{ href, navigate, isActive, isExactActive }"
     >
-      <div class="navi-item mb-2">
+      <div class="navi-item col-sm-6 border h-70px">
         <a
-          class="navi-link py-4"
+          class="navi-link py-4 h-100"
           style="cursor: pointer"
           :class="[isActive && 'active', isExactActive && 'active']"
           :href="href"
@@ -77,9 +77,9 @@
       to="/settings/referal"
       v-slot="{ href, navigate, isActive, isExactActive }"
     >
-      <div class="navi-item mb-2">
+      <div class="navi-item col-sm-6 border h-70px">
         <a
-          class="navi-link py-4"
+          class="navi-link py-4 h-100"
           style="cursor: pointer"
           :class="[isActive && 'active', isExactActive && 'active']"
           :href="href"
@@ -100,9 +100,9 @@
       to="/settings/activitylog"
       v-slot="{ href, navigate, isActive, isExactActive }"
     >
-      <div class="navi-item mb-2">
+      <div class="navi-item col-sm-6 border h-70px">
         <a
-          class="navi-link py-4"
+          class="navi-link py-4 h-100"
           style="cursor: pointer"
           :class="[isActive && 'active', isExactActive && 'active']"
           :href="href"
@@ -123,9 +123,9 @@
       to="/settings/delete_account"
       v-slot="{ href, navigate, isActive, isExactActive }"
     >
-      <div class="navi-item mb-2">
+      <div class="navi-item col-sm-6 border h-70px">
         <a
-          class="navi-link py-4"
+          class="navi-link py-4 h-100"
           style="cursor: pointer"
           :class="[isActive && 'active', isExactActive && 'active']"
           :href="href"
@@ -142,15 +142,15 @@
       </div>
     </router-link>
 
-    <span class="text-muted">API & Security</span>
+    <div class="text-muted col-12 mb-3">API & Security</div>
 
     <router-link
       to="/settings/authentication"
       v-slot="{ href, navigate, isActive, isExactActive }"
     >
-      <div class="navi-item mb-2">
+      <div class="navi-item col-sm-6 border h-70px">
         <a
-          class="navi-link py-4"
+          class="navi-link py-4 h-100"
           style="cursor: pointer"
           :class="[isActive && 'active', isExactActive && 'active']"
           :href="href"
@@ -173,9 +173,9 @@
       to="/settings/api_key"
       v-slot="{ href, navigate, isActive, isExactActive }"
     >
-      <div class="navi-item mb-2">
+      <div class="navi-item col-sm-6 border h-70px">
         <a
-          class="navi-link py-4"
+          class="navi-link py-4 h-100"
           style="cursor: pointer"
           :class="[isActive && 'active', isExactActive && 'active']"
           :href="href"
@@ -196,9 +196,9 @@
       to="/settings/third_party_api_key"
       v-slot="{ href, navigate, isActive, isExactActive }"
     >
-      <div class="navi-item mb-2">
+      <div class="navi-item col-sm-6 border h-70px">
         <a
-          class="navi-link py-4"
+          class="navi-link py-4 h-100"
           style="cursor: pointer"
           :class="[isActive && 'active', isExactActive && 'active']"
           :href="href"
@@ -219,9 +219,9 @@
       to="/settings/ip_whitelisting"
       v-slot="{ href, navigate, isActive, isExactActive }"
     >
-      <div class="navi-item mb-2">
+      <div class="navi-item col-sm-6 border h-70px">
         <a
-          class="navi-link py-4"
+          class="navi-link py-4 h-100"
           style="cursor: pointer"
           :class="[isActive && 'active', isExactActive && 'active']"
           :href="href"
@@ -238,15 +238,15 @@
       </div>
     </router-link>
 
-    <span class="text-muted">Billing</span>
+    <div class="text-muted col-12 mb-3">Billing</div>
 
     <router-link
       to="/settings/subscription"
       v-slot="{ href, navigate, isActive, isExactActive }"
     >
-      <div class="navi-item mb-2">
+      <div class="navi-item col-sm-6 border h-70px ">
         <a
-          class="navi-link py-4"
+          class="navi-link py-4 h-100"
           style="cursor: pointer"
           :class="[isActive && 'active', isExactActive && 'active']"
           :href="href"
@@ -267,9 +267,9 @@
       to="/settings/payment_method"
       v-slot="{ href, navigate, isActive, isExactActive }"
     >
-      <div class="navi-item mb-2">
+      <div class="navi-item col-sm-6 border h-70px">
         <a
-          class="navi-link py-4"
+          class="navi-link py-4 h-100"
           style="cursor: pointer"
           :class="[isActive && 'active', isExactActive && 'active']"
           :href="href"
@@ -290,9 +290,9 @@
       to="/settings/payment_history"
       v-slot="{ href, navigate, isActive, isExactActive }"
     >
-      <div class="navi-item mb-2">
+      <div class="navi-item col-sm-6 border h-70px">
         <a
-          class="navi-link py-4"
+          class="navi-link py-4 h-100"
           style="cursor: pointer"
           :class="[isActive && 'active', isExactActive && 'active']"
           :href="href"
@@ -309,15 +309,15 @@
       </div>
     </router-link>
 
-    <span class="text-muted">Tools</span>
+    <div class="text-muted  col-12 mb-3">Tools</div>
 
     <router-link
       to="/settings/ssh_key_vault"
       v-slot="{ href, navigate, isActive, isExactActive }"
     >
-      <div class="navi-item mb-2">
+      <div class="navi-item col-sm-6 border h-70px">
         <a
-          class="navi-link py-4"
+          class="navi-link py-4 h-100"
           style="cursor: pointer"
           :class="[isActive && 'active', isExactActive && 'active']"
           :href="href"
@@ -338,9 +338,9 @@
       to="/settings/wordpress_canvas"
       v-slot="{ href, navigate, isActive, isExactActive }"
     >
-      <div class="navi-item mb-2">
+      <div class="navi-item col-sm-6 border h-70px">
         <a
-          class="navi-link py-4"
+          class="navi-link py-4 h-100"
           style="cursor: pointer"
           :class="[isActive && 'active', isExactActive && 'active']"
           :href="href"

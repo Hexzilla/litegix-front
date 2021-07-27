@@ -102,8 +102,8 @@ export default {
   methods: {
     showModalDelTeam() {
       this.$refs["delConfirm"].show();
-    },
-  },
+    }
+  }
 };
 </script>
 

@@ -120,8 +120,8 @@ export default {
         },
       ],
       fields2: ["database_user", "change_password", "delete"],
-      items2: [],
+      items2: []
     };
-  },
+  }
 };
 </script>

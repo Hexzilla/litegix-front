@@ -122,8 +122,8 @@ export default {
           key: "delete",
           label: "delete",
           thClass: "text-right",
-          tdClass: "text-right",
-        },
+          tdClass: "text-right"
+        }
       ],
       items1: [
         {
@@ -131,22 +131,22 @@ export default {
           protocol: "TCP",
           IP_address: "22",
           action: "-",
-          delete: "",
+          delete: ""
         },
         {
           type: "Global",
           protocol: "TCP",
           IP_address: "22",
           action: "-",
-          delete: "",
+          delete: ""
         },
         {
           type: "Global",
           protocol: "TCP",
           IP_address: "22",
           action: "-",
-          delete: "",
-        },
+          delete: ""
+        }
       ],
       fields2: [
         "user_name",
@@ -158,8 +158,8 @@ export default {
           key: "status",
           label: "Status",
           thClass: "text-right",
-          tdClass: "text-right",
-        },
+          tdClass: "text-right"
+        }
       ],
       items2: [],
       fields3: [
@@ -168,11 +168,11 @@ export default {
           key: "delete",
           label: "Delete",
           thClass: "text-center",
-          tdClass: "text-center",
-        },
+          tdClass: "text-center"
+        }
       ],
-      items3: [],
+      items3: []
     };
-  },
+  }
 };
 </script>

@@ -176,11 +176,11 @@ export default {
       items1: [],
       fields2: ["IP_address", "delete"],
       items2: [{ IP_address: "199.33.444.56", delete: "" }],
-      keys: [],
+      keys: []
     };
   },
   components: {
-    VueSlider,
-  },
+    VueSlider
+  }
 };
 </script>

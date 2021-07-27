@@ -1,8 +1,7 @@
 <template>
-  <div>
+  <v-app>
     <!--begin::Card-->
-    <div class="card card-custom">
-      <div class="card-body">
+      <v-card class="card-body">
         <!--begin::Header-->
         <v-card-title>
           <h1>Newsletter</h1>
@@ -10,7 +9,7 @@
         </v-card-title>
         <!--end::Header-->
         <!--begin::Form-->
-        <form class="form">
+        <v-form>
           <!--begin::Body-->
           <p class="text-muted font-size-sm mt-1">
             Two-factor authentication adds an extra layer of security to your
@@ -40,9 +39,9 @@
             </div>
           </div>
 
-          <div class="form-group row">
+          <div class="row">
             <label class="col-xl-3 col-lg-3 col-form-label text-right"></label>
-            <div class="col-lg-9 col-xl-6">
+            <div class="col-lg-6 col-xl-6">
               <!--begin::Content-->
               <div class="d-flex flex-grow-1">
                 <!--begin::Checkbox-->
@@ -64,7 +63,7 @@
                   class="d-flex flex-wrap justify-content-between w-100"
                 >
                   <div class="d-flex flex-column py-2">
-                    <div class="text-dark-75 font-size-lg mb-1">
+                    <div class="font-size-lg mb-1">
                       Updates and Announcements
                     </div>
                     <span class="text-muted">
@@ -78,9 +77,9 @@
               <!--end::Content-->
             </div>
           </div>
-          <div class="form-group row">
+          <div class="row">
             <label class="col-xl-3 col-lg-3 col-form-label text-right"></label>
-            <div class="col-lg-9 col-xl-6">
+            <div class="col-lg-6 col-xl-6">
               <!--begin::Content-->
               <div class="d-flex flex-grow-1">
                 <!--begin::Checkbox-->
@@ -101,7 +100,7 @@
                   class="d-flex flex-wrap justify-content-between w-100"
                 >
                   <div class="d-flex flex-column py-2">
-                    <div class="text-dark-75 font-size-lg mb-1">Blog</div>
+                    <div class="font-size-lg mb-1">Blog</div>
                     <span class="text-muted">
                       Whenever a blog post is published, you will be the first
                       to know!
@@ -113,9 +112,9 @@
               <!--end::Content-->
             </div>
           </div>
-          <div class="form-group row">
+          <div class="row">
             <label class="col-xl-3 col-lg-3 col-form-label text-right"></label>
-            <div class="col-lg-9 col-xl-6">
+            <div class="col-lg-6 col-xl-6">
               <!--begin::Content-->
               <div class="d-flex flex-grow-1">
                 <!--begin::Checkbox-->
@@ -136,7 +135,7 @@
                   class="d-flex flex-wrap justify-content-between w-100"
                 >
                   <div class="d-flex flex-column py-2">
-                    <div class="text-dark-75 font-size-lg mb-1">
+                    <div class="font-size-lg mb-1">
                       Events and Meetups
                     </div>
                     <span class="text-muted">
@@ -151,24 +150,25 @@
           </div>
           <div class="form-group row">
             <label class="col-xl-3 col-lg-3 col-form-label text-right"></label>
-            <div class="col-lg-9 col-xl-6">
+            <div class="col-lg-6 col-xl-6">
               <div class="input-group input-group-lg input-group-solid">
-                <button
-                  type="reset"
-                  class="btn btn-success mr-2 w-100"
+                <v-btn
+                  block
+                  color="primary"
+                  elevation="2"
+                  large
                   @click="save()"
                   ref="kt_save_changes"
                 >
                   Update
-                </button>
+                </v-btn>
               </div>
             </div>
           </div>
           <!--end::Body-->
-        </form>
+        </v-form>
         <!--end::Form-->
-      </div>
-    </div>
+    </v-card>
     <div class="form-group"></div>
     <v-card>
       <div class="card-body">
@@ -188,20 +188,23 @@
         <v-data-table :headers="headers" :items="desserts">
           <template v-slot:top>
             <v-toolbar flat>
-              <v-spacer></v-spacer>
-              <b-input
+              <v-text-field
+                outlined
+                dense
+                label="search"
                 class="searchBox"
-                placeholder="Search..."
                 :search="search"
-              ></b-input>
+                style="margin-top:25px;margin-right: 5px;"
+              ></v-text-field>
               <router-link
                 to="/settings/AddNotification"
                 v-slot="{ href, navigate }"
               >
                 <a :href="href" @click="navigate" data-nsfw-filter-status="swf">
-                  <button type="button" class="btn btn-success" ref="add">
+                  <v-btn large type="button" color="primary" ref="add">
                     Add
-                  </button>
+                  </v-btn>
+                  
                 </a>
               </router-link>
             </v-toolbar>
@@ -209,7 +212,7 @@
         </v-data-table>
       </div>
     </v-card>
-  </div>
+  </v-app>
 </template>
 
 <script>

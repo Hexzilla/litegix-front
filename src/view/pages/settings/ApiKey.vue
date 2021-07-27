@@ -262,7 +262,7 @@ export default {
       val || this.close();
     },
     dialogDelete(val) {
-      //console.log("watch dialogDelete val = " + val);
+      console.log("watch dialogDelete val = " + val);
       val || this.closeDelete();
     }
   },
@@ -297,11 +297,11 @@ export default {
       this.generate();
     },
     deleteItem(item) {
-      //console.log("function deleteItem item = " + item);
+      console.log("function deleteItem item = " + item);
       this.editedIndex = this.desserts.indexOf(item);
-      //console.log("function this.editedIndex = " + this.editedIndex);
+      console.log("function this.editedIndex = " + this.editedIndex);
       this.editedItem = Object.assign({}, item);
-      //console.log("function this.editedItem = " + this.editedItem);
+      console.log("function this.editedItem = " + this.editedItem);
       this.dialogDelete = true;
     },
     deleteItemConfirm() {

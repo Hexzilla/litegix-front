@@ -1,6 +1,6 @@
 <template>
-  <div>
-    <b-card no-body class="overflow-hidden">
+  <v-app>
+    <v-card>
       <b-row no-gutters>
         <b-col md="6">
           <b-card-body title="Most reliable backup and restore tool">
@@ -67,8 +67,8 @@
           ></b-card-img>
         </b-col>
       </b-row>
-    </b-card>
-  </div>
+    </v-card>
+  </v-app>
 </template>
 <script>
 import { SET_BREADCRUMB } from "@/core/services/store/breadcrumbs.module";

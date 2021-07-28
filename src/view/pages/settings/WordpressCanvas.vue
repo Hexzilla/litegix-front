@@ -1,37 +1,35 @@
 <template>
   <!--begin::Advance Table Widget 10-->
-  <div class="card card-custom gutter-b">
+  <v-card  class="card-body">
     <!--begin::Header-->
-    <div class="card-header border-0 py-5">
-      <h3 class="card-title align-items-start flex-column">
-        <span class="card-label font-weight-bolder text-dark"
-          >Wordpress Canvas</span
-        >
-        <span class="text-muted mt-3  font-size-sm"
-          >List of canvases than can be use when creating Wordpress
-          Applications</span
-        >
-      </h3>
-      <div class="card-toolbar">
+    <v-card-title>
+      <h1>Wordpress Canvas</h1>
+      <v-spacer></v-spacer>
         <router-link
           to="/settings/wordpress_canvas_create"
           v-slot="{ href, navigate }"
         >
           <a
             :href="href"
-            class="btn btn-success font-weight-bolder font-size-sm"
+            class="btn btn-primary font-weight-bolder font-size-sm"
             @click="navigate"
             >Create a new Canvas</a
           >
         </router-link>
-      </div>
-    </div>
+    </v-card-title>
     <!--end::Header-->
     <!--begin::Body-->
-    <div class="card-body py-0">
-      <v-data-table :headers="headers" :items="desserts"></v-data-table>
+    <div>
+      <p class="text-muted mt-3  font-size-sm"
+        >List of canvases than can be use when creating Wordpress
+        Applications</p
+      >
+      <v-data-table 
+        :headers="headers" 
+        :items="desserts"
+      ></v-data-table>
     </div>
-  </div>
+  </v-card>
 </template>
 
 <script>

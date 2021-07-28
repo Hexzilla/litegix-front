@@ -1,41 +1,82 @@
 <template>
   <div class="row">
     <div class="col-md-12">
-      <b-card-group deck>
-        <b-link to="/Projects/create">
-          <b-card
-            bg-variant="primary"
-            text-variant="white"
-            img-src="/media/logos/logo-letter-3.png"
-            align="center"
+      <v-card class="mx-auto">
+        <v-app-bar dark color="primary">
+          <v-toolbar-title
+            ><i class="flaticon2-cube text-white mr-2"></i> My
+            Projects</v-toolbar-title
           >
-            <b-card-text>Create A Project</b-card-text>
-          </b-card>
-        </b-link>
-        <b-link to="/create">
-          <b-card
-            bg-variant="primary"
-            text-variant="white"
-            img-src="/media/logos/logo-letter-3.png"
-            img-
-            align="center"
-          >
-            <b-card-text>Create A Project</b-card-text>
-          </b-card>
-        </b-link>
+          <v-spacer></v-spacer>
 
-        <b-link to="/create">
-          <b-card
-            bg-variant="primary"
-            text-variant="white"
-            img-src="/media/logos/logo-letter-3.png"
-            img-
-            align="center"
-          >
-            <b-card-text>Create A Project</b-card-text>
-          </b-card>
-        </b-link>
-      </b-card-group>
+          <v-text-field
+            placeholder="Search..."
+            outlined
+            color="white"
+            @change="inlineUpdate"
+            :loading="searchStatus"
+            dense
+            clearable
+            class="mt-7 max-w-300px"
+          ></v-text-field>
+          <!-- <v-btn class="ma-2" outlined color="white">Create Project</v-btn> -->
+        </v-app-bar>
+      </v-card>
+      <v-container v-if="items.length != 0">
+        <v-row dense>
+          <v-col  md="4" sm="12" cols="12" >
+            <b-link to="/Projects/create">
+            <v-card color="primary" dark>
+              <div class="d-flex flex-no-wrap justify-space-between">
+                <div>
+                  <v-card-title class="headline">Create a New Project</v-card-title>
+
+                  <v-card-subtitle>Click here to create your server</v-card-subtitle>
+                </div>
+              </div>
+            </v-card>
+            </b-link>
+          </v-col>
+          <v-col v-for="(item, i) in items" :key="i" md="4"  sm="12" cols="6">
+            <v-card :color="item.color" dark>
+              <div class="d-flex flex-no-wrap justify-space-between">
+                <div>
+                  <v-card-title
+                    class="headline"
+                    v-text="item.title"
+                  ></v-card-title>
+
+                  <v-card-subtitle>Server: {{ item.server }}</v-card-subtitle>
+                </div>
+              </div>
+            </v-card>
+          </v-col>
+        </v-row>
+      </v-container>
+
+      <v-card v-if="items.length == 0" class="w-400px mt-20 py-10 px-20 mx-auto">
+        <div class="text-center">
+          <div class="symbol symbol-60 symbol-circle symbol-xl-90">
+            <div
+              class="symbol-label"
+              :style="{
+                backgroundImage: `url('media/logos/logo-letter-3.png')`,
+              }"
+            ></div>
+          </div>
+
+          <h4 class="font-weight-bold my-2">You don't have any project yet</h4>
+          <div class="text-muted mb-2">
+            Currently you do not own any project. Our site makes this real easy
+            for you to do.
+          </div>
+          <b-link to="/Projects/create">
+            <b-button size="lg" class="my-3 my-sm-0 ml-auto" variant="primary"
+              >Create Project</b-button
+            >
+          </b-link>
+        </div>
+      </v-card>
     </div>
   </div>
 </template>
@@ -43,225 +84,45 @@
 <script>
 import { SET_BREADCRUMB } from "@/core/services/store/breadcrumbs.module";
 export default {
-  data() {
-    return {
-      html1: `<div>
-  <b-card
-    title="Card Title"
-    img-src="https://picsum.photos/600/300/?image=25"
-    img-alt="Image"
-    img-top
-    tag="article"
-    style="max-width: 20rem;"
-    class="mb-2"
-  >
-    <b-card-text>
-      Some quick example text to build on the card title and make up
-      the bulk of the card's content.
-    </b-card-text>
-
-    <b-button href="#" variant="primary">Go somewhere</b-button>
-  </b-card>
-</div>`,
-
-      html2: `<div>
-  <div>
-    <b-card-group deck>
-      <b-card bg-variant="primary" text-variant="white" header="Primary" class="text-center">
-        <b-card-text>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</b-card-text>
-      </b-card>
-
-      <b-card bg-variant="secondary" text-variant="white" header="Secondary" class="text-center">
-        <b-card-text>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</b-card-text>
-      </b-card>
-
-      <b-card bg-variant="success" text-variant="white" header="Success" class="text-center">
-        <b-card-text>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</b-card-text>
-      </b-card>
-    </b-card-group>
-  </div>
-  <div class="mt-3">
-    <b-card-group deck>
-      <b-card bg-variant="info" text-variant="white" header="Info" class="text-center">
-        <b-card-text>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</b-card-text>
-      </b-card>
-
-      <b-card bg-variant="warning" text-variant="white" header="Warning" class="text-center">
-        <b-card-text>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</b-card-text>
-      </b-card>
-
-      <b-card bg-variant="danger" text-variant="white" header="Danger" class="text-center">
-        <b-card-text>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</b-card-text>
-      </b-card>
-    </b-card-group>
-  </div>
-  <div class="mt-3">
-    <b-card-group deck>
-      <b-card bg-variant="light" header="Light" class="text-center">
-        <b-card-text>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</b-card-text>
-      </b-card>
-
-      <b-card bg-variant="dark" header="Dark" text-variant="white" class="text-center">
-        <b-card-text>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</b-card-text>
-      </b-card>
-
-      <b-card header="Default" class="text-center">
-        <b-card-text>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</b-card-text>
-      </b-card>
-    </b-card-group>
-  </div>
-</div>`,
-
-      html3: `<div>
-  <div>
-    <b-card-group deck>
-      <b-card
-        border-variant="primary"
-        header="Primary"
-        header-bg-variant="primary"
-        header-text-variant="white"
-        align="center"
-      >
-        <b-card-text>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</b-card-text>
-      </b-card>
-
-      <b-card
-        border-variant="secondary"
-        header="Secondary"
-        header-border-variant="secondary"
-        align="center"
-      >
-        <b-card-text>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</b-card-text>
-      </b-card>
-
-      <b-card border-variant="success" header="Success" align="center">
-        <b-card-text>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</b-card-text>
-      </b-card>
-    </b-card-group>
-  </div>
-  <div class="mt-3">
-    <b-card-group deck>
-      <b-card border-variant="info" header="Info" align="center">
-        <b-card-text>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</b-card-text>
-      </b-card>
-
-      <b-card
-        border-variant="warning"
-        header="Warning"
-        header-bg-variant="transparent"
-        align="center"
-      >
-        <b-card-text>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</b-card-text>
-      </b-card>
-
-      <b-card
-        border-variant="danger"
-        header="Danger"
-        header-border-variant="danger"
-        header-text-variant="danger"
-        align="center"
-      >
-        <b-card-text>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</b-card-text>
-      </b-card>
-    </b-card-group>
-  </div>
-  <div class="mt-3">
-    <b-card-group deck class="mb-3">
-      <b-card border-variant="light" header="Light" class="text-center">
-        <b-card-text>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</b-card-text>
-      </b-card>
-
-      <b-card border-variant="dark" header="Dark" align="center">
-        <b-card-text>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</b-card-text>
-      </b-card>
-    </b-card-group>
-  </div>
-</div>`,
-
-      html4: `<div>
-  <b-card title="Card title" sub-title="Card subtitle">
-    <b-card-text>
-      Some quick example text to build on the
-      <em>card title</em> and make up the bulk of the card's
-      content.
-    </b-card-text>
-
-    <b-card-text
-      >A second paragraph of text in the card.</b-card-text
-    >
-
-    <a href="#" class="card-link">Card link</a>
-    <b-link href="#" class="card-link">Another link</b-link>
-  </b-card>
-</div>`,
-
-      html5: `<div>
-<b-card-group deck>
-  <b-card
-    header="featured"
-    header-tag="header"
-    footer="Card Footer"
-    footer-tag="footer"
-    title="Title"
-  >
-    <b-card-text>Header and footers using props.</b-card-text>
-    <b-button href="#" variant="primary">Go somewhere</b-button>
-  </b-card>
-
-  <b-card title="Title" header-tag="header" footer-tag="footer">
-    <template v-slot:header>
-      <h6 class="mb-0">Header Slot</h6>
-    </template>
-    <b-card-text>Header and footers using slots.</b-card-text>
-    <b-button href="#" variant="primary">Go somewhere</b-button>
-    <template v-slot:footer>
-      <em>Footer Slot</em>
-    </template>
-  </b-card>
-</b-card-group>
-</div>`,
-
-      html6: `<div>
-  <b-card no-body class="overflow-hidden" style="max-width: 540px;">
-    <b-row no-gutters>
-      <b-col md="6">
-        <b-card-img
-          src="https://picsum.photos/400/400/?image=20"
-          class="rounded-0"
-        ></b-card-img>
-      </b-col>
-      <b-col md="6">
-        <b-card-body title="Horizontal Card">
-          <b-card-text>
-            This is a wider card with supporting text as a natural
-            lead-in to additional content. This content is a little
-            bit longer.
-          </b-card-text>
-        </b-card-body>
-      </b-col>
-    </b-row>
-  </b-card>
-</div>`,
-
-      html7: `<div>
-  <b-card
-    overlay
-    img-src="https://picsum.photos/900/250/?image=3"
-    img-alt="Card Image"
-    text-variant="white"
-    title="Image Overlay"
-    sub-title="Subtitle"
-  >
-    <b-card-text>
-      Some quick example text to build on the card and make up the bulk
-      of the card's content.
-    </b-card-text>
-  </b-card>
-</div>`
-    };
+  data: () => ({
+    searchStatus: false,
+    items: [
+      {
+        color: "#1F7087",
+        title: "Supermodel",
+        server: "Foster the People",
+      },
+      {
+        color: "#952175",
+        title: "Halcyon Days",
+        server: "Ellie Goulding",
+      },
+      {
+        color: "#1F7087",
+        title: "Supermodel",
+        server: "Foster the People",
+      },
+      {
+        color: "#952175",
+        title: "Halcyon Days",
+        server: "Ellie Goulding",
+      },
+    ],
+  }),
+  methods: {
+    inlineUpdate() {
+      this.toggleLoading();
+      //   //  axios.put("/some/url", ...)
+      //   //     .then(apiResponse => { //do some stuff })
+      //   //     .catch(apiError => { //oh no! })
+      //   //     .finally(() => { this.toggleLoading(this.activeSelect); });
+    },
+    toggleLoading() {
+      this.searchStatus = !this.searchStatus;
+    }
   },
   mounted() {
     this.$store.dispatch(SET_BREADCRUMB, [{ title: "Project" }]);
-  }
+  },
 };
 </script>

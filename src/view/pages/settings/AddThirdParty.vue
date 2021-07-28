@@ -9,72 +9,71 @@
         <v-container>
           <v-form ref="addApiKey" v-model="valid" lazy-validation>
             <div class="form-group row align-items-center">
-              <label class="col-xl-3 col-lg-3 col-form-label text-lg-right"
-                >Label</label
-              >
-              <div class="col-lg-9 col-xl-6">
-                <b-input
+              <v-col cols="1"></v-col>
+              <v-col cols="10">
+                <v-text-field
+                  outlined
+                  dense
+                  label="Label"
                   type="text"
-                  placeholder="Label for this API Key"
                   :rules="nameRules"
                   required
-                ></b-input>
-              </div>
+                ></v-text-field>
+              </v-col>
             </div>
             <div class="form-group row align-items-center">
-              <label class="col-xl-3 col-lg-3 col-form-label text-lg-right"
-                >Service</label
-              >
-              <div class="col-lg-9 col-xl-6">
-                <b-select
+              <v-col cols="1"></v-col>
+              <v-col cols="10">
+                <v-select
+                  outlined
+                  dense
                   type="text"
-                  placeholder="API Username/Email"
-                ></b-select>
-              </div>
+                  label="API Username/Email"
+                ></v-select>
+              </v-col>
             </div>
             <div class="form-group row align-items-center">
-              <label class="col-xl-3 col-lg-3 col-form-label text-lg-right"
-                >Username/Email/KeyId</label
-              >
-              <div class="col-lg-9 col-xl-6">
-                <b-input
+              <v-col cols="1"></v-col>
+              <v-col cols="10">
+                <v-text-field
+                  outlined
+                  dense
                   type="text"
-                  placeholder="API Username/Email"
+                  label="Username/Email/KeyId"
                   :rules="emailRules"
                   required
-                ></b-input>
-              </div>
+                ></v-text-field>
+              </v-col>
             </div>
             <div class="form-group row align-items-center">
-              <label class="col-xl-3 col-lg-3 col-form-label text-lg-right"
-                >Secret</label
-              >
-              <div class="col-lg-9 col-xl-6">
+              <v-col cols="1"></v-col>
+              <v-col cols="10">
                 <p>
                   You can create API Key for Cloudflare by using this URL:
                   <a href="#"> https://www.cloudflare.com/a/profile</a>
                 </p>
-                <b-input
+                <v-text-field
+                  outlined
+                  dense
                   type="text"
-                  placeholder="xxxx..."
+                  label="security"
                   :rules="nameRules"
                   required
-                ></b-input>
-              </div>
+                ></v-text-field>
+              </v-col>
             </div>
             <div class="form-group row align-items-center">
-              <label
-                class="col-xl-3 col-lg-3 col-form-label text-lg-right"
-              ></label>
-              <div class="col-lg-9 col-xl-6">
-                <b-btn
-                  class="btn btn-dark mt-5"
+              <v-col cols="1"></v-col>
+              <v-col cols="10">
+                <v-btn
                   block
+                  color="primary"
+                  large
                   @click="addKey"
                   ref="topUpCredit"
-                  >Add API Key</b-btn
+                  >Add API Key</v-btn
                 >
-              </div>
+              </v-col>
             </div>
           </v-form>
         </v-container>

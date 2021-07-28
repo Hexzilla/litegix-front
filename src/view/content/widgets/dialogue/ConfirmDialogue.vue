@@ -6,7 +6,10 @@
         </div>
         <div class="float-right">
             <span class="mr-5 btn" @click="_cancel">{{ cancelButton }}</span>
-            <b-button class="mr-5" squared variant="primary" @click="_confirm">{{ okButton }}</b-button>
+            <v-btn
+                large
+                color="primary"
+                @click="_confirm">{{ okButton }}</v-btn>
         </div>
     </popup-modal>
 </template>

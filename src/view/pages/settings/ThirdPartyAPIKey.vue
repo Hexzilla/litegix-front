@@ -1,5 +1,5 @@
 <template>
-  <div class="card card-custom">
+  <v-card>
     <div class="card-body">
       <!--begin::Header-->
       <v-card-title>
@@ -20,11 +20,13 @@
         <template v-slot:top>
           <v-toolbar flat>
             <v-spacer></v-spacer>
-            <b-input
-              class="searchBox"
-              placeholder="Search..."
+            <v-text-field
+              outlined
+              dense
+              label="Search"
               :search="search"
-            ></b-input>
+              hide-details="true"
+            ></v-text-field>
             <router-link
               to="/settings/third_party_api_key_add"
               v-slot="{ href, navigate }"
@@ -45,7 +47,7 @@
         </template>
       </v-data-table>
     </div>
-  </div>
+  </v-card>
 </template>
 
 <script>

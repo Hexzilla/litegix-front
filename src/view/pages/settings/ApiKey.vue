@@ -1,11 +1,11 @@
 <template>
   <div>
     <!--begin::Card-->
-    <div class="card card-custom">
+    <v-card>
       <div class="card-body">
         <!--begin::Header-->
         <div class="card-title align-items-start flex-column">
-          <h1 class="font-weight-bolder text-dark">API Key</h1>
+          <h1 class="font-weight-bolder">API Key</h1>
           <p class="text-muted font-size-sm mt-1">
             You can use this API Key and API Secret to download your backup. To
             enable RunCloud API access, you need to enable API Access.
@@ -13,10 +13,8 @@
         </div>
 
         <div class="form-group row align-items-center">
-          <label class="col-xl-3 col-lg-3 col-form-label text-lg-right"
-            >API Key</label
-          >
-          <div class="col-lg-9 col-xl-6">
+          <v-col cols="1"></v-col>
+          <v-col cols="10">
             <b-input-group class="mt-3">
               <b-form-input
                 auto="true"
@@ -35,14 +33,12 @@
                 ></b-button>
               </b-input-group-append>
             </b-input-group>
-          </div>
+          </v-col>
         </div>
 
         <div class="form-group row align-items-center">
-          <label class="col-xl-3 col-lg-3 col-form-label text-lg-right"
-            >API Secret</label
-          >
-          <div class="col-lg-9 col-xl-6">
+          <v-col cols="1"></v-col>
+          <v-col cols="10">
             <b-input-group class="mt-3">
               <b-form-input
                 auto="true"
@@ -61,18 +57,18 @@
                 ></b-button>
               </b-input-group-append>
             </b-input-group>
-          </div>
+          </v-col>
         </div>
       </div>
-    </div>
+    </v-card>
     <!--end::Card-->
-    <div class="form-group row mt-12"></div>
+    <div class="form-group"></div>
     <!--begin::Card-->
-    <div class="card card-custom">
+    <v-card>
       <div class="card-body">
         <!--begin::Header-->
         <div class="card-title align-items-start flex-column">
-          <h1 class="font-weight-bolder text-dark">Enable API Access</h1>
+          <h1 class="font-weight-bolder">Enable API Access</h1>
           <p class="text-muted font-size-sm mt-1">
             Enable API Access to use the RunCloud API endpoint. If you are only
             using the API Key and API Secret to download backups, you don't have
@@ -81,30 +77,29 @@
         </div>
 
         <div class="form-group row align-items-center">
-          <label class="col-xl-3 col-lg-3 col-form-label text-lg-right"
-            >API Access</label
-          >
-          <div class="col-lg-9 col-xl-6">
-            <b-select dense outlined label="select"> </b-select>
-          </div>
+          <v-col cols="1"></v-col>
+          <v-col cols="10">
+            <v-select dense outlined label="select"> </v-select>
+          </v-col>
         </div>
       </div>
-    </div>
+    </v-card>
     <!--end::Card-->
-    <div class="form-group row mt-12"></div>
+    <div class="form-group"></div>
     <!--begin::Card-->
-    <div class="card card-custom">
+    <v-card>
       <div class="card-body">
         <!--begin::Header-->
         <v-card-title>
           <h1>IP Address Restriction</h1>
           <v-spacer></v-spacer>
-          <b-input
+          <v-text-field
+            outlined
+            dense
+            label="Search"
             type="text"
             v-model="search"
-            placeholder="Search..."
-            class="searchBox"
-          ></b-input>
+          ></v-text-field>
         </v-card-title>
 
         <p class="text-muted font-size-sm mt-1">
@@ -114,49 +109,47 @@
         </p>
         <form class="form">
           <div class="form-group row align-items-center">
-            <label class="col-xl-3 col-lg-3 col-form-label text-lg-right"
-              >IP Address</label
-            >
-            <div class="col-lg-9 col-xl-6">
-              <b-form-input
+            <v-col cols="1"></v-col>
+            <v-col cols="10">
+              <v-text-field
+                outlined
+                dense
+                label="IP Address"
                 ref="ipAddress"
-                class="form-control form-control-lg"
                 type="text"
-                placeholder="IPV4 Address"
               >
-              </b-form-input>
-            </div>
+              </v-text-field>
+            </v-col>
           </div>
 
           <div class="form-group row align-items-center">
-            <label class="col-xl-3 col-lg-3 col-form-label text-lg-right"
-              >Description(Optional)</label
-            >
-            <div class="col-lg-9 col-xl-6">
-              <b-form-input
+            <v-col cols="1"></v-col>
+            <v-col cols="10">
+              <v-text-field
+                dense
+                outlined
+                label="Description(Optional)"
                 ref="des"
-                class="form-control form-control-lg"
                 type="text"
-                placeholder="E.g: automation server"
               >
-              </b-form-input>
-            </div>
+              </v-text-field>
+            </v-col>
           </div>
 
           <div class="form-group row align-items-center">
-            <label
-              class="col-xl-3 col-lg-3 col-form-label text-lg-right"
-            ></label>
-            <div class="col-lg-9 col-xl-6">
-              <button
+            <v-col cols="1"></v-col>
+            <v-col cols="10">
+              <v-btn
+                block
+                color="primary"
+                large
                 type="button"
-                class="btn btn-success w-100"
                 @click="add()"
                 ref="kt_ip_add"
               >
                 Add
-              </button>
-            </div>
+              </v-btn>
+            </v-col>
           </div>
         </form>
         <div>
@@ -176,7 +169,7 @@
           </template>
         </v-data-table>
       </div>
-    </div>
+    </v-card>
   </div>
   <!--end::Card-->
 </template>

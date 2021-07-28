@@ -1,12 +1,11 @@
 <template>
   <div>
     <!--begin::Card-->
-    <div class="card card-custom">
+    <v-card>
       <div class="card-body">
         <!--begin::Header-->
         <v-card-title>
           <h1>Two-factor Authentication</h1>
-          <v-spacer></v-spacer>
         </v-card-title>
         <p class="text-muted font-size-sm mt-1">
           Two-factor authentication adds an extra layer of security to your
@@ -15,17 +14,21 @@
 
         <router-link to="/settings/connectApp" v-slot="{ href, navigate }">
           <a :href="href" @click="navigate" data-nsfw-filter-status="swf">
-            <button type="button" class="btn btn-success" ref="setup">
+            <v-btn 
+              color="primary"
+              elevation="2" 
+              type="button" 
+              ref="setup">
               Set Up Two-Factor Authentication
-            </button>
+            </v-btn>
           </a>
         </router-link>
       </div>
-    </div>
+    </v-card>
     <!--end::Card-->
-    <div class="form-group row mt-12"></div>
+    <div class="form-group"></div>
     <!--begin::Card-->
-    <div class="card card-custom">
+    <v-card>
       <div class="card-body">
         <!--begin::Header-->
         <v-card-title>
@@ -33,63 +36,65 @@
           <v-spacer></v-spacer>
         </v-card-title>
 
-        <form class="form">
-          <div class="form-group row">
-            <label class="col-xl-12 col-lg-12 col-form-label text-left"
-              >Current Password</label
-            >
-            <b-form-input
+        <v-form>
+            <v-text-field
+              outlined
+              dense
+              label="Current Password"
               ref="curPass"
-              class="form-control form-control-lg"
               type="password"
-              placeholder="Your current password"
             >
-            </b-form-input>
-          </div>
-          <div class="form-group row">
-            <label class="col-xl-12 col-lg-12 col-form-label text-left"
-              >Password</label
+            </v-text-field>
+            <v-text-field
+              outlined
+              dense
+              label="New Password"
+              ref="newPass"
+              type="password"
+              append-icon="mdi-plus"
+              @click:append="showModal"
             >
-            <b-input-group class="mt-3">
-              <b-form-input
-                ref="newPass"
-                class="form-control form-control-lg"
-                type="password"
-                placeholder="New password"
-              >
-              </b-form-input>
-              <b-input-group-append>
-                <b-button variant="success" @click="showModal"
-                  >Generate Password</b-button
-                >
-              </b-input-group-append>
-            </b-input-group>
-          </div>
-          <div class="form-group row mb-2">
-            <label class="col-xl-12 col-lg-12 col-form-label text-left"
-              >Verify Password</label
-            >
-            <b-form-input
+            </v-text-field>
+
+            <!-- <v-text-field
+              outlined
+              dense
+              label="New Password"
+              color="primary"
+              v-model="input"
+              @keypress.enter="showModal">
+          
+              <template v-slot:append >
+                  <v-btn
+                    color="primary"
+                    style="margin-top:0px;"
+                    @click="showModal">
+                    Generate
+                  </v-btn>
+              </template>
+            </v-text-field> -->
+
+            <v-text-field
+              outlined
+              dense
+              label="Verify Password"
               ref="conPass"
-              class="form-control form-control-lg"
               type="password"
-              placeholder="New password confirmation"
             >
-            </b-form-input>
-          </div>
-          <div class="form-group row mt-7">
-            <button
+            </v-text-field>
+            <v-btn
+              block
+              large
+              color="primary"
               type="button"
-              class="btn btn-success w-100"
               @click="update()"
               ref="kt_pass_update"
             >
               Update My Password
-            </button>
-          </div>
-        </form>
+            </v-btn>
+        </v-form>
       </div>
-    </div>
+    </v-card>
     <!--end::Card-->
     <!-- begin create password modal -->
 
@@ -100,7 +105,7 @@
       size="lg"
     >
       <v-form class="mt-3">
-        <v-container>
+        <v-content>
           <h6 class="pl-0">Password Length ({{ passLen }})</h6>
           <vue-slider
             v-model="passLen"
@@ -193,7 +198,7 @@
               Use This Password
             </b-button>
           </b-card-group>
-        </v-container>
+        </v-content>
       </v-form>
     </b-modal>
     <!-- end modal -->

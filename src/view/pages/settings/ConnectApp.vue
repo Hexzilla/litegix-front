@@ -1,13 +1,13 @@
 <template>
   <!--begin::Card-->
-  <div class="card card-custom">
+  <v-card>
     <div class="card-body">
       <!--begin::Header-->
       <v-card-title>
-        <h1 class="font-weight-bolder text-dark">Connect Your App</h1>
+        <h1 class="font-weight-bolder">Connect Your App</h1>
       </v-card-title>
 
-      <form class="form">
+      <v-form>
         <p class="text-muted font-size-sm mt-1">
           Download and scan QR Code using any authenticator app to get your 2FA
           6 digit code. Then, enter 6 digit code from the authenticator app to
@@ -21,35 +21,39 @@
           />
         </div>
         <div class="form-group row align-items-center mt-5">
-          <label class="col-xl-3 col-lg-3 col-form-label text-lg-right"
-            >Email Address</label
+          <label class="col-xl-2 col-lg-2 col-form-label text-lg-right"
+            ></label
           >
-          <div class="col-lg-9 col-xl-6">
-            <b-input
+          <div class="col-lg-8 col-xl-6">
+            <v-text-field
+              outlined
+              dense
+              label="Email Address"
               :rules="rules"
               ref="email"
               type="text"
-              placeholder="Email Address of you account"
-            ></b-input>
+            ></v-text-field>
           </div>
         </div>
         <div class="form-group row align-items-center mt-5">
-          <label class="col-xl-3 col-lg-3 col-form-label text-lg-right"></label>
-          <div class="col-lg-9 col-xl-6">
-            <button
+          <label class="col-xl-2 col-lg-2 col-form-label text-lg-right"></label>
+          <div class="col-lg-8 col-xl-6">
+            <v-btn
+              block
+              large
+              color="primary"
               type="button"
-              class="btn btn-success w-100"
               @click="update()"
               ref="kt_save_update"
             >
               Delete My Account
-            </button>
+            </v-btn>
           </div>
         </div>
-      </form>
+      </v-form>
       <!--end::Form-->
     </div>
-  </div>
+  </v-card>
 </template>
 
 <script>

@@ -35,9 +35,9 @@
 <template>
     <transition name="fade">
         <div class="popup-modal" v-if="isVisible">
-            <div class="window">
+            <v-card class="window">
                 <slot></slot>
-            </div>
+            </v-card>
         </div>
     </transition>
 </template>

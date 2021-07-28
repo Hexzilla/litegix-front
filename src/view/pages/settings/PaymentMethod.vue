@@ -1,7 +1,7 @@
 <template>
   <!--begin::Advance Table Widget 10-->
   <v-app>
-    <div class="card card-custom">
+    <v-card>
       <div class="card-body">
         <!--begin::Header-->
         <v-card-title>
@@ -16,14 +16,16 @@
               transition="dialog-top-transition"
             >
               <template v-slot:activator="{ on }">
-                <button
+                <v-btn
+                  block
+                  color="primary"
+                  large
                   type="button"
-                  class="btn btn-success w-100"
                   @click="add()"
                   v-on="on"
                 >
                   Add a new payment method
-                </button>
+                </v-btn>
               </template>
               <v-card>
                 <v-toolbar flat>
@@ -38,8 +40,7 @@
                 <v-divider></v-divider>
 
                 <v-card-text>
-                  <v-container>
-                    <b-form>
+                    <v-form>
                       <b-form-group
                         id="input-group-1"
                         label="Name on Card"
@@ -50,8 +51,8 @@
                           v-model="form.name"
                         ></b-form-input>
                       </b-form-group>
-                      <b-row>
-                        <b-col sm="6">
+                      <v-row>
+                        <v-col cols="6">
                           <b-form-group
                             id="input-group-2"
                             label="Country"
@@ -62,9 +63,9 @@
                               v-model="form.country"
                             ></b-form-select>
                           </b-form-group>
-                        </b-col>
+                        </v-col>
 
-                        <b-col sm="6">
+                        <v-col cols="6">
                           <b-form-group
                             id="input-group-3"
                             label="Postcode"
@@ -75,8 +76,8 @@
                               v-model="form.postcode"
                             ></b-form-input>
                           </b-form-group>
-                        </b-col>
-                      </b-row>
+                        </v-col>
+                      </v-row>
 
                       <b-form-group
                         id="input-group-4"
@@ -90,7 +91,7 @@
                       </b-form-group>
 
                       <b-row>
-                        <b-col sm="6">
+                        <v-col cols="6">
                           <b-form-group
                             id="input-group-5"
                             label="Expiration Date"
@@ -101,9 +102,9 @@
                               v-model="form.date"
                             ></b-form-input>
                           </b-form-group>
-                        </b-col>
+                        </v-col>
 
-                        <b-col sm="6">
+                        <v-col cols="6">
                           <b-form-group
                             id="input-group-6"
                             label="CVC/CVV"
@@ -114,24 +115,21 @@
                               v-model="form.secret"
                             ></b-form-input>
                           </b-form-group>
-                        </b-col>
+                        </v-col>
                       </b-row>
 
                       <b-button block type="submit" variant="primary"
                         >Submit</b-button
                       >
-                    </b-form>
-                  </v-container>
+                    </v-form>
                 </v-card-text>
               </v-card>
             </v-dialog>
           </v-toolbar>
         </v-card-title>
-        <v-container>
-          <v-data-table :headers="headers" :items="methods"></v-data-table>
-        </v-container>
+        <v-data-table :headers="headers" :items="methods"></v-data-table>
       </div>
-    </div>
+    </v-card>
   </v-app>
 </template>
 

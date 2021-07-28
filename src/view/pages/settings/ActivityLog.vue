@@ -14,12 +14,14 @@
         <template v-slot:top>
           <v-toolbar flat>
             <v-spacer></v-spacer>
-            <b-input
+            <v-text-field
+              outlined
+              dense
+              label="Search"
+              style="margin-top:25px;"
               v-model="code4.search"
-              class="searchBox"
-              placeholder="Search..."
               :search="search"
-            ></b-input>
+            ></v-text-field>
           </v-toolbar>
         </template>
         <template v-slot:item.name="{ item }">

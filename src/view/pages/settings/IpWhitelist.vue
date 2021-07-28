@@ -1,5 +1,5 @@
 <template>
-  <div class="card card-custom">
+  <v-card>
     <div class="card-body">
       <v-card-title>
         <h1>IP Whitelisting</h1>
@@ -20,12 +20,14 @@
         <template v-slot:top>
           <v-toolbar flat>
             <v-spacer></v-spacer>
-            <b-input
+            <v-text-field
+              outlined
+              dense
+              label="Search"
+              hide-details="true"
               v-model="tableData.search"
-              class="searchBox"
-              placeholder="Search..."
               :search="search"
-            ></b-input>
+            ></v-text-field>
             <b-btn variant="success" @click="isEnable" ref="is_enable"
               >Enable</b-btn
             >
@@ -34,7 +36,7 @@
       >
       <confirm-dialogue ref="confirmDialogue"></confirm-dialogue>
     </div>
-  </div>
+  </v-card>
 </template>
 
 <script>

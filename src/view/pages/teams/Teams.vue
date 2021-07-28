@@ -1,58 +1,36 @@
 <template>
-  <div>
-    <!-- v-if="!isEmpty()"  -->
-    <div class="row team-list">
-      <!-- <router-link to="/servers/create" v-slot="{ href, navigate }">
-                <a
-                  :href="href"
-                  @click="navigate"
-                  class="btn btn-primary btn-shadow-hover font-weight-bolder w-100 py-3"
-                >
-                  <i class="flaticon2-cube"></i>Create a new server
-                </a>
-              </router-link> -->
-      <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 col-xl-4">
-        <router-link to="/teams/create">
-          <a
-            href="#"
-            class="
-              card card-custom
-              bg-primary bg-hover-state-primary
-              card-stretch
-              gutter-b
-            "
-          >
-            <div class="card-body">
-              <span class="svg-icon svg-icon-white svg-icon-3x ml-n1">
-                <inline-svg
-                  src="/media/svg/icons/General/Settings-1.svg"
-                ></inline-svg>
-              </span>
-              <div
+  <div class="row">
+    <div class="col-md-12 mb-8">
+      <div class="card card-custom border round">
+        <div class="card-header border-bottom-0">
+          <div class="card-title">
+            <span class="card-icon">
+              <i class="flaticon2-chat-1 text-primary"></i>
+            </span>
+            <h3 class="card-label">All Teams(2 teams)</h3>
+          </div>
+          <div class="card-toolbar">
+            <router-link to="/teams/create" v-slot="{ href, navigate }">
+              <a
+                :href="href"
+                @click="navigate"
                 class="
-                  text-inverse-primary
-                  font-weight-bolder font-size-h5
-                  mb-2
-                  mt-5
+                  btn btn-primary btn-shadow-hover
+                  font-weight-bolder
+                  w-100
+                  py-3
                 "
               >
-                Create Team
-              </div>
-              <div class="font-weight-bold text-inverse-primary font-size-sm">
-                create team
-              </div>
-            </div>
-            <!--end::Body-->
-          </a>
-        </router-link>
+                <i class="flaticon2-cube"></i>Create a new team
+              </a>
+            </router-link>
+          </div>
+        </div>
       </div>
-
-      <div
-        class="col-xs-12 col-sm-4 col-md-4 col-lg-4 col-xl-4"
-        v-for="(team, i) in teams"
-        :key="i"
-      >
-        <TeamCard :team="team"></TeamCard>
+    </div>
+    <div class="col-12">
+      <div class="accordion accordion-solid accordion-toggle-plus" id="dfas">
+        <TeamCard v-for="(team, i) in teams" :key="i" :team="team"></TeamCard>
       </div>
     </div>
   </div>
@@ -87,16 +65,31 @@ export default {
         id: "1967",
         name: "YashaTeam",
         desc: "YashaTeam Descripttion",
+        members: [
+          { email: "meailteam@mail.com", img: "media/users/300_21.jpg" },
+          { email: "meailteam@mail.com", img: "media/users/300_22.jpg" },
+        ],
       },
       {
         id: "1968",
         name: "MailTeam",
         desc: "MailTeam Descripttion",
+        members: [
+          { email: "meailteam@mail.com", img: "media/users/300_18.jpg" },
+          { email: "meailteam@mail.com", img: "media/users/300_19.jpg" },
+          { email: "meailteam@mail.com", img: "media/users/300_22.jpg" },
+          { email: "meailteam@mail.com", img: "media/users/300_21.jpg" },
+        ],
       },
       {
         id: "1969",
         name: "MailTeam1",
         desc: "MailTeam Descripttion",
+        members: [
+          { email: "meailteam@mail.com", img: "media/users/300_25.jpg" },
+          { email: "meailteam@mail.com", img: "media/users/300_23.jpg" },
+          { email: "meailteam@mail.com", img: "media/users/300_18.jpg" },
+        ],
       },
     ];
     //<--- ############

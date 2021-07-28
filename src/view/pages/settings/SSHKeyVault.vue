@@ -1,22 +1,18 @@
 <template>
   <v-app>
     <!--begin::Advance Table Widget 10-->
-    <div class="card card-custom gutter-b">
+    <v-card class="card-body">
       <!--begin::Header-->
-      <div class="card-header border-0 py-5">
-        <h3 class="card-title align-items-start flex-column">
-          <span class="card-label font-weight-bolder text-dark"
-            >SSH KEY Vault</span
-          >
-          <span class="text-muted mt-3  font-size-sm"
-            >This is where you can add your SSH Key to make it easy for you to
-            add the key to your server.</span
-          >
-        </h3>
-      </div>
+      <v-card-title>
+          <h1>SSH KEY Vault</h1>
+      </v-card-title>
+      <p class="text-muted font-size-sm mt-1">
+        This is where you can add your SSH Key to make it easy for you to
+            add the key to your server.
+      </p>
       <!--end::Header-->
       <!--begin::Body-->
-      <div class="card-body py-0">
+      <div class="card-body">
         <v-data-table :headers="headers" :items="SSHKeys" sort-by="calories">
           <template v-slot:top>
             <v-toolbar flat>
@@ -55,7 +51,7 @@
           </template>
         </v-data-table>
       </div>
-    </div>
+    </v-card>
   </v-app>
 </template>
 <style scoped>

@@ -7,8 +7,8 @@
     </div>
     <div v-if="!isEmpty()" class="row">
       <div class="col-md-12 mb-8">
-        <div class="card card-custom">
-          <div class="card-header">
+        <div class="card card-custom border round">
+          <div class="card-header border-bottom-0">
             <div class="card-title">
               <span class="card-icon">
                 <i class="flaticon2-chat-1 text-primary"></i>
@@ -23,7 +23,12 @@
                 <a
                   :href="href"
                   @click="navigate"
-                  class="btn btn-primary btn-shadow-hover font-weight-bolder w-100 py-3"
+                  class="
+                    btn btn-primary btn-shadow-hover
+                    font-weight-bolder
+                    w-100
+                    py-3
+                  "
                 >
                   <i class="flaticon2-cube"></i>Create a new server
                 </a>
@@ -53,12 +58,15 @@ export default {
   name: "Servers",
   data() {
     return {
-      servers: [{ name: "NGINX", address: "10.10.10.10" }]
+      servers: [
+        { name: "NGINX", address: "10.10.10.10", active: true },
+        { name: "Ubunt", address: "198.144.10.32", active: false }
+      ],
     };
   },
   components: {
     EmptyServer,
-    ServerCard
+    ServerCard,
   },
   mounted() {
     this.$store.dispatch(SET_BREADCRUMB, [{ title: "Servers" }]);
@@ -75,7 +83,7 @@ export default {
     },
     isEmpty() {
       return this.servers.length <= 0;
-    }
-  }
+    },
+  },
 };
 </script>

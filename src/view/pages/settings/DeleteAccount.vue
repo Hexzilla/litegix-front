@@ -1,17 +1,16 @@
 <template>
   <!--begin::Card-->
-  <div class="card card-custom">
+  <v-card>
     <div class="card-body">
       <!--begin::Header-->
-      <div class="card-header py-3">
-        <div class="card-title align-items-start flex-column">
-          <h1 class="font-weight-bolder text-dark">Delete Account</h1>
-          <p class="text-muted font-size-sm mt-1">
-            Delete your account
-          </p>
-        </div>
-      </div>
-      <form class="form">
+        <v-card-title>
+          <h1 class="font-weight-bolder">Delete Account</h1>
+        </v-card-title>
+        <p class="text-muted font-size-sm mt-1">
+          Delete your account
+        </p>
+      
+      <v-form>
         <div class="card-body">
           <!--begin::Alert-->
           <div
@@ -93,27 +92,27 @@
             </div>-->
           </div>
           <!--end::Alert-->
-          <div class="form-group row">
-            <label class="col-xl-3 col-lg-3 col-form-label text-right"
-              >Email Address</label
+        </div>
+
+          <v-row>
+            <v-col cols="1"></v-col
             >
-            <div class="col-lg-9 col-xl-6">
-              <b-input
+            <v-col cols="10">
+              <v-text-field
+                outlined
+                label="Email Address"
                 :rules="rules"
                 dense
                 ref="email"
                 type="text"
-                placeholder="Email Address of you account"
-              ></b-input>
-            </div>
-          </div>
-        </div>
+              ></v-text-field>
+            </v-col>
+          </v-row>
 
-        <div class="form-group row">
-          <label class="col-xl-3 col-lg-3 col-form-label text-right pt-lg-5"
-            >Certify To Delelte Account</label
+        <v-row>
+          <v-col cols="1"></v-col
           >
-          <div class="col-lg-9 col-xl-6">
+          <v-col cols="10">
             <div class="d-flex flex-grow-1">
               <label
                 class="
@@ -142,13 +141,12 @@
                 </div>
               </label>
             </div>
-          </div>
-        </div>
-        <div class="form-group row">
-          <label class="col-xl-3 col-lg-3 col-form-label text-right pt-lg-5"
-            >Invoice and Receipt</label
+          </v-col>
+        </v-row>
+        <v-row>
+          <v-col cols="1"></v-col
           >
-          <div class="col-lg-9 col-xl-6 d-flex flex-grow-1">
+          <v-col cols="10" class="d-flex flex-grow-1">
             <label
               class="
                   checkbox checkbox-lg checkbox-lg checkbox-single
@@ -176,25 +174,26 @@
                 </span>
               </div>
             </label>
-          </div>
-        </div>
-        <div class="form-group row">
-          <label class="col-xl-3 col-lg-3 col-form-label text-right"></label>
-          <div class="col-lg-9 col-xl-6">
-            <button
+          </v-col>
+        </v-row>
+        <v-row>
+          <v-col cols="1"></v-col>
+          <v-col cols="10">
+            <v-btn
+              color="primary"
+              block
               type="button"
-              class="btn btn-success w-100"
               @click="update()"
               ref="kt_save_update"
             >
               Delete My Account
-            </button>
-          </div>
-        </div>
-      </form>
+            </v-btn>
+          </v-col>
+        </v-row>
+      </v-form>
       <!--end::Form-->
     </div>
-  </div>
+  </v-card>
 </template>
 <script>
 import { UPDATE_PERSONAL_INFO } from "@/core/services/store/profile.module";

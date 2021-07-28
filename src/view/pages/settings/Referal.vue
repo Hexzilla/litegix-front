@@ -8,9 +8,8 @@
         <StatsWidget12></StatsWidget12>
       </div>
     </div>
-    <div class="form-group row"></div>
     <v-card>
-      <div class="card-body">
+      <div class="card-body mt-5">
         <v-card-title>
           <h1>Claimed Rewards</h1>
           <v-spacer></v-spacer>

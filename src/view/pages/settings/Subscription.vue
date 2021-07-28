@@ -10,9 +10,12 @@
             v-slot="{ href, navigate }"
           >
             <a :href="href" @click="navigate" data-nsfw-filter-status="swf">
-              <button type="button" class="btn btn-success" ref="add">
+              <v-btn
+                large
+                color="primary"
+                ref="add">
                 Add Subscription
-              </button>
+              </v-btn>
             </a>
           </router-link>
           <!-- <b-btn class="ml-2" variant="success" x-large @click="goAddPage">Add Subscription</b-btn> -->
@@ -29,20 +32,20 @@
             billing cycle. Payment made is subject to and in accordance with the
             <h ref="#">Refund Policy.</h>
           </p>
-          <b-card-group deck class="w-100 pr-10 pl-10">
-            <b-card border-variant="secondary">
-              <b-card-text>Current Server Plan</b-card-text>
+          <v-card-actions>
+            <v-card color="secondary">
+              <v-card-title>Current Server Plan</v-card-title>
               <h3>Trial</h3>
-              <b-card-text class="">until 03-Jul-2021</b-card-text>
-            </b-card>
-            <b-card border-variant="secondary">
-              <b-card-text>Current Backup Plan</b-card-text>
+              <v-card-title class="">until 03-Jul-2021</v-card-title>
+            </v-card>
+            <v-card color="secondary">
+              <v-card-title>Current Backup Plan</v-card-title>
               <h3>N/A</h3>
-            </b-card>
-            <b-card border-variant="secondary">
+            </v-card>
+            <v-card color="secondary">
               <v-row>
                 <v-col cols="12" md="10">
-                  <b-card-text>Available credit </b-card-text>
+                  <v-card-title>Available credit </v-card-title>
                 </v-col>
                 <v-col cols="12" md="2">
                   <v-tooltip top>
@@ -56,11 +59,11 @@
                 </v-col>
               </v-row>
               <h3>$0.00</h3>
-              <b-card-text
-                >This credit can be used for the subscription</b-card-text
+              <v-card-title
+                >This credit can be used for the subscription</v-card-title
               >
-            </b-card>
-          </b-card-group>
+            </v-card>
+          </v-card-actions>
           <v-toolbar flat>
             <template v-slot:extension>
               <v-tabs v-model="tab" align-with-title>
@@ -99,32 +102,29 @@
             credit at anytime to continue your subscription.
           </p>
           <div class="form-group row align-items-center">
-            <label class="col-xl-3 col-lg-3 col-form-label text-lg-right"
-              >Amount</label
-            >
-            <div class="col-lg-9 col-xl-6">
-              <b-select
+            <v-col cols="1"></v-col>
+            <v-col cols="10">
+              <v-select
                 :items="selItems"
                 dense
                 label="Amount"
                 outlined
-              ></b-select>
-            </div>
+              ></v-select>
+            </v-col>
           </div>
 
           <div class="form-group row align-items-center">
-            <label
-              class="col-xl-3 col-lg-3 col-form-label text-lg-right"
-            ></label>
-            <div class="col-lg-9 col-xl-6">
-              <b-btn
-                class="btn btn-success"
+            <v-col cols="1"></v-col>
+            <v-col cols="10">
+              <v-btn
+                color="primary"
+                large
                 block
                 @click="topUpCredit"
                 ref="topUpCredit"
-                >Top Up Credit</b-btn
+                >Top Up Credit</v-btn
               >
-            </div>
+            </v-col>
           </div>
         </v-container>
       </div>

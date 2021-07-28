@@ -39,9 +39,9 @@
             </div>
           </div>
 
-          <div class="row">
-            <label class="col-xl-3 col-lg-3 col-form-label text-right"></label>
-            <div class="col-lg-6 col-xl-6">
+          <v-row>
+            <v-col cols="1"></v-col>
+            <v-col cols="10">
               <!--begin::Content-->
               <div class="d-flex flex-grow-1">
                 <!--begin::Checkbox-->
@@ -75,11 +75,11 @@
                 <!--end::Section-->
               </div>
               <!--end::Content-->
-            </div>
-          </div>
-          <div class="row">
-            <label class="col-xl-3 col-lg-3 col-form-label text-right"></label>
-            <div class="col-lg-6 col-xl-6">
+            </v-col>
+          </v-row>
+          <v-row>
+            <v-col cols="1"></v-col>
+            <v-col cols="10">
               <!--begin::Content-->
               <div class="d-flex flex-grow-1">
                 <!--begin::Checkbox-->
@@ -110,11 +110,11 @@
                 <!--end::Section-->
               </div>
               <!--end::Content-->
-            </div>
-          </div>
-          <div class="row">
-            <label class="col-xl-3 col-lg-3 col-form-label text-right"></label>
-            <div class="col-lg-6 col-xl-6">
+            </v-col>
+          </v-row>
+          <v-row>
+            <v-col cols="1"></v-col>
+            <v-col cols="10">
               <!--begin::Content-->
               <div class="d-flex flex-grow-1">
                 <!--begin::Checkbox-->
@@ -146,11 +146,11 @@
                 <!--end::Section-->
               </div>
               <!--end::Content-->
-            </div>
-          </div>
-          <div class="form-group row">
-            <label class="col-xl-3 col-lg-3 col-form-label text-right"></label>
-            <div class="col-lg-6 col-xl-6">
+            </v-col>
+          </v-row>
+          <v-row>
+            <v-col cols="1"></v-col>
+            <v-col cols="10">
               <div class="input-group input-group-lg input-group-solid">
                 <v-btn
                   block
@@ -163,8 +163,8 @@
                   Update
                 </v-btn>
               </div>
-            </div>
-          </div>
+            </v-col>
+          </v-row>
           <!--end::Body-->
         </v-form>
         <!--end::Form-->
@@ -185,7 +185,7 @@
             <b> Payment History (soon)</b>.
           </span>
         </div>
-        <v-data-table :headers="headers" :items="desserts">
+        <v-data-table :headers="headers" :items="desserts" class="mt-5">
           <template v-slot:top>
             <v-toolbar flat>
               <v-text-field

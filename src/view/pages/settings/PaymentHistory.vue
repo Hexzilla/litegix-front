@@ -1,5 +1,5 @@
 <template>
-  <div class="card card-custom">
+  <v-card>
     <div class="card-body">
       <!--begin::Header-->
       <v-card-title>
@@ -11,7 +11,7 @@
       <v-data-table :headers="headers" :items="SSHKeys" sort-by="calories">
       </v-data-table>
     </div>
-  </div>
+  </v-card>
 </template>
 <script>
 import { SET_BREADCRUMB } from "@/core/services/store/breadcrumbs.module";

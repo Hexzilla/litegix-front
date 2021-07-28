@@ -13,14 +13,12 @@
         <!-- </div> -->
         <!--end::Header-->
         <!--begin::Form-->
-        <v-form id="profile_form">
+        <v-form id="profile_form" class="mt-5">
           <!--begin::Body-->
 
-          <div class="row align-items-center mt-5">
-            <label class="col-xl-3 col-lg-3 col-form-label text-lg-right"
-              ></label
-            >
-            <div class="col-lg-6 col-xl-6">
+          <v-row>
+            <v-col cols="1"></v-col>
+            <v-col cols="10">
               <v-text-field 
               ref="email" 
               outlined dense 
@@ -28,13 +26,11 @@
               type="text" 
               readonly>
               </v-text-field>
-            </div>
-          </div>
-          <div class="row align-items-center">
-            <label class="col-xl-3 col-lg-3 col-form-label text-lg-right"
-              ></label
-            >
-            <div class="col-lg-6 col-xl-6">
+            </v-col>
+          </v-row>
+          <v-row>
+            <v-col cols="1"></v-col>
+            <v-col cols="10">
               <v-text-field 
               ref="name" 
               outlined 
@@ -42,13 +38,11 @@
               label="name" 
               type="text"
               ></v-text-field>
-            </div>
-          </div>
-          <div class="row align-items-center">
-            <label class="col-xl-3 col-lg-3 col-form-label text-lg-right"
-              ></label
-            >
-            <div class="col-lg-6 col-xl-6">
+            </v-col>
+          </v-row>
+          <v-row>
+            <v-col cols="1"></v-col>
+            <v-col cols="10">
               <v-select 
               outlined 
               dense 
@@ -57,13 +51,11 @@
               :items=time_zones
               >
               </v-select>
-            </div>
-          </div>
-          <div class="row align-items-center">
-            <label
-              class="col-xl-3 col-lg-3 col-form-label text-lg-right"
-            ></label>
-            <div class="col-lg-6 col-xl-6">
+            </v-col>
+          </v-row>
+          <v-row>
+            <v-col cols="1"></v-col>
+            <v-col cols="10">
               <div class="checkbox-inline">
                 <label
                   class="
@@ -79,13 +71,11 @@
                   /><span></span> Login Email Notification</label
                 >
               </div>
-            </div>
-          </div>
-          <div class="row align-items-center">
-            <label
-              class="col-xl-3 col-lg-3 col-form-label text-lg-right"
-            ></label>
-            <div class="col-lg-6 col-xl-6">
+            </v-col>
+          </v-row>
+          <v-row>
+            <v-col cols="1"></v-col>
+            <v-col cols="10">
               <v-btn
                 block
                 color="primary"
@@ -96,8 +86,8 @@
               >
                 Save Changes
               </v-btn>
-            </div>
-          </div>
+            </v-col>
+          </v-row>
           <!--end::Body-->
         </v-form>
         <!--end::Form-->
@@ -117,14 +107,11 @@
           <!-- </div> -->
           <!--end::Header-->
           <!--begin::Form-->
-          <v-form id="company_form">
+          <v-form id="company_form" class="mt-5">
             <!--begin::Body-->
-
-            <div class="row align-items-center mt-5">
-              <label class="col-xl-3 col-lg-3 col-form-label text-lg-right"
-                ></label
-              >
-              <div class="col-lg-6 col-xl-6">
+            <v-row>
+              <v-col cols="1"></v-col>
+              <v-col cols="10">
                 <v-text-field 
                   ref="CompanyName"
                   outlined 
@@ -132,13 +119,12 @@
                   label="Company Name" 
                   type="text"
                   ></v-text-field>
-              </div>
-            </div>
-            <div class="row align-items-center">
-              <label class="col-xl-3 col-lg-3 col-form-label text-lg-right"
-                ></label
+              </v-col>
+            </v-row>
+            <v-row>
+              <v-col cols="1"></v-col
               >
-              <div class="col-lg-6 col-xl-6">
+              <v-col cols="10">
                 <v-text-field
                   ref="AddressLine1"
                   outlined
@@ -146,13 +132,12 @@
                   label="Address Line1"
                   type="text"
                 ></v-text-field>
-              </div>
-            </div>
-            <div class="row align-items-center">
-              <label class="col-xl-3 col-lg-3 col-form-label text-lg-right"
-                ></label
+              </v-col>
+            </v-row>
+            <v-row>
+              <v-col cols="1"></v-col
               >
-              <div class="col-lg-6 col-xl-6">
+              <v-col cols="10">
                 <v-text-field
                   outlined
                   dense
@@ -160,14 +145,13 @@
                   ref="AddressLine2"
                   type="text"
                 ></v-text-field>
-              </div>
-            </div>
+              </v-col>
+            </v-row>
 
-            <div class="row align-items-center">
-              <label class="col-xl-3 col-lg-3 col-form-label text-lg-right"
-                ></label
+            <v-row>
+              <v-col cols="1"></v-col
               >
-              <div class="col-lg-6 col-xl-3">
+              <v-col cols="10">
                 <v-text-field
                   outlined
                   dense
@@ -175,13 +159,12 @@
                   ref="City" 
                   type="text" >
                 </v-text-field>
-              </div>
-            </div>
-            <div class="row align-items-center">
-              <label class="col-xl-3 col-lg-3 col-form-label text-lg-right"
-                ></label
+              </v-col>
+            </v-row>
+            <v-row>
+              <v-col cols="1"></v-col
               >
-              <div class="col-lg-6 col-xl-3">
+              <v-col cols="10">
                 <v-text-field
                   outlined
                   dense
@@ -189,13 +172,12 @@
                   ref="PostalCode"
                   type="text"
                 ></v-text-field>
-              </div>
-            </div>
-            <div class="row align-items-center">
-              <label class="col-xl-3 col-lg-3 col-form-label text-lg-right"
-                ></label
+              </v-col>
+            </v-row>
+            <v-row>
+              <v-col cols="1"></v-col
               >
-              <div class="col-lg-6 col-xl-6">
+              <v-col cols="10">
                 <v-text-field
                   outlined
                   dense
@@ -203,13 +185,12 @@
                   ref="State"
                   type="text"
                 ></v-text-field>
-              </div>
-            </div>
-            <div class="row align-items-center">
-              <label class="col-xl-3 col-lg-3 col-form-label text-lg-right"
-                ></label
+              </v-col>
+            </v-row>
+            <v-row>
+              <v-col cols="1"></v-col
               >
-              <div class="col-lg-6 col-xl-6">
+              <v-col cols="10">
                 <v-select 
                   outlined 
                   dense 
@@ -218,14 +199,13 @@
                   :items=Country
                   >
                 </v-select>
-              </div>
-            </div>
+              </v-col>
+            </v-row>
 
-            <div class="row align-items-center">
-              <label class="col-xl-3 col-lg-3 col-form-label text-lg-right"
-                ></label
+            <v-row>
+              <v-col cols="1"></v-col
               >
-              <div class="col-lg-6 col-xl-6">
+              <v-col cols="10">
                 <v-text-field
                   outlined
                   dense
@@ -233,14 +213,12 @@
                   ref="Tax"
                   type="text"
                 ></v-text-field>
-              </div>
-            </div>
+              </v-col>
+            </v-row>
 
-            <div class="row">
-              <label
-                class="col-xl-3 col-lg-3 col-form-label text-lg-right"
-              ></label>
-              <div class="col-lg-6 col-xl-6">
+            <v-row>
+              <v-col cols="1"></v-col>
+              <v-col cols="10">
                 <v-btn
                   block
                   color="primary"
@@ -251,8 +229,8 @@
                 >
                   Save Changes
                 </v-btn>
-              </div>
-            </div>
+              </v-col>
+            </v-row>
 
             <!--end::Body-->
           </v-form>

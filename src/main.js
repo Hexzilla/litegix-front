@@ -31,6 +31,7 @@ import "@/core/plugins/metronic";
 import "@mdi/font/css/materialdesignicons.css";
 import "@/core/plugins/formvalidation";
 
+
 // API service init
 ApiService.init();
 

@@ -1,203 +1,209 @@
 <template>
-  <div class="card card-custom">
+  <div class="card card-custom max-w-sm-800px mx-auto">
+    <div class="card-header">
+      <div class="card-title">
+        <span class="card-icon">
+          <i class="fas fa-link"></i>
+        </span>
+        <h3 class="card-label">Connect Server</h3>
+      </div>
+    </div>
     <div class="card-body p-0">
-      <div
-        class="wizard wizard-1"
-        id="kt_wizard_v1"
-        data-wizard-state="step-first"
-        data-wizard-clickable="true"
-      >
-        <div class="wizard-nav border-bottom">
-          <div class="wizard-steps p-8 p-lg-10">
-            <div class="wizard-step" data-wizard-type="step">
-              <div class="wizard-label">
-                <i class="wizard-icon flaticon-list"></i>
-                <h3 class="wizard-title">Connect Server</h3>
-              </div>
-              <i class="wizard-arrow last flaticon2-next"></i>
+      <div class="row justify-content-center my-10 px-8 my-lg-15 px-lg-10">
+        <div class="col-xl-12">
+          <form class="form" novalidate="novalidate" id="kt_form_server">
+            <b-form-group v-bind:label="`Select Provider`">
+              <b-row>
+                <b-col md="2" sm="3" class="mt-2">
+                  <b-form-radio
+                    v-model="form.provider"
+                    button
+                    class="d-block h-100"
+                    button-variant="outline-secondary btn-block h-100"
+                    size="lg"
+                    value="Vultr"
+                    name="provider"
+                  >
+                    <img
+                      src="media/svg/logos/vultr.svg"
+                      height="30px"
+                      class="mb-2"
+                    />
+                    <br />
+                    <strong>Vultr</strong>
+                  </b-form-radio>
+                </b-col>
+                <b-col md="2" sm="3" class="mt-2">
+                  <b-form-radio
+                    v-model="form.provider"
+                    button
+                    class="d-block h-100"
+                    button-variant="outline-secondary btn-block h-100"
+                    size="lg"
+                    value="UpCloud"
+                    name="provider"
+                  >
+                    <img
+                      src="media/svg/logos/upcloud.svg"
+                      height="30px"
+                      class="mb-2"
+                    />
+                    <br />
+                    <strong>UpCloud</strong>
+                  </b-form-radio>
+                </b-col>
+                <b-col md="2" sm="3" class="mt-2">
+                  <b-form-radio
+                    v-model="form.provider"
+                    button
+                    class="d-block h-100"
+                    button-variant="outline-secondary btn-block h-100"
+                    size="lg"
+                    value="DigitalOcean"
+                    name="provider"
+                  >
+                    <img
+                      src="media/svg/logos/digitalocean.svg"
+                      height="30px"
+                      class="mb-2"
+                    />
+                    <br />
+                    <strong>DigitalOcean</strong>
+                  </b-form-radio>
+                </b-col>
+                <b-col md="2" sm="3" class="mt-2">
+                  <b-form-radio
+                    v-model="form.provider"
+                    button
+                    class="d-block h-100"
+                    button-variant="outline-secondary btn-block h-100"
+                    size="lg"
+                    value="Linode"
+                    name="provider"
+                  >
+                    <img
+                      src="media/svg/logos/linode.svg"
+                      height="30px"
+                      class="mb-2"
+                    />
+                    <br />
+                    <strong>Linode</strong>
+                  </b-form-radio>
+                </b-col>
+                <b-col md="2" sm="3" class="mt-2">
+                  <b-form-radio
+                    v-model="form.provider"
+                    button
+                    class="d-block h-100"
+                    button-variant="outline-secondary btn-block h-100"
+                    size="lg"
+                    value="Amazon"
+                    name="provider"
+                  >
+                    <img src="media/logos/aws.png" height="30px" class="mb-2" />
+                    <br />
+                    <strong>Amazon</strong>
+                  </b-form-radio>
+                </b-col>
+                <b-col md="2" sm="3" class="mt-2">
+                  <b-form-radio
+                    v-model="form.provider"
+                    button
+                    class="d-block h-100"
+                    button-variant="outline-secondary btn-block h-100"
+                    size="lg"
+                    value="Scaleway"
+                    name="provider"
+                  >
+                    <img
+                      src="media/logos/scaleway.svg"
+                      height="30px"
+                      class="mb-2"
+                    />
+                    <br />
+                    <strong>Scaleway</strong>
+                  </b-form-radio>
+                </b-col>
+                <b-col md="2" sm="3" class="mt-2">
+                  <b-form-radio
+                    v-model="form.provider"
+                    button
+                    class="d-block h-100"
+                    button-variant="outline-secondary btn-block h-100"
+                    size="lg"
+                    value="Custom"
+                    name="provider"
+                    ><i class="fas fa-server mb-2" height="30px"></i>
+                    <br />
+                    <strong> Custom server</strong>
+                  </b-form-radio>
+                </b-col>
+              </b-row>
+            </b-form-group>
+            <div class="pb-5">
+              <v-autocomplete
+                v-model="form.web_server"
+                name="web_server"
+                :items="webservers"
+                outlined
+                dense
+                label="Configure My Server For"
+              ></v-autocomplete>
+
+              <!-- <v-text-field
+                v-model="form.name"
+                label="Server Name"
+                name="name"
+                outlined
+                dense
+              ></v-text-field>
+
+              <v-text-field
+                v-model="form.address"
+                label="IP address"
+                name="address"
+                outlined
+                dense
+              ></v-text-field> -->
+              <b-form-group label="Server name">
+                <b-form-input v-model="form.name" name="name"></b-form-input>
+              </b-form-group>
+              <b-form-group label="IP Address">
+                <b-form-input
+                  v-model="form.address"
+                  name="address"
+                ></b-form-input>
+              </b-form-group>
+
+              <v-autocomplete
+                v-model="form.phpVersion"
+                :items="phpversions"
+                name="phpVersion"
+                outlined
+                dense
+                label="PHP version"
+              ></v-autocomplete>
+              <v-autocomplete
+                v-model="form.database"
+                :items="databases"
+                name="database"
+                outlined
+                dense
+                label="Database"
+              ></v-autocomplete>
             </div>
-          </div>
-        </div>
 
-        <div class="row justify-content-center my-10 px-8 my-lg-15 px-lg-10">
-          <div class="col-xl-12 col-xxl-7">
-            <form class="form" novalidate="novalidate" id="kt_form_server">
-              <div
-                class="pb-5"
-                data-wizard-type="step-content"
-                data-wizard-state="current"
-              >
-                <!-- <h3 class="mb-10  text-dark">
-                  Details
-                </h3>
-                <div class="form-group">
-                  <b-alert show variant="warning">
-                    {{ warningText }}
-                  </b-alert>
-                </div>
-                <div class="form-group">
-                  <label>Run this command on your server as root user</label>
-                  <b-form-textarea
-                    id="command"
-                    placeholder=""
-                    :value="commandValue"
-                    rows="8"
-                  ></b-form-textarea>
-                </div> -->
-                <div class="form-group">
-                  <label>Configure My Server For</label>
-                  <select
-                    name="osversion"
-                    class="form-control form-control-solid form-control-lg"
-                  >
-                    <option value="nginx">Nginx</option>
-                    <option value="openlite">OpenLiteSpeed</option>
-                  </select>
-                  <!-- <span class="form-text text-muted"
-                    >Make sure to select the correct OS that matches with the one on your server, this determines how our install script should behave.</span
-                  > -->
-                </div>
-                <div class="form-group">
-                  <label>Name</label>
-                  <input
-                    type="text"
-                    class="form-control form-control-solid form-control-lg"
-                    name="name"
-                    placeholder="Name"
-                    ref="name"
-                    v-model="form.name"
-                  />
-                </div>
-                <div class="form-group">
-                  <label>IP address</label>
-                  <input
-                    type="text"
-                    class="form-control form-control-solid form-control-lg"
-                    name="address"
-                    placeholder="IP address"
-                    ref="address"
-                    v-model="form.address"
-                  />
-                </div>
-                <div class="form-group">
-                  <label>SSH port</label>
-                  <input
-                    type="text"
-                    class="form-control form-control-solid form-control-lg"
-                    name="ssh"
-                    placeholder="SSH port"
-                    ref="ssh"
-                    v-model="form.ssh"
-                  />
-                </div>
-                <!-- <div class="form-group">
-                  <label>Server type</label>
-                  <select
-                    name="ServerType"
-                    class="form-control form-control-solid form-control-lg"
-                    v-model="ServerType"
-                  >
-                    <option value="Server">Server</option>
-                    <option value="LoadBalancer">Load Balancer</option>
-                    <option value="DServer">Database Server</option>
-                    <option value="RServer">Redis Server</option>
-                    <option value="SServer">Storage Server(Minio)</option>
-                    <option value="MSServer">MeiliSearch Server</option>
-                    <option value="ESServer">ElasticSearch Server</option>
-                    <option value="PServer">Plain Server</option>
-                    <option value="EServer">Email Server</option>
-                  </select>
-                </div> -->
-                <!-- <div class="row" v-show="ServerType == 'Server'">
-                  <div class="col-xl-4">
-                    <div class="form-group">
-                      <label>Webserver</label>
-                      <select
-                        name="Webserver"
-                        class="form-control form-control-solid form-control-lg"
-                      >
-                        <option value="NGINX">NGINX</option>
-                      </select>
-                    </div>
-                  </div>
-                  <div class="col-xl-4">
-                    <div class="form-group">
-                      <label>PHP Version</label>
-                      <select
-                        name="PHPVersion"
-                        class="form-control form-control-solid form-control-lg"
-                      >
-                        <option value="PHP80">PHP 8.0</option>
-                        <option value="PHP74">PHP 7.4</option>
-                        <option value="PHP73">PHP 7.3</option>
-                        <option value="PHP72">PHP 7.2</option>
-                        <option value="PHP71">PHP 7.1</option>
-                        <option value="PHP70">PHP 7.0</option>
-                        <option value="PHP56">PHP 5.6</option>
-                        <option value="NOPHP">Do not install PHP</option>
-                      </select>
-                    </div>
-                  </div>
-                  <div class="col-xl-4">
-                    <div class="form-group">
-                      <label>Database</label>
-                      <select
-                        name="Database"
-                        class="form-control form-control-solid form-control-lg"
-                      >
-                        <option value="MySQL">MySQL 5.7</option>
-                        <option value="MariaDB">MariaDB 10.3</option>
-                        <option value="PostgreSQL">PostgreSQL 10.9</option>
-                        <option value="DBNone">
-                          None(do not install a database)
-                        </option>
-                      </select>
-                    </div>
-                  </div>
-                </div> -->
-                <!-- <div class="row" v-show="ServerType == 'DServer'">
-                  <div class="col-xl-4">
-                    <div class="form-group">
-                      <label>Database</label>
-                      <select
-                        name="Database"
-                        class="form-control form-control-solid form-control-lg"
-                      >
-                        <option value="MySQL">MySQL 5.7</option>
-                        <option value="MariaDB">MariaDB 10.3</option>
-                        <option value="PostgreSQL">PostgreSQL 10.9</option>
-                      </select>
-                    </div>
-                  </div>
-                </div>
-                <div class="form-group" v-show="ServerType == 'ESServer'">
-                  <b-alert show variant="primary">
-                    When installing a Elasticsearch server we recommend to have a server with the following minimum specifications: 4GB ram, 2 cores and 50GB disk.
-                    This is because the Elasticsearch service is a heavy service running on Java and will require you to have a lot of power.
-                  </b-alert>
-                </div> -->
+            <div class="d-flex justify-content-center border-top pt-10">
+              <div class="pb-lg-0 pb-5">
+                <button
+                  ref="kt_form_server_submit"
+                  class="btn btn-primary text-uppercase px-15 py-2 my-3 mr-3"
+                >
+                  Create this server
+                </button>
               </div>
-
-              <div class="d-flex justify-content-center border-top pt-10">
-                <div class="pb-lg-0 pb-5">
-                  <button
-                    ref="kt_form_server_submit"
-                    class="btn btn-primary  text-uppercase px-15 py-4 my-3 mr-3"
-                  >
-                    Add this server
-                  </button>
-                  <!-- <router-link to="/servers/config" v-slot="{ href, navigate }">
-                    <a
-                      :href="href"
-                      @click="navigate"
-                      class="btn btn-primary  text-uppercase px-9 py-4"
-                      >Add this server</a
-                    >
-                  </router-link> -->
-                </div>
-              </div>
-            </form>
-          </div>
+            </div>
+          </form>
         </div>
       </div>
     </div>
@@ -217,70 +223,101 @@ import KTUtil from "@/assets/js/components/util";
 
 import { SET_BREADCRUMB } from "@/core/services/store/breadcrumbs.module";
 import Swal from "sweetalert2";
-import ApiService from "@/core/services/api.service";
+// import ApiService from "@/core/services/api.service";
+
+import { CREATE_SERVER } from "@/core/services/store/servers.module";
 
 export default {
   name: "CreateServer",
   data() {
     return {
+      webservers: [
+        { text: "Nginx", value: "nginx" },
+        { text: "OpenLiteSpeed web app stack", value: "openlitespeed" },
+      ],
+      phpversions: [
+        { text: "PHP 8.0", value: "8.0" },
+        { text: "PHP 7.4", value: "7.4" },
+        { text: "PHP 7.3", value: "7.3" },
+        { text: "PHP 7.2", value: "7.2" },
+        { text: "PHP 7.1", value: "7.1" },
+        { text: "PHP 7.0", value: "7.0" },
+        { text: "PHP 5.6", value: "5.6" },
+        { text: "Do not install PHP", value: "none" },
+      ],
+      databases: [
+        { text: "MySQL 5.7", value: "mysql" },
+        { text: "MariaDB 10.3", value: "mariadb" },
+        { text: "PostgreSQL 10.9", value: "postgresql" },
+        { text: "PostgreSQL 13", value: "postgresql13" },
+        { text: "None (do not install a database)", value: "none" },
+      ],
       form: {
-        name: "tingerval",
-        address: "221.56.120.89",
-        ssh: "22"
-      }
-      /*ServerType: "Server",
-      commandValue: `mkdir -p /root/.ssh && touch /root/.ssh/authorized_keys && echo "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCvVRd/oYPD8IaK1NuIaGkOIV/zvISGrkeBL7XY967cOXgJf26Zr/60bEGYzcQKG1OpAa8g6PPH2skUIw1i3geR3/0atMU1Osj8hV9Z6WCxCFlfGOjmJGzuR+TT8EcgYegdBTE2zIPahajUHaAZTYljb7ewEugflOeh0sRpZ3BER83hu1a8xoibIn+UuSXEN3f++BSdxZNu7suGd46fBgWeUw`,
-      warningText: `Your server needs to have a new unused installation of Ubuntu 16.04, 18.04 or 20.04 x64 and must contain a root user. 
-                    To get started, add this public key to /root/.ssh/authorized_keys file.`*/
+        name: "",
+        address: "",
+        provider: "",
+        web_server: "nginx",
+        phpVersion: "7.4",
+        database: "mysql",
+      },
     };
   },
   mounted() {
     this.$store.dispatch(SET_BREADCRUMB, [
       { title: "Server" },
-      { title: "Create" }
+      { title: "Create" },
     ]);
-    this.fv = this.createValidation();
-    this.fv.on("core.form.valid", this.submit);
-    this.fv.on("core.form.invalid", () => {});
-  },
-  methods: {
-    createValidation: function() {
-      const create_form = KTUtil.getById("kt_form_server");
-      return formValidation(create_form, {
-        fields: {
-          name: {
-            validators: {
-              notEmpty: {
-                message: "Name is required"
-              }
+    const create_form = KTUtil.getById("kt_form_server");
+    this.fv = formValidation(create_form, {
+      fields: {
+        name: {
+          validators: {
+            notEmpty: {
+              message: "Name is required",
+            },
+          },
+        },
+        address: {
+          validators: {
+            notEmpty: {
+              message: "IP address is required",
+            },
+            ip: {
+              message: "Invalid IP address",
             }
           },
-          address: {
-            validators: {
-              notEmpty: {
-                message: "IP address is required"
-              }
-            }
-          }
         },
-        plugins: {
-          trigger: new Trigger(),
-          submitButton: new SubmitButton(),
-          bootstrap: new Bootstrap()
-        }
+      },
+      plugins: {
+        trigger: new Trigger(),
+        submitButton: new SubmitButton(),
+        bootstrap: new Bootstrap(),
+      },
+    });
+    this.fv.on("core.form.valid", this.createServer);
+    this.fv.on("core.form.invalid", () => {
+      Swal.fire({
+        title: "",
+        text: "Please, provide correct data!",
+        icon: "error",
+        confirmButtonClass: "btn btn-secondary",
+        heightAuto: false,
       });
-    },
+    });
+  },
+  methods: {
     makeToast(contents, variant = null) {
       this.$bvToast.toast(contents, {
         title: `Litegix`,
         toaster: "b-toaster-bottom-right",
         variant: variant,
-        solid: true
+        solid: true,
       });
     },
-    submit: function() {
+    createServer() {
       // set spinner to submit button
       const submitButton = this.$refs["kt_form_server_submit"];
+      console.log(submitButton);
       submitButton.classList.add("spinner", "spinner-light", "spinner-right");
       const removeSpinner = () => {
         submitButton.classList.remove(
@@ -292,45 +329,53 @@ export default {
 
       const payload = {
         name: this.form.name,
-        provider: "other",
-        web_server: "nginx",
-        database: "mysql",
+        provider: this.form.provider,
+        web_server: this.form.web_server,
+        database: this.form.database,
         address: this.form.address,
-        php: "5.7",
-        ssh: this.form.ssh
+        phpVersion: this.form.phpVersion,
       };
 
-      //console.log("createServer", payload);
-      ApiService.setHeader();
-      ApiService.post("servers/create", payload)
-        .then(({ data }) => {
-          //console.log("createServer-response", data);
-          if (data.success) {
-            this.onCreateSuccess(data);
-          }
+      this.$store
+        .dispatch(CREATE_SERVER, payload)
+        .then(() => {
           removeSpinner();
+          this.onCreateSuccess();
         })
-        .catch(error => {
+        .catch(() => {
           removeSpinner();
-          if (error.response && error.response.data) {
-            this.makeToast(error.response.data.message, "danger");
-          } else {
-            this.makeToast("There's something wrong", "danger");
-          }
         });
+
+      //console.log("createServer", payload);
+      // ApiService.setHeader();
+      // ApiService.post("servers/create", payload)
+      //   .then(({ data }) => {
+      //     //console.log("createServer-response", data);
+      //     if (data.success) {
+      //       this.onCreateSuccess(data);
+      //     }
+      //     removeSpinner();
+      //   })
+      //   .catch((error) => {
+      //     removeSpinner();
+      //     if (error.response && error.response.data) {
+      //       this.makeToast(error.response.data.message, "danger");
+      //     } else {
+      //       this.makeToast("There's something wrong", "danger");
+      //     }
+      //   });
     },
-    onCreateSuccess(response) {
-      //console.log("onCreateSuccess", response);
+    onCreateSuccess() {
       Swal.fire({
         title: "",
-        text: response.message,
+        text: 'Your Server has been successfully created',
         icon: "success",
         confirmButtonClass: "btn btn-secondary",
-        heightAuto: false
+        heightAuto: false,
       }).then(() => {
         this.$router.push({ name: "server-config" });
       });
-    }
-  }
+    },
+  },
 };
 </script>

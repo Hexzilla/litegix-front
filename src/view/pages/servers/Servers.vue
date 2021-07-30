@@ -50,19 +50,22 @@
 
 <script>
 import { SET_BREADCRUMB } from "@/core/services/store/breadcrumbs.module";
-import ApiService from "@/core/services/api.service";
+// import ApiService from "@/core/services/api.service";
 import EmptyServer from "./EmptyServer.vue";
 import ServerCard from "./ServerCard.vue";
+import { mapGetters } from "vuex";
+import { GET_SERVERS } from "@/core/services/store/servers.module";
 
 export default {
   name: "Servers",
-  data() {
-    return {
-      servers: [
-        { name: "NGINX", address: "10.10.10.10", active: true },
-        { name: "Ubunt", address: "198.144.10.32", active: false }
-      ],
-    };
+  computed: {
+    ...mapGetters(["servers"]),
+
+    backgroundImage() {
+      return (
+        process.env.BASE_URL + "media/svg/illustrations/login-visual-1.svg"
+      );
+    },
   },
   components: {
     EmptyServer,
@@ -70,17 +73,16 @@ export default {
   },
   mounted() {
     this.$store.dispatch(SET_BREADCRUMB, [{ title: "Servers" }]);
-    this.getServers();
+    this.$store.dispatch(GET_SERVERS);
   },
   methods: {
-    getServers() {
-      ApiService.setHeader();
-      ApiService.get("servers")
-        .then(({ data }) => {
-          this.servers = data.servers;
-        })
-        .catch(() => {});
-    },
+      // ApiService.setHeader();
+      // ApiService.get("servers")
+      //   .then(({ data }) => {
+      //     this.servers = data.servers;
+      //   })
+      //   .catch(() => {});
+    
     isEmpty() {
       return this.servers.length <= 0;
     },

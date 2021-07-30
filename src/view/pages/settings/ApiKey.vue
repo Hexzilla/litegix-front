@@ -15,48 +15,32 @@
         <div class="form-group row align-items-center">
           <v-col cols="1"></v-col>
           <v-col cols="10">
-            <b-input-group class="mt-3">
-              <b-form-input
-                auto="true"
-                characters="characters"
-                class="form-control form-control-lg"
-                type="text"
-                :value="apikey"
-              >
-              </b-form-input>
-              <b-input-group-append>
-                <b-button variant="dark" v-clipboard:copy="password">
-                  <i class="fa fa-copy"></i>
-                </b-button>
-                <b-button variant="success" @click="generate()"
-                  ><i class="fa fa-sync"></i
-                ></b-button>
-              </b-input-group-append>
-            </b-input-group>
+            <v-text-field
+              outlined
+              dense
+              type="text"
+              append-icon="mdi-refresh"
+              auto="true"
+              characters="characters"
+              :value="apikey"
+              @click:append="generate()"
+            ></v-text-field>
           </v-col>
         </div>
 
         <div class="form-group row align-items-center">
           <v-col cols="1"></v-col>
           <v-col cols="10">
-            <b-input-group class="mt-3">
-              <b-form-input
-                auto="true"
-                characters="characters"
-                class="form-control form-control-lg"
-                type="text"
-                :value="apikey"
-              >
-              </b-form-input>
-              <b-input-group-append>
-                <b-button variant="dark" v-clipboard:copy="password">
-                  <i class="fa fa-copy"></i>
-                </b-button>
-                <b-button variant="success" @click="generate()"
-                  ><i class="fa fa-sync"></i
-                ></b-button>
-              </b-input-group-append>
-            </b-input-group>
+            <v-text-field
+              outlined
+              dense
+              type="text"
+              append-icon="mdi-refresh"
+              auto="true"
+              characters="characters"
+              :value="apikey"
+              @click:append="generate()"
+            ></v-text-field>
           </v-col>
         </div>
       </div>
@@ -274,10 +258,6 @@ export default {
       if (charactersArray.indexOf("0-9") >= 0) {
         CharacterSet += "0123456789";
       }
-      // if (charactersArray.indexOf('#') >= 0) {
-      //     CharacterSet += '![]{}()%&*$#^<>~@|';
-      // }
-
       for (let i = 0; i < this.size; i++) {
         key += CharacterSet.charAt(
           Math.floor(Math.random() * CharacterSet.length)

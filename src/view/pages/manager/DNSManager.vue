@@ -1,7 +1,7 @@
 <template>
   <v-app>
     <!--begin::Card-->
-    <div class="card card-custom">
+    <v-card>
       <!--begin::Body-->
       <div class="card-body pt-15">
         <!--begin::User-->
@@ -112,7 +112,7 @@
         </v-row>
       </div>
       <!--end::Body-->
-    </div>
+    </v-card>
     <!--end::Card-->
   </v-app>
 </template>

@@ -30,9 +30,9 @@
           <p class="text-muted font-size-sm">
             Cancelled subscription will continue running until the end of
             billing cycle. Payment made is subject to and in accordance with the
-            <h ref="#">Refund Policy.</h>
+            <strong>Refund Policy.</strong>
           </p>
-          <v-card-actions>
+          <!-- <v-card-actions>
             <v-card color="secondary">
               <v-card-title>Current Server Plan</v-card-title>
               <h3>Trial</h3>
@@ -63,17 +63,73 @@
                 >This credit can be used for the subscription</v-card-title
               >
             </v-card>
-          </v-card-actions>
-          <v-toolbar flat>
-            <template v-slot:extension>
-              <v-tabs v-model="tab" align-with-title>
-                <v-tabs-slider color="primary"></v-tabs-slider>
-                <v-tab v-for="item in items" :key="item">
-                  {{ item }}
-                </v-tab>
-              </v-tabs>
-            </template>
-          </v-toolbar>
+          </v-card-actions> -->
+          <v-row justify="space-around">
+            <v-col
+              cols="12"
+              md="4"
+            >
+              <v-sheet
+                elevation="6"
+                class="mx-auto"
+              >
+                <v-card class="">
+                  <v-card-title>Current Server Plan</v-card-title>
+                  <v-card-subtitle>Trial</v-card-subtitle>
+                  <v-card-subtitle class="">until 03-Jul-2021</v-card-subtitle>
+                </v-card>
+              </v-sheet>
+            </v-col>
+            <v-col
+              cols="12"
+              md="4"
+            >
+              <v-sheet
+                elevation="6"
+                class="mx-auto"
+              >
+                <v-card >
+                  <v-card-title>Current Backup Plan</v-card-title>
+                  <v-card-subtitle>N/A</v-card-subtitle>
+                </v-card>
+              </v-sheet>
+            </v-col>
+            <v-col
+              cols="12"
+              md="4"
+            >
+              <v-sheet
+                elevation="6"
+                class="mx-auto"
+              >
+                <v-card>
+                  <v-card-title>Available credit 
+                    <v-tooltip top>
+                      <template v-slot:activator="{ on, attrs }">
+                        <v-icon color="primary" dark v-bind="attrs" v-on="on">
+                          info
+                        </v-icon>
+                      </template>
+                      <span>Tooltip</span>
+                    </v-tooltip>
+                  </v-card-title>
+                  <v-card-subtitle>$0.00</v-card-subtitle>
+                  <v-card-subtitle
+                    >This credit can be used for the subscription</v-card-subtitle
+                  >
+                </v-card>
+              </v-sheet>
+            </v-col>
+          </v-row>
+
+
+          
+          <v-tabs v-model="tab" align-with-title class="mt-5">
+            <v-tabs-slider color="primary"></v-tabs-slider>
+            <v-tab v-for="item in items" :key="item">
+              {{ item }}
+            </v-tab>
+          </v-tabs>
           <v-tabs-items v-model="tab">
             <v-tab-item v-for="item in items" :key="item">
               <v-card flat>

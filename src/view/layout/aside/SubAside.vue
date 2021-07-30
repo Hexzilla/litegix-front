@@ -6,8 +6,7 @@
     id="kt_settings_aside"
     ref="kt_settings_aside"
   >
-    <!-- <div class="card card-custom card-stretch"> -->
-      <v-card>
+    <v-card>
       <div class="card-body pt-14">
         <div class="text-center mb-10">
           <div class="symbol symbol-60 symbol-circle symbol-xl-90">

@@ -49,7 +49,6 @@
           </div>
         </div>
         <KTFooter></KTFooter>
-        
       </div>
     </div>
     <KTStickyToolbar v-if="toolbarDisplay"></KTStickyToolbar>

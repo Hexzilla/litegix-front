@@ -1,18 +1,24 @@
 <template>
-  <div class="d-flex flex-column flex-root">
+  <div
+    class="d-flex flex-column flex-root"
+    style="background: url('/media/bg/bg-6.jpg');background-size:cover"
+  >
     <div
-      class="login login-1 d-flex flex-column flex-lg-row flex-column-fluid bg-white"
+      class="
+        login login-1
+        d-flex
+        flex-column flex-lg-row flex-column-fluid
+      "
       :class="{
         'login-signin-on': this.state == 'signin',
         'login-signup-on': this.state == 'signup',
-        'login-forgot-on': this.state == 'forgot'
+        'login-forgot-on': this.state == 'forgot',
       }"
       id="kt_login"
     >
       <!--begin::Aside-->
       <div
         class="login-aside d-flex flex-column flex-row-auto"
-        style="background-color: #F2C98A;"
       >
         <div class="d-flex flex-column-auto flex-column pt-lg-40 pt-15">
           <a href="#" class="text-center mb-10">
@@ -24,24 +30,39 @@
           </a>
           <h3
             class="font-weight-bolder text-center font-size-h4 font-size-h1-lg"
-            style="color: #986923;"
+            style="color: #fff500f2"
           >
             Discover Amazing Litegix <br />with great build tools
           </h3>
         </div>
         <div
-          class="aside-img d-flex flex-row-fluid bgi-no-repeat bgi-position-y-bottom bgi-position-x-center"
+          class="
+            aside-img
+            d-flex
+            flex-row-fluid
+            bgi-no-repeat bgi-position-y-bottom bgi-position-x-center
+          "
           :style="{ backgroundImage: `url(${backgroundImage})` }"
         ></div>
       </div>
       <!--begin::Aside-->
       <!--begin::Content-->
       <div
-        class="login-content flex-row-fluid d-flex flex-column justify-content-center position-relative overflow-hidden p-7 mx-auto"
+        class="
+          login-content
+          flex-row-fluid
+          d-flex
+          flex-column
+          justify-content-center
+          position-relative
+          overflow-hidden
+          p-7
+          mx-auto
+        "
       >
         <div class="d-flex flex-column-fluid flex-center">
           <!--begin::Signin-->
-          <div class="login-form login-signin">
+          <div class="login-form login-signin  px-10 py-30 rounded-xl">
             <form
               class="form"
               novalidate="novalidate"
@@ -49,11 +70,15 @@
             >
               <div class="pb-13 pt-lg-0 pt-5">
                 <h3
-                  class="font-weight-bolder text-dark font-size-h4 font-size-h1-lg"
+                  class="
+                    font-weight-bolder
+                    text-white
+                    font-size-h4 font-size-h1-lg
+                  "
                 >
                   Welcome to Litegix
                 </h3>
-                <span class="text-muted  font-size-h4"
+                <span class="text-muted font-size-h4"
                   >New Here?
                   <a
                     id="kt_login_signup"
@@ -64,7 +89,7 @@
                 >
               </div>
               <div class="form-group">
-                <label class="font-size-h6 font-weight-bolder text-dark"
+                <label class="font-size-h6 font-weight-bolder text-white"
                   >Email</label
                 >
                 <div
@@ -73,7 +98,13 @@
                   label-for="example-input-1"
                 >
                   <input
-                    class="form-control form-control-solid h-auto py-7 px-6 rounded-lg"
+                    class="
+                      form-control form-control-solid
+                      h-auto
+                      py-4
+                      px-6
+                      rounded-lg
+                    "
                     type="text"
                     name="email"
                     placeholder="Email"
@@ -84,15 +115,10 @@
               </div>
               <div class="form-group">
                 <div class="d-flex justify-content-between mt-n5">
-                  <label class="font-size-h6 font-weight-bolder text-dark pt-5"
+                  <label class="font-size-h6 font-weight-bolder text-white pt-5"
                     >Password</label
                   >
-                  <a
-                    class="text-primary font-size-h6 font-weight-bolder text-hover-primary pt-5"
-                    id="kt_login_forgot"
-                    @click="showForm('forgot')"
-                    >Forgot Password ?</a
-                  >
+                  
                 </div>
                 <div
                   id="example-input-group-2"
@@ -100,7 +126,13 @@
                   label-for="example-input-2"
                 >
                   <input
-                    class="form-control form-control-solid h-auto py-7 px-6 rounded-lg"
+                    class="
+                      form-control form-control-solid
+                      h-auto
+                      py-4
+                      px-6
+                      rounded-lg
+                    "
                     type="password"
                     name="password"
                     placeholder="Password"
@@ -110,16 +142,41 @@
                   />
                 </div>
               </div>
+              <a
+                    class="
+                      text-primary
+                      font-size-h6 font-weight-bolder
+                      text-hover-primary
+                      pt-3
+                    "
+                    id="kt_login_forgot"
+                    @click="showForm('forgot')"
+                    >Forgot Password ?</a
+                  >
               <div class="pb-lg-0 pb-5">
                 <button
                   ref="kt_login_signin_submit"
-                  class="btn btn-primary font-weight-bolder font-size-h6 px-15 py-4 my-3 mr-3"
+                  class="
+                    btn btn-primary
+                    font-weight-bolder font-size-h6
+                    px-15
+                    py-3
+                    my-5
+                    mr-3
+                  "
                 >
                   Sign In
                 </button>
                 <button
                   type="button"
-                  class="btn btn-light-primary font-weight-bolder px-8 py-4 my-3 font-size-lg"
+                  class="
+                    btn btn-light-primary
+                    font-weight-bolder
+                    px-8
+                    py-3
+                    my-5
+                    font-size-lg
+                  "
                 >
                   <span class="svg-icon svg-icon-md">
                     <inline-svg
@@ -132,7 +189,7 @@
           </div>
           <!--end::Signin-->
           <!--begin::Signup-->
-          <div class="login-form login-signup">
+          <div class="login-form login-signup  px-10 py-10 rounded-xl">
             <form
               class="form"
               novalidate="novalidate"
@@ -140,17 +197,28 @@
             >
               <div class="pb-13 pt-lg-0 pt-5">
                 <h3
-                  class="font-weight-bolder text-dark font-size-h4 font-size-h1-lg"
+                  class="
+                    font-weight-bolder
+                    text-white
+                    font-size-h4 font-size-h1-lg
+                  "
                 >
                   Sign Up
                 </h3>
-                <p class="text-muted  font-size-h4">
+                <p class="text-muted font-size-h4">
                   Enter your details to create your account
                 </p>
               </div>
               <div class="form-group">
                 <input
-                  class="form-control form-control-solid h-auto py-7 px-6 rounded-lg font-size-h6"
+                  class="
+                    form-control form-control-solid
+                    h-auto
+                    py-4
+                    px-6
+                    rounded-lg
+                    font-size-h6
+                  "
                   type="text"
                   placeholder="Fullname"
                   name="fullname"
@@ -160,7 +228,14 @@
               </div>
               <div class="form-group">
                 <input
-                  class="form-control form-control-solid h-auto py-7 px-6 rounded-lg font-size-h6"
+                  class="
+                    form-control form-control-solid
+                    h-auto
+                    py-4
+                    px-6
+                    rounded-lg
+                    font-size-h6
+                  "
                   type="email"
                   placeholder="Email"
                   name="email"
@@ -170,7 +245,14 @@
               </div>
               <div class="form-group">
                 <input
-                  class="form-control form-control-solid h-auto py-7 px-6 rounded-lg font-size-h6"
+                  class="
+                    form-control form-control-solid
+                    h-auto
+                    py-4
+                    px-6
+                    rounded-lg
+                    font-size-h6
+                  "
                   type="password"
                   placeholder="Password"
                   name="password"
@@ -180,7 +262,14 @@
               </div>
               <div class="form-group">
                 <input
-                  class="form-control form-control-solid h-auto py-7 px-6 rounded-lg font-size-h6"
+                  class="
+                    form-control form-control-solid
+                    h-auto
+                    py-4
+                    px-6
+                    rounded-lg
+                    font-size-h6
+                  "
                   type="password"
                   placeholder="Confirm password"
                   name="cpassword"
@@ -199,15 +288,28 @@
               <div class="form-group d-flex flex-wrap pb-lg-0 pb-3">
                 <button
                   ref="kt_login_signup_submit"
-                  class="btn btn-primary font-weight-bolder font-size-h6 px-8 py-4 my-3 mr-4"
-                  style="width:150px;"
+                  class="
+                    btn btn-primary
+                    font-weight-bolder font-size-h6
+                    px-8
+                    py-4
+                    my-3
+                    mr-4
+                  "
+                  style="width: 150px"
                 >
                   Submit
                 </button>
                 <button
                   type="button"
                   id="kt_login_signup_cancel"
-                  class="btn btn-light-primary font-weight-bolder font-size-h6 px-8 py-4 my-3"
+                  class="
+                    btn btn-light-primary
+                    font-weight-bolder font-size-h6
+                    px-8
+                    py-4
+                    my-3
+                  "
                   @click="showForm('signin')"
                 >
                   Cancel
@@ -227,17 +329,28 @@
             >
               <div class="pb-13 pt-lg-0 pt-5">
                 <h3
-                  class="font-weight-bolder text-dark font-size-h4 font-size-h1-lg"
+                  class="
+                    font-weight-bolder
+                    text-white
+                    font-size-h4 font-size-h1-lg
+                  "
                 >
                   Forgotten Password ?
                 </h3>
-                <p class="text-muted  font-size-h4">
+                <p class="text-white font-size-h4">
                   Enter your email to reset your password
                 </p>
               </div>
               <div class="form-group">
                 <input
-                  class="form-control form-control-solid h-auto py-7 px-6 rounded-lg font-size-h6"
+                  class="
+                    form-control form-control-solid
+                    h-auto
+                    py-4
+                    px-6
+                    rounded-lg
+                    font-size-h6
+                  "
                   type="email"
                   placeholder="Email"
                   name="email"
@@ -248,14 +361,27 @@
                 <button
                   type="button"
                   id="kt_login_forgot_submit"
-                  class="btn btn-primary font-weight-bolder font-size-h6 px-8 py-4 my-3 mr-4"
+                  class="
+                    btn btn-primary
+                    font-weight-bolder font-size-h6
+                    px-8
+                    py-4
+                    my-3
+                    mr-4
+                  "
                 >
                   Submit
                 </button>
                 <button
                   type="button"
                   id="kt_login_forgot_cancel"
-                  class="btn btn-light-primary font-weight-bolder font-size-h6 px-8 py-4 my-3"
+                  class="
+                    btn btn-light-primary
+                    font-weight-bolder font-size-h6
+                    px-8
+                    py-4
+                    my-3
+                  "
                   @click="showForm('signin')"
                 >
                   Cancel
@@ -267,7 +393,12 @@
         </div>
         <!--begin::Content footer-->
         <div
-          class="d-flex justify-content-lg-start justify-content-center align-items-end py-7 py-lg-0"
+          class="
+            d-flex
+            justify-content-lg-start justify-content-center
+            align-items-end
+            py-4 py-lg-0
+          "
         >
           <a href="#" class="text-primary font-weight-bolder font-size-h5"
             >Terms</a
@@ -313,13 +444,13 @@ export default {
       // Remove this dummy login info
       form: {
         email: "",
-        password: ""
-      }
+        password: "",
+      },
     };
   },
   computed: {
     ...mapState({
-      errors: state => state.auth.errors
+      errors: (state) => state.auth.errors,
     }),
     ...mapGetters(["currentUser"]),
 
@@ -327,7 +458,7 @@ export default {
       return (
         process.env.BASE_URL + "media/svg/illustrations/login-visual-1.svg"
       );
-    }
+    },
   },
   mounted() {
     const signin_form = KTUtil.getById("kt_login_signin_form");
@@ -339,23 +470,23 @@ export default {
         email: {
           validators: {
             notEmpty: {
-              message: "Username is required"
-            }
-          }
+              message: "Username is required",
+            },
+          },
         },
         password: {
           validators: {
             notEmpty: {
-              message: "Password is required"
-            }
-          }
-        }
+              message: "Password is required",
+            },
+          },
+        },
       },
       plugins: {
         trigger: new Trigger(),
         submitButton: new SubmitButton(),
-        bootstrap: new Bootstrap()
-      }
+        bootstrap: new Bootstrap(),
+      },
     });
 
     this.fv1 = formValidation(signup_form, {
@@ -363,53 +494,53 @@ export default {
         fullname: {
           validators: {
             notEmpty: {
-              message: "Full name is required"
-            }
-          }
+              message: "Full name is required",
+            },
+          },
         },
         email: {
           validators: {
             notEmpty: {
-              message: "Email is required"
+              message: "Email is required",
             },
             emailAddress: {
-              message: "The value is not a valid email address"
-            }
-          }
+              message: "The value is not a valid email address",
+            },
+          },
         },
         password: {
           validators: {
             notEmpty: {
-              message: "Password is required"
-            }
-          }
+              message: "Password is required",
+            },
+          },
         },
         cpassword: {
           validators: {
             notEmpty: {
-              message: "Confirm password is required"
+              message: "Confirm password is required",
             },
             identical: {
-              compare: function() {
+              compare: function () {
                 return signup_form.querySelector('[name="password"]').value;
               },
-              message: "The password and its confirm are not the same"
-            }
-          }
+              message: "The password and its confirm are not the same",
+            },
+          },
         },
         agree: {
           validators: {
             notEmpty: {
-              message: "You should agree terms and conditions"
-            }
-          }
-        }
+              message: "You should agree terms and conditions",
+            },
+          },
+        },
       },
       plugins: {
         trigger: new Trigger(),
         submitButton: new SubmitButton(),
-        bootstrap: new Bootstrap()
-      }
+        bootstrap: new Bootstrap(),
+      },
     });
 
     this.fv2 = formValidation(forgot_form, {
@@ -417,19 +548,19 @@ export default {
         email: {
           validators: {
             notEmpty: {
-              message: "Email is required"
+              message: "Email is required",
             },
             emailAddress: {
-              message: "The value is not a valid email address"
-            }
-          }
-        }
+              message: "The value is not a valid email address",
+            },
+          },
+        },
       },
       plugins: {
         trigger: new Trigger(),
         submitButton: new SubmitButton(),
-        bootstrap: new Bootstrap()
-      }
+        bootstrap: new Bootstrap(),
+      },
     });
 
     this.fv.on("core.form.valid", this.login);
@@ -452,7 +583,7 @@ export default {
         text: "Please, provide correct data!",
         icon: "error",
         confirmButtonClass: "btn btn-secondary",
-        heightAuto: false
+        heightAuto: false,
       });
     });
   },
@@ -469,7 +600,7 @@ export default {
       this.$bvToast.toast(contents, {
         title: `Litegix`,
         variant: variant,
-        solid: true
+        solid: true,
       });
     },
     login() {
@@ -494,7 +625,7 @@ export default {
       // send login request
       this.$store
         .dispatch(LOGIN, { email, password })
-        .then(response => {
+        .then((response) => {
           this.onLoginSuccess(response);
         })
         .catch(() => {
@@ -506,7 +637,7 @@ export default {
       this.$store
         .dispatch(UPDATE_ACCOUNT_INFO, {
           username: user.username,
-          email: user.email
+          email: user.email,
         })
         .then(() => {
           this.$router.push({ name: "dashboard" });
@@ -537,7 +668,7 @@ export default {
         .dispatch(REGISTER, {
           name: name,
           email: email,
-          password: password
+          password: password,
         })
         .then(() => {
           removeSpinner();
@@ -546,14 +677,14 @@ export default {
             text: "Your account has been successfully created",
             icon: "success",
             confirmButtonClass: "btn btn-secondary",
-            heightAuto: false
+            heightAuto: false,
           }).then(() => this.showForm("signin"));
         })
         .catch(() => {
           //console.log("regist.error", error);
           removeSpinner();
         });
-    }
-  }
+    },
+  },
 };
 </script>

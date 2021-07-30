@@ -1,7 +1,7 @@
 <template>
   <v-app>
     <!--begin::Advance Table Widget 10-->
-    <div class="card card-custom gutter-b">
+    <v-card class="card card-custom gutter-b">
       <!--begin::Header-->
       <div class="card-header border-0 py-5">
         <v-card-title>
@@ -13,19 +13,16 @@
       <!--end::Header-->
       <!--begin::Body-->
       <div class="card-body py-0">
-        <b-form>
-          <b-form-group
-            id="input-group-1"
+        <v-form>
+          <v-text-field
+            outlined
+            dense
+            id="canvas_name"
             label="Canvas Name"
-            label-for="canvas_name"
+            v-model="form.canvas_name"
+            required
           >
-            <b-form-input
-              id="canvas_name"
-              v-model="form.canvas_name"
-              required
-              placeholder="My awesome Wordpress Canvas"
-            ></b-form-input>
-          </b-form-group>
+          </v-text-field>
 
           <b-form-group
             id="input-group-2"
@@ -51,60 +48,88 @@
             <strong>publicly accessilbe</strong>. The installation wil fail if
             you are using Private or Restricted Link.
           </v-alert>
-          <div class="row">
-            <b-form-group
-              label="Label"
-              class="col-md-3"
-              label-for="custom_label"
+          <v-row>
+            <v-col
+              cols="12"
+              md="4"
             >
-              <b-form-input
-                id="custom_label"
-                placeholder="Theme or Plugin name"
-              ></b-form-input>
-            </b-form-group>
-            <b-form-group label="Link" class="col-md-6" label-for="custom_link">
-              <b-form-input
-                id="custom_link"
-                placeholder="Link to Theme or Plugin in ZIP format"
-              ></b-form-input>
-            </b-form-group>
-            <b-form-group label="Type" class="col-md-3" label-for="custom_type">
-              <b-form-select id="custom_type"></b-form-select>
-            </b-form-group>
-          </div>
+            <v-text-field
+              outlined
+              dense
+              label="Label"
+              id="custom_label"
+            >
+            </v-text-field>
+            </v-col>
+            <v-col
+              cols="12"
+              md="4"
+            >
+            <v-text-field 
+              outlined
+              dense
+              label="Link" 
+              id="custom_link"
+              >
+            </v-text-field>
+            </v-col>
+            <v-col
+              cols="12"
+              md="4"
+            >
+            <v-autocomplete 
+              outlined
+              dense
+              label="Type" 
+              id="custom_type"
+              >
+            </v-autocomplete>
+            </v-col>
+          </v-row>
           <v-divider></v-divider>
           <h5>Cleanup</h5>
-
-          <b-form-group label="All checked items will be permanentally deleted">
-            <b-form-checkbox
-              v-for="option in checkItem"
-              :key="option.value"
-              :value="option.value"
-              size="lg"
-            >
-              {{ option.label }}
-            </b-form-checkbox>
-          </b-form-group>
+          <v-list>
+            <v-list-item-group>
+              <v-list-item
+                 v-for="option in checkItem"
+                :key="option.value"
+              >
+                <v-list-item-icon>
+                  <b-form-checkbox
+                    :key="option.value"
+                    :value="option.value"
+                    size="lg"
+                  ></b-form-checkbox>
+                </v-list-item-icon>
+                <v-list-item-content>
+                  <v-list-item-title v-text="option.label"></v-list-item-title>
+                </v-list-item-content>
+              </v-list-item>
+            </v-list-item-group>
+          </v-list>
 
           <v-divider></v-divider>
 
           <h5>Pre-defined Settings</h5>
 
-          <b-form-group label="Site language" label-for="sel_language">
-            <b-form-select
-              id="sel_language"
-              :options="sel_language"
-            ></b-form-select>
-          </b-form-group>
+          <v-autocomplete
+            outlined
+            dense
+            id="sel_language"
+            label="Site language" 
+            :items=sel_language
+            >
+          </v-autocomplete>
+          <v-autocomplete
+            dense
+            outlined
+            label="Time Zone"
+            id="sel_timezone"
+            :items="sel_timezone"
+          >
+          </v-autocomplete>
 
-          <b-form-group label="Time Zone" label-for="sel_timezone">
-            <b-form-select
-              id="sel_timezone"
-              :options="sel_timezone"
-            ></b-form-select>
-          </b-form-group>
-
-          <b-form-group label="Date Format" label-for="radio-group-1">
+          <!-- <b-form-group label="Date Format" label-for="radio-group-1">
             <b-form-radio-group id="radio-group-1" stacked size="lg">
               <b-form-radio
                 v-for="option in dateformats"
@@ -116,22 +141,24 @@
                 <code>{{ option.value }}</code>
               </b-form-radio>
             </b-form-radio-group>
-          </b-form-group>
-
-          <b-form-group label="Time Format" label-for="radio-group-2">
-            <b-form-radio-group id="radio-group-2" stacked size="lg">
-              <b-form-radio
-                v-for="option in timeformats"
-                :key="option.value"
-                :value="option.value"
-                size="lg"
-              >
-                {{ option.text }}<br />
-                <code>{{ option.value }}</code>
-              </b-form-radio>
-            </b-form-radio-group>
+          </b-form-group> -->
+          <v-radio-group v-model="radioGroup" label="Date Format">
+            <v-radio
+              v-for="option in dateformats"
+              :key="option.value"
+              :value="option.value"
+              :label="`${option.value}`"
+            ></v-radio>
+          </v-radio-group>
+          <v-radio-group v-model="radioGroup" label="Time Format">
+            <v-radio
+              v-for="option in timeformats"
+              :key="option.value"
+              :value="option.value"
+              :label="`${option.value}`"
+            ></v-radio>
             <b-link>Learn how to format date and time.</b-link>
-          </b-form-group>
+          </v-radio-group>
 
           <b-form-group label="Organize upload">
             <b-form-checkbox size="lg"
@@ -146,27 +173,22 @@
             >
           </b-form-group>
 
-          <b-form-group label="Permalink" label-for="radio-group-3">
-            <b-form-radio-group id="radio-group-3" stacked size="lg">
-              <b-form-radio
-                v-for="option in permalinks"
-                :key="option.value"
-                :value="option.value"
-                size="lg"
-              >
-                {{ option.text }}<br />
-                <code>{{ option.value }}</code>
-              </b-form-radio>
-            </b-form-radio-group>
+          <v-radio-group v-model="radioGroup" label="Permalink">
+            <v-radio
+              v-for="option in permalinks"
+              :key="option.value"
+              :value="option.value"
+              :label="`${option.value}`"
+            ></v-radio>
             <b-link>Learn how to format date and time.</b-link>
-          </b-form-group>
+          </v-radio-group>
 
-          <b-button block type="submit" variant="success" class="mb-5"
-            >Submit</b-button
+          <v-btn block large type="submit" color="primary" class="mb-5"
+            >Submit</v-btn
           >
-        </b-form>
+        </v-form>
       </div>
-    </div>
+    </v-card>
   </v-app>
 </template>
 <script>

@@ -16,38 +16,48 @@
             <div>
               <div class="row">
                 <div class="col-xl-8 col-lg-8 col-md-6 col-sm-6">
-                  <v-card-title>
-                    <h4>Server</h4>
-                    <h6>Compare plans</h6>
-                  </v-card-title>
-                  <b-select
+                  <v-card-title>Server</v-card-title>
+                  <v-card-actions>
+                    <v-dialog>
+                      <v-card-text>
+                        plans
+                      </v-card-text>
+                    </v-dialog> 
+                  </v-card-actions>
+                  <v-autocomplete
                     v-model="select"
                     :items="items"
                     required
                     dense
                     outlined
-                  ></b-select>
+                  ></v-autocomplete>
                   <v-spacer></v-spacer>
                 </div>
                 <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6" align="right">
                   <h1>USD 0</h1>
-                  <h6>/monthly</h6>
+                  <v-card-subtitle >/monthly</v-card-subtitle>
                 </div>
               </div>
               <v-spacer></v-spacer>
               <div class="row">
                 <div class="col-xl-8 col-lg-8 col-md-6 col-sm-6">
                   <v-card-title>
-                    <h4>Backup</h4>
+                    Backup
                   </v-card-title>
                   <div>
                     <p>Monthly Backup Pro. Pro site backup package</p>
-                    <h6>Compare plans</h6>
+                    <v-card-actions>
+                      <v-dialog>
+                        <v-card-text>
+                          Compare plans
+                        </v-card-text>
+                      </v-dialog> 
+                    </v-card-actions>
                   </div>
                 </div>
                 <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6" align="right">
                   <h1>USD 0</h1>
-                  <h6>/monthly</h6>
+                  <v-card-subtitle>/monthly</v-card-subtitle>
                 </div>
               </div>
               <v-container>
@@ -70,16 +80,16 @@
                   <v-col cols="12" sm="6" md="3">
                     <b-card-text class="text-left">Backup Pro</b-card-text>
                   </v-col>
-                  <v-col cols="12" sm="6" md="3">
-                    <b-input
-                      v-model="passLen"
-                      :rules="rules"
+                  <v-col cols="12" sm="4" md="2">
+                    <v-text-field
+                      outlined
+                      dense
                       type="number"
                       min="0"
-                    ></b-input>
+                    ></v-text-field>
                   </v-col>
-                  <v-col cols="12" sm="6" md="3">
-                    <b-select outlined dense class="text-left"></b-select>
+                  <v-col cols="12" sm="8" md="4">
+                    <v-autocomplete outlined dense class="text-left"></v-autocomplete>
                   </v-col>
                   <v-col cols="12" sm="6" md="3">
                     <b-card-text class="text-right">USD</b-card-text>
@@ -123,16 +133,20 @@
       <v-card>
         <div class="card-body">
           <v-card-title>
-            <h1>Subscription summary</h1>
+            <h1>Summary</h1>
           </v-card-title>
-          <v-container>
-            <v-form ref="addApiKey" v-model="valid" lazy-validation>
-              <!-- <v-switch
-                v-model="switch1"
-                :label="`Switch 1: ${switch1.toString()}`"
-              ></v-switch> -->
+          <v-content>
+            <v-form>
+              <v-card-actions>
+                <v-card-subtitle>Bill Monthly</v-card-subtitle>
+                <v-switch
+                  v-model="switch1"
+                  color="gray"
+                ></v-switch>
+                <v-card-subtitle>Bill Yearly (Save 2 months)</v-card-subtitle>
+              </v-card-actions>
             </v-form>
-          </v-container>
+          </v-content>
         </div>
       </v-card>
     </div>
@@ -148,6 +162,11 @@ export default {
       { title: "Subscription", route: "subscription" },
       { title: "Create Subscription" }
     ]);
-  }
+  },
+  data () {
+      return {
+        switch1: true,
+      }
+    }
 };
 </script>

@@ -1,13 +1,13 @@
 <template>
-  <v-app>
-    <div class="card-header border-0 py-5">
+  <v-card class="card-body">
+    <v-card-title>
       <h3 class="card-title align-items-start flex-column">
-        <span class="card-label font-weight-bolder text-dark"
+        <span class="card-label font-weight-bolder"
           >Create Backup</span
         >
       </h3>
-    </div>
-    <v-card>
+    </v-card-title>
+    
       <b-form>
         <b-form-group v-bind:label="`Store in ${store}`">
           <b-row>
@@ -119,7 +119,6 @@
         <b-button variant="primary btn-block">Create</b-button>
       </b-form>
     </v-card>
-  </v-app>
 </template>
 
 <script>

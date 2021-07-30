@@ -1,5 +1,4 @@
 <template>
-  <v-app>
     <!--begin::Advance Table Widget 10-->
     <v-card class="card-body">
       <!--begin::Header-->
@@ -17,9 +16,17 @@
           <template v-slot:top>
             <v-toolbar flat>
               <v-spacer></v-spacer>
-              <b-input class="searchSSHKey" placeholder="Search..."></b-input>
-              <b-btn variant="success" @click="dialogDelete = true"
-                >Add SSH Key</b-btn
+              <v-text-field 
+                outlined 
+                dense 
+                label="Search" 
+                hide-details=""
+                class="searchSSHKey"
+              ></v-text-field>
+              <v-btn 
+              color="primary" 
+              @click="dialogDelete = true"
+                >Add SSH Key</v-btn
               >
               <v-dialog v-model="dialogDelete" max-width="500px">
                 <v-card>
@@ -52,7 +59,6 @@
         </v-data-table>
       </div>
     </v-card>
-  </v-app>
 </template>
 <style scoped>
 .searchSSHKey {

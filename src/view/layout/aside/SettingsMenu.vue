@@ -1,6 +1,6 @@
 <template>
   <div
-    class="navi navi-bold navi-hover navi-active row"
+    class="navi navi-bold navi-hover navi-active navi-link-rounded row"
     role="tablist"
   >
     <div class="text-muted col-12 mb-3">My Account</div>
@@ -8,7 +8,7 @@
       to="/settings/profile"
       v-slot="{ href, navigate, isActive, isExactActive }"
     >
-      <div class="navi-item col-sm-6 border h-md-70px">
+      <div class="navi-item col-sm-6 border rounded-lg rounded-lg h-md-70px">
         <a
           class="navi-link py-4 h-100"
           :class="[isActive && 'active', isExactActive && 'active']"
@@ -31,7 +31,7 @@
       to="/settings/notification"
       v-slot="{ href, navigate, isActive, isExactActive }"
     >
-      <div class="navi-item col-sm-6 border h-70px">
+      <div class="navi-item col-sm-6 border rounded-lg h-70px">
         <a
           class="navi-link py-4 h-100"
           :class="[isActive && 'active', isExactActive && 'active']"
@@ -54,7 +54,7 @@
       to="/settings/server_transfer"
       v-slot="{ href, navigate, isActive, isExactActive }"
     >
-      <div class="navi-item col-sm-6 border h-70px">
+      <div class="navi-item col-sm-6 border rounded-lg h-70px">
         <a
           class="navi-link py-4 h-100"
           style="cursor: pointer"
@@ -77,7 +77,7 @@
       to="/settings/referal"
       v-slot="{ href, navigate, isActive, isExactActive }"
     >
-      <div class="navi-item col-sm-6 border h-70px">
+      <div class="navi-item col-sm-6 border rounded-lg h-70px">
         <a
           class="navi-link py-4 h-100"
           style="cursor: pointer"
@@ -100,7 +100,7 @@
       to="/settings/activitylog"
       v-slot="{ href, navigate, isActive, isExactActive }"
     >
-      <div class="navi-item col-sm-6 border h-70px">
+      <div class="navi-item col-sm-6 border rounded-lg h-70px">
         <a
           class="navi-link py-4 h-100"
           style="cursor: pointer"
@@ -123,7 +123,7 @@
       to="/settings/delete_account"
       v-slot="{ href, navigate, isActive, isExactActive }"
     >
-      <div class="navi-item col-sm-6 border h-70px">
+      <div class="navi-item col-sm-6 border rounded-lg h-70px">
         <a
           class="navi-link py-4 h-100"
           style="cursor: pointer"
@@ -148,7 +148,7 @@
       to="/settings/authentication"
       v-slot="{ href, navigate, isActive, isExactActive }"
     >
-      <div class="navi-item col-sm-6 border h-70px">
+      <div class="navi-item col-sm-6 border rounded-lg h-70px">
         <a
           class="navi-link py-4 h-100"
           style="cursor: pointer"
@@ -173,7 +173,7 @@
       to="/settings/api_key"
       v-slot="{ href, navigate, isActive, isExactActive }"
     >
-      <div class="navi-item col-sm-6 border h-70px">
+      <div class="navi-item col-sm-6 border rounded-lg h-70px">
         <a
           class="navi-link py-4 h-100"
           style="cursor: pointer"
@@ -196,7 +196,7 @@
       to="/settings/third_party_api_key"
       v-slot="{ href, navigate, isActive, isExactActive }"
     >
-      <div class="navi-item col-sm-6 border h-70px">
+      <div class="navi-item col-sm-6 border rounded-lg h-70px">
         <a
           class="navi-link py-4 h-100"
           style="cursor: pointer"
@@ -219,7 +219,7 @@
       to="/settings/ip_whitelisting"
       v-slot="{ href, navigate, isActive, isExactActive }"
     >
-      <div class="navi-item col-sm-6 border h-70px">
+      <div class="navi-item col-sm-6 border rounded-lg h-70px">
         <a
           class="navi-link py-4 h-100"
           style="cursor: pointer"
@@ -244,7 +244,7 @@
       to="/settings/subscription"
       v-slot="{ href, navigate, isActive, isExactActive }"
     >
-      <div class="navi-item col-sm-6 border h-70px ">
+      <div class="navi-item col-sm-6 border rounded-lg h-70px ">
         <a
           class="navi-link py-4 h-100"
           style="cursor: pointer"
@@ -267,7 +267,7 @@
       to="/settings/payment_method"
       v-slot="{ href, navigate, isActive, isExactActive }"
     >
-      <div class="navi-item col-sm-6 border h-70px">
+      <div class="navi-item col-sm-6 border rounded-lg h-70px">
         <a
           class="navi-link py-4 h-100"
           style="cursor: pointer"
@@ -290,7 +290,7 @@
       to="/settings/payment_history"
       v-slot="{ href, navigate, isActive, isExactActive }"
     >
-      <div class="navi-item col-sm-6 border h-70px">
+      <div class="navi-item col-sm-6 border rounded-lg h-70px">
         <a
           class="navi-link py-4 h-100"
           style="cursor: pointer"
@@ -315,7 +315,7 @@
       to="/settings/ssh_key_vault"
       v-slot="{ href, navigate, isActive, isExactActive }"
     >
-      <div class="navi-item col-sm-6 border h-70px">
+      <div class="navi-item col-sm-6 border rounded-lg h-70px">
         <a
           class="navi-link py-4 h-100"
           style="cursor: pointer"
@@ -338,7 +338,7 @@
       to="/settings/wordpress_canvas"
       v-slot="{ href, navigate, isActive, isExactActive }"
     >
-      <div class="navi-item col-sm-6 border h-70px">
+      <div class="navi-item col-sm-6 border rounded-lg h-70px">
         <a
           class="navi-link py-4 h-100"
           style="cursor: pointer"
@@ -356,5 +356,7 @@
         </a>
       </div>
     </router-link>
+    <!-- last navi-item for no bottom-border -->
+    <div class="navi-item"></div>
   </div>
 </template>

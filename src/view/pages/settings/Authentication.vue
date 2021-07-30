@@ -14,11 +14,7 @@
 
         <router-link to="/settings/connectApp" v-slot="{ href, navigate }">
           <a :href="href" @click="navigate" data-nsfw-filter-status="swf">
-            <v-btn 
-              color="primary"
-              elevation="2" 
-              type="button" 
-              ref="setup">
+            <v-btn color="primary" elevation="2" type="button" ref="setup">
               Set Up Two-Factor Authentication
             </v-btn>
           </a>
@@ -37,229 +33,203 @@
         </v-card-title>
 
         <v-form>
-            <v-text-field
-              outlined
-              dense
-              label="Current Password"
-              ref="curPass"
-              type="password"
+          <v-text-field
+            outlined
+            dense
+            label="Current Password"
+            ref="curPass"
+            type="password"
+          >
+          </v-text-field>
+          <v-text-field 
+            outlined 
+            dense 
+            type="password"
+            label="New Password" 
+            ref="newPass" 
+            color="primary"
             >
-            </v-text-field>
-            <v-text-field
-              outlined
-              dense
-              label="New Password"
-              ref="newPass"
-              type="password"
-              append-icon="mdi-plus"
-              @click:append="showModal"
-            >
-            </v-text-field>
-
-            <!-- <v-text-field
-              outlined
-              dense
-              label="New Password"
-              color="primary"
-              v-model="input"
-              @keypress.enter="showModal">
-          
-              <template v-slot:append >
+            <template v-slot:append>
+              <v-dialog v-model="dialog" max-width="600px">
+                <template v-slot:activator="{ on, attrs }">
                   <v-btn
                     color="primary"
-                    style="margin-top:0px;"
-                    @click="showModal">
+                    style="margin-top: -6px; margin-right: -10px"
+                    v-on="on"
+                    v-bind="attrs"
+                    @click="showModal"
+                  >
                     Generate
                   </v-btn>
-              </template>
-            </v-text-field> -->
+                </template>
+                <v-card>
+                  <v-card-title>
+                    <span class="text-h5">Generate Password</span>
+                  </v-card-title>
+                  <v-card-text>
+                    <v-content>
+                      <h6 class="pl-0">Password Length ({{ passLen }})</h6>
+                      <vue-slider
+                        v-model="passLen"
+                        :disabled="false"
+                        @change="setChangePassLength"
+                      ></vue-slider>
+                      <b-card-group deck class="w-100 pr-10 pl-10 mt-5">
+                        <b-row>
+                          <b-col>
+                            <b-form-checkbox
+                              v-model="characters"
+                              value="A-Z"
+                              align="center"
+                              button
+                              button-variant="outline-secondary"
+                              min-height="600px"
+                              @change="generate"
+                            >
+                              <h3>A-Z</h3>
+                              <b-card-text>Uppercase</b-card-text>
+                            </b-form-checkbox>
+                          </b-col>
+                          <b-col>
+                            <b-form-checkbox
+                              v-model="characters"
+                              value="a-z"
+                              align="center"
+                              button
+                              button-variant="outline-secondary"
+                              @change="generate"
+                            >
+                              <h3>a-z</h3>
+                              <b-card-text>Lowercase</b-card-text>
+                            </b-form-checkbox>
+                          </b-col>
+                          <b-col>
+                            <b-form-checkbox
+                              v-model="characters"
+                              value="0-9"
+                              align="center"
+                              button
+                              button-variant="outline-secondary"
+                              @change="generate"
+                            >
+                              <h3>0-9</h3>
+                              <b-card-text>Number</b-card-text>
+                            </b-form-checkbox>
+                          </b-col>
+                          <b-col>
+                            <b-form-checkbox
+                              v-model="characters"
+                              value="#"
+                              align="center"
+                              button
+                              button-variant="outline-secondary"
+                              @change="generate"
+                            >
+                              <h3>!%@#</h3>
+                              <b-card-text>Symbol</b-card-text>
+                            </b-form-checkbox>
+                          </b-col>
+                        </b-row>
+                      </b-card-group>
 
-            <v-text-field
-              outlined
-              dense
-              label="Verify Password"
-              ref="conPass"
-              type="password"
-            >
-            </v-text-field>
-            <v-btn
-              block
-              large
-              color="primary"
-              type="button"
-              @click="update()"
-              ref="kt_pass_update"
-            >
-              Update My Password
-            </v-btn>
+                      <b-card-group class="mt-5">
+                        <v-text-field
+                          outlined
+                          dense
+                          type="text"
+                          append-icon="mdi-refresh"
+                          auto="true"
+                          characters="characters"
+                          :value="password"
+                          @click:append="generate()"
+                        ></v-text-field>
+                      </b-card-group>
+                    </v-content>
+                  </v-card-text>
+                  <v-card-actions>
+                    <v-btn
+                      block
+                      large
+                      color="primary"
+                      type="button"
+                      @click="createPass()"
+                    >
+                      Use This Password
+                    </v-btn>
+                  </v-card-actions>
+                </v-card>
+              </v-dialog>
+            </template>
+          </v-text-field>
+          <v-text-field
+            outlined
+            dense
+            label="Verify Password"
+            ref="conPass"
+            type="password"
+          >
+          </v-text-field>
+          <v-btn
+            block
+            large
+            color="primary"
+            type="button"
+            @click="update()"
+            ref="kt_pass_update"
+          >
+            Update My Password
+          </v-btn>
         </v-form>
       </div>
     </v-card>
     <!--end::Card-->
-    <!-- begin create password modal -->
-
-    <b-modal
-      ref="create-pass-modal"
-      hide-footer
-      title="Password Generator"
-      size="lg"
-    >
-      <v-form class="mt-3">
-        <v-content>
-          <h6 class="pl-0">Password Length ({{ passLen }})</h6>
-          <vue-slider
-            v-model="passLen"
-            :disabled="false"
-            @change="setChangePassLength"
-          ></vue-slider>
-          <b-card-group deck class="w-100 pr-10 pl-10 mt-5">
-            <b-row>
-              <b-col>
-                <b-form-checkbox
-                  v-model="uppercase"
-                  name="check-button"
-                  align="center"
-                  button
-                  button-variant="outline-secondary"
-                  min-height="600px"
-                  @change="generate"
-                >
-                  <h3>A-Z</h3>
-                  <b-card-text>Uppercase</b-card-text>
-                </b-form-checkbox>
-              </b-col>
-              <b-col>
-                <b-form-checkbox
-                  v-model="lowercase"
-                  name="check-button"
-                  align="center"
-                  button
-                  button-variant="outline-secondary"
-                >
-                  <h3>a-z</h3>
-                  <b-card-text>Lowercase</b-card-text>
-                </b-form-checkbox>
-              </b-col>
-              <b-col>
-                <b-form-checkbox
-                  v-model="number"
-                  name="check-button"
-                  align="center"
-                  button
-                  button-variant="outline-secondary"
-                >
-                  <h3>0-9</h3>
-                  <b-card-text>Number</b-card-text>
-                </b-form-checkbox>
-              </b-col>
-              <b-col>
-                <b-form-checkbox
-                  v-model="symbol"
-                  name="check-button"
-                  align="center"
-                  button
-                  button-variant="outline-secondary"
-                >
-                  <h3>!%@#</h3>
-                  <b-card-text>Symbol</b-card-text>
-                </b-form-checkbox>
-              </b-col>
-            </b-row>
-          </b-card-group>
-
-          <b-card-group class="mt-5">
-            <h6>Generated Password</h6>
-            <b-input-group class="mt-3">
-              <b-form-input
-                auto="true"
-                characters="characters"
-                class="form-control form-control-lg"
-                type="text"
-                :value="password"
-              >
-              </b-form-input>
-              <b-input-group-append>
-                <b-button variant="dark">
-                  <i class="fa fa-copy"></i>
-                </b-button>
-                <b-button variant="success" @click="generate()">
-                  <i class="fa fa-sync"></i>
-                </b-button>
-              </b-input-group-append>
-            </b-input-group>
-          </b-card-group>
-          <b-card-group>
-            <b-button
-              type="button"
-              class="btn btn-success w-100 mt-5"
-              @click="createPass()"
-              ref="kt_create_pass"
-            >
-              Use This Password
-            </b-button>
-          </b-card-group>
-        </v-content>
-      </v-form>
-    </b-modal>
-    <!-- end modal -->
   </div>
 </template>
 
 <script>
 import { UPDATE_PERSONAL_INFO } from "@/core/services/store/profile.module";
 import { SET_BREADCRUMB } from "@/core/services/store/breadcrumbs.module";
-// import Vue from "vue";
-// import VueClipboard from "vue-clipboard2";
-
-// Vue.use(VueClipboard);
 import VueSlider from "vue-slider-component";
 import "vue-slider-component/theme/antd.css";
 
 export default {
   name: "Authentication",
   components: {
-    VueSlider
+    VueSlider,
   },
   data() {
     return {
       passLen: 12,
       size: {
         type: String,
-        default: "12"
+        default: "12",
       },
       password: {
         type: String,
-        default: ""
+        default: "",
       },
-      uppercase: true,
-      lowercase: true,
-      number: true,
-      symbol: true
+      dialog: false,
+      characters : ["a-z", "A-Z", "0-9", "#"],
     };
   },
   props: {
     type: {
       type: String,
-      default: "text"
+      default: "text",
     },
-    characters: {
-      type: String,
-      default: "a-z,A-Z,0-9,#"
-    },
-    auto: [String, Boolean]
+    auto: [String, Boolean],
   },
   mounted() {
     this.$store.dispatch(SET_BREADCRUMB, [
       { title: "Settings", route: "profile" },
-      { title: "Authentication" }
+      { title: "Authentication" },
     ]);
   },
 
   methods: {
     generate() {
-      //console.log("selected2 ==== " + this.symbol);
       this.size = this.passLen;
-      let charactersArray = this.characters.split(",");
+      let charactersArray = this.characters;
       let CharacterSet = "";
       let password = "";
       if (charactersArray.indexOf("a-z") >= 0) {
@@ -283,12 +253,11 @@ export default {
       this.password = password;
     },
     showModal() {
-      this.$refs["create-pass-modal"].show();
       this.generate();
     },
 
     createPass() {
-      this.$refs["create-pass-modal"].hide();
+      this.dialog = false;
       this.$refs.newPass.value = this.password;
       this.$refs.conPass.value = this.password;
     },
@@ -311,7 +280,7 @@ export default {
         this.$store.dispatch(UPDATE_PERSONAL_INFO, {
           curPass,
           newPass,
-          conPass
+          conPass,
         });
 
         submitButton.classList.remove(
@@ -320,7 +289,7 @@ export default {
           "spinner-right"
         );
       }, 2000);
-    }
-  }
+    },
+  },
 };
 </script>

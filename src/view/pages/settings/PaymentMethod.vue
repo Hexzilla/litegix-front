@@ -7,8 +7,6 @@
         <v-card-title>
           <h1>Payment Methods</h1>
           <v-spacer></v-spacer>
-          <v-toolbar flat>
-            <v-spacer></v-spacer>
             <v-dialog
               v-model="dialog"
               persistent
@@ -17,7 +15,6 @@
             >
               <template v-slot:activator="{ on }">
                 <v-btn
-                  block
                   color="primary"
                   large
                   type="button"
@@ -37,95 +34,78 @@
                     </v-btn>
                   </v-toolbar-items>
                 </v-toolbar>
-                <v-divider></v-divider>
-
-                <v-card-text>
+                <v-card-text class="mt-5">
                     <v-form>
-                      <b-form-group
-                        id="input-group-1"
+                      <v-text-field
+                        outlined
+                        dense
                         label="Name on Card"
-                        label-for="cardname"
-                      >
-                        <b-form-input
-                          id="cardname"
-                          v-model="form.name"
-                        ></b-form-input>
-                      </b-form-group>
+                        v-model="form.name"
+                      ></v-text-field>
                       <v-row>
                         <v-col cols="6">
-                          <b-form-group
-                            id="input-group-2"
+                          <v-autocomplete
+                            outlined
+                            dense
+                            id="selcountry"
                             label="Country"
-                            label-for="selcountry"
+                            v-model="form.country"
                           >
-                            <b-form-select
-                              id="selcountry"
-                              v-model="form.country"
-                            ></b-form-select>
-                          </b-form-group>
+                          </v-autocomplete>
                         </v-col>
 
                         <v-col cols="6">
-                          <b-form-group
-                            id="input-group-3"
+                          <v-text-field
+                            outlined
+                            dense
                             label="Postcode"
-                            label-for="postcode"
+                            id="postcode"
+                            v-model="form.postcode"
                           >
-                            <b-form-input
-                              id="postcode"
-                              v-model="form.postcode"
-                            ></b-form-input>
-                          </b-form-group>
+                          </v-text-field>
                         </v-col>
                       </v-row>
 
-                      <b-form-group
-                        id="input-group-4"
+                      <v-text-field
+                        outlined
+                        dense
+                        id="cardnumber"
+                        v-model="form.number"
                         label="Card Number"
-                        label-for="cardnumber"
                       >
-                        <b-form-input
-                          id="cardnumber"
-                          v-model="form.number"
-                        ></b-form-input>
-                      </b-form-group>
+                      </v-text-field>
 
                       <b-row>
                         <v-col cols="6">
-                          <b-form-group
-                            id="input-group-5"
+                          <v-text-field
+                            dense
+                            outlined
+                            id="expirationdate"
+                            v-model="form.date"
                             label="Expiration Date"
-                            label-for="expirationdate"
                           >
-                            <b-form-input
-                              id="expirationdate"
-                              v-model="form.date"
-                            ></b-form-input>
-                          </b-form-group>
+                          </v-text-field>
                         </v-col>
 
                         <v-col cols="6">
-                          <b-form-group
-                            id="input-group-6"
+                          <v-text-field
+                            outlined
+                            dense
+                            id="cvc_cvv"
+                            v-model="form.secret"
                             label="CVC/CVV"
-                            label-for="cvc_cvv"
                           >
-                            <b-form-input
-                              id="cvc_cvv"
-                              v-model="form.secret"
-                            ></b-form-input>
-                          </b-form-group>
+                          </v-text-field>
                         </v-col>
                       </b-row>
 
-                      <b-button block type="submit" variant="primary"
-                        >Submit</b-button
+                      <v-btn block large type="submit" color="primary"
+                        >Submit</v-btn
                       >
                     </v-form>
                 </v-card-text>
               </v-card>
             </v-dialog>
-          </v-toolbar>
         </v-card-title>
         <v-data-table :headers="headers" :items="methods"></v-data-table>
       </div>

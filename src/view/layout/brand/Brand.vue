@@ -1,9 +1,10 @@
 <template>
   <!-- begin:: Aside -->
-  <div class="brand flex-column-auto" id="kt_brand" ref="kt_brand">
-    <div class="brand-logo">
+  <div class="brand flex-column-auto" id="kt_brand" ref="kt_brand" style="background:transparent!important">
+    <div class="brand-logo" >
       <router-link to="/">
-        <img :src="siteLogo()" alt="Logo" />
+        <!-- <img src="siteLogo()" alt="Logo" /> -->
+        <img src=" media/logos/sitelogo.svg" alt="Logo" height="60px"/>
       </router-link>
     </div>
     <div class="brand-tools" v-if="allowMinimize">

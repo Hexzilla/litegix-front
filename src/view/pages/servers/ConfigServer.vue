@@ -1,5 +1,5 @@
 <template>
-  <div class="card card-custom">
+  <v-card>
     <div class="card-body p-0">
       <div
         class="wizard wizard-1"
@@ -12,9 +12,7 @@
             <div class="wizard-step" data-wizard-type="step">
               <div class="wizard-label">
                 <i class="wizard-icon flaticon-list"></i>
-                <b-link to="/server">
                   <h3 class="wizard-title">Configuring your server</h3>
-                </b-link>
               </div>
               <i class="wizard-arrow last flaticon2-next"></i>
             </div>
@@ -34,20 +32,87 @@
                 minutes. You can come back once we configure your server. We'll
                 send an email to you once your server is ready.
               </p>
-              <p>Please choose how you would like to install your server.</p>
+              <v-card-title>
+                Manual Installation
+                <v-spacer></v-spacer>
+                <p class="btn" style="color:red" @click="showModal">this server delete</p>
+                <confirm-dialogue ref="confirmDialogue"></confirm-dialogue>
+              </v-card-title>
+              <v-divider></v-divider>
+              <v-card-actions class="">
+                <v-avatar left class="blue mr-3"  size="32">1</v-avatar>
+                  Log into your server as root via SSH/Putty. And enter your root
+                  password
+                
+              </v-card-actions>
+              <v-hover v-slot="{ hover }">
+                <v-sheet elevation="6" class="ml-10">
+                  <v-card-subtitle>{{command_url}}
+                    <v-expand-transition>
+                        <v-btn
+                          v-if="hover"
+                          absolute
+                          color="orange"
+                          class="white--text copy"
+                          fab
+                          x-small
+                          right
+                          @click.stop.prevent="commandCopy(1)"
+                        >
+                          <v-icon>mdi-checkbox-multiple-blank-outline</v-icon>
+                        </v-btn>
+                      </v-expand-transition>
+                      <input type="hidden" id="com-url" :value="command_url">
+                  </v-card-subtitle>
+                </v-sheet> 
+              </v-hover>
+              <v-card-actions class="">
+                <v-avatar left class="blue mr-3"  size="32">2</v-avatar>
+                  Copy script below and paste in on your terminal.
+              </v-card-actions> 
+              <v-hover v-slot="{ hover }">
+                <v-sheet elevation="6" class="ml-10">
+                  <v-card-subtitle>
+                    {{command_script}}
+                    <v-expand-transition>
+                      <v-btn
+                        v-if="hover"
+                        absolute
+                        color="orange"
+                        class="white--text copy"
+                        fab
+                        x-small
+                        right
+                        @click.stop.prevent="commandCopy(2)"
+                      >
+                        <v-icon>mdi-checkbox-multiple-blank-outline</v-icon>
+                      </v-btn>
+                    </v-expand-transition>
+                    <input type="hidden" id="com-txt" :value="command_script">
+                  </v-card-subtitle>
+                </v-sheet> 
+              </v-hover>
+              <v-card-actions class="">
+                <v-avatar left class="blue mr-3"  size="32">
+                  3
+                </v-avatar>
+                  Run the script to start.
+              </v-card-actions> 
 
-              <p>
-                Log into your server as root via SSH/Putty. And enter your root
-                password
-              </p>
-              <p>Copy script below and paste in on your terminal.</p>
-              <p>Run the script to start.</p>
+              <v-progress-linear
+                v-model="upload_process"
+                striped
+                height="25"
+              >
+                <strong>{{ Math.ceil(upload_process) }}%</strong>
+              </v-progress-linear>
+              
             </div>
           </div>
         </div>
       </div>
     </div>
-  </div>
+  </v-card>
 </template>
 
 <style lang="scss">
@@ -56,20 +121,82 @@
 
 <script>
 import { SET_BREADCRUMB } from "@/core/services/store/breadcrumbs.module";
+import ConfirmDialogue from "@/view/content/widgets/dialogue/ConfirmDialogue.vue";
 import Swal from "sweetalert2";
 
 export default {
   name: "ConfigServer",
+  components: {
+    ConfirmDialogue
+  },
   data() {
-    return {};
+    return {
+      clipboard: null,
+      upload_process: 33,
+      command_url: " ssh root@192.168.1.1",
+      command_script: "https://manage.runcloud.io/scripts/installer/6bepZ6PReT4qMOdGnooVxCobzM1624876693YmT5lFUfSrxlUlYwr8PhvQa9XZoHX4a9SkR7zEeDciZULlyjWrNcnMaMHOmt6ecM/Lz5TrlmpVcOMl4gvsOrzThHGLVHU5koMAVHx69PUmgaimRZdgJs6TBawneaqHn7cGIfvSopiOhrMwRDcICwL4GHQRzsLqCusjy2rXVpJ8csIMojd5AAjnVubEPxlpbDt | bash -; export DEBIAN_FRONTEND=newt"
+    };
   },
   mounted() {
+    
     this.$store.dispatch(SET_BREADCRUMB, [
       { title: "Server" },
       { title: "Config" }
     ]);
   },
+  
   methods: {
+    async showModal() {
+      const ok = await this.$refs.confirmDialogue.show({
+        title: "Delete Server",
+        message:
+          "Your unclaimed rewards will be reset to $0.00 after you click Request Cash Out button. Cash out request will be processed not more than 7 days. You won't receive full cash out rewards bacause PayPal will take some for processing fees.",
+        okButton: "Delete"
+      });
+      // If you throw an error, the method will terminate here unless you surround it wil try/catch
+      if (ok) {
+        alert("You have successfully delete this page.");
+      } else {
+        // alert('You chose not to delete this page. Doing nothing now.')
+      }
+    },
+    makeToast(contents, variant = null) {
+      this.$bvToast.toast(contents, {
+        title: ``,
+        variant: variant,
+        solid: true,
+      });
+    },
+    commandCopy(param){
+      let testingCodeToCopy = "";
+      if(param == 1)
+        testingCodeToCopy = document.querySelector('#com-url')
+      else
+        testingCodeToCopy = document.querySelector('#com-txt')
+      testingCodeToCopy.setAttribute('type', 'text')    // 不是 hidden 才能複製
+      testingCodeToCopy.select()
+
+      try {
+        var successful = document.execCommand('copy');
+        var msg = successful ? 'successful' : 'unsuccessful';
+        // alert('Testing code was copied ' + msg);
+        this.makeToast(msg + 'copy', 'successful');
+      } catch (err) {
+        alert('Oops, unable to copy');
+      }
+
+      /* unselect the range */
+      testingCodeToCopy.setAttribute('type', 'hidden')
+      window.getSelection().removeAllRanges()
+    },
+    
+    // clipboardSuccessHandler ({ value, event }) {
+    //   console.log('success', value)
+    // },
+ 
+    // clipboardErrorHandler ({ value, event }) {
+    //   console.log('error', value)
+    // },
     submit: function(e) {
       e.preventDefault();
       Swal.fire({

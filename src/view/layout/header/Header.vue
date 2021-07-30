@@ -10,6 +10,7 @@
       class="container-fluid d-flex align-items-center justify-content-between"
     >
       <!-- begin:: Header Menu -->
+      <KTBrand></KTBrand>
       <div
         class="header-menu-wrapper header-menu-wrapper-left"
         ref="kt_header_menu_wrapper"
@@ -34,6 +35,7 @@
 
 <script>
 import { mapGetters } from "vuex";
+import KTBrand from "@/view/layout/brand/Brand.vue";
 import KTTopbar from "@/view/layout/header/Topbar.vue";
 import KTLayoutHeader from "@/assets/js/layout/base/header.js";
 import KTLayoutHeaderMenu from "@/assets/js/layout/base/header-menu.js";
@@ -43,7 +45,8 @@ export default {
   name: "KTHeader",
   components: {
     KTTopbar,
-    KTMenu
+    KTMenu,
+    KTBrand,
   },
   mounted() {
     // Init Desktop & Mobile Headers

@@ -4,8 +4,8 @@ import router from "./router";
 import store from "@/core/services/store";
 import ApiService from "@/core/services/api.service";
 // import MockService from "@/core/mock/mock.service";
-import { VERIFY_AUTH } from "@/core/services/store/auth.module";
-import { RESET_LAYOUT_CONFIG } from "@/core/services/store/config.module";
+// import { VERIFY_AUTH } from "@/core/services/store/auth.module";
+// import { RESET_LAYOUT_CONFIG } from "@/core/services/store/config.module";
 
 Vue.config.productionTip = false;
 
@@ -37,18 +37,18 @@ ApiService.init();
 // Remove this to disable mock API
 // MockService.init();
 
-router.beforeEach((to, from, next) => {
-  // Ensure we checked auth before each page load.
-  Promise.all([store.dispatch(VERIFY_AUTH)]).then(next);
+// router.beforeEach((to, from, next) => {
+//   // Ensure we checked auth before each page load.
+//   Promise.all([store.dispatch(VERIFY_AUTH)]).then(next);
 
-  // reset config to initial state
-  store.dispatch(RESET_LAYOUT_CONFIG);
+//   // reset config to initial state
+//   store.dispatch(RESET_LAYOUT_CONFIG);
 
-  // Scroll page to top on every route change
-  setTimeout(() => {
-    window.scrollTo(0, 0);
-  }, 100);
-});
+//   // Scroll page to top on every route change
+//   setTimeout(() => {
+//     window.scrollTo(0, 0);
+//   }, 100);
+// });
 
 new Vue({
   router,

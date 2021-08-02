@@ -24,6 +24,7 @@ import { SET_BREADCRUMB } from "@/core/services/store/breadcrumbs.module";
 import KTSubAside from "@/view/layout/aside/SubAside.vue";
 
 export default {
+  props:['serverId'],
   components: {
     KTSubAside
   },

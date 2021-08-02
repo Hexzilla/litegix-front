@@ -1,248 +1,263 @@
 <template>
-    <!--begin::Card-->
-    <v-app>
-      <v-card class="card-body">
-        <!--begin::Header-->
-        <!-- <div class="card-header py-3"> -->
-          <v-card-actions>
-            <h1 class="font-weight-bolder">My Profile</h1>
-          </v-card-actions>
-          <span class="text-muted font-size-sm mt-1"
-            >To change your email address, please open a support ticket.</span
-          >
-        <!-- </div> -->
-        <!--end::Header-->
-        <!--begin::Form-->
-        <v-form id="profile_form" class="mt-5">
-          <!--begin::Body-->
+  <!-- /* eslint-disable */ -->
+  <!--begin::Card-->
+  <v-app>
+    <v-card class="card-body">
+      <!--begin::Header-->
+      <!-- <div class="card-header py-3"> -->
+      <v-card-actions>
+        <h1 class="font-weight-bolder">My Profile</h1>
+      </v-card-actions>
+      <span class="text-muted font-size-sm mt-1"
+        >To change your email address, please open a support ticket.</span
+      >
+      <!-- </div> -->
+      <!--end::Header-->
+      <!--begin::Form-->
+      <v-form id="profile_form" class="mt-5">
+        <!--begin::Body-->
 
-          <v-row>
-            <v-col cols="1"></v-col>
-            <v-col cols="10">
-              <v-text-field 
-              ref="email" 
-              outlined dense 
-              label="email"  
-              type="text" 
-              readonly>
-              </v-text-field>
-            </v-col>
-          </v-row>
-          <v-row>
-            <v-col cols="1"></v-col>
-            <v-col cols="10">
-              <v-text-field 
-              ref="name" 
-              outlined 
-              dense 
-              label="name" 
+        <v-row>
+          <v-col cols="1"></v-col>
+          <v-col cols="10">
+            <v-text-field
+              ref="email"
+              outlined
+              dense
+              label="email"
               type="text"
-              ></v-text-field>
-            </v-col>
-          </v-row>
-          <v-row>
-            <v-col cols="1"></v-col>
-            <v-col cols="10">
-              <v-select 
-              outlined 
-              dense 
-              label="Time Zone" 
+              readonly
+              v-model="currentUserPersonalInfo.email"
+            >
+            </v-text-field>
+          </v-col>
+        </v-row>
+        <v-row>
+          <v-col cols="1"></v-col>
+          <v-col cols="10">
+            <v-text-field
+              ref="name"
+              outlined
+              dense
+              label="name"
+              type="text"
+              v-model="currentUserPersonalInfo.name"
+            ></v-text-field>
+          </v-col>
+        </v-row>
+        <v-row>
+          <v-col cols="1"></v-col>
+          <v-col cols="10">
+            <v-select
+              outlined
+              dense
+              label="Time Zone"
               ref="time_zone"
-              :items=time_zones
-              >
-              </v-select>
-            </v-col>
-          </v-row>
-          <v-row>
-            <v-col cols="1"></v-col>
-            <v-col cols="10">
-              <div class="checkbox-inline">
-                <label
-                  class="
+              :items="time_zones"
+              v-model="currentUserPersonalInfo.timezone"
+            >
+            </v-select>
+          </v-col>
+        </v-row>
+        <v-row>
+          <v-col cols="1"></v-col>
+          <v-col cols="10">
+            <div class="checkbox-inline">
+              <label
+                class="
                     checkbox checkbox-lg checkbox-lg checkbox-single
                     flex-shrink-0
                     mr-4
                   "
-                >
-                  <input
-                    type="checkbox"
-                    ref="email_com"
-                    :checked="currentUserAccountInfo.email"
-                  /><span></span> Login Email Notification</label
-                >
-              </div>
-            </v-col>
-          </v-row>
-          <v-row>
-            <v-col cols="1"></v-col>
-            <v-col cols="10">
-              <v-btn
-                block
-                color="primary"
-                elevation="2"
-                large
-                @click="save()"
-                ref="kt_save_changes"
               >
-                Save Changes
-              </v-btn>
-            </v-col>
-          </v-row>
-          <!--end::Body-->
-        </v-form>
-        <!--end::Form-->
-      </v-card>
-      <div class="form-group"></div>
-        <v-card class="card-body">
-          <!--begin::Header-->
-          <!-- <div class="card-header py-3"> -->
-            <v-card-title>
-              <h1 class="font-weight-bolder">Company Details</h1>
-            </v-card-title>
+                <input
+                  type="checkbox"
+                  ref="email_com"
+                  :checked="currentUserPersonalInfo.recv_notification"
+                  v-model="currentUserPersonalInfo.recv_notification"
+                /><span></span> Login Email Notification</label
+              >
+            </div>
+          </v-col>
+        </v-row>
+        <v-row>
+          <v-col cols="1"></v-col>
+          <v-col cols="10">
+            <v-btn
+              block
+              color="primary"
+              elevation="2"
+              large
+              @click="save_user()"
+              ref="user_save_changes"
+            >
+              Save Changes
+            </v-btn>
+          </v-col>
+        </v-row>
+        <!--end::Body-->
+      </v-form>
+      <!--end::Form-->
+    </v-card>
+    <div class="form-group"></div>
+    <v-card class="card-body">
+      <!--begin::Header-->
+      <!-- <div class="card-header py-3"> -->
+      <v-card-title>
+        <h1 class="font-weight-bolder">Company Details</h1>
+      </v-card-title>
 
-            <span class="text-muted font-size-sm mt-1">
-              If you are representing your company, fill in the form here to get
-              invoice under your company name.
-            </span>
-          <!-- </div> -->
-          <!--end::Header-->
-          <!--begin::Form-->
-          <v-form id="company_form" class="mt-5">
-            <!--begin::Body-->
-            <v-row>
-              <v-col cols="1"></v-col>
-              <v-col cols="10">
-                <v-text-field 
-                  ref="CompanyName"
-                  outlined 
-                  dense 
-                  label="Company Name" 
-                  type="text"
-                  ></v-text-field>
-              </v-col>
-            </v-row>
-            <v-row>
-              <v-col cols="1"></v-col
-              >
-              <v-col cols="10">
-                <v-text-field
-                  ref="AddressLine1"
-                  outlined
-                  dense
-                  label="Address Line1"
-                  type="text"
-                ></v-text-field>
-              </v-col>
-            </v-row>
-            <v-row>
-              <v-col cols="1"></v-col
-              >
-              <v-col cols="10">
-                <v-text-field
-                  outlined
-                  dense
-                  label="Address Line2"
-                  ref="AddressLine2"
-                  type="text"
-                ></v-text-field>
-              </v-col>
-            </v-row>
+      <span class="text-muted font-size-sm mt-1">
+        If you are representing your company, fill in the form here to get
+        invoice under your company name.
+      </span>
+      <!-- </div> -->
+      <!--end::Header-->
+      <!--begin::Form-->
+      <v-form id="company_form" class="mt-5">
+        <!--begin::Body-->
+        <v-row>
+          <v-col cols="1"></v-col>
+          <v-col cols="10">
+            <v-text-field
+              ref="CompanyName"
+              outlined
+              dense
+              label="Company Name"
+              type="text"
+              v-model="currentUserCompanyInfo.name"
+            ></v-text-field>
+          </v-col>
+        </v-row>
+        <v-row>
+          <v-col cols="1"></v-col>
+          <v-col cols="10">
+            <v-text-field
+              ref="AddressLine1"
+              outlined
+              dense
+              label="Address Line1"
+              type="text"
+              v-model="currentUserCompanyInfo.address1"
+            ></v-text-field>
+          </v-col>
+        </v-row>
+        <v-row>
+          <v-col cols="1"></v-col>
+          <v-col cols="10">
+            <v-text-field
+              outlined
+              dense
+              label="Address Line2"
+              ref="AddressLine2"
+              type="text"
+              v-model="currentUserCompanyInfo.address2"
+            ></v-text-field>
+          </v-col>
+        </v-row>
 
-            <v-row>
-              <v-col cols="1"></v-col
-              >
-              <v-col cols="10">
-                <v-text-field
-                  outlined
-                  dense
-                  label="Address Line2" 
-                  ref="City" 
-                  type="text" >
-                </v-text-field>
-              </v-col>
-            </v-row>
-            <v-row>
-              <v-col cols="1"></v-col
-              >
-              <v-col cols="10">
-                <v-text-field
-                  outlined
-                  dense
-                  label="Pstal Code"
-                  ref="PostalCode"
-                  type="text"
-                ></v-text-field>
-              </v-col>
-            </v-row>
-            <v-row>
-              <v-col cols="1"></v-col
-              >
-              <v-col cols="10">
-                <v-text-field
-                  outlined
-                  dense
-                  label="State"
-                  ref="State"
-                  type="text"
-                ></v-text-field>
-              </v-col>
-            </v-row>
-            <v-row>
-              <v-col cols="1"></v-col
-              >
-              <v-col cols="10">
-                <v-select 
-                  outlined 
-                  dense 
-                  label="Country" 
-                  ref="country"
-                  :items=Country
-                  >
-                </v-select>
-              </v-col>
-            </v-row>
+        <v-row>
+          <v-col cols="1"></v-col>
+          <v-col cols="10">
+            <v-text-field
+              outlined
+              dense
+              label="City"
+              ref="City"
+              type="text"
+              v-model="currentUserCompanyInfo.city"
+            >
+            </v-text-field>
+          </v-col>
+        </v-row>
+        <v-row>
+          <v-col cols="1"></v-col>
+          <v-col cols="10">
+            <v-text-field
+              outlined
+              dense
+              label="Pstal Code"
+              ref="PostalCode"
+              type="text"
+              v-model="currentUserCompanyInfo.postal"
+            ></v-text-field>
+          </v-col>
+        </v-row>
+        <v-row>
+          <v-col cols="1"></v-col>
+          <v-col cols="10">
+            <v-text-field
+              outlined
+              dense
+              label="State"
+              ref="State"
+              type="text"
+              v-model="currentUserCompanyInfo.state"
+            ></v-text-field>
+          </v-col>
+        </v-row>
+        <v-row>
+          <v-col cols="1"></v-col>
+          <v-col cols="10">
+            <v-select
+              outlined
+              dense
+              label="Country"
+              ref="country"
+              :items="Country"
+              v-model="currentUserCompanyInfo.country"
+            >
+            </v-select>
+          </v-col>
+        </v-row>
 
-            <v-row>
-              <v-col cols="1"></v-col
-              >
-              <v-col cols="10">
-                <v-text-field
-                  outlined
-                  dense
-                  label="Tax/VAT/GST Number"
-                  ref="Tax"
-                  type="text"
-                ></v-text-field>
-              </v-col>
-            </v-row>
+        <v-row>
+          <v-col cols="1"></v-col>
+          <v-col cols="10">
+            <v-text-field
+              outlined
+              dense
+              label="Tax/VAT/GST Number"
+              ref="Tax"
+              type="text"
+              v-model="currentUserCompanyInfo.tax"
+            ></v-text-field>
+          </v-col>
+        </v-row>
 
-            <v-row>
-              <v-col cols="1"></v-col>
-              <v-col cols="10">
-                <v-btn
-                  block
-                  color="primary"
-                  elevation="2"
-                  large
-                  @click="save()"
-                  ref="kt_save_changes"
-                >
-                  Save Changes
-                </v-btn>
-              </v-col>
-            </v-row>
+        <v-row>
+          <v-col cols="1"></v-col>
+          <v-col cols="10">
+            <v-btn
+              block
+              color="primary"
+              elevation="2"
+              large
+              @click="save_company()"
+              ref="company_save_changes"
+            >
+              Save Changes
+            </v-btn>
+          </v-col>
+        </v-row>
 
-            <!--end::Body-->
-          </v-form>
-          <!--end::Form-->
-        </v-card>
-    </v-app>
+        <!--end::Body-->
+      </v-form>
+      <!--end::Form-->
+    </v-card>
+  </v-app>
 </template>
 
 <script>
 import { mapGetters } from "vuex";
-import { UPDATE_PERSONAL_INFO } from "@/core/services/store/profile.module";
+import {
+  LOAD_PROFILE_INFO,
+  UPDATE_PERSONAL_INFO,
+  UPDATE_COMPANY_INFO
+} from "@/core/services/store/profile.module";
+
 import { SET_BREADCRUMB } from "@/core/services/store/breadcrumbs.module";
+import { Constants } from "@/core/services/constants.module";
 
 export default {
   name: "Account",
@@ -250,201 +265,149 @@ export default {
     return {
       default_photo: "media/users/blank.png",
       current_photo: null,
-      time_zones: [
-        "(GMT-11:00) International Date Line West",
-        "(GMT-11:00) Midway Island",
-        "(GMT-11:00) Samoa",
-        "(GMT-10:00) Hawaii",
-        "(GMT-08:00) Alaska",
-        "(GMT-07:00) Pacific Time (US & Canada)",
-        "(GMT-07:00) Tijuana",
-        "(GMT-07:00) Arizona",
-        "(GMT-06:00) Mountain Time (US & Canada)",
-        "(GMT-06:00) Chihuahua",
-        "(GMT-06:00) Mazatlan",
-        "(GMT-06:00) Saskatchewan",
-        "(GMT-06:00) Central America",
-        "(GMT-05:00) Central Time (US & Canada)",
-        "(GMT-05:00) Guadalajara",
-        "(GMT-05:00) Mexico City",
-        "(GMT-05:00) Monterrey",
-        "(GMT-05:00) Bogota",
-        "(GMT-05:00) Lima",
-        "(GMT-05:00) Quito",
-        "(GMT-04:00) Eastern Time (US & Canada)",
-        "(GMT-04:00) Indiana (East)",
-        "(GMT-04:00) Caracas",
-        "(GMT-04:00) La Paz",
-        "(GMT-04:00) Georgetown",
-        "(GMT-03:00) Atlantic Time (Canada)",
-        "(GMT-03:00) Santiago",
-        "(GMT-03:00) Brasilia",
-        "(GMT-03:00) Buenos Aires",
-        "(GMT-02:30) Newfoundland",
-        "(GMT-02:00) Greenland",
-        "(GMT-02:00) Mid-Atlantic",
-        "(GMT-01:00) Cape Verde Is.",
-        "(GMT) Azores",
-        "(GMT) Monrovia",
-        "(GMT) UTC",
-        "(GMT+01:00) Dublin",
-        "(GMT+01:00) Edinburgh",
-        "(GMT+01:00) Lisbon",
-        "(GMT+01:00) London",
-        "(GMT+01:00) Casablanca",
-        "(GMT+01:00) West Central Africa",
-        "(GMT+02:00) Belgrade",
-        "(GMT+02:00) Bratislava",
-        "(GMT+02:00) Budapest",
-        "(GMT+02:00) Ljubljana",
-        "(GMT+02:00) Prague",
-        "(GMT+02:00) Sarajevo",
-        "(GMT+02:00) Skopje",
-        "(GMT+02:00) Warsaw",
-        "(GMT+02:00) Zagreb",
-        "(GMT+02:00) Brussels",
-        "(GMT+02:00) Copenhagen",
-        "(GMT+02:00) Madrid",
-        "(GMT+02:00) Paris",
-        "(GMT+02:00) Amsterdam",
-        "(GMT+02:00) Berlin",
-        "(GMT+02:00) Bern",
-        "(GMT+02:00) Rome",
-        "(GMT+02:00) Stockholm",
-        "(GMT+02:00) Vienna",
-        "(GMT+02:00) Cairo",
-        "(GMT+02:00) Harare",
-        "(GMT+02:00) Pretoria",
-        "(GMT+03:00) Bucharest",
-        "(GMT+03:00) Helsinki",
-        "(GMT+03:00) Kiev",
-        "(GMT+03:00) Kyiv",
-        "(GMT+03:00) Riga",
-        "(GMT+03:00) Sofia",
-        "(GMT+03:00) Tallinn",
-        "(GMT+03:00) Vilnius",
-        "(GMT+03:00) Athens",
-        "(GMT+03:00) Istanbul",
-        "(GMT+03:00) Minsk",
-        "(GMT+03:00) Jerusalem",
-        "(GMT+03:00) Moscow",
-        "(GMT+03:00) St. Petersburg",
-        "(GMT+03:00) Volgograd",
-        "(GMT+03:00) Kuwait",
-        "(GMT+03:00) Riyadh",
-        "(GMT+03:00) Nairobi",
-        "(GMT+03:00) Baghdad",
-        "(GMT+04:00) Abu Dhabi",
-        "(GMT+04:00) Muscat",
-        "(GMT+04:00) Baku",
-        "(GMT+04:00) Tbilisi",
-        "(GMT+04:00) Yerevan",
-        "(GMT+04:30) Tehran",
-        "(GMT+04:30) Kabul",
-        "(GMT+05:00) Ekaterinburg",
-        "(GMT+05:00) Islamabad",
-        "(GMT+05:00) Karachi",
-        "(GMT+05:00) Tashkent",
-        "(GMT+05:30) Chennai",
-        "(GMT+05:30) Kolkata",
-        "(GMT+05:30) Mumbai",
-        "(GMT+05:30) New Delhi",
-        "(GMT+05:30) Sri Jayawardenepura",
-        "(GMT+05:45) Kathmandu",
-        "(GMT+06:00) Astana",
-        "(GMT+06:00) Dhaka",
-        "(GMT+06:00) Almaty",
-        "(GMT+06:00) Urumqi",
-        "(GMT+06:30) Rangoon",
-        "(GMT+07:00) Novosibirsk",
-        "(GMT+07:00) Bangkok",
-        "(GMT+07:00) Hanoi",
-        "(GMT+07:00) Jakarta",
-        "(GMT+07:00) Krasnoyarsk",
-        "(GMT+08:00) Beijing",
-        "(GMT+08:00) Chongqing",
-        "(GMT+08:00) Hong Kong",
-        "(GMT+08:00) Kuala Lumpur",
-        "(GMT+08:00) Singapore",
-        "(GMT+08:00) Taipei",
-        "(GMT+08:00) Perth",
-        "(GMT+08:00) Irkutsk",
-        "(GMT+08:00) Ulaan Bataar",
-        "(GMT+09:00) Seoul",
-        "(GMT+09:00) Osaka",
-        "(GMT+09:00) Sapporo",
-        "(GMT+09:00) Tokyo",
-        "(GMT+09:00) Yakutsk",
-        "(GMT+09:30) Darwin",
-        "(GMT+09:30) Adelaide",
-        "(GMT+10:00) Canberra",
-        "(GMT+10:00) Melbourne",
-        "(GMT+10:00) Sydney",
-        "(GMT+10:00) Brisbane",
-        "(GMT+10:00) Hobart",
-        "(GMT+10:00) Vladivostok",
-        "(GMT+10:00) Guam",
-        "(GMT+10:00) Port Moresby",
-        "(GMT+10:00) Solomon Is.",
-        "(GMT+11:00) Magadan",
-        "(GMT+11:00) New Caledonia",
-        "(GMT+12:00) Fiji",
-        "(GMT+12:00) Kamchatka",
-        "(GMT+12:00) Marshall Is.",
-        "(GMT+12:00) Auckland",
-        "(GMT+12:00) Wellington",
-        "(GMT+13:00) Nuku'alofa"
-      ]
+      time_zones: Constants.time_zones,
+      Country: Constants.countrys,
+      email: "",
+      username: "",
+      phonenumber: "",
+      timezone: "",
+      recv_notification: true,
+
+      companyname: "",
+      address1: "",
+      address2: "",
+      city: "",
+      pocode: "",
+      state: "",
+      country: "",
+      gstnumber: ""
     };
+  },
+  beforeMount() {},
+  created() {
+    this.$store.dispatch(LOAD_PROFILE_INFO, "page-loading");
   },
   mounted() {
     this.$store.dispatch(SET_BREADCRUMB, [
       { title: "Settings" },
       { title: "Profile" }
     ]);
+
     this.current_photo = this.currentUserPersonalInfo.photo;
   },
   methods: {
-    save() {
+    makeToast(contents, variant = null) {
+      this.$bvToast.toast(contents, {
+        title: `Litegix`,
+        variant: variant,
+        solid: true
+      });
+    },
+    save_user() {
       var name = this.$refs.name.value;
-      var surname = this.$refs.surname.value;
-      var company_name = this.$refs.company_name.value;
-      var phone = this.$refs.phone.value;
       var email = this.$refs.email.value;
-      var company_site = this.$refs.company_site.value;
-      var photo = this.photo;
+      var timezone = this.$refs.time_zone.value;
+      var recv_notification = this.$refs.email_com.checked;
+      //photo, surname, job, phone
 
       // set spinner to submit button
-      const submitButton = this.$refs["kt_save_changes"];
-      submitButton.classList.add("spinner", "spinner-light", "spinner-right");
+      const submitButton = this.$refs["user_save_changes"];
+      submitButton.$el.classList.add(
+        "spinner",
+        "spinner-light",
+        "spinner-right"
+      );
+
+      // send update request
+      this.$store.dispatch(UPDATE_PERSONAL_INFO, {
+        email,
+        name,
+        timezone,
+        recv_notification
+      });
 
       // dummy delay
       setTimeout(() => {
-        // send update request
-        this.$store.dispatch(UPDATE_PERSONAL_INFO, {
-          name,
-          surname,
-          company_name,
-          phone,
-          email,
-          company_site,
-          photo
-        });
-
-        submitButton.classList.remove(
+        submitButton.$el.classList.remove(
           "spinner",
           "spinner-light",
           "spinner-right"
         );
-      }, 2000);
+      }, 1000);
+    },
+    async save_company() {
+      var company_name = this.$refs.CompanyName.value;
+      var address1 = this.$refs.AddressLine1.value;
+      var address2 = this.$refs.AddressLine2.value;
+      var city = this.$refs.City.value;
+      var postCode = this.$refs.PostalCode.value;
+      var state = this.$refs.State.value;
+      var country = this.$refs.country.value;
+      var gstNumber = this.$refs.Tax.value;
+
+      // set spinner to submit button
+      const submitButton = this.$refs["company_save_changes"];
+      submitButton.$el.classList.add(
+        "spinner",
+        "spinner-light",
+        "spinner-right"
+      );
+
+      // send update request
+      await this.$store
+        .dispatch(UPDATE_COMPANY_INFO, {
+          company_name,
+          address1,
+          address2,
+          city,
+          postCode,
+          state,
+          country,
+          gstNumber
+        })
+        .then(
+          response => {
+            console.log(response); //response==undefined
+            this.makeToast("Profile has been updated successfully.");
+            submitButton.$el.classList.remove(
+              "spinner",
+              "spinner-light",
+              "spinner-right"
+            );
+          },
+          error => {
+            submitButton.$el.classList.remove(
+              "spinner",
+              "spinner-light",
+              "spinner-right"
+            );
+            this.makeToast(error, "danger");
+          }
+        );
+      //unused
+      // .catch(response => {
+      //   console.log("update company failed.");
+      //   submitButton.$el.classList.remove(
+      //     "spinner",
+      //     "spinner-light",
+      //     "spinner-right"
+      //   );
+      //   this.makeToast(response, "danger");
+      // });
+
+      // dummy delay
+      setTimeout(() => {}, 2000);
     },
     cancel() {
-      this.$refs.name.value = this.currentUserPersonalInfo.name;
+      this.$refs.name.value = this.currentUserPersonalInfo.name.replace(
+        " ",
+        ""
+      );
       this.$refs.surname.value = this.currentUserPersonalInfo.surname;
       this.$refs.company_name.value = this.currentUserPersonalInfo.company_name;
       this.$refs.phone.value = this.currentUserPersonalInfo.phone;
       this.$refs.email.value = this.currentUserPersonalInfo.email;
-      this.$refs.company_site.value = this.currentUserPersonalInfo.company_site;
+      //this.$refs.company_site.value = this.currentUserPersonalInfo.company_site;
       this.current_photo = this.currentUserPersonalInfo.photo;
     },
     onFileChange(e) {
@@ -464,7 +427,12 @@ export default {
     }
   },
   computed: {
-    ...mapGetters(["currentUserPersonalInfo", "currentUserAccountInfo"]),
+    ...mapGetters([
+      "loadProfileInfo",
+      "currentUserPersonalInfo",
+      "currentUserCompanyInfo",
+      "currentUserAccountInfo"
+    ]),
     photo() {
       return this.current_photo == null
         ? this.default_photo

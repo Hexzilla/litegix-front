@@ -188,7 +188,9 @@ export default {
   },
   mounted() {
     // Init Quick User Panel
-    // KTLayoutQuickUser.init(this.$refs["kt_quick_user"]);
+    console.log(this.$refs);
+    KTLayoutQuickUser.init(this.$refs["kt_quick_user"]);
+    //console.log(KTLayoutQuickUser.getElement());
   },
   methods: {
     onLogout() {
@@ -197,7 +199,27 @@ export default {
         .then(() => this.$router.push({ name: "login" }));
     },
     closeOffcanvas() {
-      new KTOffcanvas(KTLayoutQuickUser.getElement()).hide();
+      var el = KTLayoutQuickUser.getElement();
+      if(el!=undefined)
+      {
+        try{
+          console.log(el);
+          //el.removeClass('show');
+          el.style="";
+          var canv = new KTOffcanvas(el);
+          canv.show();
+          canv.hide();
+          //console.log(canv);
+        }
+        catch(eee)
+        {
+          console.log(eee);
+        }
+      }
+      else
+      {
+        console.log('KTLayoutQuickUser could not found')
+      }
     }
   },
   computed: {

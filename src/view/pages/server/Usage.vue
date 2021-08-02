@@ -1,57 +1,89 @@
 <template>
   <!--begin::Mixed Widget 14-->
-  <div class="card card-custom card-stretch gutter-b">
-    <!--begin::Header-->
-    <div class="card-header border-0 pt-5">
-      <h3 class="card-title font-weight-bolder">Action Needed</h3>
-      <div class="card-toolbar">
-        <Dropdown3></Dropdown3>
-      </div>
-    </div>
-    <!--end::Header-->
-    <!--begin::Body-->
-    <div class="card-body d-flex flex-column">
-      <div class="flex-grow-1">
-        <apexchart
-          :options="chartOptions"
-          :series="series"
-          type="radialBar"
-        ></apexchart>
-      </div>
-      <div class="pt-5">
-        <p class="text-center font-weight-normal font-size-lg pb-7">
-          Notes: Current sprint requires stakeholders <br />to approve newly
-          amended policies
-        </p>
-        <a
-          href="#"
-          class="btn btn-success btn-shadow-hover font-weight-bolder w-100 py-3"
-          >Generate Report</a
-        >
-      </div>
-    </div>
-    <!--end::Body-->
-  </div>
+  <v-row>
+    <v-col cols="12" sm="4">
+      <v-card>
+        <!--begin::Header-->
+        <v-card-title>
+          <h3 class="card-title font-weight-bolder">Load</h3>
+        </v-card-title>
+        <!--end::Header-->
+        <!--begin::Body-->
+        <div class=" d-flex flex-column">
+          <div class="flex-grow-1">
+            <apexchart
+              :options="chartOptions"
+              :series="load"
+              type="radialBar"
+            ></apexchart>
+          </div>
+        </div>
+        <!--end::Body-->
+      </v-card>
+    </v-col>
+    <v-col cols="12" sm="4">
+      <v-card>
+        <!--begin::Header-->
+        <v-card-title>
+          <h3 class="card-title font-weight-bolder">Memory</h3>
+        </v-card-title>
+        <!--end::Header-->
+        <!--begin::Body-->
+        <div class=" d-flex flex-column">
+          <div class="flex-grow-1">
+            <apexchart
+              :options="chartOptions"
+              :series="memory"
+              type="radialBar"
+            ></apexchart>
+          </div>
+        </div>
+        <!--end::Body-->
+      </v-card>
+    </v-col>
+    <v-col cols="12" sm="4">
+      <v-card>
+        <!--begin::Header-->
+        <v-card-title>
+          <h3 class="card-title font-weight-bolder">Disk</h3>
+        </v-card-title>
+        <!--end::Header-->
+        <!--begin::Body-->
+        <div class=" d-flex flex-column">
+          <div class="flex-grow-1">
+            <apexchart
+              :options="chartOptions"
+              :series="disk"
+              type="radialBar"
+            ></apexchart>
+          </div>
+        </div>
+        <!--end::Body-->
+      </v-card>
+    </v-col>
+  </v-row>
+  
   <!--end::Mixed Widget 14-->
 </template>
 
 <script>
-import Dropdown3 from "@/view/content/dropdown/Dropdown3.vue";
 import { mapGetters } from "vuex";
 
 export default {
-  name: "widget-7",
+  name: "usage",
   data() {
     return {
       chartOptions: {},
-      series: [74]
+      load: [],
+      memory: [],
+      disk: [],
     };
   },
   components: {
-    Dropdown3
   },
   computed: {
-    ...mapGetters(["layoutConfig"])
+    ...mapGetters(["layoutConfig"]),
+    ...mapGetters(["summery"]),
   },
   mounted() {
     // reference; kt_stats_widget_7_chart
@@ -76,7 +108,7 @@ export default {
               color: this.layoutConfig("colors.gray.gray-700"),
               fontSize: "30px",
               fontWeight: "700",
-              offsetY: 12,
+              offsetY: 19,
               show: true
             }
           },
@@ -90,8 +122,12 @@ export default {
       stroke: {
         lineCap: "round"
       },
-      labels: ["Progress"]
+      labels: ["used"]
     };
+    this.load = [this.summery.loadAvg];
+    this.memory = [Math.ceil(this.summery.totalMemory - this.summery.freeMemory)];
+    this.disk = [ Math.ceil(this.summery.diskTotal - this.summery.diskFree)];
+    
   }
 };
 </script>

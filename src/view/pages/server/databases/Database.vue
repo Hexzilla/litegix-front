@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="card card-custom gutter-b">
+    <!-- <div class="card card-custom gutter-b">
       <div class="card-header border-0 py-5">
         <h3 class="card-title align-items-start flex-column">
           <span class="card-label font-weight-bolder text-dark">
@@ -17,7 +17,7 @@
         >
         </b-table>
       </div>
-    </div>
+    </div> -->
 
     <div class="card card-custom gutter-b">
       <div class="card-header border-0 py-5">
@@ -38,26 +38,37 @@
         </div>
       </div>
       <div class="card-body py-0">
-        <b-table :items="items1" :fields="fields1">
-          <template #cell(database_name)="data">
-            <i class="rc rc-ln-database rc-table-icon"></i
-            >{{ data.item.database_name }}
+        <b-table
+          :items="databases"
+          :fields="databaseFields"
+          empty-text="You don't have anything inside here yet."
+          show-empty
+        >
+          <template #cell(name)="data">
+            <i class="rc rc-ln-database rc-table-icon"></i>{{ data.item.name }}
           </template>
           <template #cell(database_user)="data">
-            <ul class="list-inline" style="margin-bottom: 0px">
-              <li>
-                <b-link to="database/grant">
-                  <a href=""
-                    ><span class="label label-lg label-inline label-success">
-                      {{ data.value }}
-                    </span></a
-                  >
-                </b-link>
-              </li>
-            </ul>
+            <a
+              v-for="user in data.item.users"
+              :key="user"
+              role="button"
+              class="mr-1"
+              v-on:click="revoke_dbuser(data.item._id, user._id)"
+              ><span class="label label-lg label-inline label-primary">
+                {{ user.name }}
+              </span></a
+            >
+
+            <b-link :to="`database/`+data.item._id+`/grant`">
+              <span class="label label-lg label-inline label-success">
+                Grant User
+              </span>
+            </b-link>
           </template>
-          <template #cell(delete)>
-            <a role="button" class="text-danger rc rc-delete"></a>
+          <template #cell(delete)="data">
+            <a role="button" v-on:click="delete_database(data.item._id)"
+              ><i class="fas fa-trash-alt text-danger"></i
+            ></a>
           </template>
         </b-table>
       </div>
@@ -86,10 +97,26 @@
       <div class="card-body py-0">
         <b-table
           empty-text="You don't have anything inside here yet."
-          :items="items2"
-          :fields="fields2"
+          :items="databaseusers"
+          :fields="dtabaseUserFields"
           show-empty
-        ></b-table>
+        >
+          <template #cell(name)="data">
+            <i class="rc rc-ln-database rc-table-icon"></i>{{ data.item.name }}
+          </template>
+          <template #cell(change_password)="data">
+            <b-link :to="`database/` + data.item._id + `/changepassword`">
+              <span class="label label-lg label-inline label-primary">
+                {{ data.item._id }}
+              </span>
+            </b-link>
+          </template>
+          <template #cell(delete)="data">
+            <a role="button" v-on:click="delete_dbuser(data.item._id)"
+              ><i class="fas fa-user-slash text-danger"></i
+            ></a>
+          </template>
+        </b-table>
       </div>
     </div>
   </div>
@@ -99,29 +126,62 @@
 <style scoped src="@/assets/styles/server.css"></style>
 
 <script>
+import { mapGetters } from "vuex";
+import {
+  GET_DATABASES,
+  GET_DBUSERS,
+  DELETE_DATABASE,
+  DELETE_DBUSER,
+  REVOKE_USER,
+} from "@/core/services/store/serverDB.module";
 export default {
   data() {
     return {
-      fields: [
-        "web_application_name",
-        { key: "phpmyadmin_version", label: "PHPMyAdmin Version" },
-        "domain",
-        "PHP_ version",
+      databaseFields: [
+        { key: "name", label: "Database Name" },
+        "database_user",
+        "collation",
         "delete",
       ],
-      items: [],
-      fields1: ["database_name", "database_user", "collation", "delete"],
-      items1: [
-        {
-          database_name: "db",
-          database_user: "root",
-          collation: "utf8_general_ci",
-          delete: 4,
-        },
+      dtabaseUserFields: [
+        { key: "name", label: "User Name" },
+        "change_password",
+        "delete",
       ],
-      fields2: ["database_user", "change_password", "delete"],
-      items2: []
     };
-  }
+  },
+  computed: {
+    ...mapGetters(["databases", "databaseusers"]),
+  },
+  mounted() {
+    this.$store.dispatch(GET_DATABASES, this.$parent.serverId);
+    this.$store.dispatch(GET_DBUSERS, this.$parent.serverId);
+  },
+  methods: {
+    revoke_dbuser: function (dbId, userId) {
+      this.$store.dispatch(REVOKE_USER, {
+        serverId: this.$parent.serverId,
+        databaseId: dbId,
+        dbuserId: userId,
+      });
+      this.$router.go()
+    },
+    delete_dbuser: function (userId) {
+      this.$store.dispatch(DELETE_DBUSER, {
+        serverId: this.$parent.serverId,
+        dbuserId: userId,
+      });
+      this.$store.dispatch(GET_DATABASES, this.$parent.serverId);
+      this.$store.dispatch(GET_DBUSERS, this.$parent.serverId);
+    },
+    delete_database: function (dbId) {
+      this.$store.dispatch(DELETE_DATABASE, {
+        serverId: this.$parent.serverId,
+        databaseId: dbId,
+      });
+      this.$store.dispatch(GET_DATABASES, this.$parent.serverId);
+      this.$store.dispatch(GET_DBUSERS, this.$parent.serverId);
+    },
+  },
 };
 </script>

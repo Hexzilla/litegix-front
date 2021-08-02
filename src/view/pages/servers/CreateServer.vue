@@ -338,34 +338,16 @@ export default {
 
       this.$store
         .dispatch(CREATE_SERVER, payload)
-        .then(() => {
+        .then((data) => {
           removeSpinner();
-          this.onCreateSuccess();
+          this.onCreateSuccess(data.id);
         })
         .catch(() => {
           removeSpinner();
         });
 
-      //console.log("createServer", payload);
-      // ApiService.setHeader();
-      // ApiService.post("servers/create", payload)
-      //   .then(({ data }) => {
-      //     //console.log("createServer-response", data);
-      //     if (data.success) {
-      //       this.onCreateSuccess(data);
-      //     }
-      //     removeSpinner();
-      //   })
-      //   .catch((error) => {
-      //     removeSpinner();
-      //     if (error.response && error.response.data) {
-      //       this.makeToast(error.response.data.message, "danger");
-      //     } else {
-      //       this.makeToast("There's something wrong", "danger");
-      //     }
-      //   });
     },
-    onCreateSuccess() {
+    onCreateSuccess(serverId) {
       Swal.fire({
         title: "",
         text: 'Your Server has been successfully created',
@@ -373,7 +355,8 @@ export default {
         confirmButtonClass: "btn btn-secondary",
         heightAuto: false,
       }).then(() => {
-        this.$router.push({ name: "server-config" });
+        console.log(serverId)
+        this.$router.push({ name: "server-config", params: {serverId:serverId} });
       });
     },
   },

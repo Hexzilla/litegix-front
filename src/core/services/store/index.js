@@ -7,6 +7,8 @@ import config from "./config.module";
 import breadcrumbs from "./breadcrumbs.module";
 import profile from "./profile.module";
 import servers from "./servers.module";
+import serverDB from "./serverDB.module";
+import systemusers from "./systemUsers.module";
 
 Vue.use(Vuex);
 
@@ -17,6 +19,8 @@ export default new Vuex.Store({
     config,
     breadcrumbs,
     profile,
-    servers
+    servers,
+    serverDB,
+    systemusers
   }
 });

@@ -1,9 +1,7 @@
 <template>
   <div>
     <div v-if="isEmpty()" class="row">
-      <div class="offset-xxl-4 offset-md-3 col-xxl-4 col-md-6">
-        <EmptyServer></EmptyServer>
-      </div>
+      <EmptyServer></EmptyServer>
     </div>
     <div v-if="!isEmpty()" class="row">
       <div class="col-md-12 mb-8">
@@ -58,31 +56,18 @@ import { GET_SERVERS } from "@/core/services/store/servers.module";
 
 export default {
   name: "Servers",
-  computed: {
-    ...mapGetters(["servers"]),
-
-    backgroundImage() {
-      return (
-        process.env.BASE_URL + "media/svg/illustrations/login-visual-1.svg"
-      );
-    },
-  },
   components: {
     EmptyServer,
     ServerCard,
+  },
+  computed: {
+    ...mapGetters(["servers"]),
   },
   mounted() {
     this.$store.dispatch(SET_BREADCRUMB, [{ title: "Servers" }]);
     this.$store.dispatch(GET_SERVERS);
   },
   methods: {
-      // ApiService.setHeader();
-      // ApiService.get("servers")
-      //   .then(({ data }) => {
-      //     this.servers = data.servers;
-      //   })
-      //   .catch(() => {});
-    
     isEmpty() {
       return this.servers.length <= 0;
     },

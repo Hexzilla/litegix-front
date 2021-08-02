@@ -1,29 +1,31 @@
 <template>
-  <div class="text-center panel panel-transparent">
-    <div class="panel-body">
-      <img
-        src="media/img/server-transfer.svg"
-        class="dashboard_img"
-        alt="empty-state-illustration"
-        data-nsfw-filter-status="sfw"
-        style="visibility: visible"
-      />
-      <div class="content">
-        <h2 class="font-weight-black">Connect your first server</h2>
-        <p>
-          Connect your cloud VPS with our panel first and kickstart your
-          productivity with RunCloud straight away!
-        </p>
+  <v-card class="w-400px mt-20 py-10 px-20 mx-auto">
+    <div class="text-center">
+      <div class="symbol symbol-60 symbol-circle symbol-xl-90">
+        <div
+          class="symbol-label"
+          :style="{
+            backgroundImage: `url('media/logos/logo-letter-3.png')`,
+          }"
+        ></div>
       </div>
-      <b-link class="btn btn-base go-connect-btn" to="/servers/connect">
-        Let's get started
+
+      <h4 class="font-weight-bold my-2">You don't have any server yet</h4>
+      <div class="text-muted mb-2">
+        Currently you do not own any server. Litegix makes this real easy for
+        you to do.
+      </div>
+      <b-link to="/servers/create">
+        <b-button size="lg" class="my-3 my-sm-0 ml-auto" variant="primary"
+          >Create Server</b-button
+        >
       </b-link>
     </div>
-  </div>
+  </v-card>
 </template>
 
 <script>
 export default {
-  name: "Empty"
+  name: "Empty",
 };
 </script>

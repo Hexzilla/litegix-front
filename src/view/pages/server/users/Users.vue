@@ -1,23 +1,28 @@
 <template>
   <!--begin::Advance Table Widget 10-->
-  <div class="card card-custom gutter-b">
+  <v-card class="card-body">
     <!--begin::Header-->
-    <div class="card-header border-0 py-5">
+    <v-card-title>
       <h3 class="card-title align-items-start flex-column">
-        <span class="card-label font-weight-bolder text-dark">System User</span>
-        <!-- <span class="text-muted mt-3 font-weight-bold font-size-sm"
-          >More than 400+ new members</span
-        > -->
+        <span class="card-label font-weight-bolder">System User</span>
       </h3>
+      <v-spacer></v-spacer>
       <div class="card-toolbar">
-        <b-link to="database/createuser">
+        <b-link to="user/create">
           <a class="btn btn-success font-weight-bolder font-size-sm">Create User</a>
         </b-link>
       </div>
-    </div>
+    </v-card-title>
+      <v-text-field 
+        outlined 
+        dense 
+        label="Search" 
+        hide-details=""
+        class="searchSSHKey"
+      ></v-text-field>
     <!--end::Header-->
     <!--begin::Body-->
-    <div class="card-body py-0">
+    <div class="py-0">
       <!--begin::Table-->
       <div class="table-responsive">
         <table
@@ -25,84 +30,43 @@
           id="kt_advance_table_widget_4"
         >
           <thead>
-            <tr class="text-left">
-              <!-- <th class="pl-0" style="width: 30px">
-                <label class="checkbox checkbox-lg checkbox-single mr-2">
-                  <input
-                    type="checkbox"
-                    @input="setCheck($event.target.checked)"
-                  />
-                  <span></span>
-                </label>
-              </th> -->
+            <tr class="text-center">
               <th class="pl-0" style="min-width: 180px">Username</th>
-              <th style="min-width: 180px">Change Password</th>
-              <th style="min-width: 80px">Status</th>
-              <th class="pr-0 text-right" style="min-width: 160px">Action</th>
+              <th style="min-width: 180px" >Change Password</th>
+              <th class="pr-0" style="min-width: 160px">Action</th>
             </tr>
           </thead>
           <tbody>
             <template v-for="(item, i) in list">
               <tr v-bind:key="i">
-                <!-- <td class="pl-0 py-6">
-                  <label class="checkbox checkbox-lg checkbox-single">
-                    <input type="checkbox" :value="i" :checked="checked" />
-                    <span></span>
-                  </label>
-                </td> -->
-                <td class="pl-0">
-                  <a
-                    href="#"
-                    class="
-                      text-dark-75
+                <td class="pl-0 text-center">
+                  <span class="
                       font-weight-bolder
                       text-hover-primary
                       font-size-lg
                     "
-                    >{{ item.order_id }}</a
+                    >{{ item.order_id }}</span
                   >
                 </td>
-                <td>
-                  <span
-                    class="text-dark-75 font-weight-bolder d-block font-size-lg"
-                    >{{ item.country }}</span
-                  >
-                  <span class="text-muted font-weight-bold">{{
-                    item.country_desc
-                  }}</span>
-                </td>
-                <td>
-                  <span
-                    class="label label-lg label-inline"
-                    v-bind:class="`label-light-${item.class}`"
-                    >{{ item.status }}</span
-                  >
-                </td>
-                <td class="pr-0 text-right">
-                  <a
-                    href="#"
-                    class="btn btn-icon btn-light btn-hover-primary btn-sm mx-3"
+                <td class="pl-0 text-center">
+                  <i class="btn btn-icon btn-center btn-hover-primary btn-sm"
                   >
                     <span class="svg-icon svg-icon-md svg-icon-primary">
-                      <!--begin::Svg Icon | path:assets/media/svg/icons/Communication/Write.svg-->
                       <inline-svg
-                        src="media/svg/icons/Communication/Write.svg"
+                        src="media/svg/icons/General/Lock.svg"
                       ></inline-svg>
-                      <!--end::Svg Icon-->
                     </span>
-                  </a>
-                  <a
-                    href="#"
-                    class="btn btn-icon btn-light btn-hover-primary btn-sm"
+                  </i>
+                </td>
+                <td class="pr-0 text-center">
+                  <i class="btn btn-icon btn-center btn-hover-primary btn-sm"
                   >
                     <span class="svg-icon svg-icon-md svg-icon-primary">
-                      <!--begin::Svg Icon | path:assets/media/svg/icons/General/Trash.svg-->
                       <inline-svg
                         src="media/svg/icons/General/Trash.svg"
                       ></inline-svg>
-                      <!--end::Svg Icon-->
                     </span>
-                  </a>
+                  </i>
                 </td>
               </tr>
             </template>
@@ -112,7 +76,7 @@
       <!--end::Table-->
     </div>
     <!--end::Body-->
-  </div>
+  </v-card>
   <!--end::Advance Table Widget 10-->
 </template>
 
@@ -125,25 +89,25 @@ export default {
       list: [
         {
           order_id: "litegix",
-          country: "Brasil",
-          country_desc: "Code: BR",
-          date: "05/28/2020",
-          date_desc: "Paid",
-          company: "Intertico",
-          company_desc: "Web, UI/UX Design",
-          class: "primary",
-          status: "Approved",
+          // country: "Brasil",
+          // country_desc: "Code: BR",
+          // date: "05/28/2020",
+          // date_desc: "Paid",
+          // company: "Intertico",
+          // company_desc: "Web, UI/UX Design",
+          // class: "primary",
+          // status: "Approved",
         },
         {
           order_id: "root",
-          country: "Belarus",
-          country_desc: "Code: BY",
-          date: "02/04/2020",
-          date_desc: "Rejected",
-          company: "Agoda",
-          company_desc: "Houses & Hotels",
-          class: "warning",
-          status: "In Progress",
+          // country: "Belarus",
+          // country_desc: "Code: BY",
+          // date: "02/04/2020",
+          // date_desc: "Rejected",
+          // company: "Agoda",
+          // company_desc: "Houses & Hotels",
+          // class: "warning",
+          // status: "In Progress",
         },
       ],
     };

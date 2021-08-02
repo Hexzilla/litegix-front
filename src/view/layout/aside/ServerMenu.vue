@@ -4,7 +4,7 @@
     role="tablist"
   >
     <router-link
-      to="/server/summary"
+      :to="`/servers/` + serverId + `/server/summary`"
       v-slot="{ href, navigate, isActive, isExactActive }"
     >
       <div class="navi-item mb-2">
@@ -27,7 +27,7 @@
     </router-link>
 
     <router-link
-      to="/server/health"
+      :to="`/servers/` + serverId + `/server/health`"
       v-slot="{ href, navigate, isActive, isExactActive }"
     >
       <div class="navi-item mb-2">
@@ -50,7 +50,7 @@
     </router-link>
 
     <router-link
-      to="/server/application"
+      :to="`/servers/` + serverId + `/server/application`"
       v-slot="{ href, navigate, isActive, isExactActive }"
     >
       <div class="navi-item mb-2">
@@ -73,7 +73,7 @@
     </router-link>
 
     <router-link
-      to="/server/database"
+      :to="`/servers/` + serverId + `/server/database`"
       v-slot="{ href, navigate, isActive, isExactActive }"
     >
       <div class="navi-item mb-2">
@@ -96,7 +96,7 @@
     </router-link>
 
     <router-link
-      to="/server/user"
+      :to="`/servers/` + serverId + `/server/user`"
       v-slot="{ href, navigate, isActive, isExactActive }"
     >
       <div class="navi-item mb-2">
@@ -121,7 +121,7 @@
     </router-link>
 
     <router-link
-      to="/server/sshkey"
+      :to="`/servers/` + serverId + `/server/sshkey`"
       v-slot="{ href, navigate, isActive, isExactActive }"
     >
       <div class="navi-item mb-2">
@@ -144,7 +144,7 @@
     </router-link>
 
     <router-link
-      to="/server/deployment"
+      :to="`/servers/` + serverId + `/server/deployment`"
       v-slot="{ href, navigate, isActive, isExactActive }"
     >
       <div class="navi-item mb-2">
@@ -167,7 +167,7 @@
     </router-link>
 
     <router-link
-      to="/server/phpcli"
+      :to="`/servers/` + serverId + `/server/phpcli`"
       v-slot="{ href, navigate, isActive, isExactActive }"
     >
       <div class="navi-item mb-2">
@@ -190,7 +190,7 @@
     </router-link>
 
     <router-link
-      to="/server/cronjob"
+      :to="`/servers/` + serverId + `/server/cronjob`"
       v-slot="{ href, navigate, isActive, isExactActive }"
     >
       <div class="navi-item mb-2">
@@ -213,7 +213,7 @@
     </router-link>
 
     <router-link
-      to="/server/supervisor"
+      :to="`/servers/` + serverId + `/server/supervisor`"
       v-slot="{ href, navigate, isActive, isExactActive }"
     >
       <div class="navi-item mb-2">
@@ -236,7 +236,7 @@
     </router-link>
 
     <router-link
-      to="/server/notification"
+      :to="`/servers/` + serverId + `/server/notification`"
       v-slot="{ href, navigate, isActive, isExactActive }"
     >
       <div class="navi-item mb-2">
@@ -259,7 +259,7 @@
     </router-link>
 
     <router-link
-      to="/server/services"
+      :to="`/servers/` + serverId + `/server/services`"
       v-slot="{ href, navigate, isActive, isExactActive }"
     >
       <div class="navi-item mb-2">
@@ -282,7 +282,7 @@
     </router-link>
 
     <router-link
-      to="/server/security"
+      :to="`/servers/` + serverId + `/server/security`"
       v-slot="{ href, navigate, isActive, isExactActive }"
     >
       <div class="navi-item mb-2">
@@ -305,7 +305,7 @@
     </router-link>
 
     <router-link
-      to="/server/settings"
+      :to="`/servers/` + serverId + `/server/settings`"
       v-slot="{ href, navigate, isActive, isExactActive }"
     >
       <div class="navi-item mb-2">
@@ -328,7 +328,7 @@
     </router-link>
 
     <router-link
-      to="/server/activitylog"
+      :to="`/servers/` + serverId + `/server/activitylog`"
       v-slot="{ href, navigate, isActive, isExactActive }"
     >
       <div class="navi-item mb-2">
@@ -351,7 +351,7 @@
     </router-link>
 
     <router-link
-      to="/server/delete"
+      :to="`/servers/` + serverId + `/server/delete`"
       v-slot="{ href, navigate, isActive, isExactActive }"
     >
       <div class="navi-item mb-2">
@@ -374,3 +374,10 @@
     </router-link>
   </div>
 </template>
+
+
+<script>
+export default {
+  props: ["serverId"],
+};
+</script>

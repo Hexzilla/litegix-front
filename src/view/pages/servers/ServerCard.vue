@@ -5,10 +5,16 @@
         <h3 class="card-label">{{ server.name }}</h3>
       </div>
       <div class="card-toolbar">
-        <span v-if="!server.active" class="label label-lg label-inline label-light-danger">
+        <span
+          v-if="!server.connected"
+          class="label label-lg label-inline label-light-danger"
+        >
           Inactive
         </span>
-        <span v-if="server.active" class="label label-lg label-inline label-light-primary">
+        <span
+          v-if="server.connected"
+          class="label label-lg label-inline label-light-primary"
+        >
           Active
         </span>
       </div>
@@ -32,7 +38,8 @@
             <span class="card-icon flex-grow-1">
               <i class="flaticon2-checkmark text-primary"></i>
             </span>
-            <span class="mr-3"></span> Not Connected
+            <span class="mr-3"></span>
+            {{ server.connection ? "Connected" : "Not Connected" }}
           </div>
           <div class="py-2 d-flex">
             <span class="card-icon flex-grow-1">
@@ -45,14 +52,19 @@
     </div>
     <footer class="card-footer bg-light py-3">
       <div class="d-flex">
-        <a class="flex-grow-1 mt-2" href="">More info</a>
-        <div class="right">
+        <b-link
+          :to="`servers/` + server._id + `/config/`"
+          class="flex-grow-1 mt-2"
+        >
+          Connect server
+        </b-link>
+        <!-- <div class="right">
           <b-link to="server">
             <a class="btn btn-sm btn-icon btn-light-primay mr-2">
               <i class="flaticon2-gear"></i>
             </a>
           </b-link>
-        </div>
+        </div> -->
       </div>
     </footer>
   </div>

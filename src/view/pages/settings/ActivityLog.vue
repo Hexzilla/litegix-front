@@ -1,10 +1,22 @@
 <template>
-  <v-card>
+  <div class="card card-custom">
+    <div class="card-header py-3">
+      <div class="card-title align-items-start flex-column">
+        <h3 class="card-label font-weight-bolder text-dark">
+          Activity Log
+        </h3>
+        <span class="text-muted font-weight-bold font-size-sm mt-1"></span>
+      </div>
+      <div class="card-toolbar">
+        <!-- <v-btn color="primary" @click="save()" ref="user_save_changes">
+          Save Changes
+        </v-btn>
+        <button type="reset" class="btn btn-secondary" @click="cancel()">
+          Cancel
+        </button> -->
+      </div>
+    </div>
     <div class="card-body">
-      <v-card-title>
-        <h1>Activity Log</h1>
-        <v-spacer></v-spacer>
-      </v-card-title>
       <v-data-table
         no-data-text="No data"
         :headers="code4.headers"
@@ -32,7 +44,7 @@
         </template>
       </v-data-table>
     </div>
-  </v-card>
+  </div>
 </template>
 
 <script>

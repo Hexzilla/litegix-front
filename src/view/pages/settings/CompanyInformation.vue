@@ -24,7 +24,7 @@
         </button> -->
       </div>
     </div>
-    <v-card class="card-body">
+    <div class="card-body">
       <v-form id="company_form" class="mt-5">
         <v-row>
           <v-col md="6" offset-md="3" sm="12" offset-sm="0">
@@ -134,7 +134,7 @@
           </v-col>
         </v-row>
       </v-form>
-    </v-card>
+    </div>
   </div>
 </template>
 

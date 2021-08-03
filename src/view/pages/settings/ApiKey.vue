@@ -1,56 +1,62 @@
 <template>
   <div>
-    <!--begin::Card-->
-    <v-card>
-      <div class="card-body">
-        <!--begin::Header-->
+    <div class="card card-custom">
+      <div class="card-header py-3">
         <div class="card-title align-items-start flex-column">
-          <h1 class="font-weight-bolder">API Key</h1>
-          <p class="text-muted font-size-sm mt-1">
+          <h3 class="card-label font-weight-bolder text-dark">
+            API Key
+          </h3>
+          <span class="text-muted font-size-sm mt-1"
+            >Manage API Key and API Secret</span
+          >
+        </div>
+        <div class="card-toolbar">
+          <!-- <v-btn color="primary" @click="update()" ref="kt_pass_update">
+            Save Changes
+          </v-btn>
+          <button type="reset" class="btn btn-secondary" @click="cancel()">
+            Cancel
+          </button> -->
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="card-title align-items-start flex-column">
+          <p class="font-size-md mt-1">
             You can use this API Key and API Secret to download your backup. To
-            enable RunCloud API access, you need to enable API Access.
+            enable API access, you need to enable API Access.
           </p>
         </div>
 
-        <div class="form-group row align-items-center">
-          <v-col cols="1"></v-col>
-          <v-col cols="10">
-            <v-text-field
-              outlined
-              dense
-              type="text"
-              append-icon="mdi-refresh"
-              auto="true"
-              characters="characters"
-              :value="apikey"
-              @click:append="generate()"
-            ></v-text-field>
+        <v-row>
+          <v-col md="6" offset-md="3" sm="12" offset-sm="0">
+            <b-form-group label="API Key:" label-for="apiKey">
+              <b-form-input
+                id="apiKey"
+                type="text"
+                required
+                ref="apiKey"
+                append-icon="mdi-refresh"
+              ></b-form-input>
+            </b-form-group>
           </v-col>
-        </div>
-
-        <div class="form-group row align-items-center">
-          <v-col cols="1"></v-col>
-          <v-col cols="10">
-            <v-text-field
-              outlined
-              dense
-              type="text"
-              append-icon="mdi-refresh"
-              auto="true"
-              characters="characters"
-              :value="apikey"
-              @click:append="generate()"
-            ></v-text-field>
+        </v-row>
+        <v-row>
+          <v-col md="6" offset-md="3" sm="12" offset-sm="0">
+            <b-form-group label="Secret Key:" label-for="secretKey">
+              <b-form-input
+                id="secretKey"
+                type="text"
+                required
+                ref="secretKey"
+                append-icon="mdi-refresh"
+              ></b-form-input>
+            </b-form-group>
           </v-col>
-        </div>
+        </v-row>
       </div>
-    </v-card>
-    <!--end::Card-->
-    <div class="form-group"></div>
-    <!--begin::Card-->
-    <v-card>
+    </div>
+    <!-- <v-card>
       <div class="card-body">
-        <!--begin::Header-->
         <div class="card-title align-items-start flex-column">
           <h1 class="font-weight-bolder">Enable API Access</h1>
           <p class="text-muted font-size-sm mt-1">
@@ -67,13 +73,9 @@
           </v-col>
         </div>
       </div>
-    </v-card>
-    <!--end::Card-->
-    <div class="form-group"></div>
-    <!--begin::Card-->
+    </v-card> -->
     <v-card>
       <div class="card-body">
-        <!--begin::Header-->
         <v-card-title>
           <h1>IP Address Restriction</h1>
           <v-spacer></v-spacer>
@@ -177,60 +179,60 @@ export default {
             text: "IP Address",
             align: "left",
             sortable: false,
-            value: "ipAddress"
+            value: "ipAddress",
           },
           {
             text: "Description",
-            value: "desc"
+            value: "desc",
           },
           {
             text: "Delete",
-            value: "del"
-          }
+            value: "del",
+          },
         ],
         desserts: [
           {
             ipAddress: "label",
-            desc: "Subscribe to newsletter"
-          }
-        ]
+            desc: "Subscribe to newsletter",
+          },
+        ],
       },
       dialog: false,
       dialogDelete: false,
       editedIndex: -1,
       editedItem: {
         ipAddress: "",
-        desc: ""
+        desc: "",
       },
       defaultItem: {
         ipAddress: "",
-        desc: ""
-      }
+        desc: "",
+      },
     };
   },
   props: {
     type: {
       type: String,
-      default: "text"
+      default: "text",
     },
     size: {
       type: String,
-      default: "26"
+      default: "26",
     },
     characters: {
       type: String,
-      default: "a-z,A-Z,0-9"
+      default: "a-z,A-Z,0-9",
     },
     auto: [String, Boolean],
     apikey: {
       type: String,
-      default: ""
-    }
+      default: "",
+    },
   },
-  mounted: function() {
+  mounted: function () {
     this.$store.dispatch(SET_BREADCRUMB, [
       { title: "Settings", route: "profile" },
-      { title: "API Key" }
+      { title: "API Key" },
     ]);
     this.generate();
   },
@@ -241,7 +243,7 @@ export default {
     dialogDelete(val) {
       console.log("watch dialogDelete val = " + val);
       val || this.closeDelete();
-    }
+    },
   },
 
   methods: {
@@ -311,7 +313,7 @@ export default {
         // send update request
         this.$store.dispatch(UPDATE_PERSONAL_INFO, {
           ipAddress,
-          des
+          des,
         });
 
         submitButton.classList.remove(
@@ -320,7 +322,7 @@ export default {
           "spinner-right"
         );
       }, 2000);
-    }
-  }
+    },
+  },
 };
 </script>

@@ -21,7 +21,7 @@
     <v-card class="card-body">
       <v-form id="profile_form" class="mt-5">
         <v-row>
-          <v-col cols="col-lg-9 col-xl-6 offset-lg-3 offset-xl-3">
+          <v-col md="6" offset-md="3" sm="12" offset-sm="0">
             <b-form-group label="User Name:" label-for="username">
               <b-form-input
                 id="username"
@@ -35,7 +35,7 @@
           </v-col>
         </v-row>
         <v-row>
-          <v-col cols="col-lg-9 col-xl-6 offset-lg-3 offset-xl-3">
+          <v-col md="6" offset-md="3" sm="12" offset-sm="0">
             <b-form-group label="Email:" label-for="email" description="">
               <b-form-input
                 id="email"
@@ -50,7 +50,7 @@
           </v-col>
         </v-row>
         <v-row>
-          <v-col cols="col-lg-9 col-xl-6 offset-lg-3 offset-xl-3">
+          <v-col md="6" offset-md="3" sm="12" offset-sm="0">
             <b-form-group label="Time Zone:" label-for="timezone">
               <b-form-select
                 id="timezone"
@@ -63,7 +63,7 @@
           </v-col>
         </v-row>
         <v-row>
-          <v-col cols="col-lg-9 col-xl-6 offset-lg-3 offset-xl-3">
+          <v-col md="6" offset-md="3" sm="12" offset-sm="0">
             <div class="checkbox-inline">
               <label
                 class="

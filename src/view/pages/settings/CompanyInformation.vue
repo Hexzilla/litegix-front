@@ -27,9 +27,7 @@
     <v-card class="card-body">
       <v-form id="company_form" class="mt-5">
         <v-row>
-          <v-col
-            cols="col-lg-9 col-xl-6 col-sm-10 offset-lg-3 offset-xl-3 offset-sm-1"
-          >
+          <v-col md="6" offset-md="3" sm="12" offset-sm="0">
             <b-form-group label="Company Name:" label-for="companyName">
               <b-form-input
                 id="companyName"
@@ -43,9 +41,7 @@
           </v-col>
         </v-row>
         <v-row>
-          <v-col
-            cols="col-lg-4 col-xl-3 col-sm-10 offset-lg-3 offset-xl-3 offset-sm-1"
-          >
+          <v-col cols="12" md="3" offset-md="3" sm="12" offset-sm="0">
             <b-form-group label="Address Line 1:" label-for="addressLine1">
               <b-form-input
                 id="addressLine1"
@@ -57,9 +53,7 @@
               ></b-form-input>
             </b-form-group>
           </v-col>
-          <v-col
-            cols="col-lg-4 col-xl-3 col-sm-10 offset-lg-0 offset-xl-0 offset-sm-1"
-          >
+          <v-col cols="12" md="3" offset-md="0" sm="12" offset-sm="0">
             <b-form-group label="Address Line 2:" label-for="addressLine2">
               <b-form-input
                 id="addressLine2"
@@ -74,9 +68,7 @@
         </v-row>
 
         <v-row>
-          <v-col
-            cols="col-lg-4 col-xl-3 col-sm-10 offset-lg-3 offset-xl-3 offset-sm-1"
-          >
+          <v-col cols="12" md="3" offset-md="3" sm="12" offset-sm="0">
             <b-form-group label="City:" label-for="city">
               <b-form-input
                 id="city"
@@ -88,9 +80,7 @@
               ></b-form-input>
             </b-form-group>
           </v-col>
-          <v-col
-            cols="col-lg-4 col-xl-3 col-sm-10 offset-lg-0 offset-xl-0 offset-sm-1"
-          >
+          <v-col cols="12" md="3" offset-md="0" sm="12" offset-sm="0">
             <b-form-group label="Country:" label-for="country">
               <b-form-select
                 id="country"
@@ -103,9 +93,7 @@
           </v-col>
         </v-row>
         <v-row>
-          <v-col
-            cols="col-lg-4 col-xl-3 col-sm-10 offset-lg-3 offset-xl-3 offset-sm-1"
-          >
+          <v-col cols="12" md="3" offset-md="3" sm="12" offset-sm="0">
             <b-form-group label="Postal Code:" label-for="postalCode">
               <b-form-input
                 id="postalCode"
@@ -117,9 +105,7 @@
               ></b-form-input>
             </b-form-group>
           </v-col>
-          <v-col
-            cols="col-lg-4 col-xl-3 col-sm-10 offset-lg-0 offset-xl-0 offset-sm-1"
-          >
+          <v-col cols="12" md="3" offset-md="0" sm="12" offset-sm="0">
             <b-form-group label="State:" label-for="state">
               <b-form-input
                 id="state"
@@ -134,7 +120,7 @@
         </v-row>
 
         <v-row>
-          <v-col cols="col-lg-9 col-xl-6 offset-lg-3 offset-xl-3">
+          <v-col md="6" offset-md="3" sm="12" offset-sm="0">
             <b-form-group label="Tax/VAT/GST Number:" label-for="taxNumber">
               <b-form-input
                 id="taxNumber"

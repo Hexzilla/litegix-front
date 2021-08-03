@@ -74,11 +74,27 @@
         </div>
       </div>
     </v-card> -->
-    <v-card>
+    <div class="card card-custom">
+      <div class="card-header py-3">
+        <div class="card-title align-items-start flex-column">
+          <h3 class="card-label font-weight-bolder text-dark">
+            IP Address Restriction
+          </h3>
+          <span class="text-muted font-size-sm mt-1"
+            >Manage API Key and API Secret</span
+          >
+        </div>
+        <div class="card-toolbar">
+          <!-- <v-btn color="primary" @click="update()" ref="kt_pass_update">
+            Save Changes
+          </v-btn>
+          <button type="reset" class="btn btn-secondary" @click="cancel()">
+            Cancel
+          </button> -->
+        </div>
+      </div>
       <div class="card-body">
         <v-card-title>
-          <h1>IP Address Restriction</h1>
-          <v-spacer></v-spacer>
           <v-text-field
             outlined
             dense
@@ -94,37 +110,35 @@
           API Key and API Secret can be requested from any IP address.
         </p>
         <form class="form">
-          <div class="form-group row align-items-center">
-            <v-col cols="1"></v-col>
-            <v-col cols="10">
-              <v-text-field
-                outlined
-                dense
-                label="IP Address"
-                ref="ipAddress"
-                type="text"
-              >
-              </v-text-field>
+          <v-row>
+            <v-col md="6" offset-md="3" sm="12" offset-sm="0">
+              <b-form-group label="IP Address:" label-for="ipAddress">
+                <b-form-input
+                  id="ipAddress"
+                  type="text"
+                  required
+                  ref="ipAddress"
+                  append-icon="mdi-refresh"
+                ></b-form-input>
+              </b-form-group>
             </v-col>
-          </div>
-
-          <div class="form-group row align-items-center">
-            <v-col cols="1"></v-col>
-            <v-col cols="10">
-              <v-text-field
-                dense
-                outlined
-                label="Description(Optional)"
-                ref="des"
-                type="text"
-              >
-              </v-text-field>
+          </v-row>
+          <v-row>
+            <v-col md="6" offset-md="3" sm="12" offset-sm="0">
+              <b-form-group label="Description(Optional):" label-for="des">
+                <b-form-input
+                  id="des"
+                  type="text"
+                  required
+                  ref="des"
+                  append-icon="mdi-refresh"
+                ></b-form-input>
+              </b-form-group>
             </v-col>
-          </div>
+          </v-row>
 
-          <div class="form-group row align-items-center">
-            <v-col cols="1"></v-col>
-            <v-col cols="10">
+          <v-row>
+            <v-col md="6" offset-md="3" sm="12" offset-sm="0">
               <v-btn
                 block
                 color="primary"
@@ -136,7 +150,7 @@
                 Add
               </v-btn>
             </v-col>
-          </div>
+          </v-row>
         </form>
         <div>
           <h2 class="text--lighten-1 font-size-sm mt-8">
@@ -155,7 +169,7 @@
           </template>
         </v-data-table>
       </div>
-    </v-card>
+    </div>
   </div>
   <!--end::Card-->
 </template>

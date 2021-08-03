@@ -1,18 +1,24 @@
 <template>
-  <!--begin::Card-->
-  <v-card>
-    <div class="card-body">
-      <!--begin::Header-->
-        <v-card-title>
-          <h1 class="font-weight-bolder">Delete Account</h1>
-        </v-card-title>
-        <p class="text-muted font-size-sm mt-1">
-          Delete your account
-        </p>
-      
-      <v-form>
+  <div class="card card-custom">
+    <div class="card-header py-3">
+      <div class="card-title align-items-start flex-column">
+        <h3 class="card-label font-weight-bolder text-dark">Delete Account</h3>
+        <span class="text-muted font-weight-bold font-size-sm mt-1"
+          >Delete your account</span
+        >
+      </div>
+      <div class="card-toolbar">
+        <!-- <v-btn color="primary" @click="save()" ref="user_save_changes">
+          Save Changes
+        </v-btn>
+        <button type="reset" class="btn btn-secondary" @click="cancel()">
+          Cancel
+        </button> -->
+      </div>
+    </div>
+    <v-card class="card-body">
+      <v-form id="deleteAccount">
         <div class="card-body">
-          <!--begin::Alert-->
           <div
             class="alert alert-custom alert-light-danger fade show mb-10"
             role="alert"
@@ -66,8 +72,8 @@
             <div class="alert-text font-weight-bold">
               <p>
                 Deleting your account will remove all information on your
-                account and you will no longer have access to the RunCloud
-                Panel. There is no way to revive your account once it has been
+                account and you will no longer have access to the Litegix
+                service. There is no way to revive your account once it has been
                 deleted. Any generated invoices will still be kept on record for
                 our internal use, but will not be traceable or accessible to
                 you.
@@ -78,122 +84,103 @@
                 traceable back to you since we only store the payment value.
               </p>
             </div>
-            <!--<div class="alert-close">
-              <button
-                type="button"
-                class="close"
-                data-dismiss="alert"
-                aria-label="Close"
-              >
-                <span aria-hidden="true">
-                  <i class="ki ki-close"></i>
-                </span>
-              </button>
-            </div>-->
           </div>
-          <!--end::Alert-->
-        </div>
 
           <v-row>
-            <v-col cols="1"></v-col
-            >
-            <v-col cols="10">
-              <v-text-field
-                outlined
-                label="Email Address"
-                :rules="rules"
-                dense
-                ref="email"
-                type="text"
-              ></v-text-field>
+            <v-col md="6" offset-md="3" sm="12" offset-sm="0">
+              <b-form-group label="Email Address:" label-for="email">
+                <b-form-input
+                  id="email"
+                  type="email"
+                  required
+                  placeholder="Enter your email address"
+                  ref="email"
+                ></b-form-input>
+              </b-form-group>
             </v-col>
           </v-row>
-
-        <v-row>
-          <v-col cols="1"></v-col
-          >
-          <v-col cols="10">
-            <div class="d-flex flex-grow-1">
-              <label
-                class="
+          <v-row>
+            <v-col md="6" offset-md="3" sm="12" offset-sm="0">
+              <div class="d-flex flex-grow-1">
+                <label
+                  class="
                     checkbox checkbox-lg checkbox-lg checkbox-single
                     flex-shrink-0
                     mr-4
                     v-treeview
                   "
-              >
-                <input
-                  id="chk_certify"
-                  type="checkbox"
-                  value="1"
-                  ref="chk_certify"
-                />
-                <span></span>
-              </label>
-              <label
-                for="chk_certify"
-                class="d-flex flex-wrap justify-content-between w-100"
-              >
-                <div class="d-flex flex-column py-2">
-                  <span class="text-muted">
-                    I certify that I want to delete my account from RunCloud.
-                  </span>
-                </div>
-              </label>
-            </div>
-          </v-col>
-        </v-row>
-        <v-row>
-          <v-col cols="1"></v-col
-          >
-          <v-col cols="10" class="d-flex flex-grow-1">
-            <label
-              class="
-                  checkbox checkbox-lg checkbox-lg checkbox-single
-                  flex-shrink-0
-                  mr-4
-                  v-treeview
-                "
-            >
-              <input
-                id="chk_invoice"
-                type="checkbox"
-                value="1"
-                ref="chk_invoice"
-              />
-              <span></span>
-            </label>
-            <label
-              for="chk_invoice"
-              class="d-flex flex-wrap justify-content-between w-100"
-            >
-              <div class="d-flex flex-column py-2">
-                <span class="text-muted">
-                  I understand that my invoice and receipt will be keep for
-                  internal reference.
-                </span>
+                >
+                  <input
+                    id="chk_certify"
+                    type="checkbox"
+                    value="1"
+                    ref="chk_certify"
+                  />
+                  <span></span>
+                </label>
+                <label
+                  for="chk_certify"
+                  class="d-flex flex-wrap justify-content-between w-100"
+                >
+                  <div class="d-flex flex-column py-2">
+                    <span>
+                      I certify that I want to delete my account from Litegix.
+                    </span>
+                  </div>
+                </label>
               </div>
-            </label>
-          </v-col>
-        </v-row>
-        <v-row>
-          <v-col cols="1"></v-col>
-          <v-col cols="10">
-            <v-btn
-              color="primary"
-              block
-              type="button"
-              @click="update()"
-              ref="kt_save_update"
-            >
-              Delete My Account
-            </v-btn>
-          </v-col>
-        </v-row>
+            </v-col>
+          </v-row>
+          <v-row>
+            <v-col md="6" offset-md="3" sm="12" offset-sm="0">
+              <div class="d-flex flex-grow-1">
+                <label
+                  class="
+                    checkbox checkbox-lg checkbox-lg checkbox-single
+                    flex-shrink-0
+                    mr-4
+                    v-treeview
+                  "
+                >
+                  <input
+                    id="chk_invoice"
+                    type="checkbox"
+                    value="1"
+                    ref="chk_invoice"
+                  />
+                  <span></span>
+                </label>
+                <label
+                  for="chk_invoice"
+                  class="d-flex flex-wrap justify-content-between w-100"
+                >
+                  <div class="d-flex flex-column py-2">
+                    <span>
+                      I understand that my invoice and receipt will be keep for
+                      internal reference.
+                    </span>
+                  </div>
+                </label>
+              </div>
+            </v-col>
+          </v-row>
+          <v-row>
+            <v-col md="6" offset-md="3" sm="12" offset-sm="0">
+              <v-btn
+                color="primary"
+                block
+                type="button"
+                @click="update()"
+                ref="kt_save_update"
+              >
+                Delete My Account
+              </v-btn>
+            </v-col>
+          </v-row>
+        </div>
       </v-form>
-      <!--end::Form-->
-    </div>
-  </v-card>
+    </v-card>
+  </div>
 </template>
 <script>
 import { UPDATE_PERSONAL_INFO } from "@/core/services/store/profile.module";
@@ -203,18 +190,19 @@ export default {
   name: "Notification",
   data: () => ({
     rules: [
-      value => !!value || "Required.",
-      value => (value || "").length <= 20 || "Max 20 characters",
-      value => {
-        const pattern = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+      (value) => !!value || "Required.",
+      (value) => (value || "").length <= 20 || "Max 20 characters",
+      (value) => {
+        const pattern =
+          /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
         return pattern.test(value) || "Invalid e-mail.";
-      }
-    ]
+      },
+    ],
   }),
   mounted() {
     this.$store.dispatch(SET_BREADCRUMB, [
       { title: "Settings", route: "profile" },
-      { title: "Delete Account" }
+      { title: "Delete Account" },
     ]);
   },
   methods: {
@@ -233,7 +221,7 @@ export default {
         this.$store.dispatch(UPDATE_PERSONAL_INFO, {
           certify,
           chk_invoice,
-          email
+          email,
         });
 
         submitButton.classList.remove(
@@ -242,7 +230,7 @@ export default {
           "spinner-right"
         );
       }, 2000);
-    }
-  }
+    },
+  },
 };
 </script>

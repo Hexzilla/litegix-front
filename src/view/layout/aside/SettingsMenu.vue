@@ -19,7 +19,7 @@
         >
           <span class="navi-icon mr-2">
             <span class="svg-icon">
-              <inline-svg src="media/svg/icons/Design/Layers.svg" />
+              <inline-svg src="media/svg/icons/General/User.svg" />
             </span>
           </span>
           <span class="navi-text font-size-lg">Profile</span>
@@ -42,7 +42,9 @@
         >
           <span class="navi-icon mr-2">
             <span class="svg-icon">
-              <inline-svg src="media/svg/icons/General/User.svg" />
+              <inline-svg
+                src="media/svg/icons/Communication/Mail-notification.svg"
+              />
             </span>
           </span>
           <span class="navi-text font-size-lg">Notifications</span>
@@ -50,7 +52,7 @@
       </div>
     </router-link>
 
-    <router-link
+    <!-- <router-link
       to="/settings/server_transfer"
       v-slot="{ href, navigate, isActive, isExactActive }"
     >
@@ -71,9 +73,9 @@
           <span class="navi-text font-size-lg">Server Transfer</span>
         </a>
       </div>
-    </router-link>
+    </router-link> -->
 
-    <router-link
+    <!-- <router-link
       to="/settings/referal"
       v-slot="{ href, navigate, isActive, isExactActive }"
     >
@@ -94,7 +96,7 @@
           <span class="navi-text font-size-lg">Referral</span>
         </a>
       </div>
-    </router-link>
+    </router-link> -->
 
     <router-link
       to="/settings/activitylog"
@@ -137,7 +139,7 @@
               <inline-svg src="media/svg/icons/Communication/Delete-user.svg" />
             </span>
           </span>
-          <span class="navi-text font-size-lg">Delete Account</span>
+          <span class="navi-text font-size-lg">Account</span>
         </a>
       </div>
     </router-link>

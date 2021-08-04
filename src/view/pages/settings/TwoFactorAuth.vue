@@ -19,7 +19,7 @@
       </div>
     </div>
     <div class="card-body">
-      <p class="font-size-sm mt-1">
+      <p class="font-size-lg mt-1">
         Two-factor authentication adds an extra layer of security to your
         account by asking for a verification code when you sign in.
       </p>

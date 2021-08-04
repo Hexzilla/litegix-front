@@ -1,14 +1,30 @@
 <template>
-  <v-card>
+  <div class="card card-custom">
+    <div class="card-header py-3">
+      <div class="card-title align-items-start flex-column">
+        <h3 class="card-label font-weight-bolder text-dark">
+          IP Whitelisting
+        </h3>
+        <span class="text-muted font-weight-bold font-size-sm mt-1"
+          >Add or remove your notification channels</span
+        >
+      </div>
+      <div class="card-toolbar">
+        <!-- <v-btn color="primary" @click="save()" ref="user_save_changes">
+          Save Changes
+        </v-btn>
+        <button type="reset" class="btn btn-secondary" @click="cancel()">
+        Cancel
+      </button> -->
+      </div>
+    </div>
     <div class="card-body">
-      <v-card-title>
-        <h1>IP Whitelisting</h1>
-      </v-card-title>
-      <p class="text-muted font-size-sm mt-1">
-        Whitelist IP Address that can be used to login to your RunCloud account
-        if you enable the IP Whitelisting. If the IP Address is not in here, you
-        need to approve it everytime you log in to RunCloud. If you don't enable
-        this feature, every login will automatically whitelist the IP Address.
+      <p class="font-size-lg mt-1">
+        Whitelist IP Address that can be used to login to your Litegix account
+        if you enable the IP Whitelisting.<br />
+        If the IP Address is not in here, you need to approve it everytime you
+        log in to Litegix. If you don't enable this feature, every login will
+        automatically whitelist the IP Address.
       </p>
       <v-data-table
         :headers="tableData.headers"
@@ -36,7 +52,7 @@
       >
       <confirm-dialogue ref="confirmDialogue"></confirm-dialogue>
     </div>
-  </v-card>
+  </div>
 </template>
 
 <script>

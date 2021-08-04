@@ -10,10 +10,10 @@
         >
       </div>
       <div class="card-toolbar">
-        <v-btn color="primary" @click="save()" ref="user_save_changes">
+        <!-- <v-btn color="primary" @click="save()" ref="user_save_changes">
           Save Changes
         </v-btn>
-        <!-- <button type="reset" class="btn btn-secondary" @click="cancel()">
+        <button type="reset" class="btn btn-secondary" @click="cancel()">
         Cancel
       </button> -->
       </div>

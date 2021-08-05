@@ -1,5 +1,5 @@
 export const Constants = {
-  countrys: [
+  countries: [
     "Northern Mariana Islands(+1)",
     "Canada (+1)",
     "USA (+1)",

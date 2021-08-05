@@ -59,7 +59,7 @@ const getters = {
     return state.user_personal_info;
   },
 
-  currentUserCompanyInfo(state) {
+  currentUserCompany(state) {
     return state.user_company_info;
   },
 
@@ -95,32 +95,18 @@ const actions = {
     });
   },
   [UPDATE_COMPANY_INFO](context, company_json) {
-    // context.commit(SET_COMPANY_INFO, payload);
-    var updateInfo = {
-      payload : state.user_personal_info,
-      name: company_json.company_name,
-      address1: company_json.address1,
-      address2: company_json.address2,
-      city: company_json.city,
-      postal: company_json.postCode,
-      state: company_json.state,
-      country: company_json.country,
-      tax: company_json.gstNumber
-    };
     return new Promise((resolve, reject) => {
-      ApiService.setHeader(),
-      ApiService.post("settings/profile/updatecompany", updateInfo)
-        .then((data) => {
-          //context.commit(SET_SUCCESS, data);
+      ApiService.setHeader();
+      ApiService.post("settings/profile/updatecompany", payload)
+        .then(({ data }) => {
+          console.log("update-success", data, payload);
+          context.commit(SET_COMPANY_INFO, payload);
           resolve(data);
         })
-        .catch(error => {
-          var ErrorArray = error.response.data.errors;
-          console.log(ErrorArray);
-          var ErrorMsg = ErrorArray[0].msg  + ' in ' + ErrorArray[0].param + ' : ' + '\'' + ErrorArray[0].value + '\'';
-          console.log("update-error", ErrorMsg);
-          //context.commit(SET_ERROR, ErrorMsg);
-          return reject(ErrorMsg);
+        .catch(({ response }) => {
+          console.log("update-error");
+          // context.commit(SET_ERROR, response.data.errors);
+          return reject(); //reject(response.data.errors);
         });
     });
   },
@@ -160,45 +146,16 @@ const mutations = {
   },
 
   [SET_PERSONAL_INFO](state, user_personal_info) {
-    state.user_personal_info = user_personal_info
+    state.user_personal_info = {
+      ...state.user_personal_info,
+      ...user_personal_info
+    };
   },
   [SET_COMPANY_INFO](state, user_company_info) {
-    state.user_company_info = 
-    {
+    state.user_company_info = {
       ...state.user_company_info,
-      user_company_info
+      ...user_company_info
     };
-
-    // console.log("SET_COMPANY_INFO");
-    // console.log(state.user_personal_info);
-    var updateInfo = {
-      payload : state.user_personal_info,
-      name: user_company_info.company_name,
-      address1: user_company_info.address1,
-      address2: user_company_info.address2,
-      city: user_company_info.city,
-      postal: user_company_info.postCode,
-      state: user_company_info.state,
-      country: user_company_info.country,
-      tax: user_company_info.gstNumber
-    };
-    return new Promise((resolve, reject) => {
-      ApiService.setHeader(),
-      ApiService.post("settings/profile/updatecompany", updateInfo)
-        .then((data) => {
-          //state.commit(SET_SUCCESS, data);
-          resolve(data);
-        })
-        .catch(error => {
-          //var ErrorArray = error.response.data.errors;
-          //console.log(ErrorArray);
-          //var ErrorMsg = ErrorArray[0].msg  + ' in ' + ErrorArray[0].param + ' : ' + '\'' + ErrorArray[0].value + '\'';
-          //console.log("update-error", ErrorMsg);
-          //state.commit(SET_ERROR, ErrorMsg);
-          return reject(error);
-        });
-    });
-
   },
   [SET_ACCOUNT_INFO](state, user_account_info) {
     state.user_account_info = user_account_info;

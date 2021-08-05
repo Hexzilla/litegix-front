@@ -16,7 +16,7 @@
           @click="save()"
           ref="kt_save_changes"
         >
-          Update Profile
+          Save Changes
         </button>
       </div>
     </div>
@@ -129,14 +129,14 @@ export default {
         name: {
           validators: {
             notEmpty: {
-              message: "Name is required"
+              message: "This field is required"
             }
           }
         },
         email: {
           validators: {
             notEmpty: {
-              message: "Email is required"
+              message: "This field is required"
             }
           }
         }

@@ -94,7 +94,7 @@ const actions = {
         });
     });
   },
-  [UPDATE_COMPANY_INFO](context, company_json) {
+  [UPDATE_COMPANY_INFO](context, payload) {
     return new Promise((resolve, reject) => {
       ApiService.setHeader();
       ApiService.post("settings/profile/updatecompany", payload)

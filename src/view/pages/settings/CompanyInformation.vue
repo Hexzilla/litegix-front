@@ -212,14 +212,14 @@ export default {
         // send update request
         this.$store
           .dispatch(UPDATE_COMPANY_INFO, {
-            companyName: this.$refs.companyName.value,
+            name: this.$refs.companyName.value,
             address1: this.$refs.addressLine1.value,
             address2: this.$refs.addressLine2.value,
             city: this.$refs.city.value,
-            postCode: this.$refs.postalCode.value,
+            postal: this.$refs.postalCode.value,
             state: this.$refs.state.value,
             country: this.$refs.country.value,
-            gstNumber: this.$refs.taxNumber.value
+            tax: this.$refs.taxNumber.value
           })
           .then(data => {
             this.showMessageBox("info", data.message);

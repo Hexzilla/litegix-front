@@ -16,7 +16,7 @@
           @click="save()"
           ref="kt_save_changes"
         >
-          Save Changes
+          Update Profile
         </button>
       </div>
     </div>
@@ -91,7 +91,7 @@
 import { mapGetters } from "vuex";
 import {
   LOAD_PROFILE_INFO,
-  UPDATE_PERSONAL_INFO,
+  UPDATE_PERSONAL_INFO
 } from "@/core/services/store/profile.module";
 
 import KTUtil from "@/assets/js/components/util";
@@ -110,7 +110,7 @@ export default {
     return {
       default_photo: "media/users/blank.png",
       current_photo: null,
-      time_zones: Constants.time_zones,
+      time_zones: Constants.time_zones
     };
   },
   beforeMount() {},
@@ -120,7 +120,7 @@ export default {
   mounted() {
     this.$store.dispatch(SET_BREADCRUMB, [
       { title: "Settings" },
-      { title: "Profile" },
+      { title: "Profile" }
     ]);
 
     const profile_form = KTUtil.getById("kt_profile_form");
@@ -129,23 +129,23 @@ export default {
         name: {
           validators: {
             notEmpty: {
-              message: "Name is required",
-            },
-          },
+              message: "Name is required"
+            }
+          }
         },
         email: {
           validators: {
             notEmpty: {
-              message: "Email is required",
-            },
-          },
-        },
+              message: "Email is required"
+            }
+          }
+        }
       },
       plugins: {
         trigger: new Trigger(),
         bootstrap: new Bootstrap(),
-        submitButton: new SubmitButton(),
-      },
+        submitButton: new SubmitButton()
+      }
     });
 
     this.current_photo = this.currentUserProfile.photo;
@@ -155,7 +155,7 @@ export default {
       this.$bvToast.toast(contents, {
         title: `Litegix`,
         variant: variant,
-        solid: true,
+        solid: true
       });
     },
     showMessageBox(icon, text) {
@@ -163,7 +163,7 @@ export default {
         title: "",
         text: text,
         icon: icon,
-        confirmButtonClass: "btn btn-secondary",
+        confirmButtonClass: "btn btn-secondary"
       });
     },
     save() {
@@ -178,7 +178,7 @@ export default {
             name: this.$refs.name.value,
             email: this.$refs.email.value,
             timezone: this.$refs.timezone.value,
-            loginNotification: this.$refs.notification.checked,
+            loginNotification: this.$refs.notification.checked
           })
           .then(data => {
             this.showMessageBox("info", data.message);
@@ -205,7 +205,7 @@ export default {
       if (typeof FileReader === "function") {
         const reader = new FileReader();
 
-        reader.onload = (event) => {
+        reader.onload = event => {
           this.current_photo = event.target.result;
         };
 
@@ -213,19 +213,19 @@ export default {
       } else {
         alert("Sorry, FileReader API not supported");
       }
-    },
+    }
   },
   computed: {
     ...mapGetters([
       "loadProfileInfo",
       "currentUserProfile",
-      "currentUserAccountInfo",
+      "currentUserAccountInfo"
     ]),
     photo() {
       return this.current_photo == null
         ? this.default_photo
         : this.current_photo;
-    },
-  },
+    }
+  }
 };
 </script>

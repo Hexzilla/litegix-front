@@ -83,8 +83,8 @@ const actions = {
       ApiService.setHeader();
       ApiService.post("settings/profile/update", payload)
         .then(({ data }) => {
-          console.log("update-success", data);
-          //context.commit(SET_PERSONAL_INFO, data);
+          console.log("update-success", data, payload);
+          context.commit(SET_PERSONAL_INFO, payload);
           resolve(data);
         })
         .catch(({ response }) => {
@@ -160,20 +160,7 @@ const mutations = {
   },
 
   [SET_PERSONAL_INFO](state, user_personal_info) {
-    //user_personal_info = changed personalinfo
-    //state = this.state
-    state.user_personal_info = {
-      ...state.user_personal_info,
-      user_personal_info
-    };
-    var updateInfo = {
-      payload : user_personal_info,
-      name: user_personal_info.name.replace(' ', ''),
-      email: user_personal_info.email,
-      timezone: user_personal_info.timezone,
-      loginNotification: user_personal_info.recv_notification=='on' ? true : false
-    };
-    
+    state.user_personal_info = user_personal_info
   },
   [SET_COMPANY_INFO](state, user_company_info) {
     state.user_company_info = 

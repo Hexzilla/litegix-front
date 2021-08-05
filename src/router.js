@@ -45,8 +45,7 @@ export default new Router({
           path: "/servers/:serverId/config",
           name: "server-config",
           component: () => import("@/view/pages/servers/ConfigServer.vue"),
-          props: true,
-          
+          props: true
         },
         {
           path: "/teams",
@@ -520,14 +519,16 @@ export default new Router({
             {
               path: "database/:databaseId/grant",
               name: "server-database-grant",
-              component: () => import("@/view/pages/server/databases/Grant.vue"),
-              props: true,
+              component: () =>
+                import("@/view/pages/server/databases/Grant.vue"),
+              props: true
             },
             {
               path: "database/:userId/changepassword",
-              name: "server-database-grant",
-              component: () => import("@/view/pages/server/databases/ChangePassword.vue"),
-              props: true,
+              name: "server-database-change",
+              component: () =>
+                import("@/view/pages/server/databases/ChangePassword.vue"),
+              props: true
             },
             {
               path: "activitylog",

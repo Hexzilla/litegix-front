@@ -37,9 +37,9 @@ const actions = {
           context.commit(SET_AUTH, data);
           resolve(data);
         })
-        .catch(error => {
-          context.commit(SET_ERROR, error.response.data.errors);
-          return reject(error);
+        .catch(({ response }) => {
+          context.commit(SET_ERROR, response.data.errors);
+          return reject(response);
         });
     });
   },
@@ -50,14 +50,12 @@ const actions = {
     return new Promise((resolve, reject) => {
       ApiService.post("signup", credentials)
         .then(({ data }) => {
-          //console.log("regist-data", data);
           //context.commit(SET_AUTH, data);
           resolve(data);
         })
-        .catch(error => {
-          //console.log("regist-error", error.response);
-          context.commit(SET_ERROR, error.response.data.errors);
-          return reject(error);
+        .catch(({ response }) => {
+          context.commit(SET_ERROR, response.data.errors);
+          return reject(response);
         });
     });
   },
@@ -76,11 +74,17 @@ const actions = {
     }
   },
   [UPDATE_PASSWORD](context, payload) {
-    const password = payload;
-
-    return ApiService.put("password", password).then(({ data }) => {
-      context.commit(SET_PASSWORD, data);
-      return data;
+    return new Promise((resolve, reject) => {
+      ApiService.setHeader();
+      ApiService.post("settings/account/password/update", payload)
+        .then(({ data }) => {
+          console.log("update-success", data, payload);
+          resolve(data);
+        })
+        .catch(({ response }) => {
+          console.log("update-error", response);
+          return reject(response.data.errors);
+        });
     });
   }
 };

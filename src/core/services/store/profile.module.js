@@ -83,14 +83,12 @@ const actions = {
       ApiService.setHeader();
       ApiService.post("settings/profile/update", payload)
         .then(({ data }) => {
-          console.log("update-success", data, payload);
           context.commit(SET_PERSONAL_INFO, payload);
           resolve(data);
         })
         .catch(({ response }) => {
-          console.log("update-error");
-          // context.commit(SET_ERROR, response.data.errors);
-          return reject(); //reject(response.data.errors);
+          context.commit(SET_ERROR, response.data.errors);
+          return reject(response.data.errors);
         });
     });
   },
@@ -99,14 +97,12 @@ const actions = {
       ApiService.setHeader();
       ApiService.post("settings/profile/updatecompany", payload)
         .then(({ data }) => {
-          console.log("update-success", data, payload);
           context.commit(SET_COMPANY_INFO, payload);
           resolve(data);
         })
         .catch(({ response }) => {
-          console.log("update-error");
-          // context.commit(SET_ERROR, response.data.errors);
-          return reject(); //reject(response.data.errors);
+          context.commit(SET_ERROR, response.data.errors);
+          return reject(response.data.errors);
         });
     });
   },
@@ -139,7 +135,7 @@ const mutations = {
           resolve(data);
         })
         .catch(error => {
-          console.log("profile loading error", error.response);
+          //console.log("profile loading error", error.response);
           return reject(error);
         });
     });

@@ -12,7 +12,7 @@ export const GET_PROFILE_INFO ="getPersonalInfo"
 export const SET_PERSONAL_INFO = "setPersonalInfo";
 export const SET_COMPANY_INFO = "setCompanyInfo";
 export const SET_ACCOUNT_INFO = "setAccountInfo";
-// export const SET_ERROR = "setError";
+export const SET_ERROR = "setError";
 // export const SET_SUCCESS = "setSuccess";
 
 const state = {
@@ -55,7 +55,7 @@ const state = {
 
 const getters = {
   
-  currentUserPersonalInfo(state) {
+  currentUserProfile(state) {
     return state.user_personal_info;
   },
 
@@ -79,7 +79,20 @@ const actions = {
     context.commit(GET_PROFILE_INFO, payload);    
   },
   [UPDATE_PERSONAL_INFO](context, payload) {
-    context.commit(SET_PERSONAL_INFO, payload);
+    return new Promise((resolve, reject) => {
+      ApiService.setHeader();
+      ApiService.post("settings/profile/update", payload)
+        .then(({ data }) => {
+          console.log("update-success", data);
+          //context.commit(SET_PERSONAL_INFO, data);
+          resolve(data);
+        })
+        .catch(({ response }) => {
+          console.log("update-error");
+          // context.commit(SET_ERROR, response.data.errors);
+          return reject(); //reject(response.data.errors);
+        });
+    });
   },
   [UPDATE_COMPANY_INFO](context, company_json) {
     // context.commit(SET_COMPANY_INFO, payload);
@@ -117,6 +130,9 @@ const actions = {
 };
 
 const mutations = {
+  [SET_ERROR](state, error) {
+    state.errors = error;
+  },
   [GET_PROFILE_INFO](state) {
     return new Promise((resolve, reject) => {
       ApiService.setHeader(),
@@ -157,18 +173,7 @@ const mutations = {
       timezone: user_personal_info.timezone,
       loginNotification: user_personal_info.recv_notification=='on' ? true : false
     };
-    return new Promise((resolve, reject) => {
-      ApiService.setHeader(),
-      ApiService.post("settings/profile/update", updateInfo)
-        .then(({ data }) => {
-          resolve(data);
-        })
-        .catch(error => {
-          console.log("update-error", error.response);
-          //context.commit(SET_ERROR, error.response.data.errors);
-          return reject(error);
-        });
-    });
+    
   },
   [SET_COMPANY_INFO](state, user_company_info) {
     state.user_company_info = 

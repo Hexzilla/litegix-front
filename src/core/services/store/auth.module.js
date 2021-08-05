@@ -31,27 +31,21 @@ const getters = {
 
 const actions = {
   [LOGIN](context, credentials) {
-    console.log("LOGIN : ");
-    //console.log(ApiService);
     return new Promise((resolve, reject) => {
       ApiService.post("/login", credentials)
         .then(({ data }) => {
-          console.log(data);
           context.commit(SET_AUTH, data);
           resolve(data);
         })
         .catch(error => {
-          console.log("login-error", error.response);
           context.commit(SET_ERROR, error.response.data.errors);
           return reject(error);
         });
     });
   },
-
   [LOGOUT](context) {
     context.commit(PURGE_AUTH);
   },
-  
   [REGISTER](context, credentials) {
     return new Promise((resolve, reject) => {
       ApiService.post("signup", credentials)

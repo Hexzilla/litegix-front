@@ -10,79 +10,79 @@
         >
       </div>
       <div class="card-toolbar">
-        <v-btn color="primary" @click="save()" ref="user_save_changes">
+        <button
+          type="reset"
+          class="btn btn-success mr-2"
+          @click="save()"
+          ref="kt_save_changes"
+        >
           Save Changes
-        </v-btn>
-        <!-- <button type="reset" class="btn btn-secondary" @click="cancel()">
-          Cancel
-        </button> -->
+        </button>
       </div>
     </div>
     <div class="card-body">
-      <v-form id="profile_form" class="mt-5">
-        <v-row>
+      <form class="form mt-5" id="kt_profile_form">
+        <v-row class="form-group">
           <v-col md="6" offset-md="3" sm="12" offset-sm="0">
-            <b-form-group label="User Name:" label-for="username">
-              <b-form-input
-                id="username"
-                type="text"
-                required
-                placeholder="Enter user name"
-                ref="name"
-                v-model="currentUserPersonalInfo.name"
-              ></b-form-input>
-            </b-form-group>
+            <label for="name">User Name:</label>
+            <input
+              type="text"
+              class="form-control mb-2"
+              placeholder="Enter your name"
+              name="name"
+              ref="name"
+              :value="currentUserProfile.name"
+            />
           </v-col>
         </v-row>
-        <v-row>
+        <v-row class="form-group">
           <v-col md="6" offset-md="3" sm="12" offset-sm="0">
-            <b-form-group label="Email:" label-for="email" description="">
-              <b-form-input
-                id="email"
-                type="email"
-                required
-                readonly
-                placeholder="Enter your email"
-                ref="email"
-                v-model="currentUserPersonalInfo.email"
-              ></b-form-input>
-            </b-form-group>
+            <label for="email">Email:</label>
+            <input
+              type="email"
+              class="form-control mb-2"
+              readonly
+              placeholder="Enter your email"
+              name="email"
+              ref="email"
+              :value="currentUserProfile.email"
+            />
           </v-col>
         </v-row>
-        <v-row>
+        <v-row class="form-group">
           <v-col md="6" offset-md="3" sm="12" offset-sm="0">
-            <b-form-group label="Time Zone:" label-for="timezone">
-              <b-form-select
-                id="timezone"
-                v-model="currentUserPersonalInfo.timezone"
-                :options="time_zones"
-                required
-                ref="time_zone"
-              ></b-form-select>
-            </b-form-group>
+            <label for="timezone">Time Zone:</label>
+            <select class="form-control" ref="timezone">
+              <template v-for="(item, i) in time_zones">
+                <option
+                  v-bind:key="i"
+                  :value="item"
+                  :selected="currentUserProfile.timezone == item ? true : false"
+                  >{{ item }}</option
+                >
+              </template>
+            </select>
           </v-col>
         </v-row>
-        <v-row>
+        <v-row class="form-group">
           <v-col md="6" offset-md="3" sm="12" offset-sm="0">
             <div class="checkbox-inline">
               <label
                 class="
-                  checkbox checkbox-lg checkbox-lg checkbox-single
+                  checkbox checkbox-single
                   flex-shrink-0
-                  mr-4
-                "
+                  mr-4"
               >
                 <input
                   type="checkbox"
-                  ref="email_com"
-                  :checked="currentUserPersonalInfo.recv_notification"
-                  v-model="currentUserPersonalInfo.recv_notification"
+                  ref="notification"
+                  :checked="currentUserProfile.recv_notification"
                 /><span></span> Login Email Notification</label
               >
             </div>
           </v-col>
         </v-row>
-      </v-form>
+      </form>
     </div>
   </div>
 </template>
@@ -94,6 +94,13 @@ import {
   UPDATE_PERSONAL_INFO,
 } from "@/core/services/store/profile.module";
 
+import KTUtil from "@/assets/js/components/util";
+import formValidation from "@/assets/plugins/formvalidation/dist/es6/core/Core";
+import Trigger from "@/assets/plugins/formvalidation/dist/es6/plugins/Trigger";
+import Bootstrap from "@/assets/plugins/formvalidation/dist/es6/plugins/Bootstrap";
+import SubmitButton from "@/assets/plugins/formvalidation/dist/es6/plugins/SubmitButton";
+import Swal from "sweetalert2";
+
 import { SET_BREADCRUMB } from "@/core/services/store/breadcrumbs.module";
 import { Constants } from "@/core/services/constants.module";
 
@@ -104,21 +111,6 @@ export default {
       default_photo: "media/users/blank.png",
       current_photo: null,
       time_zones: Constants.time_zones,
-      Country: Constants.countrys,
-      email: "",
-      username: "",
-      phonenumber: "",
-      timezone: "",
-      recv_notification: true,
-
-      companyname: "",
-      address1: "",
-      address2: "",
-      city: "",
-      pocode: "",
-      state: "",
-      country: "",
-      gstnumber: "",
     };
   },
   beforeMount() {},
@@ -131,7 +123,32 @@ export default {
       { title: "Profile" },
     ]);
 
-    this.current_photo = this.currentUserPersonalInfo.photo;
+    const profile_form = KTUtil.getById("kt_profile_form");
+    this.fv = formValidation(profile_form, {
+      fields: {
+        name: {
+          validators: {
+            notEmpty: {
+              message: "Name is required",
+            },
+          },
+        },
+        email: {
+          validators: {
+            notEmpty: {
+              message: "Email is required",
+            },
+          },
+        },
+      },
+      plugins: {
+        trigger: new Trigger(),
+        bootstrap: new Bootstrap(),
+        submitButton: new SubmitButton(),
+      },
+    });
+
+    this.current_photo = this.currentUserProfile.photo;
   },
   methods: {
     makeToast(contents, variant = null) {
@@ -141,48 +158,46 @@ export default {
         solid: true,
       });
     },
+    showMessageBox(icon, text) {
+      Swal.fire({
+        title: "",
+        text: text,
+        icon: icon,
+        confirmButtonClass: "btn btn-secondary",
+      });
+    },
     save() {
-      var name = this.$refs.name.value;
-      var email = this.$refs.email.value;
-      var timezone = this.$refs.time_zone.value;
-      var recv_notification = this.$refs.email_com.checked;
-      //photo, surname, job, phone
+      this.fv.validate();
 
-      // set spinner to submit button
-      const submitButton = this.$refs["user_save_changes"];
-      submitButton.$el.classList.add(
-        "spinner",
-        "spinner-light",
-        "spinner-right"
-      );
+      this.fv.on("core.form.valid", () => {
+        const submitButton = this.$refs["kt_save_changes"];
+        submitButton.classList.add("spinner", "spinner-light", "spinner-right");
 
-      // send update request
-      this.$store.dispatch(UPDATE_PERSONAL_INFO, {
-        email,
-        name,
-        timezone,
-        recv_notification,
+        this.$store
+          .dispatch(UPDATE_PERSONAL_INFO, {
+            name: this.$refs.name.value,
+            email: this.$refs.email.value,
+            timezone: this.$refs.timezone.value,
+            loginNotification: this.$refs.notification.checked,
+          })
+          .then(data => {
+            this.showMessageBox("info", data.message);
+          })
+          .catch(() => {
+            this.showMessageBox("error", "Failed to save changes!");
+          })
+          .finally(() => {
+            submitButton.classList.remove(
+              "spinner",
+              "spinner-light",
+              "spinner-right"
+            );
+          });
       });
 
-      // dummy delay
-      setTimeout(() => {
-        submitButton.$el.classList.remove(
-          "spinner",
-          "spinner-light",
-          "spinner-right"
-        );
-      }, 1000);
-    },
-    cancel() {
-      this.$refs.name.value = this.currentUserPersonalInfo.name.replace(
-        " ",
-        ""
-      );
-      this.$refs.surname.value = this.currentUserPersonalInfo.surname;
-      this.$refs.company_name.value = this.currentUserPersonalInfo.company_name;
-      this.$refs.phone.value = this.currentUserPersonalInfo.phone;
-      this.$refs.email.value = this.currentUserPersonalInfo.email;
-      this.current_photo = this.currentUserPersonalInfo.photo;
+      this.fv.on("core.form.invalid", () => {
+        this.showMessageBox("error", "Please, provide correct data!");
+      });
     },
     onFileChange(e) {
       const file = e.target.files[0];
@@ -203,7 +218,7 @@ export default {
   computed: {
     ...mapGetters([
       "loadProfileInfo",
-      "currentUserPersonalInfo",
+      "currentUserProfile",
       "currentUserAccountInfo",
     ]),
     photo() {

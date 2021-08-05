@@ -180,7 +180,7 @@ export default {
       { title: "Settings", route: "profile" },
       { title: "Notification" }
     ]);
-    this.current_photo = this.currentUserPersonalInfo.photo;
+    this.current_photo = this.currentUserProfile.photo;
   },
   methods: {
     save() {

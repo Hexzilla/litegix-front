@@ -437,13 +437,13 @@ export default {
     }
   },
   computed: {
-    ...mapGetters(["currentUserPersonalInfo"]),
+    ...mapGetters(["currentUserProfile"]),
 
     getFullName() {
       return (
-        this.currentUserPersonalInfo.name +
+        this.currentUserProfile.name +
         " " +
-        this.currentUserPersonalInfo.surname
+        this.currentUserProfile.surname
       );
     }
   }

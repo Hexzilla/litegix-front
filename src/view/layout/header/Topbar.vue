@@ -139,9 +139,9 @@
           class="btn btn-icon btn-clean btn-dropdown btn-lg mr-1 pulse pulse-primary"
         >
           <span class="symbol symbol-35 symbol-light-success">
-            <img v-if="false" alt="Pic" :src="currentUserPersonalInfo.photo" />
+            <img v-if="false" alt="Pic" :src="currentUserProfile.photo" />
             <span v-if="true" class="symbol-label font-size-h5 ">
-              {{ currentUserPersonalInfo.name.charAt(0).toUpperCase() }}
+              {{ currentUserProfile.name.charAt(0).toUpperCase() }}
             </span>
           </span>
           <!-- <span class="pulse-ring"></span> -->
@@ -221,7 +221,7 @@ export default {
     }
   },
   computed: {
-    ...mapGetters(["currentUserPersonalInfo"]),
+    ...mapGetters(["currentUserProfile"]),
     getLanguageFlag() {
       return this.onLanguageChanged();
     }

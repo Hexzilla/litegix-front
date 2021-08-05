@@ -258,14 +258,14 @@ export default {
         provider: "",
         web_server: "nginx",
         phpVersion: "7.4",
-        database: "mysql",
-      },
+        database: "mysql"
+      }
     };
   },
   mounted() {
     this.$store.dispatch(SET_BREADCRUMB, [
       { title: "Server" },
-      { title: "Create" },
+      { title: "Create" }
     ]);
     const create_form = KTUtil.getById("kt_form_server");
     this.fv = formValidation(create_form, {
@@ -273,17 +273,17 @@ export default {
         name: {
           validators: {
             notEmpty: {
-              message: "Name is required",
-            },
-          },
+              message: "Name is required"
+            }
+          }
         },
         address: {
           validators: {
             notEmpty: {
-              message: "IP address is required",
+              message: "IP address is required"
             },
             ip: {
-              message: "Invalid IP address",
+              message: "Invalid IP address"
             }
           },
         },
@@ -292,7 +292,7 @@ export default {
         trigger: new Trigger(),
         submitButton: new SubmitButton(),
         bootstrap: new Bootstrap(),
-      },
+      }
     });
     this.fv.on("core.form.valid", this.createServer);
     this.fv.on("core.form.invalid", () => {
@@ -301,7 +301,7 @@ export default {
         text: "Please, provide correct data!",
         icon: "error",
         confirmButtonClass: "btn btn-secondary",
-        heightAuto: false,
+        heightAuto: false
       });
     });
   },
@@ -311,7 +311,7 @@ export default {
         title: `Litegix`,
         toaster: "b-toaster-bottom-right",
         variant: variant,
-        solid: true,
+        solid: true
       });
     },
     createServer() {
@@ -333,7 +333,7 @@ export default {
         web_server: this.form.web_server,
         database: this.form.database,
         address: this.form.address,
-        phpVersion: this.form.phpVersion,
+        phpVersion: this.form.phpVersion
       };
 
       this.$store
@@ -345,20 +345,22 @@ export default {
         .catch(() => {
           removeSpinner();
         });
-
     },
     onCreateSuccess(serverId) {
       Swal.fire({
         title: "",
-        text: 'Your Server has been successfully created',
+        text: "Your Server has been successfully created",
         icon: "success",
         confirmButtonClass: "btn btn-secondary",
-        heightAuto: false,
+        heightAuto: false
       }).then(() => {
-        console.log(serverId)
-        this.$router.push({ name: "server-config", params: {serverId:serverId} });
+        console.log(serverId);
+        this.$router.push({
+          name: "server-config",
+          params: { serverId: serverId }
+        });
       });
-    },
-  },
+    }
+  }
 };
 </script>

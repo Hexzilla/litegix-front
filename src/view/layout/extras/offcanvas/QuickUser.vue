@@ -12,12 +12,12 @@
       <span
         class="text-dark-50 font-weight-bolder font-size-base d-none d-md-inline mr-3"
       >
-        {{ currentUserPersonalInfo.name }}
+        {{ currentUserProfile.name }}
       </span>
       <span class="symbol symbol-35 symbol-light-success">
-        <img v-if="false" alt="Pic" :src="currentUserPersonalInfo.photo" />
+        <img v-if="false" alt="Pic" :src="currentUserProfile.photo" />
         <span v-if="true" class="symbol-label font-size-h5 ">
-          {{ currentUserPersonalInfo.name.charAt(0).toUpperCase() }}
+          {{ currentUserProfile.name.charAt(0).toUpperCase() }}
         </span>
       </span>
     </div> -->
@@ -55,7 +55,7 @@
           <div class="symbol symbol-100 mr-5">
             <img
               class="symbol-label"
-              :src="currentUserPersonalInfo.photo"
+              :src="currentUserProfile.photo"
               alt=""
             />
             <i class="symbol-badge bg-success"></i>
@@ -81,7 +81,7 @@
                     </span>
                   </span>
                   <span class="navi-text text-muted text-hover-primary">
-                    {{ currentUserPersonalInfo.email }}
+                    {{ currentUserProfile.email }}
                   </span>
                 </span>
               </a>
@@ -223,13 +223,13 @@ export default {
     }
   },
   computed: {
-    ...mapGetters(["currentUserPersonalInfo"]),
+    ...mapGetters(["currentUserProfile"]),
 
     getFullName() {
       return (
-        this.currentUserPersonalInfo.name +
+        this.currentUserProfile.name +
         " " +
-        this.currentUserPersonalInfo.surname
+        this.currentUserProfile.surname
       );
     }
   }

@@ -30,16 +30,10 @@
               >
               <v-card-actions>
                 <v-spacer></v-spacer>
-                <v-btn
-                  color="blue darken-1"
-                  text
-                  @click="dialogDelete = false"
+                <v-btn color="blue darken-1" text @click="dialogDelete = false"
                   >Cancel</v-btn
                 >
-                <v-btn
-                  color="blue darken-1"
-                  text
-                  @click="dialogDelete = false"
+                <v-btn color="blue darken-1" text @click="dialogDelete = false"
                   >OK</v-btn
                 >
                 <v-spacer></v-spacer>
@@ -69,12 +63,12 @@ export default {
         text: "Label",
         align: "start",
         sortable: false,
-        value: "label",
+        value: "label"
       },
       { text: "Public Key", value: "key" },
-      { text: "Delete", value: "actions", sortable: false },
+      { text: "Delete", value: "actions", sortable: false }
     ],
-    SSHKeys: [],
+    SSHKeys: []
   }),
 
   created() {
@@ -83,7 +77,7 @@ export default {
   mounted() {
     this.$store.dispatch(SET_BREADCRUMB, [
       { title: "Settings", route: "profile" },
-      { title: "SSH KEY Vault" },
+      { title: "SSH KEY Vault" }
     ]);
   },
 
@@ -92,15 +86,15 @@ export default {
       this.SSHKeys = [
         {
           label: "Frozen Yogurt",
-          key: 159,
-        },
+          key: 159
+        }
       ];
     },
 
     deleteItem() {
       //console.log(item);
       this.dialogDelete = true;
-    },
-  },
+    }
+  }
 };
 </script>

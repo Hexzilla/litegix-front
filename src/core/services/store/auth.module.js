@@ -78,11 +78,9 @@ const actions = {
       ApiService.setHeader();
       ApiService.post("settings/account/password/update", payload)
         .then(({ data }) => {
-          console.log("update-success", data, payload);
           resolve(data);
         })
         .catch(({ response }) => {
-          console.log("update-error", response);
           return reject(response.data.errors);
         });
     });

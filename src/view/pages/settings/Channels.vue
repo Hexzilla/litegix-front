@@ -5,7 +5,7 @@
         <h3 class="card-label font-weight-bolder text-dark">
           Notification Channels
         </h3>
-        <span class="text-muted font-weight-bold font-size-sm mt-1"
+        <span class="text-muted font-size-sm mt-1"
           >Add or remove your notification channels</span
         >
       </div>
@@ -20,11 +20,11 @@
     </div>
     <div class="card-body">
       <div>
-        <span class="text-muted font-size-sm mt-8">
-          Here you can add notifications to notify you on certain events. You
-          can add <b>Slack, Telegram and Email </b>for the notification
-          channel. You then can hook the registered notifications to your
-          <b> Servers, Atomic Deployment </b> and
+        <span class="font-size-lg mt-8">
+          Here you can add notifications to notify you on certain events.
+          <br />You can add <b>Slack, Telegram and Email </b>for the
+          notification channel. You then can hook the registered notifications
+          to your <b> Servers, Atomic Deployment </b> and
           <b> Payment History (soon)</b>.
         </span>
       </div>

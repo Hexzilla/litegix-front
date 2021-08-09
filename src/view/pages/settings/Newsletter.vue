@@ -23,7 +23,7 @@
             <div class="d-flex flex-grow-1">
               <label
                 class="
-                  checkbox checkbox-lg checkbox-lg checkbox-single
+                  checkbox checkbox-lg checkbox-single
                   flex-shrink-0
                   mr-4
                   v-treeview
@@ -52,7 +52,7 @@
             <div class="d-flex flex-grow-1">
               <label
                 class="
-                  checkbox checkbox-lg checkbox-lg checkbox-single
+                  checkbox checkbox-single
                   flex-shrink-0
                   mr-4
                   v-treeview
@@ -81,7 +81,7 @@
             <div class="d-flex flex-grow-1">
               <label
                 class="
-                  checkbox checkbox-lg checkbox-lg checkbox-single
+                  checkbox checkbox-single
                   flex-shrink-0
                   mr-4
                 "
@@ -109,7 +109,7 @@
             <div class="d-flex flex-grow-1">
               <label
                 class="
-                  checkbox checkbox-lg checkbox-lg checkbox-single
+                  checkbox checkbox-single
                   flex-shrink-0
                   mr-4
                 "
@@ -124,7 +124,7 @@
                 <div class="d-flex flex-column py-2">
                   <div class="font-size-lg mb-1">Events and Meetups</div>
                   <span class="text-muted">
-                    Be informed about RunCloud events and meetups
+                    Be informed about Litegix events and meetups
                   </span>
                 </div>
               </label>

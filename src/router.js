@@ -540,14 +540,16 @@ export default new Router({
               component: () => import("@/view/pages/server/DeleteServer.vue")
             },
             {
-              path: "user",
+              path: "systemuser",
               name: "server-user",
-              component: () => import("@/view/pages/server/users/Users.vue")
+              component: () =>
+                import("@/view/pages/server/systemuser/SystemUser.vue")
             },
             {
               path: "user/create",
               name: "server-user-create",
-              component: () => import("@/view/pages/server/users/Create.vue")
+              component: () =>
+                import("@/view/pages/server/systemuser/CreateUser.vue")
             },
 
             {

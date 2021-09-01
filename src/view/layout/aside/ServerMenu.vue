@@ -78,7 +78,7 @@ export default {
         },
         {
           title: "System User",
-          link: "/server/user",
+          link: "/server/systemuser",
           icon: "media/svg/icons/Communication/Mail-opened.svg"
         },
         {

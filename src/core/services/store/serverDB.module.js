@@ -25,11 +25,11 @@ export const REVOKE_USER = "revokeUser";
 
 const state = {
   database: {},
-  databases: {},
+  databases: [],
   databaseuser: {},
-  databaseusers: {},
+  databaseusers: [],
   ungrantedusers: {},
-  error: {},
+  error: {}
 };
 
 const getters = {
@@ -152,10 +152,10 @@ const actions = {
       ApiService.setHeader();
       ApiService.get("servers/" + serverId + "/databases")
         .then(({ data }) => {
-          resolve(data);
           if (data.success) {
             context.commit(SET_DATABASES, data.data.results);
           }
+          resolve(data);
         })
         .catch((error) => {
           context.commit(SET_ERROR, error.response.data.errors);

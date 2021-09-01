@@ -1,24 +1,5 @@
 <template>
   <div>
-    <!-- <div class="card card-custom gutter-b">
-      <div class="card-header border-0 py-5">
-        <h3 class="card-title align-items-start flex-column">
-          <span class="card-label font-weight-bolder text-dark">
-            PHPMyAdmin</span
-          >
-        </h3>
-      </div>
-      <div class="card-body py-0">
-        <b-table
-          empty-text="You don't have anything inside here yet."
-          :items="items"
-          :fields="fields"
-          show-empty
-        >
-        </b-table>
-      </div>
-    </div> -->
-
     <div class="card card-custom gutter-b">
       <div class="card-header border-0 py-5">
         <h3 class="card-title align-items-start flex-column">
@@ -59,7 +40,7 @@
               </span></a
             >
 
-            <b-link :to="`database/`+data.item._id+`/grant`">
+            <b-link :to="`database/` + data.item._id + `/grant`">
               <span class="label label-lg label-inline label-success">
                 Grant User
               </span>
@@ -122,7 +103,6 @@
   </div>
 </template>
 
-
 <style scoped src="@/assets/styles/server.css"></style>
 
 <script>
@@ -132,8 +112,9 @@ import {
   GET_DBUSERS,
   DELETE_DATABASE,
   DELETE_DBUSER,
-  REVOKE_USER,
+  REVOKE_USER
 } from "@/core/services/store/serverDB.module";
+
 export default {
   data() {
     return {
@@ -141,47 +122,47 @@ export default {
         { key: "name", label: "Database Name" },
         "database_user",
         "collation",
-        "delete",
+        "delete"
       ],
       dtabaseUserFields: [
         { key: "name", label: "User Name" },
         "change_password",
-        "delete",
-      ],
+        "delete"
+      ]
     };
   },
   computed: {
-    ...mapGetters(["databases", "databaseusers"]),
+    ...mapGetters(["databases", "databaseusers"])
   },
   mounted() {
     this.$store.dispatch(GET_DATABASES, this.$parent.serverId);
     this.$store.dispatch(GET_DBUSERS, this.$parent.serverId);
   },
   methods: {
-    revoke_dbuser: function (dbId, userId) {
+    revoke_dbuser: function(dbId, userId) {
       this.$store.dispatch(REVOKE_USER, {
         serverId: this.$parent.serverId,
         databaseId: dbId,
-        dbuserId: userId,
+        dbuserId: userId
       });
-      this.$router.go()
+      this.$router.go();
     },
-    delete_dbuser: function (userId) {
+    delete_dbuser: function(userId) {
       this.$store.dispatch(DELETE_DBUSER, {
         serverId: this.$parent.serverId,
-        dbuserId: userId,
+        dbuserId: userId
       });
       this.$store.dispatch(GET_DATABASES, this.$parent.serverId);
       this.$store.dispatch(GET_DBUSERS, this.$parent.serverId);
     },
-    delete_database: function (dbId) {
+    delete_database: function(dbId) {
       this.$store.dispatch(DELETE_DATABASE, {
         serverId: this.$parent.serverId,
-        databaseId: dbId,
+        databaseId: dbId
       });
       this.$store.dispatch(GET_DATABASES, this.$parent.serverId);
       this.$store.dispatch(GET_DBUSERS, this.$parent.serverId);
-    },
-  },
+    }
+  }
 };
 </script>

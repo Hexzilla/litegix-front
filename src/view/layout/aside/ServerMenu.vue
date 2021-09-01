@@ -130,9 +130,6 @@ export default {
         }
       ]
     };
-  },
-  mounted() {
-    console.log("ServerMenu", this.serverId);
   }
 };
 </script>

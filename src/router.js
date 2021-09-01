@@ -501,14 +501,13 @@ export default new Router({
             {
               path: "database",
               name: "server-database",
-              component: () =>
-                import("@/view/pages/server/databases/Database.vue")
+              component: () => import("@/view/pages/server/databases/Index.vue")
             },
             {
               path: "database/create",
               name: "server-database-create",
               component: () =>
-                import("@/view/pages/server/databases/Create.vue")
+                import("@/view/pages/server/databases/CreateDatabase.vue")
             },
             {
               path: "database/createuser",

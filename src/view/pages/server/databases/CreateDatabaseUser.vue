@@ -63,15 +63,15 @@ import SubmitButton from "@/assets/plugins/formvalidation/dist/es6/plugins/Submi
 import KTUtil from "@/assets/js/components/util";
 
 import Swal from "sweetalert2";
-import { CREATE_DBUSER } from "@/core/services/store/serverDB.module";
+import { CREATE_DBUSER } from "@/core/services/store/database.module";
 
 export default {
   data() {
     return {
       form: {
         name: "",
-        password: "",
-      },
+        password: ""
+      }
     };
   },
   mounted() {
@@ -81,36 +81,36 @@ export default {
         name: {
           validators: {
             notEmpty: {
-              message: "Name is required",
-            },
-          },
+              message: "Name is required"
+            }
+          }
         },
         password: {
           validators: {
             notEmpty: {
-              message: "Password is required",
-            },
-          },
+              message: "Password is required"
+            }
+          }
         },
         cpassword: {
           validators: {
             notEmpty: {
-              message: "Confirm password is required",
+              message: "Confirm password is required"
             },
             identical: {
-              compare: function () {
+              compare: function() {
                 return create_form.querySelector('[name="password"]').value;
               },
-              message: "The password and its confirm are not the same",
-            },
-          },
-        },
+              message: "The password and its confirm are not the same"
+            }
+          }
+        }
       },
       plugins: {
         trigger: new Trigger(),
         submitButton: new SubmitButton(),
-        bootstrap: new Bootstrap(),
-      },
+        bootstrap: new Bootstrap()
+      }
     });
     this.fv.on("core.form.valid", this.createUser);
     this.fv.on("core.form.invalid", () => {});
@@ -130,7 +130,7 @@ export default {
       const payload = {
         name: this.form.name,
         password: this.form.password,
-        serverId: this.$parent.serverId,
+        serverId: this.$parent.serverId
       };
       this.$store
         .dispatch(CREATE_DBUSER, payload)
@@ -148,14 +148,14 @@ export default {
         text: "Database user " + name + " has been successfully created",
         icon: "success",
         confirmButtonClass: "btn btn-secondary",
-        heightAuto: false,
+        heightAuto: false
       }).then(() => {
         console.log();
         this.$router.push({
-          name: "server-database",
+          name: "server-database"
         });
       });
-    },
-  },
+    }
+  }
 };
 </script>

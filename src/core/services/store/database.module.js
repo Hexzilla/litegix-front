@@ -47,7 +47,7 @@ const getters = {
   },
   ungrantedusers(state) {
     return state.ungrantedusers;
-  },
+  }
 };
 
 const actions = {
@@ -61,7 +61,7 @@ const actions = {
         .then(({ data }) => {
           resolve(data);
         })
-        .catch((error) => {
+        .catch(error => {
           context.commit(SET_ERROR, error.response.data.errors);
           reject(error);
         });
@@ -77,7 +77,7 @@ const actions = {
         .then(({ data }) => {
           resolve(data);
         })
-        .catch((error) => {
+        .catch(error => {
           console.log(error.response);
           context.commit(SET_ERROR, error.response.data.errors);
           reject(error);
@@ -98,7 +98,7 @@ const actions = {
         .then(({ data }) => {
           resolve(data);
         })
-        .catch((error) => {
+        .catch(error => {
           console.log(error.response);
           context.commit(SET_ERROR, error.response.data.errors);
           reject(error);
@@ -119,7 +119,7 @@ const actions = {
         .then(({ data }) => {
           resolve(data);
         })
-        .catch((error) => {
+        .catch(error => {
           console.log(error.response);
           context.commit(SET_ERROR, error.response.data.errors);
           reject(error);
@@ -141,7 +141,7 @@ const actions = {
             context.commit(SET_DATABASE, data.data.databases);
           }
         })
-        .catch((error) => {
+        .catch(error => {
           context.commit(SET_ERROR, error.response.data.errors);
           reject(error);
         });
@@ -157,7 +157,7 @@ const actions = {
           }
           resolve(data);
         })
-        .catch((error) => {
+        .catch(error => {
           context.commit(SET_ERROR, error.response.data.errors);
           reject(error);
         });
@@ -174,7 +174,7 @@ const actions = {
             context.commit(SET_DBUSERS, data.data.dbusers);
           }
         })
-        .catch((error) => {
+        .catch(error => {
           context.commit(SET_ERROR, error.response.data.errors);
           reject(error);
         });
@@ -197,7 +197,7 @@ const actions = {
             context.commit(SET_UNGRANTED_DBUSER, data.data.ungrantedusers);
           }
         })
-        .catch((error) => {
+        .catch(error => {
           context.commit(SET_ERROR, error.response.data.errors);
           reject(error);
         });
@@ -219,13 +219,13 @@ const actions = {
             context.commit(SET_DBUSER, data.data.dbuser);
           }
         })
-        .catch((error) => {
+        .catch(error => {
           context.commit(SET_ERROR, error.response.data.errors);
           reject(error);
         });
     });
   },
-  
+
   [DELETE_DATABASE](context, credentials) {
     return new Promise((resolve, reject) => {
       ApiService.setHeader();
@@ -241,7 +241,7 @@ const actions = {
           //     context.commit(SET_DATABASES, data.data.databases);
           // }
         })
-        .catch((error) => {
+        .catch(error => {
           context.commit(SET_ERROR, error.response.data.errors);
           reject(error);
         });
@@ -263,7 +263,7 @@ const actions = {
           //     context.commit(SET_DATABASES, data.data.databases);
           // }
         })
-        .catch((error) => {
+        .catch(error => {
           context.commit(SET_ERROR, error.response.data.errors);
           reject(error);
         });
@@ -286,12 +286,12 @@ const actions = {
           //     context.commit(SET_DATABASES, data.data.databases);
           // }
         })
-        .catch((error) => {
+        .catch(error => {
           context.commit(SET_ERROR, error.response.data.errors);
           reject(error);
         });
     });
-  },
+  }
 };
 
 const mutations = {
@@ -317,12 +317,12 @@ const mutations = {
   [SET_UNGRANTED_DBUSER](state, databaseusers) {
     state.ungrantedusers = databaseusers;
     state.errors = {};
-  },
+  }
 };
 
 export default {
   state,
   actions,
   mutations,
-  getters,
+  getters
 };

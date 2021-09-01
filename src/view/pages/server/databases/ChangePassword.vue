@@ -61,7 +61,7 @@ import Swal from "sweetalert2";
 import {
   GET_DBUSER,
   CHANGE_PASSWORD,
-} from "@/core/services/store/serverDB.module";
+} from "@/core/services/store/database.module";
 
 export default {
   props: ["userId"],

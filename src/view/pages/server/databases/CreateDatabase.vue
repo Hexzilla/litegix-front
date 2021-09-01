@@ -66,8 +66,8 @@ import { mapGetters } from "vuex";
 import Swal from "sweetalert2";
 import {
   CREATE_DATABASE,
-  GET_DBUSERS,
-} from "@/core/services/store/serverDB.module";
+  GET_DBUSERS
+} from "@/core/services/store/database.module";
 
 export default {
   data() {
@@ -75,16 +75,16 @@ export default {
       form: {
         name: "",
         user: "",
-        collation: "",
+        collation: ""
       },
       collations: [
         { value: "utf-8", text: "utf-8" },
-        { value: "utf-16", text: "utf-16" },
-      ],
+        { value: "utf-16", text: "utf-16" }
+      ]
     };
   },
   computed: {
-    ...mapGetters(["databaseusers"]),
+    ...mapGetters(["databaseusers"])
   },
   mounted() {
     this.$store.dispatch(GET_DBUSERS, this.$parent.serverId);
@@ -94,23 +94,22 @@ export default {
         name: {
           validators: {
             notEmpty: {
-              message: "Name is required",
-            },
-          },
-        },
+              message: "Name is required"
+            }
+          }
+        }
       },
       plugins: {
         trigger: new Trigger(),
         submitButton: new SubmitButton(),
-        bootstrap: new Bootstrap(),
-      },
+        bootstrap: new Bootstrap()
+      }
     });
     this.fv.on("core.form.valid", this.createDatabase);
     this.fv.on("core.form.invalid", () => {});
   },
   methods: {
     createDatabase() {
-      console.log("create db");
       // set spinner to submit button
       const submitButton = this.$refs["kt_form_submit"];
       submitButton.classList.add("spinner", "spinner-light", "spinner-right");
@@ -125,7 +124,7 @@ export default {
         name: this.form.name,
         user: this.form.user,
         collation: this.form.collation,
-        serverId: this.$parent.serverId,
+        serverId: this.$parent.serverId
       };
       this.$store
         .dispatch(CREATE_DATABASE, payload)
@@ -143,14 +142,14 @@ export default {
         text: "Database " + name + " has been successfully created",
         icon: "success",
         confirmButtonClass: "btn btn-secondary",
-        heightAuto: false,
+        heightAuto: false
       }).then(() => {
         console.log();
         this.$router.push({
-          name: "server-database",
+          name: "server-database"
         });
       });
-    },
-  },
+    }
+  }
 };
 </script>

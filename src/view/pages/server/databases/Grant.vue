@@ -55,7 +55,7 @@ import Swal from "sweetalert2";
 import {
   GET_UNGRANTED_DBUSER,
   GRANT_USER,
-} from "@/core/services/store/serverDB.module";
+} from "@/core/services/store/database.module";
 
 export default {
   props: ["databaseId"],

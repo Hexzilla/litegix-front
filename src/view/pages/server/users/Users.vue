@@ -69,7 +69,7 @@ import {
   DELETE_DATABASE,
   DELETE_DBUSER,
   REVOKE_USER
-} from "@/core/services/store/serverDB.module";
+} from "@/core/services/store/database.module";
 
 export default {
   data() {

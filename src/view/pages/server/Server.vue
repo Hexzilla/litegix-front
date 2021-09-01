@@ -1,6 +1,6 @@
 <template>
   <div class="d-flex flex-row">
-    <KTSubAside :n_path="'server'"></KTSubAside>
+    <KTServerMenu :serverId="serverId"></KTServerMenu>
 
     <!--begin::Content-->
     <div class="flex-row-fluid ml-lg-8">
@@ -21,12 +21,12 @@
 </style>
 <script>
 import { SET_BREADCRUMB } from "@/core/services/store/breadcrumbs.module";
-import KTSubAside from "@/view/layout/aside/SubAside.vue";
+import KTServerMenu from "@/view/layout/aside/ServerMenu.vue";
 
 export default {
-  props:['serverId'],
+  props: ["serverId"],
   components: {
-    KTSubAside
+    KTServerMenu
   },
   mounted() {
     this.$store.dispatch(SET_BREADCRUMB, [{ title: "Server" }]);

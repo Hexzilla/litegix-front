@@ -32,7 +32,6 @@
 <script>
 export default {
   name: "SettingsMenu",
-  props: ["serverId"],
   data() {
     return {
       menuItems: [

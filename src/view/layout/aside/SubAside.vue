@@ -7,53 +7,48 @@
     >
       <v-card>
         <div class="card-body pt-14">
-          <div v-if="n_path == 'settings'">
-            <div class="text-center mb-10">
-              <div class="symbol symbol-60 symbol-circle symbol-xl-90">
-                <div
-                  class="symbol-label"
-                  :style="{
-                    backgroundImage: `url(${currentUserPhoto})`
-                  }"
-                ></div>
-                <i class="symbol-badge symbol-badge-bottom bg-success"></i>
-              </div>
-
-              <h4 class="font-weight-bold my-2">James Jones</h4>
-              <div class="text-muted mb-2">Application Developer</div>
-              <span
-                class="
-                  label label-light-warning label-inline
-                  font-weight-bold
-                  label-lg
-                "
-                >Active</span
-              >
+          <div class="text-center mb-10">
+            <div class="symbol symbol-60 symbol-circle symbol-xl-90">
+              <div
+                class="symbol-label"
+                :style="{
+                  backgroundImage: `url(${currentUserPhoto})`
+                }"
+              ></div>
+              <i class="symbol-badge symbol-badge-bottom bg-success"></i>
             </div>
 
-            <div class="mb-10 text-center">
-              <a
-                href="#"
-                class="btn btn-icon btn-circle btn-light-facebook mr-2"
-              >
-                <i class="socicon-facebook"></i>
-              </a>
-              <a
-                href="#"
-                class="btn btn-icon btn-circle btn-light-twitter mr-2"
-              >
-                <i class="socicon-twitter"></i>
-              </a>
-              <a href="#" class="btn btn-icon btn-circle btn-light-google">
-                <i class="socicon-google"></i>
-              </a>
-            </div>
+            <h4 class="font-weight-bold my-2">James Jones</h4>
+            <div class="text-muted mb-2">Application Developer</div>
+            <span
+              class="
+                label label-light-warning label-inline
+                font-weight-bold
+                label-lg
+              "
+              >Active</span
+            >
+          </div>
 
-            <KTSettingsSubMenu></KTSettingsSubMenu>
+          <div class="mb-10 text-center">
+            <a
+              href="#"
+              class="btn btn-icon btn-circle btn-light-facebook mr-2"
+            >
+              <i class="socicon-facebook"></i>
+            </a>
+            <a
+              href="#"
+              class="btn btn-icon btn-circle btn-light-twitter mr-2"
+            >
+              <i class="socicon-twitter"></i>
+            </a>
+            <a href="#" class="btn btn-icon btn-circle btn-light-google">
+              <i class="socicon-google"></i>
+            </a>
           </div>
-          <div v-if="n_path == 'server'">
-            <KTServerSubMenu :serverId="serverId"></KTServerSubMenu>
-          </div>
+
+          <KTSettingsSubMenu></KTSettingsSubMenu>
         </div>
       </v-card>
     </div>
@@ -65,7 +60,6 @@
 import { mapGetters } from "vuex";
 import KTLayoutAside from "@/assets/js/layout/base/subaside.js";
 import KTSettingsSubMenu from "@/view/layout/aside/SettingsMenu.vue";
-import KTServerSubMenu from "@/view/layout/aside/ServerMenu.vue";
 
 export default {
   name: "KTSubAside",
@@ -77,11 +71,11 @@ export default {
     };
   },
   components: {
-    KTServerSubMenu,
     KTSettingsSubMenu
   },
   mounted() {
     this.serverId = this.$parent.serverId;
+    console.log("this.serverId", this.n_path, this.serverId)
     this.$nextTick(() => {
       const asideRef = this.$refs["kt_settings_aside"];
 

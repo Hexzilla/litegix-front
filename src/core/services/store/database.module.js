@@ -136,10 +136,10 @@ const actions = {
           credentials.databaseId
       )
         .then(({ data }) => {
-          resolve(data);
           if (data.success) {
             context.commit(SET_DATABASE, data.data.databases);
           }
+          resolve(data);
         })
         .catch(error => {
           context.commit(SET_ERROR, error.response.data.errors);

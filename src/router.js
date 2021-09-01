@@ -546,7 +546,7 @@ export default new Router({
                 import("@/view/pages/server/systemuser/SystemUser.vue")
             },
             {
-              path: "user/create",
+              path: "systemuser/create",
               name: "server-user-create",
               component: () =>
                 import("@/view/pages/server/systemuser/CreateUser.vue")

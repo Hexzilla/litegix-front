@@ -8,7 +8,7 @@ import breadcrumbs from "./breadcrumbs.module";
 import profile from "./profile.module";
 import servers from "./servers.module";
 import database from "./database.module";
-import systemusers from "./systemUsers.module";
+import systemusers from "./systemuser.module";
 
 Vue.use(Vuex);
 

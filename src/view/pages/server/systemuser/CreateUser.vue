@@ -1,275 +1,115 @@
 <template>
-  <v-card class="card-body">
-    <v-card-title>
+  <div class="card card-custom gutter-b">
+    <div class="card-header border-0 py-5">
       <h3 class="card-title align-items-start flex-column">
-          Create System User</h3>
+        <span class="card-label font-weight-bolder text-dark"
+          >Create System User</span
+        >
         <span
           class="text-muted mt-3 font-weight-bold font-size-sm"
           data-nsfw-filter-status="swf"
-          >This will create a new user for your server. This user will be able to add new Web Applications. Please make sure the choosen username is not used by any other service(nginx,apsche,mysql, etc). Choose a real username like john, bob or harley. Take note that <strong>we do not store or capture your password by any means.</strong></span
+          >This will create a new user for your server. This user will be able
+          to add new Web Applications. Please make sure the choosen username is
+          not used by any other service(nginx,apsche,mysql, etc). Choose a real
+          username like john, bob or harley. Take note that
+          <strong
+            >we do not store or capture your password by any means.</strong
+          ></span
         >
-      
-    </v-card-title>
-    <div class="pt-0 pb-10 mt-5">
-      <v-form>
-        <v-text-field
-          outlined
-          dense
-          name="username"
-          label="Username"
-          placeholder="Only alphanumeric and/or _ are allowed"
-          ref="username"
-          >
-        </v-text-field>
-        <v-text-field 
-            outlined 
-            dense 
-            type="password"
-            value=systemUsers.password
-            label="New Password" 
-            ref="newPass" 
-            color="primary"
-            >
-            <template v-slot:append>
-              <v-dialog v-model="dialog" max-width="600px">
-                <template v-slot:activator="{ on, attrs }">
-                  <v-btn
-                    color="primary"
-                    style="margin-top: -6px; margin-right: -10px"
-                    v-on="on"
-                    v-bind="attrs"
-                    @click="showModal"
-                  >
-                    Generate
-                  </v-btn>
-                </template>
-                <v-card>
-                  <v-card-title>
-                  <span class="text-h5">Generate Password</span>
-                  </v-card-title>
-                  <v-card-text>
-                  <v-content>
-                      <h6 class="pl-0">Password Length ({{ passLen }})</h6>
-                      <vue-slider
-                      v-model="passLen"
-                      :disabled="false"
-                      @change="setChangePassLength"
-                      ></vue-slider>
-                      <b-card-group deck class="w-100 pr-10 pl-10 mt-5">
-                      <b-row>
-                          <b-col>
-                          <b-form-checkbox
-                              v-model="characters"
-                              value="A-Z"
-                              align="center"
-                              button
-                              button-variant="outline-secondary"
-                              min-height="600px"
-                              @change="generate"
-                          >
-                              <h3>A-Z</h3>
-                              <b-card-text>Uppercase</b-card-text>
-                          </b-form-checkbox>
-                          </b-col>
-                          <b-col>
-                          <b-form-checkbox
-                              v-model="characters"
-                              value="a-z"
-                              align="center"
-                              button
-                              button-variant="outline-secondary"
-                              @change="generate"
-                          >
-                              <h3>a-z</h3>
-                              <b-card-text>Lowercase</b-card-text>
-                          </b-form-checkbox>
-                          </b-col>
-                          <b-col>
-                          <b-form-checkbox
-                              v-model="characters"
-                              value="0-9"
-                              align="center"
-                              button
-                              button-variant="outline-secondary"
-                              @change="generate"
-                          >
-                              <h3>0-9</h3>
-                              <b-card-text>Number</b-card-text>
-                          </b-form-checkbox>
-                          </b-col>
-                          <b-col>
-                          <b-form-checkbox
-                              v-model="characters"
-                              value="#"
-                              align="center"
-                              button
-                              button-variant="outline-secondary"
-                              @change="generate"
-                          >
-                              <h3>!%@#</h3>
-                              <b-card-text>Symbol</b-card-text>
-                          </b-form-checkbox>
-                          </b-col>
-                      </b-row>
-                      </b-card-group>
-
-                      <b-card-group class="mt-5">
-                      <v-text-field
-                          outlined
-                          dense
-                          type="text"
-                          append-icon="mdi-refresh"
-                          auto="true"
-                          characters="characters"
-                          :value="password"
-                          @click:append="generate()"
-                      ></v-text-field>
-                      </b-card-group>
-                  </v-content>
-                  </v-card-text>
-                  <v-card-actions>
-                  <v-btn
-                      block
-                      large
-                      color="primary"
-                      type="button"
-                      @click="createPass()"
-                  >
-                      Use This Password
-                  </v-btn>
-                  </v-card-actions>
-                </v-card>
-              </v-dialog>
-            </template>
-          </v-text-field>
-          <v-text-field
-            outlined
-            dense
-            label="Verify Password"
-            ref="conPass"
-            type="password"
-          >
-          </v-text-field>
-          <v-btn
-            block
-            large
-            color="primary"
-            type="button"
-            @click="update()"
-            ref="kt_pass_update"
-          >
-            Update My Password
-          </v-btn>
-      </v-form>
+      </h3>
     </div>
-  </v-card>
+    <div class="card-body pt-0 pb-10">
+      <b-form id="kt_form_database">
+        <b-form-group label="User Name">
+          <b-form-input
+            name="name"
+            v-model="form.name"
+            placeholder="Only alphanumeric and/or _ are allowed"
+          ></b-form-input>
+        </b-form-group>
+
+        <b-form-group label="Password">
+          <b-form-input
+            name="password"
+            type="password"
+            v-model="form.password"
+            placeholder=""
+          ></b-form-input>
+        </b-form-group>
+
+        <b-form-group label="Verify Password">
+          <b-form-input
+            name="verify_password"
+            type="password"
+            v-model="form.verify_password"
+            placeholder=""
+          ></b-form-input>
+        </b-form-group>
+        <button
+          type="submit"
+          class="btn btn-primary btn-block"
+          ref="kt_form_submit"
+        >
+          Add System User
+        </button>
+      </b-form>
+    </div>
+  </div>
 </template>
-<style scoped>
-  input:-internal-autofill-selected {
-    appearance: menulist-button;
-    background-color: rgba(255, 255, 255, 0) !important;
-    background-image: none !important;
-    color: -internal-light-dark(black, white) !important;
-  }
-</style>
+
 <script>
-import { SET_BREADCRUMB } from "@/core/services/store/breadcrumbs.module";
-import { GET_SYSTEM_USERS } from "@/core/services/store/systemUsers.module";
-import { CREATE_SYSTEM_USERS } from "@/core/services/store/systemUsers.module";
+import formValidation from "@/assets/plugins/formvalidation/dist/es6/core/Core";
+import Trigger from "@/assets/plugins/formvalidation/dist/es6/plugins/Trigger";
+import Bootstrap from "@/assets/plugins/formvalidation/dist/es6/plugins/Bootstrap";
+import SubmitButton from "@/assets/plugins/formvalidation/dist/es6/plugins/SubmitButton";
+import KTUtil from "@/assets/js/components/util";
+
 import { mapGetters } from "vuex";
-import VueSlider from "vue-slider-component";
-import "vue-slider-component/theme/antd.css";
+import Swal from "sweetalert2";
+import {
+  CREATE_DATABASE,
+  GET_DBUSERS
+} from "@/core/services/store/database.module";
 
 export default {
-  name: "Create",
-  components: {
-    VueSlider,
-  },
   data() {
     return {
-      passLen: 12,
-      size: {
-        type: String,
-        default: "12",
-      },
-      password: {
-        type: String,
-        default: "",
-      },
-      dialog: false,
-      characters : ["a-z", "A-Z", "0-9", "#"],
+      form: {
+        name: "",
+        password: "",
+        verify_password: ""
+      }
     };
   },
-  props: {
-    auto: [String, Boolean],
-  },
   computed: {
-    ...mapGetters(["systemUsers"]),
+    ...mapGetters(["databaseusers"])
   },
   mounted() {
-    this.$store.dispatch(SET_BREADCRUMB, [
-      { title: "Users", route: "Users" },
-      { title: "create" },
-    ]);
-    this.$store.dispatch(GET_SYSTEM_USERS, this.$parent.serverId);
-
-    setTimeout(() => {
-        this.$refs.username.value = this.systemUsers.name;
-        this.$refs.newPass.value = this.systemUsers.password;
-      }, 500);
-   
-    // this.$refs.username.value = systemUser.name;
-    // this.$refs.newPass.value = systemUser.password;
+    this.$store.dispatch(GET_DBUSERS, this.$parent.serverId);
+    const create_form = KTUtil.getById("kt_form_database");
+    this.fv = formValidation(create_form, {
+      fields: {
+        name: {
+          validators: {
+            notEmpty: {
+              message: "Name is required"
+            }
+          }
+        }
+      },
+      plugins: {
+        trigger: new Trigger(),
+        submitButton: new SubmitButton(),
+        bootstrap: new Bootstrap()
+      }
+    });
+    this.fv.on("core.form.valid", this.createDatabase);
+    this.fv.on("core.form.invalid", () => {});
   },
   methods: {
-    generate() {
-      this.size = this.passLen;
-      let charactersArray = this.characters;
-      let CharacterSet = "";
-      let password = "";
-      if (charactersArray.indexOf("a-z") >= 0) {
-        CharacterSet += "abcdefghijklmnopqrstuvwxyz";
-      }
-      if (charactersArray.indexOf("A-Z") >= 0) {
-        CharacterSet += "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-      }
-      if (charactersArray.indexOf("0-9") >= 0) {
-        CharacterSet += "0123456789";
-      }
-      if (charactersArray.indexOf("#") >= 0) {
-        CharacterSet += "![]{}()%&*$#^<>~@|";
-      }
-
-      for (let i = 0; i < this.size; i++) {
-        password += CharacterSet.charAt(
-          Math.floor(Math.random() * CharacterSet.length)
-        );
-      }
-      this.password = password;
-    },
-    showModal() {
-      this.generate();
-    },
-
-    createPass() {
-      this.dialog = false;
-      this.$refs.newPass.value = this.password;
-      this.$refs.conPass.value = this.password;
-    },
-    setChangePassLength() {
-      this.generate();
-    },
-    makeToast(contents, variant = null) {
-      this.$bvToast.toast(contents, {
-        title: `Litegix`,
-        toaster: "b-toaster-bottom-right",
-        variant: variant,
-        solid: true,
-      });
-    },
-    update() {
+    createDatabase() {
       // set spinner to submit button
-      const submitButton = this.$refs["kt_pass_update"];
+      const submitButton = this.$refs["kt_form_submit"];
       submitButton.classList.add("spinner", "spinner-light", "spinner-right");
       const removeSpinner = () => {
         submitButton.classList.remove(
@@ -279,33 +119,35 @@ export default {
         );
       };
       const payload = {
-        id: this.form.name,
-        serverId: this.$parent.serverId,
-        password: this.$refs.newPass.value,
+        name: this.form.name,
+        user: this.form.user,
+        collation: this.form.collation,
+        serverId: this.$parent.serverId
       };
-
       this.$store
-        .dispatch(CREATE_SYSTEM_USERS, payload)
-        .then((data) => {
+        .dispatch(CREATE_DATABASE, payload)
+        .then(() => {
           removeSpinner();
-          this.onCreateSuccess(data.id);
+          this.onCreateSuccess(payload.name);
         })
         .catch(() => {
           removeSpinner();
         });
     },
-    // onCreateSuccess(serverId) {
-    //   Swal.fire({
-    //     title: "",
-    //     text: 'Your Server has been successfully created',
-    //     icon: "success",
-    //     confirmButtonClass: "btn btn-secondary",
-    //     heightAuto: false,
-    //   }).then(() => {
-    //     console.log(serverId)
-    //     this.$router.push({ name: "server-config", params: {serverId:serverId} });
-    //   });
-    // }
+    onCreateSuccess(name) {
+      Swal.fire({
+        title: "",
+        text: "Database " + name + " has been successfully created",
+        icon: "success",
+        confirmButtonClass: "btn btn-secondary",
+        heightAuto: false
+      }).then(() => {
+        console.log();
+        this.$router.push({
+          name: "server-database"
+        });
+      });
+    }
   }
 };
 </script>

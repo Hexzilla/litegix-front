@@ -13,7 +13,7 @@
             placeholder="Search..."
             class="form-control input-lg w-200px mr-5"
           />
-          <b-link to="database/create">
+          <b-link to="systemuser/create">
             <a class="btn btn-success font-weight-bolder font-size-sm"
               >Create User</a
             >
@@ -22,8 +22,8 @@
       </div>
       <div class="card-body py-0">
         <b-table
-          :items="databases"
-          :fields="database_fields"
+          :items="systemUsers"
+          :fields="tableFields"
           empty-text="You don't have anything inside here yet."
           show-empty
         >
@@ -63,18 +63,12 @@
 
 <script>
 import { mapGetters } from "vuex";
-import {
-  GET_DATABASES,
-  GET_DBUSERS,
-  DELETE_DATABASE,
-  DELETE_DBUSER,
-  REVOKE_USER
-} from "@/core/services/store/database.module";
+import { GET_SYSTEM_USERS } from "@/core/services/store/systemuser.module";
 
 export default {
   data() {
     return {
-      database_fields: [
+      tableFields: [
         { key: "name", label: "Database Name" },
         "database_user",
         "collation",
@@ -83,38 +77,12 @@ export default {
     };
   },
   computed: {
-    ...mapGetters(["databases", "databaseusers"])
+    ...mapGetters(["systemUsers"])
   },
   mounted() {
-    this.$store.dispatch(GET_DATABASES, this.$parent.serverId);
-    this.$store.dispatch(GET_DBUSERS, this.$parent.serverId);
-    console.log("mounted", this.$parent.serverId);
+    this.$store.dispatch(GET_SYSTEM_USERS, this.$parent.serverId)
   },
   methods: {
-    revoke_dbuser: function(dbId, userId) {
-      this.$store.dispatch(REVOKE_USER, {
-        serverId: this.$parent.serverId,
-        databaseId: dbId,
-        dbuserId: userId
-      });
-      this.$router.go();
-    },
-    delete_dbuser: function(userId) {
-      this.$store.dispatch(DELETE_DBUSER, {
-        serverId: this.$parent.serverId,
-        dbuserId: userId
-      });
-      this.$store.dispatch(GET_DATABASES, this.$parent.serverId);
-      this.$store.dispatch(GET_DBUSERS, this.$parent.serverId);
-    },
-    delete_database: function(dbId) {
-      this.$store.dispatch(DELETE_DATABASE, {
-        serverId: this.$parent.serverId,
-        databaseId: dbId
-      });
-      this.$store.dispatch(GET_DATABASES, this.$parent.serverId);
-      this.$store.dispatch(GET_DBUSERS, this.$parent.serverId);
-    }
   }
 };
 </script>

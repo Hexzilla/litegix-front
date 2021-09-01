@@ -4,17 +4,16 @@ export const SET_ERROR = "setError";
 
 export const CREATE_SYSTEM_USERS = "createSystemUsers";
 export const GET_SYSTEM_USERS = "getSystemUsers";
-export const DELETE_SYSTEM_USER = "deleteSystemUser"
-
+export const DELETE_SYSTEM_USER = "deleteSystemUser";
 
 const state = {
-  systemUsers: {}
+  systemUsers: []
 };
 
 const getters = {
-    systemUsers(state) {
-        return state.systemUsers;
-    }
+  systemUsers(state) {
+    return state.systemUsers;
+  }
 };
 
 const actions = {
@@ -23,15 +22,15 @@ const actions = {
       ApiService.setHeader();
       ApiService.post("servers/" + credentials + "/systemusers/store")
         .then(({ data }) => {
-           resolve(data);
-           if (data.success) {
+          resolve(data);
+          if (data.success) {
             context.commit(SET_SYSTEM_USERS, data.data);
           }
         })
         .catch(error => {
           console.log(error.response);
           context.commit(SET_ERROR, error.response.data.errors);
-           reject(error);
+          reject(error);
         });
     });
   },
@@ -40,11 +39,11 @@ const actions = {
       ApiService.setHeader();
       ApiService.get("servers/" + credentials + "/systemusers")
         .then(({ data }) => {
-          resolve(data);
-          console.log(data.data.users);
+          console.log("system-users", data)
           if (data.success) {
             context.commit(SET_SYSTEM_USERS, data.data.users[0]);
           }
+          resolve(data);
         })
         .catch(error => {
           context.commit(SET_ERROR, error.response.data.errors);
@@ -62,7 +61,6 @@ const actions = {
           if (data.success) {
             context.commit(SET_SYSTEM_USERS, data.data.state);
           }
-
         })
         .catch(error => {
           context.commit(SET_ERROR, error.response.data.errors);

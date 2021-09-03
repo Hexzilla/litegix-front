@@ -20,40 +20,55 @@
           </b-link>
         </div>
       </div>
-      <div class="card-body py-0">
-        <b-table
-          :items="systemUsers"
-          :fields="tableFields"
-          empty-text="You don't have anything inside here yet."
-          show-empty
-        >
-          <template #cell(name)="data">
-            <i class="rc rc-ln-database rc-table-icon"></i>{{ data.item.name }}
-          </template>
-          <template #cell(database_user)="data">
-            <a
-              v-for="user in data.item.users"
-              :key="user"
-              role="button"
-              class="mr-1"
-              v-on:click="revoke_dbuser(data.item._id, user._id)"
-              ><span class="label label-lg label-inline label-primary">
-                {{ user.name }}
-              </span></a
-            >
-
-            <b-link :to="`database/` + data.item._id + `/grant`">
-              <span class="label label-lg label-inline label-success">
-                Grant User
-              </span>
-            </b-link>
-          </template>
-          <template #cell(delete)="data">
-            <a role="button" v-on:click="delete_database(data.item._id)"
-              ><i class="fas fa-trash-alt text-danger"></i
-            ></a>
-          </template>
-        </b-table>
+      <div class="card-body py-5 ml-8 mr-8">
+        <div class="table-responsive">
+          <table
+            class="table table-head-custom table-vertical-center"
+            id="kt_advance_table_widget_4"
+          >
+            <thead>
+              <tr class="text-center">
+                <th class="pl-0 text-left" style="min-width: 200px">Username</th>
+                <th>Change Password</th>
+                <th class="pr-0">Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              <template v-for="(item, i) in list">
+                <tr v-bind:key="i">
+                  <td class="pl-0">
+                    <span
+                      class="
+                      font-weight-bolder
+                      text-hover-primary
+                      font-size-lg
+                    "
+                      >{{ item.order_id }}</span
+                    >
+                  </td>
+                  <td class="pl-0 text-center">
+                    <i class="btn btn-icon btn-center btn-hover-primary btn-sm">
+                      <span class="svg-icon svg-icon-md svg-icon-primary">
+                        <inline-svg
+                          src="media/svg/icons/General/Lock.svg"
+                        ></inline-svg>
+                      </span>
+                    </i>
+                  </td>
+                  <td class="pr-0 text-center">
+                    <i class="btn btn-icon btn-center btn-hover-primary btn-sm">
+                      <span class="svg-icon svg-icon-md svg-icon-primary">
+                        <inline-svg
+                          src="media/svg/icons/General/Trash.svg"
+                        ></inline-svg>
+                      </span>
+                    </i>
+                  </td>
+                </tr>
+              </template>
+            </tbody>
+          </table>
+        </div>
       </div>
     </div>
   </div>
@@ -68,11 +83,30 @@ import { GET_SYSTEM_USERS } from "@/core/services/store/systemuser.module";
 export default {
   data() {
     return {
-      tableFields: [
-        { key: "name", label: "Database Name" },
-        "database_user",
-        "collation",
-        "delete"
+      checked: false,
+      list: [
+        {
+          order_id: "litegix"
+          // country: "Brasil",
+          // country_desc: "Code: BR",
+          // date: "05/28/2020",
+          // date_desc: "Paid",
+          // company: "Intertico",
+          // company_desc: "Web, UI/UX Design",
+          // class: "primary",
+          // status: "Approved",
+        },
+        {
+          order_id: "root"
+          // country: "Belarus",
+          // country_desc: "Code: BY",
+          // date: "02/04/2020",
+          // date_desc: "Rejected",
+          // company: "Agoda",
+          // company_desc: "Houses & Hotels",
+          // class: "warning",
+          // status: "In Progress",
+        }
       ]
     };
   },
@@ -80,9 +114,16 @@ export default {
     ...mapGetters(["systemUsers"])
   },
   mounted() {
-    this.$store.dispatch(GET_SYSTEM_USERS, this.$parent.serverId)
+    this.$store.dispatch(GET_SYSTEM_USERS, this.$parent.serverId);
   },
   methods: {
+    setCheck(check) {
+      if (check) {
+        this.checked = check;
+      } else {
+        this.checked = false;
+      }
+    }
   }
 };
 </script>

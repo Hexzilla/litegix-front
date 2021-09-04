@@ -541,7 +541,7 @@ export default new Router({
             },
             {
               path: "systemuser",
-              name: "server-user",
+              name: "systemuser",
               component: () =>
                 import("@/view/pages/server/systemuser/SystemUser.vue")
             },

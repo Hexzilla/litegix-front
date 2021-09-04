@@ -66,10 +66,7 @@ import KTUtil from "@/assets/js/components/util";
 
 import { mapGetters } from "vuex";
 import Swal from "sweetalert2";
-import {
-  CREATE_DATABASE,
-  GET_DBUSERS
-} from "@/core/services/store/database.module";
+import { CREATE_SYSTEM_USERS } from "@/core/services/store/systemuser.module";
 
 export default {
   data() {
@@ -85,7 +82,6 @@ export default {
     ...mapGetters(["databaseusers"])
   },
   mounted() {
-    this.$store.dispatch(GET_DBUSERS, this.$parent.serverId);
     const create_form = KTUtil.getById("kt_form_database");
     this.fv = formValidation(create_form, {
       fields: {
@@ -103,11 +99,11 @@ export default {
         bootstrap: new Bootstrap()
       }
     });
-    this.fv.on("core.form.valid", this.createDatabase);
+    this.fv.on("core.form.valid", this.createSystemUser);
     this.fv.on("core.form.invalid", () => {});
   },
   methods: {
-    createDatabase() {
+    createSystemUser() {
       // set spinner to submit button
       const submitButton = this.$refs["kt_form_submit"];
       submitButton.classList.add("spinner", "spinner-light", "spinner-right");
@@ -120,12 +116,11 @@ export default {
       };
       const payload = {
         name: this.form.name,
-        user: this.form.user,
-        collation: this.form.collation,
+        password: this.form.password,
         serverId: this.$parent.serverId
       };
       this.$store
-        .dispatch(CREATE_DATABASE, payload)
+        .dispatch(CREATE_SYSTEM_USERS, payload)
         .then(() => {
           removeSpinner();
           this.onCreateSuccess(payload.name);
@@ -137,14 +132,14 @@ export default {
     onCreateSuccess(name) {
       Swal.fire({
         title: "",
-        text: "Database " + name + " has been successfully created",
+        text: "System user " + name + " has been successfully created",
         icon: "success",
         confirmButtonClass: "btn btn-secondary",
         heightAuto: false
       }).then(() => {
         console.log();
         this.$router.push({
-          name: "server-database"
+          name: "systemuser"
         });
       });
     }

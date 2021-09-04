@@ -18,9 +18,13 @@ const getters = {
 
 const actions = {
   [CREATE_SYSTEM_USERS](context, credentials) {
+    console.log("credentials", credentials);
     return new Promise((resolve, reject) => {
       ApiService.setHeader();
-      ApiService.post("servers/" + credentials + "/systemusers/store")
+      ApiService.post(
+        "servers/" + credentials.serverId + "/systemusers/store",
+        credentials
+      )
         .then(({ data }) => {
           resolve(data);
           if (data.success) {
@@ -39,7 +43,6 @@ const actions = {
       ApiService.setHeader();
       ApiService.get("servers/" + credentials + "/systemusers")
         .then(({ data }) => {
-          console.log("system-users", data.data.users)
           if (data.success) {
             context.commit(SET_SYSTEM_USERS, data.data.users);
           }

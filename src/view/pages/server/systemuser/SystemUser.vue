@@ -58,7 +58,10 @@
                     </i>
                   </td>
                   <td class="pr-0 text-center">
-                    <i class="btn btn-icon btn-center btn-hover-primary btn-sm">
+                    <i
+                      class="btn btn-icon btn-center btn-hover-primary btn-sm"
+                      @click="deleteUser(item)"
+                    >
                       <span class="svg-icon svg-icon-md svg-icon-primary">
                         <inline-svg
                           src="media/svg/icons/General/Trash.svg"
@@ -80,51 +83,59 @@
 
 <script>
 import { mapGetters } from "vuex";
-import { GET_SYSTEM_USERS } from "@/core/services/store/systemuser.module";
+import Swal from "sweetalert2";
+
+import {
+  GET_SYSTEM_USERS,
+  // eslint-disable-next-line no-unused-vars
+  DELETE_SYSTEM_USER
+} from "@/core/services/store/systemuser.module";
 
 export default {
   data() {
     return {
       checked: false,
-      list: [
-        {
-          order_id: "litegix"
-          // country: "Brasil",
-          // country_desc: "Code: BR",
-          // date: "05/28/2020",
-          // date_desc: "Paid",
-          // company: "Intertico",
-          // company_desc: "Web, UI/UX Design",
-          // class: "primary",
-          // status: "Approved",
-        },
-        {
-          order_id: "root"
-          // country: "Belarus",
-          // country_desc: "Code: BY",
-          // date: "02/04/2020",
-          // date_desc: "Rejected",
-          // company: "Agoda",
-          // company_desc: "Houses & Hotels",
-          // class: "warning",
-          // status: "In Progress",
-        }
-      ]
+      serverId: false
     };
   },
   computed: {
     ...mapGetters(["systemUsers"])
   },
   mounted() {
-    this.$store.dispatch(GET_SYSTEM_USERS, this.$parent.serverId);
+    this.serverId = this.$parent.serverId;
+    this.$store.dispatch(GET_SYSTEM_USERS, this.serverId);
   },
   methods: {
-    setCheck(check) {
-      if (check) {
-        this.checked = check;
-      } else {
-        this.checked = false;
+    async deleteUser(user) {
+      console.log("deleteuser", user);
+      const result = await Swal.fire({
+        title: "",
+        text: "Do you want to delete this?",
+        icon: "question",
+        showConfirmButton: true,
+        showCancelButton: true,
+        heightAuto: false
+      });
+
+      if (!result.isConfirmed) {
+        return;
       }
+      const payload = {
+        userId: user._id,
+        serverId: this.serverId
+      };
+      const response = await this.$store.dispatch(DELETE_SYSTEM_USER, payload);
+      console.log("deleteuser--success", response);
+      this.$store.dispatch(GET_SYSTEM_USERS, this.serverId);
+      this.onDeleteSuccess(user.name);
+    },
+    onDeleteSuccess(name) {
+      Swal.fire({
+        title: "",
+        text: "System user " + name + " has been successfully deleted",
+        icon: "success",
+        heightAuto: false
+      });
     }
   }
 };

@@ -17,13 +17,13 @@ const getters = {
 };
 
 const actions = {
-  [CREATE_SYSTEM_USERS](context, credentials) {
-    console.log("credentials", credentials);
+  [CREATE_SYSTEM_USERS](context, payload) {
+    console.log("credentials", payload);
     return new Promise((resolve, reject) => {
       ApiService.setHeader();
       ApiService.post(
-        "servers/" + credentials.serverId + "/systemusers/store",
-        credentials
+        "servers/" + payload.serverId + "/systemusers/store",
+        payload
       )
         .then(({ data }) => {
           resolve(data);
@@ -38,10 +38,10 @@ const actions = {
         });
     });
   },
-  [GET_SYSTEM_USERS](context, credentials) {
+  [GET_SYSTEM_USERS](context, serverId) {
     return new Promise((resolve, reject) => {
       ApiService.setHeader();
-      ApiService.get("servers/" + credentials + "/systemusers")
+      ApiService.get("servers/" + serverId + "/systemusers")
         .then(({ data }) => {
           if (data.success) {
             context.commit(SET_SYSTEM_USERS, data.data.users);
@@ -55,17 +55,18 @@ const actions = {
     });
   },
 
-  [DELETE_SYSTEM_USER](context, credentials) {
+  [DELETE_SYSTEM_USER](context, payload) {
     return new Promise((resolve, reject) => {
       ApiService.setHeader();
-      ApiService.delete("servers/" + credentials + "/systemusers")
+      ApiService.delete(
+        `servers/${payload.serverId}/systemusers/${payload.userId}`
+      )
         .then(({ data }) => {
+          console.log("delete-users-ok", data);
           resolve(data);
-          if (data.success) {
-            context.commit(SET_SYSTEM_USERS, data.data.state);
-          }
         })
         .catch(error => {
+          console.log("delete-users-error", error);
           context.commit(SET_ERROR, error.response.data.errors);
           reject(error);
         });

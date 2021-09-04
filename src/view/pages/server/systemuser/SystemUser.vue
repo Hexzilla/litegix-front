@@ -45,7 +45,7 @@
                       text-hover-primary
                       font-size-lg
                     "
-                      >{{ item.order_id }}</span
+                      >{{ item.name }}</span
                     >
                   </td>
                   <td class="pl-0 text-center">

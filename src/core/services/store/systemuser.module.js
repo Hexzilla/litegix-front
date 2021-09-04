@@ -39,9 +39,9 @@ const actions = {
       ApiService.setHeader();
       ApiService.get("servers/" + credentials + "/systemusers")
         .then(({ data }) => {
-          console.log("system-users", data)
+          console.log("system-users", data.data.users)
           if (data.success) {
-            context.commit(SET_SYSTEM_USERS, data.data.users[0]);
+            context.commit(SET_SYSTEM_USERS, data.data.users);
           }
           resolve(data);
         })

@@ -1,158 +1,144 @@
 <template>
-  <!--begin::Advance Table Widget 10-->
-  <div class="card card-custom gutter-b">
-    <!--begin::Header-->
-    <div class="card-header border-0 py-5">
-      <h3 class="card-title align-items-start flex-column">
-        <span class="card-label font-weight-bolder text-dark">SSH Key</span>
-        <!-- <span class="text-muted mt-3 font-weight-bold font-size-sm"
-          >More than 400+ new members</span
-        > -->
-      </h3>
-      <div class="card-toolbar">
-        <b-link to="sshkey/create">
-          <a class="btn btn-success font-weight-bolder font-size-sm"
-            >Add SSHKey</a
+  <div>
+    <div class="card card-custom gutter-b">
+      <div class="card-header border-0 py-5">
+        <h3 class="card-title align-items-start flex-column">
+          <span class="card-label font-weight-bolder text-dark">SSH Key</span>
+        </h3>
+        <div class="card-toolbar">
+          <input
+            type="text"
+            placeholder="Search..."
+            class="form-control input-lg w-200px mr-5"
+          />
+          <b-link to="systemuser/create">
+            <a class="btn btn-success font-weight-bolder font-size-sm"
+              >Add SSHKey</a
+            >
+          </b-link>
+        </div>
+      </div>
+      <div class="card-body py-5 ml-8 mr-8">
+        <div class="table-responsive">
+          <table
+            class="table table-head-custom table-vertical-center"
+            id="kt_advance_table_widget_4"
           >
-        </b-link>
-      </div>
-    </div>
-    <!--end::Header-->
-    <!--begin::Body-->
-    <div class="card-body py-0">
-      <!--begin::Table-->
-      <div class="table-responsive">
-        <table
-          class="table table-head-custom table-vertical-center"
-          id="kt_advance_table_widget_4"
-        >
-          <thead>
-            <tr class="text-left">
-              <!-- <th class="pl-0" style="width: 30px">
-                <label class="checkbox checkbox-lg checkbox-single mr-2">
-                  <input
-                    type="checkbox"
-                    @input="setCheck($event.target.checked)"
-                  />
-                  <span></span>
-                </label>
-              </th> -->
-              <th class="pl-0" style="min-width: 180px">Label</th>
-              <th style="min-width: 180px">User</th>
-              <th style="min-width: 80px">Public Key</th>
-              <th class="pr-0 text-right" style="min-width: 160px">Revoke</th>
-            </tr>
-          </thead>
-          <tbody>
-            <template v-for="(item, i) in list">
-              <tr v-bind:key="i">
-                <!-- <td class="pl-0 py-6">
-                  <label class="checkbox checkbox-lg checkbox-single">
-                    <input type="checkbox" :value="i" :checked="checked" />
-                    <span></span>
-                  </label>
-                </td> -->
-                <td class="pl-0">
-                  <a
-                    href="#"
-                    class="text-dark-75 font-weight-bolder text-hover-primary font-size-lg"
-                    >{{ item.order_id }}</a
-                  >
-                </td>
-                <td>
-                  <span
-                    class="text-dark-75 font-weight-bolder d-block font-size-lg"
-                    >{{ item.country }}</span
-                  >
-                  <span class="text-muted font-weight-bold">{{
-                    item.country_desc
-                  }}</span>
-                </td>
-                <td>
-                  <span
-                    class="label label-lg label-inline"
-                    v-bind:class="`label-light-${item.class}`"
-                    >{{ item.status }}</span
-                  >
-                </td>
-                <td class="pr-0 text-right">
-                  <a
-                    href="#"
-                    class="btn btn-icon btn-light btn-hover-primary btn-sm mx-3"
-                  >
-                    <span class="svg-icon svg-icon-md svg-icon-primary">
-                      <!--begin::Svg Icon | path:assets/media/svg/icons/Communication/Write.svg-->
-                      <inline-svg
-                        src="/media/svg/icons/Communication/Write.svg"
-                      ></inline-svg>
-                      <!--end::Svg Icon-->
-                    </span>
-                  </a>
-                  <a
-                    href="#"
-                    class="btn btn-icon btn-light btn-hover-primary btn-sm"
-                  >
-                    <span class="svg-icon svg-icon-md svg-icon-primary">
-                      <!--begin::Svg Icon | path:assets/media/svg/icons/General/Trash.svg-->
-                      <inline-svg
-                        src="/media/svg/icons/General/Trash.svg"
-                      ></inline-svg>
-                      <!--end::Svg Icon-->
-                    </span>
-                  </a>
-                </td>
+            <thead>
+              <tr class="text-center">
+                <th class="pl-0 text-left" style="min-width: 200px">
+                  Label
+                </th>
+                <th>User</th>
+                <th>Public Key</th>
+                <th class="pr-0">Revoke</th>
               </tr>
-            </template>
-          </tbody>
-        </table>
+            </thead>
+            <tbody>
+              <template v-for="(item, i) in sshKeys">
+                <tr v-bind:key="i">
+                  <td class="pl-0">
+                    <span
+                      class="
+                      font-weight-bolder
+                      text-hover-primary
+                      font-size-lg
+                    "
+                      >{{ item.name }}</span
+                    >
+                  </td>
+                  <td class="pl-0 text-center">
+                    <i class="btn btn-icon btn-center btn-hover-primary btn-sm">
+                      <span class="svg-icon svg-icon-md svg-icon-primary">
+                        <inline-svg
+                          src="media/svg/icons/General/Lock.svg"
+                        ></inline-svg>
+                      </span>
+                    </i>
+                  </td>
+                  <td class="pl-0 text-center">
+                    <i class="btn btn-icon btn-center btn-hover-primary btn-sm">
+                      <span class="svg-icon svg-icon-md svg-icon-primary">
+                        <inline-svg
+                          src="media/svg/icons/General/Lock.svg"
+                        ></inline-svg>
+                      </span>
+                    </i>
+                  </td>
+                  <td class="pr-0 text-center">
+                    <a role="button" v-on:click="deleteKey(item)"
+                      ><i class="fas fa-trash-alt text-danger"></i
+                    ></a>
+                  </td>
+                </tr>
+              </template>
+            </tbody>
+          </table>
+        </div>
       </div>
-      <!--end::Table-->
     </div>
-    <!--end::Body-->
   </div>
-  <!--end::Advance Table Widget 10-->
 </template>
 
+<style scoped src="@/assets/styles/server.css"></style>
+
 <script>
+import { mapGetters } from "vuex";
+import Swal from "sweetalert2";
+
+import {
+  GET_SSH_KEYS,
+  DELETE_SSH_KEY
+} from "@/core/services/store/sshkey.module";
+
 export default {
-  name: "widget-2",
   data() {
     return {
       checked: false,
-      list: [
-        {
-          order_id: "litegix",
-          country: "Brasil",
-          country_desc: "Code: BR",
-          date: "05/28/2020",
-          date_desc: "Paid",
-          company: "Intertico",
-          company_desc: "Web, UI/UX Design",
-          class: "primary",
-          status: "Approved"
-        },
-        {
-          order_id: "root",
-          country: "Belarus",
-          country_desc: "Code: BY",
-          date: "02/04/2020",
-          date_desc: "Rejected",
-          company: "Agoda",
-          company_desc: "Houses & Hotels",
-          class: "warning",
-          status: "In Progress"
-        }
-      ]
+      serverId: false
     };
   },
-  components: {},
+  computed: {
+    ...mapGetters(["sshKeys"])
+  },
+  mounted() {
+    this.serverId = this.$parent.serverId;
+    this.fetchSSHKeys();
+  },
   methods: {
-    setCheck(check) {
-      if (check) {
-        this.checked = check;
-      } else {
-        this.checked = false;
+    fetchSSHKeys() {
+      this.$store.dispatch(GET_SSH_KEYS, this.serverId);
+    },
+    async deleteKey(user) {
+      console.log("deleteKey", user);
+      const result = await Swal.fire({
+        title: "",
+        text: "Do you want to delete this?",
+        icon: "question",
+        showConfirmButton: true,
+        showCancelButton: true,
+        heightAuto: false
+      });
+
+      if (!result.isConfirmed) {
+        return;
       }
+      const payload = {
+        userId: user._id,
+        serverId: this.serverId
+      };
+      const response = await this.$store.dispatch(DELETE_SSH_KEY, payload);
+      console.log("deleteKey--success", response);
+      this.fetchSSHKeys();
+      this.onDeleteSuccess(user.name);
+    },
+    onDeleteSuccess(name) {
+      Swal.fire({
+        title: "",
+        text: "System user " + name + " has been successfully deleted",
+        icon: "success",
+        heightAuto: false
+      });
     }
   }
 };

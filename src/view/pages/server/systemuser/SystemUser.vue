@@ -80,7 +80,6 @@ import Swal from "sweetalert2";
 
 import {
   GET_SYSTEM_USERS,
-  // eslint-disable-next-line no-unused-vars
   DELETE_SYSTEM_USER
 } from "@/core/services/store/systemuser.module";
 

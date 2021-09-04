@@ -58,16 +58,9 @@
                     </i>
                   </td>
                   <td class="pr-0 text-center">
-                    <i
-                      class="btn btn-icon btn-center btn-hover-primary btn-sm"
-                      @click="deleteUser(item)"
-                    >
-                      <span class="svg-icon svg-icon-md svg-icon-primary">
-                        <inline-svg
-                          src="media/svg/icons/General/Trash.svg"
-                        ></inline-svg>
-                      </span>
-                    </i>
+                    <a role="button" v-on:click="deleteUser(item)"
+                      ><i class="fas fa-trash-alt text-danger"></i
+                    ></a>
                   </td>
                 </tr>
               </template>

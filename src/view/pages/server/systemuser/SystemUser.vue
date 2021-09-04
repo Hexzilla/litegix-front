@@ -28,13 +28,15 @@
           >
             <thead>
               <tr class="text-center">
-                <th class="pl-0 text-left" style="min-width: 200px">Username</th>
+                <th class="pl-0 text-left" style="min-width: 200px">
+                  Username
+                </th>
                 <th>Change Password</th>
                 <th class="pr-0">Action</th>
               </tr>
             </thead>
             <tbody>
-              <template v-for="(item, i) in list">
+              <template v-for="(item, i) in systemUsers">
                 <tr v-bind:key="i">
                   <td class="pl-0">
                     <span

@@ -20,7 +20,10 @@ const actions = {
   [CREATE_SSH_KEY](context, payload) {
     return new Promise((resolve, reject) => {
       ApiService.setHeader();
-      ApiService.post("servers/" + payload.serverId + "/sshkey/store", payload)
+      ApiService.post(
+        "servers/" + payload.serverId + "/sshcredentials/store",
+        payload
+      )
         .then(({ data }) => {
           resolve(data);
           if (data.success) {
@@ -37,10 +40,10 @@ const actions = {
   [GET_SSH_KEYS](context, serverId) {
     return new Promise((resolve, reject) => {
       ApiService.setHeader();
-      ApiService.get("servers/" + serverId + "/sshkey")
+      ApiService.get("servers/" + serverId + "/sshcredentials")
         .then(({ data }) => {
           if (data.success) {
-            context.commit(SET_SSH_KEYS, data.data.users);
+            context.commit(SET_SSH_KEYS, data.data.sshKeys);
           }
           resolve(data);
         })
@@ -54,7 +57,9 @@ const actions = {
   [DELETE_SSH_KEY](context, payload) {
     return new Promise((resolve, reject) => {
       ApiService.setHeader();
-      ApiService.delete(`servers/${payload.serverId}/sshkey/${payload.userId}`)
+      ApiService.delete(
+        `servers/${payload.serverId}/sshcredentials/${payload.userId}`
+      )
         .then(({ data }) => {
           console.log("delete-users-ok", data);
           resolve(data);

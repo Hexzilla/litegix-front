@@ -44,7 +44,7 @@
                       text-hover-primary
                       font-size-lg
                     "
-                      >{{ item.name }}</span
+                      >{{ item.label }}</span
                     >
                   </td>
                   <td class="pl-0 text-center">

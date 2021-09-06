@@ -11,7 +11,7 @@
             placeholder="Search..."
             class="form-control input-lg w-200px mr-5"
           />
-          <b-link to="systemuser/create">
+          <b-link to="sshkey/create">
             <a class="btn btn-success font-weight-bolder font-size-sm"
               >Add SSHKey</a
             >

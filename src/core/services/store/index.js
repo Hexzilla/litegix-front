@@ -8,8 +8,7 @@ import breadcrumbs from "./breadcrumbs.module";
 import profile from "./profile.module";
 import servers from "./servers.module";
 import database from "./database.module";
-import sshkeys from "./sshkey.module";
-import systemusers from "./systemuser.module";
+import serversystem from "./serversystem.module";
 
 Vue.use(Vuex);
 
@@ -22,7 +21,6 @@ export default new Vuex.Store({
     profile,
     servers,
     database,
-    sshkeys,
-    systemusers
+    serversystem
   }
 });

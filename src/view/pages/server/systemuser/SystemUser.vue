@@ -81,7 +81,7 @@ import Swal from "sweetalert2";
 import {
   GET_SYSTEM_USERS,
   DELETE_SYSTEM_USER
-} from "@/core/services/store/systemuser.module";
+} from "@/core/services/store/serversystem.module";
 
 export default {
   data() {
@@ -113,7 +113,7 @@ export default {
         return;
       }
       const payload = {
-        userId: user._id,
+        userId: user.id,
         serverId: this.serverId
       };
       const response = await this.$store.dispatch(DELETE_SYSTEM_USER, payload);

@@ -42,7 +42,7 @@
 
 <script>
 import { mapGetters } from "vuex";
-import { GET_SYSTEM_USERS } from "@/core/services/store/systemuser.module";
+import { GET_SYSTEM_USERS } from "@/core/services/store/serversystem.module";
 
 export default {
   data() {

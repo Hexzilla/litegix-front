@@ -226,20 +226,14 @@ const actions = {
     });
   },
 
-  [DELETE_DATABASE](context, credentials) {
+  [DELETE_DATABASE](context, payload) {
     return new Promise((resolve, reject) => {
       ApiService.setHeader();
       ApiService.delete(
-        "servers/" +
-          credentials.serverId +
-          "/databases/" +
-          credentials.databaseId
+        "servers/" + payload.serverId + "/databases/" + payload.dbId
       )
         .then(({ data }) => {
           resolve(data);
-          // if (data.success) {
-          //     context.commit(SET_DATABASES, data.data.databases);
-          // }
         })
         .catch(error => {
           context.commit(SET_ERROR, error.response.data.errors);

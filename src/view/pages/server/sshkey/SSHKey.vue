@@ -119,7 +119,6 @@ export default {
         showCancelButton: true,
         heightAuto: false
       });
-
       if (!result.isConfirmed) {
         return;
       }

@@ -30,14 +30,14 @@
           <i class="rc rc-ln-database rc-table-icon"></i>{{ data.item.name }}
         </template>
         <template #cell(change_password)="data">
-          <b-link :to="`database/` + data.item._id + `/changepassword`">
+          <b-link :to="`database/` + data.item.id + `/changepassword`">
             <span class="label label-lg label-inline label-primary">
               {{ data.item.id }}
             </span>
           </b-link>
         </template>
         <template #cell(delete)="data">
-          <a role="button" v-on:click="delete_dbuser(data.item._id)"
+          <a role="button" v-on:click="delete_dbuser(data.item)"
             ><i class="fas fa-trash-alt text-danger"></i
           ></a>
         </template>
@@ -50,6 +50,7 @@
 
 <script>
 import { mapGetters } from "vuex";
+import Swal from "sweetalert2";
 import {
   GET_DBUSERS,
   DELETE_DBUSER,
@@ -89,12 +90,35 @@ export default {
       });
       this.$router.go();
     },
-    delete_dbuser: function(userId) {
-      this.$store.dispatch(DELETE_DBUSER, {
-        serverId: this.serverId,
-        dbuserId: userId
+    delete_dbuser: async function(dbuser) {
+      console.log("delete_dbuser", dbuser);
+      const result = await Swal.fire({
+        title: "",
+        text: "Do you want to delete this?",
+        icon: "question",
+        showConfirmButton: true,
+        showCancelButton: true,
+        heightAuto: false
       });
-      this.$store.dispatch(GET_DBUSERS, this.serverId);
+      if (!result.isConfirmed) {
+        return;
+      }
+
+      const respone = await this.$store.dispatch(DELETE_DBUSER, {
+        serverId: this.serverId,
+        dbuserId: dbuser.id
+      });
+      console.log("delete-respone", respone);
+      if (respone && respone.success) {
+        this.$store.dispatch(GET_DBUSERS, this.serverId);
+
+        Swal.fire({
+          title: "",
+          text: "Database user " + dbuser.name + " has been successfully deleted",
+          icon: "success",
+          heightAuto: false
+        });
+      }
     }
   }
 };

@@ -18,13 +18,9 @@ const getters = {
 
 const actions = {
   [CREATE_SYSTEM_USERS](context, payload) {
-    console.log("credentials", payload);
     return new Promise((resolve, reject) => {
       ApiService.setHeader();
-      ApiService.post(
-        "servers/" + payload.serverId + "/systemusers/store",
-        payload
-      )
+      ApiService.post("servers/" + payload.serverId + "/systemusers", payload)
         .then(({ data }) => {
           resolve(data);
           if (data.success) {

@@ -32,7 +32,7 @@
         <template #cell(change_password)="data">
           <b-link :to="`database/` + data.item._id + `/changepassword`">
             <span class="label label-lg label-inline label-primary">
-              {{ data.item._id }}
+              {{ data.item.id }}
             </span>
           </b-link>
         </template>

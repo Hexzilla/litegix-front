@@ -30,7 +30,7 @@
         <template #cell(database_user)="data">
           <a
             v-for="user in data.item.users"
-            :key="user"
+            :key="user._id"
             role="button"
             class="mr-1"
             v-on:click="revoke_dbuser(data.item._id, user._id)"
@@ -44,6 +44,9 @@
               Grant User
             </span>
           </b-link>
+        </template>
+        <template #cell(collation)="data">
+          <i class="rc rc-ln-database rc-table-icon"></i>{{ data.item.collation }}
         </template>
         <template #cell(delete)="data">
           <a role="button" v-on:click="delete_database(data.item._id)"
@@ -74,11 +77,6 @@ export default {
         { key: "name", label: "Database Name" },
         "database_user",
         "collation",
-        "delete"
-      ],
-      dtabaseUserFields: [
-        { key: "name", label: "User Name" },
-        "change_password",
         "delete"
       ]
     };

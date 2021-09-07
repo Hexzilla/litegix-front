@@ -153,7 +153,7 @@ const actions = {
       ApiService.get("servers/" + serverId + "/databases")
         .then(({ data }) => {
           if (data.success) {
-            context.commit(SET_DATABASES, data.data.results);
+            context.commit(SET_DATABASES, data.data.databases);
           }
           resolve(data);
         })
@@ -169,10 +169,10 @@ const actions = {
       ApiService.setHeader();
       ApiService.get("servers/" + serverId + "/databases/users")
         .then(({ data }) => {
-          resolve(data);
           if (data.success) {
             context.commit(SET_DBUSERS, data.data.dbusers);
           }
+          resolve(data);
         })
         .catch(error => {
           context.commit(SET_ERROR, error.response.data.errors);

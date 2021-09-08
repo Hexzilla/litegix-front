@@ -60,6 +60,69 @@ export default {
       console.log(data);
       console.log("systemUsers", this.systemUsers);
     });
+
+    const create_form = KTUtil.getById("kt_form_database");
+    this.fv = formValidation(create_form, {
+      fields: {
+        name: {
+          validators: {
+            notEmpty: {
+              message: "Name is required"
+            }
+          }
+        }
+      },
+      plugins: {
+        trigger: new Trigger(),
+        submitButton: new SubmitButton(),
+        bootstrap: new Bootstrap()
+      }
+    });
+    this.fv.on("core.form.valid", this.createDatabase);
+    this.fv.on("core.form.invalid", () => {});
+  },
+  methods: {
+    createDatabase() {
+      // set spinner to submit button
+      const submitButton = this.$refs["kt_form_submit"];
+      submitButton.classList.add("spinner", "spinner-light", "spinner-right");
+      const removeSpinner = () => {
+        submitButton.classList.remove(
+          "spinner",
+          "spinner-light",
+          "spinner-right"
+        );
+      };
+      const payload = {
+        name: this.form.name,
+        user: this.form.user,
+        collation: this.form.collation,
+        serverId: this.$parent.serverId
+      };
+      this.$store
+        .dispatch(CREATE_DATABASE, payload)
+        .then(() => {
+          removeSpinner();
+          this.onCreateSuccess(payload.name);
+        })
+        .catch(() => {
+          removeSpinner();
+        });
+    },
+    onCreateSuccess(name) {
+      Swal.fire({
+        title: "",
+        text: "Database " + name + " has been successfully created",
+        icon: "success",
+        confirmButtonClass: "btn btn-secondary",
+        heightAuto: false
+      }).then(() => {
+        console.log();
+        this.$router.push({
+          name: "server-database"
+        });
+      });
+    }
   }
 };
 </script>

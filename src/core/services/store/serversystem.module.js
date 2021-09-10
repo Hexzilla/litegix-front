@@ -11,9 +11,12 @@ export const CREATE_SSH_KEY = "createSSHKey";
 export const GET_SSH_KEYS = "getSSHKeys";
 export const DELETE_SSH_KEY = "deleteSSHKey";
 
+export const CREATE_DEPLOY_KEY = "createDeployKey";
+
 const state = {
   systemUsers: [],
-  sshKeys: []
+  sshKeys: [],
+  deployKeys: []
 };
 
 const getters = {
@@ -22,6 +25,9 @@ const getters = {
   },
   sshKeys(state) {
     return state.sshKeys;
+  },
+  deployKeys(state) {
+    return state.deployKeys;
   }
 };
 
@@ -124,6 +130,26 @@ const actions = {
         })
         .catch(error => {
           console.log("delete-users-error", error);
+          context.commit(SET_ERROR, error.response.data.errors);
+          reject(error);
+        });
+    });
+  },
+  [CREATE_DEPLOY_KEY](context, payload) {
+    return new Promise((resolve, reject) => {
+      ApiService.setHeader();
+      ApiService.post(
+        "servers/" + payload.serverId + "/sshcredentials/store",
+        payload
+      )
+        .then(({ data }) => {
+          resolve(data);
+          if (data.success) {
+            context.commit(SET_SSH_KEYS, data.data);
+          }
+        })
+        .catch(error => {
+          console.log(error.response);
           context.commit(SET_ERROR, error.response.data.errors);
           reject(error);
         });

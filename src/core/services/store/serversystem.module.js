@@ -12,6 +12,8 @@ export const GET_SSH_KEYS = "getSSHKeys";
 export const DELETE_SSH_KEY = "deleteSSHKey";
 
 export const CREATE_DEPLOY_KEY = "createDeployKey";
+export const GET_DEPLOY_KEYS = "getDeployKeys";
+export const SET_DEPLOY_KEYS = "setDeployKeys";
 
 const state = {
   systemUsers: [],
@@ -138,18 +140,28 @@ const actions = {
   [CREATE_DEPLOY_KEY](context, payload) {
     return new Promise((resolve, reject) => {
       ApiService.setHeader();
-      ApiService.post(
-        "servers/" + payload.serverId + "/sshcredentials/store",
-        payload
-      )
+      ApiService.post("servers/" + payload.serverId + "/deploykeys", payload)
         .then(({ data }) => {
           resolve(data);
-          if (data.success) {
-            context.commit(SET_SSH_KEYS, data.data);
-          }
         })
         .catch(error => {
           console.log(error.response);
+          context.commit(SET_ERROR, error.response.data.errors);
+          reject(error);
+        });
+    });
+  },
+  [GET_DEPLOY_KEYS](context, serverId) {
+    return new Promise((resolve, reject) => {
+      ApiService.setHeader();
+      ApiService.get("servers/" + serverId + "/deploykeys")
+        .then(({ data }) => {
+          if (data.success) {
+            context.commit(SET_DEPLOY_KEYS, data.data.keys);
+          }
+          resolve(data);
+        })
+        .catch(error => {
           context.commit(SET_ERROR, error.response.data.errors);
           reject(error);
         });
@@ -167,6 +179,10 @@ const mutations = {
   },
   [SET_SSH_KEYS](state, keys) {
     state.sshKeys = keys;
+    state.errors = {};
+  },
+  [SET_DEPLOY_KEYS](state, keys) {
+    state.deployKeys = keys;
     state.errors = {};
   }
 };

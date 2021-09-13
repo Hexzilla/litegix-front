@@ -130,30 +130,30 @@ import { mapGetters } from "vuex";
 import {
   GET_SCRIPT,
   GET_INSTALLPROCESS,
-  DELETE_SERVER,
+  DELETE_SERVER
 } from "@/core/services/store/servers.module";
 
 export default {
   name: "ConfigServer",
   props: ["serverId"],
   components: {
-    ConfirmDialogue,
+    ConfirmDialogue
   },
   data() {
     return {
       clipboard: null,
       command_url: " ssh root@192.168.1.1",
       command_script:
-        "https://manage.runcloud.io/scripts/installer/6bepZ6PReT4qMOdGnooVxCobzM1624876693YmT5lFUfSrxlUlYwr8PhvQa9XZoHX4a9SkR7zEeDciZULlyjWrNcnMaMHOmt6ecM/Lz5TrlmpVcOMl4gvsOrzThHGLVHU5koMAVHx69PUmgaimRZdgJs6TBawneaqHn7cGIfvSopiOhrMwRDcICwL4GHQRzsLqCusjy2rXVpJ8csIMojd5AAjnVubEPxlpbDt | bash -; export DEBIAN_FRONTEND=newt",
+        "https://manage.runcloud.io/scripts/installer/6bepZ6PReT4qMOdGnooVxCobzM1624876693YmT5lFUfSrxlUlYwr8PhvQa9XZoHX4a9SkR7zEeDciZULlyjWrNcnMaMHOmt6ecM/Lz5TrlmpVcOMl4gvsOrzThHGLVHU5koMAVHx69PUmgaimRZdgJs6TBawneaqHn7cGIfvSopiOhrMwRDcICwL4GHQRzsLqCusjy2rXVpJ8csIMojd5AAjnVubEPxlpbDt | bash -; export DEBIAN_FRONTEND=newt"
     };
   },
   computed: {
-    ...mapGetters(["configscript", "installprocess"]),
+    ...mapGetters(["configscript", "installprocess"])
   },
   mounted() {
     this.$store.dispatch(SET_BREADCRUMB, [
       { title: "Server" },
-      { title: "Config" },
+      { title: "Config" }
     ]);
     this.$store.dispatch(GET_SCRIPT, this.serverId);
     this.getUploadProcess();
@@ -163,7 +163,7 @@ export default {
     getUploadProcess() {
       if (this.installprocess < 100) {
         this.$store.dispatch(GET_INSTALLPROCESS, this.serverId);
-        setTimeout(this.getUploadProcess, 1000);
+        setTimeout(this.getUploadProcess, 500);
       } else {
         clearTimeout(this.getUploadProcess);
         this.$router.push({ name: "server", params: this.serverId });
@@ -174,7 +174,7 @@ export default {
         title: "Delete Server " + this.configscript.name,
         message:
           "Do not forget to delete this server from your cloud provider. Delete this server?",
-        okButton: "Delete",
+        okButton: "Delete"
       });
       // If you throw an error, the method will terminate here unless you surround it wil try/catch
       if (ok) {
@@ -188,14 +188,17 @@ export default {
       this.$bvToast.toast(contents, {
         title: ``,
         variant: variant,
-        solid: true,
+        solid: true
       });
     },
     commandCopy(param) {
       let testingCodeToCopy = "";
-      if (param == 1) testingCodeToCopy = document.querySelector("#com-url");
-      else testingCodeToCopy = document.querySelector("#com-txt");
-      testingCodeToCopy.setAttribute("type", "text"); // 不是 hidden 才能複製
+      if (param == 1) {
+        testingCodeToCopy = document.querySelector("#com-url");
+      } else {
+        testingCodeToCopy = document.querySelector("#com-txt");
+      }
+      testingCodeToCopy.setAttribute("type", "text");
       testingCodeToCopy.select();
 
       try {
@@ -211,23 +214,15 @@ export default {
       testingCodeToCopy.setAttribute("type", "hidden");
       window.getSelection().removeAllRanges();
     },
-
-    // clipboardSuccessHandler ({ value, event }) {
-    //   console.log('success', value)
-    // },
-
-    // clipboardErrorHandler ({ value, event }) {
-    //   console.log('error', value)
-    // },
-    submit: function (e) {
+    submit: function(e) {
       e.preventDefault();
       Swal.fire({
         title: "",
         text: "The application has been successfully submitted!",
         icon: "success",
-        confirmButtonClass: "btn btn-secondary",
+        confirmButtonClass: "btn btn-secondary"
       });
-    },
-  },
+    }
+  }
 };
 </script>

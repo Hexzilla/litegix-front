@@ -12,7 +12,7 @@
       <div class="row justify-content-center my-10 px-8 my-lg-15 px-lg-10">
         <div class="col-xl-12">
           <form class="form" novalidate="novalidate" id="kt_form_server">
-            <b-form-group v-bind:label="`Select Provider`">
+            <!-- <b-form-group v-bind:label="`Select Provider`">
               <b-row>
                 <b-col md="2" sm="3" class="mt-2">
                   <b-form-radio
@@ -139,7 +139,7 @@
                   </b-form-radio>
                 </b-col>
               </b-row>
-            </b-form-group>
+            </b-form-group> -->
             <div class="pb-5">
               <v-autocomplete
                 v-model="form.web_server"
@@ -233,7 +233,7 @@ export default {
     return {
       webservers: [
         { text: "Nginx", value: "nginx" },
-        { text: "OpenLiteSpeed web app stack", value: "openlitespeed" },
+        { text: "OpenLiteSpeed web app stack", value: "openlitespeed" }
       ],
       phpversions: [
         { text: "PHP 8.0", value: "8.0" },
@@ -243,14 +243,14 @@ export default {
         { text: "PHP 7.1", value: "7.1" },
         { text: "PHP 7.0", value: "7.0" },
         { text: "PHP 5.6", value: "5.6" },
-        { text: "Do not install PHP", value: "none" },
+        { text: "Do not install PHP", value: "none" }
       ],
       databases: [
         { text: "MySQL 5.7", value: "mysql" },
         { text: "MariaDB 10.3", value: "mariadb" },
         { text: "PostgreSQL 10.9", value: "postgresql" },
         { text: "PostgreSQL 13", value: "postgresql13" },
-        { text: "None (do not install a database)", value: "none" },
+        { text: "None (do not install a database)", value: "none" }
       ],
       form: {
         name: "",
@@ -285,13 +285,13 @@ export default {
             ip: {
               message: "Invalid IP address"
             }
-          },
-        },
+          }
+        }
       },
       plugins: {
         trigger: new Trigger(),
         submitButton: new SubmitButton(),
-        bootstrap: new Bootstrap(),
+        bootstrap: new Bootstrap()
       }
     });
     this.fv.on("core.form.valid", this.createServer);
@@ -338,7 +338,7 @@ export default {
 
       this.$store
         .dispatch(CREATE_SERVER, payload)
-        .then((data) => {
+        .then(data => {
           removeSpinner();
           this.onCreateSuccess(data.id);
         })
@@ -354,7 +354,6 @@ export default {
         confirmButtonClass: "btn btn-secondary",
         heightAuto: false
       }).then(() => {
-        console.log(serverId);
         this.$router.push({
           name: "server-config",
           params: { serverId: serverId }

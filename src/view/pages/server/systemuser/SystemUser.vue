@@ -81,7 +81,7 @@ import Swal from "sweetalert2";
 import {
   GET_SYSTEM_USERS,
   DELETE_SYSTEM_USER
-} from "@/core/services/store/serversystem.module";
+} from "@/core/services/store/system.module";
 
 export default {
   data() {

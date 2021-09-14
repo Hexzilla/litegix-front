@@ -8,7 +8,7 @@ import breadcrumbs from "./breadcrumbs.module";
 import profile from "./profile.module";
 import servers from "./servers.module";
 import database from "./database.module";
-import serversystem from "./serversystem.module";
+import system from "./system.module";
 
 Vue.use(Vuex);
 
@@ -21,6 +21,6 @@ export default new Vuex.Store({
     profile,
     servers,
     database,
-    serversystem
+    system
   }
 });

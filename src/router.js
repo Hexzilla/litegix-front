@@ -571,7 +571,7 @@ export default new Router({
             {
               path: "phpcli",
               name: "server-phpcli",
-              component: () => import("@/view/pages/server/PHP_CLI.vue")
+              component: () => import("@/view/pages/server/PhpVersion.vue")
             },
             {
               path: "cronjob",

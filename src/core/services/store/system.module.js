@@ -15,10 +15,15 @@ export const CREATE_DEPLOY_KEY = "createDeployKey";
 export const GET_DEPLOY_KEYS = "getDeployKeys";
 export const SET_DEPLOY_KEYS = "setDeployKeys";
 
+export const GET_PHP_VERSIONS = "getPhpVersions";
+export const UPDATE_PHP_VERSION = "updatePhpVersion";
+export const SET_PHP_VERSION = "setPhpVersion";
+
 const state = {
   systemUsers: [],
   sshKeys: [],
-  deployKeys: []
+  deployKeys: [],
+  phpVersion: ""
 };
 
 const getters = {
@@ -166,6 +171,36 @@ const actions = {
           reject(error);
         });
     });
+  },
+  [GET_PHP_VERSIONS](context, serverId) {
+    return new Promise((resolve, reject) => {
+      ApiService.setHeader();
+      ApiService.get("servers/" + serverId + "/php/version")
+        .then(({ data }) => {
+          if (data.success) {
+            context.commit(SET_PHP_VERSION, data.data.keys);
+          }
+          resolve(data);
+        })
+        .catch(error => {
+          context.commit(SET_ERROR, error.response.data.errors);
+          reject(error);
+        });
+    });
+  },
+  [UPDATE_PHP_VERSION](context, payload) {
+    return new Promise((resolve, reject) => {
+      ApiService.setHeader();
+      ApiService.post("servers/" + payload.serverId + "/php/version", payload)
+        .then(({ data }) => {
+          resolve(data);
+        })
+        .catch(error => {
+          console.log(error.response);
+          context.commit(SET_ERROR, error.response.data.errors);
+          reject(error);
+        });
+    });
   }
 };
 
@@ -183,6 +218,10 @@ const mutations = {
   },
   [SET_DEPLOY_KEYS](state, keys) {
     state.deployKeys = keys;
+    state.errors = {};
+  },
+  [SET_PHP_VERSION](state, version) {
+    state.phpversion = version;
     state.errors = {};
   }
 };

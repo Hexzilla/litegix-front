@@ -89,7 +89,7 @@ import Swal from "sweetalert2";
 import {
   GET_SSH_KEYS,
   DELETE_SSH_KEY
-} from "@/core/services/store/serversystem.module";
+} from "@/core/services/store/system.module";
 
 export default {
   data() {

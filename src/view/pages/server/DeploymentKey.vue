@@ -50,7 +50,7 @@ import Swal from "sweetalert2";
 import {
   GET_DEPLOY_KEYS,
   CREATE_DEPLOY_KEY
-} from "@/core/services/store/serversystem.module";
+} from "@/core/services/store/system.module";
 
 export default {
   data() {

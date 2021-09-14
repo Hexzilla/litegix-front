@@ -41,8 +41,18 @@
 </template>
 
 <script>
+import formValidation from "@/assets/plugins/formvalidation/dist/es6/core/Core";
+import Trigger from "@/assets/plugins/formvalidation/dist/es6/plugins/Trigger";
+import Bootstrap from "@/assets/plugins/formvalidation/dist/es6/plugins/Bootstrap";
+import SubmitButton from "@/assets/plugins/formvalidation/dist/es6/plugins/SubmitButton";
+import KTUtil from "@/assets/js/components/util";
+import Swal from "sweetalert2";
+
 import { mapGetters } from "vuex";
-import { GET_SYSTEM_USERS } from "@/core/services/store/serversystem.module";
+import {
+  GET_SYSTEM_USERS,
+  CREATE_SYSTEM_USER
+} from "@/core/services/store/system.module";
 
 export default {
   data() {
@@ -100,7 +110,7 @@ export default {
         serverId: this.$parent.serverId
       };
       this.$store
-        .dispatch(CREATE_DATABASE, payload)
+        .dispatch(CREATE_SYSTEM_USER, payload)
         .then(() => {
           removeSpinner();
           this.onCreateSuccess(payload.name);

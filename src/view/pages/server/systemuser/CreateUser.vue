@@ -66,7 +66,7 @@ import KTUtil from "@/assets/js/components/util";
 
 import { mapGetters } from "vuex";
 import Swal from "sweetalert2";
-import { CREATE_SYSTEM_USERS } from "@/core/services/store/serversystem.module";
+import { CREATE_SYSTEM_USERS } from "@/core/services/store/system.module";
 
 export default {
   data() {

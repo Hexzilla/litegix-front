@@ -13,22 +13,21 @@ export const GET_SERVER_SUMMERY = "getServerSummery";
 export const GET_SCRIPT = "getScript";
 export const GET_INSTALLPROCESS = "getInstallProcess";
 
-export const DELETE_SERVER = "deleteServer"
-
+export const DELETE_SERVER = "deleteServer";
 
 const state = {
   servers: {},
   summery: {},
   currentServer: {},
   configscript: {},
-  installprocess: 0,
+  installprocess: 0
 };
 
 const getters = {
   servers(state) {
     return state.servers;
   },
-  summery(state){
+  summery(state) {
     return state.summery;
   },
   currentServer(state) {
@@ -39,28 +38,28 @@ const getters = {
   },
   installprocess(state) {
     return state.installprocess;
-  },
+  }
 };
 
 const actions = {
   [CREATE_SERVER](context, credentials) {
     return new Promise((resolve, reject) => {
       ApiService.setHeader();
-      ApiService.post("servers/store", credentials)
+      ApiService.post("/servers", credentials)
         .then(({ data }) => {
-           resolve(data);
+          resolve(data);
         })
         .catch(error => {
           console.log(error.response);
           context.commit(SET_ERROR, error.response.data.errors);
-           reject(error);
+          reject(error);
         });
     });
   },
   [GET_SERVERS](context) {
     return new Promise((resolve, reject) => {
       ApiService.setHeader();
-      ApiService.get("servers")
+      ApiService.get("/servers")
         .then(({ data }) => {
           resolve(data);
           if (data.success) {
@@ -73,16 +72,15 @@ const actions = {
         });
     });
   },
-[GET_SCRIPT](context, credentials) {
+  [GET_SCRIPT](context, credentials) {
     return new Promise((resolve, reject) => {
       ApiService.setHeader();
-      ApiService.get("servers/" + credentials + "/config/installscript")
+      ApiService.get("/servers/" + credentials + "/config/installscript")
         .then(({ data }) => {
           resolve(data);
           if (data.success) {
             context.commit(SET_CONFIGSCRIPT, data.data);
           }
-
         })
         .catch(error => {
           context.commit(SET_ERROR, error.response.data.errors);
@@ -93,13 +91,17 @@ const actions = {
   [GET_INSTALLPROCESS](context, credentials) {
     return new Promise((resolve, reject) => {
       ApiService.setHeader();
-      ApiService.get("servers/" + credentials + "/config/installstate/" + state.installprocess)
+      ApiService.get(
+        "/servers/" +
+          credentials +
+          "/config/installstate/" +
+          state.installprocess
+      )
         .then(({ data }) => {
           resolve(data);
           if (data.success) {
             context.commit(SET_INSTALLPROCESS, data.data.state);
           }
-
         })
         .catch(error => {
           context.commit(SET_ERROR, error.response.data.errors);
@@ -110,13 +112,17 @@ const actions = {
   [DELETE_SERVER](context, credentials) {
     return new Promise((resolve, reject) => {
       ApiService.setHeader();
-      ApiService.get("servers/" + credentials + "/config/installstate/" + state.installprocess)
+      ApiService.get(
+        "servers/" +
+          credentials +
+          "/config/installstate/" +
+          state.installprocess
+      )
         .then(({ data }) => {
           resolve(data);
           if (data.success) {
             context.commit(SET_INSTALLPROCESS, data.data.state);
           }
-
         })
         .catch(error => {
           context.commit(SET_ERROR, error.response.data.errors);
@@ -128,14 +134,13 @@ const actions = {
   [GET_SERVER_SUMMERY](context, credentials) {
     return new Promise((resolve, reject) => {
       ApiService.setHeader();
-      ApiService.post("servers/"+credentials+"/summary")
+      ApiService.post("servers/" + credentials + "/summary")
         .then(({ data }) => {
           resolve(data);
           console.log(data);
-          if(data.success){
+          if (data.success) {
             context.commit(SET_SERVER_SUMMERY, data.data);
           }
-          
         })
         .catch(error => {
           context.commit(SET_ERROR, error.response.data.errors);

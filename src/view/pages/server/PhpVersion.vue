@@ -19,12 +19,11 @@
       <b-form-group label="Select PHP Version">
         <b-form-radio-group
           id="btn-radios-2"
-          v-model="phpVersion"
+          v-model="selectedVersion"
           :options="options"
           buttons
           button-variant="outline-primary"
           size="lg"
-          name="phpVersion"
         ></b-form-radio-group>
       </b-form-group>
       <b-button
@@ -41,10 +40,18 @@
 <style scoped src="@/assets/styles/server.css"></style>
 
 <script>
+import { mapGetters } from "vuex";
+//import Swal from "sweetalert2";
+
+import {
+  GET_PHP_VERSION,
+  UPDATE_PHP_VERSION
+} from "@/core/services/store/system.module";
+
 export default {
   data() {
     return {
-      phpVersion: "",
+      selectedVersion: "7.2",
       options: [
         { text: "PHP 7.2", value: "7.2" },
         { text: "PHP 7.4", value: "7.4" },
@@ -52,10 +59,30 @@ export default {
       ]
     };
   },
+  mounted() {
+    this.serverId = this.$parent.serverId;
+    this.fetchData();
+  },
+  computed: {
+    ...mapGetters(["phpVersion"])
+  },
   methods: {
+    fetchData() {
+      this.$store.dispatch(GET_PHP_VERSION, this.serverId).then(data => {
+        this.selectedVersion = this.phpVersion;
+        console.log("fetch", data);
+      });
+    },
     updateVersion(e) {
       e.preventDefault();
-      console.log("updateVersion", e);
+      console.log("updateVersion", this.selectedVersion);
+      const payload = {
+        serverId: this.serverId,
+        phpVersion: this.selectedVersion
+      };
+      this.$store.dispatch(UPDATE_PHP_VERSION, payload).then(data => {
+        console.log(data);
+      });
     }
   }
 };

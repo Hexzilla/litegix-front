@@ -15,7 +15,7 @@ export const CREATE_DEPLOY_KEY = "createDeployKey";
 export const GET_DEPLOY_KEYS = "getDeployKeys";
 export const SET_DEPLOY_KEYS = "setDeployKeys";
 
-export const GET_PHP_VERSIONS = "getPhpVersions";
+export const GET_PHP_VERSION = "getPhpVersion";
 export const UPDATE_PHP_VERSION = "updatePhpVersion";
 export const SET_PHP_VERSION = "setPhpVersion";
 
@@ -35,6 +35,9 @@ const getters = {
   },
   deployKeys(state) {
     return state.deployKeys;
+  },
+  phpVersion(state) {
+    return state.phpVersion;
   }
 };
 
@@ -172,13 +175,14 @@ const actions = {
         });
     });
   },
-  [GET_PHP_VERSIONS](context, serverId) {
+  [GET_PHP_VERSION](context, serverId) {
     return new Promise((resolve, reject) => {
       ApiService.setHeader();
-      ApiService.get("servers/" + serverId + "/php/version")
+      ApiService.get("servers/" + serverId + "/phpVersion")
         .then(({ data }) => {
+          console.log("~~~", data.success, data);
           if (data.success) {
-            context.commit(SET_PHP_VERSION, data.data.keys);
+            context.commit(SET_PHP_VERSION, data.data.phpVersion);
           }
           resolve(data);
         })
@@ -191,8 +195,11 @@ const actions = {
   [UPDATE_PHP_VERSION](context, payload) {
     return new Promise((resolve, reject) => {
       ApiService.setHeader();
-      ApiService.post("servers/" + payload.serverId + "/php/version", payload)
+      ApiService.put("servers/" + payload.serverId + "/phpVersion", payload)
         .then(({ data }) => {
+          if (data.success) {
+            context.commit(SET_PHP_VERSION, payload.phpVersion);
+          }
           resolve(data);
         })
         .catch(error => {
@@ -221,7 +228,8 @@ const mutations = {
     state.errors = {};
   },
   [SET_PHP_VERSION](state, version) {
-    state.phpversion = version;
+    console.log("SET_PHP_VERSION", state, version);
+    state.phpVersion = version;
     state.errors = {};
   }
 };

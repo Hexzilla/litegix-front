@@ -15,6 +15,9 @@ export const CREATE_DEPLOY_KEY = "createDeployKey";
 export const GET_DEPLOY_KEYS = "getDeployKeys";
 export const SET_DEPLOY_KEYS = "setDeployKeys";
 
+export const GET_SYSTEM_SERVICES = "getSystemServices";
+export const SET_SYSTEM_SERVICES = "setSystemServices";
+
 export const GET_PHP_VERSION = "getPhpVersion";
 export const UPDATE_PHP_VERSION = "updatePhpVersion";
 export const SET_PHP_VERSION = "setPhpVersion";
@@ -23,6 +26,7 @@ const state = {
   systemUsers: [],
   sshKeys: [],
   deployKeys: [],
+  services: [],
   phpVersion: ""
 };
 
@@ -35,6 +39,9 @@ const getters = {
   },
   deployKeys(state) {
     return state.deployKeys;
+  },
+  services(state) {
+    return state.services;
   },
   phpVersion(state) {
     return state.phpVersion;
@@ -175,12 +182,27 @@ const actions = {
         });
     });
   },
+  [GET_SYSTEM_SERVICES](context, serverId) {
+    return new Promise((resolve, reject) => {
+      ApiService.setHeader();
+      ApiService.get("servers/" + serverId + "/services")
+        .then(({ data }) => {
+          if (data.success) {
+            context.commit(SET_SYSTEM_SERVICES, data.data.services);
+          }
+          resolve(data);
+        })
+        .catch(error => {
+          context.commit(SET_ERROR, error.response.data.errors);
+          reject(error);
+        });
+    });
+  },
   [GET_PHP_VERSION](context, serverId) {
     return new Promise((resolve, reject) => {
       ApiService.setHeader();
       ApiService.get("servers/" + serverId + "/phpVersion")
         .then(({ data }) => {
-          console.log("~~~", data.success, data);
           if (data.success) {
             context.commit(SET_PHP_VERSION, data.data.phpVersion);
           }
@@ -225,6 +247,10 @@ const mutations = {
   },
   [SET_DEPLOY_KEYS](state, keys) {
     state.deployKeys = keys;
+    state.errors = {};
+  },
+  [SET_SYSTEM_SERVICES](state, services) {
+    state.services = services;
     state.errors = {};
   },
   [SET_PHP_VERSION](state, version) {

@@ -42,7 +42,6 @@
 <script>
 import { mapGetters } from "vuex";
 //import Swal from "sweetalert2";
-
 import {
   GET_PHP_VERSION,
   UPDATE_PHP_VERSION

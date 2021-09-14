@@ -51,9 +51,9 @@
           <template #cell(status)="data">
             <span
               class="label label-lg label-inline"
-              v-bind:class="`label-light-${
-                data.item.status ? 'success' : 'danger'
-              }`"
+              v-bind:class="
+                `label-light-${data.item.status ? 'success' : 'danger'}`
+              "
             >
               {{ data.item.status ? "running" : "stop" }}
             </span>
@@ -78,6 +78,10 @@
 <style scoped src="@/assets/styles/server.css"></style>
 
 <script>
+import { mapGetters } from "vuex";
+//import Swal from "sweetalert2";
+import { GET_SYSTEM_SERVICES } from "@/core/services/store/system.module";
+
 export default {
   data() {
     return {
@@ -90,46 +94,22 @@ export default {
         { key: "action", label: "" }
       ],
       items1: [],
-      show: "list",
-      services: [
-        {
-          symbol: "media/svg/misc/015-telegram.svg",
-          service: "Beanstalk",
-          version: "1.11-1",
-          processor_usage: "20%",
-          memory_usage: "80MB",
-          status: true,
-          action: ""
-        },
-        {
-          symbol: "media/svg/misc/006-plurk.svg",
-          service: "Httpd/Apache",
-          version: "2.4-3.3",
-          processor_usage: "-",
-          memory_usage: "-",
-          status: false,
-          action: "ReactJs, HTML"
-        },
-        {
-          symbol: "media/svg/misc/003-puzzle.svg",
-          service: "MariaDB",
-          version: "1.456-maria-focal",
-          processor_usage: "-",
-          memory_usage: "-",
-          status: true,
-          action: "Laravel, Metronic"
-        },
-        {
-          symbol: "media/svg/misc/005-bebo.svg",
-          service: "Memcached",
-          version: "1.525-2ubuntu0.1",
-          processor_usage: "45%",
-          memory_usage: "8GB",
-          status: false,
-          action: "AngularJS, C#"
-        }
-      ]
+      show: "list"
     };
+  },
+  mounted() {
+    this.serverId = this.$parent.serverId;
+    this.fetchData();
+  },
+  computed: {
+    ...mapGetters(["services"])
+  },
+  methods: {
+    fetchData() {
+      this.$store.dispatch(GET_SYSTEM_SERVICES, this.serverId).then(data => {
+        console.log("fetch", data);
+      });
+    }
   }
 };
 </script>

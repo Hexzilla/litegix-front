@@ -24,6 +24,10 @@ export const CREATE_CRON_JOB = "createCronJob";
 export const STORE_CRON_JOB = "storeCronJob";
 export const GET_CRON_JOBS = "getCronJobs";
 
+export const CREATE_SUPERVISOR_JOB = "createSupervisorJob";
+export const STORE_SUPERVISOR_JOB = "storeSupervisorJob";
+export const GET_SUPERVISOR_JOBS = "getSupervisorJobs";
+
 const state = {
   systemUsers: [],
   sshKeys: [],
@@ -252,6 +256,48 @@ const actions = {
     return new Promise((resolve, reject) => {
       ApiService.setHeader();
       ApiService.get("servers/" + serverId + "/cronjobs")
+        .then(({ data }) => {
+          resolve(data);
+        })
+        .catch(error => {
+          context.commit(SET_ERROR, error.response.data.errors);
+          reject(error);
+        });
+    });
+  },
+
+  [CREATE_SUPERVISOR_JOB](context, serverId) {
+    return new Promise((resolve, reject) => {
+      ApiService.setHeader();
+      ApiService.get("servers/" + serverId + "/supervisors/create")
+        .then(({ data }) => {
+          resolve(data);
+        })
+        .catch(error => {
+          console.log(error.response);
+          context.commit(SET_ERROR, error.response.data.errors);
+          reject(error);
+        });
+    });
+  },
+  [STORE_SUPERVISOR_JOB](context, payload) {
+    return new Promise((resolve, reject) => {
+      ApiService.setHeader();
+      ApiService.post("servers/" + payload.serverId + "/supervisors", payload)
+        .then(({ data }) => {
+          resolve(data);
+        })
+        .catch(error => {
+          console.log(error.response);
+          context.commit(SET_ERROR, error.response.data.errors);
+          reject(error);
+        });
+    });
+  },
+  [GET_SUPERVISOR_JOBS](context, serverId) {
+    return new Promise((resolve, reject) => {
+      ApiService.setHeader();
+      ApiService.get("servers/" + serverId + "/supervisors")
         .then(({ data }) => {
           resolve(data);
         })

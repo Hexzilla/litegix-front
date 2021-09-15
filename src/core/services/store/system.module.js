@@ -21,7 +21,7 @@ export const UPDATE_PHP_VERSION = "updatePhpVersion";
 export const SET_PHP_VERSION = "setPhpVersion";
 
 export const CREATE_CRON_JOB = "createCronJob";
-export const STORE_CRON_JOB = "createCronJob";
+export const STORE_CRON_JOB = "storeCronJob";
 export const GET_CRON_JOBS = "getCronJobs";
 
 const state = {

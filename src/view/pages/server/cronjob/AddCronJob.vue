@@ -28,8 +28,8 @@
           <label class="control-label">Vendor Binary</label>
           <b-form-select
             size="lg"
-            v-model="select"
-            :options="keys"
+            v-model="form.vendor_binary"
+            :options="vendor_binaries"
           ></b-form-select>
         </div>
         <div class="form-group">
@@ -46,25 +46,45 @@
           <label class="control-label">Predefined Settings</label>
           <b-form-select
             size="lg"
-            v-model="select"
-            :options="keys"
+            v-model="form.predef_setting"
+            :options="predefined_settings"
           ></b-form-select>
         </div>
         <h4>Custom Settings</h4>
         <b-form-group label="Minute">
-          <b-form-input name="minute" placeholder=""></b-form-input>
+          <b-form-input
+            name="minute"
+            placeholder="*"
+            v-model="form.custom_settings.minute"
+          ></b-form-input>
         </b-form-group>
         <b-form-group label="Hour">
-          <b-form-input name="hure" placeholder=""></b-form-input>
+          <b-form-input
+            name="hour"
+            placeholder="*"
+            v-model="form.custom_settings.hour"
+          ></b-form-input>
         </b-form-group>
         <b-form-group label="Day of Month">
-          <b-form-input name="dayofmonth" placeholder=""></b-form-input>
+          <b-form-input
+            name="dayOfMonth"
+            placeholder="*"
+            v-model="form.custom_settings.dayOfMonth"
+          ></b-form-input>
         </b-form-group>
         <b-form-group label="Month">
-          <b-form-input name="month" placeholder=""></b-form-input>
+          <b-form-input
+            name="month"
+            placeholder="*"
+            v-model="form.custom_settings.month"
+          ></b-form-input>
         </b-form-group>
         <b-form-group label="Day of Week">
-          <b-form-input name="dayofweek" placeholder=""></b-form-input>
+          <b-form-input
+            name="dayOfWeek"
+            placeholder="*"
+            v-model="form.custom_settings.dayOfWeek"
+          ></b-form-input>
         </b-form-group>
         <button
           type="submit"
@@ -95,24 +115,33 @@ import {
 export default {
   data() {
     return {
-      vendor_binaries: null,
+      vendor_binaries: [],
+      predefined_settings: [],
       form: {
         label: "",
         username: "",
-        collation: ""
-      },
-      select: "",
-      keys: []
+        collation: "",
+        vendor_binary: "",
+        predef_setting: "",
+        custom_settings: {
+          minute: "",
+          hour: "",
+          dayOfMonth: "",
+          month: "",
+          dayOfWeek: ""
+        }
+      }
     };
   },
   mounted() {
     this.serverId = this.$parent.serverId;
     this.$store.dispatch(CREATE_CRON_JOB, this.serverId).then(data => {
-      console.log("~~~~~~~~~~~~~~", data);
       this.vendor_binaries = data.vendor_binaries;
+      this.predefined_settings = data.predefined_settings;
     });
 
     const create_form = KTUtil.getById("kt_form_cronjob");
+    console.log("create_form", create_form);
     this.fv = formValidation(create_form, {
       fields: {
         label: {
@@ -129,11 +158,12 @@ export default {
         bootstrap: new Bootstrap()
       }
     });
-    this.fv.on("core.form.valid", this.submit);
+    this.fv.on("core.form.valid", this.submit2);
     this.fv.on("core.form.invalid", () => {});
   },
   methods: {
-    submit() {
+    submit2() {
+      console.log("submit2");
       // set spinner to submit button
       const submitButton = this.$refs["kt_form_submit"];
       submitButton.classList.add("spinner", "spinner-light", "spinner-right");
@@ -148,6 +178,7 @@ export default {
         ...this.form,
         serverId: this.$parent.serverId
       };
+      console.log("payload", payload);
       this.$store
         .dispatch(STORE_CRON_JOB, payload)
         .then(() => {

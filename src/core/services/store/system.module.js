@@ -22,11 +22,17 @@ export const GET_PHP_VERSION = "getPhpVersion";
 export const UPDATE_PHP_VERSION = "updatePhpVersion";
 export const SET_PHP_VERSION = "setPhpVersion";
 
+export const CREATE_CRON_JOB = "createCronJob";
+export const STORE_CRON_JOB = "createCronJob";
+export const GET_CRON_JOBS = "getCronJobs";
+export const SET_CRON_JOBS = "setCronJobs";
+
 const state = {
   systemUsers: [],
   sshKeys: [],
   deployKeys: [],
   services: [],
+  cronJobs: [],
   phpVersion: ""
 };
 
@@ -45,6 +51,9 @@ const getters = {
   },
   phpVersion(state) {
     return state.phpVersion;
+  },
+  cronJobs(state) {
+    return state.cronJobs;
   }
 };
 
@@ -230,6 +239,51 @@ const actions = {
           reject(error);
         });
     });
+  },
+
+  [CREATE_CRON_JOB](context, serverId) {
+    return new Promise((resolve, reject) => {
+      ApiService.setHeader();
+      ApiService.get("servers/" + serverId + "/cronjobs/create")
+        .then(({ data }) => {
+          resolve(data);
+        })
+        .catch(error => {
+          console.log(error.response);
+          context.commit(SET_ERROR, error.response.data.errors);
+          reject(error);
+        });
+    });
+  },
+  [STORE_CRON_JOB](context, payload) {
+    return new Promise((resolve, reject) => {
+      ApiService.setHeader();
+      ApiService.post("servers/" + payload.serverId + "/cronjobs", payload)
+        .then(({ data }) => {
+          resolve(data);
+        })
+        .catch(error => {
+          console.log(error.response);
+          context.commit(SET_ERROR, error.response.data.errors);
+          reject(error);
+        });
+    });
+  },
+  [GET_CRON_JOBS](context, serverId) {
+    return new Promise((resolve, reject) => {
+      ApiService.setHeader();
+      ApiService.get("servers/" + serverId + "/cronjobs")
+        .then(({ data }) => {
+          if (data.success) {
+            context.commit(SET_CRON_JOBS, data.data.cronjobs);
+          }
+          resolve(data);
+        })
+        .catch(error => {
+          context.commit(SET_ERROR, error.response.data.errors);
+          reject(error);
+        });
+    });
   }
 };
 
@@ -254,8 +308,12 @@ const mutations = {
     state.errors = {};
   },
   [SET_PHP_VERSION](state, version) {
-    console.log("SET_PHP_VERSION", state, version);
     state.phpVersion = version;
+    state.errors = {};
+  },
+  [SET_CRON_JOBS](state, cronJobs) {
+    console.log("cronJobs", cronJobs);
+    state.cronJobs = cronJobs;
     state.errors = {};
   }
 };

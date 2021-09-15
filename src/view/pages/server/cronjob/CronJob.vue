@@ -25,7 +25,7 @@
         by RunCloud. We will add it back to match your configuration below.
       </div>
       <b-table
-        :items="items"
+        :items="cronJobs"
         :fields="fields"
         show-empty
         empty-text="You don't have any cron jobs configured yet."
@@ -41,18 +41,36 @@
 </template>
 
 <script>
+import { mapGetters } from "vuex";
+//import Swal from "sweetalert2";
+import { GET_CRON_JOBS } from "@/core/services/store/system.module";
+
 export default {
   data() {
     return {
       fields: [
-        { key: "name", label: "Job name" },
-        { key: "view", label: "Run as" },
+        { key: "label", label: "Job name" },
+        { key: "username", label: "Run as" },
         { key: "command", label: "Command" },
         { key: "time", label: "Time to run" },
-        { key: "action", label: "Action" },
+        { key: "action", label: "Action" }
       ],
-      items: [],
+      items: []
     };
   },
+  mounted() {
+    this.serverId = this.$parent.serverId;
+    this.fetchData();
+  },
+  computed: {
+    ...mapGetters(["cronJobs"])
+  },
+  methods: {
+    fetchData() {
+      this.$store.dispatch(GET_CRON_JOBS, this.serverId).then(() => {
+        console.log("cronJobs", this.cronJobs);
+      });
+    }
+  }
 };
 </script>

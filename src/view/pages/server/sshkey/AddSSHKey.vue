@@ -6,7 +6,7 @@
       </h3>
     </div>
     <div class="card-body py-0 pb-10">
-      <b-form>
+      <b-form id="kt_form_sshkey">
         <b-form-group label="Label">
           <b-form-input
             name="label"
@@ -71,7 +71,7 @@ export default {
       console.log("systemUsers", this.systemUsers);
     });
 
-    const create_form = KTUtil.getById("kt_form_database");
+    const create_form = KTUtil.getById("kt_form_sshkey");
     this.fv = formValidation(create_form, {
       fields: {
         name: {

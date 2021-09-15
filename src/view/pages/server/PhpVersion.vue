@@ -69,7 +69,7 @@ export default {
     fetchData() {
       this.$store.dispatch(GET_PHP_VERSION, this.serverId).then(data => {
         this.selectedVersion = this.phpVersion;
-        console.log("fetch", data);
+        console.log("phpVersion", data);
       });
     },
     updateVersion(e) {

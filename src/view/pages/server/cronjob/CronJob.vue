@@ -41,8 +41,6 @@
 </template>
 
 <script>
-import { mapGetters } from "vuex";
-//import Swal from "sweetalert2";
 import { GET_CRON_JOBS } from "@/core/services/store/system.module";
 
 export default {
@@ -55,20 +53,20 @@ export default {
         { key: "time", label: "Time to run" },
         { key: "action", label: "Action" }
       ],
-      items: []
+      cronJobs: []
     };
   },
   mounted() {
     this.serverId = this.$parent.serverId;
     this.fetchData();
   },
-  computed: {
-    ...mapGetters(["cronJobs"])
-  },
   methods: {
     fetchData() {
-      this.$store.dispatch(GET_CRON_JOBS, this.serverId).then(() => {
-        console.log("cronJobs", this.cronJobs);
+      this.$store.dispatch(GET_CRON_JOBS, this.serverId).then(response => {
+        console.log("cronJobs", response);
+        if (response.success) {
+          this.cronJobs = response.data.cronJobs;
+        }
       });
     }
   }

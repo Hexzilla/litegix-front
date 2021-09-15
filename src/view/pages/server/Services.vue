@@ -78,8 +78,6 @@
 <style scoped src="@/assets/styles/server.css"></style>
 
 <script>
-import { mapGetters } from "vuex";
-//import Swal from "sweetalert2";
 import { GET_SYSTEM_SERVICES } from "@/core/services/store/system.module";
 
 export default {
@@ -93,7 +91,7 @@ export default {
         "status",
         { key: "action", label: "" }
       ],
-      items1: [],
+      services: [],
       show: "list"
     };
   },
@@ -101,14 +99,16 @@ export default {
     this.serverId = this.$parent.serverId;
     this.fetchData();
   },
-  computed: {
-    ...mapGetters(["services"])
-  },
   methods: {
     fetchData() {
-      this.$store.dispatch(GET_SYSTEM_SERVICES, this.serverId).then(data => {
-        console.log("fetch", data);
-      });
+      this.$store
+        .dispatch(GET_SYSTEM_SERVICES, this.serverId)
+        .then(response => {
+          console.log("fetch", response);
+          if (response.success) {
+            this.services = response.data.services;
+          }
+        });
     }
   }
 };

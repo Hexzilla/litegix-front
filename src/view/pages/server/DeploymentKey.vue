@@ -44,9 +44,7 @@
 </template>
 
 <script>
-import { mapGetters } from "vuex";
 import Swal from "sweetalert2";
-
 import {
   GET_DEPLOY_KEYS,
   CREATE_DEPLOY_KEY
@@ -64,11 +62,9 @@ export default {
           thClass: "text-center",
           tdClass: "text-center"
         }
-      ]
+      ],
+      deployKeys: []
     };
-  },
-  computed: {
-    ...mapGetters(["deployKeys"])
   },
   mounted() {
     this.serverId = this.$parent.serverId;
@@ -76,8 +72,11 @@ export default {
   },
   methods: {
     fetchData() {
-      this.$store.dispatch(GET_DEPLOY_KEYS, this.serverId).then(() => {
+      this.$store.dispatch(GET_DEPLOY_KEYS, this.serverId).then(response => {
         console.log(this.deployKeys);
+        if (response.success) {
+          this.deployKeys = response.data.keys;
+        }
       });
     },
     async createDeployKey(user) {

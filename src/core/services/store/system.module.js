@@ -13,10 +13,8 @@ export const DELETE_SSH_KEY = "deleteSSHKey";
 
 export const CREATE_DEPLOY_KEY = "createDeployKey";
 export const GET_DEPLOY_KEYS = "getDeployKeys";
-export const SET_DEPLOY_KEYS = "setDeployKeys";
 
 export const GET_SYSTEM_SERVICES = "getSystemServices";
-export const SET_SYSTEM_SERVICES = "setSystemServices";
 
 export const GET_PHP_VERSION = "getPhpVersion";
 export const UPDATE_PHP_VERSION = "updatePhpVersion";
@@ -25,14 +23,10 @@ export const SET_PHP_VERSION = "setPhpVersion";
 export const CREATE_CRON_JOB = "createCronJob";
 export const STORE_CRON_JOB = "createCronJob";
 export const GET_CRON_JOBS = "getCronJobs";
-export const SET_CRON_JOBS = "setCronJobs";
 
 const state = {
   systemUsers: [],
   sshKeys: [],
-  deployKeys: [],
-  services: [],
-  cronJobs: [],
   phpVersion: ""
 };
 
@@ -43,17 +37,8 @@ const getters = {
   sshKeys(state) {
     return state.sshKeys;
   },
-  deployKeys(state) {
-    return state.deployKeys;
-  },
-  services(state) {
-    return state.services;
-  },
   phpVersion(state) {
     return state.phpVersion;
-  },
-  cronJobs(state) {
-    return state.cronJobs;
   }
 };
 
@@ -180,9 +165,6 @@ const actions = {
       ApiService.setHeader();
       ApiService.get("servers/" + serverId + "/deploykeys")
         .then(({ data }) => {
-          if (data.success) {
-            context.commit(SET_DEPLOY_KEYS, data.data.keys);
-          }
           resolve(data);
         })
         .catch(error => {
@@ -196,9 +178,6 @@ const actions = {
       ApiService.setHeader();
       ApiService.get("servers/" + serverId + "/services")
         .then(({ data }) => {
-          if (data.success) {
-            context.commit(SET_SYSTEM_SERVICES, data.data.services);
-          }
           resolve(data);
         })
         .catch(error => {
@@ -274,9 +253,6 @@ const actions = {
       ApiService.setHeader();
       ApiService.get("servers/" + serverId + "/cronjobs")
         .then(({ data }) => {
-          if (data.success) {
-            context.commit(SET_CRON_JOBS, data.data.cronjobs);
-          }
           resolve(data);
         })
         .catch(error => {
@@ -299,21 +275,8 @@ const mutations = {
     state.sshKeys = keys;
     state.errors = {};
   },
-  [SET_DEPLOY_KEYS](state, keys) {
-    state.deployKeys = keys;
-    state.errors = {};
-  },
-  [SET_SYSTEM_SERVICES](state, services) {
-    state.services = services;
-    state.errors = {};
-  },
   [SET_PHP_VERSION](state, version) {
     state.phpVersion = version;
-    state.errors = {};
-  },
-  [SET_CRON_JOBS](state, cronJobs) {
-    console.log("cronJobs", cronJobs);
-    state.cronJobs = cronJobs;
     state.errors = {};
   }
 };

@@ -7,6 +7,9 @@
 	.header-mobile {
 		display: none;
 	}
+	.submenu-mobile {
+		display: none!important;
+	}
 }
 
 // Tablet & Mobile Modes
@@ -36,5 +39,8 @@
 		.topbar-mobile-on & {
 			box-shadow: none !important;
 		}
+	}
+	.submenu-mobile {
+		display: inline;
 	}
 }

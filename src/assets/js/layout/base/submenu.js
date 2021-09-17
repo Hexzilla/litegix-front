@@ -1,6 +1,6 @@
 "use strict";
 
-var KTLayoutAside = function() {
+var KTLayoutSubmenu = function() {
     // Private properties
     var _body;
     var _element;
@@ -48,6 +48,4 @@ var KTLayoutAside = function() {
 	};
 }();
 
-
-
-export default KTLayoutAside;
+export default KTLayoutSubmenu;

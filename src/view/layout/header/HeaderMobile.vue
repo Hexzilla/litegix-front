@@ -20,6 +20,15 @@
         <span></span>
       </button>
       <!--end::Aside Mobile Toggle-->
+      <!--begin::Submenu Mobile Toggle-->
+      <button
+        v-if="submenuEnabled"
+        class="btn p-0 burger-icon burger-icon-left"
+        id="kt_submenu_mobile_toggle"
+      >
+        <span></span>
+      </button>
+      <!--end::Submenu Mobile Toggle-->
       <!--begin::Header Menu Mobile Toggle-->
       <button
         class="btn p-0 burger-icon ml-4"
@@ -87,6 +96,17 @@ export default {
      */
     asideEnabled() {
       return !!this.layoutConfig("aside.self.display");
+    },
+
+    /**
+     * Check if the left aside menu is enabled
+     * @returns {boolean}
+     */
+    submenuEnabled() {
+      return (
+        this.$route.path.startsWith("/settings") ||
+        this.$route.path.startsWith("/servers")
+      );
     }
   }
 };

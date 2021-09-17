@@ -36,6 +36,9 @@ window.KTWizard = KTWizard;
 import KTLayoutAside from "@/assets/js/layout/base/aside.js";
 window.KTLayoutAside = KTLayoutAside;
 
+import KTLayoutSubmenu from "@/assets/js/layout/base/submenu.js";
+window.KTLayoutSubmenu = KTLayoutSubmenu;
+
 import KTLayoutAsideMenu from "@/assets/js/layout/base/aside-menu.js";
 window.KTLayoutAsideMenu = KTLayoutAsideMenu;
 

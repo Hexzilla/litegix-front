@@ -49,7 +49,7 @@
 </template>
 <script>
 export default {
-  name: "ServerMenu",
+  name: "KTServerMenu",
   props: ["serverId"],
   data() {
     return {

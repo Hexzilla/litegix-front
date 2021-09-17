@@ -6,7 +6,7 @@
       v-bind:class="{ 'container-fluid': widthFluid, container: !widthFluid }"
     >
       <div class="text-dark">
-        <span class="text-muted  mr-2">
+        <span class="text-muted font-weight-bold mr-2">
           2020 &nbsp;&copy;&nbsp;
         </span>
         <a
@@ -62,17 +62,3 @@ export default {
   }
 };
 </script>
-
-<style>
-/* for increase font-size in data table 0702 */
-.v-data-table > .v-data-table__wrapper > table > tbody > tr > td,
-.v-data-table > .v-data-table__wrapper > table > thead > tr > th,
-.v-data-table > .v-data-table__wrapper > table > tfoot > tr > td {
-  font-size: 1.1rem !important;
-}
-
-.searchBox {
-  max-width: 200px;
-  margin-right: 40px;
-}
-</style>

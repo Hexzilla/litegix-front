@@ -7,7 +7,7 @@
         <span class="card-label font-weight-bolder text-dark">
           New Arrivals
         </span>
-        <span class="text-muted mt-3  font-size-sm">
+        <span class="text-muted mt-3 font-weight-bold font-size-sm">
           More than 400+ new members
         </span>
       </h3>
@@ -87,7 +87,7 @@
                   </a>
                   <div>
                     <span class="font-weight-bolder">Email:</span>
-                    <a class="text-muted  text-hover-primary">
+                    <a class="text-muted font-weight-bold text-hover-primary">
                       {{ item.text2 }}
                     </a>
                   </div>
@@ -98,7 +98,7 @@
                   >
                     {{ item.text3 }}
                   </span>
-                  <span class="text-muted ">Paid</span>
+                  <span class="text-muted font-weight-bold">Paid</span>
                 </td>
                 <td class="text-right">
                   <span class="text-muted font-weight-500">

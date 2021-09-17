@@ -79,7 +79,7 @@
             <b-tab active>
               <div class="scroll pr-7 mr-n7" id="kt_quick_panel_logs">
                 <div class="mb-15">
-                  <h5 class=" mb-5">System Messages</h5>
+                  <h5 class="font-weight-bold mb-5">System Messages</h5>
                   <template v-for="(item, i) in list1">
                     <!--begin: Item -->
                     <div
@@ -101,7 +101,7 @@
                         >
                           {{ item.title }}
                         </a>
-                        <span class="text-muted ">
+                        <span class="text-muted font-weight-bold">
                           {{ item.desc }}
                         </span>
                       </div>
@@ -116,7 +116,7 @@
                 </div>
 
                 <div class="mb-15">
-                  <h5 class=" mb-5">Notifications</h5>
+                  <h5 class="font-weight-bold mb-5">Notifications</h5>
                   <template v-for="(item, i) in list2">
                     <!--begin: Item -->
                     <div
@@ -173,7 +173,7 @@
                           </div>
                         </div>
                         <div class="navi-text">
-                          <div class=" font-size-lg">
+                          <div class="font-weight-bold font-size-lg">
                             {{ item.title }}
                           </div>
                           <div class="text-muted">
@@ -193,7 +193,7 @@
                 <form class="form">
                   <!--begin::Section-->
                   <div>
-                    <h5 class=" mb-3">Customer Care</h5>
+                    <h5 class="font-weight-bold mb-3">Customer Care</h5>
                     <div class="form-group mb-0 row">
                       <label class="col-8 col-form-label"
                         >Enable Notifications:</label
@@ -243,7 +243,7 @@
 
                   <!--begin::Section-->
                   <div class="pt-2">
-                    <h5 class=" mb-3">Reports</h5>
+                    <h5 class="font-weight-bold mb-3">Reports</h5>
                     <div class="form-group mb-0 row">
                       <label class="col-8 col-form-label"
                         >Generate Reports:</label
@@ -290,7 +290,7 @@
 
                   <!--begin::Section-->
                   <div class="pt-2">
-                    <h5 class=" mb-3">Memebers</h5>
+                    <h5 class="font-weight-bold mb-3">Memebers</h5>
                     <div class="form-group mb-0 row">
                       <label class="col-8 col-form-label"
                         >Enable Member singup:</label

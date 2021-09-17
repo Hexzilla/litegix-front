@@ -42,12 +42,12 @@
           </div>
 
           <div class="d-flex flex-column ml-3 mt-2 mb-2">
-            <a href="#" class=" text-dark text-hover-primary">
+            <a href="#" class="font-weight-bold text-dark text-hover-primary">
               {{ item.text }}
             </a>
             <div
               v-if="item.desc"
-              class="font-size-sm  text-muted"
+              class="font-size-sm font-weight-bold text-muted"
             >
               {{ item.desc }}
             </div>

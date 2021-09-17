@@ -5,10 +5,10 @@
       class="d-flex flex-column flex-center py-10 bgi-size-cover bgi-no-repeat rounded-top"
       :style="{ backgroundImage: `url(${backgroundImage})` }"
     >
-      <h4 class="text-white ">
+      <h4 class="text-white font-weight-bold">
         Quick Actions
       </h4>
-      <span class="btn btn-success btn-sm  font-size-sm mt-2">
+      <span class="btn btn-success btn-sm font-weight-bold font-size-sm mt-2">
         23 tasks pending
       </span>
     </div>
@@ -29,7 +29,7 @@
               <!--end::Svg Icon-->
             </span>
             <span
-              class="d-block text-dark-75  font-size-h6 mt-2 mb-1"
+              class="d-block text-dark-75 font-weight-bold font-size-h6 mt-2 mb-1"
             >
               {{ item.title }}
             </span>

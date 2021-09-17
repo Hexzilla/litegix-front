@@ -7,7 +7,7 @@
         <span class="card-label font-weight-bolder text-dark"
           >Agents Stats</span
         >
-        <span class="text-muted mt-3  font-size-sm"
+        <span class="text-muted mt-3 font-weight-bold font-size-sm"
           >More than 400+ new members</span
         >
       </h3>
@@ -58,7 +58,9 @@
                           class="text-dark-75 font-weight-bolder text-hover-primary mb-1 font-size-lg"
                           >{{ item.name }}</a
                         >
-                        <span class="text-muted  d-block">{{ item.desc }}</span>
+                        <span class="text-muted font-weight-bold d-block">{{
+                          item.desc
+                        }}</span>
                       </div>
                     </div>
                   </td>
@@ -67,21 +69,27 @@
                       class="text-dark-75 font-weight-bolder d-block font-size-lg"
                       >{{ item.paid }}</span
                     >
-                    <span class="text-muted ">{{ item.status }}</span>
+                    <span class="text-muted font-weight-bold">{{
+                      item.status
+                    }}</span>
                   </td>
                   <td>
                     <span
                       class="text-dark-75 font-weight-bolder d-block font-size-lg"
                       >{{ item.amount }}</span
                     >
-                    <span class="text-muted ">{{ item.status2 }}</span>
+                    <span class="text-muted font-weight-bold">{{
+                      item.status2
+                    }}</span>
                   </td>
                   <td>
                     <span
                       class="text-dark-75 font-weight-bolder d-block font-size-lg"
                       >{{ item.company }}</span
                     >
-                    <span class="text-muted ">{{ item.company_desc }}</span>
+                    <span class="text-muted font-weight-bold">{{
+                      item.company_desc
+                    }}</span>
                   </td>
                   <td>
                     <img
@@ -89,7 +97,9 @@
                       alt="image"
                       style="width: 5rem"
                     />
-                    <span class="text-muted  d-block">{{ item.rate }}</span>
+                    <span class="text-muted font-weight-bold d-block">{{
+                      item.rate
+                    }}</span>
                   </td>
                   <td class="pr-0 text-right">
                     <a

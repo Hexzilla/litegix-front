@@ -30,7 +30,7 @@
           </div>
           <!--end::Symbol-->
           <!--begin::Text-->
-          <div class="d-flex flex-column flex-grow-1 ">
+          <div class="d-flex flex-column flex-grow-1 font-weight-bold">
             <a class="text-dark text-hover-primary mb-1 font-size-lg">
               {{ item.title }}
             </a>

@@ -1,6 +1,4 @@
 <template>
-        <v-app>
-
   <div class="d-flex flex-column flex-root" v-if="isAuthenticated">
     <!-- begin:: Header Mobile -->
     <KTHeaderMobile></KTHeaderMobile>
@@ -54,8 +52,6 @@
     <KTStickyToolbar v-if="toolbarDisplay"></KTStickyToolbar>
     <KTScrollTop></KTScrollTop>
   </div>
-        </v-app>
-
 </template>
 
 <script>
@@ -143,8 +139,7 @@ export default {
      * @returns {boolean}
      */
     asideEnabled() {
-      // return !!this.layoutConfig("mainMenu.mobile.display");
-      return false;
+      return !!this.layoutConfig("aside.self.display");
     },
 
     /**
@@ -153,7 +148,7 @@ export default {
      */
     toolbarDisplay() {
       // return !!this.layoutConfig("toolbar.display");
-      return false;
+      return true;
     },
 
     /**

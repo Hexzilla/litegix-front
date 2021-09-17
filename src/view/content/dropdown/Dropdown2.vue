@@ -12,7 +12,7 @@
     </template>
     <!--begin::Navigation-->
     <div class="navi navi-hover min-w-md-250px">
-      <b-dropdown-text tag="div" class="navi-header ">
+      <b-dropdown-text tag="div" class="navi-header font-weight-bold">
         <span class="font-size-lg">
           Choose Label:
         </span>
@@ -75,7 +75,7 @@
         class="navi-separator mt-3 opacity-70"
       ></b-dropdown-text>
       <b-dropdown-text tag="div" class="navi-footer pt-5 pb-4">
-        <a class="btn btn-clean  btn-sm">
+        <a class="btn btn-clean font-weight-bold btn-sm">
           <i class="ki ki-plus icon-sm"></i>Add new</a
         >
       </b-dropdown-text>

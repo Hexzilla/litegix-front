@@ -16,92 +16,70 @@
       </div>
     </div>
     <div class="card-body pb-10 pt-0">
-      <b-table
-        :items="items1"
-        :fields="fields1"
-        show-empty
-        empty-text="You don't have anything inside here yet."
-      >
-        <template #cell(label)="data">
-          <div v-if="data.item.label == 'Error'">
-            <span class="label label-lg label-inline label-danger"> Error</span>
-          </div>
-          <div v-if="data.item.label == 'Info'">
-            <span class="label label-lg label-inline label-success"> Info</span>
-          </div>
-          <div v-if="data.item.label == 'Warning'">
-            <span class="label label-lg label-inline label-warning">
-              Warning</span
-            >
-          </div>
-        </template>
-      </b-table>
+      <div class="overflow-auto">
+        <b-table
+          :items="activities"
+          :fields="fields"
+          :per-page="perPage"
+          :current-page="currentPage"
+          show-empty
+          empty-text="You don't have anything activity logs."
+        >
+          <template #cell(level)="data">
+            <div v-if="data.item.level == 1">
+              <span class="label label-lg label-inline label-success"
+                >Info</span
+              >
+            </div>
+            <div v-if="data.item.level == 2">
+              <span class="label label-lg label-inline label-warning"
+                >Warning</span
+              >
+            </div>
+            <div v-if="data.item.level == 3">
+              <span class="label label-lg label-inline label-danger"
+                >Error</span
+              >
+            </div>
+          </template>
+        </b-table>
+        <b-pagination
+          v-model="currentPage"
+          :total-rows="activities.length"
+          :per-page="perPage"
+          aria-controls="my-table"
+        ></b-pagination>
+      </div>
     </div>
   </div>
 </template>
 
 <script>
+import { GET_SERVER_ACTIVITY_LOGS } from "@/core/services/store/system.module";
 export default {
   data() {
     return {
-      fields1: ["label", "log", "data", "time"],
-      items1: [
-        {
-          label: "Error",
-          log: "Unable to communicate with Server ReCloud (65.21.49.177).",
-          date: "02 Jul 2021",
-          time: "01:03:51 PM"
-        },
-        {
-          label: "Info",
-          log: "Added new database DBTest with collation utf8_general_ci",
-          date: "02 Jul 2021",
-          time: "01:03:51 PM"
-        },
-        {
-          label: "Warning",
-          log: "Added firewall rule: Accept any IP Address to 80/TCP",
-          date: "02 Jul 2021",
-          time: "01:03:51 PM"
-        },
-        {
-          label: "Error",
-          log: "Unable to communicate with Server ReCloud (65.21.49.177).",
-          date: "02 Jul 2021",
-          time: "01:03:51 PM"
-        },
-        {
-          label: "Info",
-          log: "Added new database DBTest with collation utf8_general_ci",
-          date: "02 Jul 2021",
-          time: "01:03:51 PM"
-        },
-        {
-          label: "Warning",
-          log: "Added firewall rule: Accept any IP Address to 80/TCP",
-          date: "02 Jul 2021",
-          time: "01:03:51 PM"
-        },
-        {
-          label: "Error",
-          log: "Unable to communicate with Server ReCloud (65.21.49.177).",
-          date: "02 Jul 2021",
-          time: "01:03:51 PM"
-        },
-        {
-          label: "Info",
-          log: "Added new database DBTest with collation utf8_general_ci",
-          date: "02 Jul 2021",
-          time: "01:03:51 PM"
-        },
-        {
-          label: "Warning",
-          log: "Added firewall rule: Accept any IP Address to 80/TCP",
-          date: "02 Jul 2021",
-          time: "01:03:51 PM"
-        }
-      ]
+      fields: ["level", "message", "date", "category"],
+      activities: [],
+      currentPage: 0,
+      perPage: 10
     };
+  },
+  mounted() {
+    this.serverId = this.$parent.serverId;
+    this.fetchData();
+  },
+  methods: {
+    fetchData() {
+      this.$store
+        .dispatch(GET_SERVER_ACTIVITY_LOGS, this.serverId)
+        .then(response => {
+          if (response.success) {
+            this.activities = response.data.activities;
+            console.log("activities", this.activities);
+          }
+        });
+    }
   }
 };
 </script>

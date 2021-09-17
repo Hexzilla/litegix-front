@@ -7,7 +7,7 @@
       <h4 class="d-flex flex-center rounded-top">
         <span class="text-white">User Notifications</span>
         <span
-          class="btn btn-text btn-success btn-sm  btn-font-md ml-2"
+          class="btn btn-text btn-success btn-sm font-weight-bold btn-font-md ml-2"
         >
           23 new
         </span>
@@ -83,7 +83,7 @@
               </div>
               <!--end::Symbol-->
               <!--begin::Text-->
-              <div class="d-flex flex-column ">
+              <div class="d-flex flex-column font-weight-bold">
                 <a
                   href="#"
                   class="text-dark text-hover-primary mb-1 font-size-lg"
@@ -113,7 +113,7 @@
                   <i v-bind:class="item.icon"></i>
                 </div>
                 <div class="navi-text">
-                  <div class="">
+                  <div class="font-weight-bold">
                     {{ item.title }}
                   </div>
                   <div class="text-muted">

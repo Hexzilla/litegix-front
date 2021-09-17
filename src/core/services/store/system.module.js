@@ -28,6 +28,8 @@ export const CREATE_SUPERVISOR_JOB = "createSupervisorJob";
 export const STORE_SUPERVISOR_JOB = "storeSupervisorJob";
 export const GET_SUPERVISOR_JOBS = "getSupervisorJobs";
 
+export const GET_SERVER_ACTIVITY_LOGS = "getServerActivityLogs";
+
 const state = {
   systemUsers: [],
   sshKeys: [],
@@ -298,6 +300,19 @@ const actions = {
     return new Promise((resolve, reject) => {
       ApiService.setHeader();
       ApiService.get("servers/" + serverId + "/supervisors")
+        .then(({ data }) => {
+          resolve(data);
+        })
+        .catch(error => {
+          context.commit(SET_ERROR, error.response.data.errors);
+          reject(error);
+        });
+    });
+  },
+  [GET_SERVER_ACTIVITY_LOGS](context, serverId) {
+    return new Promise((resolve, reject) => {
+      ApiService.setHeader();
+      ApiService.get("servers/" + serverId + "/activities")
         .then(({ data }) => {
           resolve(data);
         })

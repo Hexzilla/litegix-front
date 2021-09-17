@@ -29,11 +29,11 @@
             <!--begin::Text-->
             <div class="d-flex flex-column flex-grow-1">
               <a
-                class=" text-dark-75 text-hover-primary font-size-lg mb-1"
+                class="font-weight-bold text-dark-75 text-hover-primary font-size-lg mb-1"
               >
                 {{ item.title }}
               </a>
-              <span class="text-muted ">
+              <span class="text-muted font-weight-bold">
                 {{ item.alt }}
               </span>
             </div>

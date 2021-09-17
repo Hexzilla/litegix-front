@@ -9,11 +9,11 @@
       v-bind:class="{ 'container-fluid': widthFluid, container: !widthFluid }"
     >
       <div class="d-flex align-items-center flex-wrap mr-1">
-        <h5 class="text-dark  my-2 mr-5">
+        <h5 class="text-dark font-weight-bold my-2 mr-5">
           {{ title }}
         </h5>
         <ul
-          class="breadcrumb breadcrumb-transparent breadcrumb-dot  p-0 my-2"
+          class="breadcrumb breadcrumb-transparent breadcrumb-dot font-weight-bold p-0 my-2"
         >
           <li class="breadcrumb-item">
             <router-link :to="'/'" class="subheader-breadcrumbs-home">
@@ -83,22 +83,15 @@
 
 <script>
 import { mapGetters } from "vuex";
-// import ThemeChangerMenu from "./ThemeChangerMenu.vue";
 
 export default {
   name: "KTSubheader",
-  components: {
-    // ThemeChangerMenu
-  },
   props: {
     breadcrumbs: Array,
     title: String
   },
   computed: {
     ...mapGetters(["layoutConfig"]),
-    config() {
-      return this.layoutConfig();
-    },
 
     /**
      * Check if subheader width is fluid

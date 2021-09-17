@@ -1,4 +1,4 @@
-# Litegix Front End
+# Litegix
 
 ## Project setup
 ```

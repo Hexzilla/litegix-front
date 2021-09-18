@@ -31,7 +31,7 @@
               placeholder="Enter your name"
               name="name"
               ref="name"
-              :value="currentUserPersonalInfo.name"
+              :value="currentUserPersonalInfo.username"
             />
           </v-col>
         </v-row>
@@ -76,7 +76,7 @@
                 <input
                   type="checkbox"
                   ref="notification"
-                  :checked="currentUserPersonalInfo.recv_notification"
+                  :checked="currentUserPersonalInfo.loginNotification"
                 /><span></span> Login Email Notification</label
               >
             </div>
@@ -88,12 +88,6 @@
 </template>
 
 <script>
-import { mapGetters } from "vuex";
-import {
-  FETCH_PROFILE_INFO,
-  UPDATE_PERSONAL_INFO
-} from "@/core/services/store/profile.module";
-
 import KTUtil from "@/assets/js/components/util";
 import formValidation from "@/assets/plugins/formvalidation/dist/es6/core/Core";
 import Trigger from "@/assets/plugins/formvalidation/dist/es6/plugins/Trigger";
@@ -101,7 +95,12 @@ import Bootstrap from "@/assets/plugins/formvalidation/dist/es6/plugins/Bootstra
 import SubmitButton from "@/assets/plugins/formvalidation/dist/es6/plugins/SubmitButton";
 import Swal from "sweetalert2";
 
+import { mapGetters } from "vuex";
 import { SET_BREADCRUMB } from "@/core/services/store/breadcrumbs.module";
+import {
+  FETCH_PROFILE_INFO,
+  UPDATE_PERSONAL_INFO
+} from "@/core/services/store/profile.module";
 import { Constants } from "./Constants";
 
 export default {
@@ -113,9 +112,16 @@ export default {
       time_zones: Constants.time_zones
     };
   },
-  beforeMount() {},
   created() {
     this.$store.dispatch(FETCH_PROFILE_INFO, "page-loading");
+  },
+  computed: {
+    ...mapGetters(["currentUserPersonalInfo", "currentUserAccountInfo"]),
+    photo() {
+      return this.current_photo == null
+        ? this.default_photo
+        : this.current_photo;
+    }
   },
   mounted() {
     this.$store.dispatch(SET_BREADCRUMB, [
@@ -213,18 +219,6 @@ export default {
       } else {
         alert("Sorry, FileReader API not supported");
       }
-    }
-  },
-  computed: {
-    ...mapGetters([
-      "loadProfileInfo",
-      "currentUserPersonalInfo",
-      "currentUserAccountInfo"
-    ]),
-    photo() {
-      return this.current_photo == null
-        ? this.default_photo
-        : this.current_photo;
     }
   }
 };

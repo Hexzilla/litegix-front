@@ -162,7 +162,7 @@ export default {
   },
   beforeMount() {},
   created() {
-    this.$store.dispatch(FETCH_PROFILE_INFO, "page-loading");
+    this.$store.dispatch(FETCH_PROFILE_INFO);
   },
   mounted() {
     this.$store.dispatch(SET_BREADCRUMB, [

@@ -167,7 +167,7 @@
 <script>
 import Swal from "sweetalert2";
 import { mapGetters } from "vuex";
-import { UPDATE_NOTIFICATION_NEWSLETTERS } from "@/core/services/store/account.module";
+import { UPDATE_NEWSLETTERS } from "@/core/services/store/account.module";
 
 export default {
   name: "Newsletter",
@@ -208,7 +208,7 @@ export default {
 
       // send update request
       this.$store
-        .dispatch(UPDATE_NOTIFICATION_NEWSLETTERS, this.newsletters)
+        .dispatch(UPDATE_NEWSLETTERS, this.newsletters)
         .then(() => {
           this.showMessageBox("info", "Succesfully saved");
         })

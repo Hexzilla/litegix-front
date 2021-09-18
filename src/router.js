@@ -274,8 +274,8 @@ export default new Router({
                 import("@/view/pages/settings/notification/Notification.vue")
             },
             {
-              path: "api_key",
-              name: "settings-api_key",
+              path: "apiKey",
+              name: "settings-apiKey",
               component: () =>
                 import("@/view/pages/settings/api-key/ApiKey.vue")
             },
@@ -294,7 +294,8 @@ export default new Router({
             {
               path: "subscription",
               name: "settings-subscription",
-              component: () => import("@/view/pages/settings/subscription/Subscription.vue")
+              component: () =>
+                import("@/view/pages/settings/subscription/Subscription.vue")
             }
           ]
         },

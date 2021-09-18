@@ -112,7 +112,7 @@ export default {
         },
         {
           title: "API Key",
-          link: "/settings/api_key",
+          link: "/settings/apiKey",
           icon: "/media/svg/icons/Communication/Reply-all.svg"
         },
         {

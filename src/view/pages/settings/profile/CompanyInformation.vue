@@ -130,12 +130,6 @@
 </template>
 
 <script>
-import { mapGetters } from "vuex";
-import {
-  FETCH_PROFILE_INFO,
-  UPDATE_COMPANY_INFO
-} from "@/core/services/store/profile.module";
-
 import KTUtil from "@/assets/js/components/util";
 import formValidation from "@/assets/plugins/formvalidation/dist/es6/core/Core";
 import Trigger from "@/assets/plugins/formvalidation/dist/es6/plugins/Trigger";
@@ -144,10 +138,15 @@ import SubmitButton from "@/assets/plugins/formvalidation/dist/es6/plugins/Submi
 import Swal from "sweetalert2";
 
 import { SET_BREADCRUMB } from "@/core/services/store/breadcrumbs.module";
+import { mapGetters } from "vuex";
 import { Constants } from "./Constants";
+import {
+  FETCH_PROFILE_INFO,
+  UPDATE_COMPANY_INFO
+} from "@/core/services/store/profile.module";
 
 export default {
-  name: "Account",
+  name: "KTCompanyInformation",
   data() {
     return {
       countries: Constants.countries,
@@ -160,7 +159,9 @@ export default {
       }
     };
   },
-  beforeMount() {},
+  computed: {
+    ...mapGetters(["currentUserCompany"])
+  },
   created() {
     this.$store.dispatch(FETCH_PROFILE_INFO);
   },
@@ -240,9 +241,6 @@ export default {
         this.showMessageBox("error", "Please, provide correct data!");
       });
     }
-  },
-  computed: {
-    ...mapGetters(["currentUserCompany"])
   }
 };
 </script>

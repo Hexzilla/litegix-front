@@ -34,7 +34,12 @@
                   v-treeview
                 "
               >
-                <input id="subscribe" type="checkbox" value="1" />
+                <input
+                  id="subscribe"
+                  type="checkbox"
+                  value="true"
+                  v-model="newsletters.subscription"
+                />
                 <span></span>
               </label>
               <label
@@ -63,7 +68,13 @@
                   v-treeview
                 "
               >
-                <input id="update_account" type="checkbox" value="1" />
+                <input
+                  id="update_account"
+                  type="checkbox"
+                  value="true"
+                  v-model="newsletters.announchment"
+                  :disabled="!newsletters.subscription"
+                />
                 <span></span>
               </label>
               <label
@@ -91,7 +102,13 @@
                   mr-4
                 "
               >
-                <input id="chk_blog" type="checkbox" value="1" />
+                <input
+                  id="chk_blog"
+                  type="checkbox"
+                  value="true"
+                  v-model="newsletters.blog"
+                  :disabled="!newsletters.subscription"
+                />
                 <span></span>
               </label>
               <label
@@ -119,7 +136,13 @@
                   mr-4
                 "
               >
-                <input id="chk_Events" type="checkbox" value="1" />
+                <input
+                  id="chk_Events"
+                  type="checkbox"
+                  value="true"
+                  v-model="newsletters.events"
+                  :disabled="!newsletters.subscription"
+                />
                 <span></span>
               </label>
               <label
@@ -136,58 +159,69 @@
             </div>
           </v-col>
         </v-row>
-        <!-- <v-row>
-          <v-col md="6" sm="12" offset-sm="0" class="ml-5">
-            <div class="input-group input-group-lg input-group-solid">
-              <v-btn
-                block
-                color="primary"
-                elevation="2"
-                large
-                @click="save()"
-                ref="kt_save_changes"
-              >
-                Update
-              </v-btn>
-            </div>
-          </v-col>
-        </v-row> -->
       </v-form>
     </v-card>
   </div>
 </template>
 
 <script>
-import { SET_BREADCRUMB } from "@/core/services/store/breadcrumbs.module";
+import Swal from "sweetalert2";
+import { mapGetters } from "vuex";
+import { UPDATE_NOTIFICATION_NEWSLETTERS } from "@/core/services/store/account.module";
 
 export default {
   name: "Newsletter",
   data() {
     return {
-      search: "",
-      headers: [
-        {
-          text: "Service",
-          align: "left",
-          sortable: false,
-          value: "service"
-        },
-        { text: "Name", value: "name" },
-        { text: "Content", value: "content" },
-        { text: "Options", value: "options" }
-      ],
-      desserts: []
+      defaultRule: {
+        validators: {
+          notEmpty: {
+            message: "This field is required"
+          }
+        }
+      }
     };
   },
-  mounted() {
-    this.$store.dispatch(SET_BREADCRUMB, [
-      { title: "Settings", route: "profile" },
-      { title: "Notification" }
-    ]);
+  computed: {
+    ...mapGetters(["newsletters"])
   },
   methods: {
+    makeToast(contents, variant = null) {
+      this.$bvToast.toast(contents, {
+        title: `Litegix`,
+        variant: variant,
+        solid: true
+      });
+    },
+    showMessageBox(icon, text) {
+      Swal.fire({
+        title: "",
+        text: text,
+        icon: icon,
+        confirmButtonClass: "btn btn-secondary"
+      });
+    },
     save() {
-      console.log("save");
+      // set spinner to submit button
+      const submitButton = this.$refs["kt_save_changes"];
+      submitButton.classList.add("spinner", "spinner-light", "spinner-right");
+
+      // send update request
+      this.$store
+        .dispatch(UPDATE_NOTIFICATION_NEWSLETTERS, this.newsletters)
+        .then(() => {
+          this.showMessageBox("info", "Succesfully saved");
+        })
+        .catch(() => {
+          this.showMessageBox("error", "Failed to save changes!");
+        })
+        .finally(() => {
+          submitButton.classList.remove(
+            "spinner",
+            "spinner-light",
+            "spinner-right"
+          );
+        });
     }
   }
 };

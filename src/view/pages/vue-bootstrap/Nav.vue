@@ -7,7 +7,7 @@
     >
       <div class="alert-icon">
         <span class="svg-icon svg-icon-lg">
-          <inline-svg src="/media/svg/icons/Tools/Compass.svg" />
+          <inline-svg src="media/svg/icons/Tools/Compass.svg" />
         </span>
       </div>
       <div class="alert-text">
@@ -15,7 +15,7 @@
         styles, from the base &lt;b-nav&gt; class to the active and disabled
         states. Swap modifier props to switch between each style.
         <a
-          class=""
+          class="font-weight-bold"
           href="https://bootstrap-vue.js.org/docs/components/nav"
           target="_blank"
         >

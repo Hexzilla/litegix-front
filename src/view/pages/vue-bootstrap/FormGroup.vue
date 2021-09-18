@@ -7,7 +7,7 @@
     >
       <div class="alert-icon">
         <span class="svg-icon svg-icon-lg">
-          <inline-svg src="/media/svg/icons/Tools/Compass.svg" />
+          <inline-svg src="media/svg/icons/Tools/Compass.svg" />
         </span>
       </div>
       <div class="alert-text">
@@ -16,7 +16,7 @@
         with a legend or label, and to provide help text and invalid/valid
         feedback text, as well as visual (color) contextual state feedback.
         <a
-          class=""
+          class="font-weight-bold"
           href="https://bootstrap-vue.js.org/docs/components/form-group"
           target="_blank"
         >
@@ -140,7 +140,7 @@
                   label-cols-lg="3"
                   label="Shipping Address"
                   label-size="lg"
-                  label-class=" pt-0"
+                  label-class="font-weight-bold pt-0"
                   class="mb-0"
                 >
                   <b-form-group
@@ -282,7 +282,7 @@ export default {
       label-cols-lg="3"
       label="Shipping Address"
       label-size="lg"
-      label-class=" pt-0"
+      label-class="font-weight-bold pt-0"
       class="mb-0"
     >
       <b-form-group

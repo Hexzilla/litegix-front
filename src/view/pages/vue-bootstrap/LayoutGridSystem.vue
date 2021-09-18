@@ -7,7 +7,7 @@
     >
       <div class="alert-icon">
         <span class="svg-icon svg-icon-lg">
-          <inline-svg src="/media/svg/icons/Tools/Compass.svg" />
+          <inline-svg src="media/svg/icons/Tools/Compass.svg" />
         </span>
       </div>
       <div class="alert-text">
@@ -17,7 +17,7 @@
         thanks to a twelve column system, five default responsive tiers, CSS
         Sass variables and mixins, and dozens of predefined classes.
         <a
-          class=""
+          class="font-weight-bold"
           href="https://bootstrap-vue.js.org/docs/components/layout"
           target="_blank"
         >

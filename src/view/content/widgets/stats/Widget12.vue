@@ -1,103 +1,180 @@
 <template>
-  <v-card
-    class="mt-4 mx-auto"
-    max-width="800"
-  >
-    <v-sheet
-      class="v-sheet--offset mx-auto"
-      color="cyan"
-      elevation="12"
-      max-width="calc(100% - 32px)"
-    >
-      <v-sparkline
-        :labels="labels"
-        :value="value"
-        color="white"
-        line-width="2"
-        padding="16"
-      ></v-sparkline>
-    </v-sheet>
-
-    <v-card-text class="pt-0">
-      <div class="text-h6 font-weight-light mb-2">
-        CREDIT
-      </div>
-      <div class="subheading font-weight-light grey--text">
-        TOTAL EARNED
-      </div>
-      <div class="subheading font-weight-light grey--text">
-        CLAIM
-      </div>
-      <v-divider class="my-2"></v-divider>
-      <v-card-actions>
-      <span class="text-caption grey--text font-weight-light">UNCLAIMED</span>
-      <v-spacer></v-spacer>
-       <span
-            class="
-              btn btn-success btn-xs
-              v-chip v-chip--label
-              v-size--x-small
-            "
-            id="show-btn"
-            @click="showModal"
-          >
-            Cash Out
+  <!--begin::Stats Widget 10-->
+  <div class="card card-custom gutter-b">
+    <!--begin::Body-->
+    <div class="card-body p-0">
+      <div
+        class="d-flex align-items-center justify-content-between card-spacer flex-grow-1"
+      >
+        <span class="symbol  symbol-50 symbol-light-primary mr-2">
+          <span class="symbol-label">
+            <span class="svg-icon svg-icon-xl svg-icon-primary">
+              <!--begin::Svg Icon | path:assets/media/svg/icons/Shopping/Cart3.svg-->
+              <inline-svg src="media/svg/icons/Shopping/Cart3.svg" />
+              <!--end::Svg Icon-->
+            </span>
           </span>
-          <confirm-dialogue ref="confirmDialogue"></confirm-dialogue>
-      <!-- <span class="text-caption grey--text font-weight-light">last registration 26 minutes ago</span> -->
-      </v-card-actions>
-    </v-card-text>
-  </v-card>
+        </span>
+        <div class="d-flex flex-column text-right">
+          <span class="text-dark-75 font-weight-bolder font-size-h3">+259</span>
+          <span class="text-muted font-weight-bold mt-2">Sales Change</span>
+        </div>
+      </div>
+      <!--begin::Chart-->
+      <apexchart
+        class="card-rounded-bottom"
+        :options="chartOptions"
+        :series="series"
+        type="area"
+        width="100%"
+      ></apexchart>
+      <!--end::Chart-->
+    </div>
+    <!--end::Body-->
+  </div>
+  <!--end::Stats Widget 10-->
 </template>
-<style>
-  .v-sheet--offset {
-    top: -24px;
-    position: relative;
-  }
-</style>
+
 <script>
-import ConfirmDialogue from "@/view/content/widgets/dialogue/ConfirmDialogue.vue";
-  export default {
-    components: {
-      ConfirmDialogue
-    },
-    data: () => ({
-      labels: [
-        '12am',
-        '3am',
-        '6am',
-        '9am',
-        '12pm',
-        '3pm',
-        '6pm',
-        '9pm',
-      ],
-      value: [
-        200,
-        675,
-        410,
-        390,
-        310,
-        460,
-        250,
-        240,
-      ],
-    }),
-    methods: {
-      async showModal() {
-        const ok = await this.$refs.confirmDialogue.show({
-          title: "Cash Out",
-          message:
-            "Your unclaimed rewards will be reset to $0.00 after you click Request Cash Out button. Cash out request will be processed not more than 7 days. You won't receive full cash out rewards bacause PayPal will take some for processing fees.",
-          okButton: "Cast Out"
-        });
-        // If you throw an error, the method will terminate here unless you surround it wil try/catch
-        if (ok) {
-          alert("You have successfully delete this page.");
-        } else {
-          // alert('You chose not to delete this page. Doing nothing now.')
+import { mapGetters } from "vuex";
+
+export default {
+  name: "widget-12",
+  data() {
+    return {
+      chartOptions: {},
+      series: [
+        {
+          name: "Net Profit",
+          data: [40, 40, 30, 30, 35, 35, 50]
+        }
+      ]
+    };
+  },
+  computed: {
+    ...mapGetters(["layoutConfig"])
+  },
+  mounted() {
+    // reference; kt_stats_widget_12_chart
+    this.chartOptions = {
+      chart: {
+        type: "area",
+        height: 150,
+        toolbar: {
+          show: false
+        },
+        zoom: {
+          enabled: false
+        },
+        sparkline: {
+          enabled: true
+        }
+      },
+      plotOptions: {},
+      legend: {
+        show: false
+      },
+      dataLabels: {
+        enabled: false
+      },
+      fill: {
+        type: "solid",
+        opacity: 1
+      },
+      stroke: {
+        curve: "smooth",
+        show: true,
+        width: 3,
+        colors: [this.layoutConfig("colors.theme.base.primary")]
+      },
+      xaxis: {
+        categories: ["Feb", "Mar", "Apr", "May", "Jun", "Aug", "Sep"],
+        axisBorder: {
+          show: false
+        },
+        axisTicks: {
+          show: false
+        },
+        labels: {
+          show: false,
+          style: {
+            colors: this.layoutConfig("colors.gray.gray-500"),
+            fontSize: "12px",
+            fontFamily: this.layoutConfig("font-family")
+          }
+        },
+        crosshairs: {
+          show: false,
+          position: "front",
+          stroke: {
+            color: this.layoutConfig("colors.gray.gray-300"),
+            width: 1,
+            dashArray: 3
+          }
+        },
+        tooltip: {
+          enabled: false
+        }
+      },
+      yaxis: {
+        show: false,
+        min: 0,
+        max: 55,
+        labels: {
+          show: false,
+          style: {
+            colors: this.layoutConfig("colors.gray.gray-500"),
+            fontSize: "12px",
+            fontFamily: this.layoutConfig("font-family")
+          }
+        }
+      },
+      states: {
+        normal: {
+          filter: {
+            type: "none",
+            value: 0
+          }
+        },
+        hover: {
+          filter: {
+            type: "none",
+            value: 0
+          }
+        },
+        active: {
+          allowMultipleDataPointsSelection: false,
+          filter: {
+            type: "none",
+            value: 0
+          }
+        }
+      },
+      tooltip: {
+        style: {
+          fontSize: "12px",
+          fontFamily: this.layoutConfig("font-family")
+        },
+        y: {
+          formatter: function(val) {
+            return "$" + val + " thousands";
+          }
+        }
+      },
+      colors: [this.layoutConfig("colors.theme.light.primary")],
+      markers: {
+        colors: [this.layoutConfig("colors.theme.light.primary")],
+        strokeColor: [this.layoutConfig("colors.theme.base.primary")],
+        strokeWidth: 3
+      },
+      grid: {
+        show: false,
+        padding: {
+          left: 0,
+          right: 0
         }
       }
-    }
+    };
   }
+};
 </script>

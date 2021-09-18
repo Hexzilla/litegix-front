@@ -7,14 +7,14 @@
     >
       <div class="alert-icon">
         <span class="svg-icon svg-icon-lg">
-          <inline-svg src="/media/svg/icons/Tools/Compass.svg" />
+          <inline-svg src="media/svg/icons/Tools/Compass.svg" />
         </span>
       </div>
       <div class="alert-text">
         <b>Button group</b> Group a series of buttons together on a single line
         with &lt;b-button-group&gt;.
         <a
-          class=""
+          class="font-weight-bold"
           href="https://bootstrap-vue.js.org/docs/components/button-group"
           target="_blank"
         >

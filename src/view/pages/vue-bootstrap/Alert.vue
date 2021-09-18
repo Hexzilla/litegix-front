@@ -8,14 +8,14 @@
     >
       <div class="alert-icon">
         <span class="svg-icon svg-icon-lg">
-          <inline-svg src="/media/svg/icons/Tools/Compass.svg" />
+          <inline-svg src="media/svg/icons/Tools/Compass.svg" />
         </span>
       </div>
       <div class="alert-text">
         <b>Alerts</b> Provide contextual feedback messages for typical user
         actions with the handful of available and flexible alert messages.
         <a
-          class=""
+          class="font-weight-bold"
           href="https://bootstrap-vue.js.org/docs/components/alert"
           target="_blank"
         >

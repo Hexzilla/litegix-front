@@ -7,13 +7,13 @@
     >
       <div class="alert-icon">
         <span class="svg-icon svg-icon-lg">
-          <inline-svg src="/media/svg/icons/Tools/Compass.svg" />
+          <inline-svg src="media/svg/icons/Tools/Compass.svg" />
         </span>
       </div>
       <div class="alert-text">
         <b>Cropper</b> provides JS cropping script which allows crop images.
         <a
-          class=""
+          class="font-weight-bold"
           href="https://github.com/fengyuanchen/cropperjs"
           target="_blank"
         >

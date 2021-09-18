@@ -7,14 +7,14 @@
     >
       <div class="alert-icon">
         <span class="svg-icon svg-icon-lg">
-          <inline-svg src="/media/svg/icons/Tools/Compass.svg" />
+          <inline-svg src="media/svg/icons/Tools/Compass.svg" />
         </span>
       </div>
       <div class="alert-text">
         <b>Forms</b> When it comes to form validation, Vuetify has a multitude
         of integrations and baked in functionality.
         <a
-          class=""
+          class="font-weight-bold"
           href="https://vuetifyjs.com/en/components/forms"
           target="_blank"
         >

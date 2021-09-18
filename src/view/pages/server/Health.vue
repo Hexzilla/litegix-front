@@ -3,10 +3,10 @@
     <v-card class="card-body">
       <!--begin::Header-->
       <v-card-title>
-          <h3 class="card-label font-weight-bolder">
-            Server Health
-          </h3>
-          <!-- <span class="text-muted font-weight-bold font-size-sm mt-1">
+        <h3 class="card-label font-weight-bolder">
+          Server Health
+        </h3>
+        <!-- <span class="text-muted font-weight-bold font-size-sm mt-1">
             Update your server health
           </span> -->
         <v-spacer></v-spacer>
@@ -36,13 +36,11 @@
 
 <script>
 import Usage from "@/view/pages/server/Usage";
-import ConfirmDialogue from "@/view/content/widgets/dialogue/ConfirmDialogue.vue";
 import { SET_BREADCRUMB } from "@/core/services/store/breadcrumbs.module";
 export default {
   name: "ServerHealth",
   components: {
-    Usage,
-    ConfirmDialogue
+    Usage
   },
   data() {
     return {

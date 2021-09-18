@@ -7,7 +7,7 @@
     >
       <div class="alert-icon">
         <span class="svg-icon svg-icon-lg">
-          <inline-svg src="/media/svg/icons/Tools/Compass.svg" />
+          <inline-svg src="media/svg/icons/Tools/Compass.svg" />
         </span>
       </div>
       <div class="alert-text">
@@ -17,7 +17,7 @@
         <code>&lt;thead&gt;</code>, <code>&lt;tbody&gt;</code>,
         <code>&lt;tr&gt;</code>, etc.
         <a
-          class=""
+          class="font-weight-bold"
           href="https://vuetifyjs.com/en/components/simple-tables"
           target="_blank"
         >

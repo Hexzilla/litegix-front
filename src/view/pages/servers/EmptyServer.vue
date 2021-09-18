@@ -5,7 +5,7 @@
         <div
           class="symbol-label"
           :style="{
-            backgroundImage: `url('media/logos/logo-letter-3.png')`,
+            backgroundImage: `url('media/logos/logo-letter-3.png')`
           }"
         ></div>
       </div>
@@ -26,6 +26,6 @@
 
 <script>
 export default {
-  name: "Empty",
+  name: "Empty"
 };
 </script>

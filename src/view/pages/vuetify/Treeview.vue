@@ -7,14 +7,14 @@
     >
       <div class="alert-icon">
         <span class="svg-icon svg-icon-lg">
-          <inline-svg src="/media/svg/icons/Tools/Compass.svg" />
+          <inline-svg src="media/svg/icons/Tools/Compass.svg" />
         </span>
       </div>
       <div class="alert-text">
         <b>Treeview</b> The <code>v-treeview</code> component is useful for
         displaying large amounts of nested data.
         <a
-          class=""
+          class="font-weight-bold"
           href="https://vuetifyjs.com/en/components/treeview"
           target="_blank"
         >
@@ -295,7 +295,7 @@
                           {{ selected.name }}
                         </h3>
                         <div class="blue--text mb-2">{{ selected.email }}</div>
-                        <div class="blue--text subheading ">
+                        <div class="blue--text subheading font-weight-bold">
                           {{ selected.username }}
                         </div>
                       </v-card-text>
@@ -1232,7 +1232,7 @@ export default {
               {{ selected.name }}
             </h3>
             <div class="blue--text mb-2">{{ selected.email }}</div>
-            <div class="blue--text subheading ">{{ selected.username }}</div>
+            <div class="blue--text subheading font-weight-bold">{{ selected.username }}</div>
           </v-card-text>
           <v-divider></v-divider>
           <v-row

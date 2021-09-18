@@ -7,7 +7,7 @@
     >
       <div class="alert-icon">
         <span class="svg-icon svg-icon-lg">
-          <inline-svg src="/media/svg/icons/Tools/Compass.svg" />
+          <inline-svg src="media/svg/icons/Tools/Compass.svg" />
         </span>
       </div>
       <div class="alert-text">
@@ -15,7 +15,7 @@
         select options. These components <strong>must</strong> be used with the
         <code>v-model</code> prop as they do not maintain their own state.
         <a
-          class=""
+          class="font-weight-bold"
           href="https://vuetifyjs.com/en/components/selection-controls"
           target="_blank"
         >

@@ -7,7 +7,7 @@
     >
       <div class="alert-icon">
         <span class="svg-icon svg-icon-lg">
-          <inline-svg src="/media/svg/icons/Tools/Compass.svg" />
+          <inline-svg src="media/svg/icons/Tools/Compass.svg" />
         </span>
       </div>
       <div class="alert-text">
@@ -17,7 +17,7 @@
         has a slot for each day. Optionally you can pass in an array of events
         and they will be rendered over the appropriate days and times.
         <a
-          class=""
+          class="font-weight-bold"
           href="https://vuetifyjs.com/en/components/calendars"
           target="_blank"
         >

@@ -56,7 +56,7 @@ var KTLayoutQuickUser = function() {
             }
 
             // Initialize
-            //_init();
+            _init();
         },
 
         getElement: function() {

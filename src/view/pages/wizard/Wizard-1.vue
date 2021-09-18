@@ -65,7 +65,7 @@
                 data-wizard-type="step-content"
                 data-wizard-state="current"
               >
-                <h3 class="mb-10  text-dark">
+                <h3 class="mb-10 font-weight-bold text-dark">
                   Setup Your Current Location
                 </h3>
                 <div class="form-group">
@@ -440,7 +440,7 @@
 
               <!--begin: Wizard Step 2-->
               <div class="pb-5" data-wizard-type="step-content">
-                <h4 class="mb-10  text-dark">
+                <h4 class="mb-10 font-weight-bold text-dark">
                   Enter the Details of your Delivery
                 </h4>
                 <div class="form-group">
@@ -522,7 +522,7 @@
 
               <!--begin: Wizard Step 3-->
               <div class="pb-5" data-wizard-type="step-content">
-                <h4 class="mb-10  text-dark">
+                <h4 class="mb-10 font-weight-bold text-dark">
                   Select your Services
                 </h4>
                 <div class="form-group">
@@ -579,7 +579,7 @@
 
               <!--begin: Wizard Step 4-->
               <div class="pb-5" data-wizard-type="step-content">
-                <h4 class="mb-10  text-dark">
+                <h4 class="mb-10 font-weight-bold text-dark">
                   Setup Your Delivery Location
                 </h4>
                 <div class="form-group">
@@ -954,11 +954,11 @@
 
               <!--begin: Wizard Step 5-->
               <div class="pb-5" data-wizard-type="step-content">
-                <h4 class="mb-10  text-dark">
+                <h4 class="mb-10 font-weight-bold text-dark">
                   Review your Details and Submit
                 </h4>
                 <div class="border-bottom mb-5 pb-5">
-                  <div class=" mb-3">
+                  <div class="font-weight-bold mb-3">
                     Current Address:
                   </div>
                   <div class="line-height-md">
@@ -969,7 +969,7 @@
                   </div>
                 </div>
                 <div class="border-bottom mb-5 pb-5">
-                  <div class=" mb-3">
+                  <div class="font-weight-bold mb-3">
                     Delivery Details:
                   </div>
                   <div class="line-height-md">
@@ -981,7 +981,7 @@
                   </div>
                 </div>
                 <div class="border-bottom mb-5 pb-5">
-                  <div class=" mb-3">
+                  <div class="font-weight-bold mb-3">
                     Delivery Service Type:
                   </div>
                   <div class="line-height-md">
@@ -991,7 +991,7 @@
                   </div>
                 </div>
                 <div class="mb-5">
-                  <div class=" mb-3">
+                  <div class="font-weight-bold mb-3">
                     Delivery Address:
                   </div>
                   <div class="line-height-md">
@@ -1008,7 +1008,7 @@
               <div class="d-flex justify-content-between border-top pt-10">
                 <div class="mr-2">
                   <button
-                    class="btn btn-light-primary  text-uppercase px-9 py-4"
+                    class="btn btn-light-primary font-weight-bold text-uppercase px-9 py-4"
                     data-wizard-type="action-prev"
                   >
                     Previous
@@ -1017,13 +1017,13 @@
                 <div>
                   <button
                     v-on:click="submit"
-                    class="btn btn-success  text-uppercase px-9 py-4"
+                    class="btn btn-success font-weight-bold text-uppercase px-9 py-4"
                     data-wizard-type="action-submit"
                   >
                     Submit
                   </button>
                   <button
-                    class="btn btn-primary  text-uppercase px-9 py-4"
+                    class="btn btn-primary font-weight-bold text-uppercase px-9 py-4"
                     data-wizard-type="action-next"
                   >
                     Next Step

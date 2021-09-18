@@ -32,7 +32,7 @@ const getters = {
 const actions = {
   [LOGIN](context, credentials) {
     return new Promise((resolve, reject) => {
-      ApiService.post("/login", credentials)
+      ApiService.post("login", credentials)
         .then(({ data }) => {
           context.commit(SET_AUTH, data);
           resolve(data);
@@ -50,7 +50,7 @@ const actions = {
     return new Promise((resolve, reject) => {
       ApiService.post("signup", credentials)
         .then(({ data }) => {
-          //context.commit(SET_AUTH, data);
+          context.commit(SET_AUTH, data);
           resolve(data);
         })
         .catch(({ response }) => {

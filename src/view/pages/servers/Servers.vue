@@ -48,7 +48,6 @@
 
 <script>
 import { SET_BREADCRUMB } from "@/core/services/store/breadcrumbs.module";
-// import ApiService from "@/core/services/api.service";
 import EmptyServer from "./EmptyServer.vue";
 import ServerCard from "./ServerCard.vue";
 import { mapGetters } from "vuex";
@@ -58,10 +57,10 @@ export default {
   name: "Servers",
   components: {
     EmptyServer,
-    ServerCard,
+    ServerCard
   },
   computed: {
-    ...mapGetters(["servers"]),
+    ...mapGetters(["servers"])
   },
   mounted() {
     this.$store.dispatch(SET_BREADCRUMB, [{ title: "Servers" }]);
@@ -69,8 +68,8 @@ export default {
   },
   methods: {
     isEmpty() {
-      return this.servers.length <= 0;
-    },
-  },
+      return !(this.servers && this.servers.length > 0);
+    }
+  }
 };
 </script>

@@ -7,7 +7,7 @@
     >
       <div class="alert-icon">
         <span class="svg-icon svg-icon-lg">
-          <inline-svg src="/media/svg/icons/Tools/Compass.svg" />
+          <inline-svg src="media/svg/icons/Tools/Compass.svg" />
         </span>
       </div>
       <div class="alert-text">
@@ -16,7 +16,7 @@
         showing detailed selection information and upload progress. It is meant
         to be a direct replacement for a standard file input.
         <a
-          class=""
+          class="font-weight-bold"
           href="https://vuetifyjs.com/en/components/file-inputs"
           target="_blank"
         >

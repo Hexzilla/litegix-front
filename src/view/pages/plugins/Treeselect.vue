@@ -8,14 +8,14 @@
     >
       <div class="alert-icon">
         <span class="svg-icon svg-icon-lg">
-          <inline-svg src="/media/svg/icons/Tools/Compass.svg" />
+          <inline-svg src="media/svg/icons/Tools/Compass.svg" />
         </span>
       </div>
       <div class="alert-text">
         <b>vue-treeselect</b> provides multi-select component with nested
         options support for Vue.js
         <a
-          class=""
+          class="font-weight-bold"
           href="https://vue-treeselect.js.org/#basic-features"
           target="_blank"
         >

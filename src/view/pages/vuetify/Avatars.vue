@@ -7,7 +7,7 @@
     >
       <div class="alert-icon">
         <span class="svg-icon svg-icon-lg">
-          <inline-svg src="/media/svg/icons/Tools/Compass.svg" />
+          <inline-svg src="media/svg/icons/Tools/Compass.svg" />
         </span>
       </div>
       <div class="alert-text">
@@ -17,7 +17,7 @@
         and text. A tile variation is available for displaying an avatar without
         border radius.
         <a
-          class=""
+          class="font-weight-bold"
           href="https://vuetifyjs.com/en/components/avatars"
           target="_blank"
         >
@@ -62,11 +62,11 @@
               profile card.
             </p>
             <v-card class="mx-auto" max-width="434" tile>
-              <v-img height="100%" src="/media/stock-600x400/img-32.jpg">
+              <v-img height="100%" src="media/stock-600x400/img-32.jpg">
                 <v-row align="end" class="fill-height">
                   <v-col align-self="start" class="pa-0" cols="12">
                     <v-avatar class="profile" color="grey" size="164" tile>
-                      <v-img src="/media/users/300_21.jpg"></v-img>
+                      <v-img src="media/users/300_21.jpg"></v-img>
                     </v-avatar>
                   </v-col>
                   <v-col class="py-0">
@@ -105,7 +105,7 @@
               </v-avatar>
 
               <v-avatar>
-                <img src="/media/users/100_4.jpg" alt="Sean" />
+                <img src="media/users/100_4.jpg" alt="Sean" />
               </v-avatar>
 
               <v-avatar color="red">
@@ -236,7 +236,7 @@ export default {
 
   <v-avatar>
     <img
-      src="/media/users/100_4.jpg"
+      src="media/users/100_4.jpg"
       alt="Sean"
     >
   </v-avatar>
@@ -256,7 +256,7 @@ export default {
 >
   <v-img
     height="100%"
-    src="/media/stock-600x400/img-32.jpg"
+    src="media/stock-600x400/img-32.jpg"
   >
     <v-row
       align="end"
@@ -273,7 +273,7 @@ export default {
           size="164"
           tile
         >
-          <v-img src="/media/users/300_21.jpg"></v-img>
+          <v-img src="media/users/300_21.jpg"></v-img>
         </v-avatar>
       </v-col>
       <v-col class="py-0">

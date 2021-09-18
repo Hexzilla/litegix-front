@@ -1,6 +1,6 @@
 <template>
   <div
-    class="flex-row-auto offcanvas-mobile w-300px w-xl-350px"
+    class="submenu flex-row-auto offcanvas-mobile w-300px w-xl-350px"
     id="kt_settings_aside"
     ref="kt_settings_aside"
   >
@@ -44,7 +44,7 @@
 
         <!--Menu Items-->
         <div
-          class="navi navi-bold navi-hover navi-active row p-5"
+          class="navi navi-bold navi-hover navi-active row p-5 list-rounded"
           role="tablist"
         >
           <template v-for="(item, i) in menuItems">
@@ -59,7 +59,11 @@
               >
                 <a
                   class="navi-link navi-rect h-100"
-                  :class="[isActive && 'active', isExactActive && 'active']"
+                  :class="[
+                    isActive && 'active',
+                    isExactActive && 'active',
+                    item.class
+                  ]"
                   :href="href"
                   @click="navigate"
                   style="cursor: pointer"
@@ -93,13 +97,13 @@ export default {
           title: "Profile",
           link: "/settings/profile",
           icon: "/media/svg/icons/General/User.svg",
-          class: "border-radius-top-left"
+          class: "round-top-left"
         },
         {
           title: "Account",
-          link: "/settings/authentication",
+          link: "/settings/account",
           icon: "/media/svg/icons/Communication/Incoming-call.svg",
-          class: "border-radius-top-right"
+          class: "round-top-right"
         },
         {
           title: "Notifications",
@@ -135,13 +139,13 @@ export default {
           title: "SSH Key Vault",
           link: "/settings/ssh_key_vault",
           icon: "/media/svg/icons/Communication/Mail-at.svg",
-          class: "border-radius-bottom-left"
+          class: "round-bottom-left"
         },
         {
           title: "WordPress",
           link: "/settings/wordpress_canvas",
           icon: "/media/svg/icons/Communication/Share.svg",
-          class: "border-radius-bottom-right"
+          class: "round-bottom-right"
         }
       ]
     };
@@ -151,6 +155,3 @@ export default {
   }
 };
 </script>
-<style lang="scss">
-@import "@/assets/sass/pages/aside.scss";
-</style>

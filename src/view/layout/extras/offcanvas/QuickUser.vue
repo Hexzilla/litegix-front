@@ -1,37 +1,37 @@
 <template>
   <div class="topbar-item">
-    <!-- <div
+    <div
       class="btn btn-icon w-auto btn-clean d-flex align-items-center btn-lg px-2"
       id="kt_quick_user_toggle"
     >
       <span
-        class="text-muted  font-size-base d-none d-md-inline mr-1"
+        class="text-muted font-weight-bold font-size-base d-none d-md-inline mr-1"
       >
         Hi,
       </span>
       <span
         class="text-dark-50 font-weight-bolder font-size-base d-none d-md-inline mr-3"
       >
-        {{ currentUserProfile.name }}
+        {{ currentUserPersonalInfo.name }}
       </span>
       <span class="symbol symbol-35 symbol-light-success">
-        <img v-if="false" alt="Pic" :src="currentUserProfile.photo" />
-        <span v-if="true" class="symbol-label font-size-h5 ">
-          {{ currentUserProfile.name.charAt(0).toUpperCase() }}
+        <img v-if="false" alt="Pic" :src="currentUserPersonalInfo.photo" />
+        <span v-if="true" class="symbol-label font-size-h5 font-weight-bold">
+          {{ currentUserPersonalInfo.name.charAt(0).toUpperCase() }}
         </span>
       </span>
-    </div> -->
+    </div>
 
-    <!-- <div
+    <div
       id="kt_quick_user"
       ref="kt_quick_user"
       class="offcanvas offcanvas-right p-10"
-    > -->
+    >
       <!--begin::Header-->
-      <!-- <div
+      <div
         class="offcanvas-header d-flex align-items-center justify-content-between pb-5"
       >
-        <h3 class=" m-0">
+        <h3 class="font-weight-bold m-0">
           User Profile
           <small class="text-muted font-size-sm ml-2">12 messages</small>
         </h3>
@@ -42,7 +42,7 @@
         >
           <i class="ki ki-close icon-xs text-muted"></i>
         </a>
-      </div> -->
+      </div>
       <!--end::Header-->
 
       <!--begin::Content-->
@@ -55,7 +55,7 @@
           <div class="symbol symbol-100 mr-5">
             <img
               class="symbol-label"
-              :src="currentUserProfile.photo"
+              :src="currentUserPersonalInfo.photo"
               alt=""
             />
             <i class="symbol-badge bg-success"></i>
@@ -63,7 +63,7 @@
           <div class="d-flex flex-column">
             <router-link
               to="/custom-pages/profile"
-              class=" font-size-h5 text-dark-75 text-hover-primary"
+              class="font-weight-bold font-size-h5 text-dark-75 text-hover-primary"
             >
               {{ getFullName }}
             </router-link>
@@ -75,13 +75,13 @@
                     <span class="svg-icon svg-icon-lg svg-icon-primary">
                       <!--begin::Svg Icon-->
                       <inline-svg
-                        src="/media/svg/icons/Communication/Mail-notification.svg"
+                        src="media/svg/icons/Communication/Mail-notification.svg"
                       />
                       <!--end::Svg Icon-->
                     </span>
                   </span>
                   <span class="navi-text text-muted text-hover-primary">
-                    {{ currentUserProfile.email }}
+                    {{ currentUserPersonalInfo.email }}
                   </span>
                 </span>
               </a>
@@ -97,7 +97,7 @@
         <div class="navi navi-spacer-x-0 p-0">
           <!--begin::Item-->
           <router-link
-            to="/settings/profile"
+            to="/builder"
             @click.native="closeOffcanvas"
             href="#"
             class="navi-item"
@@ -108,39 +108,158 @@
                   <span class="svg-icon svg-icon-md svg-icon-success">
                     <!--begin::Svg Icon-->
                     <inline-svg
-                      src="/media/svg/icons/General/Notification2.svg"
+                      src="media/svg/icons/General/Notification2.svg"
                     />
                     <!--end::Svg Icon-->
                   </span>
                 </div>
               </div>
               <div class="navi-text">
-                <!-- <router-link to="/custom-pages/profile"> -->
-                  <div class="">My Profile</div>
-                <!-- </router-link> -->
+                <router-link to="/custom-pages/profile">
+                  <div class="font-weight-bold">My Profile</div>
+                </router-link>
                 <div class="text-muted">
                   Account settings and more
-                  <!-- <span
-                    class="label label-light-danger label-inline "
+                  <span
+                    class="label label-light-danger label-inline font-weight-bold"
                   >
                     update
-                  </span> -->
+                  </span>
                 </div>
+              </div>
+            </div>
+          </router-link>
+          <!--end:Item-->
+          <!--begin::Item-->
+          <router-link
+            to="/builder"
+            @click.native="closeOffcanvas"
+            href="#"
+            class="navi-item"
+          >
+            <div class="navi-link">
+              <div class="symbol symbol-40 bg-light mr-3">
+                <div class="symbol-label">
+                  <span class="svg-icon svg-icon-md svg-icon-warning">
+                    <!--begin::Svg Icon-->
+                    <inline-svg src="media/svg/icons/Shopping/Chart-bar1.svg" />
+                    <!--end::Svg Icon-->
+                  </span>
+                </div>
+              </div>
+              <div class="navi-text">
+                <div class="font-weight-bold">My Messages</div>
+                <div class="text-muted">Inbox and tasks</div>
+              </div>
+            </div>
+          </router-link>
+          <!--end:Item-->
+          <!--begin::Item-->
+          <router-link
+            to="/builder"
+            @click.native="closeOffcanvas"
+            href="#"
+            class="navi-item"
+          >
+            <div class="navi-link">
+              <div class="symbol symbol-40 bg-light mr-3">
+                <div class="symbol-label">
+                  <span class="svg-icon svg-icon-md svg-icon-danger">
+                    <!--begin::Svg Icon-->
+                    <inline-svg src="media/svg/icons/Files/Selected-file.svg" />
+                    <!--end::Svg Icon-->
+                  </span>
+                </div>
+              </div>
+              <div class="navi-text">
+                <div class="font-weight-bold">My Activities</div>
+                <div class="text-muted">Logs and notifications</div>
+              </div>
+            </div>
+          </router-link>
+          <!--end:Item-->
+          <!--begin::Item-->
+          <router-link
+            to="/builder"
+            @click.native="closeOffcanvas"
+            href="#"
+            class="navi-item"
+          >
+            <div class="navi-link">
+              <div class="symbol symbol-40 bg-light mr-3">
+                <div class="symbol-label">
+                  <span class="svg-icon svg-icon-md svg-icon-primary">
+                    <!--begin::Svg Icon-->
+                    <inline-svg
+                      src="media/svg/icons/Communication/Mail-opened.svg"
+                    />
+                    <!--end::Svg Icon-->
+                  </span>
+                </div>
+              </div>
+              <div class="navi-text">
+                <div class="font-weight-bold">My Tasks</div>
+                <div class="text-muted">latest tasks and projects</div>
               </div>
             </div>
           </router-link>
           <!--end:Item-->
         </div>
         <!--end::Nav-->
+        <div class="separator separator-dashed my-7"></div>
+        <!--begin::Notifications-->
+        <div>
+          <!--begin:Heading-->
+          <h5 class="mb-5">Recent Notifications</h5>
+          <!--end:Heading-->
+          <template v-for="(item, i) in list">
+            <!--begin::Item -->
+            <div
+              class="d-flex align-items-center rounded p-5 gutter-b"
+              v-bind:class="`bg-light-${item.type}`"
+              v-bind:key="i"
+            >
+              <span
+                class="svg-icon mr-5"
+                v-bind:class="`svg-icon-${item.type}`"
+              >
+                <span class="svg-icon svg-icon-lg">
+                  <!--begin::Svg Icon-->
+                  <inline-svg :src="item.svg" />
+                  <!--end::Svg Icon-->
+                </span>
+              </span>
+              <div class="d-flex flex-column flex-grow-1 mr-2">
+                <a
+                  href="#"
+                  class="font-weight-normal text-dark-75 text-hover-primary font-size-lg mb-1"
+                >
+                  {{ item.title }}
+                </a>
+                <span class="text-muted font-size-sm">
+                  {{ item.desc }}
+                </span>
+              </div>
+              <span
+                class="font-weight-bolder py-1 font-size-lg"
+                v-bind:class="`text-${item.type}`"
+              >
+                {{ item.alt }}
+              </span>
+            </div>
+            <!--end::Item -->
+          </template>
+        </div>
+        <!--end::Notifications-->
       </perfect-scrollbar>
       <!--end::Content-->
-    <!-- </div> -->
+    </div>
   </div>
 </template>
 
 <style lang="scss" scoped>
-.topbar-item {
-  justify-content: center;
+#kt_quick_user {
+  overflow: hidden;
 }
 </style>
 
@@ -188,9 +307,7 @@ export default {
   },
   mounted() {
     // Init Quick User Panel
-    console.log(this.$refs);
     KTLayoutQuickUser.init(this.$refs["kt_quick_user"]);
-    //console.log(KTLayoutQuickUser.getElement());
   },
   methods: {
     onLogout() {
@@ -199,37 +316,17 @@ export default {
         .then(() => this.$router.push({ name: "login" }));
     },
     closeOffcanvas() {
-      var el = KTLayoutQuickUser.getElement();
-      if(el!=undefined)
-      {
-        try{
-          console.log(el);
-          //el.removeClass('show');
-          el.style="";
-          var canv = new KTOffcanvas(el);
-          canv.show();
-          canv.hide();
-          //console.log(canv);
-        }
-        catch(eee)
-        {
-          console.log(eee);
-        }
-      }
-      else
-      {
-        console.log('KTLayoutQuickUser could not found')
-      }
+      new KTOffcanvas(KTLayoutQuickUser.getElement()).hide();
     }
   },
   computed: {
-    ...mapGetters(["currentUserProfile"]),
+    ...mapGetters(["currentUserPersonalInfo"]),
 
     getFullName() {
       return (
-        this.currentUserProfile.name +
+        this.currentUserPersonalInfo.name +
         " " +
-        this.currentUserProfile.surname
+        this.currentUserPersonalInfo.surname
       );
     }
   }

@@ -2,7 +2,7 @@
   <div class="topbar-item">
     <div class="btn btn-icon btn-clean btn-lg mr-1" id="kt_quick_panel_toggle">
       <span class="svg-icon svg-icon-xl svg-icon-primary">
-        <inline-svg src="/media/svg/icons/Layout/Layout-4-blocks.svg" />
+        <inline-svg src="media/svg/icons/Layout/Layout-4-blocks.svg" />
       </span>
     </div>
 

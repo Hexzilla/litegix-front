@@ -7,14 +7,14 @@
     >
       <div class="alert-icon">
         <span class="svg-icon svg-icon-lg">
-          <inline-svg src="/media/svg/icons/Tools/Compass.svg" />
+          <inline-svg src="media/svg/icons/Tools/Compass.svg" />
         </span>
       </div>
       <div class="alert-text">
         <b>Textareas</b> Textarea components are used for collecting large
         amounts of textual data.
         <a
-          class=""
+          class="font-weight-bold"
           href="https://vuetifyjs.com/en/components/textarea"
           target="_blank"
         >

@@ -7,14 +7,14 @@
     >
       <div class="alert-icon">
         <span class="svg-icon svg-icon-lg">
-          <inline-svg src="/media/svg/icons/Tools/Compass.svg" />
+          <inline-svg src="media/svg/icons/Tools/Compass.svg" />
         </span>
       </div>
       <div class="alert-text">
         <b>Timelines</b> The <code>v-timeline</code> is useful for stylistically
         displaying chronological information.
         <a
-          class=""
+          class="font-weight-bold"
           href="https://vuetifyjs.com/en/components/timelines"
           target="_blank"
         >
@@ -387,7 +387,7 @@
                     </v-avatar>
                   </v-card-title>
                   <v-img
-                    src="/media/stock-600x600/img-10.jpg"
+                    src="media/stock-600x600/img-10.jpg"
                     gradient="to top, rgba(0,0,0,.44), rgba(0,0,0,.44)"
                   >
                     <v-container class="fill-height">
@@ -932,7 +932,7 @@ export default {
       </v-avatar>
     </v-card-title>
     <v-img
-      src="/media/stock-600x600/img-10.jpg"
+      src="media/stock-600x600/img-10.jpg"
       gradient="to top, rgba(0,0,0,.44), rgba(0,0,0,.44)"
     >
       <v-container class="fill-height">

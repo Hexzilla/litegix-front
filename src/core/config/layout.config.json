@@ -3,10 +3,10 @@
   "self": {
     "layout": "default",
     "logo": {
-      "dark": "media/logos/sitelogo.svg",
-      "light": "media/logos/sitelogo.svg",
-      "brand": "media/logos/sitelogo.svg",
-      "green": "media/logos/sitelogo.svg"
+      "dark": "media/logos/logo-light.png",
+      "light": "media/logos/logo-dark.png",
+      "brand": "media/logos/logo-light.png",
+      "green": "media/logos/logo-light.png"
     }
   },
   "loader": {
@@ -100,13 +100,6 @@
           "accordion": true
         }
       }
-    }
-  },
-  "mainMenu":{
-    "mobile": {
-      "theme": "dark",
-      "toggle": "click",
-      "display": true
     }
   },
   "subheader": {

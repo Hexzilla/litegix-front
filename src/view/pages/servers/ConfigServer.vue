@@ -124,7 +124,6 @@
 
 <script>
 import { SET_BREADCRUMB } from "@/core/services/store/breadcrumbs.module";
-import ConfirmDialogue from "@/view/content/widgets/dialogue/ConfirmDialogue.vue";
 import Swal from "sweetalert2";
 import { mapGetters } from "vuex";
 import {
@@ -136,9 +135,6 @@ import {
 export default {
   name: "ConfigServer",
   props: ["serverId"],
-  components: {
-    ConfirmDialogue
-  },
   data() {
     return {
       clipboard: null,

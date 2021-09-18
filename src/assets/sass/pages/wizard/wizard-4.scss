@@ -4,7 +4,6 @@
 //
 
 // Initialization of global variables, mixins and functions
-@use 'sass:math';
 @import "../../init";
 
 // Base
@@ -85,7 +84,7 @@
 			}
 
 			@for $i from 2 through 4 {
-				$width: math.div(100, $i);
+				$width: 100 / $i;
 				&[data-total-steps="#{$i}"] {
 					.wizard-step {
 						flex: 0 0 calc(#{$width}% - 0.25rem);

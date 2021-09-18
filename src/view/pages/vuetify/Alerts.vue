@@ -7,7 +7,7 @@
     >
       <div class="alert-icon">
         <span class="svg-icon svg-icon-lg">
-          <inline-svg src="/media/svg/icons/Tools/Compass.svg" />
+          <inline-svg src="media/svg/icons/Tools/Compass.svg" />
         </span>
       </div>
       <div class="alert-text">
@@ -19,7 +19,7 @@
         <code>border</code>, <code>icon</code>, and <code>color</code> can also
         be customized to fit almost any situation.
         <a
-          class=""
+          class="font-weight-bold"
           href="https://vuetifyjs.com/en/components/alerts"
           target="_blank"
         >

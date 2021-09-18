@@ -7,7 +7,7 @@
     >
       <div class="alert-icon">
         <span class="svg-icon svg-icon-lg">
-          <inline-svg src="/media/svg/icons/Tools/Compass.svg" />
+          <inline-svg src="media/svg/icons/Tools/Compass.svg" />
         </span>
       </div>
       <div class="alert-text">
@@ -17,7 +17,7 @@
         <code>v-model</code>. When activated, tooltips display a text label
         identifying an element, such as a description of its function.
         <a
-          class=""
+          class="font-weight-bold"
           href="https://vuetifyjs.com/en/components/tooltips"
           target="_blank"
         >

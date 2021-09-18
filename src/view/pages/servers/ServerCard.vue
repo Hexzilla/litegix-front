@@ -76,6 +76,6 @@ export default {
   props: ["server"],
   data() {
     return {};
-  },
+  }
 };
 </script>

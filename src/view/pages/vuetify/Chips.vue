@@ -7,7 +7,7 @@
     >
       <div class="alert-icon">
         <span class="svg-icon svg-icon-lg">
-          <inline-svg src="/media/svg/icons/Tools/Compass.svg" />
+          <inline-svg src="media/svg/icons/Tools/Compass.svg" />
         </span>
       </div>
       <div class="alert-text">
@@ -15,7 +15,7 @@
         pieces of information. Using the <code>close</code> property, the chip
         becomes interactive, allowing user interaction.
         <a
-          class=""
+          class="font-weight-bold"
           href="https://vuetifyjs.com/en/components/chips"
           target="_blank"
         >
@@ -292,7 +292,7 @@
                   <template v-slot:activator="{ on }">
                     <v-chip pill v-on="on">
                       <v-avatar left>
-                        <v-img src="/media/users/100_11.jpg"></v-img>
+                        <v-img src="media/users/100_11.jpg"></v-img>
                       </v-avatar>
                       Sean Paul
                     </v-chip>
@@ -301,7 +301,7 @@
                     <v-list dark>
                       <v-list-item>
                         <v-list-item-avatar>
-                          <v-img src="/media/users/100_11.jpg"></v-img>
+                          <v-img src="media/users/100_11.jpg"></v-img>
                         </v-list-item-avatar>
                         <v-list-item-content>
                           <v-list-item-title>Sean Paul</v-list-item-title>
@@ -780,7 +780,7 @@ export default {
             v-on="on"
           >
             <v-avatar left>
-              <v-img src="/media/users/100_11.jpg"></v-img>
+              <v-img src="media/users/100_11.jpg"></v-img>
             </v-avatar>
             Sean Paul
           </v-chip>
@@ -789,7 +789,7 @@ export default {
           <v-list dark>
             <v-list-item>
               <v-list-item-avatar>
-                <v-img src="/media/users/100_11.jpg"></v-img>
+                <v-img src="media/users/100_11.jpg"></v-img>
               </v-list-item-avatar>
               <v-list-item-content>
                 <v-list-item-title>Sean Paul</v-list-item-title>

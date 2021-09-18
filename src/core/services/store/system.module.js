@@ -3,7 +3,7 @@ export const SET_SYSTEM_USERS = "setSystemUsers";
 export const SET_SSH_KEYS = "setSSHKeys";
 export const SET_ERROR = "setError";
 
-export const CREATE_SYSTEM_USERS = "createSystemUsers";
+export const CREATE_SYSTEM_USER = "createSystemUser";
 export const GET_SYSTEM_USERS = "getSystemUsers";
 export const DELETE_SYSTEM_USER = "deleteSystemUser";
 
@@ -49,7 +49,7 @@ const getters = {
 };
 
 const actions = {
-  [CREATE_SYSTEM_USERS](context, payload) {
+  [CREATE_SYSTEM_USER](context, payload) {
     return new Promise((resolve, reject) => {
       ApiService.setHeader();
       ApiService.post("servers/" + payload.serverId + "/systemusers", payload)

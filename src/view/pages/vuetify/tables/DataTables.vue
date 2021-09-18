@@ -7,7 +7,7 @@
     >
       <div class="alert-icon">
         <span class="svg-icon svg-icon-lg">
-          <inline-svg src="/media/svg/icons/Tools/Compass.svg" />
+          <inline-svg src="media/svg/icons/Tools/Compass.svg" />
         </span>
       </div>
       <div class="alert-text">
@@ -15,7 +15,7 @@
         displaying tabular data. Features include sorting, searching,
         pagination, inline-editing, header tooltips, and row selection.
         <a
-          class=""
+          class="font-weight-bold"
           href="https://vuetifyjs.com/en/components/data-tables"
           target="_blank"
         >

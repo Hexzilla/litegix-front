@@ -7,7 +7,7 @@
     >
       <div class="alert-icon">
         <span class="svg-icon svg-icon-lg">
-          <inline-svg src="/media/svg/icons/Tools/Compass.svg" />
+          <inline-svg src="media/svg/icons/Tools/Compass.svg" />
         </span>
       </div>
       <div class="alert-text">
@@ -15,7 +15,7 @@
         behind a selectable item. This can also be used as a pseudo-navigation
         for a page, where the tabs are links and the tab-items are the content.
         <a
-          class=""
+          class="font-weight-bold"
           href="https://vuetifyjs.com/en/components/tabs"
           target="_blank"
         >

@@ -21,11 +21,6 @@ export default new Router({
           component: () => import("@/view/pages/Builder.vue")
         },
         {
-          path: "/subscription-is-required",
-          name: "subscription-is-required",
-          component: () => import("@/view/pages/teams/Subscription.vue")
-        },
-        {
           path: "/servers",
           name: "Servers",
           component: () => import("@/view/pages/servers/Servers.vue")
@@ -46,82 +41,6 @@ export default new Router({
           name: "server-config",
           component: () => import("@/view/pages/servers/ConfigServer.vue"),
           props: true
-        },
-        {
-          path: "/teams",
-          name: "Teams",
-          component: () => import("@/view/pages/teams/Teams.vue")
-        },
-        {
-          path: "/members",
-          name: "team-members",
-          component: () => import("@/view/pages/teams/Members.vue")
-        },
-        {
-          path: "/teams/create",
-          name: "team-create",
-          component: () => import("@/view/pages/teams/CreateTeam.vue")
-        },
-        {
-          path: "/Sites",
-          name: "Sites",
-          component: () => import("@/view/pages/Sites.vue")
-        },
-        {
-          path: "/Projects",
-          name: "Projects",
-          component: () => import("@/view/pages/projects/Projects.vue")
-        },
-        {
-          path: "/Projects/create",
-          name: "project-create",
-          component: () => import("@/view/pages/projects/CreateProject.vue")
-        },
-        {
-          path: "/Scripts",
-          name: "Scripts",
-          component: () => import("@/view/pages/Scripts.vue")
-        },
-        {
-          path: "/Backups",
-          name: "Backups",
-          component: () => import("@/view/pages/Backups.vue")
-        },
-        {
-          path: "/Backups/create",
-          name: "backup-create",
-          component: () => import("@/view/pages/backup/CreateBackup.vue")
-        },
-        {
-          path: "/dnsmanager",
-          name: "DNSMageter",
-          component: () => import("@/view/pages/manager/DNSManager.vue")
-        },
-        // {
-        //   path: "/settings",
-        //   name: "Settings",
-        //   component: () => import("@/view/pages/settings/Settings.vue")
-        // },
-        // // added20210629
-        // {
-        //   path: "/settings/ConnectApp",
-        //   name: "ConnectApp",
-        //   component: () => import("@/view/pages/settings/ConnectApp.vue")
-        // },
-        {
-          path: "/Subscription",
-          name: "Subscription",
-          component: () => import("@/view/pages/Subscription.vue")
-        },
-        {
-          path: "/Documentation",
-          name: "Documentation",
-          component: () => import("@/view/pages/Documentation.vue")
-        },
-        {
-          path: "/Support",
-          name: "Support",
-          component: () => import("@/view/pages/Support.vue")
         },
         {
           path: "/vue-bootstrap",
@@ -339,108 +258,38 @@ export default new Router({
             {
               path: "profile",
               name: "settings-profile",
-              component: () => import("@/view/pages/settings/Account.vue")
+              component: () =>
+                import("@/view/pages/settings/profile/Profile.vue")
+            },
+            {
+              path: "account",
+              name: "settings-account",
+              component: () =>
+                import("@/view/pages/settings/account/Account.vue")
             },
             {
               path: "notification",
               name: "settings-notification",
-              component: () => import("@/view/pages/settings/Notification.vue")
-            },
-            {
-              path: "AddNotification",
-              name: "settings-add-notification",
               component: () =>
-                import("@/view/pages/settings/AddNotification.vue")
-            },
-            {
-              path: "server_transfer",
-              name: "settings-server_transfer",
-              component: () => import("@/view/pages/settings/ServerTrans.vue")
-            },
-            {
-              path: "referal",
-              name: "settings-referal",
-              component: () => import("@/view/pages/settings/Referal.vue")
-            },
-            {
-              path: "activitylog",
-              name: "settings-activitylog",
-              component: () => import("@/view/pages/settings/ActivityLog.vue")
-            },
-            {
-              path: "delete_account",
-              name: "settings-delete_account",
-              component: () => import("@/view/pages/settings/DeleteAccount.vue")
-            },
-            {
-              path: "authentication",
-              name: "settings-authentication",
-              component: () =>
-                import("@/view/pages/settings/Authentication.vue")
-            },
-            {
-              path: "connectApp",
-              name: "settings-connectApp",
-              component: () => import("@/view/pages/settings/ConnectApp.vue")
+                import("@/view/pages/settings/notification/Notification.vue")
             },
             {
               path: "api_key",
               name: "settings-api_key",
-              component: () => import("@/view/pages/settings/ApiKey.vue")
-            },
-            {
-              path: "third_party_api_key",
-              name: "settings-third_party_api_key",
               component: () =>
-                import("@/view/pages/settings/ThirdPartyAPIKey.vue")
+                import("@/view/pages/settings/api-key/ApiKey.vue")
             },
             {
-              path: "third_party_api_key_add",
-              name: "settings-third_party_api_key-add",
-              component: () => import("@/view/pages/settings/AddThirdParty.vue")
+              path: "activitylog",
+              name: "settings-activitylog",
+              component: () =>
+                import("@/view/pages/settings/activity/ActivityLog.vue")
             },
             {
               path: "ip_whitelisting",
               name: "settings-ip_whitelisting",
-              component: () => import("@/view/pages/settings/IpWhitelist.vue")
-            },
-            {
-              path: "subscription",
-              name: "settings-subscription",
-              component: () => import("@/view/pages/settings/Subscription.vue")
-            },
-            {
-              path: "create_subscription",
-              name: "settings-subscription-add",
               component: () =>
-                import("@/view/pages/settings/AddSubscription.vue")
-            },
-            {
-              path: "payment_method",
-              name: "settings-payment_method",
-              component: () => import("@/view/pages/settings/PaymentMethod.vue")
-            },
-            {
-              path: "payment_history",
-              name: "settings-payment_history",
-              component: () =>
-                import("@/view/pages/settings/PaymentHistory.vue")
-            },
-            {
-              path: "ssh_key_vault",
-              name: "settings-ssh_key_vault",
-              component: () => import("@/view/pages/settings/SSHKeyVault.vue")
-            },
-            {
-              path: "wordpress_canvas",
-              name: "settings-wordpress_canvas",
-              component: () =>
-                import("@/view/pages/settings/WordpressCanvas.vue")
-            },
-            {
-              path: "wordpress_canvas_create",
-              name: "wordpress_canvas-create",
-              component: () => import("@/view/pages/settings/CreateCanvas.vue")
+                import("@/view/pages/settings/ip-whitelist/IPWhitelist.vue")
             }
           ]
         },
@@ -631,11 +480,6 @@ export default new Router({
           component: () => import("@/view/pages/vuetify/Vuetify.vue"),
           children: [
             {
-              path: "server",
-              name: "vuetify-server",
-              component: () => import("@/view/pages/server/Server.vue")
-            },
-            {
               path: "alerts",
               name: "vuetify-alerts",
               component: () => import("@/view/pages/vuetify/Alerts.vue")
@@ -792,34 +636,34 @@ export default new Router({
               component: () => import("@/view/pages/plugins/Treeselect.vue")
             }
           ]
+        },
+        {
+          path: "/profile",
+          name: "profile",
+          component: () => import("@/view/pages/profile/Profile.vue"),
+          children: [
+            {
+              path: "profile-1",
+              name: "profile-1",
+              component: () => import("@/view/pages/profile/Profile-1.vue")
+            },
+            {
+              path: "profile-2",
+              name: "profile-2",
+              component: () => import("@/view/pages/profile/Profile-2.vue")
+            },
+            {
+              path: "profile-3",
+              name: "profile-3",
+              component: () => import("@/view/pages/profile/Profile-3.vue")
+            },
+            {
+              path: "profile-4",
+              name: "profile-4",
+              component: () => import("@/view/pages/profile/Profile-4.vue")
+            }
+          ]
         }
-        // {
-        //   path: "/profile",
-        //   name: "profile",
-        //   component: () => import("@/view/pages/profile/Profile.vue"),
-        //   children: [
-        //     {
-        //       path: "profile-1",
-        //       name: "profile-1",
-        //       component: () => import("@/view/pages/profile/Profile-1.vue")
-        //     },
-        //     {
-        //       path: "profile-2",
-        //       name: "profile-2",
-        //       component: () => import("@/view/pages/profile/Profile-2.vue")
-        //     },
-        //     {
-        //       path: "profile-3",
-        //       name: "profile-3",
-        //       component: () => import("@/view/pages/profile/Profile-3.vue")
-        //     },
-        //     {
-        //       path: "profile-4",
-        //       name: "profile-4",
-        //       component: () => import("@/view/pages/profile/Profile-4.vue")
-        //     }
-        //   ]
-        // }
       ]
     },
     {
@@ -861,17 +705,17 @@ export default new Router({
     },
     {
       path: "/",
-      component: () => import("@/view/pages/auth/Login.vue"),
+      component: () => import("@/view/pages/auth/login_pages/Login-1"),
       children: [
         {
           name: "login",
           path: "/login",
-          component: () => import("@/view/pages/auth/Login.vue")
+          component: () => import("@/view/pages/auth/login_pages/Login-1")
         },
         {
           name: "register",
           path: "/register",
-          component: () => import("@/view/pages/auth/Login.vue")
+          component: () => import("@/view/pages/auth/login_pages/Login-1")
         }
       ]
     },

@@ -57,6 +57,7 @@ const actions = {
     });
   },
   [GET_SERVERS](context) {
+    console.log("GET_SERVERS");
     return new Promise((resolve, reject) => {
       ApiService.setHeader();
       ApiService.get("/servers")

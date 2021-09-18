@@ -41,7 +41,7 @@ export default {
         },
         {
           title: "Account",
-          link: "/settings/authentication",
+          link: "/settings/account",
           icon: "/media/svg/icons/Communication/Incoming-call.svg",
           class: "border-radius-top-right"
         },

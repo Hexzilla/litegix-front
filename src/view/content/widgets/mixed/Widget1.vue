@@ -27,7 +27,7 @@
         <div class="row m-0">
           <div class="col bg-light-warning px-6 py-8 rounded-xl mr-7 mb-7">
             <span class="svg-icon svg-icon-3x svg-icon-warning d-block my-2">
-              <inline-svg src="/media/svg/icons/Media/Equalizer.svg" />
+              <inline-svg src="media/svg/icons/Media/Equalizer.svg" />
             </span>
             <a href="#" class="text-warning font-weight-bold font-size-h6">
               Weekly Sales
@@ -35,9 +35,9 @@
           </div>
           <div class="col bg-light-primary px-6 py-8 rounded-xl mb-7">
             <span class="svg-icon svg-icon-3x svg-icon-primary d-block my-2">
-              <inline-svg src="/media/svg/icons/Communication/Add-user.svg" />
+              <inline-svg src="media/svg/icons/Communication/Add-user.svg" />
             </span>
-            <a href="#" class="text-primary  font-size-h6 mt-2">
+            <a href="#" class="text-primary font-weight-bold font-size-h6 mt-2">
               New Users
             </a>
           </div>
@@ -47,7 +47,7 @@
         <div class="row m-0">
           <div class="col bg-light-danger px-6 py-8 rounded-xl mr-7">
             <span class="svg-icon svg-icon-3x svg-icon-danger d-block my-2">
-              <inline-svg src="/media/svg/icons/Design/Layers.svg" />
+              <inline-svg src="media/svg/icons/Design/Layers.svg" />
             </span>
             <a href="#" class="text-danger font-weight-bold font-size-h6 mt-2">
               Item Orders
@@ -55,7 +55,7 @@
           </div>
           <div class="col bg-light-success px-6 py-8 rounded-xl">
             <span class="svg-icon svg-icon-3x svg-icon-success d-block my-2">
-              <inline-svg src="/media/svg/icons/Communication/Urgent-mail.svg" />
+              <inline-svg src="media/svg/icons/Communication/Urgent-mail.svg" />
             </span>
             <a href="#" class="text-success font-weight-bold font-size-h6 mt-2">
               Bug Reports

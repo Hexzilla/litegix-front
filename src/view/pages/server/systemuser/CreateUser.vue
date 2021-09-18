@@ -66,7 +66,7 @@ import KTUtil from "@/assets/js/components/util";
 
 import { mapGetters } from "vuex";
 import Swal from "sweetalert2";
-import { CREATE_SYSTEM_USERS } from "@/core/services/store/system.module";
+import { CREATE_SYSTEM_USER } from "@/core/services/store/system.module";
 
 export default {
   data() {
@@ -120,7 +120,7 @@ export default {
         serverId: this.$parent.serverId
       };
       this.$store
-        .dispatch(CREATE_SYSTEM_USERS, payload)
+        .dispatch(CREATE_SYSTEM_USER, payload)
         .then(() => {
           removeSpinner();
           this.onCreateSuccess(payload.name);

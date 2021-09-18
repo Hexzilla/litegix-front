@@ -8,7 +8,7 @@
       <div class="alert-icon alert-icon-top">
         <span class="svg-icon svg-icon-3x svg-icon-primary mt-4">
           <!--begin::Svg Icon-->
-          <inline-svg src="/media/svg/icons/Tools/Tools.svg" />
+          <inline-svg src="media/svg/icons/Tools/Tools.svg" />
           <!--end::Svg Icon-->
         </span>
       </div>
@@ -466,14 +466,14 @@
           <div class="row">
             <div class="col-lg-3"></div>
             <div class="col-lg-9">
-              <button type="submit" class="btn btn-primary ">
+              <button type="submit" class="btn btn-primary font-weight-bold">
                 <i class="la la-eye"></i>
                 Preview
               </button>
               &nbsp;
               <button
                 v-on:click="reset($event)"
-                class="btn btn-clean "
+                class="btn btn-clean font-weight-bold"
               >
                 <i class="la la-recycle"></i>
                 Reset

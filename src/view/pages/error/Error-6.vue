@@ -14,7 +14,7 @@
         >
           Oops...
         </h1>
-        <p class="display-4  text-white">
+        <p class="display-4 font-weight-bold text-white">
           Looks like something went wrong.
           <br />We're working on it
           <br />

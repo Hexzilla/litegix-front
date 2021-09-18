@@ -60,8 +60,6 @@
                 class="mt-6 mb-3"
                 >Load (Notify me when load reach {{ slider1 }})</b-form-checkbox
               >
-              <vue-slider v-model="slider1" :disabled="!load"></vue-slider>
-
               <b-form-checkbox
                 size="lg"
                 v-model="memory"
@@ -70,8 +68,6 @@
                 >Memory (Notify me when memory reach
                 {{ slider2 }}%)</b-form-checkbox
               >
-              <vue-slider v-model="slider2" :disabled="!memory"></vue-slider>
-
               <b-form-checkbox
                 size="lg"
                 v-model="disk"
@@ -80,7 +76,6 @@
                 >Disk (Notify me when load reach 5Notify me when disk reach
                 {{ slider3 }}%)</b-form-checkbox
               >
-              <vue-slider v-model="slider3" :disabled="!disk"></vue-slider>
             </b-form-group>
           </div>
           <h4 class="font-weight-bold">Snooze health notification</h4>
@@ -159,9 +154,6 @@
 </template>
 
 <script>
-import VueSlider from "vue-slider-component";
-import "vue-slider-component/theme/antd.css";
-
 export default {
   data() {
     return {
@@ -178,9 +170,6 @@ export default {
       items2: [{ IP_address: "199.33.444.56", delete: "" }],
       keys: []
     };
-  },
-  components: {
-    VueSlider
   }
 };
 </script>

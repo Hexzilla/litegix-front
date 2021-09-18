@@ -7,14 +7,14 @@
     >
       <div class="alert-icon">
         <span class="svg-icon svg-icon-lg">
-          <inline-svg src="/media/svg/icons/Tools/Compass.svg" />
+          <inline-svg src="media/svg/icons/Tools/Compass.svg" />
         </span>
       </div>
       <div class="alert-text">
         <b>Text fields</b> Text fields components are used for collecting user
         provided information.
         <a
-          class=""
+          class="font-weight-bold"
           href="https://vuetifyjs.com/en/components/text-fields"
           target="_blank"
         >

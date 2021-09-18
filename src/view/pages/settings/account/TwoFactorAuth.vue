@@ -34,8 +34,6 @@
 </template>
 
 <script>
-import { SET_BREADCRUMB } from "@/core/services/store/breadcrumbs.module";
-
 export default {
   name: "KTTwoFactorAuth",
   data() {
@@ -53,12 +51,6 @@ export default {
       default: "text"
     },
     auto: [String, Boolean]
-  },
-  mounted() {
-    this.$store.dispatch(SET_BREADCRUMB, [
-      { title: "Settings", route: "profile" },
-      { title: "Authentication" }
-    ]);
   }
 };
 </script>

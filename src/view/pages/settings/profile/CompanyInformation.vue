@@ -136,8 +136,6 @@ import Trigger from "@/assets/plugins/formvalidation/dist/es6/plugins/Trigger";
 import Bootstrap from "@/assets/plugins/formvalidation/dist/es6/plugins/Bootstrap";
 import SubmitButton from "@/assets/plugins/formvalidation/dist/es6/plugins/SubmitButton";
 import Swal from "sweetalert2";
-
-import { SET_BREADCRUMB } from "@/core/services/store/breadcrumbs.module";
 import { mapGetters } from "vuex";
 import { Constants } from "./Constants";
 import {
@@ -166,11 +164,6 @@ export default {
     this.$store.dispatch(FETCH_PROFILE_INFO);
   },
   mounted() {
-    this.$store.dispatch(SET_BREADCRUMB, [
-      { title: "Settings" },
-      { title: "Profile" }
-    ]);
-
     const company_form = KTUtil.getById("kt_company_form");
     this.fv = formValidation(company_form, {
       fields: {

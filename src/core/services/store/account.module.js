@@ -1,6 +1,7 @@
 import ApiService from "@/core/services/api.service";
 
 // action types
+export const FETCH_ACTIVITY_LOGS = "FetchActivityLogs";
 export const FETCH_NOTIFICATION_NEWSLETTERS = "FetchNotificationNewsletters";
 export const UPDATE_NOTIFICATION_NEWSLETTERS = "UpdateNotificationNewsletters";
 
@@ -30,6 +31,19 @@ const getters = {
 };
 
 const actions = {
+  [FETCH_ACTIVITY_LOGS]() {
+    return new Promise((resolve, reject) => {
+      ApiService.setHeader(),
+        ApiService.get("settings/activity")
+          .then(({ data }) => {
+            console.log("account.activity", data);
+            resolve(data);
+          })
+          .catch(error => {
+            return reject(error);
+          });
+    });
+  },
   [FETCH_NOTIFICATION_NEWSLETTERS](context) {
     return new Promise((resolve, reject) => {
       ApiService.setHeader(),

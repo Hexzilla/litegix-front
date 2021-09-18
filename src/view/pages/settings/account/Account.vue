@@ -13,6 +13,7 @@
 </template>
 
 <script>
+import { SET_BREADCRUMB } from "@/core/services/store/breadcrumbs.module";
 import TwoFactorAuth from "./TwoFactorAuth.vue";
 import ChangePassword from "./ChangePassword.vue";
 import DeleteAccount from "./DeleteAccount.vue";
@@ -23,6 +24,12 @@ export default {
     TwoFactorAuth,
     ChangePassword,
     DeleteAccount
+  },
+  mounted() {
+    this.$store.dispatch(SET_BREADCRUMB, [
+      { title: "Settings", route: "profile" },
+      { title: "Account" }
+    ]);
   }
 };
 </script>

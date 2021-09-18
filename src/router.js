@@ -290,6 +290,11 @@ export default new Router({
               name: "settings-ip_whitelisting",
               component: () =>
                 import("@/view/pages/settings/ip-whitelist/IPWhitelist.vue")
+            },
+            {
+              path: "subscription",
+              name: "settings-subscription",
+              component: () => import("@/view/pages/settings/subscription/Subscription.vue")
             }
           ]
         },

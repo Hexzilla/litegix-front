@@ -1,116 +1,83 @@
 <template>
-  <div class="card card-custom">
-    <div class="card-header py-3">
-      <div class="card-title align-items-start flex-column">
-        <h3 class="card-label font-weight-bolder text-dark">
-          IP Whitelisting
-        </h3>
-        <span class="text-muted font-weight-bold font-size-sm mt-1"
-          >Add or remove your notification channels</span
+  <div class="card card-custom gutter-b">
+    <div class="card-header border-0 py-5">
+      <h3 class="card-title align-items-start flex-column">
+        <span class="card-label font-weight-bolder text-dark"
+          >IP Whitelist</span
         >
-      </div>
+      </h3>
+
       <div class="card-toolbar">
-        <!-- <v-btn color="primary" @click="save()" ref="user_save_changes">
-          Save Changes
-        </v-btn>
-        <button type="reset" class="btn btn-secondary" @click="cancel()">
-        Cancel
-      </button> -->
+        <input
+          type="text"
+          placeholder="Search..."
+          class="form-control input-lg w-200px mr-5"
+        />
       </div>
     </div>
-    <div class="card-body">
-      <p class="font-size-lg mt-1">
-        Whitelist IP Address that can be used to login to your Litegix account
-        if you enable the IP Whitelisting.<br />
-        If the IP Address is not in here, you need to approve it everytime you
-        log in to Litegix. If you don't enable this feature, every login will
-        automatically whitelist the IP Address.
-      </p>
-      <v-data-table
-        :headers="tableData.headers"
-        :items="tableData.desserts"
-        :search="tableData.search"
-        no-data-text="No data"
-        no-results-text="No result"
-      >
-        <template v-slot:top>
-          <v-toolbar flat>
-            <v-spacer></v-spacer>
-            <v-text-field
-              outlined
-              dense
-              label="Search"
-              hide-details="true"
-              v-model="tableData.search"
-              :search="search"
-            ></v-text-field>
-            <b-btn variant="success" @click="isEnable" ref="is_enable"
-              >Enable</b-btn
-            >
-          </v-toolbar>
-        </template></v-data-table
-      >
+    <div class="card-body pb-10 pt-0">
+      <div class="overflow-auto">
+        <b-table
+          :items="activities"
+          :fields="fields"
+          :per-page="perPage"
+          :current-page="currentPage"
+          show-empty
+          empty-text="You don't have anything activity logs."
+        >
+          <template #cell(level)="data">
+            <div v-if="data.item.level == 1">
+              <span class="label label-lg label-inline label-success"
+                >Info</span
+              >
+            </div>
+            <div v-if="data.item.level == 2">
+              <span class="label label-lg label-inline label-warning"
+                >Warning</span
+              >
+            </div>
+            <div v-if="data.item.level == 3">
+              <span class="label label-lg label-inline label-danger"
+                >Error</span
+              >
+            </div>
+          </template>
+        </b-table>
+        <b-pagination
+          v-model="currentPage"
+          :total-rows="activities.length"
+          :per-page="perPage"
+          aria-controls="my-table"
+        ></b-pagination>
+      </div>
     </div>
   </div>
 </template>
 
 <script>
 import { SET_BREADCRUMB } from "@/core/services/store/breadcrumbs.module";
-
+import { FETCH_ACTIVITY_LOGS } from "@/core/services/store/account.module";
 export default {
-  name: "IpWhitelist",
   data() {
     return {
-      tableData: {
-        search: "",
-        headers: [
-          {
-            text: "IP Address",
-            value: "address"
-          },
-          {
-            text: "Total login from this IP",
-            value: "totalLogin"
-          },
-          {
-            text: "Last browser used",
-            value: "lastUse"
-          },
-          {
-            text: "Last login from this IP",
-            value: "lastLogin"
-          },
-          {
-            text: "Delete",
-            sortable: false,
-            value: "del"
-          }
-        ],
-        desserts: []
-      }
+      fields: ["level", "message", "date", "category"],
+      activities: [],
+      currentPage: 1,
+      perPage: 10
     };
   },
   mounted() {
     this.$store.dispatch(SET_BREADCRUMB, [
       { title: "Settings", route: "profile" },
-      { title: "IP Whitelisting" }
+      { title: "IP Whitelist" }
     ]);
-  },
-  methods: {
-    async isEnable() {
-      const ok = await this.$refs.confirmDialogue.show({
-        title: "Enable IP Whitelisting",
-        message:
-          "If you enable IP Whitelisting, you will have to verify your IP Address from verification link inside your email if the IP Address is not in whitelist. Enable IP Whitelisting?",
-        okButton: "OK"
-      });
-      // If you throw an error, the method will terminate here unless you surround it wil try/catch
-      if (ok) {
-        // alert('You have successfully delete this page.')
-      } else {
-        // alert('You chose not to delete this page. Doing nothing now.')
+
+    this.$store.dispatch(FETCH_ACTIVITY_LOGS).then(response => {
+      if (response.success) {
+        this.activities = response.data.activities;
+        console.log("activities", this.activities);
       }
-    }
+    });
   }
 };
 </script>

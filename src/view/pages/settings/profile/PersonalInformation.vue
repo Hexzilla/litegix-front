@@ -96,7 +96,6 @@ import SubmitButton from "@/assets/plugins/formvalidation/dist/es6/plugins/Submi
 import Swal from "sweetalert2";
 
 import { mapGetters } from "vuex";
-import { SET_BREADCRUMB } from "@/core/services/store/breadcrumbs.module";
 import {
   FETCH_PROFILE_INFO,
   UPDATE_PERSONAL_INFO
@@ -124,11 +123,6 @@ export default {
     }
   },
   mounted() {
-    this.$store.dispatch(SET_BREADCRUMB, [
-      { title: "Settings" },
-      { title: "Profile" }
-    ]);
-
     const profile_form = KTUtil.getById("kt_profile_form");
     this.fv = formValidation(profile_form, {
       fields: {

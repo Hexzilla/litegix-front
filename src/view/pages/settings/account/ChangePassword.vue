@@ -73,7 +73,6 @@ import Swal from "sweetalert2";
 
 import { mapGetters } from "vuex";
 import { UPDATE_PASSWORD } from "@/core/services/store/auth.module";
-import { SET_BREADCRUMB } from "@/core/services/store/breadcrumbs.module";
 
 export default {
   name: "KTChangePassword",
@@ -85,11 +84,6 @@ export default {
     auto: [String, Boolean]
   },
   mounted() {
-    this.$store.dispatch(SET_BREADCRUMB, [
-      { title: "Settings", route: "profile" },
-      { title: "Authentication" }
-    ]);
-
     const password_change_form = KTUtil.getById("kt_password_change_form");
     this.fv = formValidation(password_change_form, {
       fields: {

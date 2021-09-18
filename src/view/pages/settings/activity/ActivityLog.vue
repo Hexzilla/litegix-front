@@ -1,92 +1,69 @@
 <template>
-  <div class="card card-custom">
-    <div class="card-header py-3">
-      <div class="card-title align-items-start flex-column">
-        <h3 class="card-label font-weight-bolder text-dark">
-          Activity Log
-        </h3>
-        <span class="text-muted font-weight-bold font-size-sm mt-1"></span>
-      </div>
+  <div class="card card-custom gutter-b">
+    <div class="card-header border-0 py-5">
+      <h3 class="card-title align-items-start flex-column">
+        <span class="card-label font-weight-bolder text-dark"
+          >Activity Logs</span
+        >
+      </h3>
+
       <div class="card-toolbar">
-        <!-- <v-btn color="primary" @click="save()" ref="user_save_changes">
-          Save Changes
-        </v-btn>
-        <button type="reset" class="btn btn-secondary" @click="cancel()">
-          Cancel
-        </button> -->
+        <input
+          type="text"
+          placeholder="Search..."
+          class="form-control input-lg w-200px mr-5"
+        />
       </div>
     </div>
-    <div class="card-body">
-      <v-data-table
-        no-data-text="No data"
-        :headers="code4.headers"
-        :items="code4.logs"
-        :search="code4.search"
-      >
-        <template v-slot:top>
-          <v-toolbar flat>
-            <v-spacer></v-spacer>
-            <v-text-field
-              outlined
-              dense
-              label="Search"
-              style="margin-top:25px;"
-              v-model="code4.search"
-              :search="search"
-            ></v-text-field>
-          </v-toolbar>
-        </template>
-        <template v-slot:item.name="{ item }">
-          <v-chip color="green" label small>
-            <v-icon left>mdi-pencil</v-icon>
-            {{ item.name }}
-          </v-chip>
-        </template>
-      </v-data-table>
+    <div class="card-body pb-10 pt-0">
+      <div class="overflow-auto">
+        <b-table
+          :items="activities"
+          :fields="fields"
+          :per-page="perPage"
+          :current-page="currentPage"
+          show-empty
+          empty-text="You don't have anything activity logs."
+        >
+          <template #cell(level)="data">
+            <div v-if="data.item.level == 1">
+              <span class="label label-lg label-inline label-success"
+                >Info</span
+              >
+            </div>
+            <div v-if="data.item.level == 2">
+              <span class="label label-lg label-inline label-warning"
+                >Warning</span
+              >
+            </div>
+            <div v-if="data.item.level == 3">
+              <span class="label label-lg label-inline label-danger"
+                >Error</span
+              >
+            </div>
+          </template>
+        </b-table>
+        <b-pagination
+          v-model="currentPage"
+          :total-rows="activities.length"
+          :per-page="perPage"
+          aria-controls="my-table"
+        ></b-pagination>
+      </div>
     </div>
   </div>
 </template>
 
 <script>
 import { SET_BREADCRUMB } from "@/core/services/store/breadcrumbs.module";
+import { FETCH_ACTIVITY_LOGS } from "@/core/services/store/account.module";
 export default {
   data() {
     return {
-      code4: {
-        search: "",
-        headers: [
-          {
-            text: "Label",
-            value: "name"
-          },
-          {
-            text: "Log",
-            value: "log"
-          },
-          {
-            text: "Date",
-            value: "date"
-          },
-          {
-            text: "Time",
-            value: "time"
-          }
-        ],
-        logs: [
-          {
-            name: "label",
-            log: "Subscribe to newsletter",
-            date: "28 Jun 2021",
-            time: "03:57:34 AM"
-          },
-          {
-            name: "label",
-            log: "Success full login form localhost",
-            date: "28 Jun 2021",
-            time: "05:47:34 PM"
-          }
-        ]
-      }
+      fields: ["level", "message", "date", "category"],
+      activities: [],
+      currentPage: 1,
+      perPage: 10
     };
   },
   mounted() {
@@ -94,6 +71,13 @@ export default {
       { title: "Settings", route: "profile" },
       { title: "Activity Log" }
     ]);
+
+    this.$store.dispatch(FETCH_ACTIVITY_LOGS).then(response => {
+      if (response.success) {
+        this.activities = response.data.activities;
+        console.log("activities", this.activities);
+      }
+    });
   }
 };
 </script>

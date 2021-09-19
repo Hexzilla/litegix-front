@@ -1,4 +1,4 @@
-# metronic-vue
+# Litegix
 
 ## Project setup
 ```

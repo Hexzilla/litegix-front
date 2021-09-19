@@ -123,10 +123,10 @@
   "aside": {
     "self": {
       "theme": "dark",
-      "display": true,
-      "fixed": true,
+      "display": false,
+      "fixed": false,
       "minimize": {
-        "toggle": true,
+        "toggle": false,
         "default": false,
         "hoverable": true
       }

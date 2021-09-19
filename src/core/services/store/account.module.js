@@ -7,6 +7,7 @@ export const UPDATE_NEWSLETTERS = "UPDATE_NEWSLETTERS";
 export const FETCH_API_KEYS = "FETCH_API_KEYS";
 export const GENERATE_API_KEY = "GENERATE_API_KEY";
 export const GENERATE_SECRET_KEY = "GENERATE_SECRET_KEY";
+export const UPDATE_ENABLE_ACCESS = "UPDATE_ENABLE_ACCESS";
 
 // mutation types
 export const SET_NOTIFICATION = "SET_NOTIFICATION";
@@ -62,7 +63,7 @@ const actions = {
       ApiService.get("settings/apikeys")
         .then(({ data }) => {
           if (data.success) {
-            context.commit(SET_API_KEYS, data.data);
+            context.commit(SET_API_KEYS, data.data.apiKeys);
           }
           resolve(data);
         })
@@ -77,7 +78,7 @@ const actions = {
       ApiService.put("settings/apiKeys/apiKey")
         .then(({ data }) => {
           if (data.success) {
-            context.commit(SET_API_KEYS, data.data);
+            context.commit(SET_API_KEYS, data.data.apiKeys);
           }
           resolve(data);
         })
@@ -92,7 +93,22 @@ const actions = {
       ApiService.put("settings/apiKeys/secretKey")
         .then(({ data }) => {
           if (data.success) {
-            context.commit(SET_API_KEYS, data.data);
+            context.commit(SET_API_KEYS, data.data.apiKeys);
+          }
+          resolve(data);
+        })
+        .catch(error => {
+          return reject(error);
+        });
+    });
+  },
+  [UPDATE_ENABLE_ACCESS](context, payload) {
+    return new Promise((resolve, reject) => {
+      ApiService.setHeader();
+      ApiService.post("settings/apiKeys/enableaccess", payload)
+        .then(({ data }) => {
+          if (data.success) {
+            context.commit(SET_API_KEYS, data.data.apiKeys);
           }
           resolve(data);
         })
@@ -147,7 +163,7 @@ const mutations = {
   [SET_API_KEYS](state, data) {
     state.apiKeys = {
       ...state.apiKeys,
-      ...data.apiKeys
+      ...data
     };
   }
 };

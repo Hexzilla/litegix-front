@@ -26,6 +26,7 @@
                   id="apiKey"
                   type="text"
                   required
+                  readonly
                   ref="apiKey"
                   v-model="apiKeys.apiKey"
                   append-icon="mdi-refresh"
@@ -54,6 +55,7 @@
                   id="secretKey"
                   type="text"
                   required
+                  readonly
                   ref="secretKey"
                   v-model="apiKeys.secretKey"
                   append-icon="mdi-refresh"
@@ -74,8 +76,27 @@
             </b-form-group>
           </v-col>
         </v-row>
+
+        <div class="card-title align-items-start flex-column mt-20">
+          <p class="font-size-md mt-1">
+            Enable API Access to use the RunCloud API endpoint. If you are only
+            using the API Key and API Secret to download backups, you don't have
+            to enable this.
+          </p>
+        </div>
+        <v-row>
+          <v-col md="6" offset-md="3" sm="12" offset-sm="0">
+            <b-form-select
+              v-model="apiKeys.enableAccess"
+              :options="enableAccessOptions"
+              @change="changeEnalbeAccess"
+            ></b-form-select>
+          </v-col>
+        </v-row>
       </div>
     </div>
+
+    <IPRestriction class="mt-10"></IPRestriction>
   </div>
 </template>
 
@@ -86,18 +107,26 @@ import { mapGetters } from "vuex";
 import {
   FETCH_API_KEYS,
   GENERATE_API_KEY,
-  GENERATE_SECRET_KEY
+  GENERATE_SECRET_KEY,
+  UPDATE_ENABLE_ACCESS
 } from "@/core/services/store/account.module";
+import IPRestriction from "./IPRestriction.vue";
 
 export default {
   name: "Authentication",
   data() {
     return {
-      dialog: false
+      enableAccessOptions: [
+        { value: true, text: "Enable" },
+        { value: false, text: "Disable" }
+      ]
     };
   },
   computed: {
     ...mapGetters(["apiKeys"])
+  },
+  components: {
+    IPRestriction
   },
   mounted: function() {
     this.$store.dispatch(SET_BREADCRUMB, [
@@ -121,7 +150,7 @@ export default {
         return;
       }
 
-      const response = this.$store.dispatch(GENERATE_API_KEY);
+      const response = await this.$store.dispatch(GENERATE_API_KEY);
       if (response && response.success) {
         console.log("generateApiKey-success");
       }
@@ -139,9 +168,21 @@ export default {
         return;
       }
 
-      const response = this.$store.dispatch(GENERATE_SECRET_KEY);
+      const response = await this.$store.dispatch(GENERATE_SECRET_KEY);
       if (response && response.success) {
         console.log("generateSecretKey-success");
+      }
+    },
+    async changeEnalbeAccess(state) {
+      const payload = {
+        state: state
+      };
+      const response = await this.$store.dispatch(
+        UPDATE_ENABLE_ACCESS,
+        payload
+      );
+      if (response && response.success) {
+        console.log("enable-success");
       }
     }
   }

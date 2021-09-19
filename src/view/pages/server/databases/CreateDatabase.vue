@@ -21,6 +21,7 @@
           <b-form-input
             name="name"
             v-model="form.name"
+            required
             placeholder="Only alphanumeric and/or _ are allowed"
           ></b-form-input>
         </b-form-group>

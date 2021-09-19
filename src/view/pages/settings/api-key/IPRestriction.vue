@@ -11,14 +11,16 @@
           </span>
         </div>
         <div class="card-toolbar">
-          <button
-            type="reset"
-            class="btn btn-success mr-2"
-            @click="addAddress()"
-            ref="kt_add_address"
-          >
-            Add IP Address
-          </button>
+          <input
+            type="text"
+            placeholder="Search..."
+            class="form-control input-lg w-200px mr-5"
+          />
+          <b-link to="apiKey/ipaddr/add">
+            <a class="btn btn-success font-weight-bolder font-size-sm"
+              >Add IP Address</a
+            >
+          </b-link>
         </div>
       </div>
       <div class="card-body">

@@ -280,6 +280,12 @@ export default new Router({
                 import("@/view/pages/settings/api-key/ApiKey.vue")
             },
             {
+              path: "apiKey/ipaddr/add",
+              name: "settings-apiKey-ipaddr-add",
+              component: () =>
+                import("@/view/pages/settings/api-key/AddAllowedAddress.vue")
+            },
+            {
               path: "activitylog",
               name: "settings-activitylog",
               component: () =>

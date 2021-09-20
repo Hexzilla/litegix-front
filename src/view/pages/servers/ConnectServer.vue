@@ -423,64 +423,64 @@ export default {
           name: "Linode",
           slug: "linode",
           provisionReady: 1,
-          active: 1,
+          active: 1
         },
         {
           id: 3,
           name: "DigitalOcean",
           slug: "digitalocean",
           provisionReady: 1,
-          active: 1,
+          active: 1
         },
         {
           id: 6,
           name: "Vultr",
           slug: "vultr",
           provisionReady: 1,
-          active: 1,
+          active: 1
         },
         {
           id: 7,
           name: "UpCloud",
           slug: "upcloud",
           provisionReady: 1,
-          active: 1,
+          active: 1
         },
         {
           id: 9,
           name: "Amazon Lightsail",
           slug: "lightsail",
           provisionReady: 1,
-          active: 1,
+          active: 1
         },
         {
           id: 4,
           name: "Google Cloud Platform",
           slug: "gcp",
           provisionReady: 0,
-          active: 0,
+          active: 0
         },
         {
           id: 5,
           name: "Amazon Web Service",
           slug: "aws",
           provisionReady: 0,
-          active: 0,
+          active: 0
         },
         {
           id: 8,
           name: "Azure",
           slug: "azure",
           provisionReady: 0,
-          active: 0,
-        },
-      ],
+          active: 0
+        }
+      ]
     };
   },
   methods: {
     getProvisionTypeClass(type) {
       console.log(type + "=" + this.provision_type);
-      let provider = this.providers.find((c) => c.slug == this.sel_provider);
+      let provider = this.providers.find(c => c.slug == this.sel_provider);
       if (provider == undefined) {
         this.provision_type = "";
         return "";
@@ -506,7 +506,7 @@ export default {
         }
         return "";
       }
-    },
-  },
+    }
+  }
 };
 </script>

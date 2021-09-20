@@ -54,6 +54,7 @@
         </div>
       </div>
       <div v-if="isStarted" class="mb-10">
+        <div class="text-center mt-4 mb-4">{{ state.message }}</div>
         <v-progress-linear v-model="state.progress" striped height="25">
           <strong>{{ Math.ceil(state.progress) }}%</strong>
         </v-progress-linear>

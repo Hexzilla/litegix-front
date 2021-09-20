@@ -28,33 +28,35 @@
         </div>
       </div>
       <v-divider></v-divider>
-      <div class="row justify-content-center my-2 p-8">
-        <div class="col-xl-12 col-xxl-12">
-          <div class="">
-            <b-badge class="mr-4" variant="info">1</b-badge>
-            Log into your server as root via SSH/Putty. And enter your root
-            password
+      <div v-if="!isStarted">
+        <div class="row justify-content-center my-2 p-8">
+          <div class="col-xl-12 col-xxl-12">
+            <div class="">
+              <b-badge class="mr-4" variant="info">1</b-badge>
+              Log into your server as root via SSH/Putty. And enter your root
+              password
+            </div>
+            <div class="my-8">
+              <div class="code-block">{{ loginScript }}</div>
+            </div>
+            <div class="">
+              <b-badge class="mr-4" variant="info">2</b-badge>
+              Copy script below and paste in on your terminal.
+            </div>
+            <div class="my-8">
+              <div class="code-block">{{ installScript }}</div>
+            </div>
+            <div class="">
+              <b-badge class="mr-4" variant="info">3</b-badge>
+              Run the script to start.
+            </div>
           </div>
-          <div class="my-8">
-            <div class="code-block">{{ loginScript }}</div>
-          </div>
-          <div class="">
-            <b-badge class="mr-4" variant="info">2</b-badge>
-            Copy script below and paste in on your terminal.
-          </div>
-          <div class="my-8">
-            <div class="code-block">{{ installScript }}</div>
-          </div>
-          <div class="">
-            <b-badge class="mr-4" variant="info">3</b-badge>
-            Run the script to start.
-          </div>
-          <!-- <div class="mt-4">
-            <v-progress-linear v-model="installprocess" striped height="25">
-              <strong>{{ Math.ceil(installprocess) }}%</strong>
-            </v-progress-linear>
-          </div> -->
         </div>
+      </div>
+      <div v-if="isStarted" class="mb-10">
+        <v-progress-linear v-model="state.progress" striped height="25">
+          <strong>{{ Math.ceil(state.progress) }}%</strong>
+        </v-progress-linear>
       </div>
     </div>
   </div>
@@ -89,7 +91,8 @@ export default {
     return {
       loginScript: "",
       installScript: "",
-      timeout: null
+      state: {},
+      timer: null
     };
   },
   mounted() {
@@ -97,20 +100,36 @@ export default {
       { title: "Server" },
       { title: "Config" }
     ]);
-    this.$store.dispatch(GET_SCRIPT, this.serverId).then(data => {
+
+    const serverId = this.$route.params.serverId;
+    this.$store.dispatch(GET_SCRIPT, serverId).then(data => {
       console.log("script", data);
       if (data.success) {
         this.installScript = data.data.installScript;
         this.loginScript = data.data.loginScript;
       }
     });
-    this.timeout = setTimeout(this.updateInstallStatus, 500);
+    this.updateInstallStatus();
+    this.timer = setInterval(this.updateInstallStatus, 2000);
+  },
+  computed: {
+    isStarted() {
+      return this.state?.status == "started";
+    }
+  },
+  destroyed() {
+    clearInterval(this.timer);
   },
   methods: {
     updateInstallStatus() {
-      const serverId = this.$parent.serverId;
+      const serverId = this.$route.params.serverId;
       this.$store.dispatch(GET_INSTALL_STATUS, serverId).then(data => {
-        console.log("state", data);
+        console.log("installation-state", data.data);
+        if (data.success) {
+          this.state = data.data;
+          this.state.status == "finished" &&
+            this.$router.push({ path: `/server/${serverId}/summary` });
+        }
       });
     }
   }

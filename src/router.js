@@ -306,8 +306,8 @@ export default new Router({
           ]
         },
         {
-          path: "servers/:serverId/server",
-          redirect: "servers/:serverId/server/summary",
+          path: "server/:serverId",
+          redirect: "server/:serverId/summary",
           name: "server",
           component: () => import("@/view/pages/server/Server.vue"),
           props: true,

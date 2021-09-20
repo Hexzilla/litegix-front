@@ -1,9 +1,7 @@
 import ApiService from "@/core/services/api.service";
 
 export const SET_SERVERS = "setServers";
-export const SET_CONFIGSCRIPT = "setConfigScript";
 export const SET_ERROR = "setError";
-export const SET_INSTALLPROCESS = "setInstallProcess";
 export const SET_SERVER_SUMMERY = "setServerSummery";
 
 export const CREATE_SERVER = "createServer";
@@ -11,16 +9,14 @@ export const CONFIGURE_SERVER = "configureServer";
 export const GET_SERVERS = "getServers";
 export const GET_SERVER_SUMMERY = "getServerSummery";
 export const GET_SCRIPT = "getScript";
-export const GET_INSTALLPROCESS = "getInstallProcess";
+export const GET_INSTALL_STATUS = "getInstallStatus";
 
 export const DELETE_SERVER = "deleteServer";
 
 const state = {
   servers: {},
   summery: {},
-  currentServer: {},
-  configscript: {},
-  installprocess: 0
+  currentServer: {}
 };
 
 const getters = {
@@ -32,12 +28,6 @@ const getters = {
   },
   currentServer(state) {
     return state.currentServer;
-  },
-  configscript(state) {
-    return state.configscript;
-  },
-  installprocess(state) {
-    return state.installprocess;
   }
 };
 
@@ -76,12 +66,9 @@ const actions = {
   [GET_SCRIPT](context, credentials) {
     return new Promise((resolve, reject) => {
       ApiService.setHeader();
-      ApiService.get("/servers/" + credentials + "/config/installscript")
+      ApiService.get("/servers/" + credentials + "/installation/bashscript")
         .then(({ data }) => {
           resolve(data);
-          if (data.success) {
-            context.commit(SET_CONFIGSCRIPT, data.data);
-          }
         })
         .catch(error => {
           context.commit(SET_ERROR, error.response.data.errors);
@@ -89,20 +76,12 @@ const actions = {
         });
     });
   },
-  [GET_INSTALLPROCESS](context, credentials) {
+  [GET_INSTALL_STATUS](context, serverId) {
     return new Promise((resolve, reject) => {
       ApiService.setHeader();
-      ApiService.get(
-        "/servers/" +
-          credentials +
-          "/config/installstate/" +
-          state.installprocess
-      )
+      ApiService.get("/servers/" + serverId + "/installation/installstatus")
         .then(({ data }) => {
           resolve(data);
-          if (data.success) {
-            context.commit(SET_INSTALLPROCESS, data.data.state);
-          }
         })
         .catch(error => {
           context.commit(SET_ERROR, error.response.data.errors);
@@ -121,9 +100,6 @@ const actions = {
       )
         .then(({ data }) => {
           resolve(data);
-          if (data.success) {
-            context.commit(SET_INSTALLPROCESS, data.data.state);
-          }
         })
         .catch(error => {
           context.commit(SET_ERROR, error.response.data.errors);
@@ -161,14 +137,6 @@ const mutations = {
   },
   [SET_SERVER_SUMMERY](state, summery) {
     state.summery = summery;
-    state.errors = {};
-  },
-  [SET_CONFIGSCRIPT](state, configscript) {
-    state.configscript = configscript;
-    state.errors = {};
-  },
-  [SET_INSTALLPROCESS](state, installprocess) {
-    state.installprocess = installprocess;
     state.errors = {};
   }
 };

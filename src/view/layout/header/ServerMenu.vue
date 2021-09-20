@@ -14,7 +14,7 @@
             <template v-for="(item, i) in menuItems">
               <router-link
                 v-bind:key="i"
-                :to="`/servers/` + serverId + item.link"
+                :to="`/server/` + serverId + item.link"
                 v-slot="{ href, navigate, isActive, isExactActive }"
               >
                 <div
@@ -52,87 +52,14 @@
   </v-app>
 </template>
 <script>
+import MenuItems from "./ServerMenu.js";
+
 export default {
   name: "KTServerMenu",
   props: ["serverId"],
   data() {
     return {
-      menuItems: [
-        {
-          title: "Summary",
-          link: "/server/summary",
-          icon: "media/svg/icons/Design/Layers.svg",
-          class: "round-top-left"
-        },
-        {
-          title: "Server Health",
-          link: "/server/health",
-          icon: "media/svg/icons/Code/Compiling.svg",
-          class: "round-top-right"
-        },
-        {
-          title: "Web Application",
-          link: "/server/application",
-          icon: "media/svg/icons/Communication/Mail-notification.svg"
-        },
-        {
-          title: "Database",
-          link: "/server/database",
-          icon: "media/svg/icons/Communication/Reply-all.svg"
-        },
-        {
-          title: "System User",
-          link: "/server/systemuser",
-          icon: "media/svg/icons/Communication/Mail-opened.svg"
-        },
-        {
-          title: "SSH Key",
-          link: "/server/sshkey",
-          icon: "media/svg/icons/Communication/Safe-chat.svg"
-        },
-        {
-          title: "Deployment Key",
-          link: "/server/deployment",
-          icon: "media/svg/icons/Communication/Sending.svg"
-        },
-        {
-          title: "PHP CLI",
-          link: "/server/phpcli",
-          icon: "media/svg/icons/Communication/Thumbtack.svg"
-        },
-        {
-          title: "Notifications",
-          link: "/server/notification",
-          icon: "media/svg/icons/Communication/Sending.svg"
-        },
-        {
-          title: "Services",
-          link: "/server/services",
-          icon: "media/svg/icons/Communication/Thumbtack.svg"
-        },
-        {
-          title: "Cron Job",
-          link: "/server/cronjob",
-          icon: "media/svg/icons/Communication/Sending.svg"
-        },
-        {
-          title: "Supervisor",
-          link: "/server/supervisor",
-          icon: "media/svg/icons/Communication/Thumbtack.svg"
-        },
-        {
-          title: "Activity Log",
-          link: "/server/activitylog",
-          icon: "media/svg/icons/Communication/Mail-at.svg",
-          class: "round-bottom-left"
-        },
-        {
-          title: "Settings",
-          link: "/server/settings",
-          icon: "media/svg/icons/Communication/Share.svg",
-          class: "round-bottom-right"
-        }
-      ]
+      menuItems: MenuItems
     };
   }
 };

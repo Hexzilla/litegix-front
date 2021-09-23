@@ -54,20 +54,20 @@
       <div class="d-flex">
         <b-link
           visible="!server.connected"
-          :to="`servers/` + server._id + `/config/`"
+          :to="`servers/` + server.id + `/config/`"
           class="flex-grow-1 mt-2"
         >
           Connect server
         </b-link>
         <!-- <b-link
           v-if="server.connected"
-          :to="`server/` + server._id + `/summary/`"
+          :to="`server/` + server.id + `/summary/`"
           class="flex-grow-1 mt-2"
         >
           Setting
         </b-link> -->
         <div class="right">
-          <b-link :to="`server/` + server._id + `/summary/`">
+          <b-link :to="`server/` + server.id + `/summary/`">
             <a class="btn btn-sm btn-icon btn-light-primay mr-2">
               <i class="flaticon2-gear"></i>
             </a>

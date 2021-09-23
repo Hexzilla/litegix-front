@@ -55,9 +55,15 @@
       </div>
       <div v-if="isStarted" class="mb-10">
         <div class="text-center mt-4 mb-4">{{ state.message }}</div>
-        <v-progress-linear v-model="state.progress" striped height="25">
+        <!-- <v-progress-linear v-model="state.progress" striped height="25">
           <strong>{{ Math.ceil(state.progress) }}%</strong>
-        </v-progress-linear>
+        </v-progress-linear> -->
+        <b-progress :max="max" height="1.5rem" class="ml-10 mr-10">
+          <b-progress-bar
+            :value="state.progress"
+            :label="`${((state.progress / max) * 100).toFixed(1)}%`"
+          ></b-progress-bar>
+        </b-progress>
       </div>
     </div>
   </div>
@@ -68,6 +74,7 @@
 </style>
 <style scoped>
 .code-block {
+  font-family: monospace, monospace;
   border-radius: 4px;
   margin-left: 36px;
   background-color: #e3e6e9;
@@ -90,6 +97,7 @@ export default {
   props: ["serverId"],
   data() {
     return {
+      max: 100,
       loginScript: "",
       installScript: "",
       state: {},
@@ -115,7 +123,7 @@ export default {
   },
   computed: {
     isStarted() {
-      return this.state?.status == "started";
+      return this.state?.status && this.state?.progress >= 0;
     }
   },
   destroyed() {
@@ -128,8 +136,12 @@ export default {
         console.log("installation-state", data.data);
         if (data.success) {
           this.state = data.data;
-          this.state.status == "finished" &&
-            this.$router.push({ path: `/server/${serverId}/summary` });
+          if (this.state.status == "finish") {
+            setTimeout(
+              () => this.$router.push({ path: `/server/${serverId}/summary` }),
+              2000
+            );
+          }
         }
       });
     }

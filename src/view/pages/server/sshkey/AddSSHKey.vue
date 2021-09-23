@@ -32,7 +32,11 @@
             max-rows="10"
           ></b-form-textarea>
         </div>
-        <button type="submit" class="btn btn-primary btn-block">
+        <button
+          type="submit"
+          class="btn btn-primary btn-block"
+          ref="kt_form_submit"
+        >
           Add
         </button>
       </b-form>
@@ -92,45 +96,49 @@ export default {
     this.fv.on("core.form.invalid", () => {});
   },
   methods: {
-    createDatabase() {
-      // set spinner to submit button
-      const submitButton = this.$refs["kt_form_submit"];
-      submitButton.classList.add("spinner", "spinner-light", "spinner-right");
-      const removeSpinner = () => {
-        submitButton.classList.remove(
-          "spinner",
-          "spinner-light",
-          "spinner-right"
-        );
-      };
-      const payload = {
-        name: this.form.name,
-        user: this.form.user,
-        collation: this.form.collation,
-        serverId: this.$parent.serverId
-      };
-      this.$store
-        .dispatch(CREATE_SYSTEM_USER, payload)
-        .then(() => {
-          removeSpinner();
-          this.onCreateSuccess(payload.name);
-        })
-        .catch(() => {
-          removeSpinner();
-        });
+    async createDatabase() {
+      try {
+        // set spinner to submit button
+        const submitButton = this.$refs["kt_form_submit"];
+        submitButton.classList.add("spinner", "spinner-light", "spinner-right");
+        const removeSpinner = () => {
+          submitButton.classList.remove(
+            "spinner",
+            "spinner-light",
+            "spinner-right"
+          );
+        };
+        const payload = {
+          name: this.form.name,
+          user: this.form.user,
+          collation: this.form.collation,
+          serverId: this.$parent.serverId
+        };
+        const result = await this.$store.dispatch(CREATE_SYSTEM_USER, payload);
+        removeSpinner();
+
+        if (result.success) {
+          await this.showMessageBox(
+            "success",
+            "SSH Key has been successfully created"
+          );
+          this.$router.push({
+            path: `/servers/${result.data.id}/sshkey`
+          });
+        } else {
+          await this.showMessageBox("error", result.errors?.message);
+        }
+      } catch (e) {
+        await this.showMessageBox("error", "Failed to add SSH Key");
+      }
     },
-    onCreateSuccess(name) {
-      Swal.fire({
+    async showMessageBox(icon, text) {
+      await Swal.fire({
         title: "",
-        text: "Database " + name + " has been successfully created",
-        icon: "success",
+        text: text,
+        icon: icon,
         confirmButtonClass: "btn btn-secondary",
         heightAuto: false
-      }).then(() => {
-        console.log();
-        this.$router.push({
-          name: "server-database"
-        });
       });
     }
   }

@@ -79,8 +79,8 @@ export default {
   data() {
     return {
       select: "",
-      keys: [],
+      keys: []
     };
-  },
+  }
 };
 </script>

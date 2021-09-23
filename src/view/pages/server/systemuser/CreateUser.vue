@@ -103,7 +103,7 @@ export default {
     this.fv.on("core.form.invalid", () => {});
   },
   methods: {
-    createSystemUser() {
+    async createSystemUser() {
       // set spinner to submit button
       const submitButton = this.$refs["kt_form_submit"];
       submitButton.classList.add("spinner", "spinner-light", "spinner-right");
@@ -114,33 +114,38 @@ export default {
           "spinner-right"
         );
       };
-      const payload = {
-        name: this.form.name,
-        password: this.form.password,
-        serverId: this.$parent.serverId
-      };
-      this.$store
-        .dispatch(CREATE_SYSTEM_USER, payload)
-        .then(() => {
-          removeSpinner();
-          this.onCreateSuccess(payload.name);
-        })
-        .catch(() => {
-          removeSpinner();
-        });
+
+      try {
+        const payload = {
+          name: this.form.name,
+          password: this.form.password,
+          serverId: this.$parent.serverId
+        };
+        const result = await this.$store.dispatch(CREATE_SYSTEM_USER, payload);
+        removeSpinner();
+
+        if (result.success) {
+          await this.showMessageBox(
+            "success",
+            `System user ${payload.name} has been successfully created`
+          );
+          this.$router.push({
+            path: `/servers/${result.data.id}/systemuser`
+          });
+        } else {
+          await this.showMessageBox("error", result.errors?.message);
+        }
+      } catch (e) {
+        await this.showMessageBox("error", "Failed to add system user");
+      }
     },
-    onCreateSuccess(name) {
-      Swal.fire({
+    async showMessageBox(icon, text) {
+      await Swal.fire({
         title: "",
-        text: "System user " + name + " has been successfully created",
-        icon: "success",
+        text: text,
+        icon: icon,
         confirmButtonClass: "btn btn-secondary",
         heightAuto: false
-      }).then(() => {
-        console.log();
-        this.$router.push({
-          name: "systemuser"
-        });
       });
     }
   }

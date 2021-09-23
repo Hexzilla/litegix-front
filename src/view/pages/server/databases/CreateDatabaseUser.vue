@@ -24,17 +24,12 @@
           ></b-form-input>
         </b-form-group>
         <b-form-group label="Password">
-          <b-input-group>
-            <b-form-input
-              type="password"
-              name="password"
-              v-model="form.password"
-              placeholder=""
-            ></b-form-input>
-            <b-input-group-append>
-              <b-button variant="success">Add</b-button>
-            </b-input-group-append>
-          </b-input-group>
+          <b-form-input
+            type="password"
+            name="password"
+            v-model="form.password"
+            placeholder=""
+          ></b-form-input>
         </b-form-group>
         <b-form-group label="Verify Password">
           <b-form-input
@@ -116,7 +111,7 @@ export default {
     this.fv.on("core.form.invalid", () => {});
   },
   methods: {
-    createUser() {
+    async createUser() {
       // set spinner to submit button
       const submitButton = this.$refs["kt_form_server_submit"];
       submitButton.classList.add("spinner", "spinner-light", "spinner-right");
@@ -132,28 +127,33 @@ export default {
         password: this.form.password,
         serverId: this.$parent.serverId
       };
-      this.$store
-        .dispatch(CREATE_DBUSER, payload)
-        .then(() => {
-          removeSpinner();
-          this.onCreateSuccess(payload.name);
-        })
-        .catch(() => {
-          removeSpinner();
-        });
+
+      try {
+        const result = await this.$store.dispatch(CREATE_DBUSER, payload);
+        removeSpinner();
+
+        if (result?.success) {
+          await this.showMessageBox(
+            "success",
+            "Database user " + payload.name + " has been successfully created"
+          );
+          this.$router.push({
+            path: `/server/${payload.serverId}/database`
+          });
+        } else {
+          await this.showMessageBox("error", result?.errors?.message);
+        }
+      } catch (e) {
+        await this.showMessageBox("error", "Failed to create database user");
+      }
     },
-    onCreateSuccess(name) {
-      Swal.fire({
+    async showMessageBox(icon, text) {
+      await Swal.fire({
         title: "",
-        text: "Database user " + name + " has been successfully created",
-        icon: "success",
+        text: text,
+        icon: icon,
         confirmButtonClass: "btn btn-secondary",
         heightAuto: false
-      }).then(() => {
-        console.log();
-        this.$router.push({
-          name: "server-database"
-        });
       });
     }
   }

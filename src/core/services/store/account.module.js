@@ -61,7 +61,7 @@ const actions = {
   [FETCH_API_KEYS](context) {
     return new Promise((resolve, reject) => {
       ApiService.setHeader();
-      ApiService.get("settings/apikeys")
+      ApiService.get("settings/apikey")
         .then(({ data }) => {
           if (data.success) {
             context.commit(SET_API_KEYS, data.data.apiKeys);

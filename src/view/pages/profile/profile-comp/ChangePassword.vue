@@ -11,7 +11,7 @@
       </div>
       <div class="card-toolbar">
         <button
-          type="submit"
+          type="button"
           class="btn btn-success mr-2"
           @click="save()"
           ref="kt_save_changes"

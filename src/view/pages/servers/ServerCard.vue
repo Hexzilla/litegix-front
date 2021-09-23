@@ -39,13 +39,13 @@
               <i class="flaticon2-checkmark text-primary"></i>
             </span>
             <span class="mr-3"></span>
-            {{ server.connection ? "Connected" : "Not Connected" }}
+            {{ server.connected ? "Connected" : "Not Connected" }}
           </div>
-          <div class="py-2 d-flex">
+          <div class="py-2 d-flex text-uppercase">
             <span class="card-icon flex-grow-1">
               <i class="flaticon2-location text-danger"></i>
             </span>
-            <span class="mr-3"></span> NGINX
+            <span class="mr-3"></span> {{ server.webserver }}
           </div>
         </div>
       </div>
@@ -53,18 +53,26 @@
     <footer class="card-footer bg-light py-3">
       <div class="d-flex">
         <b-link
+          visible="!server.connected"
           :to="`servers/` + server._id + `/config/`"
           class="flex-grow-1 mt-2"
         >
           Connect server
         </b-link>
-        <!-- <div class="right">
-          <b-link to="server">
+        <!-- <b-link
+          v-if="server.connected"
+          :to="`server/` + server._id + `/summary/`"
+          class="flex-grow-1 mt-2"
+        >
+          Setting
+        </b-link> -->
+        <div class="right">
+          <b-link :to="`server/` + server._id + `/summary/`">
             <a class="btn btn-sm btn-icon btn-light-primay mr-2">
               <i class="flaticon2-gear"></i>
             </a>
           </b-link>
-        </div> -->
+        </div>
       </div>
     </footer>
   </div>

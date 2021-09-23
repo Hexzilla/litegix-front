@@ -15,7 +15,7 @@
             <b-form-select
               id="web-sever"
               :options="webservers"
-              v-model="server.web_server"
+              v-model="server.webserver"
             ></b-form-select>
           </v-col>
         </v-row>
@@ -68,7 +68,7 @@
         </v-row>
         <div class="d-flex justify-content-center border-top mt-10 pt-10">
           <button
-            type="reset"
+            type="button"
             class="btn btn-primary text-uppercase px-15 py-2 my-3 mr-3"
             @click="createServer()"
             ref="kt_save_changes"
@@ -105,7 +105,7 @@ export default {
         name: "",
         address: "",
         provider: "",
-        web_server: "nginx",
+        webserver: "nginx",
         phpVersion: "7.4",
         database: "mysql"
       }
@@ -130,7 +130,13 @@ export default {
       fields: {
         name: default_validators,
         email: default_validators,
-        address: default_validators
+        address: {
+          validators: {
+            ip: {
+              message: "The value is not valid IP address"
+            }
+          }
+        }
       },
       plugins: {
         trigger: new Trigger(),
@@ -140,35 +146,42 @@ export default {
     });
   },
   methods: {
-    createServer(e) {
-      e?.preventDefault();
+    async createServer() {
       this.fv.validate();
 
-      this.fv.on("core.form.valid", () => {
-        const submitButton = this.$refs["kt_save_changes"];
-        submitButton.classList.add("spinner", "spinner-light", "spinner-right");
-        const removeSpinner = () => {
-          submitButton.classList.remove(
+      this.fv.on("core.form.valid", async () => {
+        try {
+          const submitButton = this.$refs["kt_save_changes"];
+          submitButton.classList.add(
             "spinner",
             "spinner-light",
             "spinner-right"
           );
-        };
-        this.$store
-          .dispatch(CREATE_SERVER, this.server)
-          .then(() => {
-            removeSpinner();
-            this.showMessageBox(
+          const removeSpinner = () => {
+            submitButton.classList.remove(
+              "spinner",
+              "spinner-light",
+              "spinner-right"
+            );
+          };
+
+          const result = await this.$store.dispatch(CREATE_SERVER, this.server);
+          removeSpinner();
+
+          if (result.success) {
+            await this.showMessageBox(
               "success",
               "Your Server has been successfully created"
             );
             this.$router.push({
-              name: "server-cronjob"
+              path: `/servers/${result.data.id}/config`
             });
-          })
-          .catch(() => {
-            removeSpinner();
-          });
+          } else {
+            await this.showMessageBox("error", result.errors?.message);
+          }
+        } catch (e) {
+          await this.showMessageBox("error", "Failed to create server");
+        }
       });
     },
     makeToast(contents, variant = null) {
@@ -178,8 +191,8 @@ export default {
         solid: true
       });
     },
-    showMessageBox(icon, text) {
-      Swal.fire({
+    async showMessageBox(icon, text) {
+      await Swal.fire({
         title: "",
         text: text,
         icon: icon,

@@ -9,7 +9,7 @@
         >
       </div>
       <div class="card-toolbar">
-        <button type="reset" class="btn btn-success mr-2">Save Changes</button>
+        <button type="button" class="btn btn-success mr-2">Save Changes</button>
         <button type="reset" class="btn btn-secondary">Cancel</button>
       </div>
     </div>

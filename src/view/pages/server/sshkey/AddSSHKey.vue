@@ -10,6 +10,7 @@
         <b-form-group label="Label">
           <b-form-input
             name="label"
+            v-model="label"
             placeholder="Any label for you to recognize this public key"
           ></b-form-input>
         </b-form-group>
@@ -19,6 +20,7 @@
             size="lg"
             v-model="system_user"
             :options="systemUsers"
+            value-field="id"
             text-field="name"
           ></b-form-select>
         </div>
@@ -55,12 +57,13 @@ import Swal from "sweetalert2";
 import { mapGetters } from "vuex";
 import {
   GET_SYSTEM_USERS,
-  CREATE_SYSTEM_USER
+  CREATE_SSH_KEY
 } from "@/core/services/store/system.module";
 
 export default {
   data() {
     return {
+      label: "",
       system_user: "",
       public_key: ""
     };
@@ -92,54 +95,59 @@ export default {
         bootstrap: new Bootstrap()
       }
     });
-    this.fv.on("core.form.valid", this.createDatabase);
+    this.fv.on("core.form.valid", this.addKey);
     this.fv.on("core.form.invalid", () => {});
   },
   methods: {
-    async createDatabase() {
-      try {
-        // set spinner to submit button
-        const submitButton = this.$refs["kt_form_submit"];
-        submitButton.classList.add("spinner", "spinner-light", "spinner-right");
-        const removeSpinner = () => {
-          submitButton.classList.remove(
-            "spinner",
-            "spinner-light",
-            "spinner-right"
-          );
-        };
-        const payload = {
-          name: this.form.name,
-          user: this.form.user,
-          collation: this.form.collation,
-          serverId: this.$parent.serverId
-        };
-        const result = await this.$store.dispatch(CREATE_SYSTEM_USER, payload);
-        removeSpinner();
-
-        if (result.success) {
-          await this.showMessageBox(
-            "success",
-            "SSH Key has been successfully created"
-          );
-          this.$router.push({
-            path: `/servers/${result.data.id}/sshkey`
-          });
-        } else {
-          await this.showMessageBox("error", result.errors?.message);
-        }
-      } catch (e) {
-        await this.showMessageBox("error", "Failed to add SSH Key");
-      }
-    },
-    async showMessageBox(icon, text) {
-      await Swal.fire({
+    showMessageBox(icon, text) {
+      return Swal.fire({
         title: "",
         text: text,
         icon: icon,
         confirmButtonClass: "btn btn-secondary",
         heightAuto: false
       });
+    },
+    addKey() {
+      // set spinner to submit button
+      const submitButton = this.$refs["kt_form_submit"];
+      submitButton.classList.add("spinner", "spinner-light", "spinner-right");
+
+      this.$store
+        .dispatch(CREATE_SSH_KEY, {
+          label: this.label,
+          userId: this.system_user,
+          publicKey: this.public_key,
+          serverId: this.$parent.serverId
+        })
+        .then(data => {
+          if (!data.success) {
+            throw new Error(data.errors.message);
+          }
+          return this.showMessageBox(
+            "success",
+            "SSH Key " + this.label + " has been successfully added"
+          );
+        })
+        .then(() => {
+          this.$router.push({
+            path: `/server/${this.$parent.serverId}/sshkey`
+          });
+        })
+        .catch(err => {
+          const message =
+            err.data?.errors?.message ||
+            err.message ||
+            "Failed to add system user!";
+          return this.showMessageBox("error", message);
+        })
+        .finally(() => {
+          submitButton.classList.remove(
+            "spinner",
+            "spinner-light",
+            "spinner-right"
+          );
+        });
     }
   }
 };

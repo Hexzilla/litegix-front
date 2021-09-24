@@ -103,7 +103,7 @@ const actions = {
     return new Promise((resolve, reject) => {
       ApiService.setHeader();
       ApiService.post(
-        "servers/" + payload.serverId + "/sshcredentials/store",
+        "servers/" + payload.serverId + "/sshcredentials",
         payload
       )
         .then(({ data }) => {

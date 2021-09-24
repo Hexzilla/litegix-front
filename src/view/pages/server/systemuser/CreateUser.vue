@@ -103,50 +103,54 @@ export default {
     this.fv.on("core.form.invalid", () => {});
   },
   methods: {
-    async createSystemUser() {
-      // set spinner to submit button
-      const submitButton = this.$refs["kt_form_submit"];
-      submitButton.classList.add("spinner", "spinner-light", "spinner-right");
-      const removeSpinner = () => {
-        submitButton.classList.remove(
-          "spinner",
-          "spinner-light",
-          "spinner-right"
-        );
-      };
-
-      try {
-        const payload = {
-          name: this.form.name,
-          password: this.form.password,
-          serverId: this.$parent.serverId
-        };
-        const result = await this.$store.dispatch(CREATE_SYSTEM_USER, payload);
-        removeSpinner();
-
-        if (result.success) {
-          await this.showMessageBox(
-            "success",
-            `System user ${payload.name} has been successfully created`
-          );
-          this.$router.push({
-            path: `/servers/${result.data.id}/systemuser`
-          });
-        } else {
-          await this.showMessageBox("error", result.errors?.message);
-        }
-      } catch (e) {
-        await this.showMessageBox("error", "Failed to add system user");
-      }
-    },
-    async showMessageBox(icon, text) {
-      await Swal.fire({
+    showMessageBox(icon, text) {
+      return Swal.fire({
         title: "",
         text: text,
         icon: icon,
         confirmButtonClass: "btn btn-secondary",
         heightAuto: false
       });
+    },
+    createSystemUser() {
+      // set spinner to submit button
+      const submitButton = this.$refs["kt_form_submit"];
+      submitButton.classList.add("spinner", "spinner-light", "spinner-right");
+
+      this.$store
+        .dispatch(CREATE_SYSTEM_USER, {
+          name: this.form.name,
+          password: this.form.password,
+          serverId: this.$parent.serverId
+        })
+        .then(data => {
+          if (!data.success) {
+            throw new Error(data.errors.message);
+          }
+          return this.showMessageBox(
+            "success",
+            "System user " + this.form.name + " has been successfully created"
+          );
+        })
+        .then(() => {
+          this.$router.push({
+            path: `/server/${this.$parent.serverId}/systemuser`
+          });
+        })
+        .catch(err => {
+          const message =
+            err.data?.errors?.message ||
+            err.message ||
+            "Failed to add system user!";
+          return this.showMessageBox("error", message);
+        })
+        .finally(() => {
+          submitButton.classList.remove(
+            "spinner",
+            "spinner-light",
+            "spinner-right"
+          );
+        });
     }
   }
 };

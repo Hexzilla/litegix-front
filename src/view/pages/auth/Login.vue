@@ -468,6 +468,9 @@ export default {
           validators: {
             notEmpty: {
               message: "Username is required"
+            },
+            emailAddress: {
+              message: "The value is not a valid email address"
             }
           }
         },

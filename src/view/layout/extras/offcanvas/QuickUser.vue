@@ -67,7 +67,7 @@
             >
               {{ getFullName }}
             </router-link>
-            <div class="text-muted mt-1">Application Developer</div>
+            <!-- <div class="text-muted mt-1">Application Developer</div> -->
             <div class="navi mt-2">
               <a href="#" class="navi-item">
                 <span class="navi-link p-0 pb-2">
@@ -268,6 +268,7 @@ import { mapGetters } from "vuex";
 import { LOGOUT } from "@/core/services/store/auth.module";
 import KTLayoutQuickUser from "@/assets/js/layout/extended/quick-user.js";
 import KTOffcanvas from "@/assets/js/components/offcanvas.js";
+import { FETCH_PROFILE_INFO } from "@/core/services/store/profile.module";
 
 export default {
   name: "KTQuickUser",
@@ -304,6 +305,9 @@ export default {
         }
       ]
     };
+  },
+  created() {
+    this.$store.dispatch(FETCH_PROFILE_INFO);
   },
   mounted() {
     // Init Quick User Panel

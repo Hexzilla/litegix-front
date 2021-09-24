@@ -13,7 +13,7 @@
         <button
           type="button"
           class="btn btn-success mr-2"
-          @click="update()"
+          @click="submit()"
           ref="kt_save_changes"
         >
           Change Password
@@ -123,6 +123,7 @@ export default {
         submitButton: new SubmitButton()
       }
     });
+    this.fv.on("core.form.valid", this.changePassword);
   },
 
   methods: {
@@ -134,37 +135,38 @@ export default {
         confirmButtonClass: "btn btn-secondary"
       });
     },
-    update() {
+    submit() {
       this.fv.validate();
+    },
+    changePassword() {
+      const submitButton = this.$refs["kt_save_changes"];
+      submitButton.classList.add("spinner", "spinner-light", "spinner-right");
 
-      this.fv.on("core.form.valid", () => {
-        const submitButton = this.$refs["kt_save_changes"];
-        submitButton.classList.add("spinner", "spinner-light", "spinner-right");
-
-        this.$store
-          .dispatch(UPDATE_PASSWORD, {
-            current_password: this.$refs.current_password.value,
-            password: this.$refs.new_password.value,
-            password_confirm: this.$refs.verify_password.value
-          })
-          .then(data => {
-            this.showMessageBox("info", data.message);
-          })
-          .catch(() => {
-            this.showMessageBox("error", "Failed to save changes!");
-          })
-          .finally(() => {
-            submitButton.classList.remove(
-              "spinner",
-              "spinner-light",
-              "spinner-right"
-            );
-          });
-      });
-
-      this.fv.on("core.form.invalid", () => {
-        this.showMessageBox("error", "Please, provide correct data!");
-      });
+      this.$store
+        .dispatch(UPDATE_PASSWORD, {
+          current_password: this.$refs.current_password.value,
+          password: this.$refs.new_password.value,
+          password_confirm: this.$refs.verify_password.value
+        })
+        .then(data => {
+          if (data.success) {
+            return this.showMessageBox("success", "Your password is changed");
+          } else {
+            return this.showMessageBox("error", data.errors.message);
+          }
+        })
+        .catch(err => {
+          const message =
+            err.data?.errors?.message || "Failed to change password!";
+          return this.showMessageBox("error", message);
+        })
+        .finally(() => {
+          submitButton.classList.remove(
+            "spinner",
+            "spinner-light",
+            "spinner-right"
+          );
+        });
     }
   },
   computed: {

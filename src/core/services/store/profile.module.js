@@ -76,8 +76,10 @@ const actions = {
         ApiService.post("settings/profile")
           .then(({ data }) => {
             console.log("profileinfo", data);
-            context.commit(SET_PERSONAL_INFO, data.user);
-            context.commit(SET_COMPANY_INFO, data.company);
+            if (data.success) {
+              context.commit(SET_PERSONAL_INFO, data.data.user);
+              context.commit(SET_COMPANY_INFO, data.data.company);
+            }
             resolve(data);
           })
           .catch(error => {

@@ -111,50 +111,54 @@ export default {
     this.fv.on("core.form.invalid", () => {});
   },
   methods: {
-    async createUser() {
-      // set spinner to submit button
-      const submitButton = this.$refs["kt_form_server_submit"];
-      submitButton.classList.add("spinner", "spinner-light", "spinner-right");
-      const removeSpinner = () => {
-        submitButton.classList.remove(
-          "spinner",
-          "spinner-light",
-          "spinner-right"
-        );
-      };
-      const payload = {
-        name: this.form.name,
-        password: this.form.password,
-        serverId: this.$parent.serverId
-      };
-
-      try {
-        const result = await this.$store.dispatch(CREATE_DBUSER, payload);
-        removeSpinner();
-
-        if (result?.success) {
-          await this.showMessageBox(
-            "success",
-            "Database user " + payload.name + " has been successfully created"
-          );
-          this.$router.push({
-            path: `/server/${payload.serverId}/database`
-          });
-        } else {
-          await this.showMessageBox("error", result?.errors?.message);
-        }
-      } catch (e) {
-        await this.showMessageBox("error", "Failed to create database user");
-      }
-    },
-    async showMessageBox(icon, text) {
-      await Swal.fire({
+    showMessageBox(icon, text) {
+      return Swal.fire({
         title: "",
         text: text,
         icon: icon,
         confirmButtonClass: "btn btn-secondary",
         heightAuto: false
       });
+    },
+    createUser() {
+      // set spinner to submit button
+      const submitButton = this.$refs["kt_form_server_submit"];
+      submitButton.classList.add("spinner", "spinner-light", "spinner-right");
+
+      this.$store
+        .dispatch(CREATE_DBUSER, {
+          name: this.form.name,
+          password: this.form.password,
+          serverId: this.$parent.serverId
+        })
+        .then(data => {
+          if (!data.success) {
+            throw new Error(data.errors.message);
+          }
+          return this.showMessageBox(
+            "success",
+            "Database user " + this.form.name + " has been successfully created"
+          );
+        })
+        .then(() => {
+          this.$router.push({
+            path: `/server/${this.$parent.serverId}/database`
+          });
+        })
+        .catch(err => {
+          const message =
+            err.data?.errors?.message ||
+            err.message ||
+            "Failed to create database user!";
+          return this.showMessageBox("error", message);
+        })
+        .finally(() => {
+          submitButton.classList.remove(
+            "spinner",
+            "spinner-light",
+            "spinner-right"
+          );
+        });
     }
   }
 };

@@ -29,6 +29,7 @@
           <b-form-select
             size="lg"
             v-model="form.vendor_binary"
+            required
             :options="vendor_binaries"
           ></b-form-select>
         </div>
@@ -36,12 +37,13 @@
           <label for="command" class="control-label">Command</label>
           <textarea
             name="command"
+            v-model="form.command"
             rows="3"
             placeholder="/path/to/script.(sh | php | js) OR if the vendor binary is empty you can rm -rf /tmp/*"
             class="form-control"
           ></textarea>
         </div>
-        <h4>Pre-defined Settings</h4>
+        <!-- <h4>Pre-defined Settings</h4> -->
         <div class="form-group">
           <label class="control-label">Predefined Settings</label>
           <b-form-select
@@ -50,7 +52,9 @@
             :options="predefined_settings"
           ></b-form-select>
         </div>
-        <h4>Custom Settings</h4>
+
+        <!--Custom Settings-->
+        <!-- <h4>Custom Settings</h4>
         <b-form-group label="Minute">
           <b-form-input
             name="minute"
@@ -85,7 +89,7 @@
             placeholder="*"
             v-model="form.custom_settings.dayOfWeek"
           ></b-form-input>
-        </b-form-group>
+        </b-form-group> -->
         <button
           type="submit"
           class="btn btn-primary btn-block"
@@ -122,6 +126,7 @@ export default {
         username: "",
         collation: "",
         vendor_binary: "",
+        command: "",
         predef_setting: "",
         custom_settings: {
           minute: "",
@@ -147,7 +152,28 @@ export default {
         label: {
           validators: {
             notEmpty: {
-              message: "Label is required"
+              message: "This field is required"
+            }
+          }
+        },
+        username: {
+          validators: {
+            notEmpty: {
+              message: "This field is required"
+            }
+          }
+        },
+        vendor_binary: {
+          validators: {
+            notEmpty: {
+              message: "This field is required"
+            }
+          }
+        },
+        predef_setting: {
+          validators: {
+            notEmpty: {
+              message: "This field is required"
             }
           }
         }
@@ -158,50 +184,58 @@ export default {
         bootstrap: new Bootstrap()
       }
     });
-    this.fv.on("core.form.valid", this.submit2);
+    this.fv.on("core.form.valid", this.submit);
     this.fv.on("core.form.invalid", () => {});
   },
   methods: {
-    submit2() {
-      console.log("submit2");
+    showMessageBox(icon, text) {
+      return Swal.fire({
+        title: "",
+        text: text,
+        icon: icon,
+        confirmButtonClass: "btn btn-secondary",
+        heightAuto: false
+      });
+    },
+    submit() {
       // set spinner to submit button
       const submitButton = this.$refs["kt_form_submit"];
       submitButton.classList.add("spinner", "spinner-light", "spinner-right");
-      const removeSpinner = () => {
-        submitButton.classList.remove(
-          "spinner",
-          "spinner-light",
-          "spinner-right"
-        );
-      };
+
       const payload = {
         ...this.form,
         serverId: this.$parent.serverId
       };
-      console.log("payload", payload);
       this.$store
         .dispatch(STORE_CRON_JOB, payload)
-        .then(() => {
-          removeSpinner();
-          this.onCreateSuccess(payload.name);
+        .then(data => {
+          if (!data.success) {
+            throw new Error(data.errors.message);
+          }
+          return this.showMessageBox(
+            "success",
+            "Cron job " + name + " has been successfully added"
+          );
         })
-        .catch(() => {
-          removeSpinner();
+        .then(() => {
+          this.$router.push({
+            path: `/server/${this.$parent.serverId}/cronjob`
+          });
+        })
+        .catch(err => {
+          const message =
+            err.data?.errors?.message ||
+            err.message ||
+            "Failed to add cron job!";
+          return this.showMessageBox("error", message);
+        })
+        .finally(() => {
+          submitButton.classList.remove(
+            "spinner",
+            "spinner-light",
+            "spinner-right"
+          );
         });
-    },
-    onCreateSuccess(name) {
-      Swal.fire({
-        title: "",
-        text: "Cron job " + name + " has been successfully created",
-        icon: "success",
-        confirmButtonClass: "btn btn-secondary",
-        heightAuto: false
-      }).then(() => {
-        console.log();
-        this.$router.push({
-          name: "server-cronjob"
-        });
-      });
     }
   }
 };

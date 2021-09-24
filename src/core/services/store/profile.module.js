@@ -90,7 +90,9 @@ const actions = {
       ApiService.setHeader();
       ApiService.post("settings/profile/update", payload)
         .then(({ data }) => {
-          context.commit(SET_PERSONAL_INFO, payload);
+          if (data.success) {
+            context.commit(SET_PERSONAL_INFO, data.data.profile);
+          }
           resolve(data);
         })
         .catch(({ response }) => {
@@ -103,7 +105,9 @@ const actions = {
       ApiService.setHeader();
       ApiService.post("settings/profile/updatecompany", payload)
         .then(({ data }) => {
-          context.commit(SET_COMPANY_INFO, payload);
+          if (data.success) {
+            context.commit(SET_COMPANY_INFO, data.data.company);
+          }
           resolve(data);
         })
         .catch(({ response }) => {

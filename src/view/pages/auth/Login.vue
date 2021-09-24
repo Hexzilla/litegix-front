@@ -602,32 +602,26 @@ export default {
       const submitButton = this.$refs["kt_login_signin_submit"];
       submitButton.classList.add("spinner", "spinner-light", "spinner-right");
 
-      const removeSpinner = () => {
-        submitButton.classList.remove(
-          "spinner",
-          "spinner-light",
-          "spinner-right"
-        );
-      };
-
       try {
         // send login request
         const user = await this.$store.dispatch(LOGIN, { email, password });
         if (!user) {
           throw new Error();
         }
-
         await this.$store.dispatch(UPDATE_ACCOUNT_INFO, {
           username: user.username,
           email: user.email
         });
-
-        removeSpinner();
         this.$router.push({ name: "dashboard" });
       } catch (err) {
-        removeSpinner();
         const message = err.data?.errors?.message || "Failed to login";
         await this.showMessageBox("error", message);
+      } finally {
+        submitButton.classList.remove(
+          "spinner",
+          "spinner-light",
+          "spinner-right"
+        );
       }
     },
     async register() {
@@ -638,14 +632,6 @@ export default {
       const submitButton = this.$refs["kt_login_signup_submit"];
       submitButton.classList.add("spinner", "spinner-light", "spinner-right");
 
-      const removeSpinner = () => {
-        submitButton.classList.remove(
-          "spinner",
-          "spinner-light",
-          "spinner-right"
-        );
-      };
-
       try {
         // send register request
         await this.$store.dispatch(REGISTER, {
@@ -653,18 +639,20 @@ export default {
           email: this.$refs.remail.value,
           password: this.$refs.rpassword.value
         });
-
         await this.showMessageBox(
           "success",
           "Your account has been successfully created"
         );
-
-        removeSpinner();
         this.showForm("signin");
       } catch (err) {
-        removeSpinner();
         const message = err.data?.errors?.message || "Failed to register";
         await this.showMessageBox("error", message);
+      } finally {
+        submitButton.classList.remove(
+          "spinner",
+          "spinner-light",
+          "spinner-right"
+        );
       }
     }
   }

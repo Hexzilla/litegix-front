@@ -62,20 +62,20 @@
           </div>
           <div class="d-flex flex-column">
             <router-link
-              to="/custom-pages/profile"
+              to="/settings/profile"
               class="font-weight-bold font-size-h5 text-dark-75 text-hover-primary"
             >
               {{ getFullName }}
             </router-link>
             <!-- <div class="text-muted mt-1">Application Developer</div> -->
             <div class="navi mt-2">
-              <a href="#" class="navi-item">
+              <a href="#/settings/profile" class="navi-item">
                 <span class="navi-link p-0 pb-2">
                   <span class="navi-icon mr-1">
                     <span class="svg-icon svg-icon-lg svg-icon-primary">
                       <!--begin::Svg Icon-->
                       <inline-svg
-                        src="media/svg/icons/Communication/Mail-notification.svg"
+                        src="/media/svg/icons/Communication/Mail-notification.svg"
                       />
                       <!--end::Svg Icon-->
                     </span>
@@ -115,7 +115,7 @@
                 </div>
               </div>
               <div class="navi-text">
-                <router-link to="/custom-pages/profile">
+                <router-link to="/settings/profile">
                   <div class="font-weight-bold">My Profile</div>
                 </router-link>
                 <div class="text-muted">

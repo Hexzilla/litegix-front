@@ -11,9 +11,9 @@
       </div>
       <div class="card-toolbar">
         <button
-          type="reset"
+          type="button"
           class="btn btn-success mr-2"
-          @click="save()"
+          @click="submit()"
           ref="kt_save_changes"
         >
           Save Changes
@@ -147,6 +147,7 @@ export default {
         submitButton: new SubmitButton()
       }
     });
+    this.fv.on("core.form.valid", this.updateProfile);
 
     this.current_photo = this.currentUserPersonalInfo.photo;
   },
@@ -159,45 +160,47 @@ export default {
       });
     },
     showMessageBox(icon, text) {
-      Swal.fire({
+      return Swal.fire({
         title: "",
         text: text,
         icon: icon,
-        confirmButtonClass: "btn btn-secondary"
+        confirmButtonClass: "btn btn-secondary",
+        heightAuto: false
       });
     },
-    save() {
+    submit() {
       this.fv.validate();
+    },
+    updateProfile() {
+      const submitButton = this.$refs["kt_save_changes"];
+      submitButton.classList.add("spinner", "spinner-light", "spinner-right");
 
-      this.fv.on("core.form.valid", () => {
-        const submitButton = this.$refs["kt_save_changes"];
-        submitButton.classList.add("spinner", "spinner-light", "spinner-right");
-
-        this.$store
-          .dispatch(UPDATE_PERSONAL_INFO, {
-            name: this.$refs.name.value,
-            email: this.$refs.email.value,
-            timezone: this.$refs.timezone.value,
-            loginNotification: this.$refs.notification.checked
-          })
-          .then(data => {
-            this.showMessageBox("info", data.message);
-          })
-          .catch(() => {
-            this.showMessageBox("error", "Failed to save changes!");
-          })
-          .finally(() => {
-            submitButton.classList.remove(
-              "spinner",
-              "spinner-light",
-              "spinner-right"
-            );
-          });
-      });
-
-      this.fv.on("core.form.invalid", () => {
-        this.showMessageBox("error", "Please, provide correct data!");
-      });
+      this.$store
+        .dispatch(UPDATE_PERSONAL_INFO, {
+          name: this.$refs.name.value,
+          email: this.$refs.email.value,
+          timezone: this.$refs.timezone.value,
+          loginNotification: this.$refs.notification.checked
+        })
+        .then(data => {
+          if (data.success) {
+            return this.showMessageBox("success", "Profile is updated");
+          } else {
+            return this.showMessageBox("error", data.errors.message);
+          }
+        })
+        .catch(err => {
+          const message =
+            err.data?.errors?.message || "Failed to save changes!";
+          return this.showMessageBox("error", message);
+        })
+        .finally(() => {
+          submitButton.classList.remove(
+            "spinner",
+            "spinner-light",
+            "spinner-right"
+          );
+        });
     },
     onFileChange(e) {
       const file = e.target.files[0];

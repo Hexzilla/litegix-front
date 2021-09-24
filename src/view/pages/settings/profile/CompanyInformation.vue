@@ -13,7 +13,7 @@
         <button
           type="button"
           class="btn btn-success mr-2"
-          @click="save()"
+          @click="submit()"
           ref="kt_save_changes"
         >
           Save Changes
@@ -178,6 +178,7 @@ export default {
         submitButton: new SubmitButton()
       }
     });
+    this.fv.on("core.form.valid", this.updateCompany);
   },
   methods: {
     makeToast(contents, variant = null) {
@@ -188,51 +189,53 @@ export default {
       });
     },
     showMessageBox(icon, text) {
-      Swal.fire({
+      return Swal.fire({
         title: "",
         text: text,
         icon: icon,
         confirmButtonClass: "btn btn-secondary"
       });
     },
-    save() {
+    submit() {
       this.fv.validate();
+    },
+    updateCompany() {
+      const submitButton = this.$refs["kt_save_changes"];
+      submitButton.classList.add("spinner", "spinner-light", "spinner-right");
 
-      this.fv.on("core.form.valid", () => {
-        // set spinner to submit button
-        const submitButton = this.$refs["kt_save_changes"];
-        submitButton.classList.add("spinner", "spinner-light", "spinner-right");
-
-        // send update request
-        this.$store
-          .dispatch(UPDATE_COMPANY_INFO, {
-            name: this.$refs.companyName.value,
-            address1: this.$refs.addressLine1.value,
-            address2: this.$refs.addressLine2.value,
-            city: this.$refs.city.value,
-            postal: this.$refs.postalCode.value,
-            state: this.$refs.state.value,
-            country: this.$refs.country.value,
-            tax: this.$refs.taxNumber.value
-          })
-          .then(data => {
-            this.showMessageBox("info", data.message);
-          })
-          .catch(() => {
-            this.showMessageBox("error", "Failed to save changes!");
-          })
-          .finally(() => {
-            submitButton.classList.remove(
-              "spinner",
-              "spinner-light",
-              "spinner-right"
+      this.$store
+        .dispatch(UPDATE_COMPANY_INFO, {
+          name: this.$refs.companyName.value,
+          address1: this.$refs.addressLine1.value,
+          address2: this.$refs.addressLine2.value,
+          city: this.$refs.city.value,
+          postal: this.$refs.postalCode.value,
+          state: this.$refs.state.value,
+          country: this.$refs.country.value,
+          tax: this.$refs.taxNumber.value
+        })
+        .then(data => {
+          if (data.success) {
+            return this.showMessageBox(
+              "success",
+              "Company information is updated"
             );
-          });
-      });
-
-      this.fv.on("core.form.invalid", () => {
-        this.showMessageBox("error", "Please, provide correct data!");
-      });
+          } else {
+            return this.showMessageBox("error", data.errors.message);
+          }
+        })
+        .catch(err => {
+          const message =
+            err.data?.errors?.message || "Failed to save changes!";
+          return this.showMessageBox("error", message);
+        })
+        .finally(() => {
+          submitButton.classList.remove(
+            "spinner",
+            "spinner-light",
+            "spinner-right"
+          );
+        });
     }
   }
 };

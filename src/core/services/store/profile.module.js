@@ -73,7 +73,7 @@ const actions = {
   [FETCH_PROFILE_INFO](context) {
     return new Promise((resolve, reject) => {
       ApiService.setHeader(),
-        ApiService.post("settings/profile")
+        ApiService.get("settings/profile")
           .then(({ data }) => {
             console.log("profileinfo", data);
             if (data.success) {
@@ -90,7 +90,7 @@ const actions = {
   [UPDATE_PERSONAL_INFO](context, payload) {
     return new Promise((resolve, reject) => {
       ApiService.setHeader();
-      ApiService.post("settings/profile/update", payload)
+      ApiService.post("settings/profile", payload)
         .then(({ data }) => {
           if (data.success) {
             context.commit(SET_PERSONAL_INFO, data.data.profile);
@@ -105,7 +105,7 @@ const actions = {
   [UPDATE_COMPANY_INFO](context, payload) {
     return new Promise((resolve, reject) => {
       ApiService.setHeader();
-      ApiService.post("settings/profile/updatecompany", payload)
+      ApiService.post("settings/profile/company", payload)
         .then(({ data }) => {
           if (data.success) {
             context.commit(SET_COMPANY_INFO, data.data.company);

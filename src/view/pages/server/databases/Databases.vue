@@ -121,7 +121,7 @@ export default {
 
         Swal.fire({
           title: "",
-          text: "Database " + database.name + " has been successfully deleted",
+          text: `Database ${database.name} has been successfully deleted`,
           icon: "success",
           heightAuto: false
         });

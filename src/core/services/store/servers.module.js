@@ -89,15 +89,10 @@ const actions = {
         });
     });
   },
-  [DELETE_SERVER](context, credentials) {
+  [DELETE_SERVER](context, serverId) {
     return new Promise((resolve, reject) => {
       ApiService.setHeader();
-      ApiService.get(
-        "servers/" +
-          credentials +
-          "/config/installstate/" +
-          state.installprocess
-      )
+      ApiService.delete("servers/" + serverId)
         .then(({ data }) => {
           resolve(data);
         })

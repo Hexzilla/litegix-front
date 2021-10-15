@@ -92,9 +92,9 @@ import Trigger from "@/assets/plugins/formvalidation/dist/es6/plugins/Trigger";
 import Bootstrap from "@/assets/plugins/formvalidation/dist/es6/plugins/Bootstrap";
 import SubmitButton from "@/assets/plugins/formvalidation/dist/es6/plugins/SubmitButton";
 import KTUtil from "@/assets/js/components/util";
+import { showSuccessMsgbox, showErrorMsgbox } from "@/view/shared/msgbox";
 
 import { mapGetters } from "vuex";
-import Swal from "sweetalert2";
 import { ADD_CHANNEL } from "@/core/services/store/account.module";
 
 export default {
@@ -189,14 +189,6 @@ export default {
     this.telegramForm.on("core.form.valid", this.addChannel);
   },
   methods: {
-    showMessageBox(icon, text) {
-      return Swal.fire({
-        title: "",
-        text: text,
-        icon: icon,
-        heightAuto: false
-      });
-    },
     submit(e) {
       e.preventDefault();
       if (this.service == "Email") {
@@ -229,8 +221,7 @@ export default {
           if (!data.success) {
             throw new Error(data.errors.message);
           }
-          return this.showMessageBox(
-            "success",
+          return showSuccessMsgbox(
             "Channel " + payload.name + " has been successfully created"
           );
         })
@@ -244,7 +235,7 @@ export default {
             err.response?.data?.errors?.message ||
             err.message ||
             "Failed to add channel!";
-          return this.showMessageBox("error", message);
+          return showErrorMsgbox(message);
         })
         .finally(() => {
           submitButton.classList.remove(

@@ -61,7 +61,7 @@
 </template>
 
 <script>
-import Swal from "sweetalert2";
+import { showSuccessMsgbox, showConfirmMsgbox } from "@/view/shared/msgbox";
 import { SET_BREADCRUMB } from "@/core/services/store/breadcrumbs.module";
 import {
   GET_CHANNELS,
@@ -89,27 +89,11 @@ export default {
     });
   },
   methods: {
-    async showSuccessMessage(text) {
-      return await Swal.fire({
-        text: text,
-        icon: "success",
-        heightAuto: true
-      });
-    },
-    async showConfirmMessage(text) {
-      return await Swal.fire({
-        text: text,
-        icon: "question",
-        showConfirmButton: true,
-        showCancelButton: true,
-        heightAuto: true
-      });
-    },
     async deleteChannel(e, channel) {
       e.preventDefault();
       console.log("deleteChannel", channel);
 
-      const result = await this.showConfirmMessage(
+      const result = await showConfirmMsgbox(
         `Do you want to delete this channel: ${channel.name}?`
       );
       if (!result.isConfirmed) {
@@ -119,7 +103,7 @@ export default {
       const respone = await this.$store.dispatch(DELETE_CHANNEL, channel.id);
       console.log("delete-respone", respone);
       if (respone && respone.success) {
-        await this.showSuccessMessage(
+        await showSuccessMsgbox(
           `Notification channel ${channel.name} has been successfully deleted`
         );
         const index = this.channels.indexOf(channel);

@@ -41,6 +41,13 @@
           show-empty
           empty-text="You don't have anything activity logs."
         >
+          <template #cell(options)="data">
+            <b-link @click="deleteChannel($event, data.item)">
+              <a class="btn btn-sm btn-icon btn-light-primay mr-2">
+                <i class="flaticon2-trash" style="color: red;"></i>
+              </a>
+            </b-link>
+          </template>
         </b-table>
         <b-pagination
           v-model="currentPage"
@@ -54,8 +61,12 @@
 </template>
 
 <script>
+import Swal from "sweetalert2";
 import { SET_BREADCRUMB } from "@/core/services/store/breadcrumbs.module";
-import { GET_CHANNELS } from "@/core/services/store/account.module";
+import {
+  GET_CHANNELS,
+  DELETE_CHANNEL
+} from "@/core/services/store/account.module";
 
 export default {
   name: "Channels",
@@ -78,8 +89,44 @@ export default {
     });
   },
   methods: {
-    save() {
-      console.log("save");
+    async showSuccessMessage(text) {
+      return await Swal.fire({
+        text: text,
+        icon: "success",
+        heightAuto: true
+      });
+    },
+    async showConfirmMessage(text) {
+      return await Swal.fire({
+        text: text,
+        icon: "question",
+        showConfirmButton: true,
+        showCancelButton: true,
+        heightAuto: true
+      });
+    },
+    async deleteChannel(e, channel) {
+      e.preventDefault();
+      console.log("deleteChannel", channel);
+
+      const result = await this.showConfirmMessage(
+        `Do you want to delete this channel: ${channel.name}?`
+      );
+      if (!result.isConfirmed) {
+        return;
+      }
+
+      const respone = await this.$store.dispatch(DELETE_CHANNEL, channel.id);
+      console.log("delete-respone", respone);
+      if (respone && respone.success) {
+        await this.showSuccessMessage(
+          `Notification channel ${channel.name} has been successfully deleted`
+        );
+        const index = this.channels.indexOf(channel);
+        if (index >= 0) {
+          this.channels.splice(index, 1);
+        }
+      }
     }
   }
 };

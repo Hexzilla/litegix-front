@@ -98,6 +98,14 @@ export default {
           validators: {
             notEmpty: {
               message: "New password is required"
+            },
+            different: {
+              compare: function() {
+                return password_change_form.querySelector(
+                  '[name="current_password"]'
+                ).value;
+              },
+              message: "New password must be different with current password"
             }
           }
         },
@@ -131,8 +139,7 @@ export default {
       Swal.fire({
         title: "",
         text: text,
-        icon: icon,
-        confirmButtonClass: "btn btn-secondary"
+        icon: icon
       });
     },
     submit() {
@@ -150,14 +157,15 @@ export default {
         })
         .then(data => {
           if (data.success) {
-            return this.showMessageBox("success", "Your password is changed");
+            this.fv.resetForm(true);
+            return this.showMessageBox("success", data.message);
           } else {
-            return this.showMessageBox("error", data.errors.message);
+            return this.showMessageBox("error", data.message);
           }
         })
         .catch(err => {
           const message =
-            err.data?.errors?.message || "Failed to change password!";
+            err?.data?.errors?.message || "Failed to change password!";
           return this.showMessageBox("error", message);
         })
         .finally(() => {

@@ -76,7 +76,7 @@ const actions = {
   [UPDATE_PASSWORD](context, payload) {
     return new Promise((resolve, reject) => {
       ApiService.setHeader();
-      ApiService.post("settings/account/password/update", payload)
+      ApiService.post("settings/account/password", payload)
         .then(({ data }) => {
           resolve(data);
         })

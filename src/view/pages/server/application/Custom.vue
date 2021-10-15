@@ -252,11 +252,15 @@
           </b-form-group>
 
           <b-form-group label="allow_url_fopen">
-            <b-checkbox size="lg" name="allowUrlFopen">allow_url_fopen</b-checkbox>
+            <b-checkbox size="lg" name="allowUrlFopen"
+              >allow_url_fopen</b-checkbox
+            >
           </b-form-group>
         </div>
 
-        <button type="submit" class="btn btn-primary btn-block"> Add Web Application app-gerhold </button>
+        <button type="submit" class="btn btn-primary btn-block">
+          Add Web Application app-gerhold
+        </button>
       </form>
     </div>
   </div>
@@ -271,12 +275,12 @@ export default {
       domainName: "",
       domain_options: [
         { text: "Use test domain", value: "runcloudDomain" },
-        { text: "Use my own domain / subdomain", value: "customDomain" },
+        { text: "Use my own domain / subdomain", value: "customDomain" }
       ],
       advanced: false,
       select: "",
-      keys: [],
+      keys: []
     };
-  },
+  }
 };
 </script>

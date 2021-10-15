@@ -11,7 +11,7 @@
 
 <script>
 import { SET_BREADCRUMB } from "@/core/services/store/breadcrumbs.module";
-import { FETCH_NOTIFICATIONS } from "@/core/services/store/account.module";
+import { GET_NOTIFICATIONS } from "@/core/services/store/account.module";
 import Newsletter from "./Newsletter.vue";
 import Channels from "./Channels.vue";
 
@@ -21,14 +21,12 @@ export default {
     Newsletter,
     Channels
   },
-  created() {
-    this.$store.dispatch(FETCH_NOTIFICATIONS);
-  },
   mounted() {
     this.$store.dispatch(SET_BREADCRUMB, [
       { title: "Settings", route: "profile" },
       { title: "Notification" }
     ]);
+    this.$store.dispatch(GET_NOTIFICATIONS);
   }
 };
 </script>

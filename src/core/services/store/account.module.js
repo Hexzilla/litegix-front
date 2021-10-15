@@ -2,8 +2,9 @@ import ApiService from "@/core/services/api.service";
 
 // action types
 export const FETCH_ACTIVITY_LOGS = "FETCH_ACTIVITY_LOGS";
-export const FETCH_NOTIFICATIONS = "FETCH_NOTIFICATIONS";
+export const GET_NOTIFICATIONS = "GET_NOTIFICATIONS";
 export const UPDATE_NEWSLETTERS = "UPDATE_NEWSLETTERS";
+export const GET_CHANNELS = "GET_CHANNELS";
 export const ADD_CHANNEL = "ADD_CHANNEL";
 export const FETCH_API_KEYS = "FETCH_API_KEYS";
 export const GENERATE_API_KEY = "GENERATE_API_KEY";
@@ -135,7 +136,7 @@ const actions = {
         });
     });
   },
-  [FETCH_NOTIFICATIONS](context) {
+  [GET_NOTIFICATIONS](context) {
     return new Promise((resolve, reject) => {
       ApiService.setHeader();
       ApiService.get("settings/notifications")
@@ -162,6 +163,20 @@ const actions = {
         })
         .catch(({ response }) => {
           return reject(response.data.errors);
+        });
+    });
+  },
+  [GET_CHANNELS]() {
+    return new Promise((resolve, reject) => {
+      ApiService.setHeader();
+      ApiService.get("settings/notifications/channels")
+        .then(({ data }) => {
+          if (data.success) {
+            resolve(data.data.channels);
+          }
+        })
+        .catch(err => {
+          return reject(err);
         });
     });
   },

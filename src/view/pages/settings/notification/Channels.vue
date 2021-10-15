@@ -32,32 +32,39 @@
           <b> Payment History (soon)</b>.
         </span>
       </div>
-      <v-data-table :headers="headers" :items="desserts" class="mt-5">
-      </v-data-table>
+      <div class="overflow-auto">
+        <b-table
+          :items="channels"
+          :fields="fields"
+          :per-page="perPage"
+          :current-page="currentPage"
+          show-empty
+          empty-text="You don't have anything activity logs."
+        >
+        </b-table>
+        <b-pagination
+          v-model="currentPage"
+          :total-rows="channels.length"
+          :per-page="perPage"
+          aria-controls="my-table"
+        ></b-pagination>
+      </div>
     </div>
   </div>
 </template>
 
 <script>
 import { SET_BREADCRUMB } from "@/core/services/store/breadcrumbs.module";
+import { GET_CHANNELS } from "@/core/services/store/account.module";
 
 export default {
   name: "Channels",
   data() {
     return {
-      search: "",
-      headers: [
-        {
-          text: "Service",
-          align: "left",
-          sortable: false,
-          value: "service"
-        },
-        { text: "Name", value: "name" },
-        { text: "Content", value: "content" },
-        { text: "Options", value: "options" }
-      ],
-      desserts: []
+      channels: [],
+      fields: ["service", "name", "address", "options"],
+      currentPage: 1,
+      perPage: 10
     };
   },
   mounted() {
@@ -65,6 +72,10 @@ export default {
       { title: "Settings", route: "profile" },
       { title: "Notification" }
     ]);
+    this.$store.dispatch(GET_CHANNELS).then(channels => {
+      console.log("this.channels", channels);
+      this.channels = channels;
+    });
   },
   methods: {
     save() {

@@ -20,9 +20,7 @@
             </span>
             <div class="d-flex flex-column ">
               <span class="font-weight-bolder font-size-sm">IP Address</span>
-              <span class="font-weight-bolder font-size-h5"
-                >10.10.10.10</span
-              >
+              <span class="font-weight-bolder font-size-h5">10.10.10.10</span>
             </div>
           </div>
           <!--end::Item-->
@@ -30,9 +28,7 @@
           <!--begin::Item-->
           <div class="d-flex align-items-center flex-lg-fill mr-5 mb-2">
             <span class="mr-4">
-              <i
-                class="flaticon-confetti text-muted font-weight-bold"
-              ></i>
+              <i class="flaticon-confetti text-muted font-weight-bold"></i>
             </span>
             <div class="d-flex flex-column ">
               <span class="font-weight-bolder font-size-sm">Agent Version</span>
@@ -46,15 +42,12 @@
           <!--begin::Item-->
           <div class="d-flex align-items-center flex-lg-fill mr-5 mb-2">
             <span class="mr-4">
-              <i
-                class="flaticon-pie-chart text-muted font-weight-bold"
-              ></i>
+              <i class="flaticon-pie-chart text-muted font-weight-bold"></i>
             </span>
             <div class="d-flex flex-column ">
               <span class="font-weight-bolder font-size-sm">Os Version</span>
               <span class="font-weight-bolder font-size-h5"
-                ><span class="-50 font-weight-bold">Windows </span
-                >782,300</span
+                ><span class="-50 font-weight-bold">Windows </span>782,300</span
               >
             </div>
           </div>
@@ -63,15 +56,15 @@
           <!--begin::Item-->
           <div class="d-flex align-items-center flex-lg-fill mr-5 mb-2">
             <span class="mr-4">
-              <i
-                class="flaticon-file-2 text-muted font-weight-bold"
-              ></i>
+              <i class="flaticon-file-2 text-muted font-weight-bold"></i>
             </span>
             <div class="d-flex flex-column flex-lg-fill">
               <span class=" font-weight-bolder font-size-sm"
                 >Kernel Version</span
               >
-              <a href="#" class="text-primary font-weight-bolder">{{summery.kernelVersion}}</a>
+              <a href="#" class="text-primary font-weight-bolder">{{
+                summery.kernelVersion
+              }}</a>
             </div>
           </div>
           <!--end::Item-->
@@ -114,9 +107,9 @@
                   mb-1
                 "
               >
-                {{summery.totalCPUCore}} core
+                {{ summery.totalCPUCore }} core
               </p>
-               {{summery.processorName}}
+              {{ summery.processorName }}
             </div>
           </div>
         </v-card>
@@ -156,15 +149,18 @@
                   class="mt-2 mb-2 w-100"
                 >
                   <b-progress-bar :value="memory_usage">
-                    <span
-                      >
+                    <span>
                       <strong
-                        >{{Math.ceil(summery.totalMemory - summery.freeMemory) }}GB</strong
+                        >{{
+                          Math.ceil(summery.totalMemory - summery.freeMemory)
+                        }}GB</strong
                       ></span
                     >
                   </b-progress-bar>
                 </b-progress>
-                <span class="ml-3 font-weight-bolder">{{Math.ceil(summery.totalMemory) }}GB</span>
+                <span class="ml-3 font-weight-bolder"
+                  >{{ Math.ceil(summery.totalMemory) }}GB</span
+                >
               </div>
             </div>
           </div>
@@ -204,15 +200,18 @@
                   class="mt-2 mb-2 w-100"
                 >
                   <b-progress-bar :value="memory_usage">
-                    <span
-                      >
+                    <span>
                       <strong
-                        >{{ Math.ceil(summery.diskTotal - summery.diskFree)}}GB</strong
+                        >{{
+                          Math.ceil(summery.diskTotal - summery.diskFree)
+                        }}GB</strong
                       ></span
                     >
                   </b-progress-bar>
                 </b-progress>
-                <span class="ml-3 font-weight-bolder">{{Math.ceil(summery.diskTotal)}}GB</span>
+                <span class="ml-3 font-weight-bolder"
+                  >{{ Math.ceil(summery.diskTotal) }}GB</span
+                >
               </div>
             </div>
           </div>
@@ -253,9 +252,8 @@
                   mb-1
                 "
               >
-                {{summery.uptime }}
+                {{ summery.uptime }}
               </p>
-             
             </div>
           </div>
         </v-card>
@@ -264,7 +262,6 @@
   </div>
 </template>
 
-
 <script>
 import { SET_BREADCRUMB } from "@/core/services/store/breadcrumbs.module";
 import { GET_SERVER_SUMMERY } from "@/core/services/store/servers.module";
@@ -272,18 +269,17 @@ import { mapGetters } from "vuex";
 export default {
   name: "Summery",
   computed: {
-    ...mapGetters(["summery"]),
-    
+    ...mapGetters(["summery"])
   },
   data() {
     return {
       memory_total: 4,
-      memory_usage: 1.5,
+      memory_usage: 1.5
     };
   },
   mounted() {
     this.$store.dispatch(SET_BREADCRUMB, [{ title: "Summery" }]);
     this.$store.dispatch(GET_SERVER_SUMMERY, this.$parent.serverId);
-  },
+  }
 };
 </script>

@@ -9,6 +9,7 @@ export const GENERATE_API_KEY = "GENERATE_API_KEY";
 export const GENERATE_SECRET_KEY = "GENERATE_SECRET_KEY";
 export const UPDATE_ENABLE_ACCESS = "UPDATE_ENABLE_ACCESS";
 export const ADD_ALLOWED_IP_ADDRESS = "ADD_ALLOWED_IP_ADDRESS";
+export const DELETE_ACCOUNT = "DELETE_ACCOUNT";
 
 // mutation types
 export const SET_NOTIFICATION = "SET_NOTIFICATION";
@@ -149,6 +150,21 @@ const actions = {
     });
   },
   [UPDATE_NEWSLETTERS](context, payload) {
+    return new Promise((resolve, reject) => {
+      ApiService.setHeader();
+      ApiService.post("settings/notifications/newsletters/subscribe", payload)
+        .then(({ data }) => {
+          if (data.success) {
+            context.commit(SET_NOTIFICATION_NEWSLETTERS, payload);
+          }
+          resolve(data);
+        })
+        .catch(({ response }) => {
+          return reject(response.data.errors);
+        });
+    });
+  },
+  [DELETE_ACCOUNT](context, payload) {
     return new Promise((resolve, reject) => {
       ApiService.setHeader();
       ApiService.post("settings/notifications/newsletters/subscribe", payload)

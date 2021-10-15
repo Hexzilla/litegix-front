@@ -17,7 +17,7 @@
       </div>
     </div>
     <v-card class="card-body">
-      <v-form id="deleteAccount">
+      <form class="form" id="kt_delete_account_form">
         <div class="card-body">
           <div
             class="alert alert-custom alert-light-danger fade show mb-10"
@@ -92,8 +92,8 @@
                 <b-form-input
                   id="email"
                   type="email"
-                  required
                   placeholder="Enter your email address"
+                  name="email"
                   ref="email"
                 ></b-form-input>
               </b-form-group>
@@ -102,20 +102,8 @@
           <v-row>
             <v-col md="6" offset-md="3" sm="12" offset-sm="0">
               <div class="d-flex flex-grow-1">
-                <label
-                  class="
-                    checkbox checkbox-lg checkbox-lg checkbox-single
-                    flex-shrink-0
-                    mr-4
-                    v-treeview
-                  "
-                >
-                  <input
-                    id="chk_certify"
-                    type="checkbox"
-                    value="1"
-                    ref="chk_certify"
-                  />
+                <label class="checkbox checkbox-single flex-shrink-0 mr-4">
+                  <input id="chk_certify" type="checkbox" ref="chk_certify" />
                   <span></span>
                 </label>
                 <label
@@ -134,14 +122,7 @@
           <v-row>
             <v-col md="6" offset-md="3" sm="12" offset-sm="0">
               <div class="d-flex flex-grow-1">
-                <label
-                  class="
-                    checkbox checkbox-lg checkbox-lg checkbox-single
-                    flex-shrink-0
-                    mr-4
-                    v-treeview
-                  "
-                >
+                <label class="checkbox checkbox-single flex-shrink-0 mr-4">
                   <input
                     id="chk_invoice"
                     type="checkbox"
@@ -169,58 +150,91 @@
               <button
                 type="reset"
                 class="btn btn-success mr-2"
-                @click="update()"
+                @click="submit($event)"
+                ref="kt_save_changes"
               >
                 Delete My Account
               </button>
             </v-col>
           </v-row>
         </div>
-      </v-form>
+      </form>
     </v-card>
   </div>
 </template>
 
 <script>
-import { UPDATE_PERSONAL_INFO } from "@/core/services/store/profile.module";
+import KTUtil from "@/assets/js/components/util";
+import formValidation from "@/assets/plugins/formvalidation/dist/es6/core/Core";
+import Trigger from "@/assets/plugins/formvalidation/dist/es6/plugins/Trigger";
+import Bootstrap from "@/assets/plugins/formvalidation/dist/es6/plugins/Bootstrap";
+import SubmitButton from "@/assets/plugins/formvalidation/dist/es6/plugins/SubmitButton";
+import Swal from "sweetalert2";
+import { DELETE_ACCOUNT } from "@/core/services/store/account.module";
 
 export default {
   name: "KTDeleteAccount",
-  data: () => ({
-    rules: [
-      value => !!value || "Required.",
-      value => (value || "").length <= 20 || "Max 20 characters",
-      value => {
-        const pattern = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-        return pattern.test(value) || "Invalid e-mail.";
+  mounted() {
+    const delete_account_form = KTUtil.getById("kt_delete_account_form");
+    this.fv = formValidation(delete_account_form, {
+      fields: {
+        email: {
+          validators: {
+            notEmpty: {
+              message: "Email is required"
+            }
+          }
+        }
+      },
+      plugins: {
+        trigger: new Trigger(),
+        bootstrap: new Bootstrap(),
+        submitButton: new SubmitButton()
       }
-    ]
-  }),
-  methods: {
-    update() {
-      var certify = this.$refs.chk_certify.value;
-      var chk_invoice = this.$refs.chk_invoice.value;
-      var email = this.$refs.email.value;
+    });
+    this.fv.on("core.form.valid", this.deleteAccount);
+  },
 
-      // set spinner to submit button
-      const submitButton = this.$refs["kt_save_update"];
+  methods: {
+    showMessageBox(icon, text) {
+      Swal.fire({
+        title: "",
+        text: text,
+        icon: icon
+      });
+    },
+    submit(e) {
+      e.preventDefault();
+      this.fv.validate();
+    },
+    deleteAccount() {
+      const submitButton = this.$refs["kt_save_changes"];
       submitButton.classList.add("spinner", "spinner-light", "spinner-right");
 
-      // dummy delay
-      setTimeout(() => {
-        // send update request
-        this.$store.dispatch(UPDATE_PERSONAL_INFO, {
-          certify,
-          chk_invoice,
-          email
+      this.$store
+        .dispatch(DELETE_ACCOUNT, {
+          email: this.$refs.email.value
+        })
+        .then(data => {
+          if (data.success) {
+            this.fv.resetForm(true);
+            return this.showMessageBox("success", data.message);
+          } else {
+            return this.showMessageBox("error", data.message);
+          }
+        })
+        .catch(err => {
+          const message =
+            err?.data?.errors?.message || "Failed to delete account!";
+          return this.showMessageBox("error", message);
+        })
+        .finally(() => {
+          submitButton.classList.remove(
+            "spinner",
+            "spinner-light",
+            "spinner-right"
+          );
         });
-
-        submitButton.classList.remove(
-          "spinner",
-          "spinner-light",
-          "spinner-right"
-        );
-      }, 2000);
     }
   }
 };

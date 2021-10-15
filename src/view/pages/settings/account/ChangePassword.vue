@@ -76,13 +76,6 @@ import { UPDATE_PASSWORD } from "@/core/services/store/auth.module";
 
 export default {
   name: "KTChangePassword",
-  props: {
-    type: {
-      type: String,
-      default: "text"
-    },
-    auto: [String, Boolean]
-  },
   mounted() {
     const password_change_form = KTUtil.getById("kt_password_change_form");
     this.fv = formValidation(password_change_form, {

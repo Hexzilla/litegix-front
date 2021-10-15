@@ -43,6 +43,7 @@
           >
           </b-table>
           <b-pagination
+            class="float-right"
             v-model="currentPage"
             :total-rows="ip_address.length"
             :per-page="perPage"

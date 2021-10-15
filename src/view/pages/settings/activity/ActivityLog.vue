@@ -44,6 +44,7 @@
           </template>
         </b-table>
         <b-pagination
+          class="float-right"
           v-model="currentPage"
           :total-rows="activities.length"
           :per-page="perPage"

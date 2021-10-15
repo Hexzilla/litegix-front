@@ -50,6 +50,7 @@
           </template>
         </b-table>
         <b-pagination
+          class="float-right"
           v-model="currentPage"
           :total-rows="channels.length"
           :per-page="perPage"

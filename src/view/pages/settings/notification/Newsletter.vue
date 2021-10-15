@@ -197,8 +197,7 @@ export default {
       Swal.fire({
         title: "",
         text: text,
-        icon: icon,
-        confirmButtonClass: "btn btn-secondary"
+        icon: icon
       });
     },
     save() {

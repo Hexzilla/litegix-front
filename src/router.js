@@ -67,14 +67,20 @@ export default new Router({
                 import("@/view/pages/settings/notification/Notification.vue")
             },
             {
+              path: "notification/channel/new",
+              name: "settings-channel-new",
+              component: () =>
+                import("@/view/pages/settings/notification/AddChannel.vue")
+            },
+            {
               path: "apiKey",
               name: "settings-apiKey",
               component: () =>
                 import("@/view/pages/settings/api-key/ApiKey.vue")
             },
             {
-              path: "apiKey/ipaddr/add",
-              name: "settings-apiKey-ipaddr-add",
+              path: "apiKey/ipaddr/new",
+              name: "settings-apiKey-ipaddr-new",
               component: () =>
                 import("@/view/pages/settings/api-key/AddAllowedAddress.vue")
             },

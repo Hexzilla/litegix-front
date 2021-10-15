@@ -16,7 +16,7 @@
             placeholder="Search..."
             class="form-control input-lg w-200px mr-5"
           />
-          <b-link to="apiKey/ipaddr/add">
+          <b-link to="apiKey/ipaddr/new">
             <a class="btn btn-success font-weight-bolder font-size-sm"
               >Add IP Address</a
             >

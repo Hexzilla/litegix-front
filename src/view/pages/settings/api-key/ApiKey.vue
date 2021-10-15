@@ -79,7 +79,7 @@
 
         <div class="card-title align-items-start flex-column mt-20">
           <p class="font-size-md mt-1">
-            Enable API Access to use the RunCloud API endpoint. If you are only
+            Enable API Access to use the Litegix API endpoint. If you are only
             using the API Key and API Secret to download backups, you don't have
             to enable this.
           </p>

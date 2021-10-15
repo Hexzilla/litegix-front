@@ -4,6 +4,7 @@ import ApiService from "@/core/services/api.service";
 export const FETCH_ACTIVITY_LOGS = "FETCH_ACTIVITY_LOGS";
 export const FETCH_NOTIFICATIONS = "FETCH_NOTIFICATIONS";
 export const UPDATE_NEWSLETTERS = "UPDATE_NEWSLETTERS";
+export const ADD_CHANNEL = "ADD_CHANNEL";
 export const FETCH_API_KEYS = "FETCH_API_KEYS";
 export const GENERATE_API_KEY = "GENERATE_API_KEY";
 export const GENERATE_SECRET_KEY = "GENERATE_SECRET_KEY";
@@ -164,10 +165,22 @@ const actions = {
         });
     });
   },
+  [ADD_CHANNEL](context, payload) {
+    return new Promise((resolve, reject) => {
+      ApiService.setHeader();
+      ApiService.post("settings/notifications/channels", payload)
+        .then(({ data }) => {
+          resolve(data);
+        })
+        .catch(err => {
+          return reject(err);
+        });
+    });
+  },
   [DELETE_ACCOUNT](context, payload) {
     return new Promise((resolve, reject) => {
       ApiService.setHeader();
-      ApiService.post("settings/notifications/newsletters/subscribe", payload)
+      ApiService.post("settings/TODO-delete-account", payload)
         .then(({ data }) => {
           if (data.success) {
             context.commit(SET_NOTIFICATION_NEWSLETTERS, payload);

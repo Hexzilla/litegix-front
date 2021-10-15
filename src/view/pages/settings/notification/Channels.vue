@@ -10,12 +10,16 @@
         >
       </div>
       <div class="card-toolbar">
-        <!-- <v-btn color="primary" @click="save()" ref="user_save_changes">
-          Save Changes
-        </v-btn>
-        <button type="reset" class="btn btn-secondary" @click="cancel()">
-        Cancel
-      </button> -->
+        <input
+          type="text"
+          placeholder="Search..."
+          class="form-control input-lg w-200px mr-5"
+        />
+        <b-link to="notification/channel/new">
+          <a class="btn btn-success font-weight-bolder font-size-sm"
+            >Add New Channel</a
+          >
+        </b-link>
       </div>
     </div>
     <div class="card-body">

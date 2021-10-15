@@ -645,7 +645,7 @@ export default {
         );
         this.showForm("signin");
       } catch (err) {
-        const message = err.data?.errors?.message || "Failed to register";
+        const message = err.data?.message || "Failed to register";
         await this.showMessageBox("error", message);
       } finally {
         submitButton.classList.remove(

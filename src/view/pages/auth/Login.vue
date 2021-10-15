@@ -614,7 +614,7 @@ export default {
         });
         this.$router.push({ name: "dashboard" });
       } catch (err) {
-        const message = err.data?.errors?.message || "Failed to login";
+        const message = err.data?.message || "Failed to login";
         await this.showMessageBox("error", message);
       } finally {
         submitButton.classList.remove(

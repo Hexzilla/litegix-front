@@ -42,6 +42,9 @@
               >
             </div>
           </template>
+          <template #cell(date)="{ item }">
+            {{ getActivityDate(item.date) }}
+          </template>
         </b-table>
         <b-pagination
           class="float-right"
@@ -56,6 +59,7 @@
 </template>
 
 <script>
+import moment from "moment";
 import { SET_BREADCRUMB } from "@/core/services/store/breadcrumbs.module";
 import { FETCH_ACTIVITY_LOGS } from "@/core/services/store/account.module";
 export default {
@@ -79,6 +83,11 @@ export default {
         console.log("activities", this.activities);
       }
     });
+  },
+  methods: {
+    getActivityDate(date) {
+      return moment(date).format("MM-DD-YYYY");
+    }
   }
 };
 </script>

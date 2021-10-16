@@ -34,7 +34,7 @@
             Allowed IP Address(es):
           </p>
           <b-table
-            :items="ip_address"
+            :items="addresses"
             :fields="fields"
             :per-page="perPage"
             :current-page="currentPage"
@@ -45,7 +45,7 @@
           <b-pagination
             class="float-right"
             v-model="currentPage"
-            :total-rows="ip_address.length"
+            :total-rows="addresses.length"
             :per-page="perPage"
             aria-controls="my-table"
           ></b-pagination>
@@ -57,15 +57,22 @@
 </template>
 
 <script>
+import { GET_ALLOWED_IP_ADDRESSES } from "@/core/services/store/account.module";
 export default {
   name: "IPRestriction",
   data() {
     return {
-      fields: ["IP Address", "Description", "Delete"],
-      ip_address: [],
+      fields: ["address", "browser", "totalLogin"],
+      addresses: [],
       currentPage: 1,
       perPage: 10
     };
+  },
+  mounted() {
+    this.$store.dispatch(GET_ALLOWED_IP_ADDRESSES).then(addresses => {
+      console.log("this.addresses", addresses);
+      this.addresses = addresses;
+    });
   }
 };
 </script>

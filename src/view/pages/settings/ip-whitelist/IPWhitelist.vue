@@ -18,35 +18,19 @@
     <div class="card-body pb-10 pt-0">
       <div class="overflow-auto">
         <b-table
-          :items="activities"
+          :striped="true"
+          :items="addresses"
           :fields="fields"
           :per-page="perPage"
           :current-page="currentPage"
           show-empty
           empty-text="You don't have anything activity logs."
         >
-          <template #cell(level)="data">
-            <div v-if="data.item.level == 1">
-              <span class="label label-lg label-inline label-success"
-                >Info</span
-              >
-            </div>
-            <div v-if="data.item.level == 2">
-              <span class="label label-lg label-inline label-warning"
-                >Warning</span
-              >
-            </div>
-            <div v-if="data.item.level == 3">
-              <span class="label label-lg label-inline label-danger"
-                >Error</span
-              >
-            </div>
-          </template>
         </b-table>
         <b-pagination
           class="float-right"
           v-model="currentPage"
-          :total-rows="activities.length"
+          :total-rows="addresses.length"
           :per-page="perPage"
           aria-controls="my-table"
         ></b-pagination>
@@ -57,12 +41,29 @@
 
 <script>
 import { SET_BREADCRUMB } from "@/core/services/store/breadcrumbs.module";
-import { FETCH_ACTIVITY_LOGS } from "@/core/services/store/account.module";
+import { GET_ALLOWED_IP_ADDRESSES } from "@/core/services/store/account.module";
 export default {
   data() {
     return {
-      fields: ["level", "message", "date", "category"],
-      activities: [],
+      fields: [
+        "address",
+        {
+          key: "totalLogin",
+          thClass: "text-center",
+          tdClass: "text-center"
+        },
+        {
+          key: "browser",
+          thClass: "text-center",
+          tdClass: "text-center"
+        },
+        {
+          key: "lastLogin",
+          thClass: "text-center",
+          tdClass: "text-center"
+        }
+      ],
+      addresses: [],
       currentPage: 1,
       perPage: 10
     };
@@ -73,11 +74,9 @@ export default {
       { title: "IP Whitelist" }
     ]);
 
-    this.$store.dispatch(FETCH_ACTIVITY_LOGS).then(response => {
-      if (response.success) {
-        this.activities = response.data.activities;
-        console.log("activities", this.activities);
-      }
+    this.$store.dispatch(GET_ALLOWED_IP_ADDRESSES).then(addresses => {
+      console.log("this.addresses", addresses);
+      this.addresses = addresses;
     });
   }
 };

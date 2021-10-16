@@ -73,6 +73,12 @@ export default new Router({
                 import("@/view/pages/settings/notification/AddChannel.vue")
             },
             {
+              path: "notification/channel/edit/:channelId",
+              name: "settings-channel-edit",
+              component: () =>
+                import("@/view/pages/settings/notification/AddChannel.vue")
+            },
+            {
               path: "apiKey",
               name: "settings-apiKey",
               component: () =>

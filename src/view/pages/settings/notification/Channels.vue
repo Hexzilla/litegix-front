@@ -43,8 +43,19 @@
         >
           <template #cell(options)="data">
             <b-link @click="deleteChannel($event, data.item)">
-              <a class="btn btn-sm btn-icon btn-light-primay mr-2">
-                <i class="flaticon2-trash" style="color: red;"></i>
+              <a
+                class="btn btn-sm btn-icon btn-light-primay mr-2"
+                v-b-tooltip.hover.top="'Delete'"
+              >
+                <i class="flaticon2-trash"></i>
+              </a>
+            </b-link>
+            <b-link @click="editChannel($event, data.item)">
+              <a
+                class="btn btn-sm btn-icon btn-light-primay mr-2"
+                v-b-tooltip.hover.top="'Edit'"
+              >
+                <i class="flaticon2-edit"></i>
               </a>
             </b-link>
           </template>
@@ -74,7 +85,16 @@ export default {
   data() {
     return {
       channels: [],
-      fields: ["service", "name", "address", "options"],
+      fields: [
+        "service",
+        "name",
+        "address",
+        {
+          key: "options",
+          thClass: "text-center",
+          tdClass: "text-center"
+        }
+      ],
       currentPage: 1,
       perPage: 10
     };
@@ -112,6 +132,13 @@ export default {
           this.channels.splice(index, 1);
         }
       }
+    },
+    async editChannel(e, channel) {
+      e.preventDefault();
+      console.log("editChannel", channel);
+      this.$router.push({
+        path: `/settings/notification/channel/edit/${channel.id}`
+      });
     }
   }
 };

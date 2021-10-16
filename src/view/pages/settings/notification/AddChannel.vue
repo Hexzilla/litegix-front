@@ -2,14 +2,18 @@
   <div class="card card-custom gutter-b">
     <div class="card-header border-0 py-5">
       <h3 class="card-title align-items-start flex-column">
-        <span class="card-label font-weight-bolder text-dark"
-          >Add Notification Channel</span
-        >
+        <span class="card-label font-weight-bolder text-dark">
+          {{ `${this.editMode ? "Edit" : "Add"} Notification Channel` }}
+        </span>
       </h3>
     </div>
     <div class="card-body pt-0 pb-10">
       <b-form-group label="Service">
-        <b-form-select v-model="service" :options="services"></b-form-select>
+        <b-form-select
+          v-model="service"
+          :options="services"
+          :disabled="editMode"
+        ></b-form-select>
       </b-form-group>
 
       <form class="form" id="kt_form_email">
@@ -80,7 +84,7 @@
         ref="kt_form_submit"
         @click="submit($event)"
       >
-        Add Channel
+        {{ this.editMode ? "Update Channel" : "Add Channel" }}
       </button>
     </div>
   </div>
@@ -93,13 +97,17 @@ import Bootstrap from "@/assets/plugins/formvalidation/dist/es6/plugins/Bootstra
 import SubmitButton from "@/assets/plugins/formvalidation/dist/es6/plugins/SubmitButton";
 import KTUtil from "@/assets/js/components/util";
 import { showSuccessMsgbox, showErrorMsgbox } from "@/view/shared/msgbox";
-
-import { mapGetters } from "vuex";
-import { ADD_CHANNEL } from "@/core/services/store/account.module";
+import {
+  GET_CHANNEL,
+  ADD_CHANNEL,
+  UPDATE_CHANNEL
+} from "@/core/services/store/account.module";
 
 export default {
   data() {
     return {
+      channelId: null,
+      channel: null,
       services: ["Email", "Slack", "Telegram"],
       service: "Email",
       email: {
@@ -112,13 +120,25 @@ export default {
       },
       telegram: {
         name: ""
-      }
+      },
+      editMode: false
     };
   },
-  computed: {
-    ...mapGetters(["databaseusers"])
-  },
   mounted() {
+    this.channelId = this.$route.params.channelId;
+    if (this.channelId) {
+      this.editMode = true;
+      this.$store.dispatch(GET_CHANNEL, this.channelId).then(channel => {
+        console.log("this.channel", channel);
+        this.channel = channel;
+        this.service = channel.service;
+        this.email = { ...this.channel };
+        this.slack = { ...this.channel };
+        this.telegram = { ...this.channel };
+      });
+    }
+
+    console.log("channelId", this.channelId);
     this.emailForm = formValidation(KTUtil.getById("kt_form_email"), {
       fields: {
         name: {
@@ -204,7 +224,6 @@ export default {
     },
     addChannel() {
       console.log("addChannel");
-      // set spinner to submit button
       const submitButton = this.$refs["kt_form_submit"];
       submitButton.classList.add("spinner", "spinner-light", "spinner-right");
 
@@ -215,18 +234,24 @@ export default {
         payload = this.telegram;
       }
 
+      const action = this.editMode ? UPDATE_CHANNEL : ADD_CHANNEL;
       this.$store
-        .dispatch(ADD_CHANNEL, {
+        .dispatch(action, {
           ...payload,
+          id: this.channelId,
           service: this.service
         })
         .then(data => {
           if (!data.success) {
             throw new Error(data.errors.message);
           }
-          return showSuccessMsgbox(
-            "Channel " + payload.name + " has been successfully created"
-          );
+          if (this.editMode) {
+            return showSuccessMsgbox(`Channel has been successfully updated`);
+          } else {
+            return showSuccessMsgbox(
+              `Channel ${payload.name} has been successfully added`
+            );
+          }
         })
         .then(() => {
           this.$router.push({

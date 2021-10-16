@@ -42,9 +42,7 @@ import Trigger from "@/assets/plugins/formvalidation/dist/es6/plugins/Trigger";
 import Bootstrap from "@/assets/plugins/formvalidation/dist/es6/plugins/Bootstrap";
 import SubmitButton from "@/assets/plugins/formvalidation/dist/es6/plugins/SubmitButton";
 import KTUtil from "@/assets/js/components/util";
-
-import { mapGetters } from "vuex";
-import Swal from "sweetalert2";
+import { showSuccessMsgbox, showErrorMsgbox } from "@/view/shared/msgbox";
 import { ADD_ALLOWED_IP_ADDRESS } from "@/core/services/store/account.module";
 
 export default {
@@ -55,9 +53,6 @@ export default {
         desciption: ""
       }
     };
-  },
-  computed: {
-    ...mapGetters(["databaseusers"])
   },
   mounted() {
     const create_form = KTUtil.getById("kt_form");
@@ -77,48 +72,47 @@ export default {
         bootstrap: new Bootstrap()
       }
     });
-    this.fv.on("core.form.valid", this.createDatabase);
+    this.fv.on("core.form.valid", this.addAllowedAddress);
     this.fv.on("core.form.invalid", () => {});
   },
   methods: {
-    createDatabase() {
+    addAllowedAddress() {
+      console.log("addAllowedAddress");
       // set spinner to submit button
       const submitButton = this.$refs["kt_form_submit"];
       submitButton.classList.add("spinner", "spinner-light", "spinner-right");
-      const removeSpinner = () => {
-        submitButton.classList.remove(
-          "spinner",
-          "spinner-light",
-          "spinner-right"
-        );
-      };
+
       const payload = {
         address: this.form.address,
         description: this.form.description
       };
       this.$store
         .dispatch(ADD_ALLOWED_IP_ADDRESS, payload)
-        .then(() => {
-          removeSpinner();
-          this.onCreateSuccess(payload.address);
+        .then(data => {
+          if (!data.success) {
+            throw new Error(data.errors.message);
+          }
+          return showSuccessMsgbox(
+            "IP address " + payload.address + " has been successfully added"
+          );
         })
-        .catch(() => {
-          removeSpinner();
+        .then(() => {
+          this.$router.push({ name: "settings-apiKey" });
+        })
+        .catch(err => {
+          const message =
+            err.response?.data?.errors?.message ||
+            err.message ||
+            "Failed to add IP address!";
+          return showErrorMsgbox(message);
+        })
+        .finally(() => {
+          submitButton.classList.remove(
+            "spinner",
+            "spinner-light",
+            "spinner-right"
+          );
         });
-    },
-    onCreateSuccess(address) {
-      Swal.fire({
-        title: "",
-        text: "Address " + address + " has been successfully added",
-        icon: "success",
-        confirmButtonClass: "btn btn-secondary",
-        heightAuto: false
-      }).then(() => {
-        console.log();
-        this.$router.push({
-          name: "settings-apiKey"
-        });
-      });
     }
   }
 };

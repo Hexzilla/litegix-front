@@ -5,12 +5,15 @@ export const FETCH_ACTIVITY_LOGS = "FETCH_ACTIVITY_LOGS";
 export const GET_NOTIFICATIONS = "GET_NOTIFICATIONS";
 export const UPDATE_NEWSLETTERS = "UPDATE_NEWSLETTERS";
 export const GET_CHANNELS = "GET_CHANNELS";
+export const GET_CHANNEL = "GET_CHANNEL";
+export const UPDATE_CHANNEL = "UPDATE_CHANNEL";
 export const ADD_CHANNEL = "ADD_CHANNEL";
 export const DELETE_CHANNEL = "DELETE_CHANNEL";
 export const FETCH_API_KEYS = "FETCH_API_KEYS";
 export const GENERATE_API_KEY = "GENERATE_API_KEY";
 export const GENERATE_SECRET_KEY = "GENERATE_SECRET_KEY";
 export const UPDATE_ENABLE_ACCESS = "UPDATE_ENABLE_ACCESS";
+export const GET_ALLOWED_IP_ADDRESSES = "GET_ALLOWED_IP_ADDRESSES";
 export const ADD_ALLOWED_IP_ADDRESS = "ADD_ALLOWED_IP_ADDRESS";
 export const DELETE_ACCOUNT = "DELETE_ACCOUNT";
 
@@ -122,6 +125,20 @@ const actions = {
         });
     });
   },
+  [GET_ALLOWED_IP_ADDRESSES]() {
+    return new Promise((resolve, reject) => {
+      ApiService.setHeader();
+      ApiService.get("settings/apikey/ipaddr")
+        .then(({ data }) => {
+          if (data.success) {
+            resolve(data.data.addresses);
+          }
+        })
+        .catch(error => {
+          return reject(error);
+        });
+    });
+  },
   [ADD_ALLOWED_IP_ADDRESS](context, payload) {
     return new Promise((resolve, reject) => {
       ApiService.setHeader();
@@ -175,6 +192,32 @@ const actions = {
           if (data.success) {
             resolve(data.data.channels);
           }
+        })
+        .catch(err => {
+          return reject(err);
+        });
+    });
+  },
+  [GET_CHANNEL](context, channelId) {
+    return new Promise((resolve, reject) => {
+      ApiService.setHeader();
+      ApiService.get(`settings/notifications/channels/${channelId}`)
+        .then(({ data }) => {
+          if (data.success) {
+            resolve(data.data.channel);
+          }
+        })
+        .catch(err => {
+          return reject(err);
+        });
+    });
+  },
+  [UPDATE_CHANNEL](context, payload) {
+    return new Promise((resolve, reject) => {
+      ApiService.setHeader();
+      ApiService.post(`settings/notifications/channels/${payload.id}`, payload)
+        .then(({ data }) => {
+          resolve(data);
         })
         .catch(err => {
           return reject(err);

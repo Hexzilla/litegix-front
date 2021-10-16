@@ -9,6 +9,8 @@ export const GET_CHANNEL = "GET_CHANNEL";
 export const UPDATE_CHANNEL = "UPDATE_CHANNEL";
 export const ADD_CHANNEL = "ADD_CHANNEL";
 export const DELETE_CHANNEL = "DELETE_CHANNEL";
+export const GET_PAYMENT_METHODS = "GET_PAYMENT_METHODS";
+export const ADD_PAYMENT_METHOD = "ADD_PAYMENT_METHOD";
 export const FETCH_API_KEYS = "FETCH_API_KEYS";
 export const GENERATE_API_KEY = "GENERATE_API_KEY";
 export const GENERATE_SECRET_KEY = "GENERATE_SECRET_KEY";
@@ -181,6 +183,32 @@ const actions = {
         })
         .catch(({ response }) => {
           return reject(response.data.errors);
+        });
+    });
+  },
+  [GET_PAYMENT_METHODS]() {
+    return new Promise((resolve, reject) => {
+      ApiService.setHeader();
+      ApiService.get("settings/paymentmethods")
+        .then(({ data }) => {
+          if (data.success) {
+            resolve(data.data.payments);
+          }
+        })
+        .catch(err => {
+          return reject(err);
+        });
+    });
+  },
+  [ADD_PAYMENT_METHOD](context, payload) {
+    return new Promise((resolve, reject) => {
+      ApiService.setHeader();
+      ApiService.post("settings/paymentmethods", payload)
+        .then(({ data }) => {
+          resolve(data);
+        })
+        .catch(err => {
+          return reject(err);
         });
     });
   },

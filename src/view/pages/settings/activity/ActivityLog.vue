@@ -58,6 +58,15 @@
   </div>
 </template>
 
+<style>
+.w10 {
+  width: 10%;
+}
+.w60 {
+  width: 70%;
+}
+</style>
+
 <script>
 import moment from "moment";
 import { SET_BREADCRUMB } from "@/core/services/store/breadcrumbs.module";
@@ -65,7 +74,24 @@ import { FETCH_ACTIVITY_LOGS } from "@/core/services/store/account.module";
 export default {
   data() {
     return {
-      fields: ["level", "message", "date", "category"],
+      fields: [
+        {
+          key: "level",
+          tdClass: "w10"
+        },
+        {
+          key: "message",
+          tdClass: "w60"
+        },
+        {
+          key: "date"
+        },
+        {
+          key: "category",
+          thClass: "text-center",
+          tdClass: "text-center"
+        }
+      ],
       activities: [],
       currentPage: 1,
       perPage: 10
@@ -86,7 +112,7 @@ export default {
   },
   methods: {
     getActivityDate(date) {
-      return moment(date).format("MM-DD-YYYY");
+      return moment(date).format("MM/DD/YYYY");
     }
   }
 };

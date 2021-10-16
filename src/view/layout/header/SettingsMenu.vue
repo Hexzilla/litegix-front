@@ -132,7 +132,7 @@ export default {
         },
         {
           title: "Payment",
-          link: "/settings/payment_method",
+          link: "/settings/paymentmethod",
           icon: "/media/svg/icons/Communication/Thumbtack.svg"
         },
         {

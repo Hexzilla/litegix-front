@@ -100,7 +100,7 @@ import {
   FETCH_PROFILE_INFO,
   UPDATE_PERSONAL_INFO
 } from "@/core/services/store/profile.module";
-import { Constants } from "./Constants";
+import { Timezones } from "../../../shared/constants";
 
 export default {
   name: "Account",
@@ -108,7 +108,7 @@ export default {
     return {
       default_photo: "media/users/blank.png",
       current_photo: null,
-      time_zones: Constants.time_zones
+      time_zones: Timezones
     };
   },
   created() {

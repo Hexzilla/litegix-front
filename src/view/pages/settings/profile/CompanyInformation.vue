@@ -137,7 +137,7 @@ import Bootstrap from "@/assets/plugins/formvalidation/dist/es6/plugins/Bootstra
 import SubmitButton from "@/assets/plugins/formvalidation/dist/es6/plugins/SubmitButton";
 import Swal from "sweetalert2";
 import { mapGetters } from "vuex";
-import { Constants } from "./Constants";
+import { Countries } from "../../../shared/constants";
 import {
   FETCH_PROFILE_INFO,
   UPDATE_COMPANY_INFO
@@ -147,7 +147,7 @@ export default {
   name: "KTCompanyInformation",
   data() {
     return {
-      countries: Constants.countries,
+      countries: Countries,
       defaultRule: {
         validators: {
           notEmpty: {

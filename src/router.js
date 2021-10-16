@@ -107,6 +107,18 @@ export default new Router({
               name: "settings-subscription",
               component: () =>
                 import("@/view/pages/settings/subscription/Subscription.vue")
+            },
+            {
+              path: "paymentmethod",
+              name: "settings-paymentmethod",
+              component: () =>
+                import("@/view/pages/settings/payment/PaymentMethod.vue")
+            },
+            {
+              path: "paymentmethod/new",
+              name: "settings-paymentmethod-new",
+              component: () =>
+                import("@/view/pages/settings/payment/AddPayment.vue")
             }
           ]
         },

@@ -126,6 +126,7 @@ export default {
   },
   mounted() {
     this.channelId = this.$route.params.channelId;
+    console.log("channelId", this.channelId);
     if (this.channelId) {
       this.editMode = true;
       this.$store.dispatch(GET_CHANNEL, this.channelId).then(channel => {
@@ -138,7 +139,6 @@ export default {
       });
     }
 
-    console.log("channelId", this.channelId);
     this.emailForm = formValidation(KTUtil.getById("kt_form_email"), {
       fields: {
         name: {
@@ -180,7 +180,7 @@ export default {
         address: {
           validators: {
             notEmpty: {
-              message: "This email address is required"
+              message: "This slack is required"
             }
           }
         }

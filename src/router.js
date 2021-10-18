@@ -288,7 +288,8 @@ export default new Router({
             {
               path: "settings",
               name: "server-settings",
-              component: () => import("@/view/pages/server/Settings.vue")
+              component: () =>
+                import("@/view/pages/server/settings/Settings.vue")
             },
             {
               path: "security",

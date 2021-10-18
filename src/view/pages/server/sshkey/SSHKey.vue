@@ -83,9 +83,7 @@
 <style scoped src="@/assets/styles/server.css"></style>
 
 <script>
-import { mapGetters } from "vuex";
 import Swal from "sweetalert2";
-
 import {
   GET_SSH_KEYS,
   DELETE_SSH_KEY
@@ -94,21 +92,18 @@ import {
 export default {
   data() {
     return {
+      sshKeys: [],
       checked: false,
       serverId: false
     };
   },
-  computed: {
-    ...mapGetters(["sshKeys"])
-  },
   mounted() {
     this.serverId = this.$parent.serverId;
-    this.fetchSSHKeys();
+    this.$store.dispatch(GET_SSH_KEYS, this.serverId).then(sshKeys => {
+      this.sshKeys = sshKeys;
+    });
   },
   methods: {
-    fetchSSHKeys() {
-      this.$store.dispatch(GET_SSH_KEYS, this.serverId);
-    },
     async deleteKey(user) {
       console.log("deleteKey", user);
       const result = await Swal.fire({

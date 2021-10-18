@@ -52,9 +52,7 @@ import Trigger from "@/assets/plugins/formvalidation/dist/es6/plugins/Trigger";
 import Bootstrap from "@/assets/plugins/formvalidation/dist/es6/plugins/Bootstrap";
 import SubmitButton from "@/assets/plugins/formvalidation/dist/es6/plugins/SubmitButton";
 import KTUtil from "@/assets/js/components/util";
-import Swal from "sweetalert2";
-
-import { mapGetters } from "vuex";
+import { showErrorMsgbox, showSuccessMsgbox } from "@/view/shared/msgbox";
 import {
   GET_SYSTEM_USERS,
   CREATE_SSH_KEY
@@ -63,18 +61,16 @@ import {
 export default {
   data() {
     return {
+      systemUsers: [],
       label: "",
       system_user: "",
       public_key: ""
     };
   },
-  computed: {
-    ...mapGetters(["systemUsers"])
-  },
   mounted() {
     this.serverId = this.$parent.serverId;
-    this.$store.dispatch(GET_SYSTEM_USERS, this.serverId).then(data => {
-      console.log(data);
+    this.$store.dispatch(GET_SYSTEM_USERS, this.serverId).then(systemUsers => {
+      this.systemUsers = systemUsers;
       console.log("systemUsers", this.systemUsers);
     });
 
@@ -99,15 +95,6 @@ export default {
     this.fv.on("core.form.invalid", () => {});
   },
   methods: {
-    showMessageBox(icon, text) {
-      return Swal.fire({
-        title: "",
-        text: text,
-        icon: icon,
-        confirmButtonClass: "btn btn-secondary",
-        heightAuto: false
-      });
-    },
     addKey() {
       // set spinner to submit button
       const submitButton = this.$refs["kt_form_submit"];
@@ -124,9 +111,8 @@ export default {
           if (!data.success) {
             throw new Error(data.errors.message);
           }
-          return this.showMessageBox(
-            "success",
-            "SSH Key " + this.label + " has been successfully added"
+          return showSuccessMsgbox(
+            `SSH Key ${this.label} has been successfully added`
           );
         })
         .then(() => {
@@ -138,8 +124,8 @@ export default {
           const message =
             err.data?.errors?.message ||
             err.message ||
-            "Failed to add system user!";
-          return this.showMessageBox("error", message);
+            "Failed to add SSH key!";
+          return showErrorMsgbox(message);
         })
         .finally(() => {
           submitButton.classList.remove(

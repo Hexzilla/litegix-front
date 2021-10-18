@@ -1,5 +1,4 @@
 import ApiService from "@/core/services/api.service";
-export const SET_SSH_KEYS = "setSSHKeys";
 export const SET_ERROR = "setError";
 
 export const CREATE_SYSTEM_USER = "createSystemUser";
@@ -120,7 +119,7 @@ const actions = {
         })
         .catch(error => {
           console.log("delete-users-error", error);
-          context.commit(SET_ERROR, error.response.data.errors);
+          context.commit(SET_ERROR, error.response?.data.errors);
           reject(error);
         });
     });
@@ -135,12 +134,13 @@ const actions = {
         .then(({ data }) => {
           resolve(data);
           if (data.success) {
-            context.commit(SET_SSH_KEYS, data.data);
+            resolve(data.data);
           }
+          resolve(data);
         })
         .catch(error => {
           console.log(error.response);
-          context.commit(SET_ERROR, error.response.data.errors);
+          context.commit(SET_ERROR, error.response?.data.errors);
           reject(error);
         });
     });
@@ -151,12 +151,12 @@ const actions = {
       ApiService.get("servers/" + serverId + "/sshcredentials")
         .then(({ data }) => {
           if (data.success) {
-            context.commit(SET_SSH_KEYS, data.data.sshKeys);
+            resolve(data.data.sshKeys);
           }
           resolve(data);
         })
         .catch(error => {
-          context.commit(SET_ERROR, error.response.data.errors);
+          context.commit(SET_ERROR, error.response?.data.errors);
           reject(error);
         });
     });
@@ -353,10 +353,6 @@ const actions = {
 const mutations = {
   [SET_ERROR](state, error) {
     state.errors = error;
-  },
-  [SET_SSH_KEYS](state, keys) {
-    state.sshKeys = keys;
-    state.errors = {};
   }
 };
 

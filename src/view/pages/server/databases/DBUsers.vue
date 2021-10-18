@@ -12,7 +12,7 @@
           placeholder="Search..."
           class="form-control input-lg w-200px mr-5"
         />
-        <b-link to="database/createuser">
+        <b-link @click="create_database_user($event)">
           <a class="btn btn-success font-weight-bolder font-size-sm"
             >Create Database User</a
           >
@@ -49,7 +49,7 @@
 <style scoped src="@/assets/styles/server.css"></style>
 
 <script>
-import Swal from "sweetalert2";
+import { showSuccessMsgbox, showConfirmMsgbox } from "@/view/shared/msgbox";
 import {
   GET_DBUSERS,
   DELETE_DBUSER,
@@ -83,6 +83,12 @@ export default {
       .then(databaseUsers => (this.databaseUsers = databaseUsers));
   },
   methods: {
+    create_database_user: function(e) {
+      e.preventDefault();
+      this.$router.push({
+        path: `/server/${this.serverId}/database/createuser`
+      });
+    },
     revoke_dbuser: function(dbId, userId) {
       this.$store.dispatch(REVOKE_USER, {
         serverId: this.serverId,
@@ -93,14 +99,7 @@ export default {
     },
     delete_dbuser: async function(dbuser) {
       console.log("delete_dbuser", dbuser);
-      const result = await Swal.fire({
-        title: "",
-        text: "Do you want to delete this?",
-        icon: "question",
-        showConfirmButton: true,
-        showCancelButton: true,
-        heightAuto: false
-      });
+      const result = await showConfirmMsgbox("Do you want to delete this?");
       if (!result.isConfirmed) {
         return;
       }
@@ -111,14 +110,13 @@ export default {
       });
       console.log("delete-respone", respone);
       if (respone && respone.success) {
-        this.$store.dispatch(GET_DBUSERS, this.serverId);
-
-        Swal.fire({
-          title: "",
-          text: `Database user ${dbuser.name} has been successfully deleted`,
-          icon: "success",
-          heightAuto: false
-        });
+        await showSuccessMsgbox(
+          `Database user ${dbuser.name} has been successfully deleted`
+        );
+        const index = this.databaseUsers.indexOf(dbuser);
+        if (index >= 0) {
+          this.databaseUsers.splice(index, 1);
+        }
       }
     }
   }

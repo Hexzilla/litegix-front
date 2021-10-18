@@ -10,7 +10,7 @@
           placeholder="Search..."
           class="form-control input-lg w-200px mr-5"
         />
-        <b-link to="create">
+        <b-link @click="create_database($event)">
           <a class="btn btn-success font-weight-bolder font-size-sm"
             >Create Database</a
           >
@@ -100,6 +100,10 @@ export default {
       .then(databases => (this.databases = databases));
   },
   methods: {
+    create_database: function(e) {
+      e.preventDefault();
+      this.$router.push({ path: `/server/${this.serverId}/database/create` });
+    },
     revoke_dbuser: function(dbId, userId) {
       this.$store.dispatch(REVOKE_USER, {
         serverId: this.serverId,

@@ -63,7 +63,7 @@ import Trigger from "@/assets/plugins/formvalidation/dist/es6/plugins/Trigger";
 import Bootstrap from "@/assets/plugins/formvalidation/dist/es6/plugins/Bootstrap";
 import SubmitButton from "@/assets/plugins/formvalidation/dist/es6/plugins/SubmitButton";
 import KTUtil from "@/assets/js/components/util";
-import Swal from "sweetalert2";
+import { showSuccessMsgbox } from "@/view/shared/msgbox";
 import {
   CREATE_DATABASE,
   GET_DBUSERS
@@ -119,15 +119,6 @@ export default {
     this.fv.on("core.form.invalid", () => {});
   },
   methods: {
-    showMessageBox(icon, text) {
-      return Swal.fire({
-        title: "",
-        text: text,
-        icon: icon,
-        confirmButtonClass: "btn btn-secondary",
-        heightAuto: false
-      });
-    },
     createDatabase() {
       // set spinner to submit button
       const submitButton = this.$refs["kt_form_submit"];
@@ -144,9 +135,8 @@ export default {
           if (!data.success) {
             throw new Error(data.errors.message);
           }
-          return this.showMessageBox(
-            "success",
-            "Database " + this.form.name + " has been successfully created"
+          return showSuccessMsgbox(
+            `Database ${this.form.name} has been successfully created`
           );
         })
         .then(() => {
@@ -159,7 +149,7 @@ export default {
             err.data?.errors?.message ||
             err.message ||
             "Failed to create database!";
-          return this.showMessageBox("error", message);
+          return showSuccessMsgbox(message);
         })
         .finally(() => {
           submitButton.classList.remove(

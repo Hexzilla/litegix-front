@@ -22,7 +22,7 @@
     <div class="card-body py-0">
       <b-table
         empty-text="You don't have anything inside here yet."
-        :items="databaseusers"
+        :items="databaseUsers"
         :fields="dtabaseUserFields"
         show-empty
       >
@@ -31,8 +31,8 @@
         </template>
         <template #cell(change_password)="data">
           <b-link :to="`database/` + data.item.id + `/changepassword`">
-            <span class="label label-lg label-inline label-primary">
-              {{ data.item.id }}
+            <span class="label label-lg label-inline label-danger">
+              Change
             </span>
           </b-link>
         </template>
@@ -49,7 +49,6 @@
 <style scoped src="@/assets/styles/server.css"></style>
 
 <script>
-import { mapGetters } from "vuex";
 import Swal from "sweetalert2";
 import {
   GET_DBUSERS,
@@ -62,24 +61,26 @@ export default {
   props: ["serverId"],
   data() {
     return {
-      databaseFields: [
-        { key: "name", label: "Database Name" },
-        "database_user",
-        "collation",
-        "delete"
-      ],
+      databaseUsers: [],
       dtabaseUserFields: [
         { key: "name", label: "User Name" },
-        "change_password",
-        "delete"
+        {
+          key: "change_password",
+          thClass: "text-center",
+          tdClass: "text-center"
+        },
+        {
+          key: "delete",
+          thClass: "text-center",
+          tdClass: "text-center"
+        }
       ]
     };
   },
-  computed: {
-    ...mapGetters(["databases", "databaseusers"])
-  },
   mounted() {
-    this.$store.dispatch(GET_DBUSERS, this.serverId);
+    this.$store
+      .dispatch(GET_DBUSERS, this.serverId)
+      .then(databaseUsers => (this.databaseUsers = databaseUsers));
   },
   methods: {
     revoke_dbuser: function(dbId, userId) {

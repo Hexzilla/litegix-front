@@ -30,8 +30,9 @@
           <label class="control-label">Assign Database User</label>
           <b-form-select
             size="lg"
+            name="user"
             v-model="form.user"
-            :options="databaseusers"
+            :options="databaseUsers"
             value-field="_id"
             text-field="name"
           ></b-form-select>
@@ -62,8 +63,6 @@ import Trigger from "@/assets/plugins/formvalidation/dist/es6/plugins/Trigger";
 import Bootstrap from "@/assets/plugins/formvalidation/dist/es6/plugins/Bootstrap";
 import SubmitButton from "@/assets/plugins/formvalidation/dist/es6/plugins/SubmitButton";
 import KTUtil from "@/assets/js/components/util";
-
-import { mapGetters } from "vuex";
 import Swal from "sweetalert2";
 import {
   CREATE_DATABASE,
@@ -73,6 +72,7 @@ import {
 export default {
   data() {
     return {
+      databaseUsers: [],
       form: {
         name: "",
         user: "",
@@ -84,18 +84,27 @@ export default {
       ]
     };
   },
-  computed: {
-    ...mapGetters(["databaseusers"])
-  },
   mounted() {
-    this.$store.dispatch(GET_DBUSERS, this.$parent.serverId);
+    this.$store
+      .dispatch(GET_DBUSERS, this.$parent.serverId)
+      .then(databaseUsers => {
+        this.databaseUsers = databaseUsers;
+      });
+
     const create_form = KTUtil.getById("kt_form_database");
     this.fv = formValidation(create_form, {
       fields: {
         name: {
           validators: {
             notEmpty: {
-              message: "Name is required"
+              message: "This name is required"
+            }
+          }
+        },
+        user: {
+          validators: {
+            notEmpty: {
+              message: "This user is required"
             }
           }
         }

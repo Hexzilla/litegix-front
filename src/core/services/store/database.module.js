@@ -1,10 +1,5 @@
 import ApiService from "@/core/services/api.service";
 
-export const SET_DATABASE = "setDatabase";
-export const SET_DATABASES = "setDatabases";
-export const SET_DBUSER = "setDBuser";
-export const SET_DBUSERS = "setDBusers";
-export const SET_UNGRANTED_DBUSER = "setUngrantedDBusers";
 export const SET_ERROR = "setError";
 
 export const CREATE_DATABASE = "createDatabase";
@@ -24,31 +19,10 @@ export const DELETE_DBUSER = "deleteDBuser";
 export const REVOKE_USER = "revokeUser";
 
 const state = {
-  database: {},
-  databases: [],
-  databaseuser: {},
-  databaseusers: [],
-  ungrantedusers: {},
   error: {}
 };
 
-const getters = {
-  database(state) {
-    return state.database;
-  },
-  databases(state) {
-    return state.databases;
-  },
-  databaseuser(state) {
-    return state.databaseuser;
-  },
-  databaseusers(state) {
-    return state.databaseusers;
-  },
-  ungrantedusers(state) {
-    return state.ungrantedusers;
-  }
-};
+const getters = {};
 
 const actions = {
   [CREATE_DATABASE](context, credentials) {
@@ -108,12 +82,8 @@ const actions = {
   [CHANGE_PASSWORD](context, credentials) {
     return new Promise((resolve, reject) => {
       ApiService.setHeader();
-      ApiService.update(
-        "servers/" +
-          credentials.serverId +
-          "/databases/users/" +
-          credentials.id,
-        "password",
+      ApiService.put(
+        `servers/${credentials.serverId}/databases/users/${credentials.id}/password`,
         credentials
       )
         .then(({ data }) => {
@@ -137,9 +107,8 @@ const actions = {
       )
         .then(({ data }) => {
           if (data.success) {
-            context.commit(SET_DATABASE, data.data.databases);
+            resolve(data.data.databases);
           }
-          resolve(data);
         })
         .catch(error => {
           context.commit(SET_ERROR, error.response.data.errors);
@@ -152,10 +121,7 @@ const actions = {
       ApiService.setHeader();
       ApiService.get("servers/" + serverId + "/databases")
         .then(({ data }) => {
-          if (data.success) {
-            context.commit(SET_DATABASES, data.data.databases);
-          }
-          resolve(data);
+          resolve(data.data.databases);
         })
         .catch(error => {
           context.commit(SET_ERROR, error.response.data.errors);
@@ -170,7 +136,7 @@ const actions = {
       ApiService.get("servers/" + serverId + "/databases/users")
         .then(({ data }) => {
           if (data.success) {
-            context.commit(SET_DBUSERS, data.data.dbusers);
+            resolve(data.data.dbusers);
           }
           resolve(data);
         })
@@ -192,9 +158,8 @@ const actions = {
           "/grant"
       )
         .then(({ data }) => {
-          resolve(data);
           if (data.success) {
-            context.commit(SET_UNGRANTED_DBUSER, data.data.ungrantedusers);
+            resolve(data.data.ungrantedusers);
           }
         })
         .catch(error => {
@@ -214,10 +179,10 @@ const actions = {
           credentials.dbuserId
       )
         .then(({ data }) => {
-          resolve(data);
           if (data.success) {
-            context.commit(SET_DBUSER, data.data.dbuser);
+            resolve(data.data.dbuser);
           }
+          resolve(data);
         })
         .catch(error => {
           context.commit(SET_ERROR, error.response.data.errors);
@@ -291,26 +256,6 @@ const actions = {
 const mutations = {
   [SET_ERROR](state, error) {
     state.errors = error;
-  },
-  [SET_DATABASE](state, database) {
-    state.database = database;
-    state.errors = {};
-  },
-  [SET_DATABASES](state, databases) {
-    state.databases = databases;
-    state.errors = {};
-  },
-  [SET_DBUSER](state, databaseuser) {
-    state.databaseuser = databaseuser;
-    state.errors = {};
-  },
-  [SET_DBUSERS](state, databaseusers) {
-    state.databaseusers = databaseusers;
-    state.errors = {};
-  },
-  [SET_UNGRANTED_DBUSER](state, databaseusers) {
-    state.ungrantedusers = databaseusers;
-    state.errors = {};
   }
 };
 

@@ -56,7 +56,6 @@ import Trigger from "@/assets/plugins/formvalidation/dist/es6/plugins/Trigger";
 import Bootstrap from "@/assets/plugins/formvalidation/dist/es6/plugins/Bootstrap";
 import SubmitButton from "@/assets/plugins/formvalidation/dist/es6/plugins/SubmitButton";
 import KTUtil from "@/assets/js/components/util";
-
 import Swal from "sweetalert2";
 import { CREATE_DBUSER } from "@/core/services/store/database.module";
 

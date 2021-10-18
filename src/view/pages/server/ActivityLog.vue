@@ -42,6 +42,9 @@
               >
             </div>
           </template>
+          <template #cell(date)="{ item }">
+            {{ getActivityDate(item.date) }}
+          </template>
         </b-table>
         <b-pagination
           class="float-right"
@@ -55,31 +58,58 @@
   </div>
 </template>
 
+<style>
+.w10 {
+  width: 10%;
+}
+.w60 {
+  width: 70%;
+}
+</style>
+
 <script>
+import moment from "moment";
 import { GET_SERVER_ACTIVITY_LOGS } from "@/core/services/store/system.module";
 export default {
   data() {
     return {
-      fields: ["level", "message", "date", "category"],
+      fields: [
+        {
+          key: "level",
+          tdClass: "w10"
+        },
+        {
+          key: "message",
+          tdClass: "w60"
+        },
+        {
+          key: "date"
+        },
+        {
+          key: "category",
+          thClass: "text-center",
+          tdClass: "text-center"
+        }
+      ],
       activities: [],
-      currentPage: 0,
+      currentPage: 1,
       perPage: 10
     };
   },
   mounted() {
     this.serverId = this.$parent.serverId;
-    this.fetchData();
+    this.$store
+      .dispatch(GET_SERVER_ACTIVITY_LOGS, this.serverId)
+      .then(response => {
+        if (response.success) {
+          this.activities = response.data.activities;
+          console.log("activities", this.activities);
+        }
+      });
   },
   methods: {
-    fetchData() {
-      this.$store
-        .dispatch(GET_SERVER_ACTIVITY_LOGS, this.serverId)
-        .then(response => {
-          if (response.success) {
-            this.activities = response.data.activities;
-            console.log("activities", this.activities);
-          }
-        });
+    getActivityDate(date) {
+      return moment(date).format("MM/DD/YYYY");
     }
   }
 };

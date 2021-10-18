@@ -39,8 +39,8 @@
             </span></a
           >
 
-          <b-link :to="`database/` + data.item._id + `/grant`">
-            <span class="label label-lg label-inline label-success">
+          <b-link :to="`database/` + data.item.id + `/grant`">
+            <span class="label label-lg label-inline label-primary">
               Grant User
             </span>
           </b-link>
@@ -61,7 +61,6 @@
 <style scoped src="@/assets/styles/server.css"></style>
 
 <script>
-import { mapGetters } from "vuex";
 import Swal from "sweetalert2";
 import {
   GET_DATABASES,
@@ -74,19 +73,31 @@ export default {
   props: ["serverId"],
   data() {
     return {
+      databases: [],
       databaseFields: [
         { key: "name", label: "Database Name" },
-        "database_user",
-        "collation",
-        "delete"
+        {
+          key: "database_user",
+          thClass: "text-center",
+          tdClass: "text-center"
+        },
+        {
+          key: "collation",
+          thClass: "text-center",
+          tdClass: "text-center"
+        },
+        {
+          key: "delete",
+          thClass: "text-center",
+          tdClass: "text-center"
+        }
       ]
     };
   },
-  computed: {
-    ...mapGetters(["databases", "databaseusers"])
-  },
   mounted() {
-    this.$store.dispatch(GET_DATABASES, this.serverId);
+    this.$store
+      .dispatch(GET_DATABASES, this.serverId)
+      .then(databases => (this.databases = databases));
   },
   methods: {
     revoke_dbuser: function(dbId, userId) {

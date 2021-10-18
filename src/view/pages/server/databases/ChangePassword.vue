@@ -3,7 +3,7 @@
     <div class="card-header border-0 py-5">
       <h3 class="card-title align-items-start flex-column">
         <span class="card-label font-weight-bolder text-dark"
-          >Update password for database user {{ databaseuser.name }}</span
+          >Update password for database user {{ databaseUser.name }}</span
         >
         <span
           class="text-muted mt-3 font-weight-bold font-size-sm"
@@ -49,15 +49,12 @@
 </template>
 
 <script>
-import { mapGetters } from "vuex";
-
 import formValidation from "@/assets/plugins/formvalidation/dist/es6/core/Core";
 import Trigger from "@/assets/plugins/formvalidation/dist/es6/plugins/Trigger";
 import Bootstrap from "@/assets/plugins/formvalidation/dist/es6/plugins/Bootstrap";
 import SubmitButton from "@/assets/plugins/formvalidation/dist/es6/plugins/SubmitButton";
 import KTUtil from "@/assets/js/components/util";
-
-import Swal from "sweetalert2";
+import { showSuccessMsgbox, showErrorMsgbox } from "@/view/shared/msgbox";
 import {
   GET_DBUSER,
   CHANGE_PASSWORD
@@ -67,16 +64,23 @@ export default {
   props: ["userId"],
   data() {
     return {
+      databaseUser: {},
       form: {
         password: ""
       }
     };
   },
   mounted() {
-    this.$store.dispatch(GET_DBUSER, {
-      dbuserId: this.userId,
-      serverId: this.$parent.serverId
-    });
+    this.$store
+      .dispatch(GET_DBUSER, {
+        dbuserId: this.userId,
+        serverId: this.$parent.serverId
+      })
+      .then(databaseUser => {
+        console.log("databaseUser", databaseUser);
+        this.databaseUser = databaseUser;
+      });
+
     const create_form = KTUtil.getById("kt_form_changepassword");
     this.fv = formValidation(create_form, {
       fields: {
@@ -110,20 +114,11 @@ export default {
     this.fv.on("core.form.valid", this.change_password);
     this.fv.on("core.form.invalid", () => {});
   },
-  computed: {
-    ...mapGetters(["databaseuser"])
-  },
   methods: {
     change_password() {
       const submitButton = this.$refs["kt_form_server_submit"];
       submitButton.classList.add("spinner", "spinner-light", "spinner-right");
-      const removeSpinner = () => {
-        submitButton.classList.remove(
-          "spinner",
-          "spinner-light",
-          "spinner-right"
-        );
-      };
+
       const payload = {
         password: this.form.password,
         serverId: this.$parent.serverId,
@@ -132,26 +127,29 @@ export default {
       this.$store
         .dispatch(CHANGE_PASSWORD, payload)
         .then(() => {
-          removeSpinner();
-          this.onCreateSuccess();
+          return showSuccessMsgbox(
+            `Successfully changed password for ${this.databaseUser.name}`
+          );
         })
-        .catch(() => {
-          removeSpinner();
+        .then(() => {
+          this.$router.push({
+            name: "server-database"
+          });
+        })
+        .catch(err => {
+          const message =
+            err.response?.data?.errors?.message ||
+            err.message ||
+            "Failed to change password!";
+          return showErrorMsgbox(message);
+        })
+        .finally(() => {
+          submitButton.classList.remove(
+            "spinner",
+            "spinner-light",
+            "spinner-right"
+          );
         });
-    },
-    onCreateSuccess() {
-      Swal.fire({
-        title: "",
-        text: "Successfully changed password for " + this.databaseuser.name,
-        icon: "success",
-        confirmButtonClass: "btn btn-secondary",
-        heightAuto: false
-      }).then(() => {
-        console.log();
-        this.$router.push({
-          name: "server-database"
-        });
-      });
     }
   }
 };

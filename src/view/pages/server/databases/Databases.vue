@@ -10,7 +10,7 @@
           placeholder="Search..."
           class="form-control input-lg w-200px mr-5"
         />
-        <b-link to="database/create">
+        <b-link to="create">
           <a class="btn btn-success font-weight-bolder font-size-sm"
             >Create Database</a
           >
@@ -61,7 +61,7 @@
 <style scoped src="@/assets/styles/server.css"></style>
 
 <script>
-import Swal from "sweetalert2";
+import { showConfirmMsgbox, showSuccessMsgbox } from "@/view/shared/msgbox";
 import {
   GET_DATABASES,
   DELETE_DATABASE,
@@ -110,14 +110,7 @@ export default {
     },
     delete_database: async function(database) {
       console.log("delete_database", database);
-      const result = await Swal.fire({
-        title: "",
-        text: "Do you want to delete this?",
-        icon: "question",
-        showConfirmButton: true,
-        showCancelButton: true,
-        heightAuto: false
-      });
+      const result = await showConfirmMsgbox("Do you want to delete this?");
       if (!result.isConfirmed) {
         return;
       }
@@ -128,14 +121,13 @@ export default {
       });
       console.log("delete-respone", respone);
       if (respone && respone.success) {
-        this.$store.dispatch(GET_DATABASES, this.serverId);
-
-        Swal.fire({
-          title: "",
-          text: `Database ${database.name} has been successfully deleted`,
-          icon: "success",
-          heightAuto: false
-        });
+        await showSuccessMsgbox(
+          `Database ${database.name} has been successfully deleted`
+        );
+        const index = this.databases.indexOf(database);
+        if (index >= 0) {
+          this.databases.splice(index, 1);
+        }
       }
     }
   }

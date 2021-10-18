@@ -33,7 +33,7 @@
             name="user"
             v-model="form.user"
             :options="databaseUsers"
-            value-field="_id"
+            value-field="id"
             text-field="name"
           ></b-form-select>
         </div>

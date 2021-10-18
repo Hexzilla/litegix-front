@@ -25,85 +25,11 @@ const state = {
 const getters = {};
 
 const actions = {
-  [CREATE_DATABASE](context, credentials) {
-    return new Promise((resolve, reject) => {
-      ApiService.setHeader();
-      ApiService.post(
-        "servers/" + credentials.serverId + "/databases",
-        credentials
-      )
-        .then(({ data }) => {
-          resolve(data);
-        })
-        .catch(error => {
-          context.commit(SET_ERROR, error.response.data.errors);
-          reject(error);
-        });
-    });
-  },
-  [CREATE_DBUSER](context, credentials) {
-    return new Promise((resolve, reject) => {
-      ApiService.setHeader();
-      ApiService.post(
-        "servers/" + credentials.serverId + "/databases/users",
-        credentials
-      )
-        .then(({ data }) => {
-          resolve(data);
-        })
-        .catch(error => {
-          console.log(error.response);
-          context.commit(SET_ERROR, error.response.data.errors);
-          reject(error);
-        });
-    });
-  },
-  [GRANT_USER](context, credentials) {
-    return new Promise((resolve, reject) => {
-      ApiService.setHeader();
-      ApiService.post(
-        "servers/" +
-          credentials.serverId +
-          "/databases/" +
-          credentials.databaseId +
-          "/grant",
-        credentials
-      )
-        .then(({ data }) => {
-          resolve(data);
-        })
-        .catch(error => {
-          console.log(error.response);
-          context.commit(SET_ERROR, error.response.data.errors);
-          reject(error);
-        });
-    });
-  },
-  [CHANGE_PASSWORD](context, credentials) {
-    return new Promise((resolve, reject) => {
-      ApiService.setHeader();
-      ApiService.put(
-        `servers/${credentials.serverId}/databases/users/${credentials.id}/password`,
-        credentials
-      )
-        .then(({ data }) => {
-          resolve(data);
-        })
-        .catch(error => {
-          console.log(error.response);
-          context.commit(SET_ERROR, error.response.data.errors);
-          reject(error);
-        });
-    });
-  },
-  [GET_DATABASE](context, credentials) {
+  [GET_DATABASE](context, payload) {
     return new Promise((resolve, reject) => {
       ApiService.setHeader();
       ApiService.get(
-        "servers/" +
-          credentials.serverId +
-          "/databases/" +
-          credentials.databaseId
+        `servers/${payload.serverId}/databases/${payload.databaseId}`
       )
         .then(({ data }) => {
           if (data.success) {
@@ -116,14 +42,80 @@ const actions = {
         });
     });
   },
+
   [GET_DATABASES](context, serverId) {
     return new Promise((resolve, reject) => {
       ApiService.setHeader();
-      ApiService.get("servers/" + serverId + "/databases")
+      ApiService.get(`servers/${serverId}/databases`)
         .then(({ data }) => {
           resolve(data.data.databases);
         })
         .catch(error => {
+          context.commit(SET_ERROR, error.response.data.errors);
+          reject(error);
+        });
+    });
+  },
+
+  [CREATE_DATABASE](context, payload) {
+    return new Promise((resolve, reject) => {
+      ApiService.setHeader();
+      ApiService.post(`servers/${payload.serverId}/databases`, payload)
+        .then(({ data }) => {
+          resolve(data);
+        })
+        .catch(error => {
+          context.commit(SET_ERROR, error.response.data.errors);
+          reject(error);
+        });
+    });
+  },
+
+  [CREATE_DBUSER](context, payload) {
+    return new Promise((resolve, reject) => {
+      ApiService.setHeader();
+      ApiService.post(`servers/${payload.serverId}/databases/users`, payload)
+        .then(({ data }) => {
+          resolve(data);
+        })
+        .catch(error => {
+          console.log(error.response);
+          context.commit(SET_ERROR, error.response.data.errors);
+          reject(error);
+        });
+    });
+  },
+
+  [GRANT_USER](context, payload) {
+    return new Promise((resolve, reject) => {
+      ApiService.setHeader();
+      ApiService.post(
+        `servers/${payload.serverId}/databases/${payload.databaseId}/grant`,
+        payload
+      )
+        .then(({ data }) => {
+          resolve(data);
+        })
+        .catch(error => {
+          console.log(error.response);
+          context.commit(SET_ERROR, error.response.data.errors);
+          reject(error);
+        });
+    });
+  },
+
+  [CHANGE_PASSWORD](context, payload) {
+    return new Promise((resolve, reject) => {
+      ApiService.setHeader();
+      ApiService.put(
+        `servers/${payload.serverId}/databases/users/${payload.id}/password`,
+        payload
+      )
+        .then(({ data }) => {
+          resolve(data);
+        })
+        .catch(error => {
+          console.log(error.response);
           context.commit(SET_ERROR, error.response.data.errors);
           reject(error);
         });
@@ -194,8 +186,21 @@ const actions = {
   [DELETE_DATABASE](context, payload) {
     return new Promise((resolve, reject) => {
       ApiService.setHeader();
+      ApiService.delete(`servers/${payload.serverId}/databases/${payload.dbId}`)
+        .then(({ data }) => {
+          resolve(data);
+        })
+        .catch(error => {
+          context.commit(SET_ERROR, error.response.data.errors);
+          reject(error);
+        });
+    });
+  },
+  [DELETE_DBUSER](context, payload) {
+    return new Promise((resolve, reject) => {
+      ApiService.setHeader();
       ApiService.delete(
-        "servers/" + payload.serverId + "/databases/" + payload.dbId
+        `servers/${payload.serverId}/databases/users/${payload.dbuserId}`
       )
         .then(({ data }) => {
           resolve(data);
@@ -206,44 +211,14 @@ const actions = {
         });
     });
   },
-  [DELETE_DBUSER](context, credentials) {
+  [REVOKE_USER](context, payload) {
     return new Promise((resolve, reject) => {
       ApiService.setHeader();
       ApiService.delete(
-        "servers/" +
-          credentials.serverId +
-          "/databases/users/" +
-          credentials.dbuserId
+        `servers/${payload.serverId}/databases/${payload.databaseId}/grant/${payload.dbuserId}`
       )
         .then(({ data }) => {
           resolve(data);
-          // if (data.success) {
-          //     context.commit(SET_DBUSERS, data.data.dbusers);
-          //     context.commit(SET_DATABASES, data.data.databases);
-          // }
-        })
-        .catch(error => {
-          context.commit(SET_ERROR, error.response.data.errors);
-          reject(error);
-        });
-    });
-  },
-  [REVOKE_USER](context, credentials) {
-    return new Promise((resolve, reject) => {
-      ApiService.setHeader();
-      ApiService.delete(
-        "servers/" +
-          credentials.serverId +
-          "/databases/" +
-          credentials.databaseId +
-          "/grant/" +
-          credentials.dbuserId
-      )
-        .then(({ data }) => {
-          resolve(data);
-          // if (data.success) {
-          //     context.commit(SET_DATABASES, data.data.databases);
-          // }
         })
         .catch(error => {
           context.commit(SET_ERROR, error.response.data.errors);

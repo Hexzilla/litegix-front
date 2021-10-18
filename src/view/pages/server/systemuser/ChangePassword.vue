@@ -3,14 +3,7 @@
     <div class="card-header border-0 py-5">
       <h3 class="card-title align-items-start flex-column">
         <span class="card-label font-weight-bolder text-dark"
-          >Update password for database user {{ databaseUser.name }}</span
-        >
-        <span
-          class="text-muted mt-3 font-weight-bold font-size-sm"
-          data-nsfw-filter-status="swf"
-          >If you have changed your <strong>root</strong> database password,
-          please update your new password inside
-          <code>/etc/mysql/my.cnf</code> or adding new user won't work.</span
+          >Update password for system user {{ systemUser.name }}</span
         >
       </h3>
     </div>
@@ -56,30 +49,31 @@ import SubmitButton from "@/assets/plugins/formvalidation/dist/es6/plugins/Submi
 import KTUtil from "@/assets/js/components/util";
 import { showSuccessMsgbox, showErrorMsgbox } from "@/view/shared/msgbox";
 import {
-  GET_DBUSER,
-  CHANGE_PASSWORD
-} from "@/core/services/store/database.module";
+  GET_SYSTEM_USER,
+  CHANGE_SYSTEM_USER_PASSWORD
+} from "@/core/services/store/system.module";
 
 export default {
-  props: ["userId"],
   data() {
     return {
-      databaseUser: {},
+      userId: "",
+      systemUser: {},
       form: {
         password: ""
       }
     };
   },
   mounted() {
+    this.userId = this.$route.params.userId;
     console.log("userId", this.userId);
     this.$store
-      .dispatch(GET_DBUSER, {
-        dbuserId: this.userId,
-        serverId: this.$parent.serverId
+      .dispatch(GET_SYSTEM_USER, {
+        serverId: this.$parent.serverId,
+        userId: this.userId
       })
-      .then(databaseUser => {
-        console.log("databaseUser", databaseUser);
-        this.databaseUser = databaseUser;
+      .then(systemUser => {
+        console.log("systemUser", systemUser);
+        this.systemUser = systemUser;
       });
 
     const create_form = KTUtil.getById("kt_form_changepassword");
@@ -89,6 +83,10 @@ export default {
           validators: {
             notEmpty: {
               message: "Password is required"
+            },
+            stringLength: {
+              min: 8,
+              message: "Password must be much than 8 characters"
             }
           }
         },
@@ -123,18 +121,18 @@ export default {
       const payload = {
         password: this.form.password,
         serverId: this.$parent.serverId,
-        id: this.userId
+        userId: this.userId
       };
       this.$store
-        .dispatch(CHANGE_PASSWORD, payload)
+        .dispatch(CHANGE_SYSTEM_USER_PASSWORD, payload)
         .then(() => {
           return showSuccessMsgbox(
-            `Successfully changed password for ${this.databaseUser.name}`
+            `Successfully changed password for ${this.systemUser.name}`
           );
         })
         .then(() => {
           this.$router.push({
-            name: "server-database"
+            name: "server-systemusers"
           });
         })
         .catch(err => {

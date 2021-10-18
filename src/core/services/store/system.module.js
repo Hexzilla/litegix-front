@@ -1,11 +1,12 @@
 import ApiService from "@/core/services/api.service";
-export const SET_SYSTEM_USERS = "setSystemUsers";
 export const SET_SSH_KEYS = "setSSHKeys";
 export const SET_ERROR = "setError";
 
 export const CREATE_SYSTEM_USER = "createSystemUser";
+export const GET_SYSTEM_USER = "getSystemUser";
 export const GET_SYSTEM_USERS = "getSystemUsers";
 export const DELETE_SYSTEM_USER = "deleteSystemUser";
+export const CHANGE_SYSTEM_USER_PASSWORD = "CHANGE_SYSTEM_USER_PASSWORD";
 
 export const CREATE_SSH_KEY = "createSSHKey";
 export const GET_SSH_KEYS = "getSSHKeys";
@@ -30,14 +31,10 @@ export const GET_SUPERVISOR_JOBS = "getSupervisorJobs";
 export const GET_SERVER_ACTIVITY_LOGS = "getServerActivityLogs";
 
 const state = {
-  systemUsers: [],
   sshKeys: []
 };
 
 const getters = {
-  systemUsers(state) {
-    return state.systemUsers;
-  },
   sshKeys(state) {
     return state.sshKeys;
   }
@@ -49,13 +46,31 @@ const actions = {
       ApiService.setHeader();
       ApiService.post("servers/" + payload.serverId + "/systemusers", payload)
         .then(({ data }) => {
-          resolve(data);
           if (data.success) {
-            context.commit(SET_SYSTEM_USERS, data.data);
+            resolve(data.data);
           }
+          resolve(data);
         })
         .catch(error => {
           console.log(error.response);
+          context.commit(SET_ERROR, error.response.data.errors);
+          reject(error);
+        });
+    });
+  },
+  [GET_SYSTEM_USER](context, payload) {
+    return new Promise((resolve, reject) => {
+      ApiService.setHeader();
+      ApiService.get(
+        `servers/${payload.serverId}/systemusers/${payload.userId}`
+      )
+        .then(({ data }) => {
+          if (data.success) {
+            resolve(data.data.user);
+          }
+          resolve(data);
+        })
+        .catch(error => {
           context.commit(SET_ERROR, error.response.data.errors);
           reject(error);
         });
@@ -67,8 +82,24 @@ const actions = {
       ApiService.get("servers/" + serverId + "/systemusers")
         .then(({ data }) => {
           if (data.success) {
-            context.commit(SET_SYSTEM_USERS, data.data.users);
+            resolve(data.data.users);
           }
+          resolve(data);
+        })
+        .catch(error => {
+          context.commit(SET_ERROR, error.response.data.errors);
+          reject(error);
+        });
+    });
+  },
+  [CHANGE_SYSTEM_USER_PASSWORD](context, payload) {
+    return new Promise((resolve, reject) => {
+      ApiService.setHeader();
+      ApiService.put(
+        `servers/${payload.serverId}/systemusers/${payload.userId}/password`,
+        payload
+      )
+        .then(({ data }) => {
           resolve(data);
         })
         .catch(error => {
@@ -322,10 +353,6 @@ const actions = {
 const mutations = {
   [SET_ERROR](state, error) {
     state.errors = error;
-  },
-  [SET_SYSTEM_USERS](state, systemUser) {
-    state.systemUsers = systemUser;
-    state.errors = {};
   },
   [SET_SSH_KEYS](state, keys) {
     state.sshKeys = keys;

@@ -219,7 +219,7 @@ export default new Router({
             },
             {
               path: "systemuser",
-              name: "systemuser",
+              name: "server-systemusers",
               component: () =>
                 import("@/view/pages/server/systemuser/SystemUser.vue")
             },
@@ -228,6 +228,12 @@ export default new Router({
               name: "server-user-create",
               component: () =>
                 import("@/view/pages/server/systemuser/CreateUser.vue")
+            },
+            {
+              path: "systemuser/:userId/change_password",
+              name: "server-user-change-password",
+              component: () =>
+                import("@/view/pages/server/systemuser/ChangePassword.vue")
             },
 
             {

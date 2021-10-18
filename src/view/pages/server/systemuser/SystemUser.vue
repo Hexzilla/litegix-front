@@ -49,13 +49,17 @@
                     >
                   </td>
                   <td class="pl-0 text-center">
-                    <i class="btn btn-icon btn-center btn-hover-primary btn-sm">
-                      <span class="svg-icon svg-icon-md svg-icon-primary">
-                        <inline-svg
-                          src="media/svg/icons/General/Lock.svg"
-                        ></inline-svg>
-                      </span>
-                    </i>
+                    <b-link @click="change_password(item)">
+                      <i
+                        class="btn btn-icon btn-center btn-hover-primary btn-sm"
+                      >
+                        <span class="svg-icon svg-icon-md svg-icon-primary">
+                          <inline-svg
+                            src="media/svg/icons/General/Lock.svg"
+                          ></inline-svg>
+                        </span>
+                      </i>
+                    </b-link>
                   </td>
                   <td class="pr-0 text-center">
                     <a role="button" v-on:click="deleteUser(item)"
@@ -75,8 +79,7 @@
 <style scoped src="@/assets/styles/server.css"></style>
 
 <script>
-import { mapGetters } from "vuex";
-import Swal from "sweetalert2";
+import { showSuccessMsgbox, showConfirmMsgbox } from "@/view/shared/msgbox";
 
 import {
   GET_SYSTEM_USERS,
@@ -86,48 +89,44 @@ import {
 export default {
   data() {
     return {
+      systemUsers: [],
       checked: false,
       serverId: false
     };
   },
-  computed: {
-    ...mapGetters(["systemUsers"])
-  },
   mounted() {
     this.serverId = this.$parent.serverId;
-    this.$store.dispatch(GET_SYSTEM_USERS, this.serverId);
+    this.$store.dispatch(GET_SYSTEM_USERS, this.serverId).then(systemUsers => {
+      this.systemUsers = systemUsers;
+    });
   },
   methods: {
+    change_password(user) {
+      console.log("change_password", user);
+      this.$router.push({
+        path: `/server/${this.serverId}/systemuser/${user.id}/change_password`
+      });
+    },
     async deleteUser(user) {
       console.log("deleteuser", user);
-      const result = await Swal.fire({
-        title: "",
-        text: "Do you want to delete this?",
-        icon: "question",
-        showConfirmButton: true,
-        showCancelButton: true,
-        heightAuto: false
-      });
-
+      const result = await showConfirmMsgbox("Do you want to delete this?");
       if (!result.isConfirmed) {
         return;
       }
+
       const payload = {
         userId: user.id,
         serverId: this.serverId
       };
       const response = await this.$store.dispatch(DELETE_SYSTEM_USER, payload);
       console.log("deleteuser--success", response);
-      this.$store.dispatch(GET_SYSTEM_USERS, this.serverId);
-      this.onDeleteSuccess(user.name);
-    },
-    onDeleteSuccess(name) {
-      Swal.fire({
-        title: "",
-        text: "System user " + name + " has been successfully deleted",
-        icon: "success",
-        heightAuto: false
-      });
+      await showSuccessMsgbox(
+        `System user ${user.name} has been successfully deleted`
+      );
+      const index = this.systemUsers.indexOf(user);
+      if (index >= 0) {
+        this.systemUsers.splice(index, 1);
+      }
     }
   }
 };

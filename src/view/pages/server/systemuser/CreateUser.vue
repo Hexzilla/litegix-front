@@ -63,9 +63,7 @@ import Trigger from "@/assets/plugins/formvalidation/dist/es6/plugins/Trigger";
 import Bootstrap from "@/assets/plugins/formvalidation/dist/es6/plugins/Bootstrap";
 import SubmitButton from "@/assets/plugins/formvalidation/dist/es6/plugins/SubmitButton";
 import KTUtil from "@/assets/js/components/util";
-
-import { mapGetters } from "vuex";
-import Swal from "sweetalert2";
+import { showSuccessMsgbox, showErrorMsgbox } from "@/view/shared/msgbox";
 import { CREATE_SYSTEM_USER } from "@/core/services/store/system.module";
 
 export default {
@@ -77,9 +75,6 @@ export default {
         verify_password: ""
       }
     };
-  },
-  computed: {
-    ...mapGetters(["databaseusers"])
   },
   mounted() {
     const create_form = KTUtil.getById("kt_form_database");
@@ -103,15 +98,6 @@ export default {
     this.fv.on("core.form.invalid", () => {});
   },
   methods: {
-    showMessageBox(icon, text) {
-      return Swal.fire({
-        title: "",
-        text: text,
-        icon: icon,
-        confirmButtonClass: "btn btn-secondary",
-        heightAuto: false
-      });
-    },
     createSystemUser() {
       // set spinner to submit button
       const submitButton = this.$refs["kt_form_submit"];
@@ -123,12 +109,8 @@ export default {
           password: this.form.password,
           serverId: this.$parent.serverId
         })
-        .then(data => {
-          if (!data.success) {
-            throw new Error(data.errors.message);
-          }
-          return this.showMessageBox(
-            "success",
+        .then(() => {
+          return showSuccessMsgbox(
             "System user " + this.form.name + " has been successfully created"
           );
         })
@@ -142,7 +124,7 @@ export default {
             err.data?.errors?.message ||
             err.message ||
             "Failed to add system user!";
-          return this.showMessageBox("error", message);
+          return showErrorMsgbox(message);
         })
         .finally(() => {
           submitButton.classList.remove(

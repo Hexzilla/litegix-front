@@ -40,8 +40,7 @@
 <style scoped src="@/assets/styles/server.css"></style>
 
 <script>
-import { mapGetters } from "vuex";
-//import Swal from "sweetalert2";
+import { showSuccessMsgbox } from "@/view/shared/msgbox";
 import {
   GET_PHP_VERSION,
   UPDATE_PHP_VERSION
@@ -62,14 +61,11 @@ export default {
     this.serverId = this.$parent.serverId;
     this.fetchData();
   },
-  computed: {
-    ...mapGetters(["phpVersion"])
-  },
   methods: {
     fetchData() {
-      this.$store.dispatch(GET_PHP_VERSION, this.serverId).then(data => {
-        this.selectedVersion = this.phpVersion;
-        console.log("phpVersion", data);
+      this.$store.dispatch(GET_PHP_VERSION, this.serverId).then(phpVersion => {
+        this.selectedVersion = phpVersion;
+        console.log("phpVersion", phpVersion);
       });
     },
     updateVersion(e) {
@@ -79,8 +75,9 @@ export default {
         serverId: this.serverId,
         phpVersion: this.selectedVersion
       };
-      this.$store.dispatch(UPDATE_PHP_VERSION, payload).then(data => {
-        console.log(data);
+      this.$store.dispatch(UPDATE_PHP_VERSION, payload).then(phpVersion => {
+        console.log("updated", phpVersion);
+        showSuccessMsgbox("PHP version has been updated.");
       });
     }
   }

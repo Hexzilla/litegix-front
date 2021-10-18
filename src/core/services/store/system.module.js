@@ -18,7 +18,6 @@ export const GET_SYSTEM_SERVICES = "getSystemServices";
 
 export const GET_PHP_VERSION = "getPhpVersion";
 export const UPDATE_PHP_VERSION = "updatePhpVersion";
-export const SET_PHP_VERSION = "setPhpVersion";
 
 export const CREATE_CRON_JOB = "createCronJob";
 export const STORE_CRON_JOB = "storeCronJob";
@@ -32,8 +31,7 @@ export const GET_SERVER_ACTIVITY_LOGS = "getServerActivityLogs";
 
 const state = {
   systemUsers: [],
-  sshKeys: [],
-  phpVersion: ""
+  sshKeys: []
 };
 
 const getters = {
@@ -42,9 +40,6 @@ const getters = {
   },
   sshKeys(state) {
     return state.sshKeys;
-  },
-  phpVersion(state) {
-    return state.phpVersion;
   }
 };
 
@@ -198,7 +193,7 @@ const actions = {
       ApiService.get("servers/" + serverId + "/phpVersion")
         .then(({ data }) => {
           if (data.success) {
-            context.commit(SET_PHP_VERSION, data.data.phpVersion);
+            resolve(data.data.phpVersion);
           }
           resolve(data);
         })
@@ -214,7 +209,7 @@ const actions = {
       ApiService.put("servers/" + payload.serverId + "/phpVersion", payload)
         .then(({ data }) => {
           if (data.success) {
-            context.commit(SET_PHP_VERSION, payload.phpVersion);
+            resolve(payload.phpVersion);
           }
           resolve(data);
         })
@@ -334,10 +329,6 @@ const mutations = {
   },
   [SET_SSH_KEYS](state, keys) {
     state.sshKeys = keys;
-    state.errors = {};
-  },
-  [SET_PHP_VERSION](state, version) {
-    state.phpVersion = version;
     state.errors = {};
   }
 };

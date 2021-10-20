@@ -1,17 +1,19 @@
 import ApiService from "@/core/services/api.service";
 
-export const SET_SERVERS = "setServers";
-export const SET_ERROR = "setError";
-export const SET_SERVER_SUMMERY = "setServerSummery";
+export const SET_SERVERS = "SET_SERVERS";
+export const SET_ERROR = "SET_ERROR";
+export const SET_SERVER_SUMMERY = "SET_SERVER_SUMMERY";
 
-export const CREATE_SERVER = "createServer";
-export const CONFIGURE_SERVER = "configureServer";
-export const GET_SERVERS = "getServers";
-export const GET_SERVER_SUMMERY = "getServerSummery";
-export const GET_SCRIPT = "getScript";
-export const GET_INSTALL_STATUS = "getInstallStatus";
+export const CREATE_SERVER = "CREATE_SERVER";
+export const CONFIGURE_SERVER = "CONFIGURE_SERVER";
+export const GET_SERVERS = "GET_SERVERS";
+export const GET_SCRIPT = "GET_SCRIPT";
+export const GET_INSTALL_STATUS = "GET_INSTALL_STATUS";
 
-export const DELETE_SERVER = "deleteServer";
+export const GET_SERVER_SUMMERY = "GET_SERVER_SUMMERY";
+export const GET_SERVER_SETTINGS = "GET_SERVER_SETTINGS";
+export const UPDATE_SERVER_DETAIL = "UPDATE_SERVER_DETAIL";
+export const DELETE_SERVER = "DELETE_SERVER";
 
 const state = {
   servers: {},
@@ -41,7 +43,7 @@ const actions = {
         })
         .catch(error => {
           console.log(error.response);
-          context.commit(SET_ERROR, error.response.data.errors);
+          context.commit(SET_ERROR, error.response?.data.errors);
           reject(error);
         });
     });
@@ -58,7 +60,7 @@ const actions = {
           }
         })
         .catch(error => {
-          context.commit(SET_ERROR, error.response.data.errors);
+          context.commit(SET_ERROR, error.response?.data.errors);
           reject(error);
         });
     });
@@ -71,7 +73,7 @@ const actions = {
           resolve(data);
         })
         .catch(error => {
-          context.commit(SET_ERROR, error.response.data.errors);
+          context.commit(SET_ERROR, error.response?.data.errors);
           reject(error);
         });
     });
@@ -84,7 +86,7 @@ const actions = {
           resolve(data);
         })
         .catch(error => {
-          context.commit(SET_ERROR, error.response.data.errors);
+          context.commit(SET_ERROR, error.response?.data.errors);
           reject(error);
         });
     });
@@ -97,16 +99,16 @@ const actions = {
           resolve(data);
         })
         .catch(error => {
-          context.commit(SET_ERROR, error.response.data.errors);
+          context.commit(SET_ERROR, error.response?.data.errors);
           reject(error);
         });
     });
   },
 
-  [GET_SERVER_SUMMERY](context, credentials) {
+  [GET_SERVER_SUMMERY](context, serverId) {
     return new Promise((resolve, reject) => {
       ApiService.setHeader();
-      ApiService.post("servers/" + credentials + "/summary")
+      ApiService.post("servers/" + serverId + "/summary")
         .then(({ data }) => {
           resolve(data);
           console.log(data);
@@ -115,7 +117,38 @@ const actions = {
           }
         })
         .catch(error => {
-          context.commit(SET_ERROR, error.response.data.errors);
+          context.commit(SET_ERROR, error.response?.data.errors);
+          reject(error);
+        });
+    });
+  },
+
+  [GET_SERVER_SETTINGS](context, serverId) {
+    return new Promise((resolve, reject) => {
+      ApiService.setHeader();
+      ApiService.get("servers/" + serverId + "/settings")
+        .then(({ data }) => {
+          resolve(data);
+        })
+        .catch(error => {
+          context.commit(SET_ERROR, error.response?.data.errors);
+          reject(error);
+        });
+    });
+  },
+
+  [UPDATE_SERVER_DETAIL](context, payload) {
+    return new Promise((resolve, reject) => {
+      ApiService.setHeader();
+      ApiService.put(
+        "servers/" + payload.serverId + "/settings/details",
+        payload
+      )
+        .then(({ data }) => {
+          resolve(data);
+        })
+        .catch(error => {
+          context.commit(SET_ERROR, error.response?.data.errors);
           reject(error);
         });
     });

@@ -1,33 +1,33 @@
 import ApiService from "@/core/services/api.service";
 export const SET_ERROR = "setError";
 
-export const CREATE_SYSTEM_USER = "createSystemUser";
-export const GET_SYSTEM_USER = "getSystemUser";
-export const GET_SYSTEM_USERS = "getSystemUsers";
-export const DELETE_SYSTEM_USER = "deleteSystemUser";
+export const CREATE_SYSTEM_USER = "CREATE_SYSTEM_USER";
+export const GET_SYSTEM_USER = "GET_SYSTEM_USER";
+export const GET_SYSTEM_USERS = "GET_SYSTEM_USERS";
+export const DELETE_SYSTEM_USER = "DELETE_SYSTEM_USER";
 export const CHANGE_SYSTEM_USER_PASSWORD = "CHANGE_SYSTEM_USER_PASSWORD";
 
-export const CREATE_SSH_KEY = "createSSHKey";
-export const GET_SSH_KEYS = "getSSHKeys";
-export const DELETE_SSH_KEY = "deleteSSHKey";
+export const CREATE_SSH_KEY = "CREATE_SSH_KEY";
+export const GET_SSH_KEYS = "GET_SSH_KEYS";
+export const DELETE_SSH_KEY = "DELETE_SSH_KEY";
 
-export const CREATE_DEPLOY_KEY = "createDeployKey";
-export const GET_DEPLOY_KEYS = "getDeployKeys";
+export const CREATE_DEPLOY_KEY = "CREATE_DEPLOY_KEY";
+export const GET_DEPLOY_KEYS = "GET_DEPLOY_KEYS";
 
-export const GET_SYSTEM_SERVICES = "getSystemServices";
+export const GET_SYSTEM_SERVICES = "GET_SYSTEM_SERVICES";
 
-export const GET_PHP_VERSION = "getPhpVersion";
-export const UPDATE_PHP_VERSION = "updatePhpVersion";
+export const GET_PHP_VERSION = "GET_PHP_VERSION";
+export const UPDATE_PHP_VERSION = "UPDATE_PHP_VERSION";
 
-export const CREATE_CRON_JOB = "createCronJob";
-export const STORE_CRON_JOB = "storeCronJob";
-export const GET_CRON_JOBS = "getCronJobs";
+export const CREATE_CRON_JOB = "CREATE_CRON_JOB";
+export const STORE_CRON_JOB = "STORE_CRON_JOB";
+export const GET_CRON_JOBS = "GET_CRON_JOBS";
 
-export const CREATE_SUPERVISOR_JOB = "createSupervisorJob";
-export const STORE_SUPERVISOR_JOB = "storeSupervisorJob";
-export const GET_SUPERVISOR_JOBS = "getSupervisorJobs";
+export const CREATE_SUPERVISOR_JOB = "CREATE_SUPERVISOR_JOB";
+export const STORE_SUPERVISOR_JOB = "STORE_SUPERVISOR_JOB";
+export const GET_SUPERVISOR_JOBS = "GET_SUPERVISOR_JOBS";
 
-export const GET_SERVER_ACTIVITY_LOGS = "getServerActivityLogs";
+export const GET_SERVER_ACTIVITY_LOGS = "GET_SERVER_ACTIVITY_LOGS";
 
 const state = {
   sshKeys: []

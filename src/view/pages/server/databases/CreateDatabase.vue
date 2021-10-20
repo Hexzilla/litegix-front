@@ -63,7 +63,7 @@ import Trigger from "@/assets/plugins/formvalidation/dist/es6/plugins/Trigger";
 import Bootstrap from "@/assets/plugins/formvalidation/dist/es6/plugins/Bootstrap";
 import SubmitButton from "@/assets/plugins/formvalidation/dist/es6/plugins/SubmitButton";
 import KTUtil from "@/assets/js/components/util";
-import { showSuccessMsgbox } from "@/view/shared/msgbox";
+import { showSuccessMsgbox, showErrorMsgbox } from "@/view/shared/msgbox";
 import {
   CREATE_DATABASE,
   GET_DBUSERS
@@ -149,7 +149,7 @@ export default {
             err.data?.errors?.message ||
             err.message ||
             "Failed to create database!";
-          return showSuccessMsgbox(message);
+          return showErrorMsgbox(message);
         })
         .finally(() => {
           submitButton.classList.remove(

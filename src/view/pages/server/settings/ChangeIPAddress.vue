@@ -22,6 +22,7 @@
           <b-form-group label="IP Address"
             ><b-form-input
               name="ipAddress"
+              v-model="server.address"
               placeholder="Your server's new IP Address"
             ></b-form-input
           ></b-form-group>
@@ -38,6 +39,7 @@
 <script>
 export default {
   name: "KTChangeIPAddress",
+  props: ["server"],
   data() {
     return {};
   }

@@ -83,7 +83,11 @@
 <style scoped src="@/assets/styles/server.css"></style>
 
 <script>
-import Swal from "sweetalert2";
+import {
+  showConfirmMsgbox,
+  showSuccessMsgbox,
+  showErrorMsgbox
+} from "@/view/shared/msgbox";
 import {
   GET_SSH_KEYS,
   DELETE_SSH_KEY
@@ -104,35 +108,40 @@ export default {
     });
   },
   methods: {
-    async deleteKey(user) {
-      console.log("deleteKey", user);
-      const result = await Swal.fire({
-        title: "",
-        text: "Do you want to delete this?",
-        icon: "question",
-        showConfirmButton: true,
-        showCancelButton: true,
-        heightAuto: false
-      });
+    async deleteKey(sshKey) {
+      console.log("deleteKey", sshKey);
+      const result = await showConfirmMsgbox("Do you want to delete this?");
       if (!result.isConfirmed) {
         return;
       }
       const payload = {
-        userId: user._id,
+        keyId: sshKey.id,
         serverId: this.serverId
       };
-      const response = await this.$store.dispatch(DELETE_SSH_KEY, payload);
-      console.log("deleteKey--success", response);
-      this.fetchSSHKeys();
-      this.onDeleteSuccess(user.name);
-    },
-    onDeleteSuccess(name) {
-      Swal.fire({
-        title: "",
-        text: "System user " + name + " has been successfully deleted",
-        icon: "success",
-        heightAuto: false
-      });
+
+      this.$store
+        .dispatch(DELETE_SSH_KEY, payload)
+        .then(data => {
+          if (!data.success) {
+            throw new Error(data.errors.message);
+          }
+          return showSuccessMsgbox(
+            "SSH Key " + sshKey.label + " has been successfully deleted"
+          );
+        })
+        .then(() => {
+          const index = this.sshKeys.indexOf(sshKey);
+          if (index >= 0) {
+            this.sshKeys.splice(index, 1);
+          }
+        })
+        .catch(err => {
+          const message =
+            err.response?.data?.errors?.message ||
+            err.message ||
+            "Failed to delete SSH key!";
+          return showErrorMsgbox(message);
+        });
     }
   }
 };

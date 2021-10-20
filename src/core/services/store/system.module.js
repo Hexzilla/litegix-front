@@ -52,7 +52,7 @@ const actions = {
         })
         .catch(error => {
           console.log(error.response);
-          context.commit(SET_ERROR, error.response.data.errors);
+          context.commit(SET_ERROR, error.response?.data?.errors);
           reject(error);
         });
     });
@@ -70,7 +70,7 @@ const actions = {
           resolve(data);
         })
         .catch(error => {
-          context.commit(SET_ERROR, error.response.data.errors);
+          context.commit(SET_ERROR, error.response?.data?.errors);
           reject(error);
         });
     });
@@ -86,7 +86,7 @@ const actions = {
           resolve(data);
         })
         .catch(error => {
-          context.commit(SET_ERROR, error.response.data.errors);
+          context.commit(SET_ERROR, error.response?.data?.errors);
           reject(error);
         });
     });
@@ -102,7 +102,7 @@ const actions = {
           resolve(data);
         })
         .catch(error => {
-          context.commit(SET_ERROR, error.response.data.errors);
+          context.commit(SET_ERROR, error.response?.data?.errors);
           reject(error);
         });
     });
@@ -165,7 +165,7 @@ const actions = {
     return new Promise((resolve, reject) => {
       ApiService.setHeader();
       ApiService.delete(
-        `servers/${payload.serverId}/sshcredentials/${payload.userId}`
+        `servers/${payload.serverId}/sshcredentials/${payload.keyId}`
       )
         .then(({ data }) => {
           console.log("delete-users-ok", data);
@@ -173,7 +173,7 @@ const actions = {
         })
         .catch(error => {
           console.log("delete-users-error", error);
-          context.commit(SET_ERROR, error.response.data.errors);
+          context.commit(SET_ERROR, error.response?.data?.errors);
           reject(error);
         });
     });
@@ -187,7 +187,7 @@ const actions = {
         })
         .catch(error => {
           console.log(error.response);
-          context.commit(SET_ERROR, error.response.data.errors);
+          context.commit(SET_ERROR, error.response?.data?.errors);
           reject(error);
         });
     });
@@ -200,7 +200,7 @@ const actions = {
           resolve(data);
         })
         .catch(error => {
-          context.commit(SET_ERROR, error.response.data.errors);
+          context.commit(SET_ERROR, error.response?.data?.errors);
           reject(error);
         });
     });
@@ -213,7 +213,7 @@ const actions = {
           resolve(data);
         })
         .catch(error => {
-          context.commit(SET_ERROR, error.response.data.errors);
+          context.commit(SET_ERROR, error.response?.data?.errors);
           reject(error);
         });
     });
@@ -229,7 +229,7 @@ const actions = {
           resolve(data);
         })
         .catch(error => {
-          context.commit(SET_ERROR, error.response.data.errors);
+          context.commit(SET_ERROR, error.response?.data?.errors);
           reject(error);
         });
     });
@@ -246,7 +246,7 @@ const actions = {
         })
         .catch(error => {
           console.log(error.response);
-          context.commit(SET_ERROR, error.response.data.errors);
+          context.commit(SET_ERROR, error.response?.data?.errors);
           reject(error);
         });
     });
@@ -261,7 +261,7 @@ const actions = {
         })
         .catch(error => {
           console.log(error.response);
-          context.commit(SET_ERROR, error.response.data.errors);
+          context.commit(SET_ERROR, error.response?.data?.errors);
           reject(error);
         });
     });
@@ -275,7 +275,7 @@ const actions = {
         })
         .catch(error => {
           console.log(error.response);
-          context.commit(SET_ERROR, error.response.data.errors);
+          context.commit(SET_ERROR, error.response?.data?.errors);
           reject(error);
         });
     });
@@ -288,7 +288,7 @@ const actions = {
           resolve(data);
         })
         .catch(error => {
-          context.commit(SET_ERROR, error.response.data.errors);
+          context.commit(SET_ERROR, error.response?.data?.errors);
           reject(error);
         });
     });
@@ -303,7 +303,7 @@ const actions = {
         })
         .catch(error => {
           console.log(error.response);
-          context.commit(SET_ERROR, error.response.data.errors);
+          context.commit(SET_ERROR, error.response?.data?.errors);
           reject(error);
         });
     });
@@ -317,7 +317,7 @@ const actions = {
         })
         .catch(error => {
           console.log(error.response);
-          context.commit(SET_ERROR, error.response.data.errors);
+          context.commit(SET_ERROR, error.response?.data?.errors);
           reject(error);
         });
     });
@@ -330,7 +330,7 @@ const actions = {
           resolve(data);
         })
         .catch(error => {
-          context.commit(SET_ERROR, error.response.data.errors);
+          context.commit(SET_ERROR, error.response?.data?.errors);
           reject(error);
         });
     });
@@ -343,7 +343,7 @@ const actions = {
           resolve(data);
         })
         .catch(error => {
-          context.commit(SET_ERROR, error.response.data.errors);
+          context.commit(SET_ERROR, error.response?.data?.errors);
           reject(error);
         });
     });

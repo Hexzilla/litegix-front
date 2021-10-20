@@ -64,7 +64,7 @@ export default {
             }
           }
         },
-        user: {
+        provider: {
           validators: {
             notEmpty: {
               message: "This user is required"

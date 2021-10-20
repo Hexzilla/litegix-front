@@ -13,6 +13,7 @@ export const GET_INSTALL_STATUS = "GET_INSTALL_STATUS";
 export const GET_SERVER_SUMMERY = "GET_SERVER_SUMMERY";
 export const GET_SERVER_SETTINGS = "GET_SERVER_SETTINGS";
 export const UPDATE_SERVER_DETAIL = "UPDATE_SERVER_DETAIL";
+export const UPDATE_SERVER_ADDRESS = "UPDATE_SERVER_ADDRESS";
 export const DELETE_SERVER = "DELETE_SERVER";
 
 const state = {
@@ -142,6 +143,23 @@ const actions = {
       ApiService.setHeader();
       ApiService.put(
         "servers/" + payload.serverId + "/settings/details",
+        payload
+      )
+        .then(({ data }) => {
+          resolve(data);
+        })
+        .catch(error => {
+          context.commit(SET_ERROR, error.response?.data.errors);
+          reject(error);
+        });
+    });
+  },
+
+  [UPDATE_SERVER_ADDRESS](context, payload) {
+    return new Promise((resolve, reject) => {
+      ApiService.setHeader();
+      ApiService.put(
+        "servers/" + payload.serverId + "/settings/address",
         payload
       )
         .then(({ data }) => {

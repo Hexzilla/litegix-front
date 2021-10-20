@@ -116,7 +116,7 @@ export default {
         })
         .then(() => {
           this.$router.push({
-            path: `/server/${this.$parent.serverId}/systemuser`
+            path: `/servers/${this.$parent.serverId}/systemuser`
           });
         })
         .catch(err => {

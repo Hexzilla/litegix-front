@@ -138,7 +138,7 @@ export default {
           this.state = data.data;
           if (this.state.status == "finish") {
             setTimeout(
-              () => this.$router.push({ path: `/server/${serverId}/summary` }),
+              () => this.$router.push({ path: `/servers/${serverId}/summary` }),
               2000
             );
           }

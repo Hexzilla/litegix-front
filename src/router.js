@@ -21,28 +21,6 @@ export default new Router({
           component: () => import("@/view/pages/Builder.vue")
         },
         {
-          path: "/servers",
-          name: "Servers",
-          component: () => import("@/view/pages/servers/Servers.vue")
-        },
-
-        {
-          path: "/servers/create",
-          name: "server-create",
-          component: () => import("@/view/pages/servers/CreateServer.vue")
-        },
-        {
-          path: "/servers/connect",
-          name: "server-connect",
-          component: () => import("@/view/pages/servers/ConnectServer.vue")
-        },
-        {
-          path: "/servers/:serverId/config",
-          name: "server-config",
-          component: () => import("@/view/pages/servers/ConfigServer.vue"),
-          props: true
-        },
-        {
           path: "/settings",
           redirect: "/settings/profile",
           name: "settings",
@@ -123,8 +101,29 @@ export default new Router({
           ]
         },
         {
-          path: "server/:serverId",
-          redirect: "server/:serverId/summary",
+          path: "/servers",
+          name: "Servers",
+          component: () => import("@/view/pages/servers/Servers.vue")
+        },
+        {
+          path: "/servers/create",
+          name: "server-create",
+          component: () => import("@/view/pages/servers/CreateServer.vue")
+        },
+        {
+          path: "/servers/connect",
+          name: "server-connect",
+          component: () => import("@/view/pages/servers/ConnectServer.vue")
+        },
+        {
+          path: "/servers/:serverId/config",
+          name: "server-config",
+          component: () => import("@/view/pages/servers/ConfigServer.vue"),
+          props: true
+        },
+        {
+          path: "servers/:serverId",
+          redirect: "servers/:serverId/summary",
           name: "server",
           component: () => import("@/view/pages/server/Server.vue"),
           props: true,

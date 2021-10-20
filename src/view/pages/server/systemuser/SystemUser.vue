@@ -104,7 +104,7 @@ export default {
     change_password(user) {
       console.log("change_password", user);
       this.$router.push({
-        path: `/server/${this.serverId}/systemuser/${user.id}/change_password`
+        path: `/servers/${this.serverId}/systemuser/${user.id}/change_password`
       });
     },
     async deleteUser(user) {

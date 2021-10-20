@@ -219,7 +219,7 @@ export default {
         })
         .then(() => {
           this.$router.push({
-            path: `/server/${this.$parent.serverId}/cronjob`
+            path: `/servers/${this.$parent.serverId}/cronjob`
           });
         })
         .catch(err => {

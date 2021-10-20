@@ -14,7 +14,7 @@
             <template v-for="(item, i) in menuItems">
               <router-link
                 v-bind:key="i"
-                :to="`/server/` + serverId + item.link"
+                :to="`/servers/` + serverId + item.link"
                 v-slot="{ href, navigate, isActive, isExactActive }"
               >
                 <div

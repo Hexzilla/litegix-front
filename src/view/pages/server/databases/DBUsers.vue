@@ -85,13 +85,13 @@ export default {
     create_database_user: function(e) {
       e.preventDefault();
       this.$router.push({
-        path: `/server/${this.serverId}/database/createuser`
+        path: `/servers/${this.serverId}/database/createuser`
       });
     },
     change_password(e, item) {
       e.preventDefault();
       this.$router.push({
-        path: `/server/${this.serverId}/database/${item.id}/changepassword`
+        path: `/servers/${this.serverId}/database/${item.id}/changepassword`
       });
     },
     delete_dbuser: async function(dbuser) {

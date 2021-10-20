@@ -117,7 +117,7 @@ export default {
         })
         .then(() => {
           this.$router.push({
-            path: `/server/${this.$parent.serverId}/sshkey`
+            path: `/servers/${this.$parent.serverId}/sshkey`
           });
         })
         .catch(err => {

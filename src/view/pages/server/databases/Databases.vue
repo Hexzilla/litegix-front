@@ -103,7 +103,7 @@ export default {
   methods: {
     create_database: function(e) {
       e.preventDefault();
-      this.$router.push({ path: `/server/${this.serverId}/database/create` });
+      this.$router.push({ path: `/servers/${this.serverId}/database/create` });
     },
     revoke_dbuser: function(dbId, userId) {
       this.$store.dispatch(REVOKE_USER, {
@@ -115,7 +115,7 @@ export default {
     },
     grant_user(e, item) {
       this.$router.push({
-        path: `/server/${this.serverId}/database/${item.id}/grant`
+        path: `/servers/${this.serverId}/database/${item.id}/grant`
       });
     },
     delete_database: async function(database) {

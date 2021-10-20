@@ -141,7 +141,7 @@ export default {
         })
         .then(() => {
           this.$router.push({
-            path: `/server/${this.$parent.serverId}/database`
+            path: `/servers/${this.$parent.serverId}/database`
           });
         })
         .catch(err => {

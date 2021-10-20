@@ -30,7 +30,7 @@
           <i class="rc rc-ln-database rc-table-icon"></i>{{ data.item.name }}
         </template>
         <template #cell(change_password)="data">
-          <b-link :to="`database/` + data.item.id + `/changepassword`">
+          <b-link @click="change_password($event, data.item)">
             <span class="label label-lg label-inline label-danger">
               Change
             </span>
@@ -52,8 +52,7 @@
 import { showSuccessMsgbox, showConfirmMsgbox } from "@/view/shared/msgbox";
 import {
   GET_DBUSERS,
-  DELETE_DBUSER,
-  REVOKE_USER
+  DELETE_DBUSER
 } from "@/core/services/store/database.module";
 
 export default {
@@ -89,13 +88,11 @@ export default {
         path: `/server/${this.serverId}/database/createuser`
       });
     },
-    revoke_dbuser: function(dbId, userId) {
-      this.$store.dispatch(REVOKE_USER, {
-        serverId: this.serverId,
-        databaseId: dbId,
-        dbuserId: userId
+    change_password(e, item) {
+      e.preventDefault();
+      this.$router.push({
+        path: `/server/${this.serverId}/database/${item.id}/changepassword`
       });
-      this.$router.go();
     },
     delete_dbuser: async function(dbuser) {
       console.log("delete_dbuser", dbuser);

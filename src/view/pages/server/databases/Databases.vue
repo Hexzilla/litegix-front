@@ -33,13 +33,13 @@
             :key="user._id"
             role="button"
             class="mr-1"
-            v-on:click="revoke_dbuser(data.item._id, user._id)"
+            v-on:click="revoke_dbuser(data.item.id, user.id)"
             ><span class="label label-lg label-inline label-primary">
               {{ user.name }}
             </span></a
           >
 
-          <b-link :to="`database/` + data.item.id + `/grant`">
+          <b-link @click="grant_user($event, data.item)">
             <span class="label label-lg label-inline label-primary">
               Grant User
             </span>
@@ -95,9 +95,10 @@ export default {
     };
   },
   mounted() {
-    this.$store
-      .dispatch(GET_DATABASES, this.serverId)
-      .then(databases => (this.databases = databases));
+    this.$store.dispatch(GET_DATABASES, this.serverId).then(databases => {
+      console.log("databases", databases);
+      this.databases = databases;
+    });
   },
   methods: {
     create_database: function(e) {
@@ -111,6 +112,11 @@ export default {
         dbuserId: userId
       });
       this.$router.go();
+    },
+    grant_user(e, item) {
+      this.$router.push({
+        path: `/server/${this.serverId}/database/${item.id}/grant`
+      });
     },
     delete_database: async function(database) {
       console.log("delete_database", database);

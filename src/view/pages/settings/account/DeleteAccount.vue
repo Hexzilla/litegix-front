@@ -16,7 +16,7 @@
         </button> -->
       </div>
     </div>
-    <v-card class="card-body">
+    <div class="card-body">
       <form class="form" id="kt_delete_account_form">
         <div class="card-body">
           <div
@@ -86,9 +86,9 @@
             </div>
           </div>
 
-          <v-row>
-            <v-col md="6" offset-md="3" sm="12" offset-sm="0">
-              <b-form-group label="Email Address:" label-for="email">
+          <div class="row">
+            <div class="col-md-6 offset-md-3 col-sm-12 offset-sm-0">
+              <b-form-group label="Email Address:">
                 <b-form-input
                   id="email"
                   type="email"
@@ -97,69 +97,43 @@
                   ref="email"
                 ></b-form-input>
               </b-form-group>
-            </v-col>
-          </v-row>
-          <v-row>
-            <v-col md="6" offset-md="3" sm="12" offset-sm="0">
-              <div class="d-flex flex-grow-1">
-                <label class="checkbox checkbox-single flex-shrink-0 mr-4">
-                  <input id="chk_certify" type="checkbox" ref="chk_certify" />
-                  <span></span>
-                </label>
-                <label
-                  for="chk_certify"
-                  class="d-flex flex-wrap justify-content-between w-100"
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-6 offset-md-3 col-sm-12 offset-sm-0">
+              <b-form-group label="">
+                <b-form-checkbox size="lg"
+                  >I certify that I want to delete my account from
+                  Litegix.</b-form-checkbox
                 >
-                  <div class="d-flex flex-column py-2">
-                    <span>
-                      I certify that I want to delete my account from Litegix.
-                    </span>
-                  </div>
-                </label>
-              </div>
-            </v-col>
-          </v-row>
-          <v-row>
-            <v-col md="6" offset-md="3" sm="12" offset-sm="0">
-              <div class="d-flex flex-grow-1">
-                <label class="checkbox checkbox-single flex-shrink-0 mr-4">
-                  <input
-                    id="chk_invoice"
-                    type="checkbox"
-                    value="1"
-                    ref="chk_invoice"
-                  />
-                  <span></span>
-                </label>
-                <label
-                  for="chk_invoice"
-                  class="d-flex flex-wrap justify-content-between w-100"
-                >
-                  <div class="d-flex flex-column py-2">
-                    <span>
-                      I understand that my invoice and receipt will be keep for
-                      internal reference.
-                    </span>
-                  </div>
-                </label>
-              </div>
-            </v-col>
-          </v-row>
-          <v-row>
-            <v-col md="6" offset-md="3" sm="12" offset-sm="0">
+              </b-form-group>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-6 offset-md-3 col-sm-12 offset-sm-0">
+              <b-form-group label="">
+                <b-form-checkbox size="lg">
+                  I understand that my invoice and receipt will be keep for
+                  internal reference.
+                </b-form-checkbox>
+              </b-form-group>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-6 offset-md-3 col-sm-12 offset-sm-0">
               <button
                 type="reset"
-                class="btn btn-success mr-2"
+                class="btn btn-primary mr-2"
                 @click="submit($event)"
                 ref="kt_save_changes"
               >
                 Delete My Account
               </button>
-            </v-col>
-          </v-row>
+            </div>
+          </div>
         </div>
       </form>
-    </v-card>
+    </div>
   </div>
 </template>
 

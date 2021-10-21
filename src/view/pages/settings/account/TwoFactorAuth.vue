@@ -25,7 +25,7 @@
       </p>
 
       <router-link to="/settings/connectApp">
-        <button type="reset" class="btn btn-success mr-2">
+        <button type="reset" class="btn btn-warning mr-2">
           Set Up Two-Factor Authentication
         </button>
       </router-link>

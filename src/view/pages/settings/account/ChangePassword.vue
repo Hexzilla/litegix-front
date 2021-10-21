@@ -12,7 +12,7 @@
       <div class="card-toolbar">
         <button
           type="button"
-          class="btn btn-success mr-2"
+          class="btn btn-primary mr-2"
           @click="submit()"
           ref="kt_save_changes"
         >
@@ -22,42 +22,39 @@
     </div>
     <div class="card-body">
       <form class="form" id="kt_password_change_form">
-        <v-row class="form-group">
-          <v-col md="6" offset-md="3" sm="12" offset-sm="0">
-            <label for="current_password">Current Password:</label>
-            <input
-              type="password"
-              class="form-control mb-2"
-              placeholder="Enter current password"
-              name="current_password"
-              ref="current_password"
-            />
-          </v-col>
-        </v-row>
-        <v-row class="form-group">
-          <v-col md="6" offset-md="3" sm="12" offset-sm="0">
-            <label for="new_password">New Password:</label>
-            <input
-              type="password"
-              class="form-control mb-2"
-              placeholder="Enter new password"
-              name="new_password"
-              ref="new_password"
-            />
-          </v-col>
-        </v-row>
-        <v-row class="form-group">
-          <v-col md="6" offset-md="3" sm="12" offset-sm="0">
-            <label for="verify_password">Confirm password:</label>
-            <input
-              type="password"
-              class="form-control mb-2"
-              placeholder="Verify password"
-              name="verify_password"
-              ref="verify_password"
-            />
-          </v-col>
-        </v-row>
+        <div class="row">
+          <div class="col-md-6 offset-md-3 col-sm-12 offset-sm-0">
+            <b-form-group label="Current Password:">
+              <b-form-input
+                placeholder="Enter current password"
+                name="current_password"
+                ref="current_password"
+              ></b-form-input>
+            </b-form-group>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6 offset-md-3 col-sm-12 offset-sm-0">
+            <b-form-group label="New Password:">
+              <b-form-input
+                placeholder="Enter new password"
+                name="new_password"
+                ref="new_password"
+              ></b-form-input>
+            </b-form-group>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6 offset-md-3 col-sm-12 offset-sm-0">
+            <b-form-group label="Confirm Password:">
+              <b-form-input
+                placeholder="Verify password"
+                name="verify_password"
+                ref="verify_password"
+              ></b-form-input>
+            </b-form-group>
+          </div>
+        </div>
       </form>
     </div>
   </div>

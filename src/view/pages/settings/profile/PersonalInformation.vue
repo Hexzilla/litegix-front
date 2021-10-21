@@ -12,7 +12,7 @@
       <div class="card-toolbar">
         <button
           type="button"
-          class="btn btn-success mr-2"
+          class="btn btn-primary mr-2"
           @click="submit()"
           ref="kt_save_changes"
         >
@@ -22,66 +22,59 @@
     </div>
     <div class="card-body">
       <form class="form mt-5" id="kt_profile_form">
-        <v-row class="form-group">
-          <v-col md="6" offset-md="3" sm="12" offset-sm="0">
-            <label for="name">User Name:</label>
-            <input
-              type="text"
-              class="form-control mb-2"
-              placeholder="Enter your name"
-              name="name"
-              ref="name"
-              :value="currentUserPersonalInfo.username"
-            />
-          </v-col>
-        </v-row>
-        <v-row class="form-group">
-          <v-col md="6" offset-md="3" sm="12" offset-sm="0">
-            <label for="email">Email:</label>
-            <input
-              type="email"
-              class="form-control mb-2"
-              readonly
-              placeholder="Enter your email"
-              name="email"
-              ref="email"
-              :value="currentUserPersonalInfo.email"
-            />
-          </v-col>
-        </v-row>
-        <v-row class="form-group">
-          <v-col md="6" offset-md="3" sm="12" offset-sm="0">
-            <label for="timezone">Time Zone:</label>
-            <select class="form-control" ref="timezone">
-              <template v-for="(item, i) in time_zones">
-                <option
-                  v-bind:key="i"
-                  :value="item"
-                  :selected="currentUserPersonalInfo.timezone == item"
-                  >{{ item }}</option
-                >
-              </template>
-            </select>
-          </v-col>
-        </v-row>
-        <v-row class="form-group">
-          <v-col md="6" offset-md="3" sm="12" offset-sm="0">
-            <div class="checkbox-inline">
-              <label
-                class="
-                  checkbox checkbox-single
-                  flex-shrink-0
-                  mr-4"
+        <div class="row">
+          <div class="col-md-6 offset-md-3 col-sm-12 offset-sm-0">
+            <b-form-group label="User Name:">
+              <b-form-input
+                placeholder="Enter your name"
+                name="name"
+                ref="name"
+                :value="currentUserPersonalInfo.username"
+              ></b-form-input>
+            </b-form-group>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6 offset-md-3 col-sm-12 offset-sm-0">
+            <b-form-group label="Email:">
+              <b-form-input
+                readonly
+                placeholder="Enter your email"
+                name="email"
+                ref="email"
+                :value="currentUserPersonalInfo.email"
+              ></b-form-input>
+            </b-form-group>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6 offset-md-3 col-sm-12 offset-sm-0">
+            <b-form-group label="Time Zone:">
+              <select class="form-control" ref="timezone">
+                <template v-for="(item, i) in time_zones">
+                  <option
+                    v-bind:key="i"
+                    :value="item"
+                    :selected="currentUserPersonalInfo.timezone == item"
+                    >{{ item }}</option
+                  >
+                </template>
+              </select>
+            </b-form-group>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6 offset-md-3 col-sm-12 offset-sm-0">
+            <b-form-group label="">
+              <b-form-checkbox
+                size="lg"
+                ref="notification"
+                :checked="currentUserPersonalInfo.loginNotification"
+                >Login Email Notification</b-form-checkbox
               >
-                <input
-                  type="checkbox"
-                  ref="notification"
-                  :checked="currentUserPersonalInfo.loginNotification"
-                /><span></span> Login Email Notification</label
-              >
-            </div>
-          </v-col>
-        </v-row>
+            </b-form-group>
+          </div>
+        </div>
       </form>
     </div>
   </div>

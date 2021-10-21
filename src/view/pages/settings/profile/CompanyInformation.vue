@@ -12,7 +12,7 @@
       <div class="card-toolbar">
         <button
           type="button"
-          class="btn btn-success mr-2"
+          class="btn btn-primary mr-2"
           @click="submit()"
           ref="kt_save_changes"
         >
@@ -22,108 +22,102 @@
     </div>
     <div class="card-body">
       <form class="form mt-5" id="kt_company_form">
-        <v-row class="form-group">
-          <v-col md="6" offset-md="3" sm="12" offset-sm="0">
-            <label for="name"
-              >Company Name <span class="required">*</span></label
-            >
-            <input
-              type="text"
-              class="form-control mb-2"
-              placeholder="Enter company name"
-              name="companyName"
-              ref="companyName"
-              :value="currentUserCompany.name"
-            />
-          </v-col>
-        </v-row>
-        <v-row class="form-group">
-          <v-col cols="12" md="3" offset-md="3" sm="12" offset-sm="0">
-            <label for="name">Address Line 1</label>
-            <input
-              type="text"
-              class="form-control mb-2"
-              placeholder="Enter address line 1"
-              name="addressLine1"
-              ref="addressLine1"
-              :value="currentUserCompany.address1"
-            />
-          </v-col>
-          <v-col cols="12" md="3" offset-md="0" sm="12" offset-sm="0">
-            <label for="name">Address Line 2</label>
-            <input
-              type="text"
-              class="form-control mb-2"
-              placeholder="Enter address line 2"
-              name="addressLine2"
-              ref="addressLine2"
-              :value="currentUserCompany.address2"
-            />
-          </v-col>
-        </v-row>
-        <v-row class="form-group">
-          <v-col cols="12" md="3" offset-md="3" sm="12" offset-sm="0">
-            <label for="name">City</label>
-            <input
-              type="text"
-              class="form-control mb-2"
-              placeholder="Enter city"
-              name="city"
-              ref="city"
-              :value="currentUserCompany.city"
-            />
-          </v-col>
-          <v-col cols="12" md="3" offset-md="0" sm="12" offset-sm="0">
-            <label for="name">Country</label>
-            <select class="form-control" ref="country" name="country">
-              <template v-for="(item, i) in countries">
-                <option
-                  v-bind:key="i"
-                  :value="item"
-                  :selected="currentUserCompany.country == item ? true : false"
-                  >{{ item }}</option
-                >
-              </template>
-            </select>
-          </v-col>
-        </v-row>
-        <v-row class="form-group">
-          <v-col cols="12" md="3" offset-md="3" sm="12" offset-sm="0">
-            <label for="name">Postal Code</label>
-            <input
-              type="text"
-              class="form-control mb-2"
-              placeholder="Enter postal code"
-              name="postalCode"
-              ref="postalCode"
-              :value="currentUserCompany.postal"
-            />
-          </v-col>
-          <v-col cols="12" md="3" offset-md="0" sm="12" offset-sm="0">
-            <label for="name">State</label>
-            <input
-              type="text"
-              class="form-control mb-2"
-              placeholder="Enter state"
-              name="state"
-              ref="state"
-              :value="currentUserCompany.state"
-            />
-          </v-col>
-        </v-row>
-        <v-row class="form-group">
-          <v-col md="6" offset-md="3" sm="12" offset-sm="0">
-            <label for="name">Tax/VAT/GST Number</label>
-            <input
-              type="text"
-              class="form-control mb-2"
-              placeholder="Enter company name"
-              name="taxNumber"
-              ref="taxNumber"
-              :value="currentUserCompany.tax"
-            />
-          </v-col>
-        </v-row>
+        <div class="row">
+          <div class="col-md-6 offset-md-3 col-sm-12 offset-sm-0">
+            <b-form-group label="Company Name:">
+              <b-form-input
+                placeholder="Enter company name"
+                name="companyName"
+                ref="companyName"
+                :value="currentUserCompany.name"
+              ></b-form-input>
+            </b-form-group>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-3 offset-md-3 col-sm-12 offset-sm-0">
+            <b-form-group label="Address Line 1:">
+              <b-form-input
+                placeholder="Enter address line 1"
+                name="addressLine1"
+                ref="addressLine1"
+                :value="currentUserCompany.address1"
+              ></b-form-input>
+            </b-form-group>
+          </div>
+          <div class="col-md-3 offset-md-0 col-sm-12 offset-sm-0">
+            <b-form-group label="Address Line 2:">
+              <b-form-input
+                placeholder="Enter address line 2"
+                name="addressLine2"
+                ref="addressLine2"
+                :value="currentUserCompany.address2"
+              ></b-form-input>
+            </b-form-group>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-3 offset-md-3 col-sm-12 offset-sm-0">
+            <b-form-group label="City:">
+              <b-form-input
+                placeholder="Enter city"
+                name="city"
+                ref="city"
+                :value="currentUserCompany.city"
+              ></b-form-input>
+            </b-form-group>
+          </div>
+          <div class="col-md-3 offset-md-0 col-sm-12 offset-sm-0">
+            <b-form-group label="Country:">
+              <select class="form-control" ref="country" name="country">
+                <template v-for="(item, i) in countries">
+                  <option
+                    v-bind:key="i"
+                    :value="item"
+                    :selected="
+                      currentUserCompany.country == item ? true : false
+                    "
+                    >{{ item }}</option
+                  >
+                </template>
+              </select>
+            </b-form-group>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-3 offset-md-3 col-sm-12 offset-sm-0">
+            <b-form-group label="Postal Code:">
+              <b-form-input
+                placeholder="Enter postal code"
+                name="postalCode"
+                ref="postalCode"
+                :value="currentUserCompany.postal"
+              ></b-form-input>
+            </b-form-group>
+          </div>
+          <div class="col-md-3 offset-md-0 col-sm-12 offset-sm-0">
+            <b-form-group label="State:">
+              <b-form-input
+                placeholder="Enter state"
+                name="state"
+                ref="state"
+                :value="currentUserCompany.state"
+              ></b-form-input>
+            </b-form-group>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6 offset-md-3 col-sm-12 offset-sm-0">
+            <b-form-group label="Tax/VAT/GST Number:">
+              <b-form-input
+                placeholder="Enter company name"
+                name="taxNumber"
+                ref="taxNumber"
+                :value="currentUserCompany.tax"
+              ></b-form-input>
+            </b-form-group>
+          </div>
+        </div>
       </form>
     </div>
   </div>

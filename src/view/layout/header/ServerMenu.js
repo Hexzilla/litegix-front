@@ -12,9 +12,9 @@ export default [
     class: "round-top-right"
   },
   {
-    title: "Web Application",
-    link: "/application",
-    icon: "media/svg/icons/Communication/Mail-notification.svg"
+    title: "System",
+    link: "/system",
+    icon: "media/svg/icons/Communication/Mail-opened.svg"
   },
   {
     title: "Database",
@@ -22,9 +22,9 @@ export default [
     icon: "media/svg/icons/Communication/Reply-all.svg"
   },
   {
-    title: "System",
-    link: "/system",
-    icon: "media/svg/icons/Communication/Mail-opened.svg"
+    title: "Web Application",
+    link: "/application",
+    icon: "media/svg/icons/Communication/Mail-notification.svg"
   },
   {
     title: "SSH Key",

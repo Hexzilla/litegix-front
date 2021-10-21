@@ -18,63 +18,29 @@
           </b-link>
         </div>
       </div>
-      <div class="card-body py-5 ml-8 mr-8">
-        <div class="table-responsive">
-          <table
-            class="table table-head-custom table-vertical-center"
-            id="kt_advance_table_widget_4"
-          >
-            <thead>
-              <tr class="text-center">
-                <th class="pl-0 text-left" style="min-width: 200px">
-                  Label
-                </th>
-                <th>User</th>
-                <th>Public Key</th>
-                <th class="pr-0">Revoke</th>
-              </tr>
-            </thead>
-            <tbody>
-              <template v-for="(item, i) in sshKeys">
-                <tr v-bind:key="i">
-                  <td class="pl-0">
-                    <span
-                      class="
-                      font-weight-bolder
-                      text-hover-primary
-                      font-size-lg
-                    "
-                      >{{ item.label }}</span
-                    >
-                  </td>
-                  <td class="pl-0 text-center">
-                    <i class="btn btn-icon btn-center btn-hover-primary btn-sm">
-                      <span class="svg-icon svg-icon-md svg-icon-primary">
-                        <inline-svg
-                          src="media/svg/icons/General/Lock.svg"
-                        ></inline-svg>
-                      </span>
-                    </i>
-                  </td>
-                  <td class="pl-0 text-center">
-                    <i class="btn btn-icon btn-center btn-hover-primary btn-sm">
-                      <span class="svg-icon svg-icon-md svg-icon-primary">
-                        <inline-svg
-                          src="media/svg/icons/General/Lock.svg"
-                        ></inline-svg>
-                      </span>
-                    </i>
-                  </td>
-                  <td class="pr-0 text-center">
-                    <a role="button" v-on:click="deleteKey(item)"
-                      ><i class="fas fa-trash-alt text-danger"></i
-                    ></a>
-                  </td>
-                </tr>
-              </template>
-            </tbody>
-          </table>
-        </div>
+      <div class="card-body py-5">
+        <b-table
+          :items="sshKeys"
+          :fields="fields"
+          show-empty
+          empty-text="You don't have any deployment key yet."
+        >
+          <template #cell(user)="">
+            <span class="svg-icon svg-icon-primary">
+              <inline-svg src="media/svg/icons/Design/Layers.svg" />
+            </span>
+          </template>
+          <template #cell(publicKey)="">
+            <span class="svg-icon svg-icon-primary">
+              <inline-svg src="media/svg/icons/General/Visible.svg" />
+            </span>
+          </template>
+          <template #cell(revoke)="data">
+            <a role="button" v-on:click="deleteKey(data.item)">
+              <i class="fas fa-trash-alt text-danger"></i>
+            </a>
+          </template>
+        </b-table>
       </div>
     </div>
   </div>
@@ -98,7 +64,25 @@ export default {
     return {
       serverId: "",
       sshKeys: [],
-      checked: false
+      checked: false,
+      fields: [
+        "label",
+        {
+          key: "user",
+          thClass: "text-center",
+          tdClass: "text-center"
+        },
+        {
+          key: "publicKey",
+          thClass: "text-center",
+          tdClass: "text-center"
+        },
+        {
+          key: "revoke",
+          thClass: "text-center",
+          tdClass: "text-center"
+        }
+      ]
     };
   },
   mounted() {
@@ -136,6 +120,9 @@ export default {
           }
         })
         .catch(catchError);
+    },
+    showPublicKey(item) {
+      console.log("showPublicKey", item);
     }
   }
 };

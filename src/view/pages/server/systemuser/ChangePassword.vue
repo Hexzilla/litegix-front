@@ -54,9 +54,9 @@ import {
 } from "@/core/services/store/system.module";
 
 export default {
-  props: ["serverId"],
   data() {
     return {
+      serverId: "",
       userId: "",
       systemUser: {},
       form: {
@@ -65,6 +65,7 @@ export default {
     };
   },
   mounted() {
+    this.serverId = this.$route.params.serverId;
     this.userId = this.$route.params.userId;
     console.log("userId", this.userId);
     this.$store

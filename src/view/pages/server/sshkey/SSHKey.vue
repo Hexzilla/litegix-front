@@ -12,7 +12,7 @@
             class="form-control input-lg w-200px mr-5"
           />
           <b-link to="sshkey/create">
-            <a class="btn btn-success font-weight-bolder font-size-sm"
+            <a class="btn btn-primary font-weight-bolder font-size-sm"
               >Add SSHKey</a
             >
           </b-link>
@@ -94,14 +94,15 @@ import {
 } from "@/core/services/store/system.module";
 
 export default {
-  props: ["serverId"],
   data() {
     return {
+      serverId: "",
       sshKeys: [],
       checked: false
     };
   },
   mounted() {
+    this.serverId = this.$route.params.serverId;
     this.$store.dispatch(GET_SSH_KEYS, this.serverId).then(sshKeys => {
       this.sshKeys = sshKeys;
     });

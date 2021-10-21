@@ -31,3 +31,12 @@ export const catchError = async function(err) {
     err.response?.data?.errors?.message || err.message || "Unknown Error!";
   return showErrorMsgbox(message);
 };
+
+export const makeSuccessToast = function(thiz, content) {
+  thiz.$bvToast.toast(content, {
+    title: "Litegix",
+    variant: "success",
+    autoHideDelay: 1000,
+    solid: true
+  });
+};

@@ -67,9 +67,9 @@ import { showSuccessMsgbox, catchError } from "@/view/shared/msgbox";
 import { CREATE_SYSTEM_USER } from "@/core/services/store/system.module";
 
 export default {
-  props: ["serverId"],
   data() {
     return {
+      serverId: "",
       form: {
         name: "",
         password: "",
@@ -78,6 +78,7 @@ export default {
     };
   },
   mounted() {
+    this.serverId = this.$route.params.serverId;
     const create_form = KTUtil.getById("kt_form_database");
     this.fv = formValidation(create_form, {
       fields: {

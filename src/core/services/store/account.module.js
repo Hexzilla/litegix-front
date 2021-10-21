@@ -11,7 +11,7 @@ export const ADD_CHANNEL = "ADD_CHANNEL";
 export const DELETE_CHANNEL = "DELETE_CHANNEL";
 export const GET_PAYMENT_METHODS = "GET_PAYMENT_METHODS";
 export const ADD_PAYMENT_METHOD = "ADD_PAYMENT_METHOD";
-export const FETCH_API_KEYS = "FETCH_API_KEYS";
+export const GET_API_KEYS = "GET_API_KEYS";
 export const GENERATE_API_KEY = "GENERATE_API_KEY";
 export const GENERATE_SECRET_KEY = "GENERATE_SECRET_KEY";
 export const UPDATE_ENABLE_ACCESS = "UPDATE_ENABLE_ACCESS";
@@ -23,7 +23,6 @@ export const DELETE_ACCOUNT = "DELETE_ACCOUNT";
 export const SET_NOTIFICATION = "SET_NOTIFICATION";
 export const SET_NOTIFICATION_NEWSLETTERS = "SET_NOTIFICATION_NEWSLETTERS";
 export const SET_NOTIFICATION_CHANNELS = "SET_NOTIFICATION_CHANNELS";
-export const SET_API_KEYS = "SET_API_KEYS";
 
 const state = {
   newsletters: {
@@ -32,12 +31,7 @@ const state = {
     blog: false,
     event: false
   },
-  channels: [],
-  apiKeys: {
-    enableAccess: false,
-    apiKey: "API Key",
-    secretKey: "Secret Key"
-  }
+  channels: []
 };
 
 const getters = {
@@ -47,10 +41,6 @@ const getters = {
 
   notificationChannels(state) {
     return state.channels;
-  },
-
-  apiKeys(state) {
-    return state.apiKeys;
   }
 };
 
@@ -67,29 +57,26 @@ const actions = {
         });
     });
   },
-  [FETCH_API_KEYS](context) {
+  [GET_API_KEYS]() {
     return new Promise((resolve, reject) => {
       ApiService.setHeader();
       ApiService.get("settings/apikey")
         .then(({ data }) => {
           if (data.success) {
-            context.commit(SET_API_KEYS, data.data.apiKeys);
+            resolve(data.data.apiKeys);
           }
-          resolve(data);
+          reject(data);
         })
         .catch(error => {
           return reject(error);
         });
     });
   },
-  [GENERATE_API_KEY](context) {
+  [GENERATE_API_KEY]() {
     return new Promise((resolve, reject) => {
       ApiService.setHeader();
       ApiService.put("settings/apikey/apiKey")
         .then(({ data }) => {
-          if (data.success) {
-            context.commit(SET_API_KEYS, data.data.apiKeys);
-          }
           resolve(data);
         })
         .catch(error => {
@@ -97,14 +84,11 @@ const actions = {
         });
     });
   },
-  [GENERATE_SECRET_KEY](context) {
+  [GENERATE_SECRET_KEY]() {
     return new Promise((resolve, reject) => {
       ApiService.setHeader();
       ApiService.put("settings/apikey/secretKey")
         .then(({ data }) => {
-          if (data.success) {
-            context.commit(SET_API_KEYS, data.data.apiKeys);
-          }
           resolve(data);
         })
         .catch(error => {
@@ -117,9 +101,6 @@ const actions = {
       ApiService.setHeader();
       ApiService.post("settings/apikey/enableaccess", payload)
         .then(({ data }) => {
-          if (data.success) {
-            context.commit(SET_API_KEYS, data.data.apiKeys);
-          }
           resolve(data);
         })
         .catch(error => {
@@ -147,9 +128,9 @@ const actions = {
       ApiService.post("settings/apikey/ipaddr", payload)
         .then(({ data }) => {
           if (data.success) {
-            context.commit(SET_API_KEYS, data.data.apiKeys);
+            resolve(data.data.apiKeys);
           }
-          resolve(data);
+          reject(data);
         })
         .catch(error => {
           return reject(error);
@@ -303,12 +284,6 @@ const mutations = {
   },
   [SET_NOTIFICATION_CHANNELS](state, channels) {
     state.channels = channels;
-  },
-  [SET_API_KEYS](state, data) {
-    state.apiKeys = {
-      ...state.apiKeys,
-      ...data
-    };
   }
 };
 

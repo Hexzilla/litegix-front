@@ -1,24 +1,21 @@
 <template>
   <div>
-    <KTPhpVersion :serverId="this.$parent.serverId"></KTPhpVersion>
-    <KTSystemUser :serverId="this.$parent.serverId"> </KTSystemUser>
+    <PhpVersion :serverId="this.$parent.serverId"></PhpVersion>
+    <SystemUser :serverId="this.$parent.serverId"> </SystemUser>
   </div>
 </template>
 
 <style scoped src="@/assets/styles/server.css"></style>
 
 <script>
-import KTSystemUser from "../systemuser/SystemUser";
-import KTPhpVersion from "./PhpVersion";
+import SystemUser from "../systemuser/SystemUser";
+import PhpVersion from "./PhpVersion";
 
 export default {
   name: "KTSystem",
   components: {
-    KTSystemUser,
-    KTPhpVersion
-  },
-  mounted() {
-    console.log("~~~~~~~~~~~~~~~~~~~~~~~~1111", this.$parent);
+    SystemUser,
+    PhpVersion
   }
 };
 </script>

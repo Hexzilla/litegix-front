@@ -13,13 +13,6 @@
   </div>
 </template>
 
-<style lang="scss">
-@import "~vuetify/dist/vuetify.css";
-
-.theme--light.v-application {
-  background: transparent !important;
-}
-</style>
 <script>
 import { SET_BREADCRUMB } from "@/core/services/store/breadcrumbs.module";
 import KTAsideMobile from "@/view/layout/aside/AsideMobile.vue";

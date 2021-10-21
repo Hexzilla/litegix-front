@@ -4,6 +4,19 @@
 
 // Desktop Mode
 .submenu {
+	.navi {
+    .navi-item {
+        .navi-link {
+					padding: 0.75rem 1.0rem!important;
+
+					&.active {
+							@include navi-link-transition($transition);
+							@include navi-link-theme(get($navi-config, link-bullet-bg-active), get($navi-config, submenu-text-color-active), get($navi-config, submenu-icon-color-active), get($navi-config, link-arrow-color-active), null, null);
+					}
+				}
+    }
+	}
+
 	.navi-rect {
 		display: block!important;
 		text-align: center;

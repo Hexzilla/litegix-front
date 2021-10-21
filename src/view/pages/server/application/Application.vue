@@ -31,7 +31,6 @@
     </div>
     <div class="card-body py-0">
       <b-table
-        
         :items="items"
         :fields="fields"
         empty-text="There is nothing"
@@ -51,10 +50,10 @@ export default {
         "owner",
         "domain",
         "PHP_ version",
-        "stack",
+        "stack"
       ],
-      items: [],
+      items: []
     };
-  },
+  }
 };
 </script>

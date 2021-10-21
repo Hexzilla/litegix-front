@@ -13,7 +13,7 @@
           class="form-control input-lg w-200px mr-5"
         />
         <b-link @click="create_database_user($event)">
-          <a class="btn btn-success font-weight-bolder font-size-sm"
+          <a class="btn btn-primary font-weight-bolder font-size-sm"
             >Create Database User</a
           >
         </b-link>
@@ -31,7 +31,7 @@
         </template>
         <template #cell(change_password)="data">
           <b-link @click="change_password($event, data.item)">
-            <span class="label label-lg label-inline label-danger">
+            <span class="label label-lg label-inline label-primary">
               Change
             </span>
           </b-link>

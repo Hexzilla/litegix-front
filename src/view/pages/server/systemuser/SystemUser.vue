@@ -14,7 +14,7 @@
             class="form-control input-lg w-200px mr-5"
           />
           <b-link to="systemuser/create">
-            <a class="btn btn-success font-weight-bolder font-size-sm"
+            <a class="btn btn-primary font-weight-bolder font-size-sm"
               >Create User</a
             >
           </b-link>
@@ -89,13 +89,13 @@ import {
 export default {
   data() {
     return {
+      serverId: "",
       systemUsers: [],
-      checked: false,
-      serverId: false
+      checked: false
     };
   },
   mounted() {
-    this.serverId = this.$parent.serverId;
+    this.serverId = this.$route.params.serverId;
     this.$store.dispatch(GET_SYSTEM_USERS, this.serverId).then(systemUsers => {
       this.systemUsers = systemUsers;
     });

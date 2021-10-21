@@ -15,7 +15,7 @@
           />
 
           <b-link to="notification/addchannel">
-            <a class="btn btn-success">Add Notification Channel</a>
+            <a class="btn btn-primary">Add Notification Channel</a>
           </b-link>
         </div>
       </div>
@@ -89,7 +89,7 @@
               :options="keys"
             ></b-form-select>
           </div>
-          <button type="submit" class="btn btn-success btn-block">
+          <button type="submit" class="btn btn-primary btn-block">
             Save settings
           </button>
         </form>
@@ -110,10 +110,10 @@
         </h3>
       </div>
       <div class="card-body py-5">
-        <a role="button" class="btn btn-success mr-4">
+        <a role="button" class="btn btn-primary mr-4">
           Reinstall SSH login notification</a
         >
-        <a role="button" class="btn btn-success">
+        <a role="button" class="btn btn-primary">
           Uninstall SSH login notification</a
         >
       </div>
@@ -139,7 +139,7 @@
               placeholder="E.g: 10.8.0.0/24 or 192.168.2.3"
             ></b-form-input>
           </b-form-group>
-          <button type="submit" class="btn btn-success btn-block">Add</button>
+          <button type="submit" class="btn btn-primary btn-block">Add</button>
         </form>
         <hr />
         <h4>Allowed IP Addresses</h4>

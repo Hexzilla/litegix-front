@@ -9,63 +9,64 @@
     </div>
     <div class="card-body">
       <form class="form mt-5" id="kt_create_form">
-        <v-row class="form-group">
-          <v-col md="6" offset-md="3" sm="12" offset-sm="0">
-            <label for="web-sever">Web Server:</label>
-            <b-form-select
-              id="web-sever"
-              :options="webservers"
-              v-model="server.webserver"
-            ></b-form-select>
-          </v-col>
-        </v-row>
-        <v-row class="form-group">
-          <v-col md="6" offset-md="3" sm="12" offset-sm="0">
-            <label for="name">Server Name:</label>
-            <input
-              type="text"
-              class="form-control mb-2"
-              placeholder="Enter your name"
-              name="name"
-              ref="name"
-              v-model="server.name"
-            />
-          </v-col>
-        </v-row>
-        <v-row class="form-group">
-          <v-col md="6" offset-md="3" sm="12" offset-sm="0">
-            <label for="address">IP Address:</label>
-            <input
-              id="address"
-              type="text"
-              class="form-control mb-2"
-              placeholder="IP Address"
-              name="address"
-              ref="address"
-              v-model="server.address"
-            />
-          </v-col>
-        </v-row>
-        <v-row class="form-group">
-          <v-col md="6" offset-md="3" sm="12" offset-sm="0">
-            <label for="php-version">PHP Version:</label>
-            <b-form-select
-              id="php-version"
-              v-model="server.phpVersion"
-              :options="phpversions"
-            ></b-form-select>
-          </v-col>
-        </v-row>
-        <v-row class="form-group">
-          <v-col md="6" offset-md="3" sm="12" offset-sm="0">
-            <label for="database">Database:</label>
-            <b-form-select
-              id="database"
-              v-model="server.database"
-              :options="databases"
-            ></b-form-select>
-          </v-col>
-        </v-row>
+        <div class="row">
+          <div class="col-md-6 offset-md-3 col-sm-12 offset-sm-0">
+            <b-form-group label="Web Server:">
+              <b-form-select
+                id="web-sever"
+                :options="webservers"
+                v-model="server.webserver"
+              ></b-form-select>
+            </b-form-group>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6 offset-md-3 col-sm-12 offset-sm-0">
+            <b-form-group label="Server Name:">
+              <b-form-input
+                placeholder="Enter server name"
+                name="name"
+                ref="name"
+                v-model="server.name"
+              ></b-form-input>
+            </b-form-group>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6 offset-md-3 col-sm-12 offset-sm-0">
+            <b-form-group label="IP Address:">
+              <b-form-input
+                placeholder="IP Address"
+                name="address"
+                ref="address"
+                v-model="server.address"
+              ></b-form-input>
+            </b-form-group>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6 offset-md-3 col-sm-12 offset-sm-0">
+            <b-form-group label="PHP Version:">
+              <b-form-select
+                id="php-version"
+                v-model="server.phpVersion"
+                :options="phpversions"
+              ></b-form-select>
+            </b-form-group>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6 offset-md-3 col-sm-12 offset-sm-0">
+            <b-form-group label="Database:">
+              <b-form-select
+                id="database"
+                v-model="server.database"
+                :options="databases"
+              ></b-form-select>
+            </b-form-group>
+          </div>
+        </div>
+
         <div class="d-flex justify-content-center border-top mt-10 pt-10">
           <button
             type="button"

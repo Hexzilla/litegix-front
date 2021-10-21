@@ -8,7 +8,7 @@
       <v-card>
         <div class="card-body pt-14">
           <div
-            class="navi navi-bold navi-hover navi-active row p-5 list-rounded"
+            class="navi navi-bold navi-hover navi-active row p-5 list-rounded d-flex"
             role="tablist"
           >
             <template v-for="(item, i) in menuItems">

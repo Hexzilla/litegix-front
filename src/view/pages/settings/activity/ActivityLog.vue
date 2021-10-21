@@ -85,12 +85,12 @@ export default {
         },
         {
           key: "date"
-        },
-        {
+        }
+        /*{
           key: "category",
           thClass: "text-center",
           tdClass: "text-center"
-        }
+        }*/
       ],
       activities: [],
       currentPage: 1,

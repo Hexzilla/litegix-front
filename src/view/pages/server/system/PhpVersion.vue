@@ -28,7 +28,7 @@
       </b-form-group>
       <b-button
         type="submit"
-        class="btn btn-success"
+        class="btn btn-info font-weight-bolder"
         v-on:click="updateVersion"
       >
         Update PHP-CLI Version
@@ -40,16 +40,16 @@
 <style scoped src="@/assets/styles/server.css"></style>
 
 <script>
-import { showSuccessMsgbox, catchError } from "@/view/shared/msgbox";
+import { makeSuccessToast, catchError } from "@/view/shared/msgbox";
 import {
   GET_PHP_VERSION,
   UPDATE_PHP_VERSION
 } from "@/core/services/store/system.module";
 
 export default {
-  props: ["serverId"],
   data() {
     return {
+      serverId: "",
       selectedVersion: "7.2",
       options: [
         { text: "PHP 7.2", value: "7.2" },
@@ -59,6 +59,7 @@ export default {
     };
   },
   mounted() {
+    this.serverId = this.$route.params.serverId;
     this.$store.dispatch(GET_PHP_VERSION, this.serverId).then(phpVersion => {
       this.selectedVersion = phpVersion;
       console.log("PHPVersion", phpVersion);
@@ -76,7 +77,7 @@ export default {
         .dispatch(UPDATE_PHP_VERSION, payload)
         .then(phpVersion => {
           console.log("PHP version is updated", phpVersion);
-          showSuccessMsgbox("PHP version has been updated.");
+          makeSuccessToast(this, "PHP version has been updated.");
         })
         .catch(catchError);
     }

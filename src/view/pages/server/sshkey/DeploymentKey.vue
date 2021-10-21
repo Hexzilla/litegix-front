@@ -2,9 +2,9 @@
   <div class="card card-custom gutter-b">
     <div class="card-header border-0 py-5">
       <h3 class="card-title align-items-start flex-column">
-        <span class="card-label font-weight-bolder text-dark"
-          >Deployment Key</span
-        >
+        <span class="card-label font-weight-bolder text-dark">
+          Deployment Key
+        </span>
       </h3>
       <div class="card-toolbar">
         <input
@@ -13,15 +13,20 @@
           class="form-control input-lg w-200px mr-5"
         />
       </div>
-      <span class="text-muted mt-3 font-size-sm" data-nsfw-filter-status="swf"
-        >To use Git Deployment inside a Web Application, you must use and
+      <p class="font-size-md mt-1">
+        To use Git Deployment inside a Web Application, you must use and
         generate a Git Deployment Key. Each user can only have one deployment
         key, and it can be used for multiple Web Applications (except you are
-        using GitHub).</span
-      >
+        using GitHub).
+      </p>
     </div>
     <div class="card-body py-0">
-      <b-table :items="deployKeys" :fields="fields">
+      <b-table
+        :items="deployKeys"
+        :fields="fields"
+        show-empty
+        empty-text="You don't have any deployment key yet."
+      >
         <template #cell(view)="data">
           <span
             class="svg-icon svg-icon-primary"
@@ -51,9 +56,9 @@ import {
 } from "@/core/services/store/system.module";
 
 export default {
-  props: ["serverId"],
   data() {
     return {
+      serverId: "",
       fields: [
         "name",
         {
@@ -67,17 +72,15 @@ export default {
     };
   },
   mounted() {
-    this.fetchData();
+    this.serverId = this.$route.params.serverId;
+    this.$store.dispatch(GET_DEPLOY_KEYS, this.serverId).then(response => {
+      console.log("deployKeys", this.deployKeys);
+      if (response.success) {
+        this.deployKeys = response.data.keys;
+      }
+    });
   },
   methods: {
-    fetchData() {
-      this.$store.dispatch(GET_DEPLOY_KEYS, this.serverId).then(response => {
-        console.log(this.deployKeys);
-        if (response.success) {
-          this.deployKeys = response.data.keys;
-        }
-      });
-    },
     async createDeployKey(user) {
       const payload = { serverId: this.serverId, userId: user.id };
       const response = await this.$store.dispatch(CREATE_DEPLOY_KEY, payload);

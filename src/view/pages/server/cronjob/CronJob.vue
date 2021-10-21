@@ -12,7 +12,7 @@
         />
 
         <b-link to="cronjob/create">
-          <a class="btn btn-success">Create</a>
+          <a class="btn btn-primary">Create</a>
         </b-link>
       </div>
     </div>

@@ -59,9 +59,9 @@ import {
 } from "@/core/services/store/system.module";
 
 export default {
-  props: ["serverId"],
   data() {
     return {
+      serverId: "",
       systemUsers: [],
       label: "",
       system_user: "",
@@ -69,6 +69,7 @@ export default {
     };
   },
   mounted() {
+    this.serverId = this.$route.params.serverId;
     this.$store.dispatch(GET_SYSTEM_USERS, this.serverId).then(systemUsers => {
       this.systemUsers = systemUsers;
       console.log("systemUsers", this.systemUsers);

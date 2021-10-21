@@ -11,7 +11,7 @@
           class="form-control input-lg w-200px mr-5"
         />
         <b-link @click="create_database($event)">
-          <a class="btn btn-success font-weight-bolder font-size-sm"
+          <a class="btn btn-primary font-weight-bolder font-size-sm"
             >Create Database</a
           >
         </b-link>

@@ -101,29 +101,34 @@
 </template>
 
 <script>
-import Swal from "sweetalert2";
+import IPRestriction from "./IPRestriction.vue";
 import { SET_BREADCRUMB } from "@/core/services/store/breadcrumbs.module";
-import { mapGetters } from "vuex";
 import {
-  FETCH_API_KEYS,
+  GET_API_KEYS,
   GENERATE_API_KEY,
   GENERATE_SECRET_KEY,
   UPDATE_ENABLE_ACCESS
 } from "@/core/services/store/account.module";
-import IPRestriction from "./IPRestriction.vue";
+import {
+  makeSuccessToast,
+  showConfirmMsgbox,
+  catchError
+} from "@/view/shared/msgbox";
 
 export default {
   name: "Authentication",
   data() {
     return {
+      apiKeys: {
+        enableAccess: false,
+        apiKey: "API Key",
+        secretKey: "Secret Key"
+      },
       enableAccessOptions: [
         { value: true, text: "Enable" },
         { value: false, text: "Disable" }
       ]
     };
-  },
-  computed: {
-    ...mapGetters(["apiKeys"])
   },
   components: {
     IPRestriction
@@ -134,56 +139,72 @@ export default {
       { title: "API Key" }
     ]);
 
-    this.$store.dispatch(FETCH_API_KEYS);
+    this.$store.dispatch(GET_API_KEYS).then(apiKeys => {
+      console.log("apiKeys", apiKeys);
+      this.apiKeys = apiKeys;
+    });
   },
   methods: {
-    async generateApiKey() {
-      const result = await Swal.fire({
-        title: "",
-        text: "Do you want to generate new API Key?",
-        icon: "question",
-        showConfirmButton: true,
-        showCancelButton: true,
-        heightAuto: false
-      });
+    generateApiKey: async function() {
+      const result = await showConfirmMsgbox(
+        "Do you want to generate new API Key?"
+      );
       if (!result.isConfirmed) {
         return;
       }
 
-      const response = await this.$store.dispatch(GENERATE_API_KEY);
-      if (response && response.success) {
-        console.log("generateApiKey-success");
-      }
+      this.$store
+        .dispatch(GENERATE_API_KEY)
+        .then(data => {
+          if (!data.success) {
+            throw new Error(data.errors.message);
+          }
+          this.apiKeys = data.data.apiKeys;
+          makeSuccessToast(this, "Your API Key has been successfully created.");
+        })
+        .catch(catchError);
     },
-    async generateSecretKey() {
-      const result = await Swal.fire({
-        title: "",
-        text: "Do you want to generate new secret key?",
-        icon: "question",
-        showConfirmButton: true,
-        showCancelButton: true,
-        heightAuto: false
-      });
+    generateSecretKey: async function() {
+      console.log("generateSecretKey");
+      const result = await showConfirmMsgbox(
+        "Do you want to generate new secret key?"
+      );
       if (!result.isConfirmed) {
         return;
       }
 
-      const response = await this.$store.dispatch(GENERATE_SECRET_KEY);
-      if (response && response.success) {
-        console.log("generateSecretKey-success");
-      }
+      this.$store
+        .dispatch(GENERATE_SECRET_KEY)
+        .then(data => {
+          if (!data.success) {
+            throw new Error(data.errors.message);
+          }
+          this.apiKeys = data.data.apiKeys;
+          makeSuccessToast(
+            this,
+            "Your Secret Key has been successfully created."
+          );
+        })
+        .catch(catchError);
     },
-    async changeEnalbeAccess(state) {
+    changeEnalbeAccess: function(state) {
       const payload = {
         state: state
       };
-      const response = await this.$store.dispatch(
-        UPDATE_ENABLE_ACCESS,
-        payload
-      );
-      if (response && response.success) {
-        console.log("enable-success");
-      }
+      this.$store
+        .dispatch(UPDATE_ENABLE_ACCESS, payload)
+        .then(data => {
+          if (!data.success) {
+            throw new Error(data.errors.message);
+          }
+          this.apiKeys.enableAccess = data.data.enableAccess;
+
+          const message = this.apiKeys.enableAccess
+            ? "API access is enabled."
+            : "API access is disabled.";
+          makeSuccessToast(this, message);
+        })
+        .catch(catchError);
     }
   }
 };

@@ -47,13 +47,14 @@ import Trigger from "@/assets/plugins/formvalidation/dist/es6/plugins/Trigger";
 import Bootstrap from "@/assets/plugins/formvalidation/dist/es6/plugins/Bootstrap";
 import SubmitButton from "@/assets/plugins/formvalidation/dist/es6/plugins/SubmitButton";
 import KTUtil from "@/assets/js/components/util";
-import { showSuccessMsgbox, showErrorMsgbox } from "@/view/shared/msgbox";
+import { showSuccessMsgbox, catchError } from "@/view/shared/msgbox";
 import {
   GET_SYSTEM_USER,
   CHANGE_SYSTEM_USER_PASSWORD
 } from "@/core/services/store/system.module";
 
 export default {
+  props: ["serverId"],
   data() {
     return {
       userId: "",
@@ -68,7 +69,7 @@ export default {
     console.log("userId", this.userId);
     this.$store
       .dispatch(GET_SYSTEM_USER, {
-        serverId: this.$parent.serverId,
+        serverId: this.serverId,
         userId: this.userId
       })
       .then(systemUser => {
@@ -120,7 +121,7 @@ export default {
 
       const payload = {
         password: this.form.password,
-        serverId: this.$parent.serverId,
+        serverId: this.serverId,
         userId: this.userId
       };
       this.$store
@@ -135,13 +136,7 @@ export default {
             name: "server-systemusers"
           });
         })
-        .catch(err => {
-          const message =
-            err.response?.data?.errors?.message ||
-            err.message ||
-            "Failed to change password!";
-          return showErrorMsgbox(message);
-        })
+        .catch(catchError)
         .finally(() => {
           submitButton.classList.remove(
             "spinner",

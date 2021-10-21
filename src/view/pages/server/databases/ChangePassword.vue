@@ -54,7 +54,7 @@ import Trigger from "@/assets/plugins/formvalidation/dist/es6/plugins/Trigger";
 import Bootstrap from "@/assets/plugins/formvalidation/dist/es6/plugins/Bootstrap";
 import SubmitButton from "@/assets/plugins/formvalidation/dist/es6/plugins/SubmitButton";
 import KTUtil from "@/assets/js/components/util";
-import { showSuccessMsgbox, showErrorMsgbox } from "@/view/shared/msgbox";
+import { showSuccessMsgbox, catchError } from "@/view/shared/msgbox";
 import {
   GET_DBUSER,
   CHANGE_PASSWORD
@@ -137,13 +137,7 @@ export default {
             name: "server-database"
           });
         })
-        .catch(err => {
-          const message =
-            err.response?.data?.errors?.message ||
-            err.message ||
-            "Failed to change password!";
-          return showErrorMsgbox(message);
-        })
+        .catch(catchError)
         .finally(() => {
           submitButton.classList.remove(
             "spinner",

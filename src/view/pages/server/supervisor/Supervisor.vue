@@ -50,6 +50,7 @@
 import { GET_SUPERVISOR_JOBS } from "@/core/services/store/system.module";
 
 export default {
+  props: ["serverId"],
   data() {
     return {
       fields: [
@@ -61,7 +62,6 @@ export default {
     };
   },
   mounted() {
-    this.serverId = this.$parent.serverId;
     this.fetchData();
   },
   methods: {

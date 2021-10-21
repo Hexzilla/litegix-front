@@ -22,8 +22,8 @@ export default [
     icon: "media/svg/icons/Communication/Reply-all.svg"
   },
   {
-    title: "System User",
-    link: "/systemuser",
+    title: "System",
+    link: "/system",
     icon: "media/svg/icons/Communication/Mail-opened.svg"
   },
   {
@@ -31,7 +31,7 @@ export default [
     link: "/sshkey",
     icon: "media/svg/icons/Communication/Safe-chat.svg"
   },
-  {
+  /*{
     title: "Deployment Key",
     link: "/deployment",
     icon: "media/svg/icons/Communication/Sending.svg"
@@ -40,7 +40,7 @@ export default [
     title: "PHP CLI",
     link: "/phpcli",
     icon: "media/svg/icons/Communication/Thumbtack.svg"
-  },
+  },*/
   {
     title: "Notifications",
     link: "/notification",

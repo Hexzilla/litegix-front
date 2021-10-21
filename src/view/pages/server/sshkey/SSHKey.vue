@@ -86,7 +86,7 @@
 import {
   showConfirmMsgbox,
   showSuccessMsgbox,
-  showErrorMsgbox
+  catchError
 } from "@/view/shared/msgbox";
 import {
   GET_SSH_KEYS,
@@ -94,15 +94,14 @@ import {
 } from "@/core/services/store/system.module";
 
 export default {
+  props: ["serverId"],
   data() {
     return {
       sshKeys: [],
-      checked: false,
-      serverId: false
+      checked: false
     };
   },
   mounted() {
-    this.serverId = this.$parent.serverId;
     this.$store.dispatch(GET_SSH_KEYS, this.serverId).then(sshKeys => {
       this.sshKeys = sshKeys;
     });
@@ -135,13 +134,7 @@ export default {
             this.sshKeys.splice(index, 1);
           }
         })
-        .catch(err => {
-          const message =
-            err.response?.data?.errors?.message ||
-            err.message ||
-            "Failed to delete SSH key!";
-          return showErrorMsgbox(message);
-        });
+        .catch(catchError);
     }
   }
 };

@@ -51,9 +51,9 @@ import {
 } from "@/core/services/store/system.module";
 
 export default {
+  props: ["serverId"],
   data() {
     return {
-      serverId: null,
       fields: [
         "name",
         {
@@ -67,7 +67,6 @@ export default {
     };
   },
   mounted() {
-    this.serverId = this.$parent.serverId;
     this.fetchData();
   },
   methods: {

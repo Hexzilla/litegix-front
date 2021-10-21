@@ -63,10 +63,11 @@ import Trigger from "@/assets/plugins/formvalidation/dist/es6/plugins/Trigger";
 import Bootstrap from "@/assets/plugins/formvalidation/dist/es6/plugins/Bootstrap";
 import SubmitButton from "@/assets/plugins/formvalidation/dist/es6/plugins/SubmitButton";
 import KTUtil from "@/assets/js/components/util";
-import { showSuccessMsgbox, showErrorMsgbox } from "@/view/shared/msgbox";
+import { showSuccessMsgbox, catchError } from "@/view/shared/msgbox";
 import { CREATE_SYSTEM_USER } from "@/core/services/store/system.module";
 
 export default {
+  props: ["serverId"],
   data() {
     return {
       form: {
@@ -107,7 +108,7 @@ export default {
         .dispatch(CREATE_SYSTEM_USER, {
           name: this.form.name,
           password: this.form.password,
-          serverId: this.$parent.serverId
+          serverId: this.serverId
         })
         .then(() => {
           return showSuccessMsgbox(
@@ -116,16 +117,10 @@ export default {
         })
         .then(() => {
           this.$router.push({
-            path: `/servers/${this.$parent.serverId}/systemuser`
+            path: `/servers/${this.serverId}/systemuser`
           });
         })
-        .catch(err => {
-          const message =
-            err.data?.errors?.message ||
-            err.message ||
-            "Failed to add system user!";
-          return showErrorMsgbox(message);
-        })
+        .catch(catchError)
         .finally(() => {
           submitButton.classList.remove(
             "spinner",

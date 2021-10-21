@@ -25,3 +25,9 @@ export const showErrorMsgbox = async function(text) {
     heightAuto: true
   });
 };
+
+export const catchError = async function(err) {
+  const message =
+    err.response?.data?.errors?.message || err.message || "Unknown Error!";
+  return showErrorMsgbox(message);
+};

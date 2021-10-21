@@ -42,7 +42,7 @@ import Trigger from "@/assets/plugins/formvalidation/dist/es6/plugins/Trigger";
 import Bootstrap from "@/assets/plugins/formvalidation/dist/es6/plugins/Bootstrap";
 import SubmitButton from "@/assets/plugins/formvalidation/dist/es6/plugins/SubmitButton";
 import KTUtil from "@/assets/js/components/util";
-import { showSuccessMsgbox, showErrorMsgbox } from "@/view/shared/msgbox";
+import { showSuccessMsgbox, catchError } from "@/view/shared/msgbox";
 import { ADD_ALLOWED_IP_ADDRESS } from "@/core/services/store/account.module";
 
 export default {
@@ -99,13 +99,7 @@ export default {
         .then(() => {
           this.$router.push({ name: "settings-apiKey" });
         })
-        .catch(err => {
-          const message =
-            err.response?.data?.errors?.message ||
-            err.message ||
-            "Failed to add IP address!";
-          return showErrorMsgbox(message);
-        })
+        .catch(catchError)
         .finally(() => {
           submitButton.classList.remove(
             "spinner",

@@ -52,13 +52,14 @@ import Trigger from "@/assets/plugins/formvalidation/dist/es6/plugins/Trigger";
 import Bootstrap from "@/assets/plugins/formvalidation/dist/es6/plugins/Bootstrap";
 import SubmitButton from "@/assets/plugins/formvalidation/dist/es6/plugins/SubmitButton";
 import KTUtil from "@/assets/js/components/util";
-import { showErrorMsgbox, showSuccessMsgbox } from "@/view/shared/msgbox";
+import { catchError, showSuccessMsgbox } from "@/view/shared/msgbox";
 import {
   GET_SYSTEM_USERS,
   CREATE_SSH_KEY
 } from "@/core/services/store/system.module";
 
 export default {
+  props: ["serverId"],
   data() {
     return {
       systemUsers: [],
@@ -68,7 +69,6 @@ export default {
     };
   },
   mounted() {
-    this.serverId = this.$parent.serverId;
     this.$store.dispatch(GET_SYSTEM_USERS, this.serverId).then(systemUsers => {
       this.systemUsers = systemUsers;
       console.log("systemUsers", this.systemUsers);
@@ -105,7 +105,7 @@ export default {
           label: this.label,
           userId: this.system_user,
           publicKey: this.public_key,
-          serverId: this.$parent.serverId
+          serverId: this.serverId
         })
         .then(data => {
           if (!data.success) {
@@ -117,16 +117,10 @@ export default {
         })
         .then(() => {
           this.$router.push({
-            path: `/servers/${this.$parent.serverId}/sshkey`
+            path: `/servers/${this.serverId}/sshkey`
           });
         })
-        .catch(err => {
-          const message =
-            err.data?.errors?.message ||
-            err.message ||
-            "Failed to add SSH key!";
-          return showErrorMsgbox(message);
-        })
+        .catch(catchError)
         .finally(() => {
           submitButton.classList.remove(
             "spinner",

@@ -217,6 +217,11 @@ export default new Router({
               component: () => import("@/view/pages/server/DeleteServer.vue")
             },
             {
+              path: "system",
+              name: "server-system",
+              component: () => import("@/view/pages/server/system/Index.vue")
+            },
+            {
               path: "systemuser",
               name: "server-systemusers",
               component: () =>
@@ -238,7 +243,7 @@ export default new Router({
             {
               path: "sshkey",
               name: "server-sshkey",
-              component: () => import("@/view/pages/server/sshkey/SSHKey.vue")
+              component: () => import("@/view/pages/server/sshkey/Index.vue")
             },
             {
               path: "sshkey/create",
@@ -246,7 +251,7 @@ export default new Router({
               component: () =>
                 import("@/view/pages/server/sshkey/AddSSHKey.vue")
             },
-            {
+            /*{
               path: "deployment",
               name: "server-deployment",
               component: () => import("@/view/pages/server/DeploymentKey.vue")
@@ -255,7 +260,7 @@ export default new Router({
               path: "phpcli",
               name: "server-phpcli",
               component: () => import("@/view/pages/server/PhpVersion.vue")
-            },
+            },*/
             {
               path: "cronjob",
               name: "server-cronjob",

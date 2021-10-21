@@ -49,7 +49,7 @@ import KTUtil from "@/assets/js/components/util";
 import {
   showConfirmMsgbox,
   showSuccessMsgbox,
-  showErrorMsgbox
+  catchError
 } from "@/view/shared/msgbox";
 import { UPDATE_SERVER_ADDRESS } from "@/core/services/store/servers.module";
 
@@ -108,13 +108,7 @@ export default {
             `Server address has been successfully changed`
           );
         })
-        .catch(err => {
-          const message =
-            err.response?.data?.errors?.message ||
-            err.message ||
-            "Failed to change server address!";
-          return showErrorMsgbox(message);
-        })
+        .catch(catchError)
         .finally(() => {
           submitButton.classList.remove(
             "spinner",

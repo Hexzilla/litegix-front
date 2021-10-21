@@ -44,7 +44,7 @@ import Trigger from "@/assets/plugins/formvalidation/dist/es6/plugins/Trigger";
 import Bootstrap from "@/assets/plugins/formvalidation/dist/es6/plugins/Bootstrap";
 import SubmitButton from "@/assets/plugins/formvalidation/dist/es6/plugins/SubmitButton";
 import KTUtil from "@/assets/js/components/util";
-import { showSuccessMsgbox, showErrorMsgbox } from "@/view/shared/msgbox";
+import { showSuccessMsgbox, catchError } from "@/view/shared/msgbox";
 import { UPDATE_SERVER_DETAIL } from "@/core/services/store/servers.module";
 
 export default {
@@ -99,13 +99,7 @@ export default {
           }
           return showSuccessMsgbox(`Server has been successfully updated`);
         })
-        .catch(err => {
-          const message =
-            err.response?.data?.errors?.message ||
-            err.message ||
-            "Failed to update server!";
-          return showErrorMsgbox(message);
-        })
+        .catch(catchError)
         .finally(() => {
           submitButton.classList.remove(
             "spinner",

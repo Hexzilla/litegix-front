@@ -40,13 +40,14 @@
 <style scoped src="@/assets/styles/server.css"></style>
 
 <script>
-import { showSuccessMsgbox } from "@/view/shared/msgbox";
+import { showSuccessMsgbox, catchError } from "@/view/shared/msgbox";
 import {
   GET_PHP_VERSION,
   UPDATE_PHP_VERSION
 } from "@/core/services/store/system.module";
 
 export default {
+  props: ["serverId"],
   data() {
     return {
       selectedVersion: "7.2",
@@ -58,16 +59,12 @@ export default {
     };
   },
   mounted() {
-    this.serverId = this.$parent.serverId;
-    this.fetchData();
+    this.$store.dispatch(GET_PHP_VERSION, this.serverId).then(phpVersion => {
+      this.selectedVersion = phpVersion;
+      console.log("PHPVersion", phpVersion);
+    });
   },
   methods: {
-    fetchData() {
-      this.$store.dispatch(GET_PHP_VERSION, this.serverId).then(phpVersion => {
-        this.selectedVersion = phpVersion;
-        console.log("phpVersion", phpVersion);
-      });
-    },
     updateVersion(e) {
       e.preventDefault();
       console.log("updateVersion", this.selectedVersion);
@@ -75,10 +72,13 @@ export default {
         serverId: this.serverId,
         phpVersion: this.selectedVersion
       };
-      this.$store.dispatch(UPDATE_PHP_VERSION, payload).then(phpVersion => {
-        console.log("updated", phpVersion);
-        showSuccessMsgbox("PHP version has been updated.");
-      });
+      this.$store
+        .dispatch(UPDATE_PHP_VERSION, payload)
+        .then(phpVersion => {
+          console.log("PHP version is updated", phpVersion);
+          showSuccessMsgbox("PHP version has been updated.");
+        })
+        .catch(catchError);
     }
   }
 };

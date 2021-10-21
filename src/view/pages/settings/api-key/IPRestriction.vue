@@ -17,9 +17,7 @@
             class="form-control input-lg w-200px mr-5"
           />
           <b-link to="apiKey/ipaddr/new">
-            <a class="btn btn-success font-weight-bolder font-size-sm"
-              >Add IP Address</a
-            >
+            <a class="btn btn-primary">Add IP Address</a>
           </b-link>
         </div>
       </div>

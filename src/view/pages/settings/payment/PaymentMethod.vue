@@ -11,9 +11,7 @@
       </div>
       <div class="card-toolbar">
         <b-link to="paymentmethod/new">
-          <a class="btn btn-success font-weight-bolder font-size-sm"
-            >Add New Payment Method</a
-          >
+          <a class="btn btn-primary mr-2">Add New Payment Method</a>
         </b-link>
       </div>
     </div>

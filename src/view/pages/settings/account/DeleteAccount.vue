@@ -120,10 +120,10 @@
             </div>
           </div>
           <div class="row">
-            <div class="col-md-6 offset-md-3 col-sm-12 offset-sm-0">
+            <div class="col-md-6 offset-md-3 col-sm-12 offset-sm-0 text-center">
               <button
                 type="reset"
-                class="btn btn-primary mr-2"
+                class="btn btn-danger"
                 @click="submit($event)"
                 ref="kt_save_changes"
               >

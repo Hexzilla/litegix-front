@@ -14,12 +14,29 @@
       <div class="card-body">
         <div class="card-title align-items-start flex-column">
           <p class="font-size-md mt-1">
+            Enable API Access to use the Litegix API endpoint. If you are only
+            using the API Key and API Secret to download backups, you don't have
+            to enable this.
+          </p>
+        </div>
+        <div>
+          <div class="col-md-8 offset-md-2 col-sm-12 offset-sm-0">
+            <b-form-select
+              v-model="apiKeys.enableAccess"
+              :options="enableAccessOptions"
+              @change="changeEnalbeAccess"
+            ></b-form-select>
+          </div>
+        </div>
+
+        <div class="card-title align-items-start flex-column mt-20">
+          <p class="font-size-md mt-1">
             You can use this API Key and API Secret to download your backup. To
             enable API access, you need to enable API Access.
           </p>
         </div>
-        <v-row>
-          <v-col md="6" offset-md="3" sm="12" offset-sm="0">
+        <div>
+          <div class="col-md-8 offset-md-2 col-sm-12 offset-sm-0">
             <b-form-group label="API Key:" label-for="apiKey">
               <b-input-group class="mt-3">
                 <b-form-input
@@ -45,10 +62,10 @@
                 </b-input-group-append>
               </b-input-group>
             </b-form-group>
-          </v-col>
-        </v-row>
-        <v-row>
-          <v-col md="6" offset-md="3" sm="12" offset-sm="0">
+          </div>
+        </div>
+        <div>
+          <div class="col-md-8 offset-md-2 col-sm-12 offset-sm-0">
             <b-form-group label="Secret Key:" label-for="secretKey">
               <b-input-group class="mt-3">
                 <b-form-input
@@ -74,25 +91,8 @@
                 </b-input-group-append>
               </b-input-group>
             </b-form-group>
-          </v-col>
-        </v-row>
-
-        <div class="card-title align-items-start flex-column mt-20">
-          <p class="font-size-md mt-1">
-            Enable API Access to use the Litegix API endpoint. If you are only
-            using the API Key and API Secret to download backups, you don't have
-            to enable this.
-          </p>
+          </div>
         </div>
-        <v-row>
-          <v-col md="6" offset-md="3" sm="12" offset-sm="0">
-            <b-form-select
-              v-model="apiKeys.enableAccess"
-              :options="enableAccessOptions"
-              @change="changeEnalbeAccess"
-            ></b-form-select>
-          </v-col>
-        </v-row>
       </div>
     </div>
 

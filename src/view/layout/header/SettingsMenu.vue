@@ -4,7 +4,7 @@
     id="kt_settings_aside"
     ref="kt_settings_aside"
   >
-    <v-card>
+    <div class="card">
       <div class="card-body pt-14">
         <!--Avatar-->
         <div class="text-center mb-10">
@@ -44,7 +44,7 @@
 
         <!--Menu Items-->
         <div
-          class="navi navi-bold navi-hover navi-active row p-5 list-rounded"
+          class="navi navi-bold navi-hover navi-active row p-5 list-rounded d-flex"
           role="tablist"
         >
           <template v-for="(item, i) in menuItems">
@@ -83,7 +83,7 @@
           </template>
         </div>
       </div>
-    </v-card>
+    </div>
   </div>
 </template>
 <script>

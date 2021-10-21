@@ -16,9 +16,7 @@
           class="form-control input-lg w-200px mr-5"
         />
         <b-link to="notification/channel/new">
-          <a class="btn btn-success font-weight-bolder font-size-sm"
-            >Add New Channel</a
-          >
+          <a class="btn btn-primary">Add New Channel</a>
         </b-link>
       </div>
     </div>
@@ -32,7 +30,7 @@
           <b> Payment History (soon)</b>.
         </span>
       </div>
-      <div class="overflow-auto">
+      <div class="overflow-auto mt-10">
         <b-table
           :items="channels"
           :fields="fields"

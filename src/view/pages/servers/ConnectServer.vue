@@ -93,7 +93,7 @@
                       <div class="d-inline-block">
                         <p class="font-weight-bold">Connect via IP Address</p>
                         <p>
-                          Connect external server with RunCloud via IP Address
+                          Connect external server with Litegix via IP Address
                         </p>
                       </div>
                     </div>
@@ -116,7 +116,7 @@
                       <ol v-if="provision_type == 'ipaddress'">
                         <li>
                           You need to have a cloud Virtual Private Server (VPS)
-                          hosting first to use RunCloud.
+                          hosting first to use Litegix.
                         </li>
                         <li>
                           You need to manually create server on your VPS
@@ -129,10 +129,10 @@
                           >.
                         </li>
                         <li>
-                          RunCloud will not work on existing production server
+                          Litegix will not work on existing production server
                         </li>
                         <li>
-                          RunCloud would not work with NAT VPN and OpenVZ.<a
+                          Litegix would not work with NAT VPN and OpenVZ.<a
                             href=""
                             target="_blank"
                             alt="noopener noreferrer"

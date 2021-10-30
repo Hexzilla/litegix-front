@@ -20,14 +20,14 @@
             </p>
             <p>
               Please be advice that your
-              <a href="https://manage.runcloud.io/backup/dashboard"
+              <a href="https://manage.Litegix.io/backup/dashboard"
                 >Backup Instance</a
               >
               for <strong>Web Application</strong> and
               <strong>Database</strong> will be <strong>DELETED</strong> after
               server transfer process completed. Every backup files under the
               backup instance will moved to
-              <a href="https://manage.runcloud.io/backup/files"
+              <a href="https://manage.Litegix.io/backup/files"
                 >Backup Archive</a
               >
               section.

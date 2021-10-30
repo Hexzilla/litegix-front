@@ -19,12 +19,12 @@
         <b-form-group label="Type YES"
           ><b-form-input
             name="typeyes"
-            placeholder="Type Yes here to delete this server form RunCloud"
+            placeholder="Type Yes here to delete this server form Litegix"
           ></b-form-input>
         </b-form-group>
         <b-form-group label="Certify To Delete Server">
           <b-form-checkbox size="lg" name="certify"
-            >I certify that I want to delete my server from RunCloud and data
+            >I certify that I want to delete my server from Litegix and data
             will not be returnable again.</b-form-checkbox
           >
         </b-form-group>

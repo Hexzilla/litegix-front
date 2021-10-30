@@ -21,7 +21,7 @@
       </div>
       <div class="row justify-content-center my-1 p-8">
         <div class="col-xl-12 col-xxl-12">
-          Almost there! You can close this page while waiting RunCloud agent
+          Almost there! You can close this page while waiting Litegix agent
           successfully installed. Installation might take around 15 minutes. You
           can come back once we configure your server. We'll send an email to
           you once your server is ready.

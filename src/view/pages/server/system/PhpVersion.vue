@@ -5,15 +5,13 @@
         <span class="card-label font-weight-bolder text-dark"
           >PHP-CLI Version</span
         >
-        <span
-          class="text-muted mt-3 font-weight-bold font-size-sm"
-          data-nsfw-filter-status="swf"
-          >Your RunCloud server is equipped with multiple PHP Versions for
-          multiple types of Web Applications in order to want to run PHP-CLI
-          with different versions. If you use Composer, it will run using the
-          PHP-CLI version you have chosen.</span
-        >
       </h3>
+      <p class="font-size-md mt-1">
+        Your Litegix server is equipped with multiple PHP Versions for multiple
+        types of Web Applications in order to want to run PHP-CLI with different
+        versions. If you use Composer, it will run using the PHP-CLI version you
+        have chosen.
+      </p>
     </div>
     <div class="card-body pt-0 pb-10">
       <b-form-group label="Select PHP Version">

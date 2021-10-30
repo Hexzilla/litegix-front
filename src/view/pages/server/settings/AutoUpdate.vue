@@ -9,7 +9,7 @@
           <div class="text-muted mt-3 font-size-sm">
             <p>
               Your server is set to automatically update to latest version for
-              all RunCloud packages. We do recommend enabling Security Update.
+              all Litegix packages. We do recommend enabling Security Update.
             </p>
           </div>
         </h3>

@@ -34,8 +34,8 @@
           </b-form-group>
 
           <b-input-group
-            append=".b671ds1vl1-v1p3zx1gp6ye.p.runcloud.link"
-            v-if="domainSelection == 'runcloudDomain'"
+            append=".b671ds1vl1-v1p3zx1gp6ye.p.Litegix.link"
+            v-if="domainSelection == 'LitegixDomain'"
           >
             <b-form-input v-model="name" name="name"></b-form-input>
           </b-input-group>
@@ -70,7 +70,7 @@
 
         <hr />
         <b-form-group label="Public Path">
-          <b-input-group prepend="/home/runcloud/webapps/app-gerhold">
+          <b-input-group prepend="/home/Litegix/webapps/app-gerhold">
             <b-form-input name="publicPath"></b-form-input>
           </b-input-group>
         </b-form-group>
@@ -274,7 +274,7 @@ export default {
       domainSelection: "customDomain",
       domainName: "",
       domain_options: [
-        { text: "Use test domain", value: "runcloudDomain" },
+        { text: "Use test domain", value: "LitegixDomain" },
         { text: "Use my own domain / subdomain", value: "customDomain" }
       ],
       advanced: false,

@@ -22,8 +22,8 @@
       </div>
       <div class="card-body py-5">
         <span class="pb-5 font-size-sm">
-          The default firewall is firewalld and the default zone is runcloud. If
-          you manually change the default zone, RunCloud may not work properly
+          The default firewall is firewalld and the default zone is Litegix. If
+          you manually change the default zone, Litegix may not work properly
           and the settings that were defined here will not be used. By default,
           all ports to your server are closed except the port defined in Global
           type below. Newly added rules and newly removed rules will not be
@@ -89,7 +89,7 @@
             ></b-form-input>
           </b-form-group>
 
-          <button type="submit" class="btn btn-success btn-block">Ban </button>
+          <button type="submit" class="btn btn-success btn-block">Ban</button>
         </form>
       </div>
       <div class="card-body py-5">

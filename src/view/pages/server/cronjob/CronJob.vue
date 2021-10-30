@@ -22,7 +22,7 @@
         data-nsfw-filter-status="swf"
       >
         Rebuilding Cron Job will delete all Cron Job configs that was generated
-        by RunCloud. We will add it back to match your configuration below.
+        by Litegix. We will add it back to match your configuration below.
       </div>
       <b-table
         :items="cronJobs"

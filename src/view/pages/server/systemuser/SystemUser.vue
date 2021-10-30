@@ -80,7 +80,6 @@
 
 <script>
 import { showSuccessMsgbox, showConfirmMsgbox } from "@/view/shared/msgbox";
-
 import {
   GET_SYSTEM_USERS,
   DELETE_SYSTEM_USER

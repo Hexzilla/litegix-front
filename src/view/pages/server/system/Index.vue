@@ -1,7 +1,7 @@
 <template>
   <div>
-    <PhpVersion :serverId="this.$parent.serverId"></PhpVersion>
     <SystemUser :serverId="this.$parent.serverId"> </SystemUser>
+    <PhpVersion :serverId="this.$parent.serverId"></PhpVersion>
   </div>
 </template>
 

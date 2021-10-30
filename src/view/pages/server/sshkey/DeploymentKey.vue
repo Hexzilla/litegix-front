@@ -36,7 +36,7 @@
           </span>
           <b-modal
             ref="deploykey-modal"
-            title="Deployment Key"
+            :title="getDeployKeyTitle(data.item)"
             ok-title="Generate new deployment key"
             @ok="generateNewKey($event, data.item)"
           >
@@ -49,7 +49,7 @@
 </template>
 
 <script>
-import Swal from "sweetalert2";
+import { showConfirmMsgbox, showErrorMsgbox } from "@/view/shared/msgbox";
 import {
   GET_DEPLOY_KEYS,
   CREATE_DEPLOY_KEY
@@ -74,30 +74,30 @@ export default {
   mounted() {
     this.serverId = this.$route.params.serverId;
     this.$store.dispatch(GET_DEPLOY_KEYS, this.serverId).then(response => {
-      console.log("deployKeys", this.deployKeys);
       if (response.success) {
         this.deployKeys = response.data.keys;
+        console.log("deployKeys", this.deployKeys);
       }
     });
   },
   methods: {
     async createDeployKey(user) {
-      const payload = { serverId: this.serverId, userId: user.id };
-      const response = await this.$store.dispatch(CREATE_DEPLOY_KEY, payload);
-      if (response.success) {
-        user.deploymentKey = response.data.key;
+      try {
+        const payload = { serverId: this.serverId, userId: user.id };
+        const response = await this.$store.dispatch(CREATE_DEPLOY_KEY, payload);
+        if (response.success) {
+          user.deploymentKey = response.data.key;
+          console.log("create success:", user.deploymentKey);
+        }
+      } catch (err) {
+        showErrorMsgbox("Failed to generate deploy key");
       }
     },
     async showDeployKey(user) {
       if (!user.deploymentKey) {
-        const result = await Swal.fire({
-          title: "",
-          text: `You have no deployment key for ${user.name}. Would you like to generate one?`,
-          icon: "question",
-          showConfirmButton: true,
-          showCancelButton: true,
-          heightAuto: false
-        });
+        const result = await showConfirmMsgbox(
+          `You have no deployment key for ${user.name}. Would you like to generate one?`
+        );
         if (!result.isConfirmed) {
           return;
         }
@@ -112,6 +112,9 @@ export default {
     async generateNewKey(event, user) {
       event.preventDefault();
       await this.createDeployKey(user);
+    },
+    getDeployKeyTitle(user) {
+      return `Deployment Key for user ${user.name}`;
     }
   }
 };

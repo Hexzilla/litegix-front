@@ -16,13 +16,24 @@
             placeholder="Label for this cron job"
           ></b-form-input>
         </b-form-group>
-        <b-form-group label="User (The user to run this job)">
+        <!-- <b-form-group label="User (The user to run this job)">
           <b-form-input
-            name="username"
-            v-model="form.username"
+            name="user"
+            v-model="form.user"
             placeholder="User to run the cron job"
           ></b-form-input>
-        </b-form-group>
+        </b-form-group> -->
+        <div class="form-group">
+          <label class="control-label">User (The user to run this job)</label>
+          <b-form-select
+            size="lg"
+            v-model="form.user"
+            required
+            :options="system_users"
+            value-field="id"
+            text-field="name"
+          ></b-form-select>
+        </div>
 
         <div class="form-group">
           <label class="control-label">Vendor Binary</label>
@@ -109,8 +120,7 @@ import Trigger from "@/assets/plugins/formvalidation/dist/es6/plugins/Trigger";
 import Bootstrap from "@/assets/plugins/formvalidation/dist/es6/plugins/Bootstrap";
 import SubmitButton from "@/assets/plugins/formvalidation/dist/es6/plugins/SubmitButton";
 import KTUtil from "@/assets/js/components/util";
-import Swal from "sweetalert2";
-
+import { showSuccessMsgbox, catchError } from "@/view/shared/msgbox";
 import {
   CREATE_CRON_JOB,
   STORE_CRON_JOB
@@ -121,13 +131,13 @@ export default {
     return {
       vendor_binaries: [],
       predefined_settings: [],
+      system_users: [],
       form: {
         label: "",
-        username: "",
-        collation: "",
-        vendor_binary: "",
+        user: "",
+        vendor_binary: "bash",
         command: "",
-        predef_setting: "",
+        predef_setting: "e1",
         custom_settings: {
           minute: "",
           hour: "",
@@ -143,6 +153,8 @@ export default {
     this.$store.dispatch(CREATE_CRON_JOB, this.serverId).then(data => {
       this.vendor_binaries = data.vendor_binaries;
       this.predefined_settings = data.predefined_settings;
+      this.system_users = data.system_users;
+      console.log(data);
     });
 
     const create_form = KTUtil.getById("kt_form_cronjob");
@@ -156,7 +168,7 @@ export default {
             }
           }
         },
-        username: {
+        user: {
           validators: {
             notEmpty: {
               message: "This field is required"
@@ -188,15 +200,6 @@ export default {
     this.fv.on("core.form.invalid", () => {});
   },
   methods: {
-    showMessageBox(icon, text) {
-      return Swal.fire({
-        title: "",
-        text: text,
-        icon: icon,
-        confirmButtonClass: "btn btn-secondary",
-        heightAuto: false
-      });
-    },
     submit() {
       // set spinner to submit button
       const submitButton = this.$refs["kt_form_submit"];
@@ -206,14 +209,14 @@ export default {
         ...this.form,
         serverId: this.$parent.serverId
       };
+      console.log("payload", payload);
       this.$store
         .dispatch(STORE_CRON_JOB, payload)
         .then(data => {
           if (!data.success) {
             throw new Error(data.errors.message);
           }
-          return this.showMessageBox(
-            "success",
+          return showSuccessMsgbox(
             "Cron job " + name + " has been successfully added"
           );
         })
@@ -222,13 +225,7 @@ export default {
             path: `/servers/${this.$parent.serverId}/cronjob`
           });
         })
-        .catch(err => {
-          const message =
-            err.data?.errors?.message ||
-            err.message ||
-            "Failed to add cron job!";
-          return this.showMessageBox("error", message);
-        })
+        .catch(catchError)
         .finally(() => {
           submitButton.classList.remove(
             "spinner",

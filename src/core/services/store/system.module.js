@@ -22,6 +22,7 @@ export const UPDATE_PHP_VERSION = "UPDATE_PHP_VERSION";
 export const CREATE_CRON_JOB = "CREATE_CRON_JOB";
 export const STORE_CRON_JOB = "STORE_CRON_JOB";
 export const GET_CRON_JOBS = "GET_CRON_JOBS";
+export const DELETE_CRON_JOB = "DELETE_CRON_JOB";
 
 export const CREATE_SUPERVISOR_JOB = "CREATE_SUPERVISOR_JOB";
 export const STORE_SUPERVISOR_JOB = "STORE_SUPERVISOR_JOB";
@@ -284,6 +285,21 @@ const actions = {
     return new Promise((resolve, reject) => {
       ApiService.setHeader();
       ApiService.get("servers/" + serverId + "/cronjobs")
+        .then(({ data }) => {
+          resolve(data);
+        })
+        .catch(error => {
+          context.commit(SET_ERROR, error.response?.data?.errors);
+          reject(error);
+        });
+    });
+  },
+  [DELETE_CRON_JOB](context, payload) {
+    return new Promise((resolve, reject) => {
+      ApiService.setHeader();
+      ApiService.delete(
+        `servers/${payload.serverId}/cronjobs/${payload.cronJobId}`
+      )
         .then(({ data }) => {
           resolve(data);
         })

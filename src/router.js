@@ -267,8 +267,8 @@ export default new Router({
               component: () => import("@/view/pages/server/cronjob/CronJob.vue")
             },
             {
-              path: "cronjob/create",
-              name: "server-cronjob-create",
+              path: "cronjob/new",
+              name: "server-cronjob-new",
               component: () =>
                 import("@/view/pages/server/cronjob/AddCronJob.vue")
             },

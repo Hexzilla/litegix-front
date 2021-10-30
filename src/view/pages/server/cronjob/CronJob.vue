@@ -11,19 +11,16 @@
           class="form-control input-lg w-200px mr-5"
         />
 
-        <b-link to="cronjob/create">
+        <b-link to="cronjob/new">
           <a class="btn btn-primary">Create</a>
         </b-link>
       </div>
     </div>
-    <div class="card-body py-0">
-      <div
-        class="text-muted mt-3 mb-5 font-weight-bold font-size-sm"
-        data-nsfw-filter-status="swf"
-      >
+    <div class="card-body py-0 mt-2">
+      <p class="font-size-md mt-1">
         Rebuilding Cron Job will delete all Cron Job configs that was generated
         by Litegix. We will add it back to match your configuration below.
-      </div>
+      </p>
       <b-table
         :items="cronJobs"
         :fields="fields"
@@ -35,39 +32,74 @@
             <inline-svg src="media/svg/icons/Design/Layers.svg" />
           </span>
         </template>
+        <template #cell(action)="data">
+          <a role="button" v-on:click="delete_cronJob(data.item)"
+            ><i class="fas fa-trash-alt text-danger"></i
+          ></a>
+        </template>
       </b-table>
     </div>
   </div>
 </template>
 
 <script>
-import { GET_CRON_JOBS } from "@/core/services/store/system.module";
+import {
+  showConfirmMsgbox,
+  showSuccessMsgbox,
+  catchError
+} from "@/view/shared/msgbox";
+import {
+  GET_CRON_JOBS,
+  DELETE_CRON_JOB
+} from "@/core/services/store/system.module";
 
 export default {
   data() {
     return {
       fields: [
         { key: "label", label: "Job name" },
-        { key: "username", label: "Run as" },
+        { key: "user", label: "Run as" },
         { key: "command", label: "Command" },
         { key: "time", label: "Time to run" },
-        { key: "action", label: "Action" }
+        {
+          key: "action",
+          thClass: "text-center",
+          tdClass: "text-center"
+        }
       ],
       cronJobs: []
     };
   },
   mounted() {
     this.serverId = this.$parent.serverId;
-    this.fetchData();
+    this.$store.dispatch(GET_CRON_JOBS, this.serverId).then(response => {
+      console.log("cronJobs", response);
+      if (response.success) {
+        this.cronJobs = response.data.cronJobs;
+      }
+    });
   },
   methods: {
-    fetchData() {
-      this.$store.dispatch(GET_CRON_JOBS, this.serverId).then(response => {
-        console.log("cronJobs", response);
-        if (response.success) {
-          this.cronJobs = response.data.cronJobs;
-        }
-      });
+    async delete_cronJob(cronJob) {
+      console.log("delete_cronJob", cronJob);
+      const result = await showConfirmMsgbox("Do you want to delete this?");
+      if (!result.isConfirmed) {
+        return;
+      }
+
+      const payload = {
+        serverId: this.serverId,
+        cronJobId: cronJob.id
+      };
+      this.$store
+        .dispatch(DELETE_CRON_JOB, payload)
+        .then(response => {
+          console.log("delete cronJobs", response);
+          return showSuccessMsgbox(
+            `Cron Job ${cronJob.label} has been successfully deleted`
+          );
+        })
+        .catch(catchError);
     }
   }
 };

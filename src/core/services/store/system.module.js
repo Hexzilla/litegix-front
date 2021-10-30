@@ -27,6 +27,7 @@ export const DELETE_CRON_JOB = "DELETE_CRON_JOB";
 export const CREATE_SUPERVISOR_JOB = "CREATE_SUPERVISOR_JOB";
 export const STORE_SUPERVISOR_JOB = "STORE_SUPERVISOR_JOB";
 export const GET_SUPERVISOR_JOBS = "GET_SUPERVISOR_JOBS";
+export const DELETE_SUPERVISOR_JOB = "DELETE_SUPERVISOR_JOB";
 
 export const GET_SERVER_ACTIVITY_LOGS = "GET_SERVER_ACTIVITY_LOGS";
 
@@ -309,7 +310,6 @@ const actions = {
         });
     });
   },
-
   [CREATE_SUPERVISOR_JOB](context, serverId) {
     return new Promise((resolve, reject) => {
       ApiService.setHeader();
@@ -342,6 +342,21 @@ const actions = {
     return new Promise((resolve, reject) => {
       ApiService.setHeader();
       ApiService.get("servers/" + serverId + "/supervisors")
+        .then(({ data }) => {
+          resolve(data);
+        })
+        .catch(error => {
+          context.commit(SET_ERROR, error.response?.data?.errors);
+          reject(error);
+        });
+    });
+  },
+  [DELETE_SUPERVISOR_JOB](context, payload) {
+    return new Promise((resolve, reject) => {
+      ApiService.setHeader();
+      ApiService.delete(
+        `servers/${payload.serverId}/supervisors/${payload.jobId}`
+      )
         .then(({ data }) => {
           resolve(data);
         })

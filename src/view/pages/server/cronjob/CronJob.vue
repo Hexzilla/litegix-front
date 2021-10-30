@@ -33,7 +33,7 @@
           </span>
         </template>
         <template #cell(action)="data">
-          <a role="button" v-on:click="delete_cronJob(data.item)"
+          <a role="button" v-on:click="deleteCronJob(data.item)"
             ><i class="fas fa-trash-alt text-danger"></i
           ></a>
         </template>
@@ -56,6 +56,7 @@ import {
 export default {
   data() {
     return {
+      serverId: "",
       fields: [
         { key: "label", label: "Job name" },
         { key: "user", label: "Run as" },
@@ -80,8 +81,8 @@ export default {
     });
   },
   methods: {
-    async delete_cronJob(cronJob) {
-      console.log("delete_cronJob", cronJob);
+    async deleteCronJob(job) {
+      console.log("deleteCronJob", job);
       const result = await showConfirmMsgbox("Do you want to delete this?");
       if (!result.isConfirmed) {
         return;
@@ -89,15 +90,21 @@ export default {
 
       const payload = {
         serverId: this.serverId,
-        cronJobId: cronJob.id
+        cronJobId: job.id
       };
       this.$store
         .dispatch(DELETE_CRON_JOB, payload)
         .then(response => {
           console.log("delete cronJobs", response);
           return showSuccessMsgbox(
-            `Cron Job ${cronJob.label} has been successfully deleted`
+            `Cron Job ${job.label} has been successfully deleted`
           );
+        })
+        .then(() => {
+          const index = this.cronJobs.indexOf(job);
+          if (index >= 0) {
+            this.cronJobs.splice(index, 1);
+          }
         })
         .catch(catchError);
     }

@@ -26,6 +26,7 @@
         <div class="form-group">
           <label class="control-label">User (The user to run this job)</label>
           <b-form-select
+            name="user"
             size="lg"
             v-model="form.user"
             required
@@ -217,7 +218,7 @@ export default {
             throw new Error(data.errors.message);
           }
           return showSuccessMsgbox(
-            "Cron job " + name + " has been successfully added"
+            "Cron Job " + payload.label + " has been successfully added"
           );
         })
         .then(() => {

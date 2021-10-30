@@ -25,11 +25,11 @@
           show-empty
           empty-text="You don't have any deployment key yet."
         >
-          <template #cell(user)="">
+          <!-- <template #cell(user)="">
             <span class="svg-icon svg-icon-primary">
               <inline-svg src="media/svg/icons/Design/Layers.svg" />
             </span>
-          </template>
+          </template> -->
           <template #cell(publicKey)="">
             <span class="svg-icon svg-icon-primary">
               <inline-svg src="media/svg/icons/General/Visible.svg" />
@@ -68,7 +68,8 @@ export default {
       fields: [
         "label",
         {
-          key: "user",
+          key: "userName",
+          label: "User",
           thClass: "text-center",
           tdClass: "text-center"
         },

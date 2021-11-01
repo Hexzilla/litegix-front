@@ -11,7 +11,7 @@
       <form>
         <b-form-group label="Web Application Name">
           <b-form-input
-            v-model="name"
+            v-model="form.name"
             placeholder="e.g: my-application / my_application"
           ></b-form-input>
         </b-form-group>
@@ -20,14 +20,14 @@
           <div class="form-group">
             <label class="control-label">Domain Name</label>
             <b-form-radio-group
-              v-model="domainSelection"
+              v-model="form.domain"
               :options="domain_options"
-              name="domainSelection"
+              name="domain"
             ></b-form-radio-group>
           </div>
-          <b-form-group v-if="domainSelection == 'customDomain'">
+          <b-form-group v-if="form.domain == 'custom'">
             <b-form-input
-              v-model="domainName"
+              v-model="form.domainName"
               placeholder="e.g: app-gerhold.com or subdomain.app-gerhold.co"
               name="domainName"
             ></b-form-input>
@@ -35,40 +35,54 @@
 
           <b-input-group
             append=".b671ds1vl1-v1p3zx1gp6ye.p.Litegix.link"
-            v-if="domainSelection == 'LitegixDomain'"
+            v-if="form.domain == 'litegix'"
           >
             <b-form-input v-model="name" name="name"></b-form-input>
           </b-input-group>
 
-          <fieldset v-if="domainSelection == 'customDomain'">
+          <fieldset v-if="form.domain == 'custom'">
             <b-form-group>
-              <b-form-checkbox size="lg" name="www"
-                >Enable www version of this domain</b-form-checkbox
+              <b-form-checkbox
+                size="lg"
+                name="www"
+                v-model="form.enableW3Version"
               >
+                Enable www version of this domain
+              </b-form-checkbox>
             </b-form-group>
 
-            <div class="form-group">
+            <!-- <div class="form-group">
               <label class="control-label">DNS Integration</label>
               <b-form-select v-model="select" :options="keys"></b-form-select>
-            </div>
+            </div> -->
           </fieldset>
         </div>
 
-        <hr />
-        <b-form-group label="Web Application Owner">
+        <hr class="mt-6 mb-6" />
+
+        <!-- <b-form-group label="Web Application Owner">
           <b-form-checkbox size="lg" name="useExistingUser"
             >Use existing system user</b-form-checkbox
           >
-        </b-form-group>
+        </b-form-group> -->
 
         <div class="form-group">
           <label class="control-label"
             >User (Owner of this Web Application)</label
           >
-          <b-form-select v-model="select" :options="keys"></b-form-select>
+          <b-form-select
+            name="user"
+            size="lg"
+            v-model="form.user"
+            required
+            :options="system_users"
+            value-field="id"
+            text-field="name"
+          ></b-form-select>
         </div>
 
-        <hr />
+        <hr class="mt-6 mb-6" />
+
         <b-form-group label="Public Path">
           <b-input-group prepend="/home/Litegix/webapps/app-gerhold">
             <b-form-input name="publicPath"></b-form-input>
@@ -77,26 +91,48 @@
 
         <div class="form-group">
           <label class="control-label">PHP Version</label>
-          <b-form-select v-model="select" :options="keys"></b-form-select>
+          <b-form-select
+            name="user"
+            size="lg"
+            v-model="form.phpVersion"
+            required
+            :options="php_versions"
+          ></b-form-select>
         </div>
 
         <div class="form-group">
           <label class="control-label">Web Application Stack</label>
-          <b-form-select v-model="select" :options="keys"></b-form-select>
+          <b-form-select
+            name="user"
+            size="lg"
+            v-model="form.webStack"
+            required
+            :options="web_application_stacks"
+          ></b-form-select>
         </div>
 
         <div class="form-group">
-          <label class="control-label"
-            >Stack Mode<i class="rc rc-information info-icon"></i
-          ></label>
-          <b-form-select v-model="select" :options="keys"></b-form-select>
+          <label class="control-label">Environment</label>
+          <b-form-select
+            name="user"
+            size="lg"
+            v-model="form.environment"
+            required
+            :options="web_environments"
+          ></b-form-select>
         </div>
 
         <div class="form-group">
           <label class="control-label"
             >SSL/TLS Method<i class="rc rc-information info-icon"></i
           ></label>
-          <b-form-select v-model="select" :options="keys"></b-form-select>
+          <b-form-select
+            name="user"
+            size="lg"
+            v-model="form.sslMethod"
+            required
+            :options="web_ssl_methods"
+          ></b-form-select>
         </div>
 
         <b-form-group>
@@ -105,11 +141,10 @@
           >
         </b-form-group>
 
-        <b-form-group label="Advanced Settings">
-          <b-form-checkbox size="lg" v-model="advanced" name="advanceSetting"
-            >Advanced Settings (Only use this if you know what you are
-            doing)</b-form-checkbox
-          >
+        <!-- <b-form-group label="Advanced Settings">
+          <b-form-checkbox size="lg" v-model="advanced" name="advanceSetting">
+            Advanced Settings (Only use this if you know what you are doing)
+          </b-form-checkbox>
         </b-form-group>
 
         <div v-if="advanced">
@@ -256,7 +291,7 @@
               >allow_url_fopen</b-checkbox
             >
           </b-form-group>
-        </div>
+        </div> -->
 
         <button type="submit" class="btn btn-primary btn-block">
           Add Web Application app-gerhold
@@ -267,20 +302,44 @@
 </template>
 
 <script>
+import { CREATE_CUSTOM_WEB_APPLICATION } from "@/core/services/store/system.module";
 export default {
   data() {
     return {
-      name: "",
-      domainSelection: "customDomain",
-      domainName: "",
+      system_users: [],
+      php_versions: [],
+      web_application_stacks: [],
+      web_environments: [],
+      web_ssl_methods: [],
       domain_options: [
-        { text: "Use test domain", value: "LitegixDomain" },
-        { text: "Use my own domain / subdomain", value: "customDomain" }
+        { text: "Use test domain", value: "litegix" },
+        { text: "Use my own domain / subdomain", value: "custom" }
       ],
-      advanced: false,
-      select: "",
-      keys: []
+      form: {
+        name: "",
+        domain: "custom",
+        domainName: "",
+        enableW3Version: false,
+        user: null,
+        phpVersion: null,
+        webStack: null,
+        environment: "production",
+        sslMethod: "basic"
+      }
     };
+  },
+  mounted() {
+    this.serverId = this.$parent.serverId;
+    this.$store
+      .dispatch(CREATE_CUSTOM_WEB_APPLICATION, this.serverId)
+      .then(res => {
+        this.system_users = res.data.system_users;
+        this.php_versions = res.data.php_versions;
+        this.web_application_stacks = res.data.web_application_stacks;
+        this.web_environments = res.data.web_environments;
+        this.web_ssl_methods = res.data.web_ssl_methods;
+        console.log(res);
+      });
   }
 };
 </script>

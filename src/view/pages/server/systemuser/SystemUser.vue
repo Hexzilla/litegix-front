@@ -79,7 +79,11 @@
 <style scoped src="@/assets/styles/server.css"></style>
 
 <script>
-import { showSuccessMsgbox, showConfirmMsgbox } from "@/view/shared/msgbox";
+import {
+  showSuccessMsgbox,
+  showConfirmMsgbox,
+  catchError
+} from "@/view/shared/msgbox";
 import {
   GET_SYSTEM_USERS,
   DELETE_SYSTEM_USER
@@ -117,15 +121,21 @@ export default {
         userId: user.id,
         serverId: this.serverId
       };
-      const response = await this.$store.dispatch(DELETE_SYSTEM_USER, payload);
-      console.log("deleteuser--success", response);
-      await showSuccessMsgbox(
-        `System user ${user.name} has been successfully deleted`
-      );
-      const index = this.systemUsers.indexOf(user);
-      if (index >= 0) {
-        this.systemUsers.splice(index, 1);
-      }
+      this.$store
+        .dispatch(DELETE_SYSTEM_USER, payload)
+        .then(response => {
+          console.log("deleteuser--success", response);
+          return showSuccessMsgbox(
+            `System user ${user.name} has been successfully deleted`
+          );
+        })
+        .then(() => {
+          const index = this.systemUsers.indexOf(user);
+          if (index >= 0) {
+            this.systemUsers.splice(index, 1);
+          }
+        })
+        .catch(catchError);
     }
   }
 };

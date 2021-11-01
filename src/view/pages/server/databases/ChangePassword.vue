@@ -112,11 +112,11 @@ export default {
         bootstrap: new Bootstrap()
       }
     });
-    this.fv.on("core.form.valid", this.change_password);
+    this.fv.on("core.form.valid", this.changePassword);
     this.fv.on("core.form.invalid", () => {});
   },
   methods: {
-    change_password() {
+    changePassword() {
       const submitButton = this.$refs["kt_form_server_submit"];
       submitButton.classList.add("spinner", "spinner-light", "spinner-right");
 

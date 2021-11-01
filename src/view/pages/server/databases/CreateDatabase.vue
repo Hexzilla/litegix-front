@@ -30,8 +30,8 @@
           <label class="control-label">Assign Database User</label>
           <b-form-select
             size="lg"
-            name="user"
-            v-model="form.user"
+            name="userId"
+            v-model="form.userId"
             :options="databaseUsers"
             value-field="id"
             text-field="name"
@@ -75,7 +75,7 @@ export default {
       databaseUsers: [],
       form: {
         name: "",
-        user: "",
+        userId: "",
         collation: ""
       },
       collations: [
@@ -101,7 +101,7 @@ export default {
             }
           }
         },
-        user: {
+        userId: {
           validators: {
             notEmpty: {
               message: "This user is required"
@@ -127,7 +127,7 @@ export default {
       this.$store
         .dispatch(CREATE_DATABASE, {
           name: this.form.name,
-          user: this.form.user,
+          userId: this.form.userId,
           collation: this.form.collation,
           serverId: this.$parent.serverId
         })

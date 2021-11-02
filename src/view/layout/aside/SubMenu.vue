@@ -3,7 +3,7 @@
     <template v-for="(item, i) in menuItems">
       <router-link
         v-bind:key="i"
-        :to="item.link"
+        :to="getLink(item.link)"
         v-slot="{ href, navigate, isActive, isExactActive }"
       >
         <li
@@ -32,9 +32,24 @@ export default {
   props: {
     menuItems: Array
   },
+  data() {
+    return {
+      serverId: ""
+    };
+  },
+  mounted() {
+    this.serverId = this.$route.params.serverId;
+    console.log("this.serverId", this.serverId);
+  },
   methods: {
     hasActiveChildren(match) {
       return this.$route["path"].indexOf(match) !== -1;
+    },
+    getLink(link) {
+      if (this.serverId) {
+        return `/servers/${this.serverId}${link}`;
+      }
+      return link;
     }
   }
 };

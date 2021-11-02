@@ -49,18 +49,15 @@ export default {
     return {
       serverId: "",
       selectedVersion: "7.2",
-      options: [
-        { text: "PHP 7.2", value: "7.2" },
-        { text: "PHP 7.4", value: "7.4" },
-        { text: "PHP 8.0", value: "8.0" }
-      ]
+      options: []
     };
   },
   mounted() {
     this.serverId = this.$route.params.serverId;
-    this.$store.dispatch(GET_PHP_VERSION, this.serverId).then(phpVersion => {
-      this.selectedVersion = phpVersion;
-      console.log("PHPVersion", phpVersion);
+    this.$store.dispatch(GET_PHP_VERSION, this.serverId).then(res => {
+      console.log("PHPVersion", res);
+      this.options = res.data.avaliable;
+      this.selectedVersion = res.data.phpVersion;
     });
   },
   methods: {

@@ -227,9 +227,6 @@ const actions = {
       ApiService.setHeader();
       ApiService.get("servers/" + serverId + "/phpVersion")
         .then(({ data }) => {
-          if (data.success) {
-            resolve(data.data.phpVersion);
-          }
           resolve(data);
         })
         .catch(error => {

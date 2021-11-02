@@ -128,25 +128,27 @@ export default {
         {
           title: "Subscription",
           link: "/settings/subscription",
-          icon: "/media/svg/icons/Communication/Sending.svg"
+          icon: "/media/svg/icons/Communication/Sending.svg",
+          class: "round-bottom-left"
         },
         {
           title: "Payment",
           link: "/settings/paymentmethod",
-          icon: "/media/svg/icons/Communication/Thumbtack.svg"
-        },
-        {
-          title: "SSH Key Vault",
-          link: "/settings/ssh_key_vault",
-          icon: "/media/svg/icons/Communication/Mail-at.svg",
-          class: "round-bottom-left"
-        },
-        {
-          title: "WordPress",
-          link: "/settings/wordpress_canvas",
-          icon: "/media/svg/icons/Communication/Share.svg",
+          icon: "/media/svg/icons/Communication/Thumbtack.svg",
           class: "round-bottom-right"
         }
+        // {
+        //   title: "SSH Key Vault",
+        //   link: "/settings/ssh_key_vault",
+        //   icon: "/media/svg/icons/Communication/Mail-at.svg",
+        //   class: "round-bottom-left"
+        // },
+        // {
+        //   title: "WordPress",
+        //   link: "/settings/wordpress_canvas",
+        //   icon: "/media/svg/icons/Communication/Share.svg",
+        //   class: "round-bottom-right"
+        // }
       ]
     };
   },

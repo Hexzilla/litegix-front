@@ -31,7 +31,7 @@
         </template>
         <template #cell(changePassword)="data">
           <b-link @click="changePassword($event, data.item)">
-            <span class="label label-lg label-inline label-primary">
+            <span class="label label-lg label-inline label-success">
               Change
             </span>
           </b-link>

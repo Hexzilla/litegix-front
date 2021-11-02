@@ -3,6 +3,7 @@ import ApiService from "@/core/services/api.service";
 export const SET_ERROR = "setError";
 
 export const CREATE_DATABASE = "createDatabase";
+export const STORE_DATABASE = "storeDatabase";
 export const CREATE_DBUSER = "createDBuser";
 
 export const GRANT_USER = "grantUser";
@@ -57,7 +58,21 @@ const actions = {
     });
   },
 
-  [CREATE_DATABASE](context, payload) {
+  [CREATE_DATABASE](context, serverId) {
+    return new Promise((resolve, reject) => {
+      ApiService.setHeader();
+      ApiService.get(`servers/${serverId}/databases/create`)
+        .then(({ data }) => {
+          resolve(data);
+        })
+        .catch(error => {
+          context.commit(SET_ERROR, error.response.data.errors);
+          reject(error);
+        });
+    });
+  },
+
+  [STORE_DATABASE](context, payload) {
     return new Promise((resolve, reject) => {
       ApiService.setHeader();
       ApiService.post(`servers/${payload.serverId}/databases`, payload)

@@ -1,7 +1,7 @@
 <template>
   <div>
-    <KTDatabases :serverId="this.$parent.serverId"> </KTDatabases>
     <KTDBUsers :serverId="this.$parent.serverId"></KTDBUsers>
+    <KTDatabases :serverId="this.$parent.serverId"> </KTDatabases>
   </div>
 </template>
 

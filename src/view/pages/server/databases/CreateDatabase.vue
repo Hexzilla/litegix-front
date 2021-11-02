@@ -42,7 +42,7 @@
           <b-form-select
             size="lg"
             v-model="form.collation"
-            :options="collations"
+            :options="database_encodings"
           ></b-form-select>
         </div>
         <button
@@ -66,7 +66,7 @@ import KTUtil from "@/assets/js/components/util";
 import { showSuccessMsgbox, catchError } from "@/view/shared/msgbox";
 import {
   CREATE_DATABASE,
-  GET_DBUSERS
+  STORE_DATABASE
 } from "@/core/services/store/database.module";
 
 export default {
@@ -78,18 +78,15 @@ export default {
         userId: "",
         collation: ""
       },
-      collations: [
-        { value: "utf-8", text: "utf-8" },
-        { value: "utf-16", text: "utf-16" }
-      ]
+      database_encodings: []
     };
   },
   mounted() {
-    this.$store
-      .dispatch(GET_DBUSERS, this.$parent.serverId)
-      .then(databaseUsers => {
-        this.databaseUsers = databaseUsers;
-      });
+    this.$store.dispatch(CREATE_DATABASE, this.$parent.serverId).then(res => {
+      console.log("create_database", res);
+      this.databaseUsers = res.data.db_users;
+      this.database_encodings = res.data.database_encodings;
+    });
 
     const create_form = KTUtil.getById("kt_form_database");
     this.fv = formValidation(create_form, {
@@ -125,7 +122,7 @@ export default {
       submitButton.classList.add("spinner", "spinner-light", "spinner-right");
 
       this.$store
-        .dispatch(CREATE_DATABASE, {
+        .dispatch(STORE_DATABASE, {
           name: this.form.name,
           userId: this.form.userId,
           collation: this.form.collation,

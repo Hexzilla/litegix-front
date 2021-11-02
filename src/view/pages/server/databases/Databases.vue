@@ -40,7 +40,7 @@
           >
 
           <b-link @click="grantUser($event, data.item)">
-            <span class="label label-lg label-inline label-primary">
+            <span class="label label-lg label-inline label-success">
               Grant User
             </span>
           </b-link>

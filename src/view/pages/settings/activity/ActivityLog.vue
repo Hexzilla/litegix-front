@@ -112,7 +112,8 @@ export default {
   },
   methods: {
     getActivityDate(date) {
-      return moment(date).format("MM/DD/YYYY");
+      //return moment(date).format("MM/DD/YYYY");
+      return moment(date).format("lll");
     }
   }
 };

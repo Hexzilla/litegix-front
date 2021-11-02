@@ -2,7 +2,6 @@ import ApiService from "@/core/services/api.service";
 
 export const SET_SERVERS = "SET_SERVERS";
 export const SET_ERROR = "SET_ERROR";
-export const SET_SERVER_SUMMERY = "SET_SERVER_SUMMERY";
 
 export const CREATE_SERVER = "CREATE_SERVER";
 export const CONFIGURE_SERVER = "CONFIGURE_SERVER";
@@ -18,16 +17,12 @@ export const DELETE_SERVER = "DELETE_SERVER";
 
 const state = {
   servers: {},
-  summery: {},
   currentServer: {}
 };
 
 const getters = {
   servers(state) {
     return state.servers;
-  },
-  summery(state) {
-    return state.summery;
   },
   currentServer(state) {
     return state.currentServer;
@@ -112,10 +107,6 @@ const actions = {
       ApiService.post("servers/" + serverId + "/summary")
         .then(({ data }) => {
           resolve(data);
-          console.log(data);
-          if (data.success) {
-            context.commit(SET_SERVER_SUMMERY, data.data);
-          }
         })
         .catch(error => {
           context.commit(SET_ERROR, error.response?.data.errors);
@@ -179,10 +170,6 @@ const mutations = {
   },
   [SET_SERVERS](state, servers) {
     state.servers = servers;
-    state.errors = {};
-  },
-  [SET_SERVER_SUMMERY](state, summery) {
-    state.summery = summery;
     state.errors = {};
   }
 };

@@ -88,7 +88,7 @@ export default {
             },
             stringLength: {
               min: 8,
-              message: "Password must be much than 8 characters"
+              message: "Password must be more than 8 characters"
             }
           }
         },
@@ -134,7 +134,7 @@ export default {
         })
         .then(() => {
           this.$router.push({
-            name: "server-systemusers"
+            name: "server-system"
           });
         })
         .catch(catchError)

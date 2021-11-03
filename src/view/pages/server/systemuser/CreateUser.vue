@@ -86,6 +86,39 @@ export default {
           validators: {
             notEmpty: {
               message: "Name is required"
+            },
+            stringLength: {
+              min: 6,
+              message: "The name must be more than 6 characters"
+            },
+            regexp: {
+              regexp: "^[a-zA-Z][a-zA-Z0-9_]*$",
+              message:
+                "The name can consist of alphabetical characters and underscode only"
+            }
+          }
+        },
+        password: {
+          validators: {
+            notEmpty: {
+              message: "New password is required"
+            },
+            stringLength: {
+              min: 8,
+              message: "The name must be more than 8 characters"
+            }
+          }
+        },
+        verify_password: {
+          validators: {
+            notEmpty: {
+              message: "Confirm password is required"
+            },
+            identical: {
+              compare: function() {
+                return create_form.querySelector('[name="password"]').value;
+              },
+              message: "The password and its confirm are not the same"
             }
           }
         }
@@ -118,7 +151,7 @@ export default {
         })
         .then(() => {
           this.$router.push({
-            path: `/servers/${this.serverId}/systemuser`
+            path: `/servers/${this.serverId}/system`
           });
         })
         .catch(catchError)

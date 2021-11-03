@@ -30,26 +30,53 @@
         <template #cell(view)="data">
           <span
             class="svg-icon svg-icon-primary"
-            v-on:click="showDeployKey(data.item)"
+            v-on:click="onClickShowKeyButton(data.item)"
           >
             <inline-svg src="media/svg/icons/Design/Layers.svg" />
           </span>
-          <b-modal
-            ref="deploykey-modal"
-            :title="getDeployKeyTitle(data.item)"
-            ok-title="Generate new deployment key"
-            @ok="generateNewKey($event, data.item)"
-          >
-            <p class="my-4">{{ data.item.deploymentKey }}</p>
-          </b-modal>
         </template>
       </b-table>
+      <b-modal
+        ref="deploykey-show-modal"
+        :title="getTitle()"
+        ok-title="Generate new deployment key"
+        @ok="showWarningMessage()"
+      >
+        <p>
+          Insert this key inside GitHub, GitLab, Bitbucket or custom Git Server
+          repository to enable Git deployment for your web application.
+        </p>
+        <div class="code-block">{{ getDeploymentKey() }}</div>
+      </b-modal>
+      <b-modal
+        ref="remake-warning-modal"
+        title="Warning"
+        ok-title="Generate"
+        @ok="createDeployKey(selectedUser)"
+      >
+        <p>
+          Generating new deployment key will remove the current key from your
+          server. Be sure to update your Git repository with your newly created
+          deployment key. Continue generating deployment key for Litegix
+        </p>
+      </b-modal>
     </div>
   </div>
 </template>
 
+<style scoped>
+.code-block {
+  font-family: monospace, monospace;
+  border-radius: 4px;
+  background-color: #e3e6e9;
+  padding: 12px;
+  font-size: 12px;
+  word-break: break-all;
+}
+</style>
+
 <script>
-import { showConfirmMsgbox, showErrorMsgbox } from "@/view/shared/msgbox";
+import { showConfirmMsgbox, catchError } from "@/view/shared/msgbox";
 import {
   GET_DEPLOY_KEYS,
   CREATE_DEPLOY_KEY
@@ -68,6 +95,8 @@ export default {
           tdClass: "text-center"
         }
       ],
+      selectedUser: null,
+      selectedKey: "",
       deployKeys: []
     };
   },
@@ -81,40 +110,43 @@ export default {
     });
   },
   methods: {
-    async createDeployKey(user) {
-      try {
-        const payload = { serverId: this.serverId, userId: user.id };
-        const response = await this.$store.dispatch(CREATE_DEPLOY_KEY, payload);
-        if (response.success) {
-          user.deploymentKey = response.data.key;
-          console.log("create success:", user.deploymentKey);
-        }
-      } catch (err) {
-        showErrorMsgbox("Failed to generate deploy key");
-      }
+    getTitle() {
+      return `Deployment Key for user ${this.selectedUser?.name}`;
     },
-    async showDeployKey(user) {
+    getDeploymentKey() {
+      return this.selectedKey;
+    },
+    createDeployKey() {
+      console.log("createDeployKey, user=", this.selectedUser);
+      const payload = { serverId: this.serverId, userId: this.selectedUser.id };
+      this.$store
+        .dispatch(CREATE_DEPLOY_KEY, payload)
+        .then(res => {
+          console.log("createDeployKey, result=", res);
+          this.selectedUser.deploymentKey = res.data.key;
+          this.selectedKey = res.data.key;
+          this.showDeployKey();
+        })
+        .catch(catchError);
+    },
+    onClickShowKeyButton(user) {
+      console.log("onClickShowKeyButton", user);
+      this.selectedUser = user;
       if (!user.deploymentKey) {
-        const result = await showConfirmMsgbox(
+        showConfirmMsgbox(
           `You have no deployment key for ${user.name}. Would you like to generate one?`
-        );
-        if (!result.isConfirmed) {
-          return;
-        }
-        await this.createDeployKey(user);
+        ).then(m => {
+          m.isConfirmed && this.createDeployKey();
+        });
+      } else {
+        this.showDeployKey();
       }
-
-      if (!user.deploymentKey) {
-        return;
-      }
-      this.$refs["deploykey-modal"].show();
     },
-    async generateNewKey(event, user) {
-      event.preventDefault();
-      await this.createDeployKey(user);
+    showDeployKey() {
+      this.$refs["deploykey-show-modal"].show();
     },
-    getDeployKeyTitle(user) {
-      return `Deployment Key for user ${user.name}`;
+    showWarningMessage() {
+      this.$refs["remake-warning-modal"].show();
     }
   }
 };

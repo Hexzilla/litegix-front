@@ -84,11 +84,11 @@ export default {
         password: {
           validators: {
             notEmpty: {
-              message: "Password is required"
+              message: "The password is required"
             },
             stringLength: {
               min: 8,
-              message: "Password must be more than 8 characters"
+              message: "The password must be at least 8 characters"
             }
           }
         },

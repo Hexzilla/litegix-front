@@ -94,7 +94,7 @@ export default {
             regexp: {
               regexp: "^[a-zA-Z][a-zA-Z0-9_]*$",
               message:
-                "The name can consist of alphabetical characters and underscode only"
+                "The name can consist of alphanumeric characters and underscode(_) only"
             }
           }
         },
@@ -105,7 +105,7 @@ export default {
             },
             stringLength: {
               min: 8,
-              message: "The name must be more than 8 characters"
+              message: "The password must be at least 8 characters"
             }
           }
         },

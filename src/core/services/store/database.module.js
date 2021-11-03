@@ -162,11 +162,11 @@ const actions = {
           credentials.serverId +
           "/databases/" +
           credentials.databaseId +
-          "/grant"
+          "/users/ungranted"
       )
         .then(({ data }) => {
           if (data.success) {
-            resolve(data.data.ungrantedusers);
+            resolve(data.data.users);
           }
         })
         .catch(error => {

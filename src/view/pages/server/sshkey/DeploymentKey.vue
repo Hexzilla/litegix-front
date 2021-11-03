@@ -124,7 +124,6 @@ export default {
         .then(res => {
           console.log("createDeployKey, result=", res);
           this.selectedUser.deploymentKey = res.data.key;
-          this.selectedKey = res.data.key;
           this.showDeployKey();
         })
         .catch(catchError);
@@ -143,6 +142,7 @@ export default {
       }
     },
     showDeployKey() {
+      this.selectedKey = this.selectedUser.deploymentKey;
       this.$refs["deploykey-show-modal"].show();
     },
     showWarningMessage() {

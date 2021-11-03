@@ -95,6 +95,15 @@ export default {
           validators: {
             notEmpty: {
               message: "This name is required"
+            },
+            stringLength: {
+              min: 5,
+              message: "The name must be at least 5 characters"
+            },
+            regexp: {
+              regexp: "^[a-zA-Z][a-zA-Z0-9_]*$",
+              message:
+                "The name can consist of alphanumeric characters and underscode(_) only"
             }
           }
         },

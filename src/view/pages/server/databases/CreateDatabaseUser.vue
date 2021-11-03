@@ -76,6 +76,15 @@ export default {
           validators: {
             notEmpty: {
               message: "Name is required"
+            },
+            stringLength: {
+              min: 5,
+              message: "The name must be at least 5 characters"
+            },
+            regexp: {
+              regexp: "^[a-zA-Z][a-zA-Z0-9_]*$",
+              message:
+                "The name can consist of alphanumeric characters and underscode(_) only"
             }
           }
         },
@@ -83,6 +92,10 @@ export default {
           validators: {
             notEmpty: {
               message: "Password is required"
+            },
+            stringLength: {
+              min: 5,
+              message: "The password must be at least 5 characters"
             }
           }
         },

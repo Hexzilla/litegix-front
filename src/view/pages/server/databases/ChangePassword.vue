@@ -5,14 +5,12 @@
         <span class="card-label font-weight-bolder text-dark"
           >Update password for database user {{ databaseUser.name }}</span
         >
-        <span
-          class="text-muted mt-3 font-weight-bold font-size-sm"
-          data-nsfw-filter-status="swf"
-          >If you have changed your <strong>root</strong> database password,
-          please update your new password inside
-          <code>/etc/mysql/my.cnf</code> or adding new user won't work.</span
-        >
       </h3>
+      <p class="font-size-md mt-1">
+        If you have changed your <strong>root</strong> database password, please
+        update your new password inside <code>/etc/mysql/my.cnf</code> or adding
+        new user won't work.
+      </p>
     </div>
     <div class="card-body pt-0 pb-10">
       <b-form id="kt_form_changepassword">
@@ -88,7 +86,11 @@ export default {
         password: {
           validators: {
             notEmpty: {
-              message: "Password is required"
+              message: "The password is required"
+            },
+            stringLength: {
+              min: 8,
+              message: "The password must be at least 8 characters"
             }
           }
         },

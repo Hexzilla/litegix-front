@@ -30,6 +30,7 @@ export const GET_SUPERVISOR_JOBS = "GET_SUPERVISOR_JOBS";
 export const DELETE_SUPERVISOR_JOB = "DELETE_SUPERVISOR_JOB";
 
 export const CREATE_CUSTOM_WEB_APPLICATION = "CREATE_CUSTOM_WEB_APPLICATION";
+export const STORE_CUSTOM_WEB_APPLICATION = "STORE_CUSTOM_WEB_APPLICATION";
 
 export const GET_SERVER_ACTIVITY_LOGS = "GET_SERVER_ACTIVITY_LOGS";
 
@@ -369,6 +370,23 @@ const actions = {
     return new Promise((resolve, reject) => {
       ApiService.setHeader();
       ApiService.get("servers/" + serverId + "/webapps/create/custom")
+        .then(({ data }) => {
+          resolve(data);
+        })
+        .catch(error => {
+          console.log(error.response);
+          context.commit(SET_ERROR, error.response?.data?.errors);
+          reject(error);
+        });
+    });
+  },
+  [STORE_CUSTOM_WEB_APPLICATION](context, payload) {
+    return new Promise((resolve, reject) => {
+      ApiService.setHeader();
+      ApiService.post(
+        "servers/" + payload.serverId + "/webapps/create/custom",
+        payload
+      )
         .then(({ data }) => {
           resolve(data);
         })

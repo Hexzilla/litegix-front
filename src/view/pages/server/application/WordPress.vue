@@ -34,7 +34,7 @@
         </b-form-group>
 
         <b-input-group
-          append=".b671ds1vl1-v1p3zx1gp6ye.p.Litegix.link"
+          :append="getDomainSuffix()"
           v-if="form.domainType == 'litegix'"
         >
           <b-form-input
@@ -263,6 +263,7 @@
 import formValidation from "@/assets/plugins/formvalidation/dist/es6/core/Core";
 import Trigger from "@/assets/plugins/formvalidation/dist/es6/plugins/Trigger";
 import Bootstrap from "@/assets/plugins/formvalidation/dist/es6/plugins/Bootstrap";
+import Excluded from "@/assets/plugins/formvalidation/dist/es6/plugins/Excluded";
 import SubmitButton from "@/assets/plugins/formvalidation/dist/es6/plugins/SubmitButton";
 import KTUtil from "@/assets/js/components/util";
 import { showSuccessMsgbox, catchError } from "@/view/shared/msgbox";
@@ -287,13 +288,13 @@ export default {
         name: "",
         domainType: "custom",
         domainName: "",
+        domainSuffix: "ec",
         enableW3Version: false,
         owner: null,
         phpVersion: null,
         webAppStack: null,
         sslMode: "basic",
         enableAutoSSL: false,
-        suffixName: "app-random",
         wordpress: {
           siteTitle: "",
           adminName: "",
@@ -320,6 +321,7 @@ export default {
         this.web_application_stacks = res.data.web_application_stacks;
         this.web_environments = res.data.web_environments;
         this.web_ssl_methods = res.data.web_ssl_methods;
+        this.form.domainSuffix = res.data.domainSuffix;
       });
     this.initForm();
   },
@@ -361,13 +363,17 @@ export default {
       this.selectedUser = this.system_users.find(it => it.id == userId);
     },
     getPublicPathPrefix() {
-      return `/home/${this.selectedUser?.name}/webapps/${this.form.suffixName}/`;
+      return `/home/${this.selectedUser?.name}/webapps/${this.form.name}/`;
     },
     getDomainExample() {
       const appName = this.form.name || "litegix";
       return `e.g: ${appName}.com or subdomain.${appName}.com`;
     },
+    getDomainSuffix() {
+      return `.${this.form.domainSuffix}.litegix.com`;
+    },
     initForm() {
+      const thiz = this;
       const create_form = KTUtil.getById("kt_web_form");
       this.fv = formValidation(create_form, {
         fields: {
@@ -387,7 +393,7 @@ export default {
               }
             }
           },
-          domainName: {
+          customDomainName: {
             validators: {
               notEmpty: {
                 message: "This field is required"
@@ -397,9 +403,25 @@ export default {
                 message: "This field must be at least 5 characters"
               },
               regexp: {
-                regexp: "^[a-zA-Z][a-zA-Z0-9_]*$",
+                regexp: "^[a-zA-Z][a-zA-Z0-9_.]*$",
                 message:
-                  "This field can consist of alphanumeric characters and underscode(_) only"
+                  "This field can consist of alphanumeric characters and underscode(_) and dot(.) only"
+              }
+            }
+          },
+          litegixDomainName: {
+            validators: {
+              notEmpty: {
+                message: "This field is required"
+              },
+              stringLength: {
+                min: 5,
+                message: "This field must be at least 5 characters"
+              },
+              regexp: {
+                regexp: "^[a-zA-Z][a-zA-Z0-9_.]*$",
+                message:
+                  "This field can consist of alphanumeric characters and underscode(_) and dot(.) only"
               }
             }
           },
@@ -486,7 +508,17 @@ export default {
         plugins: {
           trigger: new Trigger(),
           submitButton: new SubmitButton(),
-          bootstrap: new Bootstrap()
+          bootstrap: new Bootstrap(),
+          excluded: new Excluded({
+            excluded: function(field) {
+              return (
+                (field == "customDomainName" &&
+                  thiz.form.domainType != "custom") ||
+                (field == "litegixDomainName" &&
+                  thiz.form.domainType != "litegix")
+              );
+            }
+          })
         }
       });
       this.fv.on("core.form.valid", this.createApplication);

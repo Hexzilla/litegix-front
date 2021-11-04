@@ -14,6 +14,7 @@
             name="name"
             v-model="form.name"
             placeholder="e.g: my-application / my_application"
+            maxlength="40"
           ></b-form-input>
         </b-form-group>
         <div class="form-group">
@@ -27,7 +28,7 @@
         <b-form-group v-if="form.domainType == 'custom'">
           <b-form-input
             v-model="form.domainName"
-            placeholder="e.g: app-gerhold.com or subdomain.app-gerhold.co"
+            :placeholder="getDomainExample()"
             name="domainName"
           ></b-form-input>
         </b-form-group>
@@ -147,22 +148,22 @@
         <b-form-group label="Site Title">
           <b-form-input
             name="siteTitle"
-            v-model="form.siteTitle"
+            v-model="form.wordpress.siteTitle"
             placeholder="e.g: My WordPress Site"
           ></b-form-input>
         </b-form-group>
 
         <b-form-group label="Admin Username">
           <b-form-input
-            name="adminUserName"
-            v-model="form.adminUserName"
+            name="adminName"
+            v-model="form.wordpress.adminName"
             placeholder="WordPress admin username"
           ></b-form-input>
         </b-form-group>
         <b-form-group label="Admin Password">
           <b-form-input
             name="adminPassword"
-            v-model="form.adminPassword"
+            v-model="form.wordpress.adminPassword"
             placeholder="WordPress admin password"
           ></b-form-input>
         </b-form-group>
@@ -171,12 +172,12 @@
           <b-form-input
             type="email"
             name="adminEmail"
-            v-model="form.adminEmail"
+            v-model="form.wordpress.adminEmail"
             placeholder="WordPress admin email"
           ></b-form-input>
         </b-form-group>
 
-        <b-form-group label="Canvas">
+        <!-- <b-form-group label="Canvas">
           <label class="control-label">Canvas</label>
           <a
             href=""
@@ -196,7 +197,7 @@
         <p class="text-paragraph">
           Read more about WordPress Canvas
           <a href="" target="_blank" class="font-weight-bold">here.</a>
-        </p>
+        </p> -->
       </div>
     </div>
 
@@ -212,7 +213,7 @@
         <b-form-group label="Database User (Optional)">
           <b-form-input
             name="databaseUser"
-            v-model="form.databaseUser"
+            v-model="form.wordpress.databaseUser"
             placeholder="WordPress database user"
           ></b-form-input>
         </b-form-group>
@@ -222,7 +223,7 @@
             <b-form-input
               type="password"
               name="databasePassword"
-              v-model="form.databasePassword"
+              v-model="form.wordpress.databasePassword"
               placeholder="WordPress database user"
             ></b-form-input>
             <b-input-group-append>
@@ -234,14 +235,14 @@
         <b-form-group label="Database Name (Optional)">
           <b-form-input
             name="databaseName"
-            v-model="form.databaseName"
+            v-model="form.wordpress.databaseName"
             placeholder="WordPress database user"
           ></b-form-input>
         </b-form-group>
         <b-form-group label="Table Prefix (Optional)">
           <b-form-input
             name="tablePrefix"
-            v-model="form.tablePrefix"
+            v-model="form.wordpress.tablePrefix"
             placeholder="WordPress database prefix"
           ></b-form-input>
         </b-form-group>
@@ -293,15 +294,17 @@ export default {
         sslMode: "basic",
         enableAutoSSL: false,
         suffixName: "app-random",
-        siteTitle: "",
-        adminUserName: "",
-        adminPassword: "",
-        adminEmail: "",
-        canvas: "",
-        databaseUser: "",
-        databasePassword: "",
-        databaseName: "",
-        tablePrefix: ""
+        wordpress: {
+          siteTitle: "",
+          adminName: "",
+          adminPassword: "",
+          adminEmail: "",
+          canvas: "",
+          databaseUser: "",
+          databasePassword: "",
+          databaseName: "",
+          tablePrefix: ""
+        }
       },
       selectedUser: null
     };
@@ -359,6 +362,10 @@ export default {
     },
     getPublicPathPrefix() {
       return `/home/${this.selectedUser?.name}/webapps/${this.form.suffixName}/`;
+    },
+    getDomainExample() {
+      const appName = this.form.name || "litegix";
+      return `e.g: ${appName}.com or subdomain.${appName}.com`;
     },
     initForm() {
       const create_form = KTUtil.getById("kt_web_form");
@@ -433,7 +440,7 @@ export default {
               }
             }
           },
-          adminUserName: {
+          adminName: {
             validators: {
               notEmpty: {
                 message: "This field is required"
@@ -472,13 +479,6 @@ export default {
               },
               emailAddress: {
                 message: "The value is not a valid email address"
-              }
-            }
-          },
-          canvas: {
-            validators: {
-              notEmpty: {
-                message: "This field is required"
               }
             }
           }

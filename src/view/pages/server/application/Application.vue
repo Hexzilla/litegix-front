@@ -41,19 +41,20 @@
 </template>
 
 <script>
+import { GET_WEB_APPLICATIONS } from "@/core/services/store/system.module";
 export default {
   data() {
     return {
-      fields: [
-        "web_application_name",
-        "status",
-        "owner",
-        "domain",
-        "PHP_ version",
-        "stack"
-      ],
+      fields: ["name", "status", "owner", "domain", "phpVersion", "stack"],
       items: []
     };
+  },
+  mounted() {
+    this.serverId = this.$route.params.serverId;
+    this.$store.dispatch(GET_WEB_APPLICATIONS, this.serverId).then(res => {
+      console.log(res);
+      this.items = res.data.apps;
+    });
   }
 };
 </script>

@@ -14,6 +14,7 @@
             name="name"
             v-model="form.name"
             placeholder="e.g: my-application / my_application"
+            maxlength="40"
           ></b-form-input>
         </b-form-group>
         <div class="form-group">
@@ -27,7 +28,7 @@
         <b-form-group v-if="form.domainType == 'custom'">
           <b-form-input
             v-model="form.domainName"
-            placeholder="e.g: app-gerhold.com or subdomain.app-gerhold.co"
+            :placeholder="getDomainExample()"
             name="domainName"
           ></b-form-input>
         </b-form-group>
@@ -224,6 +225,10 @@ export default {
     },
     getPublicPathPrefix() {
       return `/home/${this.selectedUser?.name}/webapps/${this.form.name}/`;
+    },
+    getDomainExample() {
+      const appName = this.form.name || "litegix";
+      return `e.g: ${appName}.com or subdomain.${appName}.com`;
     },
     initForm() {
       const create_form = KTUtil.getById("kt_web_form");

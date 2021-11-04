@@ -1,133 +1,320 @@
 <template>
-  <div class="card card-custom gutter-b">
-    <div class="card-header border-0 py-5">
-      <h3 class="card-title align-items-start flex-column">
-        <span class="card-label font-weight-bolder text-dark"
-          >Add Web Application to Server ReCloud</span
-        >
-      </h3>
-    </div>
-    <div class="card-body pt-0 pb-10">
-      <form>
+  <form id="kt_web_form">
+    <div class="card card-custom gutter-b">
+      <div class="card-header border-0 py-5">
+        <h3 class="card-title align-items-start flex-column">
+          <span class="card-label font-weight-bolder text-dark">
+            Install PHPMyAdmin
+          </span>
+        </h3>
+      </div>
+      <div class="card-body pt-0 pb-10">
         <b-form-group label="Web Application Name">
           <b-form-input
-            v-model="name"
+            name="name"
+            v-model="form.name"
             placeholder="e.g: my-application / my_application"
           ></b-form-input>
         </b-form-group>
+        <div class="form-group">
+          <label class="control-label">Domain Name</label>
+          <b-form-radio-group
+            v-model="form.domainType"
+            :options="domain_options"
+            name="domainType"
+          ></b-form-radio-group>
+        </div>
+        <b-form-group v-if="form.domainType == 'custom'">
+          <b-form-input
+            v-model="form.domainName"
+            placeholder="e.g: app-gerhold.com or subdomain.app-gerhold.co"
+            name="domainName"
+          ></b-form-input>
+        </b-form-group>
 
-        <div>
-          <div class="form-group">
-            <label class="control-label">Domain Name</label>
-            <b-form-radio-group
-              v-model="domainSelection"
-              :options="domain_options"
-              name="domainSelection"
-            ></b-form-radio-group>
-          </div>
-          <b-form-group v-if="domainSelection == 'customDomain'">
-            <b-form-input
-              v-model="domainName"
-              placeholder="e.g: app-gerhold.com or subdomain.app-gerhold.co"
-              name="domainName"
-            ></b-form-input>
+        <b-input-group
+          append=".b671ds1vl1-v1p3zx1gp6ye.p.Litegix.link"
+          v-if="form.domainType == 'litegix'"
+        >
+          <b-form-input
+            v-model="form.domainName"
+            name="domainName"
+            required
+          ></b-form-input>
+        </b-input-group>
+
+        <fieldset v-if="form.domainType == 'custom'">
+          <b-form-group>
+            <b-form-checkbox
+              size="lg"
+              name="enableW3Version"
+              v-model="form.enableW3Version"
+            >
+              Enable www version of this domain
+            </b-form-checkbox>
           </b-form-group>
 
-          <b-input-group
-            append=".b671ds1vl1-v1p3zx1gp6ye.p.Litegix.link"
-            v-if="domainSelection == 'LitegixDomain'"
-          >
-            <b-form-input v-model="name" name="name"></b-form-input>
-          </b-input-group>
-
-          <fieldset v-if="domainSelection == 'customDomain'">
-            <b-form-group>
-              <b-form-checkbox size="lg" name="www"
-                >Enable www version of this domain</b-form-checkbox
-              >
-            </b-form-group>
-
-            <div class="form-group">
-              <label class="control-label">DNS Integration</label>
-              <b-form-select v-model="select" :options="keys"></b-form-select>
-            </div>
-          </fieldset>
-        </div>
-
-        <hr />
-        <b-form-group label="Web Application Owner">
-          <b-form-checkbox size="lg" name="useExistingUser"
-            >Use existing system user</b-form-checkbox
-          >
-        </b-form-group>
-
-        <div class="form-group">
-          <label class="control-label"
-            >User (Owner of this Web Application)</label
-          >
-          <b-form-select v-model="select" :options="keys"></b-form-select>
-        </div>
-
-        <hr />
-        <b-form-group label="Public Path">
-          <b-input-group prepend="/home/Litegix/webapps/app-gerhold">
-            <b-form-input name="publicPath"></b-form-input>
-          </b-input-group>
-        </b-form-group>
-
-        <div class="form-group">
-          <label class="control-label">PHP Version</label>
-          <b-form-select v-model="select" :options="keys"></b-form-select>
-        </div>
-
-        <div class="form-group">
-          <label class="control-label">Web Application Stack</label>
-          <b-form-select v-model="select" :options="keys"></b-form-select>
-        </div>
-
-        <div class="form-group">
-          <label class="control-label"
-            >Stack Mode<i class="rc rc-information info-icon"></i
-          ></label>
-          <b-form-select v-model="select" :options="keys"></b-form-select>
-        </div>
-
-        <div class="form-group">
-          <label class="control-label"
-            >SSL/TLS Method<i class="rc rc-information info-icon"></i
-          ></label>
-          <b-form-select v-model="select" :options="keys"></b-form-select>
-        </div>
-
-        <b-form-group>
-          <b-form-checkbox size="lg" name="autoSSL"
-            >Enable AutoSSL</b-form-checkbox
-          >
-        </b-form-group>
-
-        <button type="submit" class="btn btn-primary btn-block">
-          Add Web Application app-goldner
-        </button>
-      </form>
+          <!-- <div class="form-group">
+            <label class="control-label">DNS Integration</label>
+            <b-form-select v-model="select" :options="keys"></b-form-select>
+          </div> -->
+        </fieldset>
+      </div>
     </div>
-  </div>
+
+    <div class="card card-custom gutter-b">
+      <div class="card-header border-0 py-5">
+        <h3 class="card-title align-items-start flex-column">
+          <span class="card-label font-weight-bolder text-dark">
+            Web Application Owner
+          </span>
+        </h3>
+      </div>
+      <div class="card-body pt-0 pb-10">
+        <b-form-group label="User (Owner of this Web Application)">
+          <b-form-select
+            name="owner"
+            size="lg"
+            v-model="form.owner"
+            required
+            :options="system_users"
+            value-field="id"
+            text-field="name"
+            v-on:change="onSelectOwner"
+          ></b-form-select>
+        </b-form-group>
+      </div>
+    </div>
+
+    <div class="card card-custom gutter-b">
+      <div class="card-header border-0 py-5">
+        <h3 class="card-title align-items-start flex-column">
+          <span class="card-label font-weight-bolder text-dark">
+            Web Stack
+          </span>
+        </h3>
+      </div>
+      <div class="card-body pt-0 pb-10">
+        <b-form-group label="PHP Version">
+          <b-form-select
+            name="phpVersion"
+            size="lg"
+            v-model="form.phpVersion"
+            :options="php_versions"
+          ></b-form-select>
+        </b-form-group>
+        <b-form-group label="SSL/TLS Method">
+          <b-form-select
+            name="sslMode"
+            size="lg"
+            v-model="form.sslMode"
+            required
+            :options="web_ssl_methods"
+          ></b-form-select>
+        </b-form-group>
+        <b-form-group>
+          <b-form-checkbox
+            size="lg"
+            name="enableAutoSSL"
+            v-model="form.enableAutoSSL"
+          >
+            Enable AutoSSL
+          </b-form-checkbox>
+        </b-form-group>
+
+        <button
+          type="submit"
+          class="btn btn-primary btn-block"
+          ref="kt_form_submit"
+        >
+          Install PHPMyAdmin
+        </button>
+      </div>
+    </div>
+  </form>
 </template>
 
 <script>
+import formValidation from "@/assets/plugins/formvalidation/dist/es6/core/Core";
+import Trigger from "@/assets/plugins/formvalidation/dist/es6/plugins/Trigger";
+import Bootstrap from "@/assets/plugins/formvalidation/dist/es6/plugins/Bootstrap";
+import SubmitButton from "@/assets/plugins/formvalidation/dist/es6/plugins/SubmitButton";
+import KTUtil from "@/assets/js/components/util";
+import { showSuccessMsgbox, catchError } from "@/view/shared/msgbox";
+import {
+  CREATE_PHPMYADMIN,
+  STORE_PHPMYADMIN
+} from "@/core/services/store/system.module";
 export default {
   data() {
     return {
-      name: "",
-      domainSelection: "customDomain",
-      domainName: "",
+      system_users: [],
+      php_versions: [],
+      web_application_stacks: [],
+      web_environments: [],
+      web_ssl_methods: [],
       domain_options: [
-        { text: "Use test domain", value: "LitegixDomain" },
-        { text: "Use my own domain / subdomain", value: "customDomain" }
+        { text: "Use test domain", value: "litegix" },
+        { text: "Use my own domain / subdomain", value: "custom" }
       ],
-      advanced: false,
-      select: "",
-      keys: []
+      form: {
+        name: "",
+        domainType: "custom",
+        domainName: "",
+        enableW3Version: false,
+        owner: null,
+        publicPath: "",
+        phpVersion: "php74",
+        webAppStack: "nginx_apache2",
+        stackMode: "production",
+        sslMode: "basic",
+        enableAutoSSL: false
+      },
+      selectedUser: null
     };
+  },
+  mounted() {
+    this.serverId = this.$route.params.serverId;
+    this.$store.dispatch(CREATE_PHPMYADMIN, this.serverId).then(res => {
+      console.log(res);
+      this.system_users = res.data.system_users;
+      this.php_versions = res.data.php_versions;
+      this.web_application_stacks = res.data.web_application_stacks;
+      this.web_environments = res.data.web_environments;
+      this.web_ssl_methods = res.data.web_ssl_methods;
+    });
+    this.initForm();
+  },
+  methods: {
+    createApplication() {
+      // set spinner to submit button
+      const submitButton = this.$refs["kt_form_submit"];
+      submitButton.classList.add("spinner", "spinner-light", "spinner-right");
+
+      this.$store
+        .dispatch(STORE_PHPMYADMIN, {
+          ...this.form,
+          serverId: this.$parent.serverId
+        })
+        .then(data => {
+          if (!data.success) {
+            throw new Error(data.errors.message);
+          }
+          return showSuccessMsgbox(
+            `Web application ${this.form.name} has been successfully created`
+          );
+        })
+        .then(() => {
+          this.$router.push({
+            path: `/servers/${this.$parent.serverId}/application`
+          });
+        })
+        .catch(catchError)
+        .finally(() => {
+          submitButton.classList.remove(
+            "spinner",
+            "spinner-light",
+            "spinner-right"
+          );
+        });
+    },
+    onSelectOwner(userId) {
+      console.log("onSelectOwner", userId);
+      this.selectedUser = this.system_users.find(it => it.id == userId);
+    },
+    getPublicPathPrefix() {
+      return `/home/${this.selectedUser?.name}/webapps/${this.form.name}/`;
+    },
+    initForm() {
+      const create_form = KTUtil.getById("kt_web_form");
+      this.fv = formValidation(create_form, {
+        fields: {
+          name: {
+            validators: {
+              notEmpty: {
+                message: "This name is required"
+              },
+              stringLength: {
+                min: 5,
+                message: "The name must be at least 5 characters"
+              },
+              regexp: {
+                regexp: "^[a-zA-Z][a-zA-Z0-9_]*$",
+                message:
+                  "The name can consist of alphanumeric characters and underscode(_) only"
+              }
+            }
+          },
+          domainName: {
+            validators: {
+              notEmpty: {
+                message: "This field is required"
+              },
+              stringLength: {
+                min: 5,
+                message: "This field must be at least 5 characters"
+              },
+              regexp: {
+                regexp: "^[a-zA-Z][a-zA-Z0-9_]*$",
+                message:
+                  "This field can consist of alphanumeric characters and underscode(_) only"
+              }
+            }
+          },
+          publicPath: {
+            validators: {
+              notEmpty: {
+                message: "This field is required"
+              },
+              stringLength: {
+                min: 3,
+                message: "This field must be at least 3 characters"
+              },
+              regexp: {
+                regexp: "^[a-zA-Z][a-zA-Z0-9_]*$",
+                message:
+                  "This field can consist of alphanumeric characters and underscode(_) only"
+              }
+            }
+          },
+          phpVersion: {
+            validators: {
+              notEmpty: {
+                message: "This field is required"
+              }
+            }
+          },
+          webAppStack: {
+            validators: {
+              notEmpty: {
+                message: "This field is required"
+              }
+            }
+          },
+          stackMode: {
+            validators: {
+              notEmpty: {
+                message: "This field is required"
+              }
+            }
+          },
+          owner: {
+            validators: {
+              notEmpty: {
+                message: "The owner is required"
+              }
+            }
+          }
+        },
+        plugins: {
+          trigger: new Trigger(),
+          submitButton: new SubmitButton(),
+          bootstrap: new Bootstrap()
+        }
+      });
+      this.fv.on("core.form.valid", this.createApplication);
+      this.fv.on("core.form.invalid", () => {});
+    }
   }
 };
 </script>

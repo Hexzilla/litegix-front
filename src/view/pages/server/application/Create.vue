@@ -41,7 +41,7 @@
           </b-link>
         </div>
         <div class="item align-self-stretch">
-          <b-link to="create/phpmyadmin">
+          <b-link to="phpmyadmin">
             <label class="btn btn-block btn-checkbox d-flex"
               ><i class="rc rc-br-phpmyadmin"></i>
               <div>

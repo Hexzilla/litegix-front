@@ -158,19 +158,19 @@ export default new Router({
                 import("@/view/pages/server/application/Create.vue")
             },
             {
-              path: "application/create/custom",
+              path: "application/custom",
               name: "server-application-create-custom",
               component: () =>
                 import("@/view/pages/server/application/Custom.vue")
             },
             {
-              path: "application/create/wordpress",
+              path: "application/wordpress",
               name: "server-application-create-wordpress",
               component: () =>
                 import("@/view/pages/server/application/WordPress.vue")
             },
             {
-              path: "application/create/phpmyadmin",
+              path: "application/phpmyadmin",
               name: "server-application-create-phpmyadmin",
               component: () =>
                 import("@/view/pages/server/application/PHPMyAdmin.vue")

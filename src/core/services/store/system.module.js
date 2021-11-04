@@ -31,6 +31,10 @@ export const DELETE_SUPERVISOR_JOB = "DELETE_SUPERVISOR_JOB";
 
 export const CREATE_CUSTOM_WEB_APPLICATION = "CREATE_CUSTOM_WEB_APPLICATION";
 export const STORE_CUSTOM_WEB_APPLICATION = "STORE_CUSTOM_WEB_APPLICATION";
+export const CREATE_WORDPRESS_APPLICATION = "CREATE_WORDPRESS_APPLICATION";
+export const STORE_WORDPRESS_APPLICATION = "STORE_WORDPRESS_APPLICATION";
+export const CREATE_PHPMYADMIN = "CREATE_PHPMYADMIN";
+export const STORE_PHPMYADMIN = "STORE_PHPMYADMIN";
 
 export const GET_SERVER_ACTIVITY_LOGS = "GET_SERVER_ACTIVITY_LOGS";
 
@@ -369,7 +373,7 @@ const actions = {
   [CREATE_CUSTOM_WEB_APPLICATION](context, serverId) {
     return new Promise((resolve, reject) => {
       ApiService.setHeader();
-      ApiService.get("servers/" + serverId + "/webapps/create/custom")
+      ApiService.get("servers/" + serverId + "/webapps/custom")
         .then(({ data }) => {
           resolve(data);
         })
@@ -384,7 +388,69 @@ const actions = {
     return new Promise((resolve, reject) => {
       ApiService.setHeader();
       ApiService.post(
-        "servers/" + payload.serverId + "/webapps/create/custom",
+        "servers/" + payload.serverId + "/webapps/custom",
+        payload
+      )
+        .then(({ data }) => {
+          resolve(data);
+        })
+        .catch(error => {
+          console.log(error.response);
+          context.commit(SET_ERROR, error.response?.data?.errors);
+          reject(error);
+        });
+    });
+  },
+  [CREATE_WORDPRESS_APPLICATION](context, serverId) {
+    return new Promise((resolve, reject) => {
+      ApiService.setHeader();
+      ApiService.get("servers/" + serverId + "/webapps/wordpress")
+        .then(({ data }) => {
+          resolve(data);
+        })
+        .catch(error => {
+          console.log(error.response);
+          context.commit(SET_ERROR, error.response?.data?.errors);
+          reject(error);
+        });
+    });
+  },
+  [STORE_WORDPRESS_APPLICATION](context, payload) {
+    return new Promise((resolve, reject) => {
+      ApiService.setHeader();
+      ApiService.post(
+        "servers/" + payload.serverId + "/webapps/wordpress",
+        payload
+      )
+        .then(({ data }) => {
+          resolve(data);
+        })
+        .catch(error => {
+          console.log(error.response);
+          context.commit(SET_ERROR, error.response?.data?.errors);
+          reject(error);
+        });
+    });
+  },
+  [CREATE_PHPMYADMIN](context, serverId) {
+    return new Promise((resolve, reject) => {
+      ApiService.setHeader();
+      ApiService.get("servers/" + serverId + "/webapps/phpmyadmin")
+        .then(({ data }) => {
+          resolve(data);
+        })
+        .catch(error => {
+          console.log(error.response);
+          context.commit(SET_ERROR, error.response?.data?.errors);
+          reject(error);
+        });
+    });
+  },
+  [STORE_PHPMYADMIN](context, payload) {
+    return new Promise((resolve, reject) => {
+      ApiService.setHeader();
+      ApiService.post(
+        "servers/" + payload.serverId + "/webapps/phpmyadmin",
         payload
       )
         .then(({ data }) => {

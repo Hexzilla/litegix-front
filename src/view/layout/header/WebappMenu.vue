@@ -89,7 +89,7 @@ export default {
           icon: "/media/svg/icons/Communication/Mail-notification.svg"
         },
         {
-          title: "SSL/TLS",
+          title: "Security",
           link: "/ssl",
           icon: "/media/svg/icons/Communication/Reply-all.svg"
         },

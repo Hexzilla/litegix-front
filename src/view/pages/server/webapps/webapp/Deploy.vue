@@ -1,237 +1,150 @@
 <template>
-  <div>
-    <div class="card">
-      <div class="card-body">
-        <h4 class="pull-left">{{ server.name }}(others)</h4>
-        <div class="d-flex align-items-center flex-wrap mt-8">
-          <!-- Server Address -->
-          <div class="d-flex align-items-center flex-lg-fill mr-5 mb-2">
-            <span class="mr-4">
-              <i class="flaticon-piggy-bank text-muted font-weight-bold"></i>
-            </span>
-            <div class="d-flex flex-column ">
-              <span class="font-weight-bolder font-size-sm">IP Address</span>
-              <span class="font-weight-bolder font-size-h5">
-                {{ server.address }}
-              </span>
-            </div>
-          </div>
-
-          <!-- Agent Address -->
-          <div class="d-flex align-items-center flex-lg-fill mr-5 mb-2">
-            <span class="mr-4">
-              <i class="flaticon-confetti text-muted font-weight-bold"></i>
-            </span>
-            <div class="d-flex flex-column ">
-              <span class="font-weight-bolder font-size-sm">Agent Version</span>
-              <span class="font-weight-bolder font-size-h5">
-                {{ server.agentVersion }}
-              </span>
-            </div>
-          </div>
-
-          <!-- OS Address -->
-          <div class="d-flex align-items-center flex-lg-fill mr-5 mb-2">
-            <span class="mr-4">
-              <i class="flaticon-pie-chart text-muted font-weight-bold"></i>
-            </span>
-            <div class="d-flex flex-column ">
-              <span class="font-weight-bolder font-size-sm">OS Version</span>
-              <span class="font-weight-bolder font-size-h5">
-                {{ server.osVersion }}
-              </span>
-            </div>
-          </div>
-
-          <div class="d-flex align-items-center flex-lg-fill mr-5 mb-2">
-            <span class="mr-4">
-              <i class="flaticon-file-2 text-muted font-weight-bold"></i>
-            </span>
-            <div class="d-flex flex-column flex-lg-fill">
-              <span class=" font-weight-bolder font-size-sm">
-                Kernel Version
-              </span>
-              <span class="font-weight-bolder font-size-h5">
-                {{ server.kernelVersion }}
-              </span>
-            </div>
-          </div>
-        </div>
-      </div>
+  <div class="card card-custom gutter-b">
+    <div class="card-header border-0 py-5">
+      <h3 class="card-title align-items-start flex-column">
+        <span class="card-label font-weight-bolder text-dark">
+          Deploy Web Application
+        </span>
+      </h3>
+      <p class="font-size-md mt-1">
+        You must place your Deployment Key into your git repository. You can get
+        your deployment key in Deployment Key section.
+      </p>
     </div>
+    <div class="card-body pt-0 pb-10">
+      <b-form-group label="Select Provider">
+        <b-form-radio-group
+          id="btn-radios-2"
+          v-model="provider"
+          :options="providers"
+          buttons
+          button-variant="outline-primary"
+          size="lg"
+        ></b-form-radio-group>
+      </b-form-group>
 
-    <div class="row mt-5">
-      <!-- CPU Info -->
-      <div class="col-xl-6">
-        <div class="card">
-          <div class="card-body">
-            <div class="d-flex align-items-center">
-              <div class="flex-shrink-0 mr-4 symbol symbol-60 symbol-circle">
-                <v-icon>mdi-cpu-64-bit</v-icon>
-              </div>
-              <div class="d-flex flex-column mr-auto">
-                <div class="d-flex flex-column mr-auto">
-                  <p class="text-primary font-size-h4 font-weight-bolder mb-1">
-                    CPU
-                  </p>
-                  <!-- <span class="text-muted font-weight-bold">
-                    discription here
-                  </span> -->
-                </div>
-              </div>
-            </div>
-
-            <div class="mb-5 mt-5 font-weight-bold">
-              <p
-                class="text-hover-primary font-size-h4 font-weight-bolder mb-1"
-              >
-                {{ server.totalCPUCore }} core
-              </p>
-              {{ server.processorName }}
-            </div>
-          </div>
-        </div>
+      <!--Custom-->
+      <div v-if="provider == 'custom'">
+        <b-form-group label="Git User:">
+          <b-form-input
+            placeholder="Enter your name"
+            name="gituser"
+            v-model="form.gituser"
+          ></b-form-input>
+        </b-form-group>
+        <b-form-group label="Git Host:">
+          <b-form-input
+            placeholder="Enter your name"
+            name="githost"
+            v-model="form.githost"
+          ></b-form-input>
+        </b-form-group>
       </div>
 
-      <!-- Uptime -->
-      <div class="col-xl-6">
-        <div class="card">
-          <div class="card-body">
-            <div class="d-flex align-items-center">
-              <div class="flex-shrink-0 mr-4 symbol symbol-60 symbol-circle">
-                <!-- <inline-svg src="media/svg/icons/Files/Download.svg" /> -->
-                <v-icon>mdi-av-timer</v-icon>
-              </div>
-              <div class="d-flex flex-column mr-auto">
-                <div class="d-flex flex-column mr-auto">
-                  <p class="text-primary font-size-h4 font-weight-bolder mb-1">
-                    UPTIME
-                  </p>
-                  <!-- <span class="text-muted font-weight-bold">
-                    discription here
-                  </span> -->
-                </div>
-              </div>
-            </div>
+      <b-form-group label="Repository:">
+        <b-form-input
+          :placeholder="getRepositoryPlaceholder()"
+          name="repository"
+          v-model="form.repository"
+        ></b-form-input>
+      </b-form-group>
+      <b-form-group label="Branch:">
+        <b-form-input
+          placeholder="Enter your name"
+          name="branch"
+          v-model="form.branch"
+        ></b-form-input>
+      </b-form-group>
 
-            <div class="mb-5 mt-5 font-weight-bold">
-              <p
-                class="text-hover-primary font-size-h4 font-weight-bolder mb-1"
-              >
-                {{ server.uptime }}
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
+      <b-form-group
+        class="mt-16"
+        label="This command will be running inside your server to deploy your Web Application"
+      >
+        <b-form-input readonly :value="getCloneCommand()"></b-form-input>
+      </b-form-group>
 
-      <!-- Memory -->
-      <div class="col-xl-6 mt-6">
-        <div class="card">
-          <div class="card-body">
-            <div class="d-flex align-items-center">
-              <div class="flex-shrink-0 mr-4 symbol symbol-60 symbol-circle">
-                <v-icon>mdi-memory</v-icon>
-              </div>
-              <div class="d-flex flex-column mr-auto">
-                <div class="d-flex flex-column mr-auto">
-                  <p class="text-primary font-size-h4 font-weight-bolder mb-1">
-                    MEMORY USAGE
-                  </p>
-                  <!-- <span class="text-muted font-weight-bold">
-                    discription here
-                  </span> -->
-                </div>
-              </div>
-            </div>
-
-            <div class="d-flex mt-5 mb-5 align-items-cente">
-              <div class="d-flex flex-row-fluid align-items-center">
-                <b-progress
-                  :max="server.totalMemory"
-                  height="2rem"
-                  class="mt-2 mb-2 w-100"
-                >
-                  <b-progress-bar :value="memory_usage">
-                    <strong>
-                      {{ Math.ceil(server.totalMemory - server.freeMemory) }}GB
-                    </strong>
-                  </b-progress-bar>
-                </b-progress>
-                <span class="ml-3 font-weight-bolder">
-                  {{ Math.ceil(server.totalMemory) }}GB
-                </span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Disk -->
-      <div class="col-xl-6 mt-6">
-        <div class="card">
-          <div class="card-body">
-            <div class="d-flex align-items-center">
-              <div class="flex-shrink-0 mr-4 symbol symbol-60 symbol-circle">
-                <v-icon>mdi-harddisk</v-icon>
-              </div>
-              <div class="d-flex flex-column mr-auto">
-                <div class="d-flex flex-column mr-auto">
-                  <p class="text-primary font-size-h4 font-weight-bolder mb-1">
-                    DISK USAGE
-                  </p>
-                  <!-- <span class="text-muted font-weight-bold">
-                    discription here
-                  </span> -->
-                </div>
-              </div>
-            </div>
-
-            <div class="d-flex mt-5 mb-5 align-items-cente">
-              <div class="d-flex flex-row-fluid align-items-center">
-                <b-progress
-                  :max="memory_total"
-                  height="2rem"
-                  class="mt-2 mb-2 w-100"
-                >
-                  <b-progress-bar :value="memory_usage">
-                    <strong>
-                      {{ Math.ceil(server.diskTotal - server.diskFree) }}GB
-                    </strong>
-                  </b-progress-bar>
-                </b-progress>
-                <span class="ml-3 font-weight-bolder">
-                  {{ Math.ceil(server.diskTotal) }}GB
-                </span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+      <b-button
+        type="submit"
+        class="btn btn-info font-weight-bolder"
+        v-on:click="deployApplication"
+      >
+        Deploy Web Application
+      </b-button>
     </div>
   </div>
 </template>
 
+<style scoped src="@/assets/styles/server.css"></style>
+
 <script>
-import { SET_BREADCRUMB } from "@/core/services/store/breadcrumbs.module";
-import { GET_SERVER_SUMMERY } from "@/core/services/store/servers.module";
+import { makeSuccessToast, catchError } from "@/view/shared/msgbox";
+import {
+  GET_PHP_VERSION,
+  UPDATE_PHP_VERSION
+} from "@/core/services/store/system.module";
+
 export default {
-  name: "Summery",
   data() {
     return {
-      serverId: "",
-      server: {},
-      memory_total: 4,
-      memory_usage: 1.5
+      serverId: "git",
+      selectedVersion: "7.2",
+      provider: "github",
+      providers: [
+        {
+          value: "github",
+          text: "Github"
+        },
+        {
+          value: "gitlab",
+          text: "GitLab"
+        },
+        {
+          value: "bitbucket",
+          text: "Bitbucket"
+        },
+        {
+          value: "custom",
+          text: "Custom Git"
+        }
+      ],
+      form: {
+        gituser: "git",
+        githost: "",
+        repository: "",
+        branch: "main"
+      }
     };
   },
   mounted() {
     this.serverId = this.$route.params.serverId;
-    this.$store.dispatch(SET_BREADCRUMB, [{ title: "Summery" }]);
-    this.$store.dispatch(GET_SERVER_SUMMERY, this.serverId).then(res => {
-      console.log(res.data);
-      this.server = res.data;
+    this.$store.dispatch(GET_PHP_VERSION, this.serverId).then(res => {
+      console.log("PHPVersion", res);
+      this.options = res.data.avaliable;
+      this.selectedVersion = res.data.phpVersion;
     });
+  },
+  methods: {
+    getRepositoryPlaceholder() {
+      return `${this.provider}-username/repository-name`;
+    },
+    getCloneCommand() {
+      return `git clone --depth 1 --no-single-branch git@${this.provider}.com:${this.form.repository}.git -b ${this.form.branch}`;
+    },
+    deployApplication(e) {
+      e.preventDefault();
+      console.log("deployApplication", this.selectedVersion);
+      const payload = {
+        serverId: this.serverId,
+        phpVersion: this.selectedVersion
+      };
+      this.$store
+        .dispatch(UPDATE_PHP_VERSION, payload)
+        .then(phpVersion => {
+          console.log("PHP version is updated", phpVersion);
+          makeSuccessToast(this, "PHP version has been updated.");
+        })
+        .catch(catchError);
+    }
   }
 };
 </script>

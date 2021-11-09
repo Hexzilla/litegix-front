@@ -1,237 +1,161 @@
 <template>
-  <div>
-    <div class="card">
-      <div class="card-body">
-        <h4 class="pull-left">{{ server.name }}(others)</h4>
-        <div class="d-flex align-items-center flex-wrap mt-8">
-          <!-- Server Address -->
-          <div class="d-flex align-items-center flex-lg-fill mr-5 mb-2">
-            <span class="mr-4">
-              <i class="flaticon-piggy-bank text-muted font-weight-bold"></i>
-            </span>
-            <div class="d-flex flex-column ">
-              <span class="font-weight-bolder font-size-sm">IP Address</span>
-              <span class="font-weight-bolder font-size-h5">
-                {{ server.address }}
-              </span>
-            </div>
-          </div>
-
-          <!-- Agent Address -->
-          <div class="d-flex align-items-center flex-lg-fill mr-5 mb-2">
-            <span class="mr-4">
-              <i class="flaticon-confetti text-muted font-weight-bold"></i>
-            </span>
-            <div class="d-flex flex-column ">
-              <span class="font-weight-bolder font-size-sm">Agent Version</span>
-              <span class="font-weight-bolder font-size-h5">
-                {{ server.agentVersion }}
-              </span>
-            </div>
-          </div>
-
-          <!-- OS Address -->
-          <div class="d-flex align-items-center flex-lg-fill mr-5 mb-2">
-            <span class="mr-4">
-              <i class="flaticon-pie-chart text-muted font-weight-bold"></i>
-            </span>
-            <div class="d-flex flex-column ">
-              <span class="font-weight-bolder font-size-sm">OS Version</span>
-              <span class="font-weight-bolder font-size-h5">
-                {{ server.osVersion }}
-              </span>
-            </div>
-          </div>
-
-          <div class="d-flex align-items-center flex-lg-fill mr-5 mb-2">
-            <span class="mr-4">
-              <i class="flaticon-file-2 text-muted font-weight-bold"></i>
-            </span>
-            <div class="d-flex flex-column flex-lg-fill">
-              <span class=" font-weight-bolder font-size-sm">
-                Kernel Version
-              </span>
-              <span class="font-weight-bolder font-size-h5">
-                {{ server.kernelVersion }}
-              </span>
-            </div>
-          </div>
-        </div>
+  <div class="card card-custom gutter-b">
+    <div class="card-header border-0 py-5">
+      <h3 class="card-title align-items-start flex-column">
+        <span class="card-label font-weight-bolder text-dark"
+          >File Manager</span
+        >
+      </h3>
+      <div class="card-toolbar">
+        <input
+          type="text"
+          placeholder="Search..."
+          class="form-control input-lg w-200px mr-5"
+        />
+        <b-link @click="createDatabase($event)">
+          <a class="btn btn-primary font-weight-bolder font-size-sm">
+            Create
+          </a>
+        </b-link>
       </div>
     </div>
+    <div class="card-body py-0">
+      <b-table
+        :items="databases"
+        :fields="databaseFields"
+        empty-text="You don't have anything inside here yet."
+        show-empty
+      >
+        <template #cell(name)="data">
+          <i class="rc rc-ln-database rc-table-icon"></i>{{ data.item.name }}
+        </template>
+        <template #cell(database_user)="data">
+          <a
+            v-for="user in data.item.users"
+            :key="user._id"
+            role="button"
+            class="mr-1"
+            v-on:click="revokeDatabaseUser(data.item.id, user.id)"
+            ><span class="label label-lg label-inline label-primary">
+              {{ user.name }}
+            </span></a
+          >
 
-    <div class="row mt-5">
-      <!-- CPU Info -->
-      <div class="col-xl-6">
-        <div class="card">
-          <div class="card-body">
-            <div class="d-flex align-items-center">
-              <div class="flex-shrink-0 mr-4 symbol symbol-60 symbol-circle">
-                <v-icon>mdi-cpu-64-bit</v-icon>
-              </div>
-              <div class="d-flex flex-column mr-auto">
-                <div class="d-flex flex-column mr-auto">
-                  <p class="text-primary font-size-h4 font-weight-bolder mb-1">
-                    CPU
-                  </p>
-                  <!-- <span class="text-muted font-weight-bold">
-                    discription here
-                  </span> -->
-                </div>
-              </div>
-            </div>
-
-            <div class="mb-5 mt-5 font-weight-bold">
-              <p
-                class="text-hover-primary font-size-h4 font-weight-bolder mb-1"
-              >
-                {{ server.totalCPUCore }} core
-              </p>
-              {{ server.processorName }}
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Uptime -->
-      <div class="col-xl-6">
-        <div class="card">
-          <div class="card-body">
-            <div class="d-flex align-items-center">
-              <div class="flex-shrink-0 mr-4 symbol symbol-60 symbol-circle">
-                <!-- <inline-svg src="media/svg/icons/Files/Download.svg" /> -->
-                <v-icon>mdi-av-timer</v-icon>
-              </div>
-              <div class="d-flex flex-column mr-auto">
-                <div class="d-flex flex-column mr-auto">
-                  <p class="text-primary font-size-h4 font-weight-bolder mb-1">
-                    UPTIME
-                  </p>
-                  <!-- <span class="text-muted font-weight-bold">
-                    discription here
-                  </span> -->
-                </div>
-              </div>
-            </div>
-
-            <div class="mb-5 mt-5 font-weight-bold">
-              <p
-                class="text-hover-primary font-size-h4 font-weight-bolder mb-1"
-              >
-                {{ server.uptime }}
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Memory -->
-      <div class="col-xl-6 mt-6">
-        <div class="card">
-          <div class="card-body">
-            <div class="d-flex align-items-center">
-              <div class="flex-shrink-0 mr-4 symbol symbol-60 symbol-circle">
-                <v-icon>mdi-memory</v-icon>
-              </div>
-              <div class="d-flex flex-column mr-auto">
-                <div class="d-flex flex-column mr-auto">
-                  <p class="text-primary font-size-h4 font-weight-bolder mb-1">
-                    MEMORY USAGE
-                  </p>
-                  <!-- <span class="text-muted font-weight-bold">
-                    discription here
-                  </span> -->
-                </div>
-              </div>
-            </div>
-
-            <div class="d-flex mt-5 mb-5 align-items-cente">
-              <div class="d-flex flex-row-fluid align-items-center">
-                <b-progress
-                  :max="server.totalMemory"
-                  height="2rem"
-                  class="mt-2 mb-2 w-100"
-                >
-                  <b-progress-bar :value="memory_usage">
-                    <strong>
-                      {{ Math.ceil(server.totalMemory - server.freeMemory) }}GB
-                    </strong>
-                  </b-progress-bar>
-                </b-progress>
-                <span class="ml-3 font-weight-bolder">
-                  {{ Math.ceil(server.totalMemory) }}GB
-                </span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Disk -->
-      <div class="col-xl-6 mt-6">
-        <div class="card">
-          <div class="card-body">
-            <div class="d-flex align-items-center">
-              <div class="flex-shrink-0 mr-4 symbol symbol-60 symbol-circle">
-                <v-icon>mdi-harddisk</v-icon>
-              </div>
-              <div class="d-flex flex-column mr-auto">
-                <div class="d-flex flex-column mr-auto">
-                  <p class="text-primary font-size-h4 font-weight-bolder mb-1">
-                    DISK USAGE
-                  </p>
-                  <!-- <span class="text-muted font-weight-bold">
-                    discription here
-                  </span> -->
-                </div>
-              </div>
-            </div>
-
-            <div class="d-flex mt-5 mb-5 align-items-cente">
-              <div class="d-flex flex-row-fluid align-items-center">
-                <b-progress
-                  :max="memory_total"
-                  height="2rem"
-                  class="mt-2 mb-2 w-100"
-                >
-                  <b-progress-bar :value="memory_usage">
-                    <strong>
-                      {{ Math.ceil(server.diskTotal - server.diskFree) }}GB
-                    </strong>
-                  </b-progress-bar>
-                </b-progress>
-                <span class="ml-3 font-weight-bolder">
-                  {{ Math.ceil(server.diskTotal) }}GB
-                </span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+          <b-link @click="grantUser($event, data.item)">
+            <span class="label label-lg label-inline label-success">
+              Grant User
+            </span>
+          </b-link>
+        </template>
+        <template #cell(collation)="data">
+          {{ data.item.collation }}
+        </template>
+        <template #cell(delete)="data">
+          <a role="button" v-on:click="deleteDatabase(data.item)"
+            ><i class="fas fa-trash-alt text-danger"></i
+          ></a>
+        </template>
+      </b-table>
     </div>
   </div>
 </template>
 
+<style scoped src="@/assets/styles/server.css"></style>
+
 <script>
-import { SET_BREADCRUMB } from "@/core/services/store/breadcrumbs.module";
-import { GET_SERVER_SUMMERY } from "@/core/services/store/servers.module";
+import {
+  showConfirmMsgbox,
+  showSuccessMsgbox,
+  catchError
+} from "@/view/shared/msgbox";
+import {
+  GET_DATABASES,
+  DELETE_DATABASE,
+  REVOKE_USER
+} from "@/core/services/store/database.module";
+
 export default {
-  name: "Summery",
+  name: "KTDatabases",
+  props: ["serverId"],
   data() {
     return {
-      serverId: "",
-      server: {},
-      memory_total: 4,
-      memory_usage: 1.5
+      databases: [],
+      databaseFields: [
+        { key: "name", label: "File/Folder Name" },
+        {
+          key: "size",
+          thClass: "text-center",
+          tdClass: "text-center"
+        },
+        {
+          key: "type",
+          thClass: "text-center",
+          tdClass: "text-center"
+        },
+        {
+          key: "updatedAt",
+          label: "Last Modification",
+          thClass: "text-center",
+          tdClass: "text-center"
+        },
+        {
+          key: "permission",
+          thClass: "text-center",
+          tdClass: "text-center"
+        }
+      ]
     };
   },
   mounted() {
-    this.serverId = this.$route.params.serverId;
-    this.$store.dispatch(SET_BREADCRUMB, [{ title: "Summery" }]);
-    this.$store.dispatch(GET_SERVER_SUMMERY, this.serverId).then(res => {
-      console.log(res.data);
-      this.server = res.data;
+    this.$store.dispatch(GET_DATABASES, this.serverId).then(databases => {
+      console.log("databases", databases);
+      this.databases = databases;
     });
+  },
+  methods: {
+    createDatabase: function(e) {
+      e.preventDefault();
+      this.$router.push({ path: `/servers/${this.serverId}/database/create` });
+    },
+    revokeDatabaseUser: function(dbId, userId) {
+      this.$store.dispatch(REVOKE_USER, {
+        serverId: this.serverId,
+        databaseId: dbId,
+        dbuserId: userId
+      });
+      this.$router.go();
+    },
+    grantUser(e, item) {
+      this.$router.push({
+        path: `/servers/${this.serverId}/database/${item.id}/grant`
+      });
+    },
+    deleteDatabase: async function(database) {
+      console.log("deleteDatabase", database);
+      const result = await showConfirmMsgbox("Do you want to delete this?");
+      if (!result.isConfirmed) {
+        return;
+      }
+
+      this.$store
+        .dispatch(DELETE_DATABASE, {
+          serverId: this.serverId,
+          dbId: database.id
+        })
+        .then(response => {
+          console.log("deleteDatabase", response);
+          return showSuccessMsgbox(
+            `Database ${database.name} has been successfully deleted`
+          );
+        })
+        .then(() => {
+          const index = this.databases.indexOf(database);
+          if (index >= 0) {
+            this.databases.splice(index, 1);
+          }
+        })
+        .catch(catchError);
+    }
   }
 };
 </script>

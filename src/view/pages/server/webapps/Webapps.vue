@@ -51,14 +51,29 @@ import { GET_WEB_APPLICATIONS } from "@/core/services/store/system.module";
 export default {
   data() {
     return {
-      fields: ["name", "status", "owner", "domain", "phpVersion", "stack"],
+      fields: [
+        { key: "name", label: "Name" },
+        {
+          key: "status"
+        },
+        "owner",
+        {
+          key: "domainName",
+          label: "domain"
+        },
+        "phpVersion",
+        {
+          key: "stackMode",
+          label: "Stack"
+        }
+      ],
       items: []
     };
   },
   mounted() {
     this.serverId = this.$route.params.serverId;
     this.$store.dispatch(GET_WEB_APPLICATIONS, this.serverId).then(res => {
-      console.log(res);
+      console.log(res.data);
       this.items = res.data.apps;
     });
   },

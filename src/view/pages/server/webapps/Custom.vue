@@ -4,7 +4,7 @@
       <div class="card-header border-0 py-5">
         <h3 class="card-title align-items-start flex-column">
           <span class="card-label font-weight-bolder text-dark">
-            Install PHPMyAdmin
+            Add Web Application
           </span>
         </h3>
       </div>
@@ -83,6 +83,15 @@
             v-on:change="onSelectOwner"
           ></b-form-select>
         </b-form-group>
+        <b-form-group label="Public Path">
+          <b-input-group :prepend="getPublicPathPrefix()">
+            <b-form-input
+              name="publicPath"
+              v-model="form.publicPath"
+              required
+            ></b-form-input>
+          </b-input-group>
+        </b-form-group>
       </div>
     </div>
 
@@ -103,6 +112,26 @@
             :options="php_versions"
           ></b-form-select>
         </b-form-group>
+
+        <b-form-group label="Web Application Stack">
+          <b-form-select
+            name="webAppStack"
+            size="lg"
+            v-model="form.webAppStack"
+            :options="web_application_stacks"
+          ></b-form-select>
+        </b-form-group>
+
+        <b-form-group label="Environment">
+          <b-form-select
+            name="stackMode"
+            size="lg"
+            v-model="form.stackMode"
+            required
+            :options="web_environments"
+          ></b-form-select>
+        </b-form-group>
+
         <b-form-group label="SSL/TLS Method">
           <b-form-select
             name="sslMode"
@@ -122,12 +151,164 @@
           </b-form-checkbox>
         </b-form-group>
 
+        <!-- <b-form-group label="Advanced Settings">
+          <b-form-checkbox size="lg" v-model="advanced" name="advanceSetting">
+            Advanced Settings (Only use this if you know what you are doing)
+          </b-form-checkbox>
+        </b-form-group>
+
+        <div v-if="advanced">
+          <div>
+            <h4>Nginx Settings</h4>
+            <b-form-group label="Clickjacking Protection">
+              <b-form-checkbox size="lg" name="clickjackingProtection"
+                >Clickjacking Protection</b-form-checkbox
+              >
+            </b-form-group>
+            <b-form-group label="Cross-site scripting (XSS) Protection">
+              <b-form-checkbox size="lg" name="xssProtection"
+                >Cross-site scripting (XSS) Protection</b-form-checkbox
+              >
+            </b-form-group>
+            <b-form-group label="Mime Sniffing Protection">
+              <b-form-checkbox size="lg" name="mimeSniffingProtection"
+                >Mime Sniffing Protection</b-form-checkbox
+              >
+            </b-form-group>
+            <b-form-group label="PROXY Protocol">
+              <b-form-checkbox size="lg" name="proxyProtocol"
+                >PROXY Protocol</b-form-checkbox
+              >
+            </b-form-group>
+
+            <h4>FPM Settings</h4>
+            <div class="form-group">
+              <label class="control-label">Process Manager</label>
+              <b-form-select v-model="select" :options="keys"></b-form-select>
+            </div>
+
+            <b-form-group label="pm.max_children">
+              <b-form-input
+                name="processManagerMaxChildren"
+                placeholder="Default: 50"
+              ></b-form-input>
+            </b-form-group>
+
+            <b-form-group label="pm.max_requests">
+              <b-form-input
+                name="processManagerMaxRequests"
+                type="number"
+                placeholder="Default: 500"
+              ></b-form-input>
+            </b-form-group>
+          </div>
+          <h4>PHP Settings</h4>
+          <b-form-group label="open_basedir">
+            <b-form-input
+              name="openBasedir"
+              placeholder="Default: /home/459412/webapps/app-gerhold:/var/lib/php/session:/tmp"
+            ></b-form-input>
+          </b-form-group>
+
+          <div class="form-group">
+            <label class="control-label">date.timezone</label>
+            <b-form-select v-model="select" :options="keys"></b-form-select>
+          </div>
+
+          <div class="form-group">
+            <label for="disableFunctions" class="control-label"
+              >disable_functions</label
+            >
+            <textarea
+              name="disableFunctions"
+              rows="7"
+              placeholder=""
+              class="form-control"
+            ></textarea>
+          </div>
+          <b-form-group label="max_execution_time">
+            <b-form-input
+              name="maxExecutionTime"
+              placeholder="Default: 30"
+            ></b-form-input>
+          </b-form-group>
+          <b-form-group label="max_execution_time">
+            <b-form-input
+              type="number"
+              name="maxExecutionTime"
+              placeholder="Default: 30"
+            ></b-form-input>
+          </b-form-group>
+
+          <b-form-group label="max_input_time">
+            <b-form-input
+              type="number"
+              name="maxInputTime"
+              placeholder="Default: 60"
+            ></b-form-input>
+          </b-form-group>
+
+          <b-form-group label="max_input_vars">
+            <b-form-input
+              type="number"
+              name="maxInputVars"
+              placeholder="Default: 1000"
+            ></b-form-input>
+          </b-form-group>
+
+          <b-form-group label="memory_limit">
+            <b-input-group append="MG">
+              <b-form-input
+                type="number"
+                name="memoryLimit"
+                placeholder="Default: 256"
+              ></b-form-input>
+            </b-input-group>
+          </b-form-group>
+
+          <b-form-group label="post_max_size (Nginx and PHP)">
+            <b-input-group append="MG">
+              <b-form-input
+                type="number"
+                name="postMaxSize"
+                placeholder="Default: 256"
+              ></b-form-input>
+            </b-input-group>
+          </b-form-group>
+
+          <b-form-group label="uploadMaxFilesize">
+            <b-input-group append="MG">
+              <b-form-input
+                type="number"
+                name="uploadMaxFilesize"
+                placeholder="Default: 256"
+              ></b-form-input>
+            </b-input-group>
+          </b-form-group>
+
+          <b-form-group label="session.gc_maxlifetime">
+            <b-input-group append="seconds">
+              <b-form-input
+                type="number"
+                name="sessionGcMaxlifetime"
+                placeholder="Default: 1440"
+              ></b-form-input>
+            </b-input-group>
+          </b-form-group>
+
+          <b-form-group label="allow_url_fopen">
+            <b-checkbox size="lg" name="allowUrlFopen"
+              >allow_url_fopen</b-checkbox
+            >
+          </b-form-group>
+        </div> -->
+
         <button
           type="submit"
           class="btn btn-primary btn-block"
           ref="kt_form_submit"
         >
-          Install PHPMyAdmin
+          Add Web Application
         </button>
       </div>
     </div>
@@ -143,8 +324,8 @@ import SubmitButton from "@/assets/plugins/formvalidation/dist/es6/plugins/Submi
 import KTUtil from "@/assets/js/components/util";
 import { showSuccessMsgbox, catchError } from "@/view/shared/msgbox";
 import {
-  CREATE_PHPMYADMIN,
-  STORE_PHPMYADMIN
+  CREATE_CUSTOM_WEB_APPLICATION,
+  STORE_CUSTOM_WEB_APPLICATION
 } from "@/core/services/store/system.module";
 export default {
   data() {
@@ -177,25 +358,28 @@ export default {
   },
   mounted() {
     this.serverId = this.$route.params.serverId;
-    this.$store.dispatch(CREATE_PHPMYADMIN, this.serverId).then(res => {
-      console.log(res);
-      this.system_users = res.data.system_users;
-      this.php_versions = res.data.php_versions;
-      this.web_application_stacks = res.data.web_application_stacks;
-      this.web_environments = res.data.web_environments;
-      this.web_ssl_methods = res.data.web_ssl_methods;
-      this.form.domainSuffix = res.data.domainSuffix;
-    });
+    this.$store
+      .dispatch(CREATE_CUSTOM_WEB_APPLICATION, this.serverId)
+      .then(res => {
+        console.log(res);
+        this.system_users = res.data.system_users;
+        this.php_versions = res.data.php_versions;
+        this.web_application_stacks = res.data.web_application_stacks;
+        this.web_environments = res.data.web_environments;
+        this.web_ssl_methods = res.data.web_ssl_methods;
+        this.form.domainSuffix = res.data.domainSuffix;
+      });
     this.initForm();
   },
   methods: {
     createApplication() {
+      console.log("createApplication");
       // set spinner to submit button
       const submitButton = this.$refs["kt_form_submit"];
       submitButton.classList.add("spinner", "spinner-light", "spinner-right");
 
       this.$store
-        .dispatch(STORE_PHPMYADMIN, {
+        .dispatch(STORE_CUSTOM_WEB_APPLICATION, {
           ...this.form,
           serverId: this.$parent.serverId
         })
@@ -209,7 +393,7 @@ export default {
         })
         .then(() => {
           this.$router.push({
-            path: `/servers/${this.$parent.serverId}/application`
+            path: `/servers/${this.$parent.serverId}/webapps`
           });
         })
         .catch(catchError)

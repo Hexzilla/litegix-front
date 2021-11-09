@@ -346,7 +346,7 @@ export default {
         })
         .then(() => {
           this.$router.push({
-            path: `/servers/${this.$parent.serverId}/application`
+            path: `/servers/${this.$parent.serverId}/webapps`
           });
         })
         .catch(catchError)

@@ -122,6 +122,64 @@ export default new Router({
           props: true
         },
         {
+          path: "servers/:serverId/webapps/:webappId",
+          redirect: "servers/:serverId/webapps/:webappId/summary",
+          name: "server-webapps-app",
+          component: () =>
+            import("@/view/pages/server/webapps/webapp/Webapp.vue"),
+          props: true,
+          children: [
+            {
+              path: "summary",
+              name: "webapp-summary",
+              component: () =>
+                import("@/view/pages/server/webapps/webapp/Summary.vue")
+            },
+            {
+              path: "deploy",
+              name: "webapp-deploy",
+              component: () =>
+                import("@/view/pages/server/webapps/webapp/Deploy.vue")
+            },
+            {
+              path: "domain",
+              name: "webapp-domain",
+              component: () =>
+                import("@/view/pages/server/webapps/webapp/Domain.vue")
+            },
+            {
+              path: "ssl",
+              name: "webapp-ssl",
+              component: () =>
+                import("@/view/pages/server/webapps/webapp/SSL.vue")
+            },
+            {
+              path: "filemanager",
+              name: "webapp-filemanager",
+              component: () =>
+                import("@/view/pages/server/webapps/webapp/FileManager.vue")
+            },
+            {
+              path: "firewall",
+              name: "webapp-firewall",
+              component: () =>
+                import("@/view/pages/server/webapps/webapp/Firewall.vue")
+            },
+            {
+              path: "activitylog",
+              name: "webapp-activitylog",
+              component: () =>
+                import("@/view/pages/server/webapps/webapp/ActivityLog.vue")
+            },
+            {
+              path: "weblog",
+              name: "webapp-weblog",
+              component: () =>
+                import("@/view/pages/server/webapps/webapp/WebLog.vue")
+            }
+          ]
+        },
+        {
           path: "servers/:serverId",
           redirect: "servers/:serverId/summary",
           name: "server",
@@ -146,34 +204,31 @@ export default new Router({
                 import("@/view/pages/server/notifications/AddChannel.vue")
             },
             {
-              path: "application",
-              name: "server-application",
-              component: () =>
-                import("@/view/pages/server/application/Application.vue")
+              path: "webapps/create",
+              name: "server-webapps-create",
+              component: () => import("@/view/pages/server/webapps/Create.vue")
             },
             {
-              path: "application/create",
-              name: "server-application-create",
-              component: () =>
-                import("@/view/pages/server/application/Create.vue")
+              path: "webapps/custom",
+              name: "server-webapps-create-custom",
+              component: () => import("@/view/pages/server/webapps/Custom.vue")
             },
             {
-              path: "application/custom",
-              name: "server-application-create-custom",
+              path: "webapps/wordpress",
+              name: "server-webapps-create-wordpress",
               component: () =>
-                import("@/view/pages/server/application/Custom.vue")
+                import("@/view/pages/server/webapps/WordPress.vue")
             },
             {
-              path: "application/wordpress",
-              name: "server-application-create-wordpress",
+              path: "webapps/phpmyadmin",
+              name: "server-webapps-create-phpmyadmin",
               component: () =>
-                import("@/view/pages/server/application/WordPress.vue")
+                import("@/view/pages/server/webapps/PHPMyAdmin.vue")
             },
             {
-              path: "application/phpmyadmin",
-              name: "server-application-create-phpmyadmin",
-              component: () =>
-                import("@/view/pages/server/application/PHPMyAdmin.vue")
+              path: "webapps",
+              name: "server-webapps",
+              component: () => import("@/view/pages/server/webapps/Webapps.vue")
             },
             {
               path: "database",

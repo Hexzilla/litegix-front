@@ -23,7 +23,7 @@ export default [
   },
   {
     title: "Web Application",
-    link: "/application",
+    link: "/webapps",
     icon: "media/svg/icons/Communication/Mail-notification.svg"
   },
   {

@@ -13,7 +13,7 @@
           <template v-for="(item, i) in menuItems">
             <router-link
               v-bind:key="i"
-              :to="`/servers/` + serverId + item.link"
+              :to="`/servers/${serverId}/webapps/${webappId}${item.link}`"
               v-slot="{ href, navigate, isActive, isExactActive }"
             >
               <div
@@ -50,14 +50,57 @@
   </div>
 </template>
 <script>
-import MenuItems from "./ServerMenu.js";
-
 export default {
-  name: "KTServerMenu",
-  props: ["serverId"],
+  name: "KTWebappMenu",
+  props: ["serverId", "webappId"],
   data() {
     return {
-      menuItems: MenuItems
+      menuItems: [
+        {
+          title: "Summary",
+          link: "/summary",
+          icon: "/media/svg/icons/General/User.svg",
+          class: "round-top-left"
+        },
+        {
+          title: "Deploy",
+          link: "/deploy",
+          icon: "/media/svg/icons/Communication/Incoming-call.svg",
+          class: "round-top-right"
+        },
+        {
+          title: "Domain",
+          link: "/domain",
+          icon: "/media/svg/icons/Communication/Mail-notification.svg"
+        },
+        {
+          title: "SSL/TLS",
+          link: "/ssl",
+          icon: "/media/svg/icons/Communication/Reply-all.svg"
+        },
+        {
+          title: "File Manager",
+          link: "/filemanager",
+          icon: "/media/svg/icons/Communication/Mail-opened.svg"
+        },
+        {
+          title: "Firewall",
+          link: "/firewall",
+          icon: "/media/svg/icons/Communication/Safe-chat.svg"
+        },
+        {
+          title: "Activity Log",
+          link: "/activitylog",
+          icon: "/media/svg/icons/Communication/Sending.svg",
+          class: "round-bottom-left"
+        },
+        {
+          title: "Web Log",
+          link: "/weblog",
+          icon: "/media/svg/icons/Communication/Thumbtack.svg",
+          class: "round-bottom-right"
+        }
+      ]
     };
   }
 };

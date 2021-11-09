@@ -10,6 +10,21 @@
           class="navi navi-bold navi-hover navi-active row p-5 list-rounded d-flex"
           role="tablist"
         >
+          <span class="svg-icon svg-icon-primary">
+            <inline-svg src="media/svg/icons/Design/Layers.svg" />
+            <b-link
+              visible="!server.connected"
+              :to="`/servers/${serverId}/webapps/`"
+              class="flex-grow-1 mt-2"
+            >
+              Back to Web Applications
+            </b-link>
+          </span>
+        </div>
+        <div
+          class="navi navi-bold navi-hover navi-active row p-5 list-rounded d-flex"
+          role="tablist"
+        >
           <template v-for="(item, i) in menuItems">
             <router-link
               v-bind:key="i"

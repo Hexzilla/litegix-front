@@ -38,7 +38,7 @@
         </a>
       </li>
     </router-link>
-    <router-link
+    <!-- <router-link
       to="/Teams"
       v-slot="{ href, navigate, isActive, isExactActive }"
     >
@@ -55,7 +55,7 @@
           <span class="menu-text">Teams</span>
         </a>
       </li>
-    </router-link>
+    </router-link> -->
 
     <router-link
       to="/Projects"
@@ -76,7 +76,7 @@
       </li>
     </router-link>
 
-    <router-link
+    <!-- <router-link
       to="/Backups"
       v-slot="{ href, navigate, isActive, isExactActive }"
     >
@@ -112,7 +112,7 @@
           <span class="menu-text">DNS manager</span>
         </a>
       </li>
-    </router-link>
+    </router-link> -->
 
     <li class="menu-section"></li>
 

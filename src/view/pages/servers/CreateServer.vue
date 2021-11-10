@@ -50,7 +50,7 @@
               <b-form-select
                 id="php-version"
                 v-model="server.phpVersion"
-                :options="phpversions"
+                :options="php_versions"
               ></b-form-select>
             </b-form-group>
           </div>
@@ -92,22 +92,24 @@ import Swal from "sweetalert2";
 
 import { mapGetters } from "vuex";
 import { SET_BREADCRUMB } from "@/core/services/store/breadcrumbs.module";
-import { CREATE_SERVER } from "@/core/services/store/servers.module";
-import { Constants } from "./Constants";
+import {
+  CREATE_SERVER,
+  STORE_SERVER
+} from "@/core/services/store/servers.module";
 
 export default {
   name: "Account",
   data() {
     return {
-      webservers: Constants.webservers,
-      phpversions: Constants.phpversions,
-      databases: Constants.databases,
+      webservers: [],
+      php_versions: [],
+      databases: [],
       server: {
         name: "",
         address: "",
         provider: "",
         webserver: "nginx",
-        phpVersion: "7.4",
+        phpVersion: "php7.4",
         database: "mysql"
       }
     };
@@ -120,6 +122,13 @@ export default {
       { title: "Server" },
       { title: "Create" }
     ]);
+
+    this.$store.dispatch(CREATE_SERVER).then(res => {
+      console.log("create_server", res);
+      this.webservers = res.data.webservers;
+      this.php_versions = res.data.php_versions;
+      this.databases = res.data.databases;
+    });
 
     const default_validators = {
       validators: {
@@ -166,7 +175,7 @@ export default {
             );
           };
 
-          const result = await this.$store.dispatch(CREATE_SERVER, this.server);
+          const result = await this.$store.dispatch(STORE_SERVER, this.server);
           removeSpinner();
 
           if (result.success) {

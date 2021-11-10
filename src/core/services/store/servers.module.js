@@ -4,6 +4,7 @@ export const SET_SERVERS = "SET_SERVERS";
 export const SET_ERROR = "SET_ERROR";
 
 export const CREATE_SERVER = "CREATE_SERVER";
+export const STORE_SERVER = "STORE_SERVER";
 export const CONFIGURE_SERVER = "CONFIGURE_SERVER";
 export const GET_SERVERS = "GET_SERVERS";
 export const GET_SCRIPT = "GET_SCRIPT";
@@ -30,7 +31,21 @@ const getters = {
 };
 
 const actions = {
-  [CREATE_SERVER](context, credentials) {
+  [CREATE_SERVER](context) {
+    return new Promise((resolve, reject) => {
+      ApiService.setHeader();
+      ApiService.get("/servers/create")
+        .then(({ data }) => {
+          resolve(data);
+        })
+        .catch(error => {
+          console.log(error.response);
+          context.commit(SET_ERROR, error.response?.data.errors);
+          reject(error);
+        });
+    });
+  },
+  [STORE_SERVER](context, credentials) {
     return new Promise((resolve, reject) => {
       ApiService.setHeader();
       ApiService.post("/servers", credentials)

@@ -8,7 +8,7 @@
       </div>
     </div>
     <div class="card-body">
-      <form class="form mt-5" id="kt_create_form">
+      <b-form class="form mt-5" id="kt_create_form">
         <div class="row">
           <div class="col-md-6 offset-md-3 col-sm-12 offset-sm-0">
             <b-form-group label="Web Server:">
@@ -69,15 +69,14 @@
 
         <div class="d-flex justify-content-center border-top mt-10 pt-10">
           <button
-            type="button"
+            type="submit"
             class="btn btn-primary text-uppercase px-15 py-2 my-3 mr-3"
-            @click="createServer()"
-            ref="kt_save_changes"
+            ref="kt_form_submit"
           >
             Create this server
           </button>
         </div>
-      </form>
+      </b-form>
     </div>
   </div>
 </template>
@@ -88,10 +87,8 @@ import formValidation from "@/assets/plugins/formvalidation/dist/es6/core/Core";
 import Trigger from "@/assets/plugins/formvalidation/dist/es6/plugins/Trigger";
 import Bootstrap from "@/assets/plugins/formvalidation/dist/es6/plugins/Bootstrap";
 import SubmitButton from "@/assets/plugins/formvalidation/dist/es6/plugins/SubmitButton";
-import Swal from "sweetalert2";
-
-import { mapGetters } from "vuex";
 import { SET_BREADCRUMB } from "@/core/services/store/breadcrumbs.module";
+import { showSuccessMsgbox, catchError } from "@/view/shared/msgbox";
 import {
   CREATE_SERVER,
   STORE_SERVER
@@ -114,9 +111,6 @@ export default {
       }
     };
   },
-  computed: {
-    ...mapGetters(["currentUserPersonalInfo", "currentUserAccountInfo"])
-  },
   mounted() {
     this.$store.dispatch(SET_BREADCRUMB, [
       { title: "Server" },
@@ -135,8 +129,8 @@ export default {
         notEmpty: { message: "This field is required" }
       }
     };
-    const profile_form = KTUtil.getById("kt_create_form");
-    this.fv = formValidation(profile_form, {
+    const form = KTUtil.getById("kt_create_form");
+    this.fv = formValidation(form, {
       fields: {
         name: default_validators,
         email: default_validators,
@@ -154,61 +148,39 @@ export default {
         submitButton: new SubmitButton()
       }
     });
+    this.fv.on("core.form.valid", this.createServer);
+    this.fv.on("core.form.invalid", () => {});
   },
   methods: {
-    async createServer() {
-      this.fv.validate();
+    createServer() {
+      // set spinner to submit button
+      const submitButton = this.$refs["kt_form_submit"];
+      submitButton.classList.add("spinner", "spinner-light", "spinner-right");
 
-      this.fv.on("core.form.valid", async () => {
-        try {
-          const submitButton = this.$refs["kt_save_changes"];
-          submitButton.classList.add(
+      this.$store
+        .dispatch(STORE_SERVER, this.server)
+        .then(res => {
+          if (!res.success) {
+            throw new Error(res.errors.message);
+          }
+          this.server.id = res.data.id;
+          return showSuccessMsgbox(
+            `Server ${this.server.name} has been successfully created`
+          );
+        })
+        .then(() => {
+          this.$router.push({
+            path: `/servers/${this.server.id}/config`
+          });
+        })
+        .catch(catchError)
+        .finally(() => {
+          submitButton.classList.remove(
             "spinner",
             "spinner-light",
             "spinner-right"
           );
-          const removeSpinner = () => {
-            submitButton.classList.remove(
-              "spinner",
-              "spinner-light",
-              "spinner-right"
-            );
-          };
-
-          const result = await this.$store.dispatch(STORE_SERVER, this.server);
-          removeSpinner();
-
-          if (result.success) {
-            await this.showMessageBox(
-              "success",
-              "Your Server has been successfully created"
-            );
-            this.$router.push({
-              path: `/servers/${result.data.id}/config`
-            });
-          } else {
-            await this.showMessageBox("error", result.errors?.message);
-          }
-        } catch (e) {
-          await this.showMessageBox("error", "Failed to create server");
-        }
-      });
-    },
-    makeToast(contents, variant = null) {
-      this.$bvToast.toast(contents, {
-        title: `Litegix`,
-        variant: variant,
-        solid: true
-      });
-    },
-    async showMessageBox(icon, text) {
-      await Swal.fire({
-        title: "",
-        text: text,
-        icon: icon,
-        confirmButtonClass: "btn btn-secondary",
-        heightAuto: false
-      });
+        });
     }
   }
 };

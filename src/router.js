@@ -121,6 +121,44 @@ export default new Router({
           component: () => import("@/view/pages/servers/ConfigServer.vue"),
           props: true
         },
+        //servers/:serverId/webapps
+        {
+          path: "servers/:serverId/webapps",
+          redirect: "servers/:serverId/webapps/",
+          name: "server-webapp-create-root",
+          component: () => import("@/view/pages/server/Server.vue"),
+          props: true,
+          children: [
+            {
+              path: "/",
+              name: "server-webapps-list",
+              component: () => import("@/view/pages/server/webapps/Webapps.vue")
+            },
+            {
+              path: "create/custom",
+              name: "server-webapps-create-custom",
+              component: () => import("@/view/pages/server/webapps/Custom.vue")
+            },
+            {
+              path: "create/wordpress",
+              name: "server-webapps-create-wordpress",
+              component: () =>
+                import("@/view/pages/server/webapps/WordPress.vue")
+            },
+            {
+              path: "create/phpmyadmin",
+              name: "server-webapps-create-phpmyadmin",
+              component: () =>
+                import("@/view/pages/server/webapps/PHPMyAdmin.vue")
+            },
+            {
+              path: "webapps",
+              name: "server-webapps",
+              component: () => import("@/view/pages/server/webapps/Webapps.vue")
+            }
+          ]
+        },
+        //servers/:serverId/webapps/:webappId
         {
           path: "servers/:serverId/webapps/:webappId",
           redirect: "servers/:serverId/webapps/:webappId/summary",
@@ -185,6 +223,7 @@ export default new Router({
             }
           ]
         },
+        //servers/:serverId
         {
           path: "servers/:serverId",
           redirect: "servers/:serverId/summary",
@@ -208,33 +247,6 @@ export default new Router({
               name: "server-notification-create",
               component: () =>
                 import("@/view/pages/server/notifications/AddChannel.vue")
-            },
-            {
-              path: "webapps/create",
-              name: "server-webapps-create",
-              component: () => import("@/view/pages/server/webapps/Create.vue")
-            },
-            {
-              path: "webapps/custom",
-              name: "server-webapps-create-custom",
-              component: () => import("@/view/pages/server/webapps/Custom.vue")
-            },
-            {
-              path: "webapps/wordpress",
-              name: "server-webapps-create-wordpress",
-              component: () =>
-                import("@/view/pages/server/webapps/WordPress.vue")
-            },
-            {
-              path: "webapps/phpmyadmin",
-              name: "server-webapps-create-phpmyadmin",
-              component: () =>
-                import("@/view/pages/server/webapps/PHPMyAdmin.vue")
-            },
-            {
-              path: "webapps",
-              name: "server-webapps",
-              component: () => import("@/view/pages/server/webapps/Webapps.vue")
             },
             {
               path: "database",

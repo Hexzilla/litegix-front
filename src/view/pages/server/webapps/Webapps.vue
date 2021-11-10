@@ -12,17 +12,17 @@
           placeholder="Search..."
           class="form-control input-lg w-200px mr-5"
         /> -->
-        <b-link to="webapps/custom">
+        <b-link to="webapps/create/custom">
           <a class="btn btn-primary font-weight-bolder font-size-sm mr-5 mb-5"
             >Create Custom Web Application</a
           >
         </b-link>
-        <b-link to="webapps/wordpress">
+        <b-link to="webapps/create/wordpress">
           <a class="btn btn-success font-weight-bolder font-size-sm mr-5 mb-5"
             >Create 1 Click WordPress</a
           >
         </b-link>
-        <b-link to="webapps/phpmyadmin">
+        <b-link to="webapps/create/phpmyadmin">
           <a class="btn btn-info font-weight-bolder font-size-sm mr-5 mb-5"
             >Create 1 Click PHPMyAdmin</a
           >

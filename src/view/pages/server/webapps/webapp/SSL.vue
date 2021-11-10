@@ -7,11 +7,11 @@
           placeholder="Search..."
           class="form-control input-lg w-200px mr-5"
         />
-        <b-link @click="createDatabase($event)">
+        <!-- <b-link @click="createDatabase($event)">
           <a class="btn btn-primary font-weight-bolder font-size-sm">
             Create Domain
           </a>
-        </b-link>
+        </b-link> -->
       </template>
       <template v-slot:body>
         <b-table

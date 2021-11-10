@@ -16,19 +16,35 @@
           and want to use nG-Series firewall by PerishablePress, it is available
           under NGiNX Config menu as an NGiNX drop in file.
         </p>
-        <div>
-          <!-- <div class="col-md-8 offset-md-2 col-sm-12 offset-sm-0"> -->
-          <div class="pt-10">
-            <b-form-group label="Firewall Mode">
-              <b-form-select
-                v-model="enableFirewall"
-                :options="enableFirewallOptions"
-              ></b-form-select>
-            </b-form-group>
+        <div class="py-10">
+          <div class="form-group row">
+            <label class="col-lg-3 col-form-label">
+              Firewall Mode:
+            </label>
+            <div class="col-lg-9 col-xl-4">
+              <span class="switch switch-icon">
+                <label>
+                  <input
+                    type="checkbox"
+                    v-model="enableFirewall"
+                    value="false"
+                    checked=""
+                  />
+                  <span></span>
+                </label>
+              </span>
+              <div class="form-text text-muted">
+                Enable Firewall
+              </div>
+            </div>
           </div>
-          <div class="pt-10">
-            <div v-if="enableFirewall">
-              <b-form-group label="Paranoia Level">
+          <div v-if="enableFirewall">
+            <!--Paranoia Level-->
+            <div class="form-group row mt-10">
+              <label class="col-lg-3 col-form-label">
+                Paranoia Level:
+              </label>
+              <div class="col-lg-9 col-xl-9">
                 <p class="font-size-md mt-1">
                   Choose desired level of rule check to protect your web
                   application. Higher paranoia levels will strengthen web
@@ -40,8 +56,14 @@
                   v-model="paranoiaLevel"
                   :options="paranoiaLevels"
                 ></b-form-select>
-              </b-form-group>
-              <b-form-group label="Anomaly Threshold" class="mt-14">
+              </div>
+            </div>
+            <!--Anomaly Threshold-->
+            <div class="form-group row mt-10">
+              <label class="col-lg-3 col-form-label">
+                Anomaly Threshold:
+              </label>
+              <div class="col-lg-9 col-xl-9">
                 <p class="font-size-md mt-1">
                   ModSecurity assign a score for each security risk found in a
                   request (Critical: 5, Error: 4, Warning: 3, Notice: 2).
@@ -53,17 +75,29 @@
                   v-model="anomalyThreshold"
                   :options="anomalyThresholds"
                 ></b-form-select>
-              </b-form-group>
-              <b-form-group label="Common Rule Exclusion" class="mt-14">
+              </div>
+            </div>
+            <!--Common Rule Exclusion-->
+            <div class="form-group row mt-10">
+              <label class="col-lg-3 col-form-label">
+                Common Rule Exclusion:
+              </label>
+              <div class="col-lg-9 col-xl-9">
                 <p class="font-size-md mt-1">
                   If you are using any of those Web Application below, tick in
                   the checkbox to reduce false positive.
                 </p>
-                <b-form-select
-                  v-model="enableFirewall"
-                  :options="enableFirewallOptions"
-                ></b-form-select>
-              </b-form-group>
+                <div class="checkbox-list">
+                  <label
+                    class="checkbox"
+                    v-for="(item, i) in commonRuleExclusionItems"
+                    :key="i"
+                  >
+                    <input type="checkbox" />
+                    <span></span> {{ item }}
+                  </label>
+                </div>
+              </div>
             </div>
           </div>
           <div class="py-10">
@@ -116,6 +150,7 @@ export default {
         { value: 5, text: "Level 5" }
       ],
       anomalyThresholds: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
+      commonRuleExclusionItems: ["Wordpress", "Drupal", "Joomla", "Magento"],
       enableFirewall: true,
       paranoiaLevel: 2,
       anomalyThreshold: 1,

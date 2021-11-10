@@ -7,15 +7,15 @@
           placeholder="Search..."
           class="form-control input-lg w-200px mr-5"
         />
-        <b-dropdown class="color-primary" right text="Create">
-          <b-dropdown-item>File</b-dropdown-item>
-          <b-dropdown-item>Folder</b-dropdown-item>
+        <b-dropdown class="color-primary" variant="primary" text="Create">
+          <b-dropdown-item v-on:click="addNewFile">File</b-dropdown-item>
+          <b-dropdown-item v-on:click="addNewFolder">Folder</b-dropdown-item>
         </b-dropdown>
       </template>
       <template v-slot:body>
         <b-table
-          :items="databases"
-          :fields="databaseFields"
+          :items="files"
+          :fields="fileOptions"
           empty-text="You don't have anything inside here yet."
           show-empty
         >
@@ -51,6 +51,32 @@
         </b-table>
       </template>
     </KTCard>
+    <b-modal
+      centered
+      ref="addNewFileModal"
+      title="Add new file"
+      ok-title="Create"
+    >
+      <p>Type the name of file that you want to create.</p>
+      <b-form-input
+        type="text"
+        name="filename"
+        placeholder="File name"
+      ></b-form-input>
+    </b-modal>
+    <b-modal
+      centered
+      ref="addNewFolderModal"
+      title="Add new folder"
+      ok-title="Create"
+    >
+      <p>Type the name of file that you want to create.</p>
+      <b-form-input
+        type="text"
+        name="foldername"
+        placeholder="Folder name"
+      ></b-form-input>
+    </b-modal>
   </div>
 </template>
 
@@ -77,8 +103,8 @@ export default {
   },
   data() {
     return {
-      databases: [],
-      databaseFields: [
+      files: [],
+      fileOptions: [
         { key: "name", label: "File/Folder Name" },
         {
           key: "size",
@@ -98,16 +124,16 @@ export default {
         },
         {
           key: "permission",
-          thClass: "text-center",
-          tdClass: "text-center"
+          thClass: "text-right",
+          tdClass: "text-right"
         }
       ]
     };
   },
   mounted() {
-    this.$store.dispatch(GET_DATABASES, this.serverId).then(databases => {
-      console.log("databases", databases);
-      this.databases = databases;
+    this.$store.dispatch(GET_DATABASES, this.serverId).then(files => {
+      console.log("files", files);
+      this.files = files;
     });
   },
   methods: {
@@ -128,8 +154,8 @@ export default {
         path: `/servers/${this.serverId}/database/${item.id}/grant`
       });
     },
-    deleteDatabase: async function(database) {
-      console.log("deleteDatabase", database);
+    deleteFile: async function(filename) {
+      console.log("deleteFile", filename);
       const result = await showConfirmMsgbox("Do you want to delete this?");
       if (!result.isConfirmed) {
         return;
@@ -138,21 +164,27 @@ export default {
       this.$store
         .dispatch(DELETE_DATABASE, {
           serverId: this.serverId,
-          dbId: database.id
+          dbId: filename.id
         })
         .then(response => {
           console.log("deleteDatabase", response);
           return showSuccessMsgbox(
-            `Database ${database.name} has been successfully deleted`
+            `File ${filename.name} has been successfully deleted`
           );
         })
         .then(() => {
-          const index = this.databases.indexOf(database);
+          const index = this.files.indexOf(filename);
           if (index >= 0) {
-            this.databases.splice(index, 1);
+            this.files.splice(index, 1);
           }
         })
         .catch(catchError);
+    },
+    addNewFile() {
+      this.$refs["addNewFileModal"].show();
+    },
+    addNewFolder() {
+      this.$refs["addNewFolderModal"].show();
     }
   }
 };

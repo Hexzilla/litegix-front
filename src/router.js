@@ -176,6 +176,12 @@ export default new Router({
               name: "webapp-weblog",
               component: () =>
                 import("@/view/pages/server/webapps/webapp/WebLog.vue")
+            },
+            {
+              path: "settings",
+              name: "webapp-settings",
+              component: () =>
+                import("@/view/pages/server/webapps/webapp/Settings.vue")
             }
           ]
         },

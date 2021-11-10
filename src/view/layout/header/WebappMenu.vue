@@ -110,11 +110,17 @@ export default {
           class: "round-bottom-left"
         },
         {
-          title: "Web Log",
-          link: "/weblog",
+          title: "Settings",
+          link: "/settings",
           icon: "/media/svg/icons/Communication/Thumbtack.svg",
           class: "round-bottom-right"
         }
+        // {
+        //   title: "Web Log",
+        //   link: "/weblog",
+        //   icon: "/media/svg/icons/Communication/Thumbtack.svg",
+        //   class: "round-bottom-right"
+        // }
       ]
     };
   }

@@ -1,10 +1,7 @@
 <template>
-  <div class="card card-custom gutter-b">
-    <div class="card-header border-0 py-5">
-      <h3 class="card-title align-items-start flex-column">
-        <span class="card-label font-weight-bolder text-dark">Domains</span>
-      </h3>
-      <div class="card-toolbar">
+  <div>
+    <KTCard ref="deploy" title="Domains">
+      <template v-slot:toolbar>
         <input
           type="text"
           placeholder="Search..."
@@ -15,52 +12,53 @@
             Create Domain
           </a>
         </b-link>
-      </div>
-    </div>
-    <div class="card-body py-0">
-      <b-table
-        :items="databases"
-        :fields="databaseFields"
-        empty-text="You don't have anything inside here yet."
-        show-empty
-      >
-        <template #cell(name)="data">
-          <i class="rc rc-ln-database rc-table-icon"></i>{{ data.item.name }}
-        </template>
-        <template #cell(database_user)="data">
-          <a
-            v-for="user in data.item.users"
-            :key="user._id"
-            role="button"
-            class="mr-1"
-            v-on:click="revokeDatabaseUser(data.item.id, user.id)"
-            ><span class="label label-lg label-inline label-primary">
-              {{ user.name }}
-            </span></a
-          >
+      </template>
+      <template v-slot:body>
+        <b-table
+          :items="databases"
+          :fields="databaseFields"
+          empty-text="You don't have anything inside here yet."
+          show-empty
+        >
+          <template #cell(name)="data">
+            <i class="rc rc-ln-database rc-table-icon"></i>{{ data.item.name }}
+          </template>
+          <template #cell(database_user)="data">
+            <a
+              v-for="user in data.item.users"
+              :key="user._id"
+              role="button"
+              class="mr-1"
+              v-on:click="revokeDatabaseUser(data.item.id, user.id)"
+              ><span class="label label-lg label-inline label-primary">
+                {{ user.name }}
+              </span></a
+            >
 
-          <b-link @click="grantUser($event, data.item)">
-            <span class="label label-lg label-inline label-success">
-              Grant User
-            </span>
-          </b-link>
-        </template>
-        <template #cell(collation)="data">
-          {{ data.item.collation }}
-        </template>
-        <template #cell(delete)="data">
-          <a role="button" v-on:click="deleteDatabase(data.item)"
-            ><i class="fas fa-trash-alt text-danger"></i
-          ></a>
-        </template>
-      </b-table>
-    </div>
+            <b-link @click="grantUser($event, data.item)">
+              <span class="label label-lg label-inline label-success">
+                Grant User
+              </span>
+            </b-link>
+          </template>
+          <template #cell(collation)="data">
+            {{ data.item.collation }}
+          </template>
+          <template #cell(delete)="data">
+            <a role="button" v-on:click="deleteDatabase(data.item)"
+              ><i class="fas fa-trash-alt text-danger"></i
+            ></a>
+          </template>
+        </b-table>
+      </template>
+    </KTCard>
   </div>
 </template>
 
 <style scoped src="@/assets/styles/server.css"></style>
 
 <script>
+import KTCard from "@/view/content/Card.vue";
 import {
   showConfirmMsgbox,
   showSuccessMsgbox,
@@ -75,6 +73,9 @@ import {
 export default {
   name: "KTDatabases",
   props: ["serverId"],
+  components: {
+    KTCard
+  },
   data() {
     return {
       databases: [],

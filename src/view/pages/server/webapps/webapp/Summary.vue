@@ -1,23 +1,20 @@
 <template>
-  <div class="card card-custom gutter-b">
-    <div class="card-header border-0 py-5">
-      <h3 class="card-title align-items-start flex-column">
-        <span class="card-label font-weight-bolder text-dark">
-          Summary
-        </span>
-      </h3>
-      <p class="font-size-md mt-1">
-        You must place your Deployment Key into your git repository. You can get
-        your deployment key in Deployment Key section.
-      </p>
-    </div>
-    <div class="card-body pt-0 pb-10"></div>
+  <div>
+    <KTCard ref="summary" title="Summary">
+      <template v-slot:body>
+        <p class="font-size-md mt-1">
+          You must place your Deployment Key into your git repository. You can
+          get your deployment key in Deployment Key section.
+        </p>
+      </template>
+    </KTCard>
   </div>
 </template>
 
 <style scoped src="@/assets/styles/server.css"></style>
 
 <script>
+import KTCard from "@/view/content/Card.vue";
 import { makeSuccessToast, catchError } from "@/view/shared/msgbox";
 import {
   GET_PHP_VERSION,
@@ -25,6 +22,9 @@ import {
 } from "@/core/services/store/system.module";
 
 export default {
+  components: {
+    KTCard
+  },
   data() {
     return {
       serverId: "",

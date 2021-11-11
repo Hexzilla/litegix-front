@@ -155,8 +155,8 @@
 
         <b-form-group label="Admin Username">
           <b-form-input
-            name="adminName"
-            v-model="form.wordpress.adminName"
+            name="adminUserName"
+            v-model="form.wordpress.adminUserName"
             placeholder="WordPress admin username"
           ></b-form-input>
         </b-form-group>
@@ -222,8 +222,8 @@
           <b-input-group>
             <b-form-input
               type="password"
-              name="databasePassword"
-              v-model="form.wordpress.databasePassword"
+              name="databasePass"
+              v-model="form.wordpress.databasePass"
               placeholder="WordPress database user"
             ></b-form-input>
             <b-input-group-append>
@@ -297,12 +297,12 @@ export default {
         enableAutoSSL: false,
         wordpress: {
           siteTitle: "",
-          adminName: "",
+          adminUserName: "",
           adminPassword: "",
           adminEmail: "",
           canvas: "",
           databaseUser: "",
-          databasePassword: "",
+          databasePass: "",
           databaseName: "",
           tablePrefix: ""
         }
@@ -462,7 +462,7 @@ export default {
               }
             }
           },
-          adminName: {
+          adminUserName: {
             validators: {
               notEmpty: {
                 message: "This field is required"

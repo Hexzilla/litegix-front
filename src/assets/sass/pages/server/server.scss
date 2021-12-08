@@ -1,0 +1,16 @@
+// Initialization of global variables, mixins and functions
+@import "../../init";
+
+.server-title {  
+  min-height: 40px;
+
+  h3 {
+    overflow-wrap: anywhere!important;
+  }
+}
+
+.server-active-state {
+  margin: 0 0 1.0rem 0;
+  display: flex;
+  justify-content: end;
+}

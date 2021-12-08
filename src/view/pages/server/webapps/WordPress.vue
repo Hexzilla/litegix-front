@@ -25,26 +25,26 @@
             name="domainType"
           ></b-form-radio-group>
         </div>
-        <b-form-group v-if="form.domainType == 'custom'">
+        <b-form-group v-show="form.domainType == 'custom'">
           <b-form-input
             v-model="form.domainName"
             :placeholder="getDomainExample()"
-            name="domainName"
+            name="customDomainName"
           ></b-form-input>
         </b-form-group>
 
         <b-input-group
+          v-show="form.domainType == 'litegix'"
           :append="getDomainSuffix()"
-          v-if="form.domainType == 'litegix'"
         >
           <b-form-input
             v-model="form.domainName"
-            name="domainName"
+            name="litegixDomainName"
             required
           ></b-form-input>
         </b-input-group>
 
-        <fieldset v-if="form.domainType == 'custom'">
+        <fieldset v-show="form.domainType == 'custom'">
           <b-form-group>
             <b-form-checkbox
               size="lg"
@@ -54,11 +54,6 @@
               Enable www version of this domain
             </b-form-checkbox>
           </b-form-group>
-
-          <!-- <div class="form-group">
-            <label class="control-label">DNS Integration</label>
-            <b-form-select v-model="select" :options="keys"></b-form-select>
-          </div> -->
         </fieldset>
       </div>
     </div>
@@ -72,12 +67,23 @@
         </h3>
       </div>
       <div class="card-body pt-0 pb-10">
+        <b-form-group>
+          <b-form-checkbox size="lg" name="useExistUser" v-model="useExistUser">
+            Use existing system user
+          </b-form-checkbox>
+        </b-form-group>
         <b-form-group label="User (Owner of this Web Application)">
+          <b-form-input
+            v-show="!useExistUser"
+            name="newowner"
+            v-model="form.owner"
+            placeholder="Username"
+          ></b-form-input>
           <b-form-select
+            v-show="useExistUser"
             name="owner"
             size="lg"
             v-model="form.owner"
-            required
             :options="system_users"
             value-field="id"
             text-field="name"
@@ -284,6 +290,7 @@ export default {
         { text: "Use test domain", value: "litegix" },
         { text: "Use my own domain / subdomain", value: "custom" }
       ],
+      useExistUser: false,
       form: {
         name: "",
         domainType: "custom",
@@ -325,8 +332,14 @@ export default {
       });
     this.initForm();
   },
+  beforeDestroy() {
+    if (this.fv) {
+      this.fv.destroy();
+    }
+  },
   methods: {
     createApplication() {
+      console.log("createApplication");
       // set spinner to submit button
       const submitButton = this.$refs["kt_form_submit"];
       submitButton.classList.add("spinner", "spinner-light", "spinner-right");
@@ -425,6 +438,13 @@ export default {
               }
             }
           },
+          newowner: {
+            validators: {
+              notEmpty: {
+                message: "The owner is required"
+              }
+            }
+          },
           owner: {
             validators: {
               notEmpty: {
@@ -515,7 +535,9 @@ export default {
                 (field == "customDomainName" &&
                   thiz.form.domainType != "custom") ||
                 (field == "litegixDomainName" &&
-                  thiz.form.domainType != "litegix")
+                  thiz.form.domainType != "litegix") ||
+                (field == "newowner" && thiz.useExistUser) ||
+                (field == "owner" && !thiz.useExistUser)
               );
             }
           })

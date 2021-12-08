@@ -68,19 +68,23 @@
       </div>
       <div class="card-body pt-0 pb-10">
         <b-form-group>
-          <b-form-checkbox size="lg" name="useExistUser" v-model="useExistUser">
+          <b-form-checkbox
+            size="lg"
+            name="useExistUser"
+            v-model="form.useExistUser"
+          >
             Use existing system user
           </b-form-checkbox>
         </b-form-group>
         <b-form-group label="User (Owner of this Web Application)">
           <b-form-input
-            v-show="!useExistUser"
+            v-show="!form.useExistUser"
             name="newowner"
             v-model="form.owner"
             placeholder="Username"
           ></b-form-input>
           <b-form-select
-            v-show="useExistUser"
+            v-show="form.useExistUser"
             name="owner"
             size="lg"
             v-model="form.owner"
@@ -290,7 +294,6 @@ export default {
         { text: "Use test domain", value: "litegix" },
         { text: "Use my own domain / subdomain", value: "custom" }
       ],
-      useExistUser: false,
       form: {
         name: "",
         domainType: "custom",
@@ -298,6 +301,7 @@ export default {
         domainSuffix: "ec",
         enableW3Version: false,
         owner: null,
+        useExistUser: true,
         phpVersion: "php8.0",
         webAppStack: "native_nginx",
         sslMode: "basic",
@@ -536,8 +540,8 @@ export default {
                   thiz.form.domainType != "custom") ||
                 (field == "litegixDomainName" &&
                   thiz.form.domainType != "litegix") ||
-                (field == "newowner" && thiz.useExistUser) ||
-                (field == "owner" && !thiz.useExistUser)
+                (field == "newowner" && thiz.form.useExistUser) ||
+                (field == "owner" && !thiz.form.useExistUser)
               );
             }
           })

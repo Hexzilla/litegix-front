@@ -12,7 +12,7 @@
         <b-form-group label="Web Application Name">
           <b-form-input
             name="name"
-            v-model="form.name"
+            v-model="data.name"
             placeholder="e.g: my-application / my_application"
             maxlength="40"
           ></b-form-input>
@@ -20,36 +20,36 @@
         <div class="form-group">
           <label class="control-label">Domain Name</label>
           <b-form-radio-group
-            v-model="form.domainType"
+            v-model="data.domainType"
             :options="domain_options"
             name="domainType"
           ></b-form-radio-group>
         </div>
-        <b-form-group v-if="form.domainType == 'custom'">
+        <b-form-group v-if="data.domainType == 'custom'">
           <b-form-input
-            v-model="form.domainName"
+            v-model="data.domainName"
             :placeholder="getDomainExample()"
             name="customDomainName"
           ></b-form-input>
         </b-form-group>
 
         <b-input-group
-          v-if="form.domainType == 'litegix'"
+          v-if="data.domainType == 'litegix'"
           :append="getDomainSuffix()"
         >
           <b-form-input
-            v-model="form.domainName"
+            v-model="data.domainName"
             name="litegixDomainName"
             required
           ></b-form-input>
         </b-input-group>
 
-        <fieldset v-if="form.domainType == 'custom'">
+        <fieldset v-if="data.domainType == 'custom'">
           <b-form-group>
             <b-form-checkbox
               size="lg"
               name="enableW3Version"
-              v-model="form.enableW3Version"
+              v-model="data.enableW3Version"
             >
               Enable www version of this domain
             </b-form-checkbox>
@@ -71,23 +71,23 @@
           <b-form-checkbox
             size="lg"
             name="useExistUser"
-            v-model="form.useExistUser"
+            v-model="data.useExistUser"
           >
             Use existing system user
           </b-form-checkbox>
         </b-form-group>
         <b-form-group label="User (Owner of this Web Application)">
           <b-form-input
-            v-show="!form.useExistUser"
+            v-show="!data.useExistUser"
             name="newowner"
-            v-model="form.owner"
+            v-model="data.newowner"
             placeholder="Username"
           ></b-form-input>
           <b-form-select
-            v-show="form.useExistUser"
+            v-show="data.useExistUser"
             name="owner"
             size="lg"
-            v-model="form.owner"
+            v-model="data.owner"
             :options="system_users"
             value-field="id"
             text-field="name"
@@ -110,7 +110,7 @@
           <b-form-select
             name="phpVersion"
             size="lg"
-            v-model="form.phpVersion"
+            v-model="data.phpVersion"
             :options="php_versions"
           ></b-form-select>
         </b-form-group>
@@ -119,7 +119,7 @@
           <b-form-select
             name="webAppStack"
             size="lg"
-            v-model="form.webAppStack"
+            v-model="data.webAppStack"
             :options="web_application_stacks"
           ></b-form-select>
         </b-form-group>
@@ -128,7 +128,7 @@
           <b-form-select
             name="sslMode"
             size="lg"
-            v-model="form.sslMode"
+            v-model="data.sslMode"
             required
             :options="web_ssl_methods"
           ></b-form-select>
@@ -138,7 +138,7 @@
           <b-form-checkbox
             size="lg"
             name="enableAutoSSL"
-            v-model="form.enableAutoSSL"
+            v-model="data.enableAutoSSL"
           >
             Enable AutoSSL
           </b-form-checkbox>
@@ -158,7 +158,7 @@
         <b-form-group label="Site Title">
           <b-form-input
             name="siteTitle"
-            v-model="form.wordpress.siteTitle"
+            v-model="data.wordpress.siteTitle"
             placeholder="e.g: My WordPress Site"
           ></b-form-input>
         </b-form-group>
@@ -166,14 +166,15 @@
         <b-form-group label="Admin Username">
           <b-form-input
             name="adminUserName"
-            v-model="form.wordpress.adminUserName"
+            v-model="data.wordpress.adminUserName"
             placeholder="WordPress admin username"
           ></b-form-input>
         </b-form-group>
         <b-form-group label="Admin Password">
           <b-form-input
             name="adminPassword"
-            v-model="form.wordpress.adminPassword"
+            type="password"
+            v-model="data.wordpress.adminPassword"
             placeholder="WordPress admin password"
           ></b-form-input>
         </b-form-group>
@@ -182,7 +183,7 @@
           <b-form-input
             type="email"
             name="adminEmail"
-            v-model="form.wordpress.adminEmail"
+            v-model="data.wordpress.adminEmail"
             placeholder="WordPress admin email"
           ></b-form-input>
         </b-form-group>
@@ -200,7 +201,7 @@
           <b-form-select
             size="lg"
             name="canvas"
-            v-model="form.canvas"
+            v-model="data.canvas"
             :options="canvases"
           ></b-form-select>
         </b-form-group>
@@ -223,7 +224,7 @@
         <b-form-group label="Database User (Optional)">
           <b-form-input
             name="databaseUser"
-            v-model="form.wordpress.databaseUser"
+            v-model="data.wordpress.databaseUser"
             placeholder="WordPress database user"
           ></b-form-input>
         </b-form-group>
@@ -233,7 +234,7 @@
             <b-form-input
               type="password"
               name="databasePass"
-              v-model="form.wordpress.databasePass"
+              v-model="data.wordpress.databasePass"
               placeholder="WordPress database user"
             ></b-form-input>
             <b-input-group-append>
@@ -245,14 +246,14 @@
         <b-form-group label="Database Name (Optional)">
           <b-form-input
             name="databaseName"
-            v-model="form.wordpress.databaseName"
+            v-model="data.wordpress.databaseName"
             placeholder="WordPress database user"
           ></b-form-input>
         </b-form-group>
         <b-form-group label="Table Prefix (Optional)">
           <b-form-input
             name="tablePrefix"
-            v-model="form.wordpress.tablePrefix"
+            v-model="data.wordpress.tablePrefix"
             placeholder="WordPress database prefix"
           ></b-form-input>
         </b-form-group>
@@ -294,12 +295,13 @@ export default {
         { text: "Use test domain", value: "litegix" },
         { text: "Use my own domain / subdomain", value: "custom" }
       ],
-      form: {
+      data: {
         name: "",
         domainType: "custom",
         domainName: "",
         domainSuffix: "ec",
         enableW3Version: false,
+        newowner: null,
         owner: null,
         useExistUser: true,
         phpVersion: "php8.0",
@@ -332,7 +334,7 @@ export default {
         this.web_application_stacks = res.data.web_application_stacks;
         this.web_environments = res.data.web_environments;
         this.web_ssl_methods = res.data.web_ssl_methods;
-        this.form.domainSuffix = res.data.domainSuffix;
+        this.data.domainSuffix = res.data.domainSuffix;
       });
     this.initForm();
   },
@@ -348,9 +350,14 @@ export default {
       const submitButton = this.$refs["kt_form_submit"];
       submitButton.classList.add("spinner", "spinner-light", "spinner-right");
 
+      const payload = {
+        ...this.data,
+        owner: this.data.useExistUser ? this.data.owner : this.data.newowner
+      };
+
       this.$store
         .dispatch(STORE_WORDPRESS_APPLICATION, {
-          ...this.form,
+          ...payload,
           serverId: this.$parent.serverId
         })
         .then(data => {
@@ -358,7 +365,7 @@ export default {
             throw new Error(data.errors.message);
           }
           return showSuccessMsgbox(
-            `Web application ${this.form.name} has been successfully created`
+            `Web application ${this.data.name} has been successfully created`
           );
         })
         .then(() => {
@@ -380,14 +387,14 @@ export default {
       this.selectedUser = this.system_users.find(it => it.id == userId);
     },
     getPublicPathPrefix() {
-      return `/home/${this.selectedUser?.name}/webapps/${this.form.name}/`;
+      return `/home/${this.selectedUser?.name}/webapps/${this.data.name}/`;
     },
     getDomainExample() {
-      const appName = this.form.name || "litegix";
+      const appName = this.data.name || "litegix";
       return `e.g: ${appName}.com or subdomain.${appName}.com`;
     },
     getDomainSuffix() {
-      return `.${this.form.domainSuffix}.litegix.com`;
+      return `.${this.data.domainSuffix}.litegix.com`;
     },
     initForm() {
       const thiz = this;
@@ -537,11 +544,11 @@ export default {
             excluded: function(field) {
               return (
                 (field == "customDomainName" &&
-                  thiz.form.domainType != "custom") ||
+                  thiz.data.domainType != "custom") ||
                 (field == "litegixDomainName" &&
-                  thiz.form.domainType != "litegix") ||
-                (field == "newowner" && thiz.form.useExistUser) ||
-                (field == "owner" && !thiz.form.useExistUser)
+                  thiz.data.domainType != "litegix") ||
+                (field == "newowner" && thiz.data.useExistUser) ||
+                (field == "owner" && !thiz.data.useExistUser)
               );
             }
           })

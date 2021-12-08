@@ -25,7 +25,7 @@
             name="domainType"
           ></b-form-radio-group>
         </div>
-        <b-form-group v-show="form.domainType == 'custom'">
+        <b-form-group v-if="form.domainType == 'custom'">
           <b-form-input
             v-model="form.domainName"
             :placeholder="getDomainExample()"
@@ -34,7 +34,7 @@
         </b-form-group>
 
         <b-input-group
-          v-show="form.domainType == 'litegix'"
+          v-if="form.domainType == 'litegix'"
           :append="getDomainSuffix()"
         >
           <b-form-input
@@ -44,7 +44,7 @@
           ></b-form-input>
         </b-input-group>
 
-        <fieldset v-show="form.domainType == 'custom'">
+        <fieldset v-if="form.domainType == 'custom'">
           <b-form-group>
             <b-form-checkbox
               size="lg"
@@ -298,8 +298,8 @@ export default {
         domainSuffix: "ec",
         enableW3Version: false,
         owner: null,
-        phpVersion: null,
-        webAppStack: null,
+        phpVersion: "php8.0",
+        webAppStack: "native_nginx",
         sslMode: "basic",
         enableAutoSSL: false,
         wordpress: {

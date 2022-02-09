@@ -11,8 +11,8 @@ const ApiService = {
     Vue.use(VueAxios, axios);
     Vue.axios.defaults.baseURL =
       process.env.NODE_ENV === "production"
-        ? "https://litegix.herokuapp.com/" //"http://5.161.73.6/" //"https://litegix-server.herokuapp.com/"
-        : "http://localhost:3000";
+        ? "https://litegix.herokuapp.com" //"http://5.161.73.6/" //"https://litegix-server.herokuapp.com/"
+        : "http://localhost:7000";
   },
 
   /**

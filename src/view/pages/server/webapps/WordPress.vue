@@ -20,36 +20,36 @@
         <div class="form-group">
           <label class="control-label">Domain Name</label>
           <b-form-radio-group
-            v-model="data.domainType"
+            v-model="data.domain.selection"
             :options="domain_options"
-            name="domainType"
+            name="domain_selection"
           ></b-form-radio-group>
         </div>
-        <b-form-group v-if="data.domainType == 'custom'">
+        <b-form-group v-if="data.domain.selection == 'custom_domain'">
           <b-form-input
-            v-model="data.domainName"
+            v-model="data.domain.name"
             :placeholder="getDomainExample()"
             name="customDomainName"
           ></b-form-input>
         </b-form-group>
 
         <b-input-group
-          v-if="data.domainType == 'litegix'"
+          v-if="data.domain.selection == 'litegix_domain'"
           :append="getDomainSuffix()"
         >
           <b-form-input
-            v-model="data.domainName"
+            v-model="data.domain.name"
             name="litegixDomainName"
             required
           ></b-form-input>
         </b-input-group>
 
-        <fieldset v-if="data.domainType == 'custom'">
+        <fieldset v-if="data.domain.selection == 'custom_domain'">
           <b-form-group>
             <b-form-checkbox
               size="lg"
-              name="enableW3Version"
-              v-model="data.enableW3Version"
+              name="wwwEnabled"
+              v-model="data.domain.wwwEnabled"
             >
               Enable www version of this domain
             </b-form-checkbox>
@@ -70,21 +70,21 @@
         <b-form-group>
           <b-form-checkbox
             size="lg"
-            name="useExistUser"
-            v-model="data.useExistUser"
+            name="isUserExists"
+            v-model="data.isUserExists"
           >
             Use existing system user
           </b-form-checkbox>
         </b-form-group>
         <b-form-group label="User (Owner of this Web Application)">
           <b-form-input
-            v-show="!data.useExistUser"
+            v-show="!data.isUserExists"
             name="newowner"
             v-model="data.newowner"
             placeholder="Username"
           ></b-form-input>
           <b-form-select
-            v-show="data.useExistUser"
+            v-show="data.isUserExists"
             name="owner"
             size="lg"
             v-model="data.owner"
@@ -126,9 +126,9 @@
 
         <b-form-group label="SSL/TLS Method">
           <b-form-select
-            name="sslMode"
+            name="sslMethod"
             size="lg"
-            v-model="data.sslMode"
+            v-model="data.sslMethod"
             required
             :options="web_ssl_methods"
           ></b-form-select>
@@ -292,21 +292,25 @@ export default {
       web_ssl_methods: [],
       canvases: [],
       domain_options: [
-        { text: "Use test domain", value: "litegix" },
-        { text: "Use my own domain / subdomain", value: "custom" }
+        { text: "Use test domain", value: "litegix_domain" },
+        { text: "Use my own domain / subdomain", value: "custom_domain" }
       ],
+      domain_suffix: "",
       data: {
         name: "",
-        domainType: "custom",
-        domainName: "",
-        domainSuffix: "ec",
-        enableW3Version: false,
-        newowner: null,
+        domain: {
+          name: "",
+          type: "primary",
+          selection: "custom_domain",
+          wwwEnabled: false,
+          wwwVersion: 1
+        },
+        isUserExists: true,
         owner: null,
-        useExistUser: true,
+        newowner: null,
         phpVersion: "php8.0",
         webAppStack: "native_nginx",
-        sslMode: "basic",
+        sslMethod: "basic",
         enableAutoSSL: false,
         wordpress: {
           siteTitle: "",
@@ -334,7 +338,7 @@ export default {
         this.web_application_stacks = res.data.web_application_stacks;
         this.web_environments = res.data.web_environments;
         this.web_ssl_methods = res.data.web_ssl_methods;
-        this.data.domainSuffix = res.data.domainSuffix;
+        this.domain_suffix = res.data.domainSuffix;
       });
     this.initForm();
   },
@@ -352,8 +356,11 @@ export default {
 
       const payload = {
         ...this.data,
-        owner: this.data.useExistUser ? this.data.owner : this.data.newowner
+        owner: this.data.isUserExists ? this.data.owner : this.data.newowner
       };
+      if (payload.domain.selection === "litegix_domain") {
+        payload.domain.name = `${payload.domain.name}${this.getDomainSuffix()}`;
+      }
 
       this.$store
         .dispatch(STORE_WORDPRESS_APPLICATION, {
@@ -394,7 +401,7 @@ export default {
       return `e.g: ${appName}.com or subdomain.${appName}.com`;
     },
     getDomainSuffix() {
-      return `.${this.data.domainSuffix}.litegix.com`;
+      return `.${this.domain_suffix}.litegix.com`;
     },
     initForm() {
       const thiz = this;
@@ -485,11 +492,6 @@ export default {
               stringLength: {
                 min: 5,
                 message: "This field must be at least 5 characters"
-              },
-              regexp: {
-                regexp: "^[a-zA-Z][a-zA-Z0-9_]*$",
-                message:
-                  "This field can consist of alphanumeric characters and underscode(_) only"
               }
             }
           },
@@ -544,11 +546,11 @@ export default {
             excluded: function(field) {
               return (
                 (field == "customDomainName" &&
-                  thiz.data.domainType != "custom") ||
+                  thiz.data.domain.selection != "custom_domain") ||
                 (field == "litegixDomainName" &&
-                  thiz.data.domainType != "litegix") ||
-                (field == "newowner" && thiz.data.useExistUser) ||
-                (field == "owner" && !thiz.data.useExistUser)
+                  thiz.data.domain.selection != "litegix_domain") ||
+                (field == "newowner" && thiz.data.isUserExists) ||
+                (field == "owner" && !thiz.data.isUserExists)
               );
             }
           })
